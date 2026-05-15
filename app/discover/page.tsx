@@ -115,6 +115,11 @@ export default function DiscoverPage() {
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null)
   const [answeredQuestionIds, setAnsweredQuestionIds] = useState<Set<string>>(new Set())
 
+  // Denní limit swipů (5 free / neomezeně premium)
+  const DAILY_FREE_LIMIT = 5
+  const [dailySwipes, setDailySwipes] = useState(0)
+  const [swipeLimitReached, setSwipeLimitReached] = useState(false)
+
   // Vypočítaná skóre (kombinace book + profil)
   const [enhancedScores, setEnhancedScores] = useState<Record<string, number>>({})
 
@@ -123,6 +128,21 @@ export default function DiscoverPage() {
     if (!stored) { router.push('/login'); return }
     const u = JSON.parse(stored) as Profile
     setUser(u)
+
+    // Načti denní počet swipů z localStorage
+    const today = new Date().toISOString().slice(0, 10)
+    const swipeData = localStorage.getItem('cosmatch_daily_swipes')
+    if (swipeData) {
+      const { date, count } = JSON.parse(swipeData)
+      if (date === today) {
+        setDailySwipes(count)
+        if (!u.premium && count >= DAILY_FREE_LIMIT) setSwipeLimitReached(true)
+      } else {
+        localStorage.setItem('cosmatch_daily_swipes', JSON.stringify({ date: today, count: 0 }))
+      }
+    } else {
+      localStorage.setItem('cosmatch_daily_swipes', JSON.stringify({ date: today, count: 0 }))
+    }
 
     // Předvyplň zodpovězené otázky
     const answered = new Set(
@@ -195,10 +215,24 @@ export default function DiscoverPage() {
 
   const handleAction = useCallback(async (liked: boolean) => {
     if (!user || idx >= filteredProfiles.length) return
+
+    // Denní limit — free uživatelé max 5 swipů/den
+    if (!user.premium && dailySwipes >= DAILY_FREE_LIMIT) {
+      setSwipeLimitReached(true)
+      return
+    }
+
     const target = filteredProfiles[idx]
     setAction(liked ? 'like' : 'pass')
     setShowInfo(false)
     setTimeout(() => setAction(null), 500)
+
+    // Zvyšuj denní počítadlo
+    const newCount = dailySwipes + 1
+    setDailySwipes(newCount)
+    const today = new Date().toISOString().slice(0, 10)
+    localStorage.setItem('cosmatch_daily_swipes', JSON.stringify({ date: today, count: newCount }))
+    if (!user.premium && newCount >= DAILY_FREE_LIMIT) setSwipeLimitReached(true)
 
     await supabase.from('likes').upsert({
       from_user: user.id, to_user: target.id, liked
@@ -231,7 +265,8 @@ export default function DiscoverPage() {
       }
     }
     setSwipesSinceQuestion(newSwipeCount)
-  }, [user, idx, swipesSinceQuestion, answeredQuestionIds])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, idx, swipesSinceQuestion, answeredQuestionIds, dailySwipes])
 
   const handleQuestionAnswer = useCallback((updatedUser: Profile) => {
     setUser(updatedUser)
@@ -314,6 +349,43 @@ export default function DiscoverPage() {
       </nav>
 
       <div className="max-w-lg mx-auto px-4">
+        {/* Denní swipe limit banner — free uživatelé */}
+        {!user?.premium && (
+          <div className="mb-3">
+            <div className="flex items-center justify-between px-1 mb-1">
+              <span className="text-xs text-gray-400 font-medium">Dnešní swipy</span>
+              <span className="text-xs font-bold text-gray-500">{Math.min(dailySwipes, DAILY_FREE_LIMIT)} / {DAILY_FREE_LIMIT}</span>
+            </div>
+            <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
+              <div
+                className="h-full rounded-full transition-all duration-300"
+                style={{
+                  width: `${Math.min((dailySwipes / DAILY_FREE_LIMIT) * 100, 100)}%`,
+                  background: dailySwipes >= DAILY_FREE_LIMIT ? '#ef4444' : '#ec4899'
+                }}
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Limit dosažen — upgrade CTA */}
+        {swipeLimitReached && !user?.premium && (
+          <div className="card p-8 text-center mt-4">
+            <div className="text-4xl mb-3">⏳</div>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Na dnešek máš hotovo</h3>
+            <p className="text-gray-400 text-sm mb-1">
+              Dnešních {DAILY_FREE_LIMIT} swipů zdarma jsou pryč.
+            </p>
+            <p className="text-gray-400 text-sm mb-6">
+              Vrať se zítra — nebo si odemkni neomezené swipy.
+            </p>
+            <Link href="/premium" className="btn-primary w-full text-center inline-block mb-3">
+              👑 Cosmatch+ — neomezené swipy
+            </Link>
+            <p className="text-xs text-gray-300">299 Kč/měs · Zrušení kdykoliv</p>
+          </div>
+        )}
+
         {/* Completeness banner – zobrazí se pokud profil < 50 % vyplněn */}
         {completeness < 50 && !showQuestion && (
           <div className="mb-3 bg-pink-50 border border-pink-100 rounded-2xl px-4 py-2.5 flex items-center gap-3">
@@ -328,7 +400,7 @@ export default function DiscoverPage() {
         )}
 
         {/* Progressivní otázka */}
-        {showQuestion && currentQuestion ? (
+        {!swipeLimitReached && showQuestion && currentQuestion ? (
           <div className="mt-4">
             <ProfileQuestion
               question={currentQuestion}
@@ -339,7 +411,7 @@ export default function DiscoverPage() {
               totalQuestions={PROFILE_QUESTIONS.length}
             />
           </div>
-        ) : !currentProfile ? (
+        ) : swipeLimitReached && !user?.premium ? null : !currentProfile ? (
           <div className="card p-12 text-center mt-4">
             <div className="text-5xl mb-4">✨</div>
             <h3 className="text-xl font-bold text-gray-900 mb-2">Momentálně nic dalšího</h3>

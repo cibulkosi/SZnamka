@@ -4,167 +4,253 @@ import Link from 'next/link'
 
 export default function LandingPage() {
   const [lang, setLang] = useState<'cs'|'en'>('cs')
-  const T = {
-    cs: {
-      tagline: 'Vesmír zná tvůj match',
-      subtitle: 'Seznamka postavená na vědě o datech narození. Zjisti, kdo se k tobě opravdu hodí — na základě přes 2 350 stran personologického výzkumu.',
-      cta: 'Začít zdarma',
-      login: 'Přihlásit se',
-      how: 'Jak to funguje',
-      step1_title: 'Zadáš datum narození',
-      step1_desc: 'Nic víc nepotřebujeme. Tvůj birthday je klíčem ke všemu.',
-      step2_title: 'Algoritmus matchuje',
-      step2_desc: 'Porovnáme tvé datum s každým profilem v databázi přes 5 kategorií kompatibility.',
-      step3_title: 'Vidíš kdo se hodí',
-      step3_desc: 'Oboustranné shody, jednostranné, osudová přitažlivost — vše přehledně.',
-      cats: ['💚 Láska & přátelství', '🌟 Prospěšné', '🔥 Osudová přitažlivost', '⚡ Výzva', '🔮 Spřízněné duše'],
-      mutual_label: '↔ Oboustranná shoda',
-      mutual_desc: 'Když se dva hodí navzájem — to je ten magický moment.',
-      stats1: '366', stats1l: 'dat v systému',
-      stats2: '46 000+', stats2l: 'párů kompatibility',
-      stats3: '5', stats3l: 'kategorií shody',
-      footer: 'Cosmatch © 2026 · Postaveno na knize The Power of Birthdays, Stars & Numbers'
-    },
-    en: {
-      tagline: 'The universe knows your match',
-      subtitle: 'A dating app built on the science of birth dates. Discover who truly matches with you — based on 2,350 pages of personology research.',
-      cta: 'Start for free',
-      login: 'Login',
-      how: 'How it works',
-      step1_title: 'Enter your birthday',
-      step1_desc: 'That\'s all we need. Your birth date is the key to everything.',
-      step2_title: 'Algorithm matches',
-      step2_desc: 'We compare your date with every profile across 5 compatibility categories.',
-      step3_title: 'See who fits',
-      step3_desc: 'Mutual matches, one-sided, fatal attractions — all clearly displayed.',
-      cats: ['💚 Love & Friendship', '🌟 Beneficial', '🔥 Fatal Attraction', '⚡ Challenging', '🔮 Soul Mates'],
-      mutual_label: '↔ Mutual Match',
-      mutual_desc: 'When two people are listed for each other — that\'s the magic.',
-      stats1: '366', stats1l: 'dates in system',
-      stats2: '46,000+', stats2l: 'compatibility pairs',
-      stats3: '5', stats3l: 'match categories',
-      footer: 'Cosmatch © 2026 · Built on The Power of Birthdays, Stars & Numbers'
-    }
-  }[lang]
+  const isCs = lang === 'cs'
 
   return (
-    <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, #1a0533 0%, #0d0d1a 40%, #0f0520 70%, #1a0533 100%)', color: '#fff' }}>
-      {/* Nav */}
-      <nav className="flex items-center justify-between px-6 py-4 max-w-6xl mx-auto">
+    <div className="min-h-screen text-white" style={{ background: '#0a0010' }}>
+
+      {/* ── NAV ── */}
+      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 max-w-6xl mx-auto" style={{ background: 'rgba(10,0,16,0.75)', backdropFilter: 'blur(14px)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
         <div className="flex items-center gap-2">
           <span className="text-2xl">🪐</span>
           <span className="text-xl font-bold text-white">Cosmatch</span>
         </div>
         <div className="flex items-center gap-3">
           <button
-            onClick={() => setLang(lang === 'cs' ? 'en' : 'cs')}
+            onClick={() => setLang(isCs ? 'en' : 'cs')}
             className="text-white/60 hover:text-white text-sm px-3 py-1 rounded-lg border border-white/20 hover:border-white/40 transition-all"
           >
-            {lang === 'cs' ? '🇬🇧 EN' : '🇨🇿 CS'}
+            {isCs ? '🇬🇧 EN' : '🇨🇿 CS'}
           </button>
           <Link href="/login" className="text-white/80 hover:text-white text-sm font-medium transition-colors">
-            {T.login}
+            {isCs ? 'Přihlásit se' : 'Login'}
           </Link>
           <Link href="/register" className="btn-primary text-sm py-2 px-4">
-            {T.cta}
+            {isCs ? 'Začít zdarma' : 'Start free'}
           </Link>
         </div>
       </nav>
 
-      {/* Hero */}
-      <section className="text-center px-6 pt-16 pb-20 max-w-4xl mx-auto">
-        <div className="inline-flex items-center gap-2 bg-purple-500/20 border border-purple-400/30 rounded-full px-4 py-2 text-purple-300 text-sm mb-6">
-          <span>🔮</span> Personologie · Astrologie · Věda
+      {/* ── HERO — mlhovina/galaxie jako pozadí ── */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=1920&q=85&auto=format&fit=crop"
+            alt="Vesmír — galaxie"
+            className="w-full h-full object-cover"
+            style={{ opacity: 0.55 }}
+          />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(10,0,16,0.4) 0%, rgba(10,0,16,0.15) 40%, rgba(10,0,16,0.95) 100%)' }} />
         </div>
-        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-          {T.tagline.split(' ').map((word, i) => (
-            <span key={i} className={i === T.tagline.split(' ').length - 1 ? 'text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400' : ''}>
-              {word}{' '}
-            </span>
-          ))}
-        </h1>
-        <p className="text-white/70 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
-          {T.subtitle}
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="/register" className="btn-primary text-lg py-4 px-8">
-            ✨ {T.cta}
-          </Link>
-          <a href="#how" className="btn-secondary text-lg py-4 px-8">
-            {T.how} ↓
-          </a>
+
+        <div className="relative z-10 max-w-4xl mx-auto">
+          <div className="inline-flex items-center gap-2 bg-purple-500/20 border border-purple-400/30 rounded-full px-4 py-2 text-purple-300 text-sm mb-8">
+            <span>🔮</span>
+            {isCs ? 'Personologie · Věda o datech narození' : 'Personology · The Science of Birth Dates'}
+          </div>
+
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
+            {isCs ? (
+              <>Vesmír zná<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400">tvůj match</span></>
+            ) : (
+              <>The universe knows<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400">your match</span></>
+            )}
+          </h1>
+
+          <p className="text-white/85 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow">
+            {isCs
+              ? 'Seznamka postavená na vědě o datech narození. Tvůj personologický profil — z přes 2 350 stran výzkumu — najde ty, kteří ti opravdu odpovídají.'
+              : 'A dating app built on the science of birth dates. Your personology profile — from 2,350+ pages of research — finds people who truly match you.'}
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+            <Link href="/register" className="btn-primary text-lg py-4 px-8">
+              ✨ {isCs ? 'Začít zdarma' : 'Start for free'}
+            </Link>
+            <Link
+              href="/demo"
+              className="text-lg py-4 px-8 rounded-2xl font-semibold transition-all border border-white/40 hover:border-white/70 hover:bg-white/10"
+              style={{ background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(8px)' }}
+            >
+              👁 {isCs ? 'Prohlédnout demo' : 'Browse demo'}
+            </Link>
+          </div>
+
+          <p className="text-white/40 text-sm">
+            {isCs ? 'Žádná kreditní karta. Registrace za 30 sekund.' : 'No credit card. Sign up in 30 seconds.'}
+          </p>
+        </div>
+
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+          <svg viewBox="0 0 24 24" className="w-6 h-6 text-white/40" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="py-10 px-6">
+      {/* ── STATS ── */}
+      <section className="py-16 px-6" style={{ background: 'rgba(255,255,255,0.025)' }}>
         <div className="max-w-4xl mx-auto grid grid-cols-3 gap-6">
           {[
-            [T.stats1, T.stats1l],
-            [T.stats2, T.stats2l],
-            [T.stats3, T.stats3l],
+            ['366', isCs ? 'personol. profilů' : 'personology profiles'],
+            ['133 000+', isCs ? 'párů kompatibility' : 'compatibility pairs'],
+            ['5', isCs ? 'kategorií shody' : 'match categories'],
           ].map(([num, label], i) => (
-            <div key={i} className="dark-card text-center py-6 px-4">
-              <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">{num}</div>
-              <div className="text-white/60 text-sm mt-1">{label}</div>
+            <div key={i} className="text-center py-8 px-4 rounded-3xl border border-white/10" style={{ background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(10px)' }}>
+              <div className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-2">{num}</div>
+              <div className="text-white/50 text-sm">{label}</div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* How it works */}
-      <section id="how" className="py-20 px-6 max-w-5xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-12">{T.how}</h2>
+      {/* ── JAK TO FUNGUJE ── */}
+      <section id="how" className="py-24 px-6 max-w-5xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+          {isCs ? 'Jak to funguje' : 'How it works'}
+        </h2>
+        <p className="text-white/50 text-center mb-16 max-w-xl mx-auto">
+          {isCs ? 'Žádné dotazníky. Žádné testy osobnosti. Stačí datum.' : 'No questionnaires. No personality tests. Just your birthdate.'}
+        </p>
         <div className="grid md:grid-cols-3 gap-8">
           {[
-            { icon: '📅', title: T.step1_title, desc: T.step1_desc },
-            { icon: '🔭', title: T.step2_title, desc: T.step2_desc },
-            { icon: '💫', title: T.step3_title, desc: T.step3_desc },
+            {
+              icon: '📅', num: '01',
+              title: isCs ? 'Zadáš datum narození' : 'Enter your birthday',
+              desc: isCs ? 'Nic víc nepotřebujeme. Tvůj birthday odemkne tvůj přesný personologický profil.' : 'That\'s all we need. Your birthday unlocks your exact personology profile.',
+            },
+            {
+              icon: '🔭', num: '02',
+              title: isCs ? 'Vesmír ti ukáže tvůj profil' : 'The universe shows your profile',
+              desc: isCs ? 'Ihned po zadání data uvidíš svůj personologický výtah. Tento "magic moment" tě překvapí přesností.' : 'Right after entering your date, you\'ll see your personology excerpt. This magic moment will surprise you.',
+            },
+            {
+              icon: '💫', num: '03',
+              title: isCs ? 'Najdeš svůj match' : 'Find your match',
+              desc: isCs ? 'Algoritmus porovná tvoje datum se všemi v databázi přes 5 kategorií kompatibility a seřadí je.' : 'The algorithm compares your date with everyone across 5 compatibility categories and ranks them.',
+            },
           ].map((step, i) => (
-            <div key={i} className="dark-card p-6 text-center">
-              <div className="text-4xl mb-4">{step.icon}</div>
-              <div className="text-white/40 text-sm font-mono mb-2">0{i+1}</div>
-              <h3 className="font-semibold text-lg mb-3">{step.title}</h3>
-              <p className="text-white/60 text-sm leading-relaxed">{step.desc}</p>
+            <div key={i} className="p-8 rounded-3xl border border-white/10" style={{ background: 'rgba(255,255,255,0.04)', backdropFilter: 'blur(10px)' }}>
+              <div className="text-5xl mb-5">{step.icon}</div>
+              <div className="text-white/20 text-sm font-mono mb-3">{step.num}</div>
+              <h3 className="font-bold text-lg mb-3 text-white">{step.title}</h3>
+              <p className="text-white/55 text-sm leading-relaxed">{step.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Categories */}
-      <section className="py-16 px-6 max-w-5xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-4">5 kategorií shody</h2>
-        <p className="text-white/60 text-center mb-10 max-w-xl mx-auto">Každé datum má jiný vztah s každým jiným datem. My ti ukážeme všechny dimenze.</p>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
-          {T.cats.map((cat, i) => (
-            <div key={i} className="dark-card p-4 text-center text-sm font-medium">
-              {cat}
-            </div>
-          ))}
-          <div className="dark-card p-4 text-center text-sm font-semibold bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border-cyan-400/30 col-span-2 md:col-span-1">
-            {T.mutual_label}
+      {/* ── 5 KATEGORIÍ — mlhovina v pozadí ── */}
+      <section className="relative py-24 px-6 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=1920&q=80&auto=format&fit=crop"
+            alt="Mlhovina"
+            className="w-full h-full object-cover"
+            style={{ opacity: 0.3 }}
+          />
+          <div className="absolute inset-0" style={{ background: 'rgba(10,0,16,0.65)' }} />
+        </div>
+        <div className="relative z-10 max-w-5xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            {isCs ? '5 kategorií shody' : '5 match categories'}
+          </h2>
+          <p className="text-white/50 text-center mb-14 max-w-xl mx-auto">
+            {isCs
+              ? 'Každé datum má jiný vztah s každým jiným datem. Uvidíš všechny dimenze.'
+              : 'Every date has a different relationship with every other date. You\'ll see all dimensions.'}
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-10">
+            {[
+              { icon: '🔮', label: isCs ? 'Spřízněné duše' : 'Soul Mates', cls: 'border-violet-400/40 bg-violet-500/15' },
+              { icon: '💚', label: isCs ? 'Láska & přátelství' : 'Love & Friendship', cls: 'border-emerald-400/40 bg-emerald-500/15' },
+              { icon: '🔥', label: isCs ? 'Osudová přitažlivost' : 'Fatal Attraction', cls: 'border-orange-400/40 bg-orange-500/15' },
+              { icon: '🌟', label: isCs ? 'Prospěšné' : 'Beneficial', cls: 'border-yellow-400/40 bg-yellow-500/15' },
+              { icon: '⚡', label: isCs ? 'Výzva' : 'Challenging', cls: 'border-blue-400/40 bg-blue-500/15' },
+              { icon: '↔', label: isCs ? 'Oboustranná shoda' : 'Mutual Match', cls: 'border-cyan-400/40 bg-cyan-500/15' },
+            ].map((cat, i) => (
+              <div key={i} className={`p-5 rounded-2xl border ${cat.cls} text-center`}>
+                <div className="text-3xl mb-2">{cat.icon}</div>
+                <div className="text-white font-semibold text-sm">{cat.label}</div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center">
+            <Link href="/demo" className="inline-flex items-center gap-2 text-purple-300 hover:text-purple-200 text-sm font-medium transition-colors border border-purple-400/30 hover:border-purple-400/60 px-5 py-2.5 rounded-full">
+              👁 {isCs ? 'Podívat se na demo profily' : 'See demo profiles'} →
+            </Link>
           </div>
         </div>
-        <div className="dark-card p-6 text-center max-w-xl mx-auto">
-          <div className="text-3xl mb-3">↔</div>
-          <p className="text-white/70">{T.mutual_desc}</p>
+      </section>
+
+      {/* ── PROČ COSMATCH ── */}
+      <section className="py-24 px-6 max-w-5xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
+          {isCs ? 'Proč Cosmatch?' : 'Why Cosmatch?'}
+        </h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          {[
+            { icon: '🎯', title: isCs ? 'Záměrné seznamování' : 'Intentional dating', desc: isCs ? 'Cosmatch přináší slow dating — méně swipů, ale každý s hlubším smyslem. 5 swipů denně zdarma.' : 'Cosmatch brings slow dating — fewer swipes, but each with deeper meaning. 5 free swipes per day.' },
+            { icon: '🔬', title: isCs ? 'Věda, ne náhoda' : 'Science, not luck', desc: isCs ? '133 000+ párů kompatibility předpočítaných z 2 350 stran personologického výzkumu Garyho Goldschneidera.' : '133,000+ compatibility pairs pre-calculated from 2,350 pages of Gary Goldschneider\'s research.' },
+            { icon: '🛡️', title: isCs ? 'Bezpečné prostředí' : 'Safe environment', desc: isCs ? 'Žádné boty, žádné fake profily. Každý účet je svázán s reálným datem narození.' : 'No bots, no fake profiles. Every account is tied to a real birth date.' },
+            { icon: '🇨🇿', title: isCs ? 'Česká komunita' : 'Czech community', desc: isCs ? 'Navrženo pro česky mluvící uživatele — CZ/SK priorita, plná lokalizace, platby v CZK přes Paddle.' : 'Designed for Czech-speaking users — CZ/SK priority, full localization, CZK payments via Paddle.' },
+          ].map((item, i) => (
+            <div key={i} className="flex gap-5 p-6 rounded-2xl border border-white/10" style={{ background: 'rgba(255,255,255,0.03)' }}>
+              <div className="text-3xl flex-shrink-0">{item.icon}</div>
+              <div>
+                <h3 className="font-bold text-white mb-2">{item.title}</h3>
+                <p className="text-white/50 text-sm leading-relaxed">{item.desc}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 px-6 text-center">
-        <div className="dark-card max-w-2xl mx-auto p-12">
-          <h2 className="text-3xl font-bold mb-4">Připraven/a začít?</h2>
-          <p className="text-white/60 mb-8">Registrace je zdarma. Zadej datum narození a objev svůj match.</p>
-          <Link href="/register" className="btn-primary text-lg py-4 px-10 inline-block">
-            ✨ {T.cta}
-          </Link>
+      {/* ── CTA — hvězdné nebe v pozadí ── */}
+      <section className="relative py-32 px-6 text-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=1920&q=80&auto=format&fit=crop"
+            alt="Hvězdné nebe"
+            className="w-full h-full object-cover"
+            style={{ opacity: 0.45 }}
+          />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(10,0,16,0.5) 0%, rgba(50,0,70,0.35) 50%, rgba(10,0,16,0.85) 100%)' }} />
+        </div>
+        <div className="relative z-10 max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            {isCs ? 'Připravena/a začít?' : 'Ready to start?'}
+          </h2>
+          <p className="text-white/65 text-lg mb-10">
+            {isCs ? 'Registrace je zdarma. Zadej datum narození a objev svůj match.' : 'Registration is free. Enter your birthday and discover your match.'}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/register" className="btn-primary text-lg py-4 px-10 inline-block">
+              ✨ {isCs ? 'Začít zdarma' : 'Start for free'}
+            </Link>
+            <Link href="/demo" className="text-lg py-4 px-8 rounded-2xl font-semibold transition-all border border-white/30 hover:border-white/60 inline-block" style={{ background: 'rgba(255,255,255,0.08)' }}>
+              👁 Demo
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="text-center py-8 px-6 text-white/30 text-sm border-t border-white/10">
-        {T.footer}
+      {/* ── FOOTER ── */}
+      <footer className="text-center py-10 px-6 border-t border-white/10" style={{ background: 'rgba(255,255,255,0.02)' }}>
+        <div className="flex items-center justify-center gap-2 mb-3">
+          <span className="text-xl">🪐</span>
+          <span className="font-bold text-white/80">Cosmatch</span>
+        </div>
+        <p className="text-white/30 text-sm">
+          {isCs
+            ? '© 2026 Cosmatch · Postaveno na knize The Power of Birthdays, Stars & Numbers'
+            : '© 2026 Cosmatch · Built on The Power of Birthdays, Stars & Numbers'}
+        </p>
+        <div className="flex items-center justify-center gap-6 mt-4 text-white/30 text-sm">
+          <Link href="/login" className="hover:text-white/60 transition-colors">{isCs ? 'Přihlásit se' : 'Login'}</Link>
+          <Link href="/register" className="hover:text-white/60 transition-colors">{isCs ? 'Registrace' : 'Register'}</Link>
+          <Link href="/demo" className="hover:text-white/60 transition-colors">Demo</Link>
+        </div>
       </footer>
     </div>
   )
