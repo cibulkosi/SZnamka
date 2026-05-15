@@ -25,6 +25,7 @@ export type Profile = {
   occupation?: string
   education?: string
   philosophy?: string
+  relationship_goal?: string  // 'serious' | 'friendship' | 'casual' | 'unsure'
 
   // ── Nová pole – algoritmus kompatibility ──────────
   // B) Životní vize
