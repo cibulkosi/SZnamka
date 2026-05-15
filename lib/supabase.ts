@@ -25,6 +25,28 @@ export type Profile = {
   occupation?: string
   education?: string
   philosophy?: string
+
+  // ── Nová pole – algoritmus kompatibility ──────────
+  // B) Životní vize
+  family_plans?: string       // 'want_kids' | 'have_kids_want_more' | 'no_kids' | 'open'
+  religion?: string           // 'none' | 'religious' | 'spiritual' | 'other'
+  finances?: string           // 'saver' | 'spender' | 'balanced'
+  relationship_type?: string  // 'serious' | 'casual' | 'open' | 'unsure'
+
+  // C) Osobnost & týmovost
+  personality_role?: string     // 'visionary' | 'executor' | 'both'
+  personality_schedule?: string // 'morning' | 'night' | 'flexible'
+  personality_social?: string   // 'introvert' | 'extrovert' | 'ambivert'
+  personality_conflict?: string // 'talk' | 'cool_down' | 'avoid'
+
+  // D) Intimní kompatibilita
+  libido?: number  // 1–5 (1=zřídka, 5=každý den)
+
+  // E) Lifestyle
+  smoking?: string   // 'never' | 'sometimes' | 'often'
+  alcohol?: string   // 'never' | 'socially' | 'regularly'
+  diet?: string      // 'omnivore' | 'vegetarian' | 'vegan' | 'other'
+  exercise?: string  // 'never' | 'sometimes' | 'regularly'
 }
 
 export const EDUCATION_OPTIONS = [

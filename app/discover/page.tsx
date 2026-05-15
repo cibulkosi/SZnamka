@@ -4,6 +4,8 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase, type Profile, type Compatibility, getZodiac } from '@/lib/supabase'
 import { CompatBadges, ScoreRing } from '@/components/CompatBadges'
+import { ProfileQuestion, PROFILE_QUESTIONS, type Question } from '@/components/ProfileQuestion'
+import { computeCompatibility, profileCompleteness } from '@/lib/compat'
 
 // Pastelové gradienty jako avatar fallback (bez fotky)
 const AVATAR_GRADIENTS = [
@@ -88,6 +90,14 @@ function BottomNav({ active }: { active: string }) {
   )
 }
 
+// Které otázky ještě nebyly zodpovězeny pro daného uživatele
+function getUnansweredQuestions(user: Profile): Question[] {
+  return PROFILE_QUESTIONS.filter(q => {
+    const val = user[q.id as keyof Profile]
+    return val === undefined || val === null || val === ''
+  })
+}
+
 export default function DiscoverPage() {
   const router = useRouter()
   const [user, setUser] = useState<Profile | null>(null)
@@ -99,11 +109,30 @@ export default function DiscoverPage() {
   const [minScore, setMinScore] = useState<MinScore>(0)
   const [showInfo, setShowInfo] = useState(false)
 
+  // Progressive profiling
+  const [swipesSinceQuestion, setSwipesSinceQuestion] = useState(0)
+  const [showQuestion, setShowQuestion] = useState(false)
+  const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null)
+  const [answeredQuestionIds, setAnsweredQuestionIds] = useState<Set<string>>(new Set())
+
+  // Vypočítaná skóre (kombinace book + profil)
+  const [enhancedScores, setEnhancedScores] = useState<Record<string, number>>({})
+
   useEffect(() => {
     const stored = localStorage.getItem('cosmatch_user')
     if (!stored) { router.push('/login'); return }
     const u = JSON.parse(stored) as Profile
     setUser(u)
+
+    // Předvyplň zodpovězené otázky
+    const answered = new Set(
+      PROFILE_QUESTIONS.filter(q => {
+        const val = u[q.id as keyof Profile]
+        return val !== undefined && val !== null && val !== ''
+      }).map(q => q.id)
+    )
+    setAnsweredQuestionIds(answered)
+
     loadProfiles(u)
   }, [router])
 
@@ -132,21 +161,41 @@ export default function DiscoverPage() {
     const compatMap: Record<string, Compatibility> = {}
     compatData?.forEach(c => { compatMap[c.date_b] = c })
 
+    // Vypočítej enhanced scores pro všechny profily
+    const scores: Record<string, number> = {}
+    profs.forEach(p => {
+      const bookScore = compatMap[p.birthday]?.score ?? null
+      scores[p.id] = computeCompatibility(u, p, bookScore)
+    })
+
     const sorted = [...profs].sort((a, b) => {
-      const ca = compatMap[a.birthday], cb = compatMap[b.birthday]
-      if (ca?.is_mutual && !cb?.is_mutual) return -1
-      if (!ca?.is_mutual && cb?.is_mutual) return 1
-      return (cb?.score ?? 0) - (ca?.score ?? 0)
+      return (scores[b.id] ?? 0) - (scores[a.id] ?? 0)
     })
 
     setProfiles(sorted)
     setCompats(compatMap)
+    setEnhancedScores(scores)
     setLoading(false)
   }
 
+  // Přepočítej enhanced scores při aktualizaci uživatele
+  const recalculateScores = useCallback((updatedUser: Profile) => {
+    const newScores: Record<string, number> = {}
+    profiles.forEach(p => {
+      const bookScore = compats[p.birthday]?.score ?? null
+      newScores[p.id] = computeCompatibility(updatedUser, p, bookScore)
+    })
+    setEnhancedScores(newScores)
+
+    // Re-sort profiles
+    const sorted = [...profiles].sort((a, b) => (newScores[b.id] ?? 0) - (newScores[a.id] ?? 0))
+    setProfiles(sorted)
+    setIdx(0)
+  }, [profiles, compats])
+
   const handleAction = useCallback(async (liked: boolean) => {
-    if (!user || idx >= profiles.length) return
-    const target = profiles[idx]
+    if (!user || idx >= filteredProfiles.length) return
+    const target = filteredProfiles[idx]
     setAction(liked ? 'like' : 'pass')
     setShowInfo(false)
     setTimeout(() => setAction(null), 500)
@@ -168,26 +217,54 @@ export default function DiscoverPage() {
       }
     }
 
+    const newSwipeCount = swipesSinceQuestion + 1
     setIdx(i => i + 1)
-  }, [user, idx, profiles])
+
+    // Zobraz otázku každých 5 swipů
+    if (newSwipeCount >= 5) {
+      const unanswered = getUnansweredQuestions(user).filter(q => !answeredQuestionIds.has(q.id))
+      if (unanswered.length > 0) {
+        setCurrentQuestion(unanswered[0])
+        setShowQuestion(true)
+        setSwipesSinceQuestion(0)
+        return
+      }
+    }
+    setSwipesSinceQuestion(newSwipeCount)
+  }, [user, idx, swipesSinceQuestion, answeredQuestionIds])
+
+  const handleQuestionAnswer = useCallback((updatedUser: Profile) => {
+    setUser(updatedUser)
+    setShowQuestion(false)
+    setCurrentQuestion(null)
+    const newAnswered = new Set(Array.from(answeredQuestionIds).concat(currentQuestion?.id ?? ''))
+    setAnsweredQuestionIds(newAnswered)
+    recalculateScores(updatedUser)
+  }, [answeredQuestionIds, currentQuestion, recalculateScores])
+
+  const handleQuestionSkip = useCallback(() => {
+    setShowQuestion(false)
+    setCurrentQuestion(null)
+  }, [])
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (showInfo) return
+      if (showInfo || showQuestion) return
       if (e.key === 'ArrowRight' || e.key === 'l') handleAction(true)
       if (e.key === 'ArrowLeft' || e.key === 'd') handleAction(false)
     }
     window.addEventListener('keydown', handleKey)
     return () => window.removeEventListener('keydown', handleKey)
-  }, [handleAction, showInfo])
+  }, [handleAction, showInfo, showQuestion])
 
   const filteredProfiles = profiles.filter(p => {
-    const c = compats[p.birthday]
-    return (c?.score ?? 0) >= minScore
+    return (enhancedScores[p.id] ?? 0) >= minScore
   })
 
   const currentProfile = filteredProfiles[idx] ?? null
   const compat = currentProfile ? compats[currentProfile.birthday] : null
+  const enhancedScore = currentProfile ? (enhancedScores[currentProfile.id] ?? compat?.score ?? 0) : 0
+  const completeness = user ? profileCompleteness(user) : 0
 
   if (loading) return (
     <div className="min-h-screen bg-[#FAF6F0] flex items-center justify-center">
@@ -237,7 +314,32 @@ export default function DiscoverPage() {
       </nav>
 
       <div className="max-w-lg mx-auto px-4">
-        {!currentProfile ? (
+        {/* Completeness banner – zobrazí se pokud profil < 50 % vyplněn */}
+        {completeness < 50 && !showQuestion && (
+          <div className="mb-3 bg-pink-50 border border-pink-100 rounded-2xl px-4 py-2.5 flex items-center gap-3">
+            <div className="flex-1">
+              <p className="text-xs font-semibold text-pink-700">Tvůj profil je {completeness} % vyplněn</p>
+              <p className="text-xs text-pink-400">Odpovídej na otázky pro přesnější skóre</p>
+            </div>
+            <div className="w-10 h-10 rounded-full border-2 border-pink-200 flex items-center justify-center">
+              <span className="text-xs font-bold text-pink-500">{completeness}%</span>
+            </div>
+          </div>
+        )}
+
+        {/* Progressivní otázka */}
+        {showQuestion && currentQuestion ? (
+          <div className="mt-4">
+            <ProfileQuestion
+              question={currentQuestion}
+              user={user!}
+              onAnswer={handleQuestionAnswer}
+              onSkip={handleQuestionSkip}
+              questionNumber={answeredQuestionIds.size}
+              totalQuestions={PROFILE_QUESTIONS.length}
+            />
+          </div>
+        ) : !currentProfile ? (
           <div className="card p-12 text-center mt-4">
             <div className="text-5xl mb-4">✨</div>
             <h3 className="text-xl font-bold text-gray-900 mb-2">Momentálně nic dalšího</h3>
@@ -276,12 +378,10 @@ export default function DiscoverPage() {
               <div className="relative" style={{ height: '400px' }}>
                 <ProfileAvatar profile={currentProfile} />
 
-                {/* Skóre — pravý horní roh */}
-                {compat && (
-                  <div className="absolute top-3 right-3">
-                    <ScoreRing score={compat.score} />
-                  </div>
-                )}
+                {/* Skóre — pravý horní roh (enhanced) */}
+                <div className="absolute top-3 right-3">
+                  <ScoreRing score={enhancedScore} />
+                </div>
 
                 {/* Gradient overlay */}
                 <div className="absolute bottom-0 left-0 right-0 h-44 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none" />
@@ -322,6 +422,16 @@ export default function DiscoverPage() {
                     <CompatBadges compat={compat} lang="cs" />
                   </div>
                 )}
+                {/* Lifestyle tagy */}
+                <div className="flex flex-wrap gap-1.5 mt-2">
+                  {currentProfile.smoking === 'never' && <span className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded-full">🚭 Nekouří</span>}
+                  {currentProfile.alcohol === 'never' && <span className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded-full">💧 Nepije</span>}
+                  {currentProfile.diet === 'vegan' && <span className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded-full">🌱 Vegan</span>}
+                  {currentProfile.diet === 'vegetarian' && <span className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded-full">🥦 Vegetarián</span>}
+                  {currentProfile.relationship_type === 'serious' && <span className="text-xs text-pink-400 bg-pink-50 px-2 py-0.5 rounded-full">💍 Vážný vztah</span>}
+                  {currentProfile.family_plans === 'want_kids' && <span className="text-xs text-blue-400 bg-blue-50 px-2 py-0.5 rounded-full">🍼 Chce děti</span>}
+                  {currentProfile.family_plans === 'no_kids' && <span className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded-full">🙅 Nechce děti</span>}
+                </div>
               </div>
 
               {/* Info panel */}
@@ -349,6 +459,20 @@ export default function DiscoverPage() {
                       </div>
                     </div>
                   )}
+                  {/* Skóre detail */}
+                  <div>
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Skóre kompatibility</p>
+                    <div className="grid grid-cols-2 gap-2 text-xs">
+                      <div className="bg-white rounded-xl px-3 py-2">
+                        <p className="text-gray-400">📅 Datová rezonance</p>
+                        <p className="font-bold text-gray-700">{compat?.score ?? 0} / 100</p>
+                      </div>
+                      <div className="bg-white rounded-xl px-3 py-2">
+                        <p className="text-gray-400">🎯 Celkové skóre</p>
+                        <p className="font-bold text-pink-600">{enhancedScore} / 100</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
@@ -396,7 +520,7 @@ export default function DiscoverPage() {
 
             {compat?.is_mutual && (
               <p className="text-center text-pink-500 text-xs font-semibold mt-3 animate-pulse">
-                ✨ Oboustranná shoda!
+                ✨ Oboustranná shoda dle personologie!
               </p>
             )}
           </>
