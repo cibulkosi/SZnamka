@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase, type Profile, type Compatibility, getZodiac } from '@/lib/supabase'
@@ -25,7 +25,7 @@ function ProfileAvatar({ profile }: { profile: Profile }) {
   const idx = profile.name.charCodeAt(0) % AVATAR_GRADIENTS.length
   return (
     <div className={`w-full h-full bg-gradient-to-br ${AVATAR_GRADIENTS[idx]} flex items-center justify-center`}>
-      <span className="text-white text-7xl font-bold opacity-80">
+      <span className="text-white text-8xl font-bold opacity-70">
         {profile.name.charAt(0).toUpperCase()}
       </span>
     </div>
@@ -63,7 +63,7 @@ function BottomNav({ active }: { active: string }) {
         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
       </svg>
     )},
-    { key: 'profile', href: '/matches', label: 'JÁ', icon: (
+    { key: 'profile', href: '/profile', label: 'JÁ', icon: (
       <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
       </svg>
@@ -98,6 +98,286 @@ function getUnansweredQuestions(user: Profile): Question[] {
   })
 }
 
+// ─── Hinge-style profil (scrollovatelný) ────────────────────────────────────
+function HingeProfile({
+  profile,
+  compat,
+  enhancedScore,
+  onPass,
+  onLike,
+  actionState,
+}: {
+  profile: Profile
+  compat: Compatibility | null
+  enhancedScore: number
+  onPass: () => void
+  onLike: () => void
+  actionState: 'like' | 'pass' | null
+}) {
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  // Při změně profilu scrolluj zpět nahoru
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ top: 0, behavior: 'instant' })
+  }, [profile.id])
+
+  const age = profile.birth_year ? new Date().getFullYear() - profile.birth_year : null
+
+  return (
+    <div className="relative h-full flex flex-col">
+      {/* Scrollovatelný obsah profilu */}
+      <div
+        ref={scrollRef}
+        className="flex-1 overflow-y-auto"
+        style={{ paddingBottom: '100px' }} // prostor pro fixní akční lištu
+      >
+        {/* Hero fotka — zabírá většinu viewportu */}
+        <div
+          className={`relative w-full transition-all duration-300 ${
+            actionState === 'like' ? 'opacity-70 scale-[0.98]' :
+            actionState === 'pass' ? 'opacity-50 scale-[0.98]' : ''
+          }`}
+          style={{ height: '72vh' }}
+        >
+          <ProfileAvatar profile={profile} />
+
+          {/* Skóre kompatibility — vpravo nahoře */}
+          <div className="absolute top-4 right-4 z-10">
+            <ScoreRing score={enhancedScore} />
+          </div>
+
+          {/* Gradient overlay spodek */}
+          <div className="absolute bottom-0 left-0 right-0 h-56 bg-gradient-to-t from-black/90 via-black/50 to-transparent pointer-events-none" />
+
+          {/* Jméno, věk, lokalita — přes fotku dole */}
+          <div className="absolute bottom-5 left-5 right-5">
+            <h2 className="text-white font-bold text-3xl tracking-tight">
+              {profile.name.split(' ')[0]}
+              {age && <span className="font-light">, {age}</span>}
+            </h2>
+            {(profile.city || profile.country) && (
+              <p className="text-white/75 text-sm mt-1 flex items-center gap-1">
+                <span>📍</span>
+                {[profile.city, profile.country].filter(Boolean).join(' · ')}
+              </p>
+            )}
+            {/* Záliby tagy přes fotku */}
+            {profile.hobbies?.length > 0 && (
+              <div className="flex flex-wrap gap-1.5 mt-2.5">
+                {profile.hobbies.slice(0, 4).map(h => (
+                  <span
+                    key={h}
+                    className="bg-white/20 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded-full border border-white/30"
+                  >
+                    {h}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* ─── Obsah profilu pod fotkou ─────────────────────────────── */}
+        <div className="bg-white">
+
+          {/* Kompatibilita — hned pod fotkou */}
+          {compat && (
+            <div className="px-5 pt-4 pb-3 border-b border-gray-100">
+              <CompatBadges compat={compat} lang="cs" />
+              {compat.is_mutual && (
+                <p className="text-pink-500 text-xs font-semibold mt-2 flex items-center gap-1">
+                  <span>✨</span> Oboustranná personologická shoda
+                </p>
+              )}
+            </div>
+          )}
+
+          {/* Základní info: povolání / znamení / vzdělání */}
+          <div className="px-5 py-4 border-b border-gray-100">
+            <div className="flex flex-wrap gap-x-5 gap-y-1.5 text-sm text-gray-500">
+              {profile.occupation && (
+                <span className="flex items-center gap-1.5">
+                  <span>💼</span> {profile.occupation}
+                </span>
+              )}
+              <span className="flex items-center gap-1.5">
+                {getZodiac(profile.birthday)}
+              </span>
+              {profile.education && (
+                <span className="flex items-center gap-1.5">
+                  <span>🎓</span> {profile.education}
+                </span>
+              )}
+            </div>
+          </div>
+
+          {/* Bio */}
+          {profile.bio && (
+            <div className="px-5 py-4 border-b border-gray-100">
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Intro</p>
+              <p className="text-gray-700 text-sm leading-relaxed">{profile.bio}</p>
+            </div>
+          )}
+
+          {/* Životní filozofie */}
+          {profile.philosophy && (
+            <div className="px-5 py-4 border-b border-gray-100">
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Životní filozofie</p>
+              <p className="text-gray-700 text-sm leading-relaxed italic">&ldquo;{profile.philosophy}&rdquo;</p>
+            </div>
+          )}
+
+          {/* Všechny záliby */}
+          {profile.hobbies?.length > 0 && (
+            <div className="px-5 py-4 border-b border-gray-100">
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-3">Záliby</p>
+              <div className="flex flex-wrap gap-2">
+                {profile.hobbies.map(h => (
+                  <span key={h} className="tag">{h}</span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Lifestyle štítky */}
+          <div className="px-5 py-4 border-b border-gray-100">
+            <div className="flex flex-wrap gap-2">
+              {profile.relationship_type === 'serious' && (
+                <span className="text-xs text-pink-500 bg-pink-50 border border-pink-100 px-3 py-1 rounded-full font-medium">
+                  💍 Vážný vztah
+                </span>
+              )}
+              {profile.relationship_type === 'friendship' && (
+                <span className="text-xs text-green-600 bg-green-50 border border-green-100 px-3 py-1 rounded-full font-medium">
+                  💚 Přátelství
+                </span>
+              )}
+              {profile.relationship_type === 'casual' && (
+                <span className="text-xs text-orange-500 bg-orange-50 border border-orange-100 px-3 py-1 rounded-full font-medium">
+                  🌊 Nezávazně
+                </span>
+              )}
+              {profile.smoking === 'never' && (
+                <span className="text-xs text-gray-500 bg-gray-50 border border-gray-100 px-3 py-1 rounded-full">
+                  🚭 Nekouří
+                </span>
+              )}
+              {profile.alcohol === 'never' && (
+                <span className="text-xs text-gray-500 bg-gray-50 border border-gray-100 px-3 py-1 rounded-full">
+                  💧 Nepije
+                </span>
+              )}
+              {profile.diet === 'vegan' && (
+                <span className="text-xs text-gray-500 bg-gray-50 border border-gray-100 px-3 py-1 rounded-full">
+                  🌱 Vegan
+                </span>
+              )}
+              {profile.diet === 'vegetarian' && (
+                <span className="text-xs text-gray-500 bg-gray-50 border border-gray-100 px-3 py-1 rounded-full">
+                  🥦 Vegetarián
+                </span>
+              )}
+              {profile.family_plans === 'want_kids' && (
+                <span className="text-xs text-blue-500 bg-blue-50 border border-blue-100 px-3 py-1 rounded-full">
+                  🍼 Chce děti
+                </span>
+              )}
+              {profile.family_plans === 'no_kids' && (
+                <span className="text-xs text-gray-500 bg-gray-50 border border-gray-100 px-3 py-1 rounded-full">
+                  🙅 Nechce děti
+                </span>
+              )}
+            </div>
+          </div>
+
+          {/* Personologický panel — vždy dole */}
+          <div className="px-5 py-5">
+            <div className="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-100 rounded-3xl p-5">
+              <p className="text-xs font-bold text-purple-400 uppercase tracking-wide mb-2">🔮 Personologická shoda</p>
+              {compat ? (
+                <div className="space-y-1.5">
+                  {compat.is_mutual && (
+                    <p className="text-purple-700 text-sm font-semibold">✨ Oboustranná shoda</p>
+                  )}
+                  {compat.soul_mates && (
+                    <p className="text-purple-700 text-sm">🔮 Spřízněné duše</p>
+                  )}
+                  {compat.love_friendship && (
+                    <p className="text-purple-700 text-sm">💚 Láska & přátelství</p>
+                  )}
+                  {compat.fatal_attraction && (
+                    <p className="text-purple-700 text-sm">🔥 Osudová přitažlivost</p>
+                  )}
+                  {compat.beneficial && (
+                    <p className="text-purple-700 text-sm">🌟 Prospěšný vztah</p>
+                  )}
+                  {compat.challenging && (
+                    <p className="text-purple-700 text-sm">⚡ Výzva a růst</p>
+                  )}
+                  {!compat.is_mutual && !compat.soul_mates && !compat.love_friendship &&
+                   !compat.fatal_attraction && !compat.beneficial && !compat.challenging && (
+                    <p className="text-purple-500 text-sm">Neutrální kombinace dat.</p>
+                  )}
+                </div>
+              ) : (
+                <p className="text-purple-500 text-sm">
+                  Personologická data pro toto datum nejsou k dispozici.
+                </p>
+              )}
+            </div>
+          </div>
+
+          {/* Hint pro scrollování */}
+          <p className="text-center text-gray-300 text-xs pb-4">
+            ↑ Scrolluj nahoru zpět na fotku
+          </p>
+        </div>
+      </div>
+
+      {/* ─── Fixní akční lišta — X vlevo, ❤️ vpravo ────────────────── */}
+      <div
+        className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-8 py-3 z-20"
+        style={{
+          background: 'linear-gradient(to top, rgba(250,246,240,1) 60%, rgba(250,246,240,0))',
+          paddingBottom: '16px',
+        }}
+      >
+        {/* Pass — X vlevo */}
+        <button
+          onClick={onPass}
+          className={`w-16 h-16 rounded-full bg-white shadow-lg border-2 border-gray-200 flex items-center justify-center transition-all active:scale-90 ${
+            actionState === 'pass' ? 'scale-90 bg-gray-100' : 'hover:border-gray-400'
+          }`}
+        >
+          <svg viewBox="0 0 24 24" className="w-7 h-7 text-gray-400" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+
+        {/* Počítadlo profilů — uprostřed */}
+        <span className="text-xs text-gray-400 font-semibold tracking-wide select-none">
+          — SCROLL PRO VÍCE —
+        </span>
+
+        {/* Like — ❤️ vpravo */}
+        <button
+          onClick={onLike}
+          className={`w-16 h-16 rounded-full flex items-center justify-center shadow-lg transition-all active:scale-90 ${
+            actionState === 'like' ? 'scale-90 brightness-90' : 'hover:brightness-110'
+          }`}
+          style={{ backgroundColor: '#E91E8C' }}
+        >
+          <svg viewBox="0 0 24 24" className="w-8 h-8" fill="white">
+            <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  )
+}
+
+// ─── Hlavní stránka ──────────────────────────────────────────────────────────
 export default function DiscoverPage() {
   const router = useRouter()
   const [user, setUser] = useState<Profile | null>(null)
@@ -107,7 +387,6 @@ export default function DiscoverPage() {
   const [loading, setLoading] = useState(true)
   const [action, setAction] = useState<'like' | 'pass' | null>(null)
   const [minScore, setMinScore] = useState<MinScore>(0)
-  const [showInfo, setShowInfo] = useState(false)
 
   // Progressive profiling
   const [swipesSinceQuestion, setSwipesSinceQuestion] = useState(0)
@@ -213,6 +492,10 @@ export default function DiscoverPage() {
     setIdx(0)
   }, [profiles, compats])
 
+  const filteredProfiles = profiles.filter(p => {
+    return (enhancedScores[p.id] ?? 0) >= minScore
+  })
+
   const handleAction = useCallback(async (liked: boolean) => {
     if (!user || idx >= filteredProfiles.length) return
 
@@ -224,8 +507,10 @@ export default function DiscoverPage() {
 
     const target = filteredProfiles[idx]
     setAction(liked ? 'like' : 'pass')
-    setShowInfo(false)
-    setTimeout(() => setAction(null), 500)
+    setTimeout(() => {
+      setAction(null)
+      setIdx(i => i + 1)
+    }, 300)
 
     // Zvyšuj denní počítadlo
     const newCount = dailySwipes + 1
@@ -252,7 +537,6 @@ export default function DiscoverPage() {
     }
 
     const newSwipeCount = swipesSinceQuestion + 1
-    setIdx(i => i + 1)
 
     // Zobraz otázku každých 5 swipů
     if (newSwipeCount >= 5) {
@@ -266,7 +550,7 @@ export default function DiscoverPage() {
     }
     setSwipesSinceQuestion(newSwipeCount)
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, idx, swipesSinceQuestion, answeredQuestionIds, dailySwipes])
+  }, [user, idx, swipesSinceQuestion, answeredQuestionIds, dailySwipes, filteredProfiles])
 
   const handleQuestionAnswer = useCallback((updatedUser: Profile) => {
     setUser(updatedUser)
@@ -282,19 +566,16 @@ export default function DiscoverPage() {
     setCurrentQuestion(null)
   }, [])
 
+  // Klávesové zkratky
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (showInfo || showQuestion) return
+      if (showQuestion) return
       if (e.key === 'ArrowRight' || e.key === 'l') handleAction(true)
       if (e.key === 'ArrowLeft' || e.key === 'd') handleAction(false)
     }
     window.addEventListener('keydown', handleKey)
     return () => window.removeEventListener('keydown', handleKey)
-  }, [handleAction, showInfo, showQuestion])
-
-  const filteredProfiles = profiles.filter(p => {
-    return (enhancedScores[p.id] ?? 0) >= minScore
-  })
+  }, [handleAction, showQuestion])
 
   const currentProfile = filteredProfiles[idx] ?? null
   const compat = currentProfile ? compats[currentProfile.birthday] : null
@@ -311,9 +592,11 @@ export default function DiscoverPage() {
   )
 
   return (
-    <div className="min-h-screen bg-[#FAF6F0] pb-20">
-      {/* Horní navigace */}
-      <nav className="flex items-center justify-between px-5 py-4 max-w-lg mx-auto">
+    // Celá stránka — pevná výška viewportu, overflow skrytý (scroll je uvnitř HingeProfile)
+    <div className="bg-[#FAF6F0]" style={{ height: '100dvh', display: 'flex', flexDirection: 'column' }}>
+
+      {/* ─── Horní navigace ─────────────────────────────────────────── */}
+      <nav className="flex-shrink-0 flex items-center justify-between px-5 py-3 max-w-lg mx-auto w-full bg-[#FAF6F0] z-30">
         <Link href="/" className="flex items-center gap-1.5">
           <span className="text-pink-500 text-xl font-bold">✦</span>
           <span className="font-bold text-gray-900 text-lg tracking-tight">Cosmatch</span>
@@ -348,243 +631,112 @@ export default function DiscoverPage() {
         </div>
       </nav>
 
-      <div className="max-w-lg mx-auto px-4">
-        {/* Denní swipe limit banner — free uživatelé */}
-        {!user?.premium && (
-          <div className="mb-3">
-            <div className="flex items-center justify-between px-1 mb-1">
-              <span className="text-xs text-gray-400 font-medium">Dnešní swipy</span>
-              <span className="text-xs font-bold text-gray-500">{Math.min(dailySwipes, DAILY_FREE_LIMIT)} / {DAILY_FREE_LIMIT}</span>
+      {/* ─── Denní swipe limit lišta ────────────────────────────────── */}
+      {!user?.premium && (
+        <div className="flex-shrink-0 px-5 pb-2 max-w-lg mx-auto w-full">
+          <div className="flex items-center justify-between px-1 mb-1">
+            <span className="text-xs text-gray-400 font-medium">Dnešní swipy</span>
+            <span className="text-xs font-bold text-gray-500">
+              {Math.min(dailySwipes, DAILY_FREE_LIMIT)} / {DAILY_FREE_LIMIT}
+              {user?.premium && <span className="ml-2 text-amber-500">👑 PREMIUM</span>}
+            </span>
+          </div>
+          <div className="h-1 bg-gray-100 rounded-full overflow-hidden">
+            <div
+              className="h-full rounded-full transition-all duration-300"
+              style={{
+                width: `${Math.min((dailySwipes / DAILY_FREE_LIMIT) * 100, 100)}%`,
+                background: dailySwipes >= DAILY_FREE_LIMIT ? '#ef4444' : '#ec4899'
+              }}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Completeness banner */}
+      {completeness < 50 && !showQuestion && (
+        <div className="flex-shrink-0 mx-5 mb-2 max-w-lg w-full self-center bg-pink-50 border border-pink-100 rounded-2xl px-4 py-2.5 flex items-center gap-3">
+          <div className="flex-1">
+            <p className="text-xs font-semibold text-pink-700">Tvůj profil je {completeness} % vyplněn</p>
+            <p className="text-xs text-pink-400">Odpovídej na otázky pro přesnější skóre</p>
+          </div>
+          <div className="w-9 h-9 rounded-full border-2 border-pink-200 flex items-center justify-center">
+            <span className="text-xs font-bold text-pink-500">{completeness}%</span>
+          </div>
+        </div>
+      )}
+
+      {/* ─── Hlavní obsah ────────────────────────────────────────────── */}
+      <div className="flex-1 overflow-hidden max-w-lg mx-auto w-full relative" style={{ marginBottom: '56px' }}>
+
+        {/* Limit dosažen */}
+        {swipeLimitReached && !user?.premium ? (
+          <div className="h-full flex items-center justify-center px-5">
+            <div className="card p-8 text-center w-full">
+              <div className="text-4xl mb-3">⏳</div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Na dnešek máš hotovo</h3>
+              <p className="text-gray-400 text-sm mb-1">
+                Dnešních {DAILY_FREE_LIMIT} swipů zdarma jsou pryč.
+              </p>
+              <p className="text-gray-400 text-sm mb-6">
+                Vrať se zítra — nebo si odemkni neomezené swipy.
+              </p>
+              <Link href="/premium" className="btn-primary w-full text-center inline-block mb-3">
+                👑 Cosmatch+ — neomezené swipy
+              </Link>
+              <p className="text-xs text-gray-300">299 Kč/měs · Zrušení kdykoliv</p>
             </div>
-            <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
-              <div
-                className="h-full rounded-full transition-all duration-300"
-                style={{
-                  width: `${Math.min((dailySwipes / DAILY_FREE_LIMIT) * 100, 100)}%`,
-                  background: dailySwipes >= DAILY_FREE_LIMIT ? '#ef4444' : '#ec4899'
-                }}
+          </div>
+
+        /* Progressivní otázka */
+        ) : showQuestion && currentQuestion ? (
+          <div className="h-full flex items-center justify-center px-5 overflow-y-auto">
+            <div className="w-full">
+              <ProfileQuestion
+                question={currentQuestion}
+                user={user!}
+                onAnswer={handleQuestionAnswer}
+                onSkip={handleQuestionSkip}
+                questionNumber={answeredQuestionIds.size}
+                totalQuestions={PROFILE_QUESTIONS.length}
               />
             </div>
           </div>
-        )}
 
-        {/* Limit dosažen — upgrade CTA */}
-        {swipeLimitReached && !user?.premium && (
-          <div className="card p-8 text-center mt-4">
-            <div className="text-4xl mb-3">⏳</div>
-            <h3 className="text-lg font-bold text-gray-900 mb-2">Na dnešek máš hotovo</h3>
-            <p className="text-gray-400 text-sm mb-1">
-              Dnešních {DAILY_FREE_LIMIT} swipů zdarma jsou pryč.
-            </p>
-            <p className="text-gray-400 text-sm mb-6">
-              Vrať se zítra — nebo si odemkni neomezené swipy.
-            </p>
-            <Link href="/premium" className="btn-primary w-full text-center inline-block mb-3">
-              👑 Cosmatch+ — neomezené swipy
-            </Link>
-            <p className="text-xs text-gray-300">299 Kč/měs · Zrušení kdykoliv</p>
-          </div>
-        )}
-
-        {/* Completeness banner – zobrazí se pokud profil < 50 % vyplněn */}
-        {completeness < 50 && !showQuestion && (
-          <div className="mb-3 bg-pink-50 border border-pink-100 rounded-2xl px-4 py-2.5 flex items-center gap-3">
-            <div className="flex-1">
-              <p className="text-xs font-semibold text-pink-700">Tvůj profil je {completeness} % vyplněn</p>
-              <p className="text-xs text-pink-400">Odpovídej na otázky pro přesnější skóre</p>
-            </div>
-            <div className="w-10 h-10 rounded-full border-2 border-pink-200 flex items-center justify-center">
-              <span className="text-xs font-bold text-pink-500">{completeness}%</span>
-            </div>
-          </div>
-        )}
-
-        {/* Progressivní otázka */}
-        {!swipeLimitReached && showQuestion && currentQuestion ? (
-          <div className="mt-4">
-            <ProfileQuestion
-              question={currentQuestion}
-              user={user!}
-              onAnswer={handleQuestionAnswer}
-              onSkip={handleQuestionSkip}
-              questionNumber={answeredQuestionIds.size}
-              totalQuestions={PROFILE_QUESTIONS.length}
-            />
-          </div>
-        ) : swipeLimitReached && !user?.premium ? null : !currentProfile ? (
-          <div className="card p-12 text-center mt-4">
-            <div className="text-5xl mb-4">✨</div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Momentálně nic dalšího</h3>
-            <p className="text-gray-400 text-sm mb-6">
-              {minScore > 0 ? 'Zkus snížit filtr kompatibility' : 'Vrať se brzy pro nové profily!'}
-            </p>
-            {minScore > 0 && (
-              <button onClick={() => { setMinScore(0); setIdx(0) }} className="btn-secondary mb-3 w-full">
-                Zobrazit všechny
-              </button>
-            )}
-            <Link href="/matches" className="btn-primary inline-block w-full text-center">
-              💫 Zobrazit shody
-            </Link>
-          </div>
-        ) : (
-          <>
-            {/* Počítadlo */}
-            <div className="flex items-center justify-between mb-3 px-1">
-              <span className="text-xs text-gray-400 font-semibold tracking-wide">
-                {idx + 1} / {filteredProfiles.length} PROFILŮ
-                {user?.premium && <span className="ml-2 text-amber-500">👑 PREMIUM</span>}
-              </span>
-              <span className="text-xs text-gray-300">← / → klávesy</span>
-            </div>
-
-            {/* Profilová karta */}
-            <div
-              className={`rounded-3xl overflow-hidden shadow-lg transition-all duration-300 ${
-                action === 'like' ? 'scale-95 opacity-60 rotate-2' :
-                action === 'pass' ? 'scale-95 opacity-60 -rotate-2' : ''
-              }`}
-              style={{ border: '2.5px solid #E91E8C' }}
-            >
-              {/* Fotka */}
-              <div className="relative" style={{ height: '400px' }}>
-                <ProfileAvatar profile={currentProfile} />
-
-                {/* Skóre — pravý horní roh (enhanced) */}
-                <div className="absolute top-3 right-3">
-                  <ScoreRing score={enhancedScore} />
-                </div>
-
-                {/* Gradient overlay */}
-                <div className="absolute bottom-0 left-0 right-0 h-44 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none" />
-
-                {/* Jméno + věk + lokalita */}
-                <div className="absolute bottom-3 left-4 right-4">
-                  <h2 className="text-white font-bold text-2xl uppercase tracking-wide">
-                    {currentProfile.name.split(' ')[0]}
-                    {currentProfile.birth_year ? `, ${new Date().getFullYear() - currentProfile.birth_year}` : ''}
-                  </h2>
-                  {(currentProfile.city || currentProfile.country) && (
-                    <p className="text-white/80 text-sm mt-0.5">
-                      📍 {[currentProfile.city, currentProfile.country].filter(Boolean).join(' · ')}
-                    </p>
-                  )}
-                  {/* Záliby tagy přes fotku */}
-                  {currentProfile.hobbies?.length > 0 && (
-                    <div className="flex flex-wrap gap-1.5 mt-2">
-                      {currentProfile.hobbies.slice(0, 4).map(h => (
-                        <span key={h} className="bg-white/20 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded-full border border-white/30">
-                          {h}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Spodní sekce — povolání · znamení · vzdělání */}
-              <div className="bg-white px-4 py-3">
-                <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-500">
-                  {currentProfile.occupation && <span>💼 {currentProfile.occupation}</span>}
-                  <span className="text-gray-600">{getZodiac(currentProfile.birthday)}</span>
-                  {currentProfile.education && <span>🎓 {currentProfile.education}</span>}
-                </div>
-                {compat && (
-                  <div className="mt-2">
-                    <CompatBadges compat={compat} lang="cs" />
-                  </div>
-                )}
-                {/* Lifestyle tagy */}
-                <div className="flex flex-wrap gap-1.5 mt-2">
-                  {currentProfile.smoking === 'never' && <span className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded-full">🚭 Nekouří</span>}
-                  {currentProfile.alcohol === 'never' && <span className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded-full">💧 Nepije</span>}
-                  {currentProfile.diet === 'vegan' && <span className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded-full">🌱 Vegan</span>}
-                  {currentProfile.diet === 'vegetarian' && <span className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded-full">🥦 Vegetarián</span>}
-                  {currentProfile.relationship_type === 'serious' && <span className="text-xs text-pink-400 bg-pink-50 px-2 py-0.5 rounded-full">💍 Vážný vztah</span>}
-                  {currentProfile.family_plans === 'want_kids' && <span className="text-xs text-blue-400 bg-blue-50 px-2 py-0.5 rounded-full">🍼 Chce děti</span>}
-                  {currentProfile.family_plans === 'no_kids' && <span className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded-full">🙅 Nechce děti</span>}
-                </div>
-              </div>
-
-              {/* Info panel */}
-              {showInfo && (
-                <div className="bg-gray-50 border-t border-gray-100 px-4 py-4 space-y-4">
-                  {currentProfile.bio && (
-                    <div>
-                      <p className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-1">Intro</p>
-                      <p className="text-gray-700 text-sm leading-relaxed">{currentProfile.bio}</p>
-                    </div>
-                  )}
-                  {currentProfile.philosophy && (
-                    <div>
-                      <p className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-1">Životní filozofie</p>
-                      <p className="text-gray-700 text-sm leading-relaxed">{currentProfile.philosophy}</p>
-                    </div>
-                  )}
-                  {currentProfile.hobbies?.length > 0 && (
-                    <div>
-                      <p className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Záliby</p>
-                      <div className="flex flex-wrap gap-1.5">
-                        {currentProfile.hobbies.map(h => (
-                          <span key={h} className="tag">{h}</span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-
-            {/* Akční tlačítka */}
-            <div className="flex items-center justify-center gap-5 mt-5">
-              {/* Pass */}
-              <button
-                onClick={() => handleAction(false)}
-                className="w-16 h-16 rounded-full bg-white shadow-md border border-gray-100 flex items-center justify-center hover:scale-110 active:scale-95 transition-all"
-              >
-                <svg viewBox="0 0 24 24" className="w-7 h-7 text-gray-400" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                  <line x1="18" y1="6" x2="6" y2="18"/>
-                  <line x1="6" y1="6" x2="18" y2="18"/>
-                </svg>
-              </button>
-
-              {/* Info toggle */}
-              <button
-                onClick={() => setShowInfo(s => !s)}
-                className={`w-12 h-12 rounded-full shadow-sm border flex items-center justify-center hover:scale-110 active:scale-95 transition-all ${
-                  showInfo
-                    ? 'bg-pink-500 border-pink-400 text-white'
-                    : 'bg-white border-gray-200 text-gray-400'
-                }`}
-              >
-                <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                  <circle cx="12" cy="12" r="10"/>
-                  <line x1="12" y1="16" x2="12" y2="12"/>
-                  <line x1="12" y1="8" x2="12.01" y2="8"/>
-                </svg>
-              </button>
-
-              {/* Like — plné srdce, brand pink */}
-              <button
-                onClick={() => handleAction(true)}
-                className="w-16 h-16 rounded-full flex items-center justify-center hover:scale-110 active:scale-95 transition-all shadow-lg"
-                style={{ backgroundColor: '#E91E8C' }}
-              >
-                <svg viewBox="0 0 24 24" className="w-8 h-8" fill="white">
-                  <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/>
-                </svg>
-              </button>
-            </div>
-
-            {compat?.is_mutual && (
-              <p className="text-center text-pink-500 text-xs font-semibold mt-3 animate-pulse">
-                ✨ Oboustranná shoda dle personologie!
+        /* Žádný profil k zobrazení */
+        ) : !currentProfile ? (
+          <div className="h-full flex items-center justify-center px-5">
+            <div className="card p-12 text-center w-full">
+              <div className="text-5xl mb-4">✨</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Momentálně nic dalšího</h3>
+              <p className="text-gray-400 text-sm mb-6">
+                {minScore > 0 ? 'Zkus snížit filtr kompatibility' : 'Vrať se brzy pro nové profily!'}
               </p>
-            )}
-          </>
+              {minScore > 0 && (
+                <button onClick={() => { setMinScore(0); setIdx(0) }} className="btn-secondary mb-3 w-full">
+                  Zobrazit všechny
+                </button>
+              )}
+              <Link href="/matches" className="btn-primary inline-block w-full text-center">
+                💫 Zobrazit shody
+              </Link>
+            </div>
+          </div>
+
+        /* Hinge-style profil */
+        ) : (
+          <HingeProfile
+            profile={currentProfile}
+            compat={compat}
+            enhancedScore={enhancedScore}
+            onPass={() => handleAction(false)}
+            onLike={() => handleAction(true)}
+            actionState={action}
+          />
         )}
       </div>
 
+      {/* Bottom nav */}
       <BottomNav active="discover" />
     </div>
   )
