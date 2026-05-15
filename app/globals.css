@@ -34,4 +34,11 @@ body {
   .tag {
     @apply bg-white border border-gray-200 rounded-full px-3 py-1 text-sm text-gray-600 font-medium;
   }
+
+  /* Dark card — pro landing page (tmavý gradient background) */
+  .dark-card {
+    @apply rounded-3xl border border-white/10;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+  }
 }

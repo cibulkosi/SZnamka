@@ -48,7 +48,7 @@ export default function LandingPage() {
   }[lang]
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, #1a0533 0%, #0d0d1a 40%, #0f0520 70%, #1a0533 100%)', color: '#fff' }}>
       {/* Nav */}
       <nav className="flex items-center justify-between px-6 py-4 max-w-6xl mx-auto">
         <div className="flex items-center gap-2">
@@ -104,7 +104,7 @@ export default function LandingPage() {
             [T.stats2, T.stats2l],
             [T.stats3, T.stats3l],
           ].map(([num, label], i) => (
-            <div key={i} className="card text-center py-6 px-4">
+            <div key={i} className="dark-card text-center py-6 px-4">
               <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">{num}</div>
               <div className="text-white/60 text-sm mt-1">{label}</div>
             </div>
@@ -121,7 +121,7 @@ export default function LandingPage() {
             { icon: '🔭', title: T.step2_title, desc: T.step2_desc },
             { icon: '💫', title: T.step3_title, desc: T.step3_desc },
           ].map((step, i) => (
-            <div key={i} className="card p-6 text-center">
+            <div key={i} className="dark-card p-6 text-center">
               <div className="text-4xl mb-4">{step.icon}</div>
               <div className="text-white/40 text-sm font-mono mb-2">0{i+1}</div>
               <h3 className="font-semibold text-lg mb-3">{step.title}</h3>
@@ -137,15 +137,15 @@ export default function LandingPage() {
         <p className="text-white/60 text-center mb-10 max-w-xl mx-auto">Každé datum má jiný vztah s každým jiným datem. My ti ukážeme všechny dimenze.</p>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
           {T.cats.map((cat, i) => (
-            <div key={i} className="card p-4 text-center text-sm font-medium">
+            <div key={i} className="dark-card p-4 text-center text-sm font-medium">
               {cat}
             </div>
           ))}
-          <div className="card p-4 text-center text-sm font-semibold bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border-cyan-400/30 col-span-2 md:col-span-1">
+          <div className="dark-card p-4 text-center text-sm font-semibold bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border-cyan-400/30 col-span-2 md:col-span-1">
             {T.mutual_label}
           </div>
         </div>
-        <div className="card p-6 text-center max-w-xl mx-auto">
+        <div className="dark-card p-6 text-center max-w-xl mx-auto">
           <div className="text-3xl mb-3">↔</div>
           <p className="text-white/70">{T.mutual_desc}</p>
         </div>
@@ -153,7 +153,7 @@ export default function LandingPage() {
 
       {/* CTA */}
       <section className="py-20 px-6 text-center">
-        <div className="card max-w-2xl mx-auto p-12">
+        <div className="dark-card max-w-2xl mx-auto p-12">
           <h2 className="text-3xl font-bold mb-4">Připraven/a začít?</h2>
           <p className="text-white/60 mb-8">Registrace je zdarma. Zadej datum narození a objev svůj match.</p>
           <Link href="/register" className="btn-primary text-lg py-4 px-10 inline-block">
