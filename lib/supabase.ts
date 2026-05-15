@@ -1,0 +1,87 @@
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+
+export type Profile = {
+  id: string
+  email: string
+  name: string
+  birthday: string       // MM-DD
+  birth_year: number
+  gender: string
+  looking_for: string
+  city: string
+  country: string
+  country_code: string
+  bio: string
+  hobbies: string[]
+  photos: string[]
+  premium: boolean
+  active: boolean
+  created_at: string
+  occupation?: string
+  education?: string
+  philosophy?: string
+}
+
+export const EDUCATION_OPTIONS = [
+  'Střední škola', 'Vyšší odborná škola', 'Bakalář', 'Magistr / Ing.', 'Doktorát', 'Jiné'
+]
+
+export function getZodiac(birthday: string): string {
+  if (!birthday) return ''
+  const [mm, dd] = birthday.split('-').map(Number)
+  if (!mm || !dd) return ''
+  const d = mm * 100 + dd
+  if (d >= 321 && d <= 419) return '♈ Beran'
+  if (d >= 420 && d <= 520) return '♉ Býk'
+  if (d >= 521 && d <= 620) return '♊ Blíženci'
+  if (d >= 621 && d <= 722) return '♋ Rak'
+  if (d >= 723 && d <= 822) return '♌ Lev'
+  if (d >= 823 && d <= 922) return '♍ Panna'
+  if (d >= 923 && d <= 1022) return '♎ Váhy'
+  if (d >= 1023 && d <= 1121) return '♏ Štír'
+  if (d >= 1122 && d <= 1221) return '♐ Střelec'
+  if (d >= 1222 || d <= 119) return '♑ Kozoroh'
+  if (d >= 120 && d <= 218) return '♒ Vodnář'
+  return '♓ Ryby'
+}
+
+export type Compatibility = {
+  date_a: string
+  date_b: string
+  love_friendship: boolean
+  beneficial: boolean
+  fatal_attraction: boolean
+  challenging: boolean
+  soul_mates: boolean
+  is_mutual: boolean
+  score: number
+}
+
+export const HOBBIES = [
+  'Cestování', 'Hudba', 'Sport', 'Příroda', 'Vaření', 'Umění',
+  'Čtení', 'Filmy', 'Tanec', 'Fitness', 'Fotografování', 'Jóga',
+  'Hry', 'Zahradničení', 'Meditace', 'Dobrovolnictví',
+  'Travel', 'Music', 'Hiking', 'Cooking', 'Art', 'Dancing'
+]
+
+export const COUNTRIES = [
+  { code: 'CZ', name: 'Česká republika' },
+  { code: 'SK', name: 'Slovensko' },
+  { code: 'DE', name: 'Německo' },
+  { code: 'AT', name: 'Rakousko' },
+  { code: 'GB', name: 'United Kingdom' },
+  { code: 'US', name: 'United States' },
+  { code: 'FR', name: 'France' },
+  { code: 'ES', name: 'Spain' },
+  { code: 'IT', name: 'Italy' },
+  { code: 'NL', name: 'Netherlands' },
+  { code: 'PL', name: 'Poland' },
+  { code: 'HU', name: 'Hungary' },
+  { code: 'HR', name: 'Croatia' },
+  { code: 'OTHER', name: 'Other / Jiné' },
+]

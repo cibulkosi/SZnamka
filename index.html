@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cosmatch 🪐 — The universe knows your match</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<style>
+  body { background: linear-gradient(135deg,#1a0533 0%,#0f172a 40%,#1e0a3c 100%); min-height:100vh; color:white; font-family:'Inter',system-ui,sans-serif; }
+  .card { background:rgba(255,255,255,0.08); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.15); border-radius:1rem; }
+  .btn { padding:.75rem 1.5rem; border-radius:.75rem; font-weight:600; cursor:pointer; transition:all .2s; border:none; }
+  .btn-primary { background:linear-gradient(135deg,#9333ea,#ec4899); color:white; }
+  .btn-primary:hover { opacity:.9; transform:scale(1.02); }
+  .btn-secondary { background:rgba(255,255,255,0.1); color:white; border:1px solid rgba(255,255,255,0.2); }
+  .btn-secondary:hover { background:rgba(255,255,255,0.2); }
+  .input { width:100%; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); border-radius:.75rem; padding:.75rem 1rem; color:white; outline:none; box-sizing:border-box; transition:border .2s; }
+  .input:focus { border-color:#a855f7; background:rgba(255,255,255,0.15); }
+  .input::placeholder { color:rgba(255,255,255,0.35); }
+  select.input option { background:#1a0533; }
+  .page { display:none; min-height:100vh; }
+  .page.active { display:block; }
+  .badge { display:inline-flex; align-items:center; font-size:.75rem; padding:.25rem .6rem; border-radius:9999px; font-weight:500; margin:.15rem; }
+  .badge-soul { background:linear-gradient(135deg,#7c3aed,#6d28d9); color:white; }
+  .badge-love { background:linear-gradient(135deg,#db2777,#be185d); color:white; }
+  .badge-beneficial { background:linear-gradient(135deg,#059669,#047857); color:white; }
+  .badge-fatal { background:linear-gradient(135deg,#ea580c,#dc2626); color:white; }
+  .badge-challenging { background:linear-gradient(135deg,#d97706,#b45309); color:white; }
+  .badge-mutual { background:linear-gradient(135deg,#0891b2,#2563eb); color:white; font-weight:700; }
+  .score-ring { position:relative; display:inline-flex; align-items:center; justify-content:center; }
+  .spinner { animation:spin 1s linear infinite; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .swipe-like { transform:scale(.95) rotate(3deg); opacity:.5; transition:all .3s; }
+  .swipe-pass { transform:scale(.95) rotate(-3deg); opacity:.5; transition:all .3s; }
+  .progress-bar { height:3px; border-radius:9999px; transition:width .3s; }
+  .tab-active { background:linear-gradient(135deg,#9333ea,#ec4899); color:white; }
+  .tab-inactive { background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.6); }
+  .tab-inactive:hover { background:rgba(255,255,255,0.15); }
+  label { display:block; font-size:.85rem; color:rgba(255,255,255,.65); margin-bottom:.3rem; }
+  .profile-card { transition: transform .3s, opacity .3s; }
+  .nav-link { color:rgba(255,255,255,0.7); text-decoration:none; font-size:.875rem; font-weight:500; }
+  .nav-link:hover { color:white; }
+  @media(max-width:640px) { .hero-title { font-size:2.5rem; } }
+</style>
+</head>
+<body>
+<script>
+// ═══════════════════════════════════════════════════
+// CONFIG
+// ═══════════════════════════════════════════════════
+const SUPA_URL = 'https://xdotpadgbchhecwitbpe.supabase.co'
+const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhkb3RwYWRnYmNoaGVjd2l0YnBlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU0MDQzNTEsImV4cCI6MjA5MDk4MDM1MX0.1OUSDOo4cUIYuI1nwT4DTddAU9bIfJwCiDuj2ED2wS0'
+const db = supabase.createClient(SUPA_URL, SUPA_KEY)
+
+const MONTHS_CS = ['Leden','Únor','Březen','Duben','Květen','Červen','Červenec','Srpen','Září','Říjen','Listopad','Prosinec']
+const MONTHS_EN = ['January','February','March','April','May','June','July','August','September','October','November','December']
+const DAYS_IN_MONTH = [31,29,31,30,31,30,31,31,30,31,30,31]
+const HOBBIES = ['Cestování','Hudba','Sport','Příroda','Vaření','Umění','Čtení','Filmy','Tanec','Fitness','Fotografování','Jóga','Hry','Zahradničení','Meditace','Travel','Hiking','Cooking','Dancing']
+const COUNTRIES = [['CZ','Česká republika'],['SK','Slovensko'],['DE','Německo'],['AT','Rakousko'],['GB','United Kingdom'],['US','United States'],['FR','France'],['ES','Spain'],['IT','Italy'],['NL','Netherlands'],['PL','Poland'],['HU','Hungary'],['HR','Croatia'],['OTHER','Jiné / Other']]
+const AVATAR_GRADIENTS = ['from-purple-500 to-pink-500','from-blue-500 to-cyan-500','from-emerald-500 to-teal-500','from-orange-500 to-red-500','from-violet-500 to-purple-500','from-pink-500 to-rose-500']
+
+// ═══════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════
+let user = null, lang = 'cs'
+let discoverProfiles = [], discoverCompats = {}, discoverIdx = 0
+
+// ═══════════════════════════════════════════════════
+// UTILS
+// ═══════════════════════════════════════════════════
+function $(id) { return document.getElementById(id) }
+function show(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'))
+  $(pageId).classList.add('active')
+  window.scrollTo(0,0)
+}
+function avatarGrad(name) { return AVATAR_GRADIENTS[name.charCodeAt(0) % AVATAR_GRADIENTS.length] }
+function avatarEl(name, size='lg') {
+  const d = size==='lg'?'width:80px;height:80px;font-size:1.75rem':'width:48px;height:48px;font-size:1.1rem'
+  return `<div class="rounded-full bg-gradient-to-br ${avatarGrad(name)} flex items-center justify-center font-bold text-white flex-shrink-0" style="${d}">${name.charAt(0).toUpperCase()}</div>`
+}
+function scoreRing(score) {
+  const r=24, circ=2*Math.PI*r, prog=(score/100)*circ
+  const color=score>=70?'#a855f7':score>=40?'#ec4899':'#f59e0b'
+  return `<div class="score-ring"><svg width="64" height="64" viewBox="0 0 64 64"><circle cx="32" cy="32" r="${r}" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="5"/><circle cx="32" cy="32" r="${r}" fill="none" stroke="${color}" stroke-width="5" stroke-dasharray="${prog} ${circ}" stroke-linecap="round" transform="rotate(-90 32 32)"/></svg><span style="position:absolute;font-size:.8rem;font-weight:700;color:${color}">${score}</span></div>`
+}
+function compatBadges(c, l='cs') {
+  if(!c) return '<span style="color:rgba(255,255,255,0.3);font-size:.8rem">No data</span>'
+  let html = ''
+  if(c.is_mutual) html += `<span class="badge badge-mutual">↔ ${l==='cs'?'Oboustranná':'Mutual'}</span>`
+  if(c.soul_mates) html += `<span class="badge badge-soul">🔮 ${l==='cs'?'Spřízněné duše':'Soul Mates'}</span>`
+  if(c.love_friendship) html += `<span class="badge badge-love">💚 ${l==='cs'?'Láska & přátelství':'Love & Friendship'}</span>`
+  if(c.beneficial) html += `<span class="badge badge-beneficial">🌟 ${l==='cs'?'Prospěšné':'Beneficial'}</span>`
+  if(c.fatal_attraction) html += `<span class="badge badge-fatal">🔥 ${l==='cs'?'Osudová přitažlivost':'Fatal Attraction'}</span>`
+  if(c.challenging) html += `<span class="badge badge-challenging">⚡ ${l==='cs'?'Výzva':'Challenging'}</span>`
+  return html || `<span style="color:rgba(255,255,255,0.3);font-size:.8rem">${l==='cs'?'Žádná shoda':'No match'}</span>`
+}
+function toast(msg, ok=true) {
+  const d = document.createElement('div')
+  d.style.cssText='position:fixed;bottom:20px;right:20px;z-index:9999;padding:.75rem 1.25rem;border-radius:.75rem;font-size:.875rem;font-weight:600;animation:slideIn .3s ease'
+  d.style.background = ok ? 'linear-gradient(135deg,#9333ea,#ec4899)' : 'linear-gradient(135deg,#dc2626,#b91c1c)'
+  d.style.color = 'white'
+  d.textContent = msg
+  document.body.appendChild(d)
+  setTimeout(()=>d.remove(), 3000)
+}
+function hobbiesSelector(id) {
+  return HOBBIES.map(h=>`<button type="button" onclick="toggleHobby(this,'${h}')" data-hobby="${h}" class="py-1 px-3 rounded-full text-sm border border-white/20 bg-white/10 hover:bg-white/20 transition-all">${h}</button>`).join('')
+}
+function toggleHobby(btn, h) {
+  btn.classList.toggle('bg-purple-600')
+  btn.classList.toggle('border-purple-500')
+  btn.classList.toggle('bg-white/10')
+}
+function getSelectedHobbies() {
+  return [...document.querySelectorAll('[data-hobby]')].filter(b=>b.classList.contains('bg-purple-600')).map(b=>b.dataset.hobby)
+}
+
+// ═══════════════════════════════════════════════════
+// AUTH & USER
+// ═══════════════════════════════════════════════════
+function saveUser(u) { localStorage.setItem('cosmatch_user', JSON.stringify(u)); user=u }
+function loadUser() {
+  const s=localStorage.getItem('cosmatch_user')
+  if(s) { user=JSON.parse(s); return true }
+  return false
+}
+function logout() { localStorage.removeItem('cosmatch_user'); user=null; showLanding() }
+
+// ═══════════════════════════════════════════════════
+// LANDING
+// ═══════════════════════════════════════════════════
+function showLanding() {
+  const T = {
+    cs:{tagline:'Vesmír zná tvůj match',sub:'Seznamka postavená na vědě o datech narození. 366 dat, 46 000+ párů kompatibility, 5 kategorií shody.',cta:'Začít zdarma',how:'Jak to funguje',login:'Přihlásit'},
+    en:{tagline:'The universe knows your match',sub:'A dating app built on the science of birth dates. 366 dates, 46,000+ compatibility pairs, 5 match categories.',cta:'Start for free',how:'How it works',login:'Login'}
+  }[lang]
+  $('landing').innerHTML = `
+  <nav style="max-width:1000px;margin:0 auto;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between">
+    <div style="display:flex;align-items:center;gap:.5rem"><span style="font-size:1.5rem">🪐</span><strong style="font-size:1.1rem">Cosmatch</strong></div>
+    <div style="display:flex;align-items:center;gap:.75rem">
+      <button onclick="toggleLang()" class="btn btn-secondary" style="padding:.4rem .8rem;font-size:.8rem">${lang==='cs'?'🇬🇧 EN':'🇨🇿 CS'}</button>
+      <a href="#" onclick="showLogin()" class="nav-link">${T.login}</a>
+      <button onclick="showRegister()" class="btn btn-primary" style="padding:.5rem 1.2rem;font-size:.875rem">${T.cta}</button>
+    </div>
+  </nav>
+  <section style="text-align:center;padding:4rem 1.5rem 3rem;max-width:800px;margin:0 auto">
+    <div style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(168,85,247,0.15);border:1px solid rgba(168,85,247,0.3);border-radius:9999px;padding:.4rem 1rem;font-size:.875rem;color:#c4b5fd;margin-bottom:1.5rem">🔮 Personologie · ${lang==='cs'?'Věda o datech':'Birthday Science'}</div>
+    <h1 class="hero-title" style="font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;line-height:1.1;margin-bottom:1.25rem">${T.tagline.split(' ').map((w,i,a)=>i===a.length-1?`<span style="background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent">${w}</span>`:w).join(' ')}</h1>
+    <p style="color:rgba(255,255,255,0.65);font-size:1.1rem;margin-bottom:2.5rem;line-height:1.7">${T.sub}</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <button onclick="showRegister()" class="btn btn-primary" style="font-size:1rem;padding:.9rem 2rem">✨ ${T.cta}</button>
+      <a href="#how" class="btn btn-secondary" style="font-size:1rem;padding:.9rem 2rem;text-decoration:none">${T.how} ↓</a>
+    </div>
+  </section>
+  <section style="padding:1.5rem;max-width:900px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem">
+      ${[['366',lang==='cs'?'dat v systému':'dates in system'],['46 000+',lang==='cs'?'párů kompatibility':'compatibility pairs'],['5',lang==='cs'?'kategorií shody':'match categories']].map(([n,l])=>`<div class="card" style="text-align:center;padding:1.5rem"><div style="font-size:1.75rem;font-weight:800;background:linear-gradient(135deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent">${n}</div><div style="color:rgba(255,255,255,0.5);font-size:.8rem;margin-top:.25rem">${l}</div></div>`).join('')}
+    </div>
+  </section>
+  <section id="how" style="padding:3rem 1.5rem;max-width:900px;margin:0 auto">
+    <h2 style="text-align:center;font-size:1.75rem;font-weight:700;margin-bottom:2rem">${T.how}</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem">
+      ${[['📅',lang==='cs'?'Zadáš datum':'Enter birthday',lang==='cs'?'Tvůj birthday je klíč. Nic víc nepotřebujeme.':'Your birthday is the key. Nothing else needed.'],['🔭',lang==='cs'?'Algoritmus matchuje':'Algorithm matches',lang==='cs'?'Porovnáme tě s každým přes 5 kategorií.':'We compare you with everyone across 5 categories.'],['💫',lang==='cs'?'Vidíš kdo se hodí':'See who fits',lang==='cs'?'Oboustranné i jednostranné shody — vše přehledně.':'Mutual and one-sided — everything clearly shown.']].map(([e,t,d],i)=>`<div class="card" style="padding:1.5rem;text-align:center"><div style="font-size:2rem;margin-bottom:.75rem">${e}</div><div style="color:rgba(255,255,255,0.35);font-size:.75rem;font-family:monospace;margin-bottom:.5rem">0${i+1}</div><h3 style="font-weight:600;margin-bottom:.5rem">${t}</h3><p style="color:rgba(255,255,255,0.55);font-size:.875rem;line-height:1.6">${d}</p></div>`).join('')}
+    </div>
+  </section>
+  <section style="padding:2rem 1.5rem;max-width:900px;margin:0 auto">
+    <h2 style="text-align:center;font-size:1.75rem;font-weight:700;margin-bottom:1.5rem">${lang==='cs'?'5 kategorií shody':'5 Match Categories'}</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.75rem">
+      ${[['💚',lang==='cs'?'Láska & přátelství':'Love & Friendship'],['🌟',lang==='cs'?'Prospěšné':'Beneficial'],['🔥',lang==='cs'?'Osudová přitažlivost':'Fatal Attraction'],['⚡',lang==='cs'?'Výzva':'Challenging'],['🔮',lang==='cs'?'Spřízněné duše':'Soul Mates'],['↔',lang==='cs'?'Oboustranná shoda':'Mutual Match']].map(([e,l])=>`<div class="card" style="padding:1rem;text-align:center;font-size:.875rem;font-weight:500">${e} ${l}</div>`).join('')}
+    </div>
+  </section>
+  <section style="padding:3rem 1.5rem;text-align:center">
+    <div class="card" style="max-width:500px;margin:0 auto;padding:3rem 2rem">
+      <h2 style="font-size:1.75rem;font-weight:700;margin-bottom:1rem">${lang==='cs'?'Připraven/a?':'Ready?'}</h2>
+      <p style="color:rgba(255,255,255,0.6);margin-bottom:1.5rem">${lang==='cs'?'Registrace je zdarma.':'Registration is free.'}</p>
+      <button onclick="showRegister()" class="btn btn-primary" style="font-size:1rem;padding:1rem 2.5rem">✨ ${T.cta}</button>
+    </div>
+  </section>
+  <footer style="text-align:center;padding:2rem;color:rgba(255,255,255,0.25);font-size:.8rem;border-top:1px solid rgba(255,255,255,0.08)">
+    Cosmatch © 2026 · ${lang==='cs'?'Postaveno na':'Built on'} The Power of Birthdays, Stars & Numbers
+  </footer>`
+  show('landing')
+}
+
+function toggleLang() { lang = lang==='cs'?'en':'cs'; renderCurrentPage() }
+function renderCurrentPage() {
+  const active = document.querySelector('.page.active')
+  if(active) {
+    if(active.id==='landing') showLanding()
+    else if(active.id==='discover') renderDiscover()
+    else if(active.id==='matches') loadMatches()
+  }
+}
+
+// ═══════════════════════════════════════════════════
+// REGISTER
+// ═══════════════════════════════════════════════════
+let regStep = 1, regForm = {}
+
+function showRegister() {
+  regStep = 1; regForm = {}
+  renderRegisterStep()
+  show('register')
+}
+
+function renderRegisterStep() {
+  const dayOpts = Array.from({length: regForm.month ? DAYS_IN_MONTH[regForm.month-1] : 31}, (_,i)=>`<option value="${i+1}" ${regForm.day==i+1?'selected':''}>${i+1}</option>`).join('')
+  const monthOpts = (lang==='cs'?MONTHS_CS:MONTHS_EN).map((m,i)=>`<option value="${i+1}" ${regForm.month==i+1?'selected':''}>${m}</option>`).join('')
+  const countryOpts = COUNTRIES.map(([c,n])=>`<option value="${c}" ${(regForm.country||'CZ')===c?'selected':''}>${n}</option>`).join('')
+
+  const steps = [
+    `<h2 style="font-size:1.5rem;font-weight:700;margin-bottom:1.5rem">👋 ${lang==='cs'?'Základní info':'Basic info'}</h2>
+     <div style="margin-bottom:1rem"><label>${lang==='cs'?'Jméno / Name *':'Name *'}</label><input class="input" id="r-name" placeholder="${lang==='cs'?'Tvoje jméno...':'Your name...'}" value="${regForm.name||''}"></div>
+     <div style="margin-bottom:1rem"><label>E-mail *</label><input class="input" type="email" id="r-email" placeholder="email@example.com" value="${regForm.email||''}"></div>
+     <div style="margin-bottom:1rem"><label>📅 ${lang==='cs'?'Datum narození *':'Birthday *'}</label>
+       <div style="display:grid;grid-template-columns:1fr 2fr 1fr;gap:.5rem">
+         <select class="input" id="r-day" onchange="regForm.day=this.value"><option value="">${lang==='cs'?'Den':'Day'}</option>${dayOpts}</select>
+         <select class="input" id="r-month" onchange="regForm.month=parseInt(this.value);renderRegisterStep()"><option value="">${lang==='cs'?'Měsíc':'Month'}</option>${monthOpts}</select>
+         <input class="input" type="number" id="r-year" placeholder="${lang==='cs'?'Rok':'Year'}" min="1940" max="2008" value="${regForm.birth_year||''}">
+       </div>
+     </div>
+     <button class="btn btn-primary" style="width:100%;margin-top:.5rem" onclick="regNext1()">${lang==='cs'?'Pokračovat →':'Continue →'}</button>`,
+
+    `<h2 style="font-size:1.5rem;font-weight:700;margin-bottom:1.5rem">💫 ${lang==='cs'?'O tobě':'About you'}</h2>
+     <div style="margin-bottom:1rem"><label>${lang==='cs'?'Jsem / I am':'I am'}</label>
+       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem">
+         ${[['man',lang==='cs'?'Muž 👨':'Man 👨'],['woman',lang==='cs'?'Žena 👩':'Woman 👩'],['other',lang==='cs'?'Jiné 🌈':'Other 🌈']].map(([v,l])=>`<button type="button" onclick="regForm.gender='${v}';renderRegisterStep()" class="btn" style="${regForm.gender===v?'background:linear-gradient(135deg,#9333ea,#7c3aed);color:white':'background:rgba(255,255,255,0.1);color:white;border:1px solid rgba(255,255,255,0.2)'}">${l}</button>`).join('')}
+       </div>
+     </div>
+     <div style="margin-bottom:1rem"><label>${lang==='cs'?'Hledám / Looking for':'Looking for'}</label>
+       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem">
+         ${[['men',lang==='cs'?'Muže 👨':'Men 👨'],['women',lang==='cs'?'Ženy 👩':'Women 👩'],['everyone',lang==='cs'?'Všechny 💫':'Everyone 💫']].map(([v,l])=>`<button type="button" onclick="regForm.looking_for='${v}';renderRegisterStep()" class="btn" style="${regForm.looking_for===v?'background:linear-gradient(135deg,#db2777,#be185d);color:white':'background:rgba(255,255,255,0.1);color:white;border:1px solid rgba(255,255,255,0.2)'}">${l}</button>`).join('')}
+       </div>
+     </div>
+     <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem">
+       <div><label>${lang==='cs'?'Město / City':'City'}</label><input class="input" id="r-city" placeholder="${lang==='cs'?'Praha...':'City...'}" value="${regForm.city||''}"></div>
+       <div><label>${lang==='cs'?'Země / Country':'Country'}</label><select class="input" id="r-country">${countryOpts}</select></div>
+     </div>
+     <div style="margin-bottom:1rem"><label>${lang==='cs'?'O mně / About me':'About me'}</label><textarea class="input" id="r-bio" style="resize:none;height:90px" placeholder="${lang==='cs'?'Napiš něco o sobě...':'Tell us about yourself...'}">${regForm.bio||''}</textarea></div>
+     <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem"><button class="btn btn-secondary" onclick="regStep=1;renderRegisterStep()">← ${lang==='cs'?'Zpět':'Back'}</button><button class="btn btn-primary" onclick="regNext2()">${lang==='cs'?'Pokračovat →':'Continue →'}</button></div>`,
+
+    `<h2 style="font-size:1.5rem;font-weight:700;margin-bottom:.5rem">🎯 ${lang==='cs'?'Koníčky':'Hobbies'}</h2>
+     <p style="color:rgba(255,255,255,0.5);font-size:.875rem;margin-bottom:1rem">${lang==='cs'?'Vyber co tě baví (nepovinné)':'Pick what you enjoy (optional)'}</p>
+     <div style="display:flex;flex-wrap:wrap;gap:.4rem;max-height:200px;overflow-y:auto;margin-bottom:1rem">${hobbiesSelector()}</div>
+     <div id="reg-error" style="display:none;background:rgba(220,38,38,0.15);border:1px solid rgba(220,38,38,0.3);color:#fca5a5;padding:.75rem 1rem;border-radius:.75rem;font-size:.875rem;margin-bottom:1rem"></div>
+     <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem"><button class="btn btn-secondary" onclick="regStep=2;renderRegisterStep()">← ${lang==='cs'?'Zpět':'Back'}</button><button id="reg-submit" class="btn btn-primary" onclick="doRegister()">🚀 ${lang==='cs'?'Dokončit':'Finish'}</button></div>`
+  ]
+
+  $('register-content').innerHTML = `
+    <div style="display:flex;gap:.5rem;margin-bottom:1.5rem">
+      ${[1,2,3].map(s=>`<div style="height:3px;flex:1;border-radius:9999px;background:${s<=regStep?'linear-gradient(90deg,#9333ea,#ec4899)':'rgba(255,255,255,0.15)'}" class="progress-bar"></div>`).join('')}
+    </div>
+    ${steps[regStep-1]}`
+}
+
+function regNext1() {
+  regForm.name = $('r-name').value.trim()
+  regForm.email = $('r-email').value.trim()
+  regForm.day = $('r-day').value
+  regForm.month = $('r-month').value ? parseInt($('r-month').value) : null
+  regForm.birth_year = $('r-year').value
+  if(!regForm.name||!regForm.email||!regForm.day||!regForm.month) { toast(lang==='cs'?'Vyplň všechna povinná pole!':'Fill all required fields!',false); return }
+  regStep=2; renderRegisterStep()
+}
+function regNext2() {
+  regForm.city = $('r-city').value.trim()
+  regForm.country = $('r-country').value
+  regForm.bio = $('r-bio').value.trim()
+  regStep=3; renderRegisterStep()
+}
+async function doRegister() {
+  const btn = $('reg-submit'), err = $('reg-error')
+  btn.disabled=true; btn.textContent='⏳...'
+  err.style.display='none'
+  const bd = `${String(regForm.month).padStart(2,'0')}-${String(regForm.day).padStart(2,'0')}`
+  regForm.hobbies = getSelectedHobbies()
+  const {data, error} = await db.from('profiles').insert([{
+    name:regForm.name, email:regForm.email,
+    birthday:bd, birth_year:parseInt(regForm.birth_year)||1990,
+    gender:regForm.gender||'other', looking_for:regForm.looking_for||'everyone',
+    city:regForm.city, country:regForm.country, bio:regForm.bio,
+    hobbies:regForm.hobbies, photos:[], premium:false, active:true
+  }]).select().single()
+  if(error) {
+    err.textContent = error.message.includes('duplicate')?
+      (lang==='cs'?'Tento e-mail je již registrován.':'This email is already registered.') : error.message
+    err.style.display='block'; btn.disabled=false; btn.textContent='🚀 '+(lang==='cs'?'Dokončit':'Finish'); return
+  }
+  saveUser(data); toast(lang==='cs'?'Vítej v Cosmatch! 🪐':'Welcome to Cosmatch! 🪐')
+  await loadDiscover()
+}
+
+// ═══════════════════════════════════════════════════
+// LOGIN
+// ═══════════════════════════════════════════════════
+function showLogin() {
+  $('login-content').innerHTML = `
+    <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:1.5rem">${lang==='cs'?'Přihlásit se':'Login'}</h2>
+    <div style="margin-bottom:1rem"><label>E-mail</label><input class="input" id="l-email" type="email" placeholder="email@example.com" onkeydown="if(event.key==='Enter')doLogin()"></div>
+    <div id="login-error" style="display:none;background:rgba(220,38,38,0.15);border:1px solid rgba(220,38,38,0.3);color:#fca5a5;padding:.75rem;border-radius:.75rem;font-size:.875rem;margin-bottom:1rem"></div>
+    <button id="login-btn" class="btn btn-primary" style="width:100%" onclick="doLogin()">🚀 ${lang==='cs'?'Přihlásit se':'Login'}</button>
+    <p style="text-align:center;color:rgba(255,255,255,0.4);font-size:.875rem;margin-top:1rem">${lang==='cs'?'Nemáš účet?':'No account?'} <a href="#" onclick="showRegister()" style="color:#c084fc;text-decoration:none">${lang==='cs'?'Registrovat se':'Register'}</a></p>`
+  show('login')
+}
+async function doLogin() {
+  const email = $('l-email').value.trim()
+  const btn = $('login-btn'), err = $('login-error')
+  if(!email) return
+  btn.disabled=true; btn.textContent='⏳...'
+  err.style.display='none'
+  const {data, error} = await db.from('profiles').select('*').eq('email',email).single()
+  if(error||!data) {
+    err.textContent = lang==='cs'?'Profil nenalezen. Zkontroluj e-mail.':'Profile not found. Check your email.'
+    err.style.display='block'; btn.disabled=false; btn.textContent='🚀 '+(lang==='cs'?'Přihlásit se':'Login'); return
+  }
+  saveUser(data); toast(lang==='cs'?`Vítej zpět, ${data.name}! 🪐`:`Welcome back, ${data.name}! 🪐`)
+  await loadDiscover()
+}
+
+// ═══════════════════════════════════════════════════
+// DISCOVER
+// ═══════════════════════════════════════════════════
+async function loadDiscover() {
+  show('discover')
+  $('discover-content').innerHTML = `<div style="text-align:center;padding:4rem 0"><span style="font-size:3rem" class="spinner">🪐</span><p style="color:rgba(255,255,255,0.5);margin-top:1rem">${lang==='cs'?'Načítám...':'Loading...'}</p></div>`
+
+  const {data:liked} = await db.from('likes').select('to_user').eq('from_user',user.id)
+  const excludeIds = [user.id, ...(liked||[]).map(l=>l.to_user)]
+
+  // Build filter - Supabase needs at least 1 ID to exclude
+  let query = db.from('profiles').select('*').eq('active',true).neq('id',user.id)
+  if(liked && liked.length > 0) {
+    query = query.not('id','in',`(${liked.map(l=>l.to_user).join(',')})`)
+  }
+  const {data:profs} = await query.limit(60)
+
+  if(!profs||profs.length===0) { discoverProfiles=[]; discoverIdx=0; renderDiscover(); return }
+
+  const bdays = [...new Set(profs.map(p=>p.birthday))]
+  const {data:compatData} = await db.from('compatibility').select('*').eq('date_a',user.birthday).in('date_b',bdays)
+  discoverCompats={}
+  compatData?.forEach(c=>{ discoverCompats[c.date_b]=c })
+
+  // Sort: mutual first, then by score
+  discoverProfiles = [...profs].sort((a,b)=>{
+    const ca=discoverCompats[a.birthday], cb=discoverCompats[b.birthday]
+    if(ca?.is_mutual&&!cb?.is_mutual) return -1
+    if(!ca?.is_mutual&&cb?.is_mutual) return 1
+    return (cb?.score||0)-(ca?.score||0)
+  })
+  discoverIdx=0
+  renderDiscover()
+}
+
+function renderDiscover() {
+  const navHtml = `
+    <nav style="max-width:520px;margin:0 auto;padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between">
+      <a href="#" onclick="showLanding()" style="display:flex;align-items:center;gap:.5rem;text-decoration:none;color:white"><span style="font-size:1.25rem">🪐</span><strong>Cosmatch</strong></a>
+      <div style="display:flex;gap:.6rem;align-items:center">
+        <button onclick="toggleLang()" class="btn btn-secondary" style="padding:.3rem .6rem;font-size:.75rem">${lang==='cs'?'🇬🇧':'🇨🇿'}</button>
+        <a href="#" onclick="loadMatches()" class="nav-link">💫 ${lang==='cs'?'Shody':'Matches'}</a>
+        <button onclick="logout()" class="btn" style="background:none;border:none;color:rgba(255,255,255,0.35);font-size:.75rem;cursor:pointer">${lang==='cs'?'Odhlásit':'Logout'}</button>
+      </div>
+    </nav>`
+
+  if(!discoverProfiles.length||discoverIdx>=discoverProfiles.length) {
+    $('discover-content').innerHTML = navHtml + `
+      <div style="max-width:480px;margin:2rem auto;padding:0 1rem">
+        <div class="card" style="padding:3rem;text-align:center">
+          <div style="font-size:3rem;margin-bottom:1rem">✨</div>
+          <h3 style="font-size:1.25rem;font-weight:600;margin-bottom:.75rem">${lang==='cs'?'Momentálně nic dalšího':'No more profiles right now'}</h3>
+          <p style="color:rgba(255,255,255,0.55);margin-bottom:1.5rem">${lang==='cs'?'Vrať se brzy pro nové profily!':'Come back soon for new profiles!'}</p>
+          <button onclick="loadMatches()" class="btn btn-primary">${lang==='cs'?'Zobrazit shody':'View Matches'}</button>
+        </div>
+      </div>`
+    return
+  }
+
+  const p = discoverProfiles[discoverIdx]
+  const c = discoverCompats[p.birthday]
+
+  $('discover-content').innerHTML = navHtml + `
+    <div style="max-width:480px;margin:0 auto;padding:0 1rem 2rem">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem;color:rgba(255,255,255,0.4);font-size:.8rem">
+        <span>${discoverIdx+1} / ${discoverProfiles.length}</span>
+        <span>← / → ${lang==='cs'?'klávesy':'keys'}</span>
+      </div>
+      <div class="card profile-card" id="profile-card" style="padding:1.5rem">
+        <div style="display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.25rem">
+          ${avatarEl(p.name)}
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.25rem">
+              <h2 style="font-size:1.2rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.name}</h2>
+              ${p.birth_year?`<span style="color:rgba(255,255,255,0.45);font-size:.8rem;white-space:nowrap">${new Date().getFullYear()-p.birth_year} ${lang==='cs'?'let':'y/o'}</span>`:''}
+            </div>
+            ${(p.city||p.country)?`<p style="color:rgba(255,255,255,0.5);font-size:.8rem">📍 ${[p.city,p.country].filter(Boolean).join(', ')}</p>`:''}
+            <p style="color:rgba(255,255,255,0.35);font-size:.75rem;margin-top:.2rem">📅 ${lang==='cs'?'Narozen/a':'Born'}: ${p.birthday}</p>
+          </div>
+          ${c?scoreRing(c.score):''}
+        </div>
+        <div style="margin-bottom:1rem">
+          <p style="color:rgba(255,255,255,0.45);font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;font-weight:600;margin-bottom:.4rem">${lang==='cs'?'Kompatibilita':'Compatibility'}</p>
+          ${compatBadges(c,lang)}
+        </div>
+        ${p.bio?`<div style="margin-bottom:1rem"><p style="color:rgba(255,255,255,0.45);font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;font-weight:600;margin-bottom:.4rem">${lang==='cs'?'O mně':'About'}</p><p style="color:rgba(255,255,255,0.8);font-size:.875rem;line-height:1.6">${p.bio}</p></div>`:''}
+        ${p.hobbies?.length?`<div style="margin-bottom:1.25rem"><p style="color:rgba(255,255,255,0.45);font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;font-weight:600;margin-bottom:.4rem">${lang==='cs'?'Koníčky':'Hobbies'}</p><div style="display:flex;flex-wrap:wrap;gap:.35rem">${p.hobbies.map(h=>`<span style="font-size:.75rem;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:9999px;padding:.2rem .6rem;color:rgba(255,255,255,0.65)">${h}</span>`).join('')}</div></div>`:''}
+        <div style="display:flex;gap:1rem">
+          <button onclick="doSwipe(false)" class="btn btn-secondary" style="flex:1;font-size:1.5rem;padding:.85rem">✕</button>
+          <button onclick="doSwipe(true)" class="btn btn-primary" style="flex:1;font-size:1.5rem;padding:.85rem">${c?.is_mutual?'↔ 💜':'💜'}</button>
+        </div>
+      </div>
+      <p style="text-align:center;color:rgba(255,255,255,0.2);font-size:.75rem;margin-top:.75rem">← ${lang==='cs'?'přeskočit':'pass'}  ·  → ${lang==='cs'?'líbí se mi':'like'}</p>
+    </div>`
+
+  // Keyboard nav
+  document.onkeydown = (e) => {
+    if(document.querySelector('.page.active')?.id!=='discover') return
+    if(e.key==='ArrowRight'||e.key==='l') doSwipe(true)
+    if(e.key==='ArrowLeft'||e.key==='d') doSwipe(false)
+  }
+}
+
+async function doSwipe(liked) {
+  if(!user||discoverIdx>=discoverProfiles.length) return
+  const target = discoverProfiles[discoverIdx]
+  const card = $('profile-card')
+  if(card) { card.classList.add(liked?'swipe-like':'swipe-pass') }
+  await new Promise(r=>setTimeout(r,280))
+
+  await db.from('likes').upsert({from_user:user.id, to_user:target.id, liked})
+
+  if(liked) {
+    const {data:theyLiked} = await db.from('likes').select('id').eq('from_user',target.id).eq('to_user',user.id).eq('liked',true).maybeSingle()
+    if(theyLiked) {
+      const ua = user.id < target.id ? user.id : target.id
+      const ub = user.id < target.id ? target.id : user.id
+      await db.from('matches').upsert({user_a:ua, user_b:ub})
+      toast(lang==='cs'?`🎉 Shoda s ${target.name}!`:`🎉 Matched with ${target.name}!`)
+    }
+  }
+  discoverIdx++
+  renderDiscover()
+}
+
+// ═══════════════════════════════════════════════════
+// MATCHES
+// ═══════════════════════════════════════════════════
+let matchTab = 'matches'
+async function loadMatches() {
+  show('matches')
+  matchTab='matches'
+  $('matches-content').innerHTML = `<div style="text-align:center;padding:4rem"><span style="font-size:3rem" class="spinner">🪐</span></div>`
+
+  const navHtml = `
+    <nav style="max-width:640px;margin:0 auto;padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between">
+      <a href="#" onclick="showLanding()" style="display:flex;align-items:center;gap:.5rem;text-decoration:none;color:white"><span style="font-size:1.25rem">🪐</span><strong>Cosmatch</strong></a>
+      <button onclick="loadDiscover()" class="btn btn-secondary" style="font-size:.875rem;padding:.5rem 1rem">🔍 ${lang==='cs'?'Objevovat':'Discover'}</button>
+    </nav>`
+
+  // Fetch matches
+  const {data:matchData} = await db.from('matches').select('*').or(`user_a.eq.${user.id},user_b.eq.${user.id}`)
+  const matchIds = (matchData||[]).map(m=>m.user_a===user.id?m.user_b:m.user_a)
+
+  // Fetch cosmic mutual (all profiles with mutual compat birthday)
+  const {data:cosmicC} = await db.from('compatibility').select('date_b,is_mutual,score').eq('date_a',user.birthday).eq('is_mutual',true).order('score',{ascending:false}).limit(100)
+  const cosmicBdays = (cosmicC||[]).map(c=>c.date_b)
+
+  let matchProfiles=[], cosmicProfiles=[], compatMap={}
+
+  if(matchIds.length>0) {
+    const {data} = await db.from('profiles').select('*').in('id',matchIds)
+    matchProfiles = data||[]
+  }
+  if(cosmicBdays.length>0) {
+    const {data} = await db.from('profiles').select('*').in('birthday',cosmicBdays).neq('id',user.id).limit(60)
+    cosmicProfiles = data||[]
+  }
+
+  const allBdays=[...new Set([...matchProfiles.map(p=>p.birthday),...cosmicProfiles.map(p=>p.birthday)])]
+  if(allBdays.length>0) {
+    const {data:cd} = await db.from('compatibility').select('*').eq('date_a',user.birthday).in('date_b',allBdays)
+    cd?.forEach(c=>compatMap[c.date_b]=c)
+  }
+
+  const renderList = (list, emptyMsg, extra='') => {
+    if(!list.length) return `<div class="card" style="padding:3rem;text-align:center"><div style="font-size:2.5rem;margin-bottom:1rem">✨</div><p style="color:rgba(255,255,255,0.55)">${emptyMsg}</p>${extra}</div>`
+    return list.map(p=>{
+      const c=compatMap[p.birthday]
+      return `<div class="card" style="padding:1rem;display:flex;align-items:center;gap:1rem;margin-bottom:.6rem">
+        ${avatarEl(p.name,'sm')}
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.25rem">
+            <strong style="font-size:.95rem">${p.name}</strong>
+            ${p.birth_year?`<span style="color:rgba(255,255,255,0.4);font-size:.75rem">${new Date().getFullYear()-p.birth_year}y</span>`:''}
+            ${p.city?`<span style="color:rgba(255,255,255,0.4);font-size:.75rem">· ${p.city}</span>`:''}
+          </div>
+          <div>${c?compatBadges(c,lang):'<span style="color:rgba(255,255,255,0.3);font-size:.75rem">No data</span>'}</div>
+        </div>
+        ${c?scoreRing(c.score):''}
+      </div>`
+    }).join('')
+  }
+
+  const tabs = [
+    {key:'matches',label:`💜 ${lang==='cs'?'Shody':'Matches'}`,count:matchProfiles.length},
+    {key:'cosmic',label:`🌌 ${lang==='cs'?'Kosmické':'Cosmic'}`,count:cosmicProfiles.length},
+  ]
+
+  window._matchData = {matchProfiles, cosmicProfiles, compatMap, renderList}
+
+  $('matches-content').innerHTML = navHtml + `
+    <div style="max-width:640px;margin:0 auto;padding:0 1rem 3rem">
+      <h1 style="font-size:1.5rem;font-weight:700;margin-bottom:1.25rem">${lang==='cs'?'Tvoje shody':'Your Matches'}</h1>
+      <div style="display:flex;gap:.5rem;margin-bottom:1.25rem">
+        ${tabs.map(t=>`<button onclick="switchMatchTab('${t.key}')" id="tab-${t.key}" class="btn" style="flex:1;font-size:.875rem;padding:.65rem;${t.key===matchTab?'background:linear-gradient(135deg,#9333ea,#ec4899);color:white':'background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6)'}">${t.label} ${t.count>0?`<span style="margin-left:.25rem;font-size:.7rem;background:rgba(255,255,255,0.2);padding:.1rem .4rem;border-radius:9999px">${t.count}</span>`:''}</button>`).join('')}
+      </div>
+      <div id="match-list">
+        ${renderList(matchProfiles, lang==='cs'?'Zatím žádné shody. Pokračuj v objevování!':'No matches yet. Keep discovering!',`<br><button onclick="loadDiscover()" class="btn btn-primary" style="margin-top:.75rem">${lang==='cs'?'Objevovat':'Discover'}</button>`)}
+      </div>
+      ${matchTab==='cosmic'?`<div class="card" style="padding:.75rem 1rem;background:rgba(8,145,178,0.15);border-color:rgba(8,145,178,0.3);margin-bottom:1rem"><p style="color:#67e8f9;font-size:.8rem">🌌 ${lang==='cs'?'Kosmická kompatibilita podle data narození — nezávisle na swipování.':'Cosmic compatibility by birthday — independent of swipes.'}</p></div>`:''}
+    </div>`
+}
+
+function switchMatchTab(tab) {
+  matchTab=tab
+  const {matchProfiles,cosmicProfiles,renderList} = window._matchData||{}
+  if(!renderList) return
+  document.querySelectorAll('[id^="tab-"]').forEach(b=>{
+    b.style.background=b.id===`tab-${tab}`?'linear-gradient(135deg,#9333ea,#ec4899)':'rgba(255,255,255,0.08)'
+    b.style.color=b.id===`tab-${tab}`?'white':'rgba(255,255,255,0.6)'
+  })
+  $('match-list').innerHTML = tab==='matches'
+    ? renderList(matchProfiles, lang==='cs'?'Zatím žádné shody.':'No matches yet.', `<br><button onclick="loadDiscover()" class="btn btn-primary">${lang==='cs'?'Objevovat':'Discover'}</button>`)
+    : `${tab==='cosmic'?`<div class="card" style="padding:.75rem 1rem;background:rgba(8,145,178,0.15);border-color:rgba(8,145,178,0.3);margin-bottom:1rem"><p style="color:#67e8f9;font-size:.8rem">🌌 ${lang==='cs'?'Všichni s oboustrannou kosmickou kompatibilitou (bez ohledu na lajky).':'All users with mutual cosmic compatibility (regardless of likes).'}</p></div>`:''}`
+    + renderList(cosmicProfiles, lang==='cs'?'Žádné kosmické shody s registrovanými uživateli.':'No cosmic matches with registered users.')
+}
+
+// ═══════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  if(loadUser()) { loadDiscover() } else { showLanding() }
+})
+</script>
+
+<!-- PAGES -->
+<div id="landing" class="page"></div>
+<div id="register" class="page">
+  <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1rem">
+    <a href="#" onclick="showLanding()" style="display:flex;align-items:center;gap:.5rem;text-decoration:none;color:white;margin-bottom:1.5rem">
+      <span style="font-size:1.5rem">🪐</span><strong style="font-size:1.1rem">Cosmatch</strong>
+    </a>
+    <div class="card" style="width:100%;max-width:440px;padding:2rem" id="register-content"></div>
+  </div>
+</div>
+<div id="login" class="page">
+  <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1rem">
+    <a href="#" onclick="showLanding()" style="display:flex;align-items:center;gap:.5rem;text-decoration:none;color:white;margin-bottom:1.5rem">
+      <span style="font-size:1.5rem">🪐</span><strong style="font-size:1.1rem">Cosmatch</strong>
+    </a>
+    <div class="card" style="width:100%;max-width:380px;padding:2rem" id="login-content"></div>
+  </div>
+</div>
+<div id="discover" class="page"><div id="discover-content"></div></div>
+<div id="matches" class="page"><div id="matches-content"></div></div>
+</body>
+</html>
