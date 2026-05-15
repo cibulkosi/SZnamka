@@ -129,7 +129,7 @@ export default function PremiumPage() {
       window.Paddle.Checkout.open({
         items: [{ priceId, quantity: 1 }],
         customer: { email: user.email },
-        customData: { userId: user.id },
+        customData: { userId: user.id, plan: planId },
         successUrl: `${window.location.origin}/premium/success`,
         settings: {
           displayMode: 'overlay',
