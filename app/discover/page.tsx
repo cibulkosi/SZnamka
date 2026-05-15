@@ -459,20 +459,6 @@ export default function DiscoverPage() {
                       </div>
                     </div>
                   )}
-                  {/* Skóre detail */}
-                  <div>
-                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">Skóre kompatibility</p>
-                    <div className="grid grid-cols-2 gap-2 text-xs">
-                      <div className="bg-white rounded-xl px-3 py-2">
-                        <p className="text-gray-400">📅 Datová rezonance</p>
-                        <p className="font-bold text-gray-700">{compat?.score ?? 0} / 100</p>
-                      </div>
-                      <div className="bg-white rounded-xl px-3 py-2">
-                        <p className="text-gray-400">🎯 Celkové skóre</p>
-                        <p className="font-bold text-pink-600">{enhancedScore} / 100</p>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               )}
             </div>
