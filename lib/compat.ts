@@ -8,6 +8,11 @@
  *   D) Intimní kompatibilita        10 %
  *   E) Lifestyle & návyky           10 %
  *   F) Zájmy (hobbies)              10 %
+ *
+ * Intent multiplier (relationship_goal):
+ *   Shodný záměr (oba Vážný / oba Přátelství / oba Nezávazně) → ×1.2
+ *   Kompatibilní záměr (jeden nebo oba "Zatím nevím")          → ×1.0
+ *   Protichůdný záměr (Vážný vs. Nezávazně)                   → ×0.5
  */
 
 import type { Profile } from './supabase'
@@ -60,7 +65,39 @@ export function computeCompatibility(
   // ── F) Zájmy (10 %) ──────────────────────────
   const fScore = scoreInterests(me, other) * 0.10
 
-  return Math.round(aScore + bScore + cScore + dScore + eScore + fScore)
+  const rawScore = aScore + bScore + cScore + dScore + eScore + fScore
+
+  // ── Intent multiplier (relationship_goal) ────
+  const multiplier = intentMultiplier(me.relationship_goal, other.relationship_goal)
+
+  return Math.min(100, Math.round(rawScore * multiplier))
+}
+
+/**
+ * Intent multiplier — záměr vztahu ovlivňuje celkové skóre
+ *
+ * serious   = Vážný vztah
+ * friendship = Přátelství
+ * casual    = Nezávazně
+ * unsure    = Zatím nevím
+ */
+function intentMultiplier(a?: string, b?: string): number {
+  if (!a || !b) return 1.0        // chybí data → neutrální
+
+  if (a === b) return 1.2         // přesná shoda záměru → boost
+
+  // Protichůdné záměry (dealbreaker páry)
+  const hardConflict = (
+    (a === 'serious' && b === 'casual') ||
+    (a === 'casual' && b === 'serious')
+  )
+  if (hardConflict) return 0.5    // závažný nesoulad → penalizace
+
+  // Jeden nebo oba "unsure" → neutrální
+  if (a === 'unsure' || b === 'unsure') return 1.0
+
+  // Přátelství vs. cokoliv jiného (není přímo konflikt)
+  return 1.0
 }
 
 // ──────────────────────────────────────────────
