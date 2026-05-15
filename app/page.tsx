@@ -104,6 +104,99 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ── PAIN POINT — únava ze swipe aplikací ── */}
+      <section className="py-24 px-6 max-w-5xl mx-auto">
+        <div className="text-center mb-16">
+          <p className="text-purple-400 text-sm font-semibold tracking-widest uppercase mb-4">
+            {isCs ? 'Proč přecházejí miliony lidí' : 'Why millions are switching'}
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-5">
+            {isCs ? (
+              <>Swipe aplikace tě unavily?<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Nejsi sám/a.</span></>
+            ) : (
+              <>Tired of swipe apps?<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">You&apos;re not alone.</span></>
+            )}
+          </h2>
+          <p className="text-white/55 text-lg max-w-2xl mx-auto leading-relaxed">
+            {isCs
+              ? 'Globální trh swipe aplikací zaznamenal první historický pokles. Uživatelé trpí "únava z rozhodování" — nekonečné posouvání profilů bez hlubšího smyslu. Cosmatch je odpovědí.'
+              : 'The global swipe app market hit its first-ever decline. Users suffer from decision fatigue — endless scrolling through profiles with no deeper meaning. Cosmatch is the answer.'}
+          </p>
+        </div>
+
+        {/* Old vs New porovnání */}
+        <div className="grid md:grid-cols-2 gap-6 mb-16">
+          {/* Old way */}
+          <div className="p-8 rounded-3xl border border-white/10" style={{ background: 'rgba(255,255,255,0.03)' }}>
+            <div className="text-3xl mb-4">😮‍💨</div>
+            <h3 className="font-bold text-white/60 text-lg mb-5 line-through decoration-red-400">
+              {isCs ? 'Tradiční swipe aplikace' : 'Traditional swipe apps'}
+            </h3>
+            <ul className="space-y-3">
+              {(isCs ? [
+                'Tisíce náhodných profilů bez kontextu',
+                'Gamifikace navržená pro závislost',
+                '"Platíš za více profilů" — ne za relevantnější',
+                'Povrchní výběr podle fotky',
+                'Únava z rozhodování po 50 swipech',
+              ] : [
+                'Thousands of random profiles with no context',
+                'Gamification designed for addiction',
+                '"Pay for more profiles" — not more relevant ones',
+                'Superficial selection based on looks alone',
+                'Decision fatigue after 50 swipes',
+              ]).map((item, i) => (
+                <li key={i} className="flex items-start gap-3 text-sm text-white/40">
+                  <span className="text-red-400 mt-0.5 flex-shrink-0">✕</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* New way — Cosmatch */}
+          <div className="p-8 rounded-3xl border border-purple-500/30 relative overflow-hidden" style={{ background: 'rgba(139,92,246,0.08)' }}>
+            <div className="absolute top-4 right-4 text-xs font-bold text-purple-300 bg-purple-500/20 px-3 py-1 rounded-full border border-purple-400/30">
+              Cosmatch
+            </div>
+            <div className="text-3xl mb-4">🪐</div>
+            <h3 className="font-bold text-white text-lg mb-5">
+              {isCs ? 'Záměrné seznamování' : 'Intentional dating'}
+            </h3>
+            <ul className="space-y-3">
+              {(isCs ? [
+                'Profily seřazené přesně pro tebe — věda, ne náhoda',
+                '5 svipů denně: méně, ale každý se záměrem',
+                '"Platíš za relevanci" — vidíš kdo tě lajknul dřív',
+                'Personologický profil z data narození jako identity signal',
+                'Navrženo pro vztah, ne pro závislost',
+              ] : [
+                'Profiles ranked precisely for you — science, not luck',
+                '5 swipes daily: fewer, but each with intent',
+                '"Pay for relevance" — see who liked you first',
+                'Personology profile from birth date as identity signal',
+                'Designed for relationships, not addiction',
+              ]).map((item, i) => (
+                <li key={i} className="flex items-start gap-3 text-sm text-white/80">
+                  <span className="text-purple-400 mt-0.5 flex-shrink-0">✓</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Citát / claim */}
+        <div className="text-center py-10 px-6 rounded-3xl border border-white/8" style={{ background: 'rgba(255,255,255,0.02)' }}>
+          <p className="text-2xl md:text-3xl font-bold text-white/90 italic mb-3">
+            &ldquo;{isCs ? 'Méně swipů. Víc záměru. Skutečné spojení.' : 'Less swiping. More intent. Real connection.'}&rdquo;
+          </p>
+          <p className="text-white/30 text-sm">
+            {isCs ? 'Nová vlna seznamování — Cosmatch 2026' : 'The new wave of dating — Cosmatch 2026'}
+          </p>
+        </div>
+      </section>
+
       {/* ── JAK TO FUNGUJE ── */}
       <section id="how" className="py-24 px-6 max-w-5xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
@@ -190,9 +283,9 @@ export default function LandingPage() {
         </h2>
         <div className="grid md:grid-cols-2 gap-6">
           {[
-            { icon: '🎯', title: isCs ? 'Záměrné seznamování' : 'Intentional dating', desc: isCs ? 'Cosmatch přináší slow dating — méně swipů, ale každý s hlubším smyslem. 5 swipů denně zdarma.' : 'Cosmatch brings slow dating — fewer swipes, but each with deeper meaning. 5 free swipes per day.' },
-            { icon: '🔬', title: isCs ? 'Věda, ne náhoda' : 'Science, not luck', desc: isCs ? '133 000+ párů kompatibility předpočítaných z 2 350 stran personologického výzkumu Garyho Goldschneidera.' : '133,000+ compatibility pairs pre-calculated from 2,350 pages of Gary Goldschneider\'s research.' },
-            { icon: '🛡️', title: isCs ? 'Bezpečné prostředí' : 'Safe environment', desc: isCs ? 'Žádné boty, žádné fake profily. Každý účet je svázán s reálným datem narození.' : 'No bots, no fake profiles. Every account is tied to a real birth date.' },
+            { icon: '🎯', title: isCs ? 'Méně swipů, víc záměru' : 'Less swiping, more intent', desc: isCs ? '5 promyšlených swipů denně — záměrně omezené, protože věříme v kvalitu nad kvantitou. Slow dating, který má smysl.' : '5 thoughtful swipes per day — intentionally limited, because we believe in quality over quantity. Slow dating that makes sense.' },
+            { icon: '🔬', title: isCs ? 'Věda, ne náhoda' : 'Science, not luck', desc: isCs ? '133 000+ párů kompatibility z 2 350 stran personologického výzkumu. Tvůj profil je unikátní — jako tvoje datum.' : '133,000+ compatibility pairs from 2,350 pages of research. Your profile is unique — just like your birth date.' },
+            { icon: '💜', title: isCs ? 'Navrženo pro vztah, ne závislost' : 'Designed for love, not addiction', desc: isCs ? 'Žádná gamifikace, žádné nekonečné scrollování. Cosmatch chce, abys ho jednou smazala — protože jsi našla toho pravého.' : 'No gamification, no endless scrolling. Cosmatch wants you to delete it one day — because you found the right person.' },
             { icon: '🇨🇿', title: isCs ? 'Česká komunita' : 'Czech community', desc: isCs ? 'Navrženo pro česky mluvící uživatele — CZ/SK priorita, plná lokalizace, platby v CZK přes Paddle.' : 'Designed for Czech-speaking users — CZ/SK priority, full localization, CZK payments via Paddle.' },
           ].map((item, i) => (
             <div key={i} className="flex gap-5 p-6 rounded-2xl border border-white/10" style={{ background: 'rgba(255,255,255,0.03)' }}>
