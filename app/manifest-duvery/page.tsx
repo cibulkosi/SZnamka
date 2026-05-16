@@ -25,12 +25,12 @@ const principles = [
   {
     numeral: 'IV',
     title: 'Algoritmus, který umíme vysvětlit',
-    body: 'Numerologická kompatibilita 35\u202f%, hodnoty a záměry 30\u202f%, vzdálenost 15\u202f%, aktivita 15\u202f%, společné zájmy 5\u202f%. Žádné placené pozice. Žádné skryté penalizace. Vzorec si můžeš přepočítat.',
+    body: 'Numerologická kompatibilita 35 %, hodnoty a záměry 30 %, vzdálenost 15 %, aktivita 15 %, společné zájmy 5 %. Žádné placené pozice. Žádné skryté penalizace. Vzorec si můžeš přepočítat.',
   },
   {
     numeral: 'V',
     title: 'Bezpečnost není nadstandard',
-    body: 'Česko je šestá nejzranitelnější země světa vůči romance scams — 45\u202f% uživatelů seznamek tu pravidelně narazí na podezřelý profil. Cosmatch proto nabízí ID verifikaci, Cloudflare Turnstile proti botům a Google/Facebook SSO bez hesla. Servery běží ve Frankfurtu (EU). Smazání účtu vyřídíme do hodiny.',
+    body: 'Česko je šestá nejzranitelnější země světa vůči romance scams — 45 % uživatelů seznamek tu pravidelně narazí na podezřelý profil. Cosmatch proto nabízí ID verifikaci, Cloudflare Turnstile proti botům a Google/Facebook SSO bez hesla. Servery běží ve Frankfurtu (EU). Smazání účtu vyřídíme do hodiny.',
   },
   {
     numeral: 'VI',
@@ -40,7 +40,7 @@ const principles = [
   {
     numeral: 'VII',
     title: 'Záruky, ne sliby',
-    body: 'Pokud nejsi spokojen s předplatným do 14\u202fdnů, peníze vrátíme bez vysvětlení. Pokud nás potřebuješ, píšeš na ahoj@cosmatch.cz a odpovídáme do 48\u202fhodin. Občas dříve.',
+    body: 'Pokud nejsi spokojen s předplatným do 14 dnů, peníze vrátíme bez vysvětlení. Pokud nás potřebuješ, píšeš na ahoj@cosmatch.cz a odpovídáme do 48 hodin. Občas dříve.',
   },
   {
     numeral: 'VIII',
@@ -109,8 +109,8 @@ export default function ManifestDuvery() {
 
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-8">
             Česká republika je <strong className="text-gray-900 font-medium">šestá nejzranitelnější země světa vůči romance scams</strong>.
-            45\u202f% uživatelů českých seznamek pravidelně narazí na podezřelý profil, průměrná
-            zaznamenaná škoda dosahuje 47\u202f245\u202fKč. To se nestane, když víš, s kým mluvíš.
+            45 % uživatelů českých seznamek pravidelně narazí na podezřelý profil, průměrná
+            zaznamenaná škoda dosahuje 47 245 Kč. To se nestane, když víš, s kým mluvíš.
           </p>
 
           <div className="space-y-6 mb-8">

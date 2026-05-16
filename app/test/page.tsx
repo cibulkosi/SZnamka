@@ -423,7 +423,7 @@ export default function TestPage() {
                 profilů. Přidej se do waitlistu a buď u toho jako první.
               </p>
               <p className="text-sm text-gray-500 mb-6">
-                Prvních 1\u202f000 dostane voucher na 3\u202fměsíce Cosmatch+ zdarma.
+                Prvních 1 000 dostane voucher na 3 měsíce Cosmatch+ zdarma.
               </p>
               <button
                 onClick={() => setStep('capture')}

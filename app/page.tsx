@@ -35,7 +35,7 @@ export default function LandingPage() {
             </h1>
             <hr className="rule w-16 border-gray-900 mb-8" />
             <p className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-10 max-w-xl">
-              96\u202f% českých žen 18–29 považuje hledání partnera za obtížné.
+              96 % českých žen 18–29 považuje hledání partnera za obtížné.
               Cosmatch tu dynamiku mění — spočítá kompatibilitu mezi tvým a partnerovým
               datem narození z 366 personologických profilů. Místo swipování pro swipování
               ti dává důvod, proč se s někým potkat.
@@ -55,7 +55,7 @@ export default function LandingPage() {
               </Link>
             </div>
             <p className="text-sm text-gray-500 mt-6">
-              Spouštíme v Praze. Prvních 1\u202f000 dostane voucher na 3\u202fměsíce zdarma.
+              Spouštíme v Praze. Prvních 1 000 dostane voucher na 3 měsíce zdarma.
             </p>
           </div>
 
@@ -158,7 +158,7 @@ export default function LandingPage() {
           </h2>
           <p className="text-white/70 text-lg leading-[1.8] mb-16 max-w-xl">
             Kniha The Power of Birthdays definuje pět typů vztahu mezi dvěma daty narození.
-            Cosmatch je spočítal všech 46\u202f949 a ukazuje ti, jak by to mohlo vypadat,
+            Cosmatch je spočítal všech 46 949 a ukazuje ti, jak by to mohlo vypadat,
             ještě než si napíšeš první zprávu.
           </p>
 
