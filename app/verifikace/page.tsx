@@ -76,7 +76,7 @@ export default function VerifikacePage() {
                 <h3 className="serif text-2xl text-gray-900 font-medium mb-3 leading-tight">ID verifikace s certifikátem „Ověřeno"</h3>
                 <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-3">
                   Uživatelé tarifu Cosmatch Serious procházejí přidanou kontrolou totožnosti
-                  přes ověřenou EU službu (Veriff nebo iDenfy). Po úspěšném ověření získá jejich
+                  přes renomovanou EU službu pro ověření identity. Po úspěšném ověření získá jejich
                   profil zelený štítek <span className="inline-flex items-center gap-1 align-middle text-emerald-600 font-medium"><svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Ověřeno</span>, který vidí každý ostatní uživatel.
                 </p>
                 <p className="text-sm text-gray-500 italic">Pokud chceš, můžeš si nastavit, aby ti aplikace zobrazovala pouze ověřené profily.</p>
@@ -99,7 +99,7 @@ export default function VerifikacePage() {
             <ol className="space-y-3 list-none ml-0">
               <li className="grid grid-cols-[auto,1fr] gap-4">
                 <span className="serif text-pink-500 font-medium">01</span>
-                <span>Profil je do hodiny dočasně skrytý z feedu, dokud nezkontrolujeme nahlášení.</span>
+                <span>Profil je v řádech minut dočasně skrytý z feedu, dokud nezkontrolujeme nahlášení.</span>
               </li>
               <li className="grid grid-cols-[auto,1fr] gap-4">
                 <span className="serif text-pink-500 font-medium">02</span>

@@ -83,12 +83,22 @@ export default function WaitlistPage() {
     setSubmitting(true)
     try {
       const code = Math.random().toString(36).substring(2, 8).toUpperCase()
+      const voucher = makeVoucher()
       setReferralCode(code)
+      setVoucherCode(voucher)
       const cityValue = district || (city ? (city as string) : null)
       const { error } = await supabase.from('waitlist').insert({
         email, name: name || null, city: cityValue,
-        referral_code: code, referred_by: refCode || null, source: 'landing',
+        referral_code: code, referred_by: refCode || null,
+        voucher_code: voucher, source: 'landing',
       })
+
+      // Best-effort welcome email
+      fetch(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/waitlist-welcome`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}` },
+        body: JSON.stringify({ email, name: name || null, voucher_code: voucher, source: 'landing' }),
+      }).catch(() => {})
       if (error && error.code !== '23505') console.error(error)
       const { count } = await supabase.from('waitlist').select('*', { count: 'exact', head: true })
       setPosition(count || 1)
@@ -397,6 +407,35 @@ export default function WaitlistPage() {
               Pošleme ti e-mail jakmile spustíme — s voucherem na 3 měsíce Cosmatch+ zdarma.
               Mezitím ti dáváme nástroj, jak postoupit.
             </p>
+
+            <hr className="rule mb-12" />
+
+            {voucherCode && (
+              <div className="mb-12">
+                <p className="eyebrow text-pink-500 mb-3">Tvůj voucher</p>
+                <h3 className="serif text-2xl text-gray-900 font-medium leading-tight mb-3">
+                  Tři měsíce Cosmatch+ zdarma.
+                </h3>
+                <p className="text-gray-600 leading-relaxed mb-6 text-[1.0625rem]">
+                  Ulož si ho. Připíšeme ho i k tobě do e-mailu — uplatníš ho při spuštění.
+                </p>
+                <div className="bg-white border-2 border-dashed border-pink-300 rounded-2xl p-5 flex items-center gap-3">
+                  <code className="flex-1 bg-transparent text-pink-600 text-base font-bold font-mono truncate text-center">
+                    {voucherCode}
+                  </code>
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(voucherCode).then(() => {
+                        setVoucherCopied(true); setTimeout(() => setVoucherCopied(false), 2000)
+                      })
+                    }}
+                    className="px-4 py-2 bg-gray-900 text-white text-sm rounded-full font-medium hover:bg-gray-800 transition flex-shrink-0"
+                  >
+                    {voucherCopied ? 'Zkopírováno' : 'Kopírovat'}
+                  </button>
+                </div>
+              </div>
+            )}
 
             <hr className="rule mb-12" />
 

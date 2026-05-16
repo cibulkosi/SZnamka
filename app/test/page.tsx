@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { createClient } from '@supabase/supabase-js'
 
@@ -154,6 +154,11 @@ const ARCHETYPES: Record<number, Archetype> = {
 
 type Step = 'intro' | 'birthday' | 'result' | 'capture' | 'done'
 
+function makeVoucher(): string {
+  const part = () => Math.random().toString(36).substring(2, 6).toUpperCase()
+  return `COSMATCH-${part()}-${part()}`
+}
+
 export default function TestPage() {
   const [step, setStep] = useState<Step>('intro')
   const [birthday, setBirthday] = useState('')
@@ -165,8 +170,12 @@ export default function TestPage() {
   const [submitting, setSubmitting] = useState(false)
   const [waitlistPos, setWaitlistPos] = useState<number | null>(null)
   const [referralCode, setReferralCode] = useState('')
+  const [voucherCode, setVoucherCode] = useState('')
   const [refCode, setRefCode] = useState('')
   const [copied, setCopied] = useState(false)
+  const [voucherCopied, setVoucherCopied] = useState(false)
+  const [downloading, setDownloading] = useState(false)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -192,7 +201,9 @@ export default function TestPage() {
     setSubmitting(true)
     try {
       const code = Math.random().toString(36).substring(2, 8).toUpperCase()
+      const voucher = makeVoucher()
       setReferralCode(code)
+      setVoucherCode(voucher)
       const { error } = await supabase.from('waitlist').insert({
         email,
         name: name || null,
@@ -202,8 +213,16 @@ export default function TestPage() {
         archetype: archetype.name,
         referral_code: code,
         referred_by: refCode || null,
+        voucher_code: voucher,
         source: 'quiz',
       })
+
+      // Fire-and-forget welcome email (Edge Function with Resend)
+      fetch(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/waitlist-welcome`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}` },
+        body: JSON.stringify({ email, name: name || null, voucher_code: voucher, archetype: archetype.name, life_path: lifePath, source: 'quiz' }),
+      }).catch(() => { /* email is best-effort */ })
       if (error && error.code !== '23505') console.error(error)
       const { count } = await supabase.from('waitlist').select('*', { count: 'exact', head: true })
       setWaitlistPos(count || 1)
@@ -222,17 +241,130 @@ export default function TestPage() {
     })
   }
 
-  function shareResult() {
-    const url = `${window.location.origin}/test?ref=${referralCode || ''}`
-    if (navigator.share) {
-      navigator.share({
-        title: `Jsem ${archetype?.name} — Cosmatch`,
-        text: `Cosmatch mě označil jako „${archetype?.name}\" (číslo ${lifePath}). Zjisti i své: `,
-        url,
-      })
-    } else {
-      copyReferralLink()
+  /**
+   * Draws a 1080x1920 (9:16) shareable card to the offscreen canvas.
+   * Returns the Blob if successful, else null.
+   */
+  function drawCard(): Promise<Blob | null> {
+    return new Promise(resolve => {
+      const canvas = canvasRef.current
+      if (!canvas || !archetype) return resolve(null)
+
+      const W = 1080, H = 1920
+      canvas.width = W; canvas.height = H
+      const ctx = canvas.getContext('2d')
+      if (!ctx) return resolve(null)
+
+      // Background — cream with subtle radial accent
+      ctx.fillStyle = '#FAF6F0'
+      ctx.fillRect(0, 0, W, H)
+      const grad = ctx.createRadialGradient(W/2, H*0.4, 0, W/2, H*0.4, W*0.7)
+      grad.addColorStop(0, 'rgba(236,72,153,0.06)')
+      grad.addColorStop(1, 'rgba(236,72,153,0)')
+      ctx.fillStyle = grad
+      ctx.fillRect(0, 0, W, H)
+
+      // Top wordmark
+      ctx.fillStyle = '#1C1C1E'
+      ctx.font = '600 38px "Inter", -apple-system, system-ui, sans-serif'
+      ctx.textAlign = 'center'
+      ctx.fillText('COSMATCH', W/2, 130)
+
+      // Eyebrow above number
+      ctx.fillStyle = '#ec4899'
+      ctx.font = '500 26px "Inter", sans-serif'
+      ctx.fillText('TVŮJ NUMEROLOGICKÝ ARCHETYP', W/2, 360)
+
+      // Big number
+      ctx.fillStyle = archetype.accent || '#ec4899'
+      ctx.font = '500 460px Georgia, "Times New Roman", serif'
+      ctx.textBaseline = 'middle'
+      ctx.fillText(String(lifePath), W/2, 720)
+
+      // Archetype name (italic)
+      ctx.fillStyle = '#1C1C1E'
+      ctx.textBaseline = 'alphabetic'
+      ctx.font = 'italic 600 110px Georgia, serif'
+      ctx.fillText(archetype.name, W/2, 1100)
+
+      // Tagline — wrap to multiple lines if needed
+      ctx.fillStyle = '#4B5563'
+      ctx.font = '400 36px "Inter", sans-serif'
+      wrapText(ctx, archetype.tagline || '', W/2, 1200, W - 200, 50)
+
+      // Hairline rule
+      ctx.strokeStyle = 'rgba(28,28,30,0.2)'
+      ctx.lineWidth = 1
+      ctx.beginPath(); ctx.moveTo(W/2 - 40, H - 240); ctx.lineTo(W/2 + 40, H - 240); ctx.stroke()
+
+      // Bottom CTA
+      ctx.fillStyle = '#1C1C1E'
+      ctx.font = '500 34px "Inter", sans-serif'
+      ctx.fillText('Zjisti své číslo', W/2, H - 170)
+      ctx.fillStyle = '#ec4899'
+      ctx.font = '500 28px "Inter", sans-serif'
+      ctx.fillText('cosmatch.cz', W/2, H - 120)
+
+      canvas.toBlob(blob => resolve(blob), 'image/png', 0.95)
+    })
+  }
+
+  /** Helper: word-wrap text, center-aligned. */
+  function wrapText(ctx: CanvasRenderingContext2D, text: string, x: number, y: number, maxWidth: number, lineHeight: number) {
+    const words = text.split(' ')
+    let line = ''
+    const lines: string[] = []
+    for (const w of words) {
+      const test = line + w + ' '
+      if (ctx.measureText(test).width > maxWidth && line !== '') {
+        lines.push(line.trim())
+        line = w + ' '
+      } else {
+        line = test
+      }
     }
+    lines.push(line.trim())
+    lines.forEach((l, i) => ctx.fillText(l, x, y + i * lineHeight))
+  }
+
+  async function downloadCard() {
+    setDownloading(true)
+    try {
+      const blob = await drawCard()
+      if (!blob) return
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `cosmatch-${archetype?.name?.toLowerCase() || 'archetyp'}-${lifePath}.png`
+      document.body.appendChild(a); a.click(); a.remove()
+      setTimeout(() => URL.revokeObjectURL(url), 1500)
+    } finally { setDownloading(false) }
+  }
+
+  async function shareResult() {
+    const url = `${window.location.origin}/test?ref=${referralCode || ''}`
+    const text = `Jsem „${archetype?.name}" (číslo ${lifePath}) — zjisti i své na Cosmatch.`
+
+    // Try Web Share API with PNG file (supported on iOS Safari, Chrome Android)
+    if (navigator.share && archetype) {
+      try {
+        const blob = await drawCard()
+        if (blob && navigator.canShare?.({ files: [new File([blob], 'cosmatch.png', { type: 'image/png' })] })) {
+          await navigator.share({
+            title: 'Cosmatch — Tvůj numerologický archetyp',
+            text,
+            url,
+            files: [new File([blob], 'cosmatch.png', { type: 'image/png' })],
+          })
+          return
+        }
+        // Fallback — share without file
+        await navigator.share({ title: 'Cosmatch', text, url })
+        return
+      } catch { /* user cancelled or share failed — fall through */ }
+    }
+    // Last resort — just copy link
+    copyReferralLink()
   }
 
   // Step indicator helper
@@ -552,7 +684,52 @@ export default function TestPage() {
               >
                 Sdílet výsledek a získat pozici
               </button>
+
+              <button
+                onClick={downloadCard}
+                disabled={downloading}
+                className="w-full mt-3 bg-white text-gray-900 border border-gray-300 hover:border-gray-900 py-4 rounded-full text-sm font-medium transition-all active:scale-[0.99] disabled:opacity-50"
+              >
+                {downloading ? 'Generuji obrázek…' : 'Stáhnout kartu (1080 × 1920)'}
+              </button>
+              <p className="text-xs text-gray-400 mt-2 text-center">
+                Karta ve formátu pro Instagram Stories. Stáhne se jako PNG.
+              </p>
             </div>
+
+            {voucherCode && (
+              <>
+                <hr className="rule my-12" />
+                <div className="text-left">
+                  <p className="eyebrow text-pink-500 mb-3">Tvůj voucher</p>
+                  <h3 className="serif text-2xl text-gray-900 font-medium leading-tight mb-3">
+                    Tři měsíce Cosmatch+ zdarma.
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed mb-6 text-[1.0625rem]">
+                    Tento kód si ulož. Připíšeme ho i k tobě do e-mailu — uplatníš ho
+                    při spuštění aplikace.
+                  </p>
+                  <div className="bg-white border-2 border-dashed border-pink-300 rounded-2xl p-5 flex items-center gap-3 mb-2">
+                    <code className="flex-1 bg-transparent text-pink-600 text-base font-bold font-mono truncate text-center">
+                      {voucherCode}
+                    </code>
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText(voucherCode).then(() => {
+                          setVoucherCopied(true); setTimeout(() => setVoucherCopied(false), 2000)
+                        })
+                      }}
+                      className="px-4 py-2 bg-gray-900 text-white text-sm rounded-full font-medium hover:bg-gray-800 transition flex-shrink-0"
+                    >
+                      {voucherCopied ? 'Zkopírováno' : 'Kopírovat'}
+                    </button>
+                  </div>
+                  <p className="text-xs text-gray-400 text-center">
+                    Voucher je vázán na tvůj e-mail. Pošleme ti ho i v potvrzovacím mailu.
+                  </p>
+                </div>
+              </>
+            )}
 
             <hr className="rule my-12" />
 
@@ -566,6 +743,12 @@ export default function TestPage() {
         )}
 
       </div>
+
+      {/* Hidden offscreen canvas for 9:16 share card */}
+      <canvas ref={canvasRef} aria-hidden="true" style={{
+        position: 'fixed', left: '-99999px', top: '-99999px',
+        width: '1080px', height: '1920px', pointerEvents: 'none',
+      }} />
     </main>
   )
 }
