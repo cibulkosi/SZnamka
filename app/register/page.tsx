@@ -29,6 +29,14 @@ const SUPABASE_FUNCTIONS_URL = 'https://xdotpadgbchhecwitbpe.supabase.co/functio
 type Step = 0 | 1 | 2 | 3 | 4
 type PhotoFile = { file: File; preview: string }
 
+
+// SHA-256 hash hesla — email jako salt (běží v prohlížeči přes Web Crypto API)
+async function hashPassword(password: string, email: string): Promise<string> {
+  const data = new TextEncoder().encode(password + 'cosmatch_' + email.toLowerCase())
+  const buf = await crypto.subtle.digest('SHA-256', data)
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('')
+}
+
 export default function RegisterPage() {
   const router = useRouter()
   const [step, setStep] = useState<Step>(0)
@@ -150,6 +158,7 @@ export default function RegisterPage() {
     try {
       const userId = crypto.randomUUID()
       const photoUrls = form.photos.length > 0 ? await uploadPhotos(userId) : []
+      const passwordHash = await hashPassword(form.password, form.email)
 
       const { error: dbErr } = await supabase.from('profiles').insert([{
         id: userId,
@@ -173,6 +182,7 @@ export default function RegisterPage() {
         photos: photoUrls,
         prompt_q: form.prompt_q || null,
         prompt_a: form.prompt_a || null,
+        password_hash: passwordHash,
         premium: false,
         active: true,
       }])

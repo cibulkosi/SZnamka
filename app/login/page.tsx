@@ -4,27 +4,48 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 
+// SHA-256 hash hesla — musí být identický jako v register/page.tsx
+async function hashPassword(password: string, email: string): Promise<string> {
+  const data = new TextEncoder().encode(password + 'cosmatch_' + email.toLowerCase())
+  const buf = await crypto.subtle.digest('SHA-256', data)
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('')
+}
+
 export default function LoginPage() {
   const router = useRouter()
   const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
   const handleLogin = async () => {
-    if (!email) return
+    if (!email || !password) {
+      setError('Vyplň e-mail i heslo.')
+      return
+    }
     setLoading(true)
     setError('')
     try {
+      // Načti profil podle emailu
       const { data: profile, error: err } = await supabase
         .from('profiles')
         .select('*')
-        .eq('email', email)
+        .eq('email', email.toLowerCase().trim())
         .single()
 
       if (err || !profile) {
-        setError('Profil nenalezen. Zkontroluj e-mail nebo se zaregistruj.')
+        setError('Účet s tímto e-mailem neexistuje.')
         return
       }
+
+      // Ověř heslo
+      const hash = await hashPassword(password, email.toLowerCase().trim())
+      if (profile.password_hash && profile.password_hash !== hash) {
+        setError('Špatné heslo.')
+        return
+      }
+
+      // Úspěšné přihlášení
       localStorage.setItem('cosmatch_user', JSON.stringify(profile))
       router.push('/discover')
     } catch {
@@ -96,9 +117,15 @@ export default function LoginPage() {
               value={email} onChange={e => setEmail(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && handleLogin()} />
           </div>
+          <div>
+            <label className="text-gray-500 text-sm mb-1 block">Heslo</label>
+            <input className="input" type="password" placeholder="••••••••"
+              value={password} onChange={e => setPassword(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && handleLogin()} />
+          </div>
           {error && <p className="text-red-500 text-sm bg-red-50 border border-red-100 p-3 rounded-2xl">{error}</p>}
           <button className="btn-primary w-full" onClick={handleLogin} disabled={loading}>
-            {loading ? '⏳ Přihlašuji...' : 'Přihlásit se'}
+            {loading ? '⏳ Přihlašuji...' : 'Přihlásit se →'}
           </button>
           <p className="text-center text-gray-400 text-sm">
             Nemáš účet?{' '}
