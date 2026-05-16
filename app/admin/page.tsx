@@ -11,19 +11,11 @@ const supabase = createClient(
 const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'cosmatch2026'
 
 interface Stats {
-  totalUsers: number
-  maleCount: number
-  femaleCount: number
-  otherCount: number
-  premiumCount: number
-  waitlistCount: number
-  ambassadorCount: number
-  activeToday: number
-  activeWeek: number
-  likesTotal: number
-  matchesTotal: number
-  newToday: number
-  newWeek: number
+  totalUsers: number; maleCount: number; femaleCount: number; otherCount: number
+  premiumCount: number; waitlistCount: number; ambassadorCount: number
+  activeToday: number; activeWeek: number
+  likesTotal: number; matchesTotal: number
+  newToday: number; newWeek: number
 }
 
 export default function AdminPage() {
@@ -45,21 +37,12 @@ export default function AdminPage() {
       const now = new Date()
       const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()).toISOString()
       const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString()
-
       const [
-        { count: totalUsers },
-        { count: maleCount },
-        { count: femaleCount },
-        { count: otherCount },
-        { count: premiumCount },
-        { count: waitlistCount },
-        { count: ambassadorCount },
-        { count: activeToday },
-        { count: activeWeek },
-        { count: likesTotal },
-        { count: matchesTotal },
-        { count: newToday },
-        { count: newWeek },
+        { count: totalUsers }, { count: maleCount }, { count: femaleCount }, { count: otherCount },
+        { count: premiumCount }, { count: waitlistCount }, { count: ambassadorCount },
+        { count: activeToday }, { count: activeWeek },
+        { count: likesTotal }, { count: matchesTotal },
+        { count: newToday }, { count: newWeek },
       ] = await Promise.all([
         supabase.from('profiles').select('*', { count: 'exact', head: true }),
         supabase.from('profiles').select('*', { count: 'exact', head: true }).or('gender.eq.male,gender.eq.Muž'),
@@ -75,198 +58,191 @@ export default function AdminPage() {
         supabase.from('profiles').select('*', { count: 'exact', head: true }).gte('created_at', today),
         supabase.from('profiles').select('*', { count: 'exact', head: true }).gte('created_at', weekAgo),
       ])
-
       setStats({
-        totalUsers: totalUsers || 0,
-        maleCount: maleCount || 0,
-        femaleCount: femaleCount || 0,
-        otherCount: otherCount || 0,
-        premiumCount: premiumCount || 0,
-        waitlistCount: waitlistCount || 0,
+        totalUsers: totalUsers || 0, maleCount: maleCount || 0, femaleCount: femaleCount || 0,
+        otherCount: otherCount || 0, premiumCount: premiumCount || 0, waitlistCount: waitlistCount || 0,
         ambassadorCount: ambassadorCount || 0,
-        activeToday: activeToday || 0,
-        activeWeek: activeWeek || 0,
-        likesTotal: likesTotal || 0,
-        matchesTotal: matchesTotal || 0,
-        newToday: newToday || 0,
-        newWeek: newWeek || 0,
+        activeToday: activeToday || 0, activeWeek: activeWeek || 0,
+        likesTotal: likesTotal || 0, matchesTotal: matchesTotal || 0,
+        newToday: newToday || 0, newWeek: newWeek || 0,
       })
       setLastRefresh(new Date())
-    } finally {
-      setLoading(false)
-    }
+    } finally { setLoading(false) }
   }
 
   useEffect(() => {
-    if (authed) {
-      loadStats()
-      const interval = setInterval(loadStats, 60_000) // refresh every minute
-      return () => clearInterval(interval)
-    }
+    if (authed) { loadStats(); const i = setInterval(loadStats, 60_000); return () => clearInterval(i) }
   }, [authed])
 
   if (!authed) {
     return (
-      <div className="min-h-screen bg-[#FAF6F0] flex items-center justify-center px-6">
-        <div className="card p-8 w-full max-w-sm text-center">
-          <span className="text-2xl text-pink-500">✦</span>
-          <h1 className="text-xl font-bold text-gray-900 mt-3 mb-6">Admin přístup</h1>
-          <form onSubmit={handleLogin} className="space-y-4">
-            <input
-              type="password"
-              className="input w-full"
-              placeholder="Heslo"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              autoFocus
-            />
-            <button type="submit" className="btn-primary w-full py-3">Přihlásit se</button>
+      <main className="min-h-screen bg-[#FAF6F0] flex items-center justify-center px-6">
+        <div className="w-full max-w-sm">
+          <p className="eyebrow text-pink-500 mb-6 text-center">Admin</p>
+          <h1 className="serif-display text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-8 text-center">
+            Soukromý vstup.
+          </h1>
+          <form onSubmit={handleLogin} className="space-y-5">
+            <input type="password" placeholder="Heslo" value={password} onChange={e => setPassword(e.target.value)} autoFocus
+              className="w-full bg-transparent border-0 border-b-2 border-gray-300 focus:border-pink-500 px-0 py-3 text-lg text-gray-900 focus:outline-none transition-colors text-center" />
+            <button type="submit" className="w-full bg-gray-900 text-white py-5 rounded-full text-base font-medium hover:bg-gray-800 transition">
+              Pokračovat
+            </button>
           </form>
         </div>
-      </div>
+      </main>
     )
   }
 
-  const maleRatio = stats && stats.totalUsers > 0
-    ? Math.round((stats.maleCount / stats.totalUsers) * 100) : 0
-  const femaleRatio = stats && stats.totalUsers > 0
-    ? Math.round((stats.femaleCount / stats.totalUsers) * 100) : 0
-  const premiumRate = stats && stats.totalUsers > 0
-    ? Math.round((stats.premiumCount / stats.totalUsers) * 100) : 0
-  const matchRate = stats && stats.likesTotal > 0
-    ? Math.round((stats.matchesTotal / stats.likesTotal) * 100) : 0
+  const maleRatio = stats && stats.totalUsers > 0 ? Math.round((stats.maleCount / stats.totalUsers) * 100) : 0
+  const femaleRatio = stats && stats.totalUsers > 0 ? Math.round((stats.femaleCount / stats.totalUsers) * 100) : 0
+  const premiumRate = stats && stats.totalUsers > 0 ? Math.round((stats.premiumCount / stats.totalUsers) * 100) : 0
+  const matchRate = stats && stats.likesTotal > 0 ? Math.round((stats.matchesTotal / stats.likesTotal) * 100) : 0
+
+  const fmt = (n: number) => n.toLocaleString('cs-CZ')
 
   return (
-    <div className="min-h-screen bg-[#FAF6F0]">
-      <div className="max-w-4xl mx-auto px-6 py-8">
-
-        {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-3">
-            <Link href="/" className="text-pink-500 text-xl font-bold">✦</Link>
-            <h1 className="text-xl font-bold text-gray-900">Cosmatch Admin</h1>
-          </div>
+    <main className="min-h-screen bg-[#FAF6F0]">
+      <div className="max-w-4xl mx-auto px-6 pt-6 flex items-center justify-between">
+        <Link href="/" className="text-sm text-gray-500 hover:text-gray-900 transition">← Cosmatch</Link>
+        {lastRefresh && (
           <div className="flex items-center gap-4">
-            {lastRefresh && (
-              <span className="text-gray-400 text-xs">
-                Obnoveno: {lastRefresh.toLocaleTimeString('cs-CZ')}
-              </span>
-            )}
-            <button
-              onClick={loadStats}
-              disabled={loading}
-              className="btn-secondary px-4 py-2 text-sm"
-            >
-              {loading ? 'Načítám...' : 'Obnovit'}
+            <span className="text-xs text-gray-400">Obnoveno {lastRefresh.toLocaleTimeString('cs-CZ')}</span>
+            <button onClick={loadStats} disabled={loading}
+              className="text-xs text-gray-700 hover:text-gray-900 border border-gray-300 hover:border-gray-900 px-4 py-1.5 rounded-full transition disabled:opacity-50">
+              {loading ? 'Načítám…' : 'Obnovit'}
             </button>
           </div>
-        </div>
-
-        {stats && (
-          <>
-            {/* Key numbers */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-              {[
-                { label: 'Celkem uživatelů', value: stats.totalUsers, color: 'text-gray-900' },
-                { label: 'Waitlist', value: stats.waitlistCount, color: 'text-pink-500' },
-                { label: 'Premium', value: stats.premiumCount, sub: `${premiumRate}%`, color: 'text-purple-600' },
-                { label: 'Ambasadorky', value: stats.ambassadorCount, color: 'text-indigo-500' },
-              ].map(m => (
-                <div key={m.label} className="card p-5">
-                  <div className={`text-3xl font-black ${m.color}`}>{m.value.toLocaleString('cs-CZ')}</div>
-                  {m.sub && <div className="text-xs text-gray-400">{m.sub} z celku</div>}
-                  <div className="text-gray-500 text-sm mt-1">{m.label}</div>
-                </div>
-              ))}
-            </div>
-
-            {/* Gender ratio */}
-            <div className="card p-6 mb-6">
-              <h2 className="font-bold text-gray-900 mb-4">Gender ratio</h2>
-              <div className="flex rounded-full overflow-hidden h-8 mb-3">
-                <div
-                  className={`h-full flex items-center justify-center text-white text-xs font-bold transition-all ${maleRatio > 65 ? 'bg-red-500' : 'bg-blue-400'}`}
-                  style={{ width: `${maleRatio}%` }}
-                >
-                  {maleRatio > 15 ? `Muži ${maleRatio}%` : ''}
-                </div>
-                <div
-                  className="h-full bg-pink-400 flex items-center justify-center text-white text-xs font-bold"
-                  style={{ width: `${femaleRatio}%` }}
-                >
-                  {femaleRatio > 15 ? `Ženy ${femaleRatio}%` : ''}
-                </div>
-                <div
-                  className="h-full bg-purple-300 flex items-center justify-center text-white text-xs"
-                  style={{ width: `${100 - maleRatio - femaleRatio}%` }}
-                >
-                </div>
-              </div>
-              <div className="flex gap-6 text-sm">
-                <span><strong className="text-blue-500">{stats.maleCount}</strong> mužů</span>
-                <span><strong className="text-pink-500">{stats.femaleCount}</strong> žen</span>
-                <span><strong className="text-purple-500">{stats.otherCount}</strong> ostatní</span>
-              </div>
-              {maleRatio > 65 && (
-                <div className="mt-3 bg-red-50 text-red-600 rounded-xl p-3 text-sm">
-                  Gender cap aktivní — registrace mužů přesměrovány na waitlist.
-                </div>
-              )}
-              {maleRatio <= 65 && (
-                <div className="mt-3 bg-green-50 text-green-600 rounded-xl p-3 text-sm">
-                  Gender ratio v pořádku — registrace otevřeny.
-                </div>
-              )}
-            </div>
-
-            {/* Activity */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-              {[
-                { label: 'Aktivní dnes', value: stats.activeToday },
-                { label: 'Aktivní tento týden', value: stats.activeWeek },
-                { label: 'Noví dnes', value: stats.newToday },
-                { label: 'Noví tento týden', value: stats.newWeek },
-              ].map(m => (
-                <div key={m.label} className="card p-5">
-                  <div className="text-2xl font-black text-gray-900">{m.value}</div>
-                  <div className="text-gray-500 text-sm mt-1">{m.label}</div>
-                </div>
-              ))}
-            </div>
-
-            {/* Engagement */}
-            <div className="grid grid-cols-2 gap-4 mb-6">
-              <div className="card p-5">
-                <div className="text-2xl font-black text-gray-900">{stats.likesTotal.toLocaleString('cs-CZ')}</div>
-                <div className="text-gray-500 text-sm mt-1">Celkem swipů (likes)</div>
-              </div>
-              <div className="card p-5">
-                <div className="text-2xl font-black text-pink-500">{stats.matchesTotal.toLocaleString('cs-CZ')}</div>
-                <div className="text-gray-500 text-sm mt-1">Shod ({matchRate}% match rate)</div>
-              </div>
-            </div>
-
-            {/* Quick links */}
-            <div className="card p-5">
-              <h2 className="font-bold text-gray-900 mb-3">Rychlé akce</h2>
-              <div className="flex flex-wrap gap-3">
-                <a href={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/project/default/editor`}
-                  target="_blank" rel="noopener noreferrer"
-                  className="btn-secondary text-sm px-4 py-2">
-                  Supabase SQL Editor
-                </a>
-                <Link href="/waitlist" className="btn-secondary text-sm px-4 py-2">Waitlist stránka</Link>
-                <Link href="/ambasadorky" className="btn-secondary text-sm px-4 py-2">Ambasadorky</Link>
-                <Link href="/discover" className="btn-secondary text-sm px-4 py-2">Discover (jako uživatel)</Link>
-              </div>
-            </div>
-          </>
-        )}
-
-        {loading && !stats && (
-          <div className="text-center py-20 text-gray-400">Načítám data...</div>
         )}
       </div>
-    </div>
+
+      <div className="max-w-4xl mx-auto px-6 pt-12 pb-24">
+        <header className="mb-16">
+          <p className="eyebrow text-pink-500 mb-6">Dashboard</p>
+          <h1 className="serif-display text-5xl text-gray-900 font-medium leading-[1.05] tracking-tight">
+            Cosmatch v číslech.
+          </h1>
+        </header>
+
+        {!stats ? (
+          <p className="text-gray-400 py-20 text-center">Načítám data…</p>
+        ) : (
+          <>
+            {/* Top numbers */}
+            <section className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 mb-20">
+              {[
+                ['Uživatelů', fmt(stats.totalUsers), null],
+                ['Waitlist', fmt(stats.waitlistCount), null],
+                ['Premium', fmt(stats.premiumCount), `${premiumRate} %`],
+                ['Ambasadorky', fmt(stats.ambassadorCount), null],
+              ].map(([label, val, sub]) => (
+                <div key={label as string}>
+                  <p className="eyebrow text-gray-500 mb-2">{label}</p>
+                  <p className="serif-display text-5xl text-gray-900 font-medium tracking-tight tabular-nums">{val}</p>
+                  {sub && <p className="text-xs text-gray-400 mt-1">{sub} z celku</p>}
+                </div>
+              ))}
+            </section>
+
+            <hr className="rule mb-16" />
+
+            {/* Gender ratio */}
+            <section className="mb-20">
+              <p className="eyebrow text-pink-500 mb-4">Gender ratio</p>
+              <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-8">
+                Poměr pohlaví.
+              </h2>
+
+              <div className="bg-white rounded-3xl p-8 border border-gray-100">
+                <div className="flex rounded-full overflow-hidden h-3 mb-6 bg-gray-100">
+                  <div className={`h-full transition-all ${maleRatio > 65 ? 'bg-red-500' : 'bg-gray-700'}`} style={{ width: `${maleRatio}%` }} />
+                  <div className="h-full bg-pink-500 transition-all" style={{ width: `${femaleRatio}%` }} />
+                  <div className="h-full bg-gray-300 transition-all" style={{ width: `${100 - maleRatio - femaleRatio}%` }} />
+                </div>
+                <div className="grid grid-cols-3 gap-6">
+                  <div>
+                    <p className="eyebrow text-gray-500 mb-1">Muži</p>
+                    <p className="serif text-3xl text-gray-900 font-medium">{maleRatio} <span className="text-base text-gray-500">%</span></p>
+                    <p className="text-xs text-gray-400 mt-1">{fmt(stats.maleCount)}</p>
+                  </div>
+                  <div>
+                    <p className="eyebrow text-gray-500 mb-1">Ženy</p>
+                    <p className="serif text-3xl text-pink-500 font-medium">{femaleRatio} <span className="text-base text-gray-400">%</span></p>
+                    <p className="text-xs text-gray-400 mt-1">{fmt(stats.femaleCount)}</p>
+                  </div>
+                  <div>
+                    <p className="eyebrow text-gray-500 mb-1">Ostatní</p>
+                    <p className="serif text-3xl text-gray-900 font-medium">{100 - maleRatio - femaleRatio} <span className="text-base text-gray-500">%</span></p>
+                    <p className="text-xs text-gray-400 mt-1">{fmt(stats.otherCount)}</p>
+                  </div>
+                </div>
+                <div className={`mt-6 pt-6 border-t border-gray-100 text-sm leading-relaxed ${maleRatio > 65 ? 'text-red-600' : 'text-emerald-700'}`}>
+                  {maleRatio > 65
+                    ? 'Cap aktivní — nové registrace mužů jsou přesměrovány na waitlist.'
+                    : 'V pořádku — registrace otevřeny pro všechny.'}
+                </div>
+              </div>
+            </section>
+
+            <hr className="rule mb-16" />
+
+            {/* Activity */}
+            <section className="mb-20">
+              <p className="eyebrow text-pink-500 mb-4">Aktivita</p>
+              <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-10">
+                Kdo se vrací a kdo přibývá.
+              </h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
+                {[
+                  ['Aktivní dnes', stats.activeToday],
+                  ['Aktivní tento týden', stats.activeWeek],
+                  ['Noví dnes', stats.newToday],
+                  ['Noví tento týden', stats.newWeek],
+                ].map(([l, v]) => (
+                  <div key={l as string}>
+                    <p className="eyebrow text-gray-500 mb-2">{l}</p>
+                    <p className="serif-display text-4xl text-gray-900 font-medium tracking-tight tabular-nums">{fmt(v as number)}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <hr className="rule mb-16" />
+
+            {/* Engagement */}
+            <section className="mb-20">
+              <p className="eyebrow text-pink-500 mb-4">Engagement</p>
+              <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-10">
+                Lajky a shody.
+              </h2>
+              <div className="grid grid-cols-2 gap-x-8">
+                <div>
+                  <p className="eyebrow text-gray-500 mb-2">Lajky celkem</p>
+                  <p className="serif-display text-5xl text-gray-900 font-medium tracking-tight tabular-nums">{fmt(stats.likesTotal)}</p>
+                </div>
+                <div>
+                  <p className="eyebrow text-gray-500 mb-2">Shod · {matchRate} % match rate</p>
+                  <p className="serif-display text-5xl text-pink-500 font-medium tracking-tight tabular-nums">{fmt(stats.matchesTotal)}</p>
+                </div>
+              </div>
+            </section>
+
+            {/* Quick links */}
+            <section>
+              <p className="eyebrow text-pink-500 mb-4">Rychlé akce</p>
+              <div className="flex flex-wrap gap-3">
+                <a href={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/project/default/editor`} target="_blank" rel="noopener noreferrer"
+                  className="px-5 py-2.5 rounded-full bg-white border border-gray-300 hover:border-gray-900 text-sm text-gray-700 hover:text-gray-900 transition">
+                  Supabase SQL Editor
+                </a>
+                <Link href="/waitlist" className="px-5 py-2.5 rounded-full bg-white border border-gray-300 hover:border-gray-900 text-sm text-gray-700 hover:text-gray-900 transition">Waitlist</Link>
+                <Link href="/ambasadorky" className="px-5 py-2.5 rounded-full bg-white border border-gray-300 hover:border-gray-900 text-sm text-gray-700 hover:text-gray-900 transition">Ambasadorky</Link>
+                <Link href="/discover" className="px-5 py-2.5 rounded-full bg-white border border-gray-300 hover:border-gray-900 text-sm text-gray-700 hover:text-gray-900 transition">Discover</Link>
+              </div>
+            </section>
+          </>
+        )}
+      </div>
+    </main>
   )
 }

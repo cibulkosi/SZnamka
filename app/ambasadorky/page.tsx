@@ -9,213 +9,195 @@ const supabase = createClient(
 )
 
 const BENEFITS = [
-  { title: 'Cosmatch+ navždy zdarma', desc: 'Doživotní premium účet bez poplatků.' },
-  { title: 'Ambasadorský odznak', desc: 'Permanentní odznak viditelný všem na profilu.' },
-  { title: 'Vlastní referral kód', desc: 'Sleduj, kolik lidí sis přivedl/a a jak jim Cosmatch pomohl.' },
-  { title: 'Přístup do uzavřené komunity', desc: 'Soukromá skupina s ostatními ambasadory a týmem.' },
-  { title: 'Vliv na vývoj', desc: 'Zpětná vazba, betaverze nových funkcí, přímý kontakt se zakladatelkou.' },
+  ['Doživotní Cosmatch+', 'Premium účet zdarma, navždy. Bez podmínek.'],
+  ['Ambasadorský odznak', 'Vidí ho každý, kdo si tě otevře. Status, který si nikdo nekoupí.'],
+  ['Vlastní referral kód', 'Sleduj, kolik lidí jsi přivedla a komu Cosmatch pomohl.'],
+  ['Uzavřená komunita', 'Privátní skupina s ostatními ambasadorkami a zakladatelkou.'],
+  ['Vliv na vývoj', 'Zpětná vazba, beta verze, přímý kontakt. Cosmatch se utváří i tebou.'],
 ]
 
 const REQUIREMENTS = [
-  'Min. 500 sledujících na alespoň jedné platformě (Instagram, TikTok, YouTube)',
-  'Autentický zájem o numerologii, kompatibilitu nebo vztahy',
-  'Ochota vytvořit min. 2 příspěvky / reels o Cosmatch za měsíc',
-  'Aktivní profil na Cosmatch (vlastní účet)',
-  'Bydliště Praha, Brno nebo Bratislava',
+  'Alespoň 500 sledujících na Instagramu, TikToku nebo YouTube.',
+  'Autentický zájem o numerologii, kompatibilitu nebo vztahy.',
+  'Ochota vytvořit minimálně dva příspěvky / reels o Cosmatch měsíčně.',
+  'Aktivní vlastní profil na Cosmatch.',
+  'Bydliště Praha, Brno nebo Bratislava.',
 ]
 
 export default function AmbasadorkyPage() {
-  const [form, setForm] = useState({
-    name: '', email: '', city: '', instagram: '',
-    tiktok: '', followers: '', motivation: '',
-  })
+  const [form, setForm] = useState({ name: '', email: '', city: '', instagram: '', tiktok: '', followers: '', motivation: '' })
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [error, setError] = useState('')
 
-  function set(field: string, value: string) {
-    setForm(prev => ({ ...prev, [field]: value }))
-  }
+  const set = (field: string, value: string) => setForm(prev => ({ ...prev, [field]: value }))
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!form.name || !form.email || !form.motivation) return
-    setSubmitting(true)
-    setError('')
-
+    setSubmitting(true); setError('')
     try {
-      const { error: dbErr } = await supabase
-        .from('ambassadors')
-        .insert({
-          name: form.name,
-          email: form.email,
-          city: form.city || null,
-          instagram: form.instagram || null,
-          tiktok: form.tiktok || null,
-          followers: parseInt(form.followers) || null,
-          motivation: form.motivation,
-          status: 'pending',
-        })
-
+      const { error: dbErr } = await supabase.from('ambassadors').insert({
+        name: form.name, email: form.email,
+        city: form.city || null, instagram: form.instagram || null,
+        tiktok: form.tiktok || null, followers: parseInt(form.followers) || null,
+        motivation: form.motivation, status: 'pending',
+      })
       if (dbErr) {
-        if (dbErr.code === '23505') {
-          setError('Tento e-mail je už přihlášen.')
-        } else {
-          setError('Nastala chyba. Zkus to prosím znovu.')
-        }
+        if (dbErr.code === '23505') setError('Tento e-mail je už přihlášen.')
+        else setError('Něco se pokazilo. Zkus to prosím znovu.')
         return
       }
       setSubmitted(true)
-    } finally {
-      setSubmitting(false)
-    }
+      if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' })
+    } finally { setSubmitting(false) }
   }
 
   return (
-    <div className="min-h-screen bg-[#FAF6F0]">
-      <div className="max-w-2xl mx-auto px-6 py-10">
+    <main className="min-h-screen bg-[#FAF6F0]">
+      <div className="max-w-2xl mx-auto px-6 pt-6">
+        <Link href="/" className="text-sm text-gray-500 hover:text-gray-900 transition">← Cosmatch</Link>
+      </div>
 
-        {/* Logo */}
-        <div className="text-center mb-10">
-          <Link href="/" className="inline-flex items-center gap-2 text-xl font-bold text-gray-900">
-            <span className="text-pink-500">✦</span> Cosmatch
-          </Link>
-        </div>
+      <article className="max-w-2xl mx-auto px-6 pt-16 pb-24">
 
-        {/* Hero */}
-        <div className="text-center mb-10">
-          <div className="inline-block bg-pink-50 text-pink-600 rounded-full px-4 py-1.5 text-sm font-medium mb-4">
-            Program ambasadorek
-          </div>
-          <h1 className="text-3xl font-black text-gray-900 mb-4">
-            Buď tváří revoluce v datování
-          </h1>
-          <p className="text-gray-500 text-lg leading-relaxed">
-            Hledáme 20 žen v Praze, Brně a Bratislavě, které věří, že správné spojení
-            není otázka algoritmů, ale dat. A chtějí to říct světu.
-          </p>
-        </div>
-
-        {/* Benefits */}
-        <div className="card p-8 mb-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-5">Co získáš</h2>
-          <div className="space-y-4">
-            {BENEFITS.map(b => (
-              <div key={b.title} className="flex gap-4">
-                <div className="w-5 h-5 rounded-full bg-pink-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="font-semibold text-gray-900 text-sm">{b.title}</p>
-                  <p className="text-gray-500 text-sm">{b.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Requirements */}
-        <div className="card p-8 mb-8">
-          <h2 className="text-lg font-bold text-gray-900 mb-5">Co hledáme</h2>
-          <ul className="space-y-3">
-            {REQUIREMENTS.map(r => (
-              <li key={r} className="flex gap-3 text-gray-600 text-sm">
-                <span className="text-pink-500 flex-shrink-0 mt-0.5">✦</span>
-                {r}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Form */}
         {!submitted ? (
-          <div className="card p-8">
-            <h2 className="text-lg font-bold text-gray-900 mb-6">Přihláška</h2>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Jméno *</label>
-                  <input className="input w-full" value={form.name}
-                    onChange={e => set('name', e.target.value)} placeholder="Jana" required />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">E-mail *</label>
-                  <input type="email" className="input w-full" value={form.email}
-                    onChange={e => set('email', e.target.value)} placeholder="jana@email.cz" required />
-                </div>
+          <>
+            {/* Masthead */}
+            <header className="mb-16">
+              <p className="eyebrow text-pink-500 mb-6">Program ambasadorek</p>
+              <h1 className="serif-display text-5xl sm:text-6xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-8">
+                Buď tváří<br/><em className="italic text-pink-500">revoluce</em> v datování.
+              </h1>
+              <hr className="rule w-12 border-gray-900 mb-8" />
+              <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
+                Hledáme dvacet žen v Praze, Brně a Bratislavě, které věří, že správné
+                spojení není otázka algoritmů, ale dat. A chtějí to říct světu.
+              </p>
+            </header>
+
+            {/* Benefits */}
+            <section className="mb-16">
+              <p className="eyebrow text-pink-500 mb-4">Co od nás dostaneš</p>
+              <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-10">
+                Pět věcí, které nikdo jiný nedostane.
+              </h2>
+              <div className="space-y-10">
+                {BENEFITS.map(([t, d], i) => (
+                  <div key={t} className="grid grid-cols-[auto,1fr] gap-x-8 border-b border-gray-200 pb-10 last:border-b-0">
+                    <div className="serif text-2xl text-pink-500 leading-none pt-1 tabular-nums">{String(i+1).padStart(2,'0')}</div>
+                    <div>
+                      <h3 className="serif text-xl text-gray-900 font-medium mb-2">{t}</h3>
+                      <p className="text-gray-600 leading-relaxed">{d}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div className="grid grid-cols-2 gap-4">
+            </section>
+
+            <hr className="rule mb-16" />
+
+            {/* Requirements */}
+            <section className="mb-16">
+              <p className="eyebrow text-pink-500 mb-4">Co od tebe potřebujeme</p>
+              <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-8">
+                Pět věcí, které musíš splňovat.
+              </h2>
+              <ul className="space-y-4">
+                {REQUIREMENTS.map((r, i) => (
+                  <li key={i} className="grid grid-cols-[auto,1fr] gap-4">
+                    <span className="roman text-lg text-pink-500 leading-none pt-1">{['I','II','III','IV','V'][i]}</span>
+                    <span className="text-gray-700 leading-relaxed text-[1.0625rem]">{r}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            <hr className="rule mb-16" />
+
+            {/* Form */}
+            <section>
+              <p className="eyebrow text-pink-500 mb-4">Přihláška</p>
+              <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-8">
+                Pošli nám pár řádků o sobě.
+              </h2>
+
+              <form onSubmit={handleSubmit} className="space-y-7">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Město</label>
-                  <select className="input w-full bg-white" value={form.city}
-                    onChange={e => set('city', e.target.value)}>
-                    <option value="">Vyber...</option>
-                    <option>Praha</option>
-                    <option>Brno</option>
-                    <option>Bratislava</option>
-                    <option>Jiné</option>
+                  <label className="eyebrow text-gray-500 mb-3 block">Jméno</label>
+                  <input required value={form.name} onChange={e => set('name', e.target.value)} placeholder="Jana Nováková"
+                    className="w-full bg-transparent border-0 border-b-2 border-gray-300 focus:border-pink-500 px-0 py-3 text-lg text-gray-900 focus:outline-none transition-colors" />
+                </div>
+                <div>
+                  <label className="eyebrow text-gray-500 mb-3 block">E-mail</label>
+                  <input type="email" required value={form.email} onChange={e => set('email', e.target.value)} placeholder="jana@example.cz"
+                    className="w-full bg-transparent border-0 border-b-2 border-gray-300 focus:border-pink-500 px-0 py-3 text-lg text-gray-900 focus:outline-none transition-colors" />
+                </div>
+                <div>
+                  <label className="eyebrow text-gray-500 mb-3 block">Město</label>
+                  <select value={form.city} onChange={e => set('city', e.target.value)}
+                    className="w-full bg-transparent border-0 border-b-2 border-gray-300 focus:border-pink-500 py-3 text-lg text-gray-900 focus:outline-none appearance-none">
+                    <option value="">Vyber město</option>
+                    <option value="Praha">Praha</option>
+                    <option value="Brno">Brno</option>
+                    <option value="Bratislava">Bratislava</option>
                   </select>
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Počet sledujících</label>
-                  <input type="number" className="input w-full" value={form.followers}
-                    onChange={e => set('followers', e.target.value)} placeholder="500" />
+                <div className="grid grid-cols-2 gap-6">
+                  <div>
+                    <label className="eyebrow text-gray-500 mb-3 block">Instagram <span className="normal-case tracking-normal text-gray-400 ml-2">(volitelné)</span></label>
+                    <input value={form.instagram} onChange={e => set('instagram', e.target.value)} placeholder="@jana"
+                      className="w-full bg-transparent border-0 border-b-2 border-gray-300 focus:border-pink-500 px-0 py-3 text-lg text-gray-900 focus:outline-none transition-colors" />
+                  </div>
+                  <div>
+                    <label className="eyebrow text-gray-500 mb-3 block">TikTok <span className="normal-case tracking-normal text-gray-400 ml-2">(volitelné)</span></label>
+                    <input value={form.tiktok} onChange={e => set('tiktok', e.target.value)} placeholder="@jana"
+                      className="w-full bg-transparent border-0 border-b-2 border-gray-300 focus:border-pink-500 px-0 py-3 text-lg text-gray-900 focus:outline-none transition-colors" />
+                  </div>
                 </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Instagram</label>
-                  <input className="input w-full" value={form.instagram}
-                    onChange={e => set('instagram', e.target.value)} placeholder="@jananovak" />
+                  <label className="eyebrow text-gray-500 mb-3 block">Sledujících celkem</label>
+                  <input type="number" value={form.followers} onChange={e => set('followers', e.target.value)} placeholder="2500"
+                    className="w-full bg-transparent border-0 border-b-2 border-gray-300 focus:border-pink-500 px-0 py-3 text-lg text-gray-900 focus:outline-none transition-colors" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">TikTok</label>
-                  <input className="input w-full" value={form.tiktok}
-                    onChange={e => set('tiktok', e.target.value)} placeholder="@jananovak" />
+                  <label className="eyebrow text-gray-500 mb-3 block">Proč chceš být ambasadorka</label>
+                  <textarea required value={form.motivation} onChange={e => set('motivation', e.target.value)} rows={4}
+                    placeholder="Pár vět o tom, proč ti dává Cosmatch smysl…"
+                    className="w-full bg-transparent border-0 border-b-2 border-gray-300 focus:border-pink-500 px-0 py-3 text-lg text-gray-900 focus:outline-none transition-colors resize-none" />
                 </div>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Proč chceš být ambasadorkou? *
-                </label>
-                <textarea
-                  className="input w-full h-32 resize-none"
-                  value={form.motivation}
-                  onChange={e => set('motivation', e.target.value)}
-                  placeholder="Co tě přitahuje na Cosmatch? Jaká je tvoje zkušenost s datováním? Jak bys šířila povědomí?"
-                  required
-                />
-              </div>
 
-              {error && (
-                <div className="bg-red-50 text-red-600 rounded-2xl p-3 text-sm">{error}</div>
-              )}
+                {error && <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-2xl px-4 py-3">{error}</p>}
 
-              <button type="submit" className="btn-primary w-full py-4" disabled={submitting}>
-                {submitting ? 'Odesílám...' : 'Odeslat přihlášku'}
-              </button>
-              <p className="text-xs text-gray-400 text-center">
-                Odpovídáme do 7 dnů. Hledáme prvních 20 ambasadorek.
-              </p>
-            </form>
-          </div>
+                <button type="submit" disabled={submitting || !form.name || !form.email || !form.motivation}
+                  className="w-full bg-gray-900 text-white py-5 rounded-full text-base font-medium hover:bg-gray-800 active:scale-[0.99] transition-all disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed">
+                  {submitting ? 'Odesílám…' : 'Odeslat přihlášku'}
+                </button>
+
+                <p className="text-xs text-gray-400 text-center leading-relaxed">
+                  Vybereme dvacet ambasadorek. Ozveme se do tří týdnů, ať už budeš vybrána, nebo ne.
+                </p>
+              </form>
+            </section>
+          </>
         ) : (
-          <div className="card p-8 text-center">
-            <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-2xl text-pink-500">✦</span>
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Přihláška odeslána</h3>
-            <p className="text-gray-500 mb-6">
-              Díky! Ozveme se ti do 7 dnů na {form.email}.
-              Vybíráme první vlnu 20 ambasadorek před spuštěním.
+          /* SUCCESS */
+          <div className="pt-8 text-center">
+            <p className="eyebrow text-pink-500 mb-6">Přihláška odeslána</p>
+            <h1 className="serif-display text-5xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-8">
+              Děkujeme,<br/><em className="italic text-pink-500">{form.name.split(' ')[0] || 'kámoška'}</em>.
+            </h1>
+            <hr className="rule w-12 border-gray-900 mx-auto mb-8" />
+            <p className="text-gray-700 leading-relaxed text-[1.0625rem] mb-12 max-w-md mx-auto">
+              Tvoji přihlášku jsme dostali. Vyhodnotíme ji a ozveme se do tří týdnů
+              — ať už budeš vybraná nebo ne. Děkujeme, že chceš být u toho.
             </p>
-            <Link href="/" className="btn-primary inline-block px-8 py-3">Zpět na úvod</Link>
+            <Link href="/" className="text-pink-500 font-medium hover:text-pink-600 transition">
+              Zpět na úvod →
+            </Link>
           </div>
         )}
-
-      </div>
-    </div>
+      </article>
+    </main>
   )
 }
