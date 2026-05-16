@@ -7,43 +7,72 @@ export default function AuthCallbackPage() {
   const router = useRouter()
 
   useEffect(() => {
-    const handleCallback = async () => {
-      const { data: { session }, error } = await supabase.auth.getSession()
+    // Supabase v2 PKCE: onAuthStateChange fires after code exchange completes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        if (event === 'SIGNED_IN' && session?.user) {
+          const user = session.user
+          const email = user.email || ''
+          const name = user.user_metadata?.full_name || user.user_metadata?.name || ''
 
-      if (error || !session?.user) {
-        router.push('/login?error=oauth')
-        return
+          // Zkontroluj jestli profil v DB existuje
+          const { data: profile } = await supabase
+            .from('profiles')
+            .select('*')
+            .eq('email', email)
+            .single()
+
+          subscription.unsubscribe()
+
+          if (profile) {
+            // Existující uživatel
+            localStorage.setItem('cosmatch_user', JSON.stringify(profile))
+            router.push('/discover')
+          } else {
+            // Nový uživatel — předvyplnit registraci
+            localStorage.setItem('cosmatch_oauth', JSON.stringify({ name, email }))
+            router.push('/register')
+          }
+        } else if (event === 'SIGNED_OUT' || event === 'TOKEN_REFRESHED') {
+          // ignorovat
+        }
       }
+    )
 
-      const user = session.user
-      const email = user.email || ''
-      const name = user.user_metadata?.full_name || user.user_metadata?.name || ''
+    // Fallback: pokud onAuthStateChange nevyprší (timeout 5s), zkus getSession
+    const timeout = setTimeout(async () => {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (session?.user) {
+        const email = session.user.email || ''
+        const { data: profile } = await supabase
+          .from('profiles').select('*').eq('email', email).single()
 
-      // Zkontroluj, jestli profil již existuje
-      const { data: profile } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('email', email)
-        .single()
-
-      if (profile) {
-        localStorage.setItem('cosmatch_user', JSON.stringify(profile))
-        router.push('/discover')
+        subscription.unsubscribe()
+        if (profile) {
+          localStorage.setItem('cosmatch_user', JSON.stringify(profile))
+          router.push('/discover')
+        } else {
+          const name = session.user.user_metadata?.full_name || ''
+          localStorage.setItem('cosmatch_oauth', JSON.stringify({ name, email }))
+          router.push('/register')
+        }
       } else {
-        // Nový uživatel — předvyplnit registraci z OAuth dat
-        localStorage.setItem('cosmatch_oauth', JSON.stringify({ name, email }))
-        router.push('/register')
+        subscription.unsubscribe()
+        router.push('/login?error=oauth')
       }
-    }
+    }, 5000)
 
-    handleCallback()
+    return () => {
+      clearTimeout(timeout)
+      subscription.unsubscribe()
+    }
   }, [router])
 
   return (
     <div className="min-h-screen bg-[#FAF6F0] flex flex-col items-center justify-center">
       <div className="text-center">
-        <div className="text-4xl mb-4">🪐</div>
-        <p className="text-gray-500 text-sm">Přihlašujeme tě...</p>
+        <div className="text-5xl mb-4 animate-spin" style={{ display: 'inline-block' }}>🪐</div>
+        <p className="text-gray-500 text-sm mt-4">Přihlašujeme tě...</p>
       </div>
     </div>
   )
