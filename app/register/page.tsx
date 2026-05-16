@@ -63,6 +63,8 @@ export default function RegisterPage() {
 
   // Birthday confirmation modal
   const [showBirthdayModal, setShowBirthdayModal] = useState(false)
+  const [geoLoading, setGeoLoading] = useState(false)
+  const [geoError, setGeoError] = useState('')
   const [personologyPreview, setPersonologyPreview] = useState('')
   const [loadingPreview, setLoadingPreview] = useState(false)
 
@@ -114,20 +116,44 @@ export default function RegisterPage() {
 
   // Geolokace přes browser + Nominatim
   const detectLocation = () => {
-    if (!navigator.geolocation) return
-    navigator.geolocation.getCurrentPosition(async pos => {
-      try {
-        const { latitude, longitude } = pos.coords
-        const res = await fetch(
-          `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
-        )
-        const data = await res.json()
-        const city = data.address?.city || data.address?.town || data.address?.village || ''
-        const country = data.address?.country_code?.toUpperCase() || 'CZ'
-        if (city) set('city', city)
-        if (country) set('country', country)
-      } catch { /* ignore */ }
-    })
+    if (!navigator.geolocation) {
+      setGeoError('Tvůj prohlížeč nepodporuje GPS.')
+      return
+    }
+    setGeoLoading(true)
+    setGeoError('')
+    navigator.geolocation.getCurrentPosition(
+      async pos => {
+        try {
+          const { latitude, longitude } = pos.coords
+          const res = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`,
+            { headers: { 'Accept-Language': 'cs', 'User-Agent': 'cosmatch.cz/1.0' } }
+          )
+          const data = await res.json()
+          const city = data.address?.city || data.address?.town || data.address?.village || data.address?.municipality || ''
+          const country = data.address?.country_code?.toUpperCase() || 'CZ'
+          if (city) set('city', city)
+          if (country) set('country', country)
+          if (!city) setGeoError('Město se nepodařilo zjistit — zadej ho ručně.')
+        } catch {
+          setGeoError('Nepodařilo se načíst polohu. Zadej město ručně.')
+        } finally {
+          setGeoLoading(false)
+        }
+      },
+      err => {
+        setGeoLoading(false)
+        if (err.code === 1) {
+          setGeoError('Přístup k poloze byl zamítnut. V nastavení prohlížeče povol polohu pro cosmatch.cz.')
+        } else if (err.code === 2) {
+          setGeoError('Polohu se nepodařilo zjistit. Zkus to znovu nebo zadej město ručně.')
+        } else {
+          setGeoError('Vypršel čas pro zjištění polohy. Zadej město ručně.')
+        }
+      },
+      { timeout: 10000, maximumAge: 60000 }
+    )
   }
 
   // SSO handlers
@@ -490,10 +516,13 @@ export default function RegisterPage() {
             {/* Lokace s GPS */}
             <div>
               <label className="text-gray-500 text-sm mb-2 block">📍 Kde žiješ?</label>
-              <button type="button" onClick={detectLocation}
-                className="w-full mb-2 py-2.5 px-4 rounded-2xl border-2 border-dashed border-pink-200 text-pink-500 text-sm font-medium hover:border-pink-400 hover:bg-pink-50 transition-all flex items-center justify-center gap-2">
-                📡 Zjistit automaticky (GPS)
+              <button type="button" onClick={detectLocation} disabled={geoLoading}
+                className="w-full mb-2 py-2.5 px-4 rounded-2xl border-2 border-dashed border-pink-200 text-pink-500 text-sm font-medium hover:border-pink-400 hover:bg-pink-50 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                {geoLoading ? '⏳ Zjišťuji polohu...' : '📡 Zjistit automaticky (GPS)'}
               </button>
+              {geoError && (
+                <p className="text-amber-600 text-xs bg-amber-50 border border-amber-200 rounded-xl px-3 py-2 mb-2">{geoError}</p>
+              )}
               <div className="grid grid-cols-2 gap-3">
                 <input className="input" placeholder="Město..." value={form.city}
                   onChange={e => set('city', e.target.value)} />
