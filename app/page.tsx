@@ -1,156 +1,240 @@
 'use client'
-import { useState } from 'react'
 import Link from 'next/link'
 
 export default function LandingPage() {
- const [lang, setLang] = useState<'cs'|'en'>('cs')
- const isCs = lang === 'cs'
+  return (
+    <main className="bg-[#FAF6F0] text-gray-900 overflow-x-hidden">
 
- return (
- <div className="min-h-screen text-white" style={{ background: '#0a0010' }}> {/* NAV */}
- <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 max-w-6xl mx-auto" style={{ background: 'rgba(10,0,16,0.75)', backdropFilter: 'blur(14px)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}> <div className="flex items-center gap-2"> <span className="text-2xl text-pink-400">✦</span> <span className="text-xl font-bold text-white">Cosmatch</span> </div> <div className="flex items-center gap-3"> <button
- onClick={() => setLang(isCs ? 'en' : 'cs')}
- className="text-white/60 hover:text-white text-sm px-3 py-1 rounded-lg border border-white/20 hover:border-white/40 transition-all"
- > {isCs ? ' EN' : ' CS'}
- </button> <Link href="/login" className="text-white/80 hover:text-white text-sm font-medium transition-colors"> {isCs ? 'Přihlásit se' : 'Login'}
- </Link> <Link href="/register" className="btn-primary text-sm py-2 px-4"> {isCs ? 'Začít zdarma' : 'Start free'}
- </Link> </div> </nav> {/* HERO — mlhovina/galaxie jako pozadí */}
- <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-20"> <div className="absolute inset-0 z-0"> <img
- src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=1920&q=85&auto=format&fit=crop"
- alt="Vesmír — galaxie"
- className="w-full h-full object-cover"
- style={{ opacity: 0.55 }}
- /> <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(10,0,16,0.4) 0%, rgba(10,0,16,0.15) 40%, rgba(10,0,16,0.95) 100%)' }} /> </div> <div className="relative z-10 max-w-4xl mx-auto"> <div className="inline-flex items-center gap-2 bg-purple-500/20 border border-purple-400/30 rounded-full px-4 py-2 text-purple-300 text-sm mb-8"> <span></span> {isCs ? 'Personologie · Věda o datech narození' : 'Personology · The Science of Birth Dates'}
- </div> <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-lg"> {isCs ? (
- <>Vesmír zná<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400">tvůj match</span></> ) : (
- <>The universe knows<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400">your match</span></> )}
- </h1> <p className="text-white/85 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow"> {isCs
- ? 'Seznamka postavená na vědě o datech narození. Tvůj numerologický profil — z přes 2 350 stran výzkumu — najde ty, kteří ti opravdu odpovídají.'
- : 'A dating app built on the science of birth dates. Your numerology profile — from 2,350+ pages of research — finds people who truly match you.'}
- </p> <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6"> <Link href="/register" className="btn-primary text-lg py-4 px-8"> {isCs ? 'Začít zdarma' : 'Start for free'}
- </Link> <Link
- href="/demo"
- className="text-lg py-4 px-8 rounded-2xl font-semibold transition-all border border-white/40 hover:border-white/70 hover:bg-white/10"
- style={{ background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(8px)' }}
- > {isCs ? 'Prohlédnout demo' : 'Browse demo'}
- </Link> </div> <p className="text-white/40 text-sm"> {isCs ? 'Žádná kreditní karta. Registrace za 30 sekund.' : 'No credit card. Sign up in 30 seconds.'}
- </p> </div> <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce"> <svg viewBox="0 0 24 24" className="w-6 h-6 text-white/40" fill="none" stroke="currentColor" strokeWidth="2"> <path d="M6 9l6 6 6-6"/> </svg> </div> </section> {/* STATS */}
- <section className="py-16 px-6" style={{ background: 'rgba(255,255,255,0.025)' }}> <div className="max-w-4xl mx-auto grid grid-cols-3 gap-6"> {[
- ['366', isCs ? 'personol. profilů' : 'numerology profiles'],
- ['133 000+', isCs ? 'párů kompatibility' : 'compatibility pairs'],
- ['5', isCs ? 'kategorií shody' : 'match categories'],
- ].map(([num, label], i) => (
- <div key={i} className="text-center py-8 px-4 rounded-3xl border border-white/10" style={{ background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(10px)' }}> <div className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-2">{num}</div> <div className="text-white/50 text-sm">{label}</div> </div> ))}
- </div> </section> {/* PAIN POINT — únava ze swipe aplikací */}
- <section className="py-24 px-6 max-w-5xl mx-auto"> <div className="text-center mb-16"> <p className="text-purple-400 text-sm font-semibold tracking-widest uppercase mb-4"> {isCs ? 'Proč přecházejí miliony lidí' : 'Why millions are switching'}
- </p> <h2 className="text-3xl md:text-4xl font-bold text-white mb-5"> {isCs ? (
- <>Swipe aplikace tě unavily?<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Nejsi sám/a.</span></> ) : (
- <>Tired of swipe apps?<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">You&apos;re not alone.</span></> )}
- </h2> <p className="text-white/55 text-lg max-w-2xl mx-auto leading-relaxed"> {isCs
- ? 'Globální trh swipe aplikací zaznamenal první historický pokles. Uživatelé trpí "únava z rozhodování" — nekonečné posouvání profilů bez hlubšího smyslu. Cosmatch je odpovědí.'
- : 'The global swipe app market hit its first-ever decline. Users suffer from decision fatigue — endless scrolling through profiles with no deeper meaning. Cosmatch is the answer.'}
- </p> </div> {/* Old vs New porovnání */}
- <div className="grid md:grid-cols-2 gap-6 mb-16"> {/* Old way */}
- <div className="p-8 rounded-3xl border border-white/10" style={{ background: 'rgba(255,255,255,0.03)' }}> <div className="text-3xl mb-4">‍</div> <h3 className="font-bold text-white/60 text-lg mb-5 line-through decoration-red-400"> {isCs ? 'Tradiční swipe aplikace' : 'Traditional swipe apps'}
- </h3> <ul className="space-y-3"> {(isCs ? [
- 'Tisíce náhodných profilů bez kontextu',
- 'Gamifikace navržená pro závislost',
- '"Platíš za více profilů" — ne za relevantnější',
- 'Povrchní výběr podle fotky',
- 'Únava z rozhodování po 50 swipech',
- ] : [
- 'Thousands of random profiles with no context',
- 'Gamification designed for addiction',
- '"Pay for more profiles" — not more relevant ones',
- 'Superficial selection based on looks alone',
- 'Decision fatigue after 50 swipes',
- ]).map((item, i) => (
- <li key={i} className="flex items-start gap-3 text-sm text-white/40"> <span className="text-red-400 mt-0.5 flex-shrink-0"></span> {item}
- </li> ))}
- </ul> </div> {/* New way — Cosmatch */}
- <div className="p-8 rounded-3xl border border-purple-500/30 relative overflow-hidden" style={{ background: 'rgba(139,92,246,0.08)' }}> <div className="absolute top-4 right-4 text-xs font-bold text-purple-300 bg-purple-500/20 px-3 py-1 rounded-full border border-purple-400/30"> Cosmatch
- </div> <div className="text-3xl mb-4"></div> <h3 className="font-bold text-white text-lg mb-5"> {isCs ? 'Záměrné seznamování' : 'Intentional dating'}
- </h3> <ul className="space-y-3"> {(isCs ? [
- 'Profily seřazené přesně pro tebe — věda, ne náhoda',
- '5 svipů denně: méně, ale každý se záměrem',
- '"Platíš za relevanci" — vidíš kdo tě lajknul dřív',
- 'Personologický profil z data narození jako identity signal',
- 'Navrženo pro vztah, ne pro závislost',
- ] : [
- 'Profiles ranked precisely for you — science, not luck',
- '5 swipes daily: fewer, but each with intent',
- '"Pay for relevance" — see who liked you first',
- 'Personology profile from birth date as identity signal',
- 'Designed for relationships, not addiction',
- ]).map((item, i) => (
- <li key={i} className="flex items-start gap-3 text-sm text-white/80"> <span className="text-purple-400 mt-0.5 flex-shrink-0"></span> {item}
- </li> ))}
- </ul> </div> </div> {/* Citát / claim */}
- <div className="text-center py-10 px-6 rounded-3xl border border-white/8" style={{ background: 'rgba(255,255,255,0.02)' }}> <p className="text-2xl md:text-3xl font-bold text-white/90 italic mb-3"> &ldquo;{isCs ? 'Méně swipů. Víc záměru. Skutečné spojení.' : 'Less swiping. More intent. Real connection.'}&rdquo;
- </p> <p className="text-white/30 text-sm"> {isCs ? 'Nová vlna seznamování — Cosmatch 2026' : 'The new wave of dating — Cosmatch 2026'}
- </p> </div> </section> {/* JAK TO FUNGUJE */}
- <section id="how" className="py-24 px-6 max-w-5xl mx-auto"> <h2 className="text-3xl md:text-4xl font-bold text-center mb-4"> {isCs ? 'Jak to funguje' : 'How it works'}
- </h2> <p className="text-white/50 text-center mb-16 max-w-xl mx-auto"> {isCs ? 'Žádné dotazníky. Žádné testy osobnosti. Stačí datum.' : 'No questionnaires. No personality tests. Just your birthdate.'}
- </p> <div className="grid md:grid-cols-3 gap-8"> {[
- {
- icon: '', num: '01',
- title: isCs ? 'Zadáš datum narození' : 'Enter your birthday',
- desc: isCs ? 'Nic víc nepotřebujeme. Tvůj birthday odemkne tvůj přesný numerologický profil.' : 'That\'s all we need. Your birthday unlocks your exact numerology profile.',
- },
- {
- icon: '', num: '02',
- title: isCs ? 'Vesmír ti ukáže tvůj profil' : 'The universe shows your profile',
- desc: isCs ? 'Ihned po zadání data uvidíš svůj numerologický výtah. Tento "magic moment" tě překvapí přesností.' : 'Right after entering your date, you\'ll see your numerology excerpt. This magic moment will surprise you.',
- },
- {
- icon: '', num: '03',
- title: isCs ? 'Najdeš svůj match' : 'Find your match',
- desc: isCs ? 'Algoritmus porovná tvoje datum se všemi v databázi přes 5 kategorií kompatibility a seřadí je.' : 'The algorithm compares your date with everyone across 5 compatibility categories and ranks them.',
- },
- ].map((step, i) => (
- <div key={i} className="p-8 rounded-3xl border border-white/10" style={{ background: 'rgba(255,255,255,0.04)', backdropFilter: 'blur(10px)' }}> <div className="text-5xl mb-5">{step.icon}</div> <div className="text-white/20 text-sm font-mono mb-3">{step.num}</div> <h3 className="font-bold text-lg mb-3 text-white">{step.title}</h3> <p className="text-white/55 text-sm leading-relaxed">{step.desc}</p> </div> ))}
- </div> </section> {/* 5 KATEGORIÍ — mlhovina v pozadí */}
- <section className="relative py-24 px-6 overflow-hidden"> <div className="absolute inset-0 z-0"> <img
- src="https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?w=1920&q=80&auto=format&fit=crop"
- alt="Mlhovina"
- className="w-full h-full object-cover"
- style={{ opacity: 0.3 }}
- /> <div className="absolute inset-0" style={{ background: 'rgba(10,0,16,0.65)' }} /> </div> <div className="relative z-10 max-w-5xl mx-auto"> <h2 className="text-3xl md:text-4xl font-bold text-center mb-4"> {isCs ? '5 kategorií shody' : '5 match categories'}
- </h2> <p className="text-white/50 text-center mb-14 max-w-xl mx-auto"> {isCs
- ? 'Každé datum má jiný vztah s každým jiným datem. Uvidíš všechny dimenze.'
- : 'Every date has a different relationship with every other date. You\'ll see all dimensions.'}
- </p> <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-10"> {[
- { icon: '', label: isCs ? 'Spřízněné duše' : 'Soul Mates', cls: 'border-violet-400/40 bg-violet-500/15' },
- { icon: '', label: isCs ? 'Láska & přátelství' : 'Love & Friendship', cls: 'border-emerald-400/40 bg-emerald-500/15' },
- { icon: '', label: isCs ? 'Osudová přitažlivost' : 'Fatal Attraction', cls: 'border-orange-400/40 bg-orange-500/15' },
- { icon: '', label: isCs ? 'Prospěšné' : 'Beneficial', cls: 'border-yellow-400/40 bg-yellow-500/15' },
- { icon: '', label: isCs ? 'Výzva' : 'Challenging', cls: 'border-blue-400/40 bg-blue-500/15' },
- { icon: '↔', label: isCs ? 'Oboustranná shoda' : 'Mutual Match', cls: 'border-cyan-400/40 bg-cyan-500/15' },
- ].map((cat, i) => (
- <div key={i} className={`p-5 rounded-2xl border ${cat.cls} text-center`}> <div className="text-3xl mb-2">{cat.icon}</div> <div className="text-white font-semibold text-sm">{cat.label}</div> </div> ))}
- </div> <div className="text-center"> <Link href="/demo" className="inline-flex items-center gap-2 text-purple-300 hover:text-purple-200 text-sm font-medium transition-colors border border-purple-400/30 hover:border-purple-400/60 px-5 py-2.5 rounded-full"> {isCs ? 'Podívat se na demo profily' : 'See demo profiles'} →
- </Link> </div> </div> </section> {/* PROČ COSMATCH */}
- <section className="py-24 px-6 max-w-5xl mx-auto"> <h2 className="text-3xl md:text-4xl font-bold text-center mb-16"> {isCs ? 'Proč Cosmatch?' : 'Why Cosmatch?'}
- </h2> <div className="grid md:grid-cols-2 gap-6"> {[
- { title: isCs ? 'Méně swipů, víc záměru' : 'Less swiping, more intent', desc: isCs ? '5 promyšlených swipů denně — záměrně omezené, protože věříme v kvalitu nad kvantitou. Slow dating, který má smysl.' : '5 thoughtful swipes per day — intentionally limited, because we believe in quality over quantity. Slow dating that makes sense.' },
- { title: isCs ? 'Věda, ne náhoda' : 'Science, not luck', desc: isCs ? '133 000+ párů kompatibility z 2 350 stran numerologického výzkumu. Tvůj profil je unikátní — jako tvoje datum.' : '133,000+ compatibility pairs from 2,350 pages of research. Your profile is unique — just like your birth date.' },
- { title: isCs ? 'Navrženo pro vztah, ne závislost' : 'Designed for love, not addiction', desc: isCs ? 'Žádná gamifikace, žádné nekonečné scrollování. Cosmatch chce, abys ho jednou smazala — protože jsi našla toho pravého.' : 'No gamification, no endless scrolling. Cosmatch wants you to delete it one day — because you found the right person.' },
- { title: isCs ? 'Česká komunita' : 'Czech community', desc: isCs ? 'Navrženo pro česky mluvící uživatele — CZ/SK priorita, plná lokalizace, platby v CZK přes Paddle.' : 'Designed for Czech-speaking users — CZ/SK priority, full localization, CZK payments via Paddle.' },
- ].map((item, i) => (
- <div key={i} className="flex gap-5 p-6 rounded-2xl border border-white/10" style={{ background: 'rgba(255,255,255,0.03)' }}> <div className="text-3xl flex-shrink-0">{item.icon}</div> <div> <h3 className="font-bold text-white mb-2">{item.title}</h3> <p className="text-white/50 text-sm leading-relaxed">{item.desc}</p> </div> </div> ))}
- </div> </section> {/* CTA — hvězdné nebe v pozadí */}
- <section className="relative py-32 px-6 text-center overflow-hidden"> <div className="absolute inset-0 z-0"> <img
- src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=1920&q=80&auto=format&fit=crop"
- alt="Hvězdné nebe"
- className="w-full h-full object-cover"
- style={{ opacity: 0.45 }}
- /> <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(10,0,16,0.5) 0%, rgba(50,0,70,0.35) 50%, rgba(10,0,16,0.85) 100%)' }} /> </div> <div className="relative z-10 max-w-2xl mx-auto"> <h2 className="text-4xl md:text-5xl font-bold mb-6"> {isCs ? 'Připravena/a začít?' : 'Ready to start?'}
- </h2> <p className="text-white/65 text-lg mb-10"> {isCs ? 'Registrace je zdarma. Zadej datum narození a objev svůj match.' : 'Registration is free. Enter your birthday and discover your match.'}
- </p> <div className="flex flex-col sm:flex-row gap-4 justify-center"> <Link href="/register" className="btn-primary text-lg py-4 px-10 inline-block"> {isCs ? 'Začít zdarma' : 'Start for free'}
- </Link> <Link href="/demo" className="text-lg py-4 px-8 rounded-2xl font-semibold transition-all border border-white/30 hover:border-white/60 inline-block" style={{ background: 'rgba(255,255,255,0.08)' }}> Demo
- </Link> </div> </div> </section> {/* FOOTER */}
- <footer className="text-center py-10 px-6 border-t border-white/10" style={{ background: 'rgba(255,255,255,0.02)' }}> <div className="flex items-center justify-center gap-2 mb-3"> <span className="text-xl text-pink-400">✦</span> <span className="font-bold text-white/80">Cosmatch</span> </div> <p className="text-white/30 text-sm"> {isCs
- ? '© 2026 Cosmatch · Postaveno na knize The Power of Birthdays, Stars & Numbers'
- : '© 2026 Cosmatch · Built on The Power of Birthdays, Stars & Numbers'}
- </p> <div className="flex items-center justify-center gap-6 mt-4 text-white/30 text-sm"> <Link href="/login" className="hover:text-white/60 transition-colors">{isCs ? 'Přihlásit se' : 'Login'}</Link> <Link href="/register" className="hover:text-white/60 transition-colors">{isCs ? 'Registrace' : 'Register'}</Link> <Link href="/demo" className="hover:text-white/60 transition-colors">Demo</Link> </div> </footer> </div> )
+      {/* TOP NAV */}
+      <nav className="absolute top-0 inset-x-0 z-50">
+        <div className="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
+          <Link href="/" className="serif-display text-2xl font-medium text-gray-900 tracking-tight">
+            Cosmatch
+          </Link>
+          <div className="flex items-center gap-3 sm:gap-5">
+            <Link href="/login" className="text-sm text-gray-700 hover:text-gray-900 transition">
+              Přihlásit se
+            </Link>
+            <Link
+              href="/test"
+              className="text-sm text-white bg-gray-900 hover:bg-gray-800 px-5 py-2.5 rounded-full transition"
+            >
+              Kvíz zdarma
+            </Link>
+          </div>
+        </div>
+      </nav>
+
+      {/* HERO */}
+      <section className="min-h-screen flex items-end pt-32 pb-20 px-6">
+        <div className="max-w-6xl mx-auto w-full grid lg:grid-cols-[1.2fr_1fr] gap-16 items-end">
+          <div>
+            <p className="eyebrow text-pink-500 mb-6">Numerologická seznamka · Praha</p>
+            <h1 className="serif-display text-[3.25rem] sm:text-7xl lg:text-[5.5rem] text-gray-900 font-medium leading-[0.98] tracking-tight mb-10">
+              Najdi člověka,<br/>se kterým<br/><em className="italic text-pink-500">to dává smysl</em>.
+            </h1>
+            <hr className="rule w-16 border-gray-900 mb-8" />
+            <p className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-10 max-w-xl">
+              Cosmatch spočítá kompatibilitu mezi tvým a partnerovým datem narození —
+              z 366 personologických profilů. Místo swipování pro swipování ti dává
+              důvod, proč se s někým potkat.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link
+                href="/test"
+                className="inline-flex items-center justify-center bg-gray-900 text-white px-8 py-5 rounded-full text-base font-medium hover:bg-gray-800 active:scale-[0.99] transition-all"
+              >
+                Zjisti svůj archetyp
+              </Link>
+              <Link
+                href="/waitlist"
+                className="inline-flex items-center justify-center text-gray-900 border border-gray-300 hover:border-gray-900 px-8 py-5 rounded-full text-base font-medium transition-all"
+              >
+                Přidat se na waitlist
+              </Link>
+            </div>
+            <p className="text-sm text-gray-500 mt-6">
+              Spouštíme v Praze. Prvních 1\u202f000 dostane voucher na 3\u202fměsíce zdarma.
+            </p>
+          </div>
+
+          {/* Right column — quote card */}
+          <div className="lg:pl-12">
+            <div className="bg-white rounded-3xl p-10 border border-gray-100 shadow-sm">
+              <p className="eyebrow text-gray-400 mb-6">Z Manifestu důvěry</p>
+              <p className="serif text-2xl text-gray-900 leading-[1.45] mb-8 italic">
+                "Tinder vydělává na tom, jak dlouho v něm zůstaneš.
+                My vyděláváme na tom, jak rychle nás opustíš."
+              </p>
+              <Link href="/manifest-duvery" className="text-sm text-pink-500 hover:text-pink-600 transition">
+                Přečíst všech sedm závazků →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* THIN STATS */}
+      <section className="border-y border-gray-200">
+        <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-3 gap-8 sm:gap-16">
+          {[
+            ['366', 'personologických profilů'],
+            ['46\u202f949', 'párů kompatibility'],
+            ['5', 'kategorií vztahu'],
+          ].map(([n, l]) => (
+            <div key={l}>
+              <div className="serif-display text-3xl sm:text-5xl text-gray-900 font-medium tracking-tight mb-2">{n}</div>
+              <p className="text-xs sm:text-sm text-gray-500">{l}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* HOW IT WORKS — editorial three step */}
+      <section className="py-32 px-6">
+        <div className="max-w-3xl mx-auto">
+          <p className="eyebrow text-pink-500 mb-6">Jak to funguje</p>
+          <h2 className="serif-display text-4xl sm:text-6xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-20">
+            Tři kroky.<br/>Žádné dotazníky.
+          </h2>
+
+          <div className="space-y-16">
+            {[
+              {
+                num: 'I',
+                title: 'Zadej datum narození',
+                body: 'Cosmatch z něj spočítá tvůj numerologický archetyp — jeden z dvanácti. Vidíš jméno, vlastnosti, stín, jak miluješ. Žádné dotazníky, žádné testy osobnosti.'
+              },
+              {
+                num: 'II',
+                title: 'Uvidíš profily, ne karty',
+                body: 'Místo nekonečného swipování dostaneš pět profilů denně — seřazené podle skutečné kompatibility. Každý profil ti řekne, proč právě on.'
+              },
+              {
+                num: 'III',
+                title: 'Potkáš se v reálném světě',
+                body: 'Match → zpráva → káva. Cosmatch je navržen tak, aby tě co nejrychleji odpojil — a vrátil zpátky do skutečného života.'
+              },
+            ].map((s) => (
+              <div key={s.num} className="grid grid-cols-[auto,1fr] gap-x-8 sm:gap-x-12">
+                <div className="roman text-3xl sm:text-4xl text-pink-500 leading-none pt-2 select-none">{s.num}</div>
+                <div>
+                  <h3 className="serif text-2xl sm:text-3xl text-gray-900 font-medium leading-tight mb-3">{s.title}</h3>
+                  <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">{s.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* DARK READING — Pattern-style */}
+      <section className="bg-[#0F0B14] text-white py-32 px-6">
+        <div className="max-w-3xl mx-auto">
+          <p className="eyebrow text-pink-400 mb-6">Pět kategorií vztahu</p>
+          <h2 className="serif-display text-4xl sm:text-6xl font-medium leading-[1.05] tracking-tight mb-12 text-white">
+            Každý člověk s tebou<br/>má <em className="italic text-pink-400">jiný příběh</em>.
+          </h2>
+          <p className="text-white/70 text-lg leading-[1.8] mb-16 max-w-xl">
+            Kniha The Power of Birthdays definuje pět typů vztahu mezi dvěma daty narození.
+            Cosmatch je spočítal všech 46\u202f949 a ukazuje ti, jak by to mohlo vypadat,
+            ještě než si napíšeš první zprávu.
+          </p>
+
+          <div className="space-y-8">
+            {[
+              { name: 'Spřízněné duše', body: 'Hluboké, klidné spojení. Přirozený soulad bez snahy. Vzácné a vyhledávané.' },
+              { name: 'Láska a přátelství', body: 'Vzájemná podpora, sdílené hodnoty, pohoda. Dlouhodobý vztah, ne fireworky.' },
+              { name: 'Osudová přitažlivost', body: 'Intenzivní magnetický tah. Vášeň, kterou nelze ovládat. Buď okouzlující, nebo destruktivní.' },
+              { name: 'Prospěšný vztah', body: 'Komplementární partnerství — každý přináší něco, co druhému chybí. Růst.' },
+              { name: 'Náročný vztah', body: 'Vztah plný napětí a transformace. Učí tě věci, které by ses jinde nenaučil.' },
+            ].map((c, i) => (
+              <div key={c.name} className="grid grid-cols-[auto,1fr] gap-x-8 border-b border-white/10 pb-8 last:border-b-0">
+                <div className="serif text-xl text-pink-400 leading-none pt-1 tabular-nums">{String(i+1).padStart(2,'0')}</div>
+                <div>
+                  <h3 className="serif text-2xl font-medium text-white mb-2">{c.name}</h3>
+                  <p className="text-white/65 leading-relaxed text-[1.0625rem]">{c.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16">
+            <Link
+              href="/demo"
+              className="inline-flex items-center text-white border border-white/30 hover:border-white px-8 py-4 rounded-full text-base font-medium transition-all"
+            >
+              Prohlédnout demo profily
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* WHY — editorial principles */}
+      <section className="py-32 px-6">
+        <div className="max-w-3xl mx-auto">
+          <p className="eyebrow text-pink-500 mb-6">Co Cosmatch nedělá</p>
+          <h2 className="serif-display text-4xl sm:text-6xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-16">
+            Méně. Pomaleji.<br/><em className="italic text-pink-500">S důvodem.</em>
+          </h2>
+
+          <div className="space-y-12">
+            {[
+              ['Žádné swipování pro swipování.', 'Dostaneš pět profilů denně — seřazené přesně pro tebe.'],
+              ['Žádné falešné notifikace.', 'Když ti přijde zpráva, někdo ti opravdu napsal.'],
+              ['Žádné placené pozice v algoritmu.', 'Vzorec si můžeš přepočítat. Placené předplatné mění tvé možnosti, ne tvoji viditelnost.'],
+              ['Žádné reklamy. Nikdy.', 'Cosmatch financují uživatelé, ne inzerenti.'],
+            ].map(([t, b]) => (
+              <div key={t} className="border-b border-gray-200 pb-12 last:border-b-0">
+                <h3 className="serif text-2xl sm:text-3xl text-gray-900 font-medium leading-tight mb-3">{t}</h3>
+                <p className="text-gray-600 leading-relaxed text-[1.0625rem]">{b}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16">
+            <Link href="/manifest-duvery" className="text-pink-500 hover:text-pink-600 transition font-medium">
+              Přečti si všech sedm závazků →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="py-32 px-6 bg-white border-t border-gray-200">
+        <div className="max-w-2xl mx-auto text-center">
+          <p className="eyebrow text-pink-500 mb-6">Začni teď</p>
+          <h2 className="serif-display text-4xl sm:text-6xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-8">
+            30 sekund.<br/>Žádná registrace.
+          </h2>
+          <p className="text-gray-600 leading-relaxed text-lg mb-12 max-w-lg mx-auto">
+            Zadej datum narození a uvidíš svůj numerologický archetyp.
+            Pokud chceš pokračovat, přidáš se na waitlist.
+          </p>
+          <Link
+            href="/test"
+            className="inline-flex items-center justify-center bg-gray-900 text-white px-10 py-5 rounded-full text-base font-medium hover:bg-gray-800 active:scale-[0.99] transition-all"
+          >
+            Spustit kvíz
+          </Link>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="border-t border-gray-200 py-12 px-6">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div>
+            <p className="serif-display text-xl font-medium text-gray-900 mb-1">Cosmatch</p>
+            <p className="text-sm text-gray-500">© 2026 · Mgr. Ing. Simona Cibulková · Praha</p>
+          </div>
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+            <Link href="/test" className="text-gray-500 hover:text-gray-900 transition">Kvíz</Link>
+            <Link href="/waitlist" className="text-gray-500 hover:text-gray-900 transition">Waitlist</Link>
+            <Link href="/manifest-duvery" className="text-gray-500 hover:text-gray-900 transition">Manifest důvěry</Link>
+            <Link href="/login" className="text-gray-500 hover:text-gray-900 transition">Přihlásit</Link>
+          </div>
+        </div>
+      </footer>
+    </main>
+  )
 }

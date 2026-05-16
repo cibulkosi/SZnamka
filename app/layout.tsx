@@ -1,12 +1,23 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import type { Metadata, Viewport } from 'next'
+import { Inter, Fraunces } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({
+  subsets: ['latin', 'latin-ext'],
+  variable: '--font-sans',
+  display: 'swap',
+})
+
+const fraunces = Fraunces({
+  subsets: ['latin', 'latin-ext'],
+  variable: '--font-serif',
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: 'Cosmatch — Kompatibilita podle data narození',
-  description: 'Česká datovací app postavená na numerologii a kompatibilitě dat narození. Najdi svou skutečnou shodu — věda, ne náhoda.',
+  description: 'Česká seznamka založená na numerologické kompatibilitě dat narození. Najdi svou skutečnou shodu — věda, ne náhoda.',
   keywords: 'numerologie, kompatibilita, datum narození, numerologický profil, datování, seznamka',
   openGraph: {
     title: 'Cosmatch — Kompatibilita podle data narození',
@@ -21,22 +32,26 @@ export const metadata: Metadata = {
     description: 'Najdi svou skutečnou shodu díky numerologii a datům narození.',
   },
   manifest: '/manifest.json',
-  themeColor: '#ec4899',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
     title: 'Cosmatch',
   },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
+  formatDetection: {
+    telephone: false,
   },
+}
+
+export const viewport: Viewport = {
+  themeColor: '#ec4899',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="cs">
+    <html lang="cs" className={`${inter.variable} ${fraunces.variable}`}>
       <head>
         <link rel="apple-touch-icon" sizes="180x180" href="/icon-180.png" />
         <link rel="apple-touch-icon" sizes="152x152" href="/icon-152.png" />

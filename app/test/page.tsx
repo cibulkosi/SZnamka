@@ -1,5 +1,5 @@
 'use client'
-import { useState, useRef, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { createClient } from '@supabase/supabase-js'
 
@@ -8,7 +8,7 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 )
 
-// Numerology life path calculation
+// Numerology life-path calculation
 function lifePathNumber(dateStr: string): number {
   const digits = dateStr.replace(/-/g, '').split('').map(Number)
   let sum = digits.reduce((a, b) => a + b, 0)
@@ -18,169 +18,155 @@ function lifePathNumber(dateStr: string): number {
   return sum
 }
 
-// Archetypes by life path number
-const ARCHETYPES: Record<number, {
+type Archetype = {
   name: string
-  emoji: string
-  title: string
+  tagline: string
   description: string
   traits: string[]
   love: string
   shadow: string
   compatible: number[]
-  color: string
-}> = {
+  accent: string
+}
+
+const ARCHETYPES: Record<number, Archetype> = {
   1: {
     name: 'Průkopník',
-    emoji: '✦',
-    title: 'Číslo 1 — Průkopník',
+    tagline: 'Nezávislý, kreativní, ambiciózní.',
     description: 'Jsi přirozeně nezávislý, kreativní a ambiciózní. Miluješ výzvy a jdeš vlastní cestou. V lásce hledáš partnera, který tě bude respektovat, ne řídit.',
     traits: ['Sebejistý', 'Kreativní', 'Přímý', 'Ambiciózní'],
     love: 'Potřebuješ prostor a respekt. Nejlépe se párujete s někým, kdo má svůj vlastní svět — ne s tím, kdo bude závislý na tvé pozornosti.',
     shadow: 'Tendence k příliš velké nezávislosti může bránit skutečné blízkosti.',
     compatible: [3, 5, 6],
-    color: '#f97316',
+    accent: '#C2410C',
   },
   2: {
     name: 'Diplomat',
-    emoji: '✦',
-    title: 'Číslo 2 — Diplomat',
+    tagline: 'Empatický, intuitivní, orientovaný na vztahy.',
     description: 'Jsi empatický, intuitivní a orientovaný na vztahy. Cítíš ostatní hlouběji než oni sami sebe. V lásce hledáš skutečnou duševní spřízněnost.',
     traits: ['Empatický', 'Intuitivní', 'Laskavý', 'Harmonický'],
     love: 'Potřebuješ jistotu a hlubší spojení. Nejlépe se párujete s někým klidným a spolehlivým, kdo oceňuje tvou citlivost.',
     shadow: 'Přílišná potřeba harmonie může vést k potlačování vlastních potřeb.',
     compatible: [4, 6, 8],
-    color: '#8b5cf6',
+    accent: '#6D28D9',
   },
   3: {
     name: 'Tvůrce',
-    emoji: '✦',
-    title: 'Číslo 3 — Tvůrce',
+    tagline: 'Charismatický, expresivní, plný energie.',
     description: 'Jsi charismatický, expresivní a plný energie. Máš dar zaujmout každou místnost. V lásce potřebuješ partnera, se kterým nikdy nezažiješ nudu.',
     traits: ['Charismatický', 'Kreativní', 'Optimistický', 'Komunikativní'],
     love: 'Potřebuješ vzrušení a svobodu sebevyjádření. Nejlépe fungujete s někým, kdo tě obdivuje a dává ti prostor zářit.',
     shadow: 'Rozptýlenost a vyhýbání se hlubší zodpovědnosti může komplikovat dlouhodobé vztahy.',
     compatible: [1, 5, 9],
-    color: '#ec4899',
+    accent: '#DB2777',
   },
   4: {
     name: 'Stavitel',
-    emoji: '✦',
-    title: 'Číslo 4 — Stavitel',
+    tagline: 'Spolehlivý, systematický, věrný.',
     description: 'Jsi spolehlivý, systematický a věrný. Stavíš na pevných základech — ve všem, co děláš. V lásce hledáš stabilitu a skutečný závazek.',
     traits: ['Spolehlivý', 'Disciplinovaný', 'Věrný', 'Praktický'],
     love: 'Potřebuješ bezpečí a předvídatelnost. Nejlépe se párujete s někým, kdo sdílí tvé hodnoty a nebojí se budovat budoucnost krok za krokem.',
-    shadow: 'Přílišná rigidita může bránit spontaneitě a nových zkušenostech.',
+    shadow: 'Přílišná rigidita může bránit spontaneitě a novým zkušenostem.',
     compatible: [2, 6, 8],
-    color: '#0ea5e9',
+    accent: '#0369A1',
   },
   5: {
     name: 'Dobrodruh',
-    emoji: '✦',
-    title: 'Číslo 5 — Dobrodruh',
+    tagline: 'Svobodný duch, milovník změny.',
     description: 'Jsi svobodný duch, milovník změny a nových zkušeností. Nudíš se rutinou. V lásce potřebuješ partnera, který tě drží za ruku, ale ne za krk.',
     traits: ['Svobodný', 'Adaptabilní', 'Zvídavý', 'Energický'],
     love: 'Potřebuješ prostor a dobrodružství. Nejlépe fungujete s někým, kdo si tě dokáže uchovat — tím, že je sám zajímavý a nezávislý.',
-    shadow: 'Strach ze závazku může způsobit, že opouštíš lidi dříve, než dostanete šanci na něco skutečně hlubokého.',
+    shadow: 'Strach ze závazku tě nutí opouštět lidi dříve, než vztah dostane šanci na hloubku.',
     compatible: [1, 3, 7],
-    color: '#10b981',
+    accent: '#047857',
   },
   6: {
     name: 'Pečovatel',
-    emoji: '✦',
-    title: 'Číslo 6 — Pečovatel',
+    tagline: 'Láskyplný, zodpovědný, orientovaný na rodinu.',
     description: 'Jsi láskyplný, zodpovědný a orientovaný na rodinu. Tvůj domov je tvůj chrám. V lásce dáváš více, než bereš — ale zasloužíš si obojí.',
     traits: ['Laskavý', 'Zodpovědný', 'Loajální', 'Ochranitelský'],
     love: 'Potřebuješ oceňování a reciprocitu. Nejlépe se párujete s někým, kdo umí přijímat lásku stejně hluboce, jako ji dávat.',
-    shadow: 'Přílišné pečování může vést k self-sacrificing vzorcům a zatrpklosti.',
+    shadow: 'Přílišné pečování vede k sebeobětování a tiché zatrpklosti.',
     compatible: [2, 4, 9],
-    color: '#f59e0b',
+    accent: '#B45309',
   },
   7: {
     name: 'Mudrc',
-    emoji: '✦',
-    title: 'Číslo 7 — Mudrc',
-    description: 'Jsi analytický, hloubavý a spirituální. Vidíš pod povrch věcí. V lásce hledáš intelektuální a dušení spojení — povrchní vztahy tě vyčerpávají.',
+    tagline: 'Analytický, hloubavý, spirituální.',
+    description: 'Jsi analytický, hloubavý a spirituální. Vidíš pod povrch věcí. V lásce hledáš intelektuální a duševní spojení — povrchní vztahy tě vyčerpávají.',
     traits: ['Analytický', 'Intuitivní', 'Hledající', 'Nezávislý'],
     love: 'Potřebuješ prostor a hloubku. Nejlépe fungujete s někým, kdo respektuje tvou potřebu ticha a dokáže vést smysluplné rozhovory.',
-    shadow: 'Izolace a přílišná sebeanalýza mohou bránit skutečné emocionální blízkosti.',
+    shadow: 'Izolace a přílišná sebeanalýza brání skutečné emocionální blízkosti.',
     compatible: [5, 9, 11],
-    color: '#6366f1',
+    accent: '#4338CA',
   },
   8: {
     name: 'Vůdce',
-    emoji: '✦',
-    title: 'Číslo 8 — Vůdce',
+    tagline: 'Ambiciózní, mocný, orientovaný na výsledky.',
     description: 'Jsi ambiciózní, mocný a orientovaný na výsledky. Umíš přeměnit vizi ve skutečnost. V lásce hledáš rovnocenného partnera — ne obdivovatele.',
     traits: ['Ambiciózní', 'Silný', 'Sebevědomý', 'Strategický'],
     love: 'Potřebuješ respekt a rovnocennost. Nejlépe se párujete s někým, kdo má svůj vlastní úspěch a nebojí se stát po tvém boku.',
-    shadow: 'Workoholismus a potřeba kontroly může způsobit, že vztahy odsouvají na druhé místo.',
+    shadow: 'Workoholismus a potřeba kontroly odsouvají vztahy na druhou kolej.',
     compatible: [2, 4, 6],
-    color: '#dc2626',
+    accent: '#B91C1C',
   },
   9: {
     name: 'Idealista',
-    emoji: '✦',
-    title: 'Číslo 9 — Idealista',
+    tagline: 'Velkorysý, soucitný, globálně orientovaný.',
     description: 'Jsi velkorysý, soucitný a globálně orientovaný. Cítíš utrpení světa a chceš ho měnit. V lásce hledáš partnera, který sdílí tvé hodnoty.',
     traits: ['Velkorysý', 'Idealistický', 'Soucitný', 'Moudrý'],
-    love: 'Potřebuješ sdílené hodnoty a smysl. Nejlépe fungujete s někým, kdo se chce posunovat — ne jen existovat.',
-    shadow: 'Přílišný idealismus může vést k zklamání z reálných partnerů, kteří nejsou dokonalí.',
+    love: 'Potřebuješ sdílené hodnoty a smysl. Nejlépe fungujete s někým, kdo se chce posouvat — ne jen existovat.',
+    shadow: 'Přílišný idealismus vede ke zklamání z reálných partnerů, kteří nejsou dokonalí.',
     compatible: [3, 6, 9],
-    color: '#0d9488',
+    accent: '#0F766E',
   },
   11: {
     name: 'Vizionář',
-    emoji: '✦',
-    title: 'Master číslo 11 — Vizionář',
+    tagline: 'Mistrovské číslo — intuitivní a inspirativní.',
     description: 'Jsi mimořádně intuitivní, citlivý a inspirativní. Máš dar vidět věci, které ostatní přehlédnou. V lásce hledáš transcendentní spojení.',
     traits: ['Vizionářský', 'Intuitivní', 'Citlivý', 'Inspirativní'],
-    love: 'Potřebuješ hluboké duševní a duchovní spojení. Povrchní vztahy tě vyčerpávají. Hledáš "svou druhou polovinu" v nejhlubším slova smyslu.',
-    shadow: 'Příliš vysoká citlivost může způsobit přetížení a ústup ze vztahů.',
+    love: 'Potřebuješ hluboké duševní a duchovní spojení. Povrchní vztahy tě vyčerpávají. Hledáš svou druhou polovinu v nejhlubším slova smyslu.',
+    shadow: 'Příliš vysoká citlivost způsobuje přetížení a ústup ze vztahů.',
     compatible: [2, 6, 7],
-    color: '#a855f7',
+    accent: '#9333EA',
   },
   22: {
     name: 'Architekt',
-    emoji: '✦',
-    title: 'Master číslo 22 — Architekt',
+    tagline: 'Mistrovské číslo — stavitel světů.',
     description: 'Jsi mistrovský stavitel — lidí, systémů, světů. Tvůj potenciál je obrovský. V lásce hledáš partnera, který rozumí tvé misi.',
     traits: ['Vizionářský', 'Praktický', 'Disciplinovaný', 'Inspirativní'],
-    love: 'Potřebuješ partnera, který stojí pevně na zemi, ale dokáže snít s tebou. Nechceš tě kdokoliv — chceš svého člověka.',
-    shadow: 'Obsese s dokonalostí a velikostí může zanechat osobní vztahy v ústraní.',
+    love: 'Potřebuješ partnera, který stojí pevně na zemi, ale dokáže snít s tebou. Nechceš kohokoliv — chceš svého člověka.',
+    shadow: 'Obsese s dokonalostí a velikostí zanechává osobní vztahy v ústraní.',
     compatible: [4, 8, 6],
-    color: '#b45309',
+    accent: '#92400E',
   },
   33: {
     name: 'Mistr lásky',
-    emoji: '✦',
-    title: 'Master číslo 33 — Mistr lásky',
-    description: 'Jsi ztělesnění soucitu, léčení a bezpodmínečné lásky. Jsou tě jen 0,3 % populace. V lásce dáváš dary, které si mnozí ani neumí představit.',
+    tagline: 'Mistrovské číslo — léčitel a soucit.',
+    description: 'Jsi ztělesnění soucitu, léčení a bezpodmínečné lásky. Tvořích jen 0,3 % populace. V lásce dáváš dary, které si mnozí ani neumí představit.',
     traits: ['Láskyplný', 'Léčivý', 'Moudrý', 'Soucitný'],
     love: 'Potřebuješ partnera, který je schopen přijmout hloubku tvé lásky a opětovat ji. Mnozí se tvé intenzity bojí — ale ten pravý ji pozná.',
-    shadow: 'Dávání bez hranic může vést k úplnému vyčerpání.',
+    shadow: 'Dávání bez hranic vede k úplnému vyčerpání.',
     compatible: [6, 9, 3],
-    color: '#ec4899',
+    accent: '#BE185D',
   },
 }
 
-type Step = 'input' | 'result' | 'capture'
+type Step = 'intro' | 'birthday' | 'result' | 'capture' | 'done'
 
 export default function TestPage() {
-  const [step, setStep] = useState<Step>('input')
+  const [step, setStep] = useState<Step>('intro')
   const [birthday, setBirthday] = useState('')
   const [name, setName] = useState('')
   const [lifePath, setLifePath] = useState<number | null>(null)
-  const [archetype, setArchetype] = useState<typeof ARCHETYPES[number] | null>(null)
+  const [archetype, setArchetype] = useState<Archetype | null>(null)
   const [email, setEmail] = useState('')
   const [city, setCity] = useState('')
   const [submitting, setSubmitting] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
   const [waitlistPos, setWaitlistPos] = useState<number | null>(null)
   const [referralCode, setReferralCode] = useState('')
   const [refCode, setRefCode] = useState('')
   const [copied, setCopied] = useState(false)
-  const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -197,48 +183,32 @@ export default function TestPage() {
     setLifePath(lp)
     setArchetype(arc)
     setStep('result')
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   async function handleEmailCapture(e: React.FormEvent) {
     e.preventDefault()
     if (!email || !archetype) return
     setSubmitting(true)
-
     try {
-      // Generate referral code
       const code = Math.random().toString(36).substring(2, 8).toUpperCase()
       setReferralCode(code)
-
-      // Insert into waitlist table
-      const { data, error } = await supabase
-        .from('waitlist')
-        .insert({
-          email,
-          name: name || null,
-          city: city || null,
-          birthday,
-          life_path: lifePath,
-          archetype: archetype.name,
-          referral_code: code,
-          referred_by: refCode || null,
-          source: 'quiz',
-        })
-        .select('id')
-        .single()
-
-      if (error && error.code !== '23505') {
-        // 23505 = unique violation (already signed up)
-        console.error(error)
-      }
-
-      // Get position
-      const { count } = await supabase
-        .from('waitlist')
-        .select('*', { count: 'exact', head: true })
-
+      const { error } = await supabase.from('waitlist').insert({
+        email,
+        name: name || null,
+        city: city || null,
+        birthday,
+        life_path: lifePath,
+        archetype: archetype.name,
+        referral_code: code,
+        referred_by: refCode || null,
+        source: 'quiz',
+      })
+      if (error && error.code !== '23505') console.error(error)
+      const { count } = await supabase.from('waitlist').select('*', { count: 'exact', head: true })
       setWaitlistPos(count || 1)
-      setSubmitted(true)
+      setStep('done')
+      if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' })
     } finally {
       setSubmitting(false)
     }
@@ -252,13 +222,12 @@ export default function TestPage() {
     })
   }
 
-  function shareOnIG() {
-    // Generate canvas card (handled by share cards component)
-    const url = `${window.location.origin}/test?ref=${referralCode}`
+  function shareResult() {
+    const url = `${window.location.origin}/test?ref=${referralCode || ''}`
     if (navigator.share) {
       navigator.share({
-        title: `Jsem ${archetype?.name} — zjisti své číslo`,
-        text: `Cosmatch mě označil jako ${archetype?.name} (životní číslo ${lifePath}). Zjisti i ty své: `,
+        title: `Jsem ${archetype?.name} — Cosmatch`,
+        text: `Cosmatch mě označil jako „${archetype?.name}\" (číslo ${lifePath}). Zjisti i své: `,
         url,
       })
     } else {
@@ -266,228 +235,337 @@ export default function TestPage() {
     }
   }
 
-  if (!archetype && step === 'result') setStep('input')
+  // Step indicator helper
+  const stepIndex: Record<Step, number> = { intro: 0, birthday: 1, result: 2, capture: 3, done: 4 }
+  const idx = stepIndex[step]
 
   return (
-    <div className="min-h-screen bg-[#FAF6F0]">
-      <div className="max-w-lg mx-auto px-6 py-8">
+    <main className="min-h-screen bg-[#FAF6F0]">
+      {/* Top bar */}
+      <div className="max-w-xl mx-auto px-6 pt-6 flex items-center justify-between">
+        <Link href="/" className="text-sm text-gray-500 hover:text-gray-900 transition">
+          ← Cosmatch
+        </Link>
+        {step !== 'intro' && step !== 'done' && (
+          <div className="flex items-center gap-1.5">
+            {[0, 1, 2, 3].map(i => (
+              <div
+                key={i}
+                className={`h-1 w-6 rounded-full transition-all ${i <= idx - 1 ? 'bg-pink-500' : 'bg-gray-200'}`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
 
-        {/* Logo */}
-        <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 text-xl font-bold text-gray-900">
-            <span className="text-pink-500">✦</span> Cosmatch
-          </Link>
-        </div>
+      <div className="max-w-xl mx-auto px-6 pt-10 pb-24">
 
-        {/* STEP: INPUT */}
-        {step === 'input' && (
-          <div className="card p-8 text-center">
-            <div className="text-5xl mb-4">✦</div>
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">Jaké je tvoje číslo?</h1>
-            <p className="text-gray-500 mb-8 leading-relaxed">
-              Zadej datum narození a za 10 sekund zjistíš svůj numerologický archetyp — a proč se
-              pořád přitahuješ k určitému typu lidí.
+        {/* STEP: INTRO */}
+        {step === 'intro' && (
+          <div className="pt-8">
+            <p className="eyebrow text-pink-500 mb-6">Numerologický kvíz</p>
+            <h1 className="serif-display text-5xl sm:text-6xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-8">
+              Proč se pořád<br/>přitahuješ<br/>k <em className="italic text-pink-500">stejnému typu</em><br/>lidí?
+            </h1>
+            <hr className="rule w-12 border-gray-900 mb-8" />
+            <p className="text-lg text-gray-700 leading-relaxed mb-4">
+              Tvoje datum narození zná odpověď. Cosmatch ti za 30 sekund spočítá tvůj
+              numerologický archetyp a ukáže ti, jaký partner ti skutečně sedí.
+            </p>
+            <p className="text-gray-500 leading-relaxed mb-12">
+              Zdarma. Bez registrace. Bez e-mailu, dokud sám nechceš.
             </p>
 
-            <div className="space-y-4 text-left">
+            <button
+              onClick={() => setStep('birthday')}
+              className="w-full bg-gray-900 text-white py-5 rounded-full text-base font-medium hover:bg-gray-800 active:scale-[0.99] transition-all"
+            >
+              Začít kvíz
+            </button>
+
+            <p className="text-xs text-gray-400 text-center mt-6">
+              Cosmatch je první česká seznamka založená na numerologické kompatibilitě.
+            </p>
+          </div>
+        )}
+
+        {/* STEP: BIRTHDAY */}
+        {step === 'birthday' && (
+          <div className="pt-4">
+            <p className="eyebrow text-gray-400 mb-6">Krok 1 ze 2</p>
+            <h2 className="serif-display text-4xl sm:text-5xl text-gray-900 font-medium leading-[1.1] tracking-tight mb-6">
+              Kdy ses narodil?
+            </h2>
+            <p className="text-gray-600 leading-relaxed mb-10 text-[1.0625rem]">
+              Zadej přesný datum narození. Rok je důležitý — ovlivňuje životní číslo.
+            </p>
+
+            <div className="space-y-6 mb-10">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Tvoje jméno (volitelné)</label>
+                <label className="eyebrow text-gray-500 mb-3 block">Datum narození</label>
                 <input
-                  type="text"
-                  className="input w-full"
-                  placeholder="Jana"
-                  value={name}
-                  onChange={e => setName(e.target.value)}
+                  type="date"
+                  value={birthday}
+                  onChange={e => setBirthday(e.target.value)}
+                  className="w-full bg-transparent border-0 border-b-2 border-gray-300 focus:border-pink-500 px-0 py-3 text-2xl text-gray-900 focus:outline-none transition-colors serif"
+                  style={{ fontFamily: 'var(--font-serif), Georgia, serif' }}
+                  max={new Date().toISOString().split('T')[0]}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Datum narození</label>
+                <label className="eyebrow text-gray-500 mb-3 block">Tvoje jméno <span className="normal-case tracking-normal text-gray-400 ml-2">(volitelné)</span></label>
                 <input
-                  type="date"
-                  className="input w-full"
-                  value={birthday}
-                  onChange={e => setBirthday(e.target.value)}
-                  max={new Date().toISOString().split('T')[0]}
-                  min="1940-01-01"
+                  type="text"
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                  placeholder="Tak, jak chceš být oslovován"
+                  className="w-full bg-transparent border-0 border-b-2 border-gray-300 focus:border-pink-500 px-0 py-3 text-lg text-gray-900 focus:outline-none transition-colors"
                 />
               </div>
             </div>
 
             <button
-              className="btn-primary w-full mt-6 py-4 text-lg"
-              onClick={handleCalculate}
               disabled={!birthday}
+              onClick={handleCalculate}
+              className="w-full bg-gray-900 text-white py-5 rounded-full text-base font-medium hover:bg-gray-800 active:scale-[0.99] transition-all disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed"
             >
-              Zjistit svůj archetyp
+              Spočítat můj archetyp
             </button>
 
-            <p className="text-xs text-gray-400 mt-4">
-              Datum neukládáme bez tvého souhlasu.
-            </p>
+            <button
+              onClick={() => setStep('intro')}
+              className="block mx-auto mt-6 text-sm text-gray-400 hover:text-gray-700 transition"
+            >
+              ← Zpět
+            </button>
           </div>
         )}
 
         {/* STEP: RESULT */}
         {step === 'result' && archetype && (
-          <div>
-            <div className="card p-8 text-center mb-4" style={{ borderTop: `4px solid ${archetype.color}` }}>
-              <div className="text-6xl font-black mb-2" style={{ color: archetype.color }}>{lifePath}</div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-1">{name ? `${name}, jsi` : 'Jsi'}</h2>
-              <h3 className="text-3xl font-black mb-4" style={{ color: archetype.color }}>{archetype.name}</h3>
-              <p className="text-gray-600 leading-relaxed mb-6">{archetype.description}</p>
-
-              <div className="flex flex-wrap gap-2 justify-center mb-6">
-                {archetype.traits.map(t => (
-                  <span key={t} className="px-3 py-1 rounded-full text-sm font-medium text-white"
-                    style={{ backgroundColor: archetype.color }}>
-                    {t}
-                  </span>
-                ))}
+          <div className="pt-4">
+            <p className="eyebrow text-gray-400 mb-4">Tvůj výsledek</p>
+            <div className="mb-8">
+              <div
+                className="serif-display text-[7rem] sm:text-[9rem] font-medium leading-none mb-2"
+                style={{ color: archetype.accent }}
+              >
+                {lifePath}
               </div>
-
-              <div className="bg-gray-50 rounded-2xl p-4 text-left mb-6">
-                <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">V lásce</p>
-                <p className="text-gray-700 text-sm leading-relaxed">{archetype.love}</p>
-              </div>
-
-              <div className="bg-amber-50 rounded-2xl p-4 text-left mb-6">
-                <p className="text-xs font-semibold text-amber-600 uppercase tracking-wide mb-2">Tvůj stín</p>
-                <p className="text-gray-700 text-sm leading-relaxed">{archetype.shadow}</p>
-              </div>
-
-              <div className="bg-pink-50 rounded-2xl p-4 text-left">
-                <p className="text-xs font-semibold text-pink-500 uppercase tracking-wide mb-2">Nejlepší shoda</p>
-                <p className="text-gray-700 text-sm">
-                  Životní čísla{' '}
-                  {archetype.compatible.map((n, i) => (
-                    <span key={n}>
-                      <strong>{n}</strong>{i < archetype.compatible.length - 1 ? ', ' : ''}
-                    </span>
-                  ))}
-                  {' '}— najdi je na Cosmatch.
-                </p>
-              </div>
+              <h2 className="serif-display text-4xl sm:text-5xl text-gray-900 font-medium leading-tight tracking-tight mb-3">
+                {archetype.name}
+              </h2>
+              <p className="text-gray-500 text-[1.0625rem]">{archetype.tagline}</p>
             </div>
 
-            {/* CTA to email capture */}
-            <div className="card p-6 text-center">
-              <h4 className="font-bold text-gray-900 mb-2">Chceš najít svou skutečnou shodu?</h4>
-              <p className="text-gray-500 text-sm mb-4">
-                Cosmatch spouštíme brzy. Zaregistruj se jako první a získej 3 měsíce premium zdarma.
+            <hr className="rule mb-10" />
+
+            <div className="space-y-10">
+              <section>
+                <p className="eyebrow text-gray-500 mb-3">Kdo jsi</p>
+                <p className="text-gray-800 leading-[1.75] text-[1.0625rem] dropcap">
+                  {archetype.description}
+                </p>
+              </section>
+
+              <section>
+                <p className="eyebrow text-gray-500 mb-3">Vlastnosti</p>
+                <div className="flex flex-wrap gap-2">
+                  {archetype.traits.map(t => (
+                    <span
+                      key={t}
+                      className="px-4 py-1.5 rounded-full border border-gray-300 text-sm text-gray-700"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </section>
+
+              <section>
+                <p className="eyebrow text-gray-500 mb-3">V lásce</p>
+                <p className="text-gray-800 leading-[1.75] text-[1.0625rem]">
+                  {archetype.love}
+                </p>
+              </section>
+
+              <section>
+                <p className="eyebrow text-gray-500 mb-3">Stín</p>
+                <p className="text-gray-800 leading-[1.75] text-[1.0625rem]">
+                  {archetype.shadow}
+                </p>
+              </section>
+
+              <section>
+                <p className="eyebrow text-gray-500 mb-3">Nejlépe ti sedí čísla</p>
+                <div className="flex gap-3">
+                  {archetype.compatible.map(n => (
+                    <div
+                      key={n}
+                      className="serif-display text-4xl font-medium text-gray-900 border border-gray-300 rounded-2xl w-16 h-16 flex items-center justify-center"
+                    >
+                      {n}
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </div>
+
+            <hr className="rule my-12" />
+
+            <div className="bg-white rounded-3xl p-8 border border-gray-100">
+              <p className="eyebrow text-pink-500 mb-3">Další krok</p>
+              <h3 className="serif-display text-3xl text-gray-900 font-medium leading-tight mb-3">
+                Najdi svůj protějšek
+              </h3>
+              <p className="text-gray-600 leading-relaxed mb-6 text-[1.0625rem]">
+                Cosmatch spočítá kompatibilitu mezi tvým a partnerovým datem — z 366 personologických
+                profilů. Přidej se do waitlistu a buď u toho jako první.
               </p>
-              <button className="btn-primary w-full py-3" onClick={() => setStep('capture')}>
+              <p className="text-sm text-gray-500 mb-6">
+                Prvních 1\u202f000 dostane voucher na 3\u202fměsíce Cosmatch+ zdarma.
+              </p>
+              <button
+                onClick={() => setStep('capture')}
+                className="w-full bg-gray-900 text-white py-5 rounded-full text-base font-medium hover:bg-gray-800 active:scale-[0.99] transition-all"
+              >
                 Chci být první
               </button>
-              <button className="text-gray-400 text-sm mt-3 underline" onClick={shareOnIG}>
-                Sdílet výsledek
+              <button
+                onClick={shareResult}
+                className="block w-full text-sm text-gray-500 hover:text-gray-900 mt-4 py-2 transition"
+              >
+                Sdílet výsledek →
               </button>
             </div>
           </div>
         )}
 
-        {/* STEP: EMAIL CAPTURE */}
-        {step === 'capture' && !submitted && archetype && (
-          <div className="card p-8">
-            <div className="text-center mb-6">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
-                style={{ backgroundColor: `${archetype.color}20` }}>
-                <span className="text-2xl font-black" style={{ color: archetype.color }}>{lifePath}</span>
-              </div>
-              <h2 className="text-xl font-bold text-gray-900 mb-1">Přidej se do waitlistu</h2>
-              <p className="text-gray-500 text-sm">
-                První uživatelé dostanou voucher na 3 měsíce Cosmatch+ zdarma.
-              </p>
-            </div>
+        {/* STEP: CAPTURE */}
+        {step === 'capture' && archetype && (
+          <div className="pt-4">
+            <p className="eyebrow text-gray-400 mb-6">Krok 2 ze 2</p>
+            <h2 className="serif-display text-4xl sm:text-5xl text-gray-900 font-medium leading-[1.1] tracking-tight mb-6">
+              Buď u toho<br/>jako <em className="italic text-pink-500">{archetype.name}</em>.
+            </h2>
+            <p className="text-gray-600 leading-relaxed mb-10 text-[1.0625rem]">
+              Pošleme ti e-mail, jakmile Cosmatch spustíme v Praze. Plus voucher na 3 měsíce
+              Cosmatch+ zdarma — pokud jsi mezi prvními tisíci.
+            </p>
 
-            <form onSubmit={handleEmailCapture} className="space-y-4">
+            <form onSubmit={handleEmailCapture} className="space-y-6 mb-8">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
+                <label className="eyebrow text-gray-500 mb-3 block">E-mail</label>
                 <input
                   type="email"
-                  className="input w-full"
-                  placeholder="jana@email.cz"
+                  required
                   value={email}
                   onChange={e => setEmail(e.target.value)}
-                  required
+                  placeholder="jana@example.cz"
+                  className="w-full bg-transparent border-0 border-b-2 border-gray-300 focus:border-pink-500 px-0 py-3 text-lg text-gray-900 focus:outline-none transition-colors"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Město (volitelné)</label>
+                <label className="eyebrow text-gray-500 mb-3 block">Město <span className="normal-case tracking-normal text-gray-400 ml-2">(volitelné)</span></label>
                 <input
                   type="text"
-                  className="input w-full"
-                  placeholder="Praha"
                   value={city}
                   onChange={e => setCity(e.target.value)}
+                  placeholder="Praha · Brno · Bratislava…"
+                  className="w-full bg-transparent border-0 border-b-2 border-gray-300 focus:border-pink-500 px-0 py-3 text-lg text-gray-900 focus:outline-none transition-colors"
                 />
               </div>
-              {/* Honeypot */}
-              <input name="website" style={{ position: 'absolute', left: '-9999px' }} tabIndex={-1} autoComplete="off" />
 
               <button
                 type="submit"
-                className="btn-primary w-full py-4"
-                disabled={submitting || !email}
+                disabled={!email || submitting}
+                className="w-full bg-gray-900 text-white py-5 rounded-full text-base font-medium hover:bg-gray-800 active:scale-[0.99] transition-all disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed"
               >
-                {submitting ? 'Ukládám...' : 'Rezervovat místo'}
+                {submitting ? 'Přidávám tě…' : 'Přidat mě na waitlist'}
               </button>
-
-              <p className="text-xs text-gray-400 text-center">
-                Žádný spam. Odhlásit se lze kdykoliv.{' '}
-                <Link href="/manifest-duvery" className="underline">Manifest důvěry</Link>
-              </p>
             </form>
+
+            <button
+              onClick={() => setStep('result')}
+              className="block mx-auto text-sm text-gray-400 hover:text-gray-700 transition"
+            >
+              ← Zpět na výsledek
+            </button>
+
+            <p className="text-xs text-gray-400 text-center mt-10 leading-relaxed">
+              Neposíláme spam. Pouze jeden e-mail, když Cosmatch spustíme v tvém městě.
+              Odhlášení jedním klikem.
+            </p>
           </div>
         )}
 
-        {/* STEP: SUCCESS */}
-        {submitted && (
-          <div className="card p-8 text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-8 h-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
+        {/* STEP: DONE */}
+        {step === 'done' && archetype && (
+          <div className="pt-8 text-center">
+            <p className="eyebrow text-pink-500 mb-6">Jsi na seznamu</p>
+            <div
+              className="serif-display text-[8rem] font-medium leading-none mb-4"
+              style={{ color: archetype.accent }}
+            >
+              {waitlistPos}
             </div>
+            <p className="text-gray-500 mb-10">tvoje pozice ve waitlistu</p>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Jsi v tom!</h2>
-            {waitlistPos && (
-              <p className="text-gray-500 mb-2">Tvoje pořadí: <strong className="text-pink-500">#{waitlistPos}</strong></p>
-            )}
-            <p className="text-gray-500 text-sm mb-6">
-              Pošleme ti e-mail, jakmile Cosmatch spustíme — s tvým voucherem na 3 měsíce zdarma.
+            <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-4">
+              Vítej, <em className="italic text-pink-500">{archetype.name}</em>.
+            </h2>
+            <p className="text-gray-700 leading-relaxed mb-12 max-w-md mx-auto">
+              Pošleme ti e-mail s voucherem, jakmile Cosmatch spustíme. Mezitím — chceš postoupit?
             </p>
 
-            {/* Referral */}
-            <div className="bg-pink-50 rounded-2xl p-5 mb-6">
-              <p className="text-sm font-semibold text-pink-600 mb-2">Posuň se v pořadí</p>
-              <p className="text-gray-600 text-sm mb-4">
-                Za každého přítele, který se přihlásí přes tvůj odkaz, postoupíš o 5 míst.
+            <hr className="rule mb-12" />
+
+            <div className="text-left">
+              <p className="eyebrow text-gray-500 mb-3">Posuň se v pořadí</p>
+              <h3 className="serif text-2xl text-gray-900 font-medium leading-tight mb-3">
+                Za každého přítele postoupíš o 5 míst.
+              </h3>
+              <p className="text-gray-600 leading-relaxed mb-6 text-[1.0625rem]">
+                Pozvi někoho, koho zajímá numerologie nebo kdo si zaslouží lepší seznamku.
+                Pomáháš si i jim.
               </p>
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  readOnly
-                  value={`${typeof window !== 'undefined' ? window.location.origin : 'https://cosmatch.cz'}/test?ref=${referralCode}`}
-                  className="input flex-1 text-xs bg-white"
-                />
-                <button
-                  className="btn-primary px-4 text-sm whitespace-nowrap"
-                  onClick={copyReferralLink}
-                >
-                  {copied ? 'Zkopírováno!' : 'Kopírovat'}
-                </button>
-              </div>
+
+              {referralCode && (
+                <div className="bg-white border border-gray-200 rounded-2xl p-5 flex items-center gap-3 mb-4">
+                  <input
+                    readOnly
+                    value={`${typeof window !== 'undefined' ? window.location.origin : 'https://cosmatch.cz'}/test?ref=${referralCode}`}
+                    className="flex-1 bg-transparent text-gray-700 text-sm font-mono truncate focus:outline-none"
+                  />
+                  <button
+                    onClick={copyReferralLink}
+                    className="px-4 py-2 bg-gray-900 text-white text-sm rounded-full font-medium hover:bg-gray-800 transition flex-shrink-0"
+                  >
+                    {copied ? 'Zkopírováno' : 'Kopírovat'}
+                  </button>
+                </div>
+              )}
+
+              <button
+                onClick={shareResult}
+                className="w-full bg-pink-500 text-white py-5 rounded-full text-base font-medium hover:bg-pink-600 active:scale-[0.99] transition-all"
+              >
+                Sdílet výsledek a získat pozici
+              </button>
             </div>
 
-            <button className="btn-primary w-full py-3 mb-3" onClick={shareOnIG}>
-              Sdílet výsledek
-            </button>
-            <Link href="/" className="text-gray-400 text-sm underline">Zpět na úvod</Link>
+            <hr className="rule my-12" />
+
+            <Link
+              href="/manifest-duvery"
+              className="text-sm text-gray-500 hover:text-gray-900 transition"
+            >
+              Přečti si, čemu se zavazujeme →
+            </Link>
           </div>
         )}
 
-        <canvas ref={canvasRef} style={{ display: 'none' }} />
       </div>
-    </div>
+    </main>
   )
 }

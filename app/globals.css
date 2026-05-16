@@ -42,3 +42,54 @@ body {
     backdrop-filter: blur(12px);
   }
 }
+
+/* === Editorial serif (Fraunces) — used for Trust Manifesto, quiz headers, waitlist === */
+.serif {
+  font-family: var(--font-serif), 'Iowan Old Style', 'Charter', 'Cambria', 'Georgia', serif;
+  font-feature-settings: "ss01", "ss02", "calt", "ss03";
+  font-optical-sizing: auto;
+  letter-spacing: -0.01em;
+}
+
+.serif-display {
+  font-family: var(--font-serif), 'Iowan Old Style', 'Charter', 'Cambria', 'Georgia', serif;
+  font-feature-settings: "ss01";
+  font-optical-sizing: auto;
+  letter-spacing: -0.02em;
+}
+
+/* hairline rule */
+.rule {
+  border: 0;
+  border-top: 1px solid rgba(28, 28, 30, 0.12);
+  margin: 0;
+}
+
+/* dropcap (first letter big) */
+.dropcap::first-letter {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 3.2em;
+  line-height: 0.9;
+  float: left;
+  margin-right: 0.08em;
+  margin-top: 0.05em;
+  color: #ec4899;
+  font-weight: 600;
+}
+
+/* small caps eyebrow label */
+.eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #6B7280;
+}
+
+/* roman numerals — use OpenType feature */
+.roman {
+  font-family: var(--font-serif), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}

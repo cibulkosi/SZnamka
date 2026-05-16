@@ -1,107 +1,119 @@
-'use client'
+import type { Metadata } from 'next'
 import Link from 'next/link'
+
+export const metadata: Metadata = {
+  title: 'Manifest důvěry — Cosmatch',
+  description: 'Sedm závazků, kterými se Cosmatch zavazuje vůči svým uživatelům. Žádné tmavé vzory, žádné reklamy, žádné prodávání dat.',
+}
+
+const principles = [
+  {
+    numeral: 'I',
+    title: 'Žádné swipy pro swipy',
+    body: 'Tinder vydělává na tom, jak dlouho v něm zůstaneš. My vyděláváme na tom, jak rychle nás opustíš. Cosmatch je navržen tak, aby se odstranil sám — ve chvíli, kdy najdeš člověka, se kterým to dává smysl.',
+  },
+  {
+    numeral: 'II',
+    title: 'Datum narození není data',
+    body: 'Tvoje datum používáme jen k jediné věci: výpočtu kompatibility. Neprodáváme ho. Nepředáváme ho. Neprofilujeme tě podle něj mimo aplikaci. Je to klíč k tvému profilu, ne komodita.',
+  },
+  {
+    numeral: 'III',
+    title: 'Žádné tmavé vzory',
+    body: 'Falešné notifikace neexistují. Skryté tlačítko pro zrušení neexistuje. Profil, který napsal robot, neexistuje. Když ti přijde zpráva, někdo ti opravdu napsal.',
+  },
+  {
+    numeral: 'IV',
+    title: 'Algoritmus, který umíme vysvětlit',
+    body: 'Numerologická kompatibilita 35\u202f%, hodnoty a záměry 30\u202f%, vzdálenost 15\u202f%, aktivita 15\u202f%, společné zájmy 5\u202f%. Žádné placené pozice. Žádné skryté penalizace. Vzorec si můžeš přepočítat.',
+  },
+  {
+    numeral: 'V',
+    title: 'Bezpečnost není nadstandard',
+    body: 'Přihlašuješ se přes Google nebo Facebook — heslo u nás neexistuje, takže ti ho nemůžeme ztratit. Servery běží ve Frankfurtu, v EU. Smazání účtu je nevratné — a vyřízené do hodiny.',
+  },
+  {
+    numeral: 'VI',
+    title: 'Žádné reklamy. Nikdy.',
+    body: 'Cosmatch financují uživatelé, ne inzerenti. Tvoje pozornost není zboží. Pokud jednou uvidíš v aplikaci reklamu, znamená to, že jsme ji prodali — a tehdy bude na čase odejít.',
+  },
+  {
+    numeral: 'VII',
+    title: 'Záruky, ne sliby',
+    body: 'Pokud nejsi spokojen s předplatným do 14\u202fdnů, peníze vrátíme bez vysvětlení. Pokud nás potřebuješ, píšeš na ahoj@cosmatch.cz a odpovídáme do 48\u202fhodin. Občas dříve.',
+  },
+]
 
 export default function ManifestDuvery() {
   return (
-    <div className="min-h-screen bg-[#FAF6F0]">
-      <div className="max-w-2xl mx-auto px-6 py-12">
+    <main className="min-h-screen bg-[#FAF6F0]">
+      {/* Top nav */}
+      <div className="max-w-2xl mx-auto px-6 pt-8">
+        <Link href="/" className="inline-block text-gray-500 hover:text-gray-900 text-sm transition">
+          ← Cosmatch
+        </Link>
+      </div>
 
-        {/* Header */}
-        <div className="text-center mb-12">
-          <Link href="/" className="inline-flex items-center gap-2 text-2xl font-bold text-gray-900 mb-8">
-            <span className="text-pink-500">✦</span> Cosmatch
-          </Link>
-          <h1 className="text-3xl font-bold text-gray-900 mt-6 mb-4">Manifest důvěry</h1>
-          <p className="text-gray-500 text-lg">Jak zacházíme s tebou, tvými daty a tvým srdcem.</p>
-        </div>
+      <article className="max-w-2xl mx-auto px-6 pt-16 pb-24">
+
+        {/* Masthead */}
+        <header className="mb-20">
+          <p className="eyebrow mb-6 text-pink-500">Manifest důvěry</p>
+          <h1 className="serif-display text-5xl sm:text-6xl text-gray-900 leading-[1.05] font-medium mb-8 tracking-tight">
+            Sedm závazků,<br />kterými se zavazujeme<br /><em className="italic text-pink-500">vůči tobě</em>.
+          </h1>
+          <hr className="rule w-16 border-gray-900 mb-8" />
+          <p className="text-lg text-gray-600 leading-relaxed max-w-xl">
+            Cosmatch není aplikace o tom, jak tě udržet uvnitř. Je o tom, jak tě dostat ven —
+            do skutečného života, ke skutečnému člověku. Pokud se v něčem z následujícího
+            zmýlíme, čekáme tvůj e-mail.
+          </p>
+        </header>
 
         {/* Principles */}
-        <div className="space-y-8">
-
-          <section className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
-            <div className="text-3xl mb-4">01</div>
-            <h2 className="text-xl font-bold text-gray-900 mb-3">Žádné swipy pro swipy</h2>
-            <p className="text-gray-600 leading-relaxed">
-              Tinder vydělává na tom, čím déle ti záleží. My ne. Cosmatch je navržen tak, aby tě co nejrychleji spojil
-              s lidmi, se kterými to opravdu může fungovat — a pak se z tvého životě ztratil. Náš obchodní model
-              je postaven na kvalitě shod, ne na době, kterou strávíš scrollováním.
-            </p>
-          </section>
-
-          <section className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
-            <div className="text-3xl mb-4">02</div>
-            <h2 className="text-xl font-bold text-gray-900 mb-3">Datum narození jako základ, ne jako data</h2>
-            <p className="text-gray-600 leading-relaxed">
-              Tvoje datum narození slouží výhradně k výpočtu numerologické kompatibility. Neprodáváme ho,
-              nesdílíme ho s reklamními sítěmi, nepoužíváme ho k profilování mimo aplikaci. Je to klíč
-              k tvému profilu — nic víc.
-            </p>
-          </section>
-
-          <section className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
-            <div className="text-3xl mb-4">03</div>
-            <h2 className="text-xl font-bold text-gray-900 mb-3">Žádné tmavé vzory</h2>
-            <p className="text-gray-600 leading-relaxed">
-              Nenajdeš tu falešné notifikace, které tě lákají zpět. Nenajdeš tu záměrně skryté tlačítko
-              pro zrušení předplatného. Nenajdeš tu profily, které byly vytvořeny jen proto, aby tě
-              zaháčkovaly. Každý profil je reálný člověk. Každá notifikace je reálná událost.
-            </p>
-          </section>
-
-          <section className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
-            <div className="text-3xl mb-4">04</div>
-            <h2 className="text-xl font-bold text-gray-900 mb-3">Algoritmus, který vysvětlíme</h2>
-            <p className="text-gray-600 leading-relaxed">
-              Kompatibilita se počítá z numerologie (35 %), společných hodnot a záměrů (30 %),
-              vzdálenosti (15 %), aktivity (15 %) a společných zájmů (5 %). Výsledek je celkové procento —
-              bez skrytých penalizací, bez placených výhod v řazení.
-            </p>
-          </section>
-
-          <section className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
-            <div className="text-3xl mb-4">05</div>
-            <h2 className="text-xl font-bold text-gray-900 mb-3">Bezpečnost jako základ</h2>
-            <p className="text-gray-600 leading-relaxed">
-              Přihlašujeme tě přes Google nebo Facebook — žádná hesla u nás. Data jsou šifrována.
-              Provoz běží v EU (Frankfurt). Fotky a osobní údaje nikdy neopouštějí evropské servery.
-              Kdykoli můžeš svůj účet nenávratně smazat — a my to skutečně provedeme.
-            </p>
-          </section>
-
-          <section className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
-            <div className="text-3xl mb-4">06</div>
-            <h2 className="text-xl font-bold text-gray-900 mb-3">Žádné reklamy. Nikdy.</h2>
-            <p className="text-gray-600 leading-relaxed">
-              Cosmatch je financován výhradně předplatným uživatelů. Nebereme peníze od inzerentů.
-              Nesledujeme tě pro třetí strany. Náš zájem je sladěn s tvým — aby ti aplikace skutečně pomohla.
-            </p>
-          </section>
-
-          <section className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
-            <div className="text-3xl mb-4">07</div>
-            <h2 className="text-xl font-bold text-gray-900 mb-3">Záruky, ne sliby</h2>
-            <p className="text-gray-600 leading-relaxed">
-              Kdykoli nás kontaktuj na{' '}
-              <a href="mailto:ahoj@cosmatch.cz" className="text-pink-500 underline">ahoj@cosmatch.cz</a>.
-              Odpovídáme do 48 hodin. Pokud nejsi spokojen s předplatným do 7 dnů, vrátíme ti peníze bez otázek.
-            </p>
-          </section>
-
+        <div className="space-y-16">
+          {principles.map((p, idx) => (
+            <section key={p.numeral} className="grid grid-cols-[auto,1fr] gap-x-8 sm:gap-x-12">
+              <div className="roman text-3xl sm:text-4xl text-pink-500 leading-none pt-2 select-none">
+                {p.numeral}
+              </div>
+              <div>
+                <h2 className="serif text-2xl sm:text-3xl text-gray-900 font-medium mb-4 leading-tight">
+                  {p.title}
+                </h2>
+                <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
+                  {p.body}
+                </p>
+              </div>
+              {idx < principles.length - 1 && (
+                <div className="col-span-2 pt-16">
+                  <hr className="rule" />
+                </div>
+              )}
+            </section>
+          ))}
         </div>
 
-        {/* Footer */}
-        <div className="text-center mt-12 text-gray-400 text-sm">
-          <p className="mb-4">
-            Cosmatch.cz — Mgr. Ing. Simona Cibulková, IČO: 08419531
+        {/* Signature */}
+        <footer className="mt-24 pt-12 border-t border-gray-200">
+          <p className="eyebrow text-gray-400 mb-4">Podepsáno</p>
+          <p className="serif text-2xl text-gray-900 italic mb-1">Simona Cibulková</p>
+          <p className="text-sm text-gray-500">
+            Zakladatelka Cosmatch — Praha, květen 2026
           </p>
-          <p className="mb-6">
-            Algoritmus se volně inspiruje numerologickou teorií. Výsledky slouží jako podpora rozhodování,
-            ne jako absolutní pravda.
+          <p className="text-xs text-gray-400 mt-8 leading-relaxed">
+            Mgr. Ing. Simona Cibulková · IČO 08419531 · ahoj@cosmatch.cz<br />
+            Algoritmus se volně inspiruje numerologickou teorií Goldschneidera &amp; Elffers
+            a Kadlecové. Výsledky slouží jako podpora rozhodování, ne jako absolutní pravda.
           </p>
-          <Link href="/" className="text-pink-500 font-semibold">Zpět na úvod</Link>
-        </div>
 
-      </div>
-    </div>
+          <div className="mt-12">
+            <Link href="/" className="text-pink-500 font-medium hover:text-pink-600 transition text-sm tracking-wide">
+              Zpět na úvod →
+            </Link>
+          </div>
+        </footer>
+      </article>
+    </main>
   )
 }

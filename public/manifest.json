@@ -1,25 +1,49 @@
 {
+  "id": "/",
   "name": "Cosmatch — Kompatibilita podle data narození",
   "short_name": "Cosmatch",
-  "description": "Najdi svou skutečnou shodu díky numerologii a datům narození.",
+  "description": "Seznamka založená na numerologické kompatibilitě. Najdi skutečnou shodu, ne náhodu.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
+  "orientation": "portrait",
   "background_color": "#FAF6F0",
   "theme_color": "#ec4899",
-  "orientation": "portrait",
   "lang": "cs",
+  "dir": "ltr",
+  "categories": [
+    "lifestyle",
+    "social"
+  ],
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
       "src": "/icon-180.png",
@@ -37,27 +61,24 @@
       "type": "image/png"
     }
   ],
-  "screenshots": [
-    {
-      "src": "/screenshot-mobile.png",
-      "sizes": "390x844",
-      "type": "image/png",
-      "form_factor": "narrow"
-    }
-  ],
-  "categories": ["lifestyle", "social"],
   "shortcuts": [
     {
-      "name": "Discover",
+      "name": "Prohlížet profily",
       "short_name": "Discover",
       "url": "/discover",
-      "description": "Prohlížej kompatibilní profily"
+      "description": "Prozkoumávej kompatibilní profily"
     },
     {
-      "name": "Quiz",
-      "short_name": "Quiz",
+      "name": "Numerologický kvíz",
+      "short_name": "Kvíz",
       "url": "/test",
-      "description": "Zjisti svůj numerologický profil"
+      "description": "Zjisti svůj numerologický archetyp"
+    },
+    {
+      "name": "Moje shody",
+      "short_name": "Shody",
+      "url": "/matches",
+      "description": "Tvoje vzájemné shody"
     }
   ]
 }
