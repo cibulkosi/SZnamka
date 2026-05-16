@@ -74,6 +74,7 @@ function getUnansweredQuestions(user: Profile): Question[] {
 function HingeProfile({
  profile,
  compat,
+ compatLabel,
  enhancedScore,
  onPass,
  onLike,
@@ -81,6 +82,7 @@ function HingeProfile({
 }: {
  profile: Profile
  compat: Compatibility | null
+ compatLabel: string
  enhancedScore: number
  onPass: () => void
  onLike: () => void
@@ -638,6 +640,7 @@ export default function DiscoverPage() {
  <HingeProfile
  profile={currentProfile}
  compat={compat}
+ compatLabel={compatLabel}
  enhancedScore={enhancedScore}
  onPass={() => handleAction(false)}
  onLike={() => handleAction(true)}
