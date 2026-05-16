@@ -353,8 +353,8 @@ export default function RegisterPage() {
       {step === 1 && (
         <div className="card w-full max-w-md p-8">
           <ProgressBar current={2} />
-          <h2 className="text-2xl font-bold text-gray-900 mb-1">🌟 Datum narození</h2>
-          <p className="text-gray-400 text-sm mb-6">Základ personologické kompatibility</p>
+          <h2 className="text-2xl font-bold text-gray-900 mb-1">✨ Tvůj otisk osudu</h2>
+          <p className="text-gray-400 text-sm mb-6">Datum narození — neměnný základ tvé kompatibility</p>
           <div className="space-y-4">
             <div>
               <label className="text-gray-500 text-sm mb-2 block">📅 Datum *</label>
@@ -380,12 +380,11 @@ export default function RegisterPage() {
             )}
 
             {birthday && (
-              <div className="flex gap-2 bg-amber-50 border border-amber-300 rounded-2xl p-4">
-                <span className="text-amber-500 text-lg flex-shrink-0">🔒</span>
-                <p className="text-amber-800 text-xs leading-relaxed">
-                  <strong className="text-amber-900 block mb-1">Zadejte své skutečné datum narození.</strong>
-                  Cosmatch není založen na náhodě, ale na přesných výpočtech vaší a partnerovy osobnosti.
-                  Falešné datum povede k nefunkčním shodám. <strong>Datum po registraci nelze změnit.</strong>
+              <div className="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200 rounded-2xl p-4">
+                <p className="text-purple-700 text-xs font-semibold uppercase tracking-wide mb-1">✨ Otisk osudu</p>
+                <p className="text-purple-900 text-sm font-medium leading-relaxed">
+                  Tvoje datum narození je tvůj unikátní otisk — neměnný základ tvé osobnosti a kompatibility.
+                  Zadej skutečné datum, abychom mohli najít tvé skutečné spřízněné duše.
                 </p>
               </div>
             )}
@@ -631,8 +630,8 @@ export default function RegisterPage() {
               </div>
             )}
 
-            <p className="text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-xl px-3 py-2 mb-5 text-center">
-              🔒 Datum nelze po registraci změnit
+            <p className="text-xs text-purple-600 bg-purple-50 border border-purple-100 rounded-xl px-3 py-2 mb-5 text-center">
+              ✨ Tvůj otisk osudu je unikátní a neměnný
             </p>
 
             <div className="flex gap-3">
