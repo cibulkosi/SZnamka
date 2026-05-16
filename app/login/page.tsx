@@ -1,59 +1,10 @@
 'use client'
-import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 
-// SHA-256 hash hesla — musí být identický jako v register/page.tsx
-async function hashPassword(password: string, email: string): Promise<string> {
-  const data = new TextEncoder().encode(password + 'cosmatch_' + email.toLowerCase())
-  const buf = await crypto.subtle.digest('SHA-256', data)
-  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('')
-}
-
 export default function LoginPage() {
   const router = useRouter()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
-
-  const handleLogin = async () => {
-    if (!email || !password) {
-      setError('Vyplň e-mail i heslo.')
-      return
-    }
-    setLoading(true)
-    setError('')
-    try {
-      // Načti profil podle emailu
-      const { data: profile, error: err } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('email', email.toLowerCase().trim())
-        .single()
-
-      if (err || !profile) {
-        setError('Účet s tímto e-mailem neexistuje.')
-        return
-      }
-
-      // Ověř heslo
-      const hash = await hashPassword(password, email.toLowerCase().trim())
-      if (profile.password_hash && profile.password_hash !== hash) {
-        setError('Špatné heslo.')
-        return
-      }
-
-      // Úspěšné přihlášení
-      localStorage.setItem('cosmatch_user', JSON.stringify(profile))
-      router.push('/discover')
-    } catch {
-      setError('Chyba při přihlášení.')
-    } finally {
-      setLoading(false)
-    }
-  }
 
   const handleGoogleSSO = async () => {
     await supabase.auth.signInWithOAuth({
@@ -76,13 +27,13 @@ export default function LoginPage() {
         <span className="text-xl font-bold text-gray-900">Cosmatch</span>
       </Link>
       <div className="card w-full max-w-sm p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Přihlásit se</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">Přihlásit se</h2>
+        <p className="text-gray-400 text-sm mb-8">Pokračuj přes svůj Google nebo Facebook účet</p>
 
-        {/* SSO tlačítka */}
-        <div className="space-y-3 mb-5">
+        <div className="space-y-3">
           <button
             onClick={handleGoogleSSO}
-            className="w-full flex items-center justify-center gap-3 py-3 px-4 border-2 border-gray-200 rounded-2xl bg-white hover:border-gray-300 hover:bg-gray-50 transition-all font-medium text-gray-700"
+            className="w-full flex items-center justify-center gap-3 py-3.5 px-4 border-2 border-gray-200 rounded-2xl bg-white hover:border-gray-300 hover:bg-gray-50 transition-all font-medium text-gray-700"
           >
             <svg viewBox="0 0 24 24" className="w-5 h-5" xmlns="http://www.w3.org/2000/svg">
               <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -94,7 +45,7 @@ export default function LoginPage() {
           </button>
           <button
             onClick={handleFacebookSSO}
-            className="w-full flex items-center justify-center gap-3 py-3 px-4 border-2 border-gray-200 rounded-2xl bg-white hover:border-blue-200 hover:bg-blue-50 transition-all font-medium text-gray-700"
+            className="w-full flex items-center justify-center gap-3 py-3.5 px-4 border-2 border-gray-200 rounded-2xl bg-white hover:border-blue-200 hover:bg-blue-50 transition-all font-medium text-gray-700"
           >
             <svg viewBox="0 0 24 24" className="w-5 h-5" fill="#1877F2">
               <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
@@ -103,35 +54,10 @@ export default function LoginPage() {
           </button>
         </div>
 
-        {/* Oddělovač */}
-        <div className="flex items-center gap-3 mb-5">
-          <div className="flex-1 h-px bg-gray-100" />
-          <span className="text-gray-400 text-xs">nebo e-mailem</span>
-          <div className="flex-1 h-px bg-gray-100" />
-        </div>
-
-        <div className="space-y-4">
-          <div>
-            <label className="text-gray-500 text-sm mb-1 block">E-mail</label>
-            <input className="input" type="email" placeholder="email@example.com"
-              value={email} onChange={e => setEmail(e.target.value)}
-              onKeyDown={e => e.key === 'Enter' && handleLogin()} />
-          </div>
-          <div>
-            <label className="text-gray-500 text-sm mb-1 block">Heslo</label>
-            <input className="input" type="password" placeholder="••••••••"
-              value={password} onChange={e => setPassword(e.target.value)}
-              onKeyDown={e => e.key === 'Enter' && handleLogin()} />
-          </div>
-          {error && <p className="text-red-500 text-sm bg-red-50 border border-red-100 p-3 rounded-2xl">{error}</p>}
-          <button className="btn-primary w-full" onClick={handleLogin} disabled={loading}>
-            {loading ? '⏳ Přihlašuji...' : 'Přihlásit se →'}
-          </button>
-          <p className="text-center text-gray-400 text-sm">
-            Nemáš účet?{' '}
-            <Link href="/register" className="text-pink-500 hover:text-pink-600 font-semibold">Registrovat se</Link>
-          </p>
-        </div>
+        <p className="text-center text-gray-400 text-sm mt-8">
+          Nemáš účet?{' '}
+          <Link href="/register" className="text-pink-500 hover:text-pink-600 font-semibold">Registrovat se</Link>
+        </p>
       </div>
     </div>
   )
