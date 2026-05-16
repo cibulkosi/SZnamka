@@ -315,6 +315,10 @@ export default function RegisterPage() {
               </div>
             </div>
 
+            {form.month && !form.day && (
+              <p className="text-xs text-pink-500 mt-1">👆 Vyber ještě den</p>
+            )}
+
             {birthday && (
               <div className="flex gap-2 bg-amber-50 border border-amber-300 rounded-2xl p-4">
                 <span className="text-amber-500 text-lg flex-shrink-0">🔒</span>
