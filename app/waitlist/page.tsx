@@ -84,7 +84,7 @@ export default function WaitlistPage() {
     try {
       const code = Math.random().toString(36).substring(2, 8).toUpperCase()
       setReferralCode(code)
-      const cityValue = district || (city && city !== '' ? city : null)
+      const cityValue = district || (city ? (city as string) : null)
       const { error } = await supabase.from('waitlist').insert({
         email, name: name || null, city: cityValue,
         referral_code: code, referred_by: refCode || null, source: 'landing',
