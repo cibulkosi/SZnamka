@@ -52,6 +52,7 @@ export default function RegisterPage() {
  gender: '', looking_for: '', relationship_goal: '',
  age_min: 18, age_max: 55,
  city: '', country: 'CZ',
+ latitude: null as number | null, longitude: null as number | null,
  bio: '', occupation: '', education: '',
  hobbies: [] as string[],
  prompt_q: HINGE_PROMPTS[0], prompt_a: '',
@@ -135,6 +136,8 @@ export default function RegisterPage() {
  const country = data.address?.country_code?.toUpperCase() || 'CZ'
  if (city) set('city', city)
  if (country) set('country', country)
+ set('latitude', latitude)
+ set('longitude', longitude)
  if (!city) setGeoError('Město se nepodařilo zjistit — zadej ho ručně.')
  } catch {
  setGeoError('Nepodařilo se načíst polohu. Zadej město ručně.')
@@ -266,6 +269,9 @@ export default function RegisterPage() {
  education: form.education,
  hobbies: form.hobbies,
  photos: photoUrls,
+ latitude: form.latitude ?? null,
+ longitude: form.longitude ?? null,
+ last_seen: new Date().toISOString(),
  prompt_q: form.prompt_q || null,
  prompt_a: form.prompt_a || null,
  password_hash: passwordHash,

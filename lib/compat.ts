@@ -1,24 +1,24 @@
 /**
- * Cosmatch – Enhanced Compatibility Algorithm
+ * Cosmatch – Enhanced Compatibility Algorithm v2
  *
- * Váhový model:
- *   A) Datová rezonance (kniha)     35 %
- *   B) Životní vize & hodnoty       20 %
- *   C) Osobnost & týmovost          15 %
- *   D) Intimní kompatibilita        10 %
- *   E) Lifestyle & návyky           10 %
- *   F) Zájmy (hobbies)              10 %
+ * Vrstva 1 – Core Personology Score      (35 % váha bookScore)
+ * Vrstva 2 – Geolokace (decay)           +0–15 bodů, tvrdé KO nad limit
+ * Vrstva 2b– Age bonus (středová shoda)  +0–10 bodů
+ * Vrstva 3 – Intent Multiplier           ×0.5 / ×1.0 / ×1.2
+ * Vrstva 4 – Activity Boost             +15 bodů (online < 24 h)
+ * Vrstva 5 – Shared interests            +5 bodů / shodný tag (max 25)
  *
- * Intent multiplier (relationship_goal):
- *   Shodný záměr (oba Vážný / oba Přátelství / oba Nezávazně) → ×1.2
- *   Kompatibilní záměr (jeden nebo oba "Zatím nevím")          → ×1.0
- *   Protichůdný záměr (Vážný vs. Nezávazně)                   → ×0.5
+ * Interní váhování dalších dimenzí (B–E):
+ *   B) Životní vize & hodnoty  20 %
+ *   C) Osobnost & týmovost     15 %
+ *   D) Intimní kompatibilita   10 %
+ *   E) Lifestyle & návyky      10 %
  */
 
 import type { Profile } from './supabase'
 
 // ──────────────────────────────────────────────
-// Typy pro nová profilová pole
+// Typy
 // ──────────────────────────────────────────────
 export type FamilyPlans    = 'want_kids' | 'have_kids_want_more' | 'no_kids' | 'open'
 export type Religion       = 'none' | 'religious' | 'spiritual' | 'other'
@@ -33,130 +33,177 @@ export type Alcohol        = 'never' | 'socially' | 'regularly'
 export type Diet           = 'omnivore' | 'vegetarian' | 'vegan' | 'other'
 export type Exercise       = 'never' | 'sometimes' | 'regularly'
 
+// ──────────────────────────────────────────────
+// Haversine distance (km)
+// ──────────────────────────────────────────────
+function haversineKm(lat1: number, lon1: number, lat2: number, lon2: number): number {
+  const R = 6371
+  const dLat = (lat2 - lat1) * Math.PI / 180
+  const dLon = (lon2 - lon1) * Math.PI / 180
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+    Math.sin(dLon / 2) ** 2
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+}
+
 /**
- * Hlavní funkce – vypočítá celkové skóre kompatibility (0–100)
- *
- * @param me          Přihlášený uživatel
- * @param other       Zobrazovaný profil
- * @param bookScore   Skóre z tabulky compatibility (0–100), nebo null pokud neexistuje
+ * Vypočítá vzdálenost mezi dvěma profily (km), nebo null pokud chybí data.
  */
+export function distanceKm(me: Profile, other: Profile): number | null {
+  if (
+    me.latitude == null || me.longitude == null ||
+    other.latitude == null || other.longitude == null
+  ) return null
+  return haversineKm(me.latitude, me.longitude, other.latitude, other.longitude)
+}
+
+/**
+ * Vrací true pokud profil překračuje uživatelův hard limit vzdálenosti.
+ * Pokud vzdálenost nelze zjistit, vrací false (nezablokovat).
+ */
+export function isOutsideDistanceLimit(me: Profile, other: Profile, maxKm: number): boolean {
+  const d = distanceKm(me, other)
+  if (d === null) return false   // neznámá poloha → nezablokovat
+  return d > maxKm
+}
+
+// ──────────────────────────────────────────────
+// Geolokační bonus (Vrstva 2)
+// ──────────────────────────────────────────────
+function geoBonus(me: Profile, other: Profile): number {
+  const d = distanceKm(me, other)
+  if (d === null) return 0      // neznámá poloha → bez bonusu
+  if (d <= 5)  return 15
+  if (d <= 15) return 10
+  if (d <= 30) return 5
+  return 0
+}
+
+// ──────────────────────────────────────────────
+// Věkový bonus – střed preferovaného rozsahu (Vrstva 2b)
+// ──────────────────────────────────────────────
+function ageBonus(me: Profile, other: Profile): number {
+  const ageMin = (me as Profile & { age_min?: number }).age_min ?? 18
+  const ageMax = (me as Profile & { age_max?: number }).age_max ?? 99
+  const otherAge = other.birth_year
+    ? new Date().getFullYear() - other.birth_year
+    : null
+  if (!otherAge) return 0
+  if (otherAge < ageMin || otherAge > ageMax) return 0  // mimo rozsah
+  const mid = (ageMin + ageMax) / 2
+  const range = (ageMax - ageMin) / 2 || 1
+  const dist = Math.abs(otherAge - mid)
+  return Math.round(10 * Math.max(0, 1 - dist / range))  // 0–10 bodů
+}
+
+// ──────────────────────────────────────────────
+// Activity boost – online < 24 h (Vrstva 4)
+// ──────────────────────────────────────────────
+function activityBoost(other: Profile): number {
+  if (!other.last_seen) return 0
+  const diffMs = Date.now() - new Date(other.last_seen).getTime()
+  const diffH = diffMs / (1000 * 60 * 60)
+  return diffH < 24 ? 15 : 0
+}
+
+// ──────────────────────────────────────────────
+// Intent multiplier (Vrstva 3)
+// ──────────────────────────────────────────────
+function intentMultiplier(a?: string, b?: string): number {
+  if (!a || !b) return 1.0
+  if (a === b) return 1.2
+  const hardConflict =
+    (a === 'serious' && b === 'casual') ||
+    (a === 'casual' && b === 'serious')
+  if (hardConflict) return 0.5
+  return 1.0
+}
+
+// ──────────────────────────────────────────────
+// Hlavní funkce
+// ──────────────────────────────────────────────
 export function computeCompatibility(
   me: Profile,
   other: Profile,
   bookScore: number | null
 ): number {
-  // ── A) Datová rezonance (35 %) ───────────────
-  // bookScore může být null pokud pro tento pár nebyla nalezena žádná vazba v knize
+  // Vrstva 1 – Core personology (35 %)
   const bookRaw = bookScore ?? 0
   const aScore  = bookRaw * 0.35
 
-  // ── B) Životní vize (20 %) ────────────────────
+  // B–E interní váhy
   const bScore = scoreLifeVision(me, other) * 0.20
-
-  // ── C) Osobnost & týmovost (15 %) ────────────
   const cScore = scorePersonality(me, other) * 0.15
-
-  // ── D) Intimní kompatibilita (10 %) ──────────
   const dScore = scoreIntimate(me, other) * 0.10
-
-  // ── E) Lifestyle & návyky (10 %) ─────────────
   const eScore = scoreLifestyle(me, other) * 0.10
 
-  // ── F) Zájmy (10 %) ──────────────────────────
-  const fScore = scoreInterests(me, other) * 0.10
+  // Vrstva 5 – Shared interests (max 25 bodů, 5 za každý shodný tag)
+  const ah = me.hobbies ?? []
+  const bh = other.hobbies ?? []
+  const sharedCount = bh.filter(h => ah.includes(h)).length
+  const interestBonus = Math.min(25, sharedCount * 5)
 
-  const rawScore = aScore + bScore + cScore + dScore + eScore + fScore
+  // Vrstva 2 – Geolokace decay bonus (0–15)
+  const geo = geoBonus(me, other)
 
-  // ── Intent multiplier (relationship_goal) ────
+  // Vrstva 2b – Věkový bonus (0–10)
+  const age = ageBonus(me, other)
+
+  // Vrstva 4 – Activity boost (0–15)
+  const activity = activityBoost(other)
+
+  const rawScore = aScore + bScore + cScore + dScore + eScore + interestBonus + geo + age + activity
+
+  // Vrstva 3 – Intent multiplier
   const multiplier = intentMultiplier(me.relationship_goal, other.relationship_goal)
 
   return Math.min(100, Math.round(rawScore * multiplier))
-}
-
-/**
- * Intent multiplier — záměr vztahu ovlivňuje celkové skóre
- *
- * serious   = Vážný vztah
- * friendship = Přátelství
- * casual    = Nezávazně
- * unsure    = Zatím nevím
- */
-function intentMultiplier(a?: string, b?: string): number {
-  if (!a || !b) return 1.0        // chybí data → neutrální
-
-  if (a === b) return 1.2         // přesná shoda záměru → boost
-
-  // Protichůdné záměry (dealbreaker páry)
-  const hardConflict = (
-    (a === 'serious' && b === 'casual') ||
-    (a === 'casual' && b === 'serious')
-  )
-  if (hardConflict) return 0.5    // závažný nesoulad → penalizace
-
-  // Jeden nebo oba "unsure" → neutrální
-  if (a === 'unsure' || b === 'unsure') return 1.0
-
-  // Přátelství vs. cokoliv jiného (není přímo konflikt)
-  return 1.0
 }
 
 // ──────────────────────────────────────────────
 // B) Životní vize – 20 %
 // ──────────────────────────────────────────────
 function scoreLifeVision(a: Profile, b: Profile): number {
-  let points = 0
-  let max    = 0
+  let points = 0, max = 0
 
-  // Děti (velmi důležité – deal-breaker)
   if (a.family_plans && b.family_plans) {
     max += 40
-    const fp = childrenMatch(a.family_plans as FamilyPlans, b.family_plans as FamilyPlans)
-    points += fp * 40
+    points += childrenMatch(a.family_plans as FamilyPlans, b.family_plans as FamilyPlans) * 40
   }
-
-  // Typ vztahu
   if (a.relationship_type && b.relationship_type) {
     max += 30
     if (a.relationship_type === b.relationship_type) points += 30
     else if (
       (a.relationship_type === 'serious' && b.relationship_type === 'casual') ||
       (a.relationship_type === 'casual' && b.relationship_type === 'serious')
-    ) points += 0 // hard mismatch
+    ) points += 0
     else points += 10
   }
-
-  // Víra / spiritualita
   if (a.religion && b.religion) {
     max += 20
     if (a.religion === b.religion) points += 20
     else if (a.religion === 'none' || b.religion === 'none') points += 5
     else points += 10
   }
-
-  // Finance
   if (a.finances && b.finances) {
     max += 10
     if (a.finances === b.finances) points += 10
-    else if (a.finances !== 'balanced' && b.finances !== 'balanced' && a.finances !== b.finances) points += 0
+    else if (a.finances !== 'balanced' && b.finances !== 'balanced') points += 0
     else points += 5
   }
 
-  if (max === 0) return 50 // žádná data → neutrální
+  if (max === 0) return 50
   return Math.min(100, Math.round((points / max) * 100))
 }
 
-/** Míra shody v otázce dětí (0–1) */
 function childrenMatch(a: FamilyPlans, b: FamilyPlans): number {
   if (a === b) return 1
-  if (
-    (a === 'want_kids' && b === 'have_kids_want_more') ||
-    (a === 'have_kids_want_more' && b === 'want_kids')
-  ) return 0.8
+  if ((a === 'want_kids' && b === 'have_kids_want_more') ||
+      (a === 'have_kids_want_more' && b === 'want_kids')) return 0.8
   if (a === 'open' || b === 'open') return 0.6
-  if (
-    (a === 'want_kids' && b === 'no_kids') ||
-    (a === 'no_kids' && b === 'want_kids')
-  ) return 0  // deal-breaker
+  if ((a === 'want_kids' && b === 'no_kids') ||
+      (a === 'no_kids' && b === 'want_kids')) return 0
   return 0.3
 }
 
@@ -164,42 +211,31 @@ function childrenMatch(a: FamilyPlans, b: FamilyPlans): number {
 // C) Osobnost & týmovost – 15 %
 // ──────────────────────────────────────────────
 function scorePersonality(a: Profile, b: Profile): number {
-  let points = 0
-  let max    = 0
+  let points = 0, max = 0
 
-  // Role (vizionář vs realizátor) – komplementarita je lepší než shoda
   if (a.personality_role && b.personality_role) {
     max += 35
-    if (a.personality_role !== b.personality_role && a.personality_role !== 'both' && b.personality_role !== 'both') {
-      points += 35 // dokonalý tým
-    } else if (a.personality_role === 'both' || b.personality_role === 'both') {
-      points += 25
-    } else {
-      points += 15 // stejná role – méně synergie
-    }
+    if (a.personality_role !== b.personality_role &&
+        a.personality_role !== 'both' && b.personality_role !== 'both') points += 35
+    else if (a.personality_role === 'both' || b.personality_role === 'both') points += 25
+    else points += 15
   }
-
-  // Sociální energie – shoda nebo ambivert = flexibilní
   if (a.personality_social && b.personality_social) {
     max += 30
     if (a.personality_social === b.personality_social) points += 30
     else if (a.personality_social === 'ambivert' || b.personality_social === 'ambivert') points += 20
-    else points += 10 // introvert + extrovert – funguje, ale s výzvami
+    else points += 10
   }
-
-  // Denní rytmus (sova vs skřivan)
   if (a.personality_schedule && b.personality_schedule) {
     max += 20
     if (a.personality_schedule === b.personality_schedule) points += 20
     else if (a.personality_schedule === 'flexible' || b.personality_schedule === 'flexible') points += 15
-    else points += 0 // sova + skřivan = chronický problém
+    else points += 0
   }
-
-  // Řešení konfliktů – shoda
   if (a.personality_conflict && b.personality_conflict) {
     max += 15
     if (a.personality_conflict === b.personality_conflict) points += 15
-    else if (a.personality_conflict === 'avoid' && b.personality_conflict !== 'talk') points += 5
+    else if (a.personality_conflict === 'avoid') points += 5
     else points += 8
   }
 
@@ -211,22 +247,24 @@ function scorePersonality(a: Profile, b: Profile): number {
 // D) Intimní kompatibilita – 10 %
 // ──────────────────────────────────────────────
 function scoreIntimate(a: Profile, b: Profile): number {
-  if (a.libido === undefined || a.libido === null || b.libido === undefined || b.libido === null) {
-    return 50 // neutrální – chybí data
-  }
+  if (a.libido == null || b.libido == null) return 50
   const diff = Math.abs((a.libido as number) - (b.libido as number))
-  // diff 0 → 100, diff 1 → 80, diff 2 → 50, diff 3 → 20, diff 4 → 0
   return Math.max(0, 100 - diff * 25)
 }
 
 // ──────────────────────────────────────────────
-// E) Lifestyle & návyky – 10 %
+// E) Lifestyle – 10 %
 // ──────────────────────────────────────────────
 function scoreLifestyle(a: Profile, b: Profile): number {
   const factors: number[] = []
 
   if (a.smoking && b.smoking) {
-    factors.push(smokingMatch(a.smoking as Smoking, b.smoking as Smoking))
+    const sm: Record<string, Record<string, number>> = {
+      never: { never: 100, sometimes: 50, often: 5 },
+      sometimes: { never: 50, sometimes: 100, often: 60 },
+      often: { never: 5, sometimes: 60, often: 100 },
+    }
+    factors.push(sm[a.smoking]?.[b.smoking] ?? 50)
   }
   if (a.alcohol && b.alcohol) {
     if (a.alcohol === b.alcohol) factors.push(100)
@@ -239,38 +277,13 @@ function scoreLifestyle(a: Profile, b: Profile): number {
     else factors.push(65)
   }
   if (a.exercise && b.exercise) {
-    if (a.exercise === b.exercise) factors.push(100)
-    else if (Math.abs(exerciseLevel(a.exercise as Exercise) - exerciseLevel(b.exercise as Exercise)) <= 1) factors.push(70)
-    else factors.push(30)
+    const level = (e: string) => e === 'never' ? 0 : e === 'sometimes' ? 1 : 2
+    const diff = Math.abs(level(a.exercise) - level(b.exercise))
+    factors.push(diff === 0 ? 100 : diff === 1 ? 70 : 30)
   }
 
-  if (factors.length === 0) return 50
+  if (!factors.length) return 50
   return Math.round(factors.reduce((s, v) => s + v, 0) / factors.length)
-}
-
-function smokingMatch(a: Smoking, b: Smoking): number {
-  if (a === b) return 100
-  if (a === 'never' && b === 'often') return 5
-  if (a === 'often' && b === 'never') return 5
-  return 50
-}
-
-function exerciseLevel(e: Exercise): number {
-  return e === 'never' ? 0 : e === 'sometimes' ? 1 : 2
-}
-
-// ──────────────────────────────────────────────
-// F) Zájmy – 10 %
-// ──────────────────────────────────────────────
-function scoreInterests(a: Profile, b: Profile): number {
-  const ah = a.hobbies ?? []
-  const bh = b.hobbies ?? []
-  if (!ah.length || !bh.length) return 50
-
-  const aSet   = new Set(ah)
-  const overlap = bh.filter(h => aSet.has(h)).length
-  const union   = new Set([...ah, ...bh]).size
-  return Math.round((overlap / union) * 100)
 }
 
 // ──────────────────────────────────────────────
@@ -280,8 +293,7 @@ export function profileCompleteness(p: Profile): number {
   const fields = [
     p.family_plans, p.relationship_type, p.religion, p.finances,
     p.personality_role, p.personality_schedule, p.personality_social, p.personality_conflict,
-    p.libido,
-    p.smoking, p.alcohol, p.diet, p.exercise,
+    p.libido, p.smoking, p.alcohol, p.diet, p.exercise,
     p.hobbies?.length,
   ]
   const filled = fields.filter(f => f !== undefined && f !== null && f !== '').length

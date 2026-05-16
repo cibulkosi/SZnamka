@@ -27,6 +27,12 @@ export type Profile = {
   philosophy?: string
   relationship_goal?: string  // 'serious' | 'friendship' | 'casual' | 'unsure'
 
+  // ── Geolokace + aktivita ──────────────────────
+  latitude?: number
+  longitude?: number
+  last_seen?: string      // ISO timestamptz — kdy byl uživatel naposledy online
+  elo_score?: number      // ELO / desirability score (default 1400)
+
   // ── Nová pole – algoritmus kompatibility ──────────
   // B) Životní vize
   family_plans?: string       // 'want_kids' | 'have_kids_want_more' | 'no_kids' | 'open'

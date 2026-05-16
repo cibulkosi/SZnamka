@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { supabase, type Profile, type Compatibility, getZodiac } from '@/lib/supabase'
 import { CompatBadges, ScoreRing } from '@/components/CompatBadges'
 import { ProfileQuestion, PROFILE_QUESTIONS, type Question } from '@/components/ProfileQuestion'
-import { computeCompatibility, profileCompleteness } from '@/lib/compat'
+import { computeCompatibility, profileCompleteness, isOutsideDistanceLimit } from '@/lib/compat'
 
 // Pastelové gradienty jako avatar fallback (bez fotky)
 const AVATAR_GRADIENTS = [
@@ -196,7 +196,10 @@ function HingeProfile({
  {compat.beneficial && (
  <p className="text-purple-700 text-sm"> Prospěšný vztah</p> )}
  {compat.challenging && (
- <p className="text-purple-700 text-sm"> Výzva a růst</p> )}
+ <p className="text-purple-700 text-sm font-semibold flex items-center gap-1">
+ <svg viewBox="0 0 24 24" className="w-4 h-4 text-yellow-500 fill-yellow-400" xmlns="http://www.w3.org/2000/svg"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+ Výzva a růst
+ </p> )}
  {!compat.is_mutual && !compat.soul_mates && !compat.love_friendship &&
  !compat.fatal_attraction && !compat.beneficial && !compat.challenging && (
  <p className="text-purple-500 text-sm">Neutrální kombinace dat.</p> )}
@@ -301,6 +304,8 @@ export default function DiscoverPage() {
  }
 
  loadProfiles(u)
+ // Aktualizuj last_seen — ukazuje, že uživatel je aktivní
+ supabase.from('profiles').update({ last_seen: new Date().toISOString() }).eq('id', u.id).then(() => {})
  }, [router])
 
  const loadProfiles = async (u: Profile) => {
@@ -328,15 +333,23 @@ export default function DiscoverPage() {
  const compatMap: Record<string, Compatibility> = {}
  compatData?.forEach(c => { compatMap[c.date_b] = c })
 
+ // Vrstva 2 – Hard KO: vylouč profily mimo limit vzdálenosti uživatele
+ const maxDistKm = (u as Profile & { max_distance?: number }).max_distance ?? 100
+ const profsInRange = profs.filter(p => !isOutsideDistanceLimit(u, p, maxDistKm))
+
  // Vypočítej enhanced scores pro všechny profily
  const scores: Record<string, number> = {}
- profs.forEach(p => {
+ profsInRange.forEach(p => {
  const bookScore = compatMap[p.birthday]?.score ?? null
  scores[p.id] = computeCompatibility(u, p, bookScore)
  })
 
- const sorted = [...profs].sort((a, b) => {
- return (scores[b.id] ?? 0) - (scores[a.id] ?? 0)
+ // Vrstva 4b – ELO boost: profily s vyšším elo_score dostanou mírnou prioritu
+ const sorted = [...profsInRange].sort((a, b) => {
+ const scoreDiff = (scores[b.id] ?? 0) - (scores[a.id] ?? 0)
+ if (Math.abs(scoreDiff) > 3) return scoreDiff
+ // Tie-break: preferuj vyšší ELO (atraktivnější profily pro nové uživatele)
+ return ((b.elo_score ?? 1400) - (a.elo_score ?? 1400)) * 0.1
  })
 
  setProfiles(sorted)
