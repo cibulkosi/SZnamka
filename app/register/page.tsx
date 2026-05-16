@@ -259,18 +259,17 @@ export default function RegisterPage() {
         <span className="text-xl font-bold text-gray-900">Cosmatch</span>
       </Link>
 
-      {/* ═══ KROK 0 — Vytvoř účet ═══ */}
+      {/* ═══ KROK 0 — Vytvoř účet (SSO only) ═══ */}
       {step === 0 && (
         <div className="card w-full max-w-md p-8">
           <ProgressBar current={1} />
-          <h2 className="text-2xl font-bold text-gray-900 mb-1">👋 Vytvoř si účet</h2>
-          <p className="text-gray-400 text-sm mb-6">Začínáme — jen základní info</p>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">👋 Vytvoř si účet</h2>
+          <p className="text-gray-400 text-sm mb-8">Přihlásíme tě bezpečně přes Google nebo Facebook</p>
 
-          {/* SSO tlačítka */}
-          <div className="space-y-3 mb-5">
+          <div className="space-y-3">
             <button
               onClick={handleGoogleSSO}
-              className="w-full flex items-center justify-center gap-3 py-3 px-4 border-2 border-gray-200 rounded-2xl bg-white hover:border-gray-300 hover:bg-gray-50 transition-all font-medium text-gray-700"
+              className="w-full flex items-center justify-center gap-3 py-3.5 px-4 border-2 border-gray-200 rounded-2xl bg-white hover:border-gray-300 hover:bg-gray-50 transition-all font-medium text-gray-700"
             >
               <svg viewBox="0 0 24 24" className="w-5 h-5" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -282,7 +281,7 @@ export default function RegisterPage() {
             </button>
             <button
               onClick={handleFacebookSSO}
-              className="w-full flex items-center justify-center gap-3 py-3 px-4 border-2 border-gray-200 rounded-2xl bg-white hover:border-blue-200 hover:bg-blue-50 transition-all font-medium text-gray-700"
+              className="w-full flex items-center justify-center gap-3 py-3.5 px-4 border-2 border-gray-200 rounded-2xl bg-white hover:border-blue-200 hover:bg-blue-50 transition-all font-medium text-gray-700"
             >
               <svg viewBox="0 0 24 24" className="w-5 h-5" fill="#1877F2">
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
@@ -291,65 +290,14 @@ export default function RegisterPage() {
             </button>
           </div>
 
-          {/* Oddělovač */}
-          <div className="flex items-center gap-3 mb-5">
-            <div className="flex-1 h-px bg-gray-100" />
-            <span className="text-gray-400 text-xs">nebo e-mailem</span>
-            <div className="flex-1 h-px bg-gray-100" />
-          </div>
-
-          <div className="space-y-4">
-            <div>
-              <label className="text-gray-500 text-sm mb-1 block">Jméno *</label>
-              <input className="input" placeholder="Jak ti říkají?" value={form.name}
-                onChange={e => set('name', e.target.value)} />
-            </div>
-            <div>
-              <label className="text-gray-500 text-sm mb-1 block">E-mail *</label>
-              <input className="input" type="email" placeholder="tvuj@email.cz" value={form.email}
-                onChange={e => set('email', e.target.value)} />
-            </div>
-            <div>
-              <label className="text-gray-500 text-sm mb-1 block">Heslo *</label>
-              <input className="input" type="password" placeholder="min. 8 znaků" value={form.password}
-                onChange={e => set('password', e.target.value)} />
-            </div>
-            {/* Cloudflare Turnstile — anti-bot ochrana */}
-            <div
-              className="cf-turnstile mt-2"
-              data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? '1x00000000000000000000AA'}
-              data-callback="__ts_cb__"
-              data-expired-callback="__ts_exp__"
-              data-theme="light"
-              data-size="flexible"
-            />
-            {turnstileLoading && <p className="text-xs text-gray-400 text-center">Načítám ověření...</p>}
-
-            <button className="btn-primary w-full mt-2"
-              onClick={async () => {
-                if (!turnstileToken) return
-                // Ověř token na serveru
-                const res = await fetch('https://xdotpadgbchhecwitbpe.supabase.co/functions/v1/verify-turnstile', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ token: turnstileToken }),
-                })
-                const { success } = await res.json()
-                if (success) setStep(1)
-                else setError('Ověření selhalo. Zkus to znovu.')
-              }}
-              disabled={!form.name || !form.email || !form.password || !turnstileToken}>
-              Pokračovat →
-            </button>
-          </div>
-          <p className="text-center text-gray-400 text-sm mt-6">
+          <p className="text-center text-gray-500 text-xs mt-8">
             Už máš účet?{' '}
             <Link href="/login" className="text-pink-500 hover:text-pink-600 font-semibold">Přihlásit se</Link>
           </p>
         </div>
       )}
 
-      {/* ═══ KROK 1 — Datum narození ═══ */}
+            {/* ═══ KROK 1 — Datum narození ═══ */}
       {step === 1 && (
         <div className="card w-full max-w-md p-8">
           <ProgressBar current={2} />
