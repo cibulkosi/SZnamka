@@ -347,7 +347,7 @@ export default function DiscoverPage() {
  // Načti magic moment numerologický text (jednou za registraci)
  const magicSeen = localStorage.getItem('cosmatch_magic_seen')
  if (!magicSeen) {
- const bday = (JSON.parse(stored) as Profile).birthday
+ const bday = u.birthday
  supabase.from('personology').select('opening').eq('date_key', bday).single()
  .then(({ data }) => {
  if (data?.opening) setMagicText(data.opening)
