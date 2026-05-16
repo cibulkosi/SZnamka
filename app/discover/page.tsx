@@ -37,29 +37,25 @@ const FILTER_OPTIONS: { label: string; value: MinScore }[] = [
 
 function BottomNav({ active }: { active: string }) {
  const items = [
- { key: 'discover', href: '/discover', label: 'DISCOVER', icon: (
- <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2"> <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/> </svg> )},
- { key: 'matches', href: '/matches', label: 'SHODY', icon: (
- <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2"> <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/> <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/> </svg> )},
- { key: 'liked', href: '/matches', label: 'LÍBÍM SE', icon: (
- <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor"> <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/> </svg> )},
- { key: 'chat', href: '/matches', label: 'CHAT', icon: (
- <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2"> <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/> </svg> )},
- { key: 'profile', href: '/profile', label: 'JÁ', icon: (
- <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2"> <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/> </svg> )},
+ { key: 'discover', href: '/discover', label: 'DISCOVER' },
+ { key: 'matches', href: '/matches', label: 'SHODY' },
+ { key: 'premium', href: '/premium', label: 'PREMIUM' },
+ { key: 'profile', href: '/profile', label: 'PROFIL' },
  ]
-
  return (
- <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 z-50"> <div className="max-w-lg mx-auto flex items-center justify-around py-2 px-2"> {items.map(item => (
- <Link
- key={item.key}
- href={item.href}
- className={`flex flex-col items-center gap-0.5 px-3 py-1 rounded-xl transition-colors ${
+ <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 z-30">
+ <div className="flex max-w-lg mx-auto">
+ {items.map(item => (
+ <Link key={item.key} href={item.href}
+ className={`flex-1 py-4 text-center text-[10px] tracking-[0.15em] uppercase font-medium transition-colors ${
  active === item.key ? 'text-pink-500' : 'text-gray-400 hover:text-gray-600'
- }`}
- > {item.icon}
- <span className="text-[9px] font-bold tracking-wide">{item.label}</span> </Link> ))}
- </div> </nav> )
+ }`}>
+ {item.label}
+ </Link>
+ ))}
+ </div>
+ </nav>
+ )
 }
 
 // Které otázky ještě nebyly zodpovězeny pro daného uživatele
@@ -568,42 +564,52 @@ export default function DiscoverPage() {
  const completeness = user ? profileCompleteness(user) : 0
 
  if (loading) return (
- <div className="min-h-screen bg-[#FAF6F0] flex items-center justify-center"> <div className="text-center"> <div className="text-4xl mb-3 animate-spin"></div> <p className="text-gray-400 text-sm font-medium">Načítám profily...</p> </div> </div> )
+ <main className="min-h-screen bg-[#FAF6F0] flex items-center justify-center">
+   <p className="text-gray-400 text-sm">Načítám profily…</p>
+ </main>
+ )
 
  return (
  // Celá stránka — pevná výška viewportu, overflow skrytý (scroll je uvnitř HingeProfile)
  <div className="bg-[#FAF6F0]" style={{ height: '100dvh', display: 'flex', flexDirection: 'column' }}> {/* Magic Moment Modal */}
  {showMagic && magicText && (
- <div className="fixed inset-0 z-50 flex items-center justify-center px-5 bg-black/60 backdrop-blur-sm"> <div className="bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl"> <div className="text-5xl mb-4"></div> <h2 className="text-xl font-bold text-gray-900 mb-2"> {user?.name}, vesmír tě zná.
- </h2> <p className="text-gray-600 text-sm leading-relaxed mb-6 whitespace-pre-wrap"> {magicText}
- </p> <button
- className="btn-primary w-full"
- onClick={() => {
- setShowMagic(false)
- localStorage.setItem('cosmatch_magic_seen', '1')
- }}
- > Pokračovat v hledání
- </button> </div> </div> )}
+ <div className="fixed inset-0 z-50 flex items-center justify-center px-6 bg-black/50 backdrop-blur-sm">
+   <div className="bg-[#FAF6F0] rounded-3xl p-10 max-w-md w-full shadow-2xl">
+     <p className="eyebrow text-pink-500 mb-4">Magický moment</p>
+     <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-6">
+       {user?.name}, <em className="italic text-pink-500">vesmír tě zná</em>.
+     </h2>
+     <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-8 whitespace-pre-wrap serif italic">
+       „{magicText}"
+     </p>
+     <button
+       className="w-full bg-gray-900 text-white py-5 rounded-full text-base font-medium hover:bg-gray-800 transition"
+       onClick={() => {
+         setShowMagic(false)
+         localStorage.setItem('cosmatch_magic_seen', '1')
+       }}
+     >Pokračovat v hledání</button>
+   </div>
+ </div>
+ )}
 
  {/* Horní navigace */}
- <nav className="flex-shrink-0 flex items-center justify-between px-5 py-3 max-w-lg mx-auto w-full bg-[#FAF6F0] z-30"> <Link href="/" className="flex items-center gap-1.5"> <span className="text-pink-500 text-xl font-bold">✦</span> <span className="font-bold text-gray-900 text-lg tracking-tight">Cosmatch</span> </Link> <div className="flex items-center gap-2"> {/* Filtr kompatibility */}
- <div className="flex gap-1"> {FILTER_OPTIONS.map(opt => (
- <button
- key={opt.value}
- onClick={() => { setMinScore(opt.value); setIdx(0) }}
- className={`text-xs px-2.5 py-1 rounded-full font-semibold transition-all ${
- minScore === opt.value
- ? 'bg-pink-500 text-white shadow-sm'
- : 'bg-white text-gray-500 border border-gray-200 hover:border-pink-300'
- }`}
- > {opt.label}
- </button> ))}
- </div> {/* Avatar / odhlášení */}
- <button
- onClick={() => { localStorage.removeItem('cosmatch_user'); router.push('/') }}
- className="w-9 h-9 rounded-full bg-pink-100 flex items-center justify-center ml-1"
- title="Odhlásit"
- > <svg viewBox="0 0 24 24" className="w-5 h-5 text-pink-500" fill="currentColor"> <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/> </svg> </button> </div> </nav> {/* Denní swipe limit lišta */}
+ <nav className="flex-shrink-0 flex items-center justify-between px-5 py-4 max-w-lg mx-auto w-full bg-[#FAF6F0] z-30">
+   <Link href="/" className="serif-display text-xl font-medium text-gray-900 tracking-tight">Cosmatch</Link>
+   <div className="flex gap-1.5">
+     {FILTER_OPTIONS.map(opt => (
+       <button
+         key={opt.value}
+         onClick={() => { setMinScore(opt.value); setIdx(0) }}
+         className={`text-xs px-3 py-1.5 rounded-full font-medium transition-all ${
+           minScore === opt.value
+             ? 'bg-gray-900 text-white'
+             : 'bg-white text-gray-600 border border-gray-200 hover:border-gray-400'
+         }`}
+       >{opt.label}</button>
+     ))}
+   </div>
+ </nav> {/* Denní swipe limit lišta */}
  {!user?.premium && (
  <div className="flex-shrink-0 px-5 pb-2 max-w-lg mx-auto w-full"> <div className="flex items-center justify-between px-1 mb-1"> <span className="text-xs text-gray-400 font-medium">Dnešní swipy</span> <span className="text-xs font-bold text-gray-500"> {Math.min(dailySwipes, DAILY_FREE_LIMIT)} / {DAILY_FREE_LIMIT}
  {user?.premium && <span className="ml-2 text-amber-500"> PREMIUM</span>}
