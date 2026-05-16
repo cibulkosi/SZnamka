@@ -190,6 +190,33 @@ export default function RegisterPage() {
       setError('Vyplň všechna povinná pole.')
       return
     }
+    // Ověření Turnstile tokenu
+    if (!turnstileToken) {
+      setError('Prosím potvrď, že nejsi robot.')
+      return
+    }
+    try {
+      const verifyRes = await fetch(
+        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/verify-turnstile`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
+          },
+          body: JSON.stringify({ token: turnstileToken }),
+        }
+      )
+      const verifyData = await verifyRes.json()
+      if (!verifyData.success) {
+        setError('Ověření selhalo. Zkus to znovu.')
+        setTurnstileToken('')
+        return
+      }
+    } catch {
+      setError('Chyba při ověření. Zkus to znovu.')
+      return
+    }
     setLoading(true)
     setError('')
     try {
@@ -538,12 +565,22 @@ export default function RegisterPage() {
               <input className="input" placeholder="Tvoje odpověď..."
                 value={form.prompt_a} onChange={e => set('prompt_a', e.target.value)} />
             </div>
+            {/* Cloudflare Turnstile anti-bot */}
+            <div className="flex justify-center">
+              <div
+                className="cf-turnstile"
+                data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA'}
+                data-callback="__ts_cb__"
+                data-expired-callback="__ts_exp__"
+                data-theme="light"
+              />
+            </div>
             {error && (
               <p className="text-red-500 text-sm bg-red-50 border border-red-100 p-3 rounded-2xl">{error}</p>
             )}
             <div className="flex gap-3 pt-1">
               <button className="btn-secondary flex-1" onClick={() => setStep(3)}>← Zpět</button>
-              <button className="btn-primary flex-1" onClick={handleSubmit} disabled={loading}>
+              <button className="btn-primary flex-1" onClick={handleSubmit} disabled={loading || !turnstileToken}>
                 {loading ? '⏳ Registruji...' : '🚀 Hotovo!'}
               </button>
             </div>
