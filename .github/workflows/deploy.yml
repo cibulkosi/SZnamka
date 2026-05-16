@@ -30,3 +30,31 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy out --project-name=cosmatch
+
+      # ── IndexNow: notify Bing + SeznamBot about new/updated pages ──
+      # Pings the changed URLs from the latest commit so search engines re-crawl them within minutes
+      - name: Wait 30 s for Cloudflare propagation
+        run: sleep 30
+
+      - name: Notify IndexNow
+        run: |
+          KEY="522471b7727f05479fa217d66b1746776c59c3871f1af5d04591154cb9a1152b"
+          # Get list of pages: pull from generated out/ (static export)
+          URLS=$(find out -name "index.html" -type f | sed 's|out||; s|/index.html|/|; s|^|https://cosmatch.cz|' | sort -u)
+          COUNT=$(echo "$URLS" | wc -l)
+          echo "Submitting $COUNT URLs to IndexNow"
+          # IndexNow supports up to 10 000 URLs per request as JSON array
+          JSON=$(echo "$URLS" | python3 -c "
+          import sys, json
+          urls = [l.strip() for l in sys.stdin if l.strip()]
+          print(json.dumps({
+            'host': 'cosmatch.cz',
+            'key': '$KEY',
+            'keyLocation': f'https://cosmatch.cz/$KEY.txt',
+            'urlList': urls
+          }))
+          ")
+          curl -X POST "https://api.indexnow.org/IndexNow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d "$JSON" \
+            --fail-with-body || echo "IndexNow ping returned non-zero (ok — they 202-accept)"
