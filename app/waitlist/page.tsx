@@ -17,6 +17,11 @@ const DISTRICTS: Record<Exclude<CityKey, '' | 'Jiné'>, string[]> = {
   Bratislava: ['Staré Mesto','Ružinov','Petržalka','Nové Mesto','Karlova Ves','Dúbravka','Rača','Vrakuňa','Lamač','Devínska Nová Ves'],
 }
 
+function makeVoucher(): string {
+  const part = () => Math.random().toString(36).substring(2, 6).toUpperCase()
+  return `COSMATCH-${part()}-${part()}`
+}
+
 const CITY_TAGLINE: Record<Exclude<CityKey, '' | 'Jiné'>, string> = {
   Praha: 'Praha jde první. Spouštíme jakmile překročíme 1 000 lidí.',
   Brno: 'Brno otevřeme po Praze — sbíráme tě, abychom věděli, odkud začít.',
