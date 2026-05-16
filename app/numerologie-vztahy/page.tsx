@@ -1,14 +1,45 @@
+
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
+const TITLE = 'Numerologie a vztahy — Jak čísla ovlivňují lásku | Cosmatch'
+const DESCRIPTION = 'Praktický průvodce numerologií ve vztazích: jak životní číslo ovlivňuje partnerský výběr, komunikaci a dlouhodobou kompatibilitu. Master čísla, karmická spojení, přirozená rezonance.'
+const URL = 'https://cosmatch.cz/numerologie-vztahy'
+
 export const metadata: Metadata = {
-  title: 'Numerologie a vztahy — Jak čísla ovlivňují lásku | Cosmatch',
-  description: 'Numerologie ve vztazích: jak životní číslo ovlivňuje partnerský výběr, komunikaci a dlouhodobou kompatibilitu. Praktický průvodce.',
-  keywords: 'numerologie vztahy, numerologie láska, životní číslo partner, numerologie kompatibilita partnerů',
+  title: TITLE,
+  description: DESCRIPTION,
+  keywords: [
+    'numerologie vztahy',
+    'numerologie láska',
+    'životní číslo partner',
+    'numerologie kompatibilita partnerů',
+    'master čísla vztahy',
+    'numerologie a partner',
+    'karmické spojení',
+    'kompatibilita podle data narození',
+  ],
+  alternates: { canonical: URL },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: URL,
+    type: 'article',
+    siteName: 'Cosmatch',
+    locale: 'cs_CZ',
+    images: [{ url: 'https://cosmatch.cz/icon-512.png', width: 512, height: 512, alt: 'Cosmatch' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: TITLE,
+    description: DESCRIPTION,
+  },
+  authors: [{ name: 'Simona Cibulková', url: 'https://cosmatch.cz' }],
 }
 
 const SECTIONS = [
   {
+    id: 'pritahovani',
     num: 'I',
     title: 'Proč se přitahujeme k určitým lidem?',
     paras: [
@@ -17,6 +48,7 @@ const SECTIONS = [
     ],
   },
   {
+    id: 'tri-typy',
     num: 'II',
     title: 'Tři typy vztahových čísel',
     paras: [
@@ -25,6 +57,7 @@ const SECTIONS = [
     ],
   },
   {
+    id: 'cisla-v-praxi',
     num: 'III',
     title: 'Čísla v praxi: co funguje a co ne',
     paras: [
@@ -33,6 +66,7 @@ const SECTIONS = [
     ],
   },
   {
+    id: 'master-cisla',
     num: 'IV',
     title: 'Master čísla ve vztazích',
     paras: [
@@ -40,19 +74,74 @@ const SECTIONS = [
       'Všechna tři master čísla hledají intenzitu a smysl — a snadno se nudia povrchními vztahy.',
     ],
   },
-]
+] as const
+
+const RELATED = [
+  {
+    href: '/kompatibilita-podle-data-narozeni',
+    eyebrow: 'Průvodce',
+    title: 'Kompatibilita podle data narození',
+    desc: 'Co je životní číslo, jak ho spočítat a které kombinace přirozeně fungují.',
+  },
+  {
+    href: '/test',
+    eyebrow: 'Nástroj',
+    title: 'Numerologický kvíz',
+    desc: 'Zadej datum narození a za 30 sekund zjistíš svůj archetyp.',
+  },
+  {
+    href: '/manifest-duvery',
+    eyebrow: 'Manifest',
+    title: 'Sedm závazků Cosmatch',
+    desc: 'Co Cosmatch nedělá a co naopak slibuje.',
+  },
+] as const
+
+const READING_TIME_MIN = 4
 
 export default function NumerologieVztahyPage() {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Article',
+        headline: TITLE,
+        description: DESCRIPTION,
+        image: 'https://cosmatch.cz/icon-512.png',
+        author: { '@type': 'Person', name: 'Simona Cibulková' },
+        publisher: {
+          '@type': 'Organization',
+          name: 'Cosmatch',
+          logo: { '@type': 'ImageObject', url: 'https://cosmatch.cz/icon-512.png' },
+        },
+        datePublished: '2026-05-16',
+        dateModified: '2026-05-16',
+        mainEntityOfPage: { '@type': 'WebPage', '@id': URL },
+        inLanguage: 'cs-CZ',
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Cosmatch', item: 'https://cosmatch.cz' },
+          { '@type': 'ListItem', position: 2, name: 'Numerologie a vztahy', item: URL },
+        ],
+      },
+    ],
+  }
+
   return (
     <main className="min-h-screen bg-[#FAF6F0]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
       <div className="max-w-2xl mx-auto px-6 pt-6">
         <Link href="/" className="text-sm text-gray-500 hover:text-gray-900 transition">← Cosmatch</Link>
       </div>
 
       <article className="max-w-2xl mx-auto px-6 pt-16 pb-24">
+
         {/* Masthead */}
-        <header className="mb-20">
-          <p className="eyebrow text-pink-500 mb-6">Esej</p>
+        <header className="mb-12">
+          <p className="eyebrow text-pink-500 mb-6">Esej · {READING_TIME_MIN} min čtení</p>
           <h1 className="serif-display text-5xl sm:text-6xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-8">
             Numerologie<br/>a <em className="italic text-pink-500">vztahy</em>.
           </h1>
@@ -61,12 +150,32 @@ export default function NumerologieVztahyPage() {
             Jak životní číslo ovlivňuje partnerský výběr, komunikaci a to,
             proč se pořád přitahuješ k určitému typu lidí.
           </p>
+          <p className="text-sm text-gray-500 mt-6">
+            Autorka <span className="text-gray-900 italic serif">Simona Cibulková</span>
+            <span className="text-gray-300 mx-2">·</span>
+            <span>Praha, květen 2026</span>
+          </p>
         </header>
 
-        {/* Sections — editorial */}
+        {/* TOC */}
+        <nav className="mb-16 border-y border-gray-200 py-6" aria-label="Obsah eseje">
+          <p className="eyebrow text-gray-500 mb-3">Obsah</p>
+          <ul className="space-y-1.5">
+            {SECTIONS.map((s, i) => (
+              <li key={s.id}>
+                <a href={`#${s.id}`} className="text-gray-700 hover:text-pink-500 transition flex items-baseline gap-3">
+                  <span className="roman text-base text-gray-400 w-6">{s.num}</span>
+                  <span>{s.title}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* Sections */}
         <div className="space-y-16">
           {SECTIONS.map((s, idx) => (
-            <section key={s.num} className="grid grid-cols-[auto,1fr] gap-x-8 sm:gap-x-12">
+            <section key={s.id} id={s.id} className="grid grid-cols-[auto,1fr] gap-x-8 sm:gap-x-12 scroll-mt-8">
               <div className="roman text-3xl sm:text-4xl text-pink-500 leading-none pt-2 select-none">{s.num}</div>
               <div>
                 <h2 className="serif text-2xl sm:text-3xl text-gray-900 font-medium mb-5 leading-tight">{s.title}</h2>
@@ -76,7 +185,11 @@ export default function NumerologieVztahyPage() {
                   </p>
                 ))}
               </div>
-              {idx < SECTIONS.length - 1 && <div className="col-span-2 pt-16"><hr className="rule" /></div>}
+              {idx < SECTIONS.length - 1 && (
+                <div className="col-span-2 pt-16">
+                  <hr className="rule" />
+                </div>
+              )}
             </section>
           ))}
         </div>
@@ -97,11 +210,30 @@ export default function NumerologieVztahyPage() {
           </Link>
         </section>
 
-        {/* Internal links */}
-        <footer className="mt-16 pt-12 border-t border-gray-200 flex flex-wrap gap-x-6 gap-y-2 text-sm">
-          <Link href="/kompatibilita-podle-data-narozeni" className="text-pink-500 hover:text-pink-600 transition">Kompatibilita podle data narození →</Link>
-          <Link href="/manifest-duvery" className="text-gray-500 hover:text-gray-900 transition">Manifest důvěry</Link>
-          <Link href="/waitlist" className="text-gray-500 hover:text-gray-900 transition">Waitlist</Link>
+        {/* Related */}
+        <section className="mt-20">
+          <p className="eyebrow text-pink-500 mb-4">Pokračuj ve čtení</p>
+          <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-10">
+            Co se k tomu váže.
+          </h2>
+          <div className="space-y-6">
+            {RELATED.map(r => (
+              <Link key={r.href} href={r.href}
+                className="block bg-white border border-gray-100 hover:border-gray-300 rounded-3xl p-8 transition-all group">
+                <p className="eyebrow text-gray-400 mb-3">{r.eyebrow}</p>
+                <h3 className="serif text-xl text-gray-900 font-medium mb-2 group-hover:text-pink-500 transition">{r.title}</h3>
+                <p className="text-gray-600 leading-relaxed text-sm">{r.desc}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <footer className="mt-20 pt-12 border-t border-gray-200">
+          <p className="text-xs text-gray-400 leading-relaxed">
+            Mgr. Ing. Simona Cibulková · Cosmatch · IČO 08419531 · Praha 2026.
+            Numerologie není empirická věda — výsledky používejte jako podporu rozhodování,
+            ne jako absolutní pravdu.
+          </p>
         </footer>
       </article>
     </main>

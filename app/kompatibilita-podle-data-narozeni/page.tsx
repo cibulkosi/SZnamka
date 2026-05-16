@@ -1,10 +1,41 @@
+
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
+const TITLE = 'Kompatibilita podle data narození — Numerologie a vztahy | Cosmatch'
+const DESCRIPTION = 'Jak data narození ovlivňují kompatibilitu ve vztazích? Zjisti svůj numerologický profil a najdi lidi, kteří ti opravdu odpovídají. Životní číslo, master čísla a 46 949 párů kompatibility.'
+const URL = 'https://cosmatch.cz/kompatibilita-podle-data-narozeni'
+
 export const metadata: Metadata = {
-  title: 'Kompatibilita podle data narození — Numerologie a vztahy | Cosmatch',
-  description: 'Jak data narození ovlivňují kompatibilitu ve vztazích? Zjisti svůj numerologický profil a najdi lidi, kteří ti opravdu odpovídají.',
-  keywords: 'kompatibilita data narození, numerologie vztahy, životní číslo kompatibilita, datum narození láska',
+  title: TITLE,
+  description: DESCRIPTION,
+  keywords: [
+    'kompatibilita data narození',
+    'numerologie vztahy',
+    'životní číslo kompatibilita',
+    'datum narození láska',
+    'numerologie partner',
+    'numerologický profil',
+    'numerologie kalkulačka',
+    'master čísla',
+    'čísla osudu',
+  ],
+  alternates: { canonical: URL },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: URL,
+    type: 'article',
+    siteName: 'Cosmatch',
+    locale: 'cs_CZ',
+    images: [{ url: 'https://cosmatch.cz/icon-512.png', width: 512, height: 512, alt: 'Cosmatch' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: TITLE,
+    description: DESCRIPTION,
+  },
+  authors: [{ name: 'Simona Cibulková', url: 'https://cosmatch.cz' }],
 }
 
 const NUMBERS = [
@@ -17,7 +48,7 @@ const NUMBERS = [
   ['7', 'Mudrc', '5, 9, 11', '3, 6'],
   ['8', 'Vůdce', '2, 4, 6', '1, 9'],
   ['9', 'Idealista', '3, 6, 9', '2, 8'],
-]
+] as const
 
 const FAQ = [
   {
@@ -26,7 +57,7 @@ const FAQ = [
   },
   {
     q: 'Jaká čísla jsou nejkompatibilnější?',
-    a: 'Záleží na konkrétní kombinaci. Obecně: 1 ladí s 3, 5 a 6; 2 s 4, 6 a 8; 4 s 2, 6 a 8. Master čísla 11, 22, 33 mají nejsilnější spojení s 2, 6 a 9. Cosmatch toto počítá pro všech 46\u202f949 párů.',
+    a: 'Záleží na konkrétní kombinaci. Obecně: 1 ladí s 3, 5 a 6; 2 s 4, 6 a 8; 4 s 2, 6 a 8. Master čísla 11, 22, 33 mají nejsilnější spojení s 2, 6 a 9. Cosmatch toto počítá pro všech 46 949 párů.',
   },
   {
     q: 'Je numerologie vědecky prokázána?',
@@ -34,7 +65,7 @@ const FAQ = [
   },
   {
     q: 'Čím se Cosmatch liší od horoskopu?',
-    a: 'Horoskopy jsou obecné — jeden text pro 1/12 populace. Cosmatch počítá kompatibilitu pro 46\u202f949 konkrétních kombinací dat narození. Navíc zohledňuje záměr vztahu, vzdálenost a společné zájmy — nejde jen o datum.',
+    a: 'Horoskopy jsou obecné — jeden text pro jednu dvanáctinu populace. Cosmatch počítá kompatibilitu pro 46 949 konkrétních kombinací dat narození. Navíc zohledňuje záměr vztahu, vzdálenost a společné zájmy — nejde jen o datum.',
   },
   {
     q: 'Mohu najít svého partnera díky numerologii?',
@@ -42,29 +73,119 @@ const FAQ = [
   },
 ]
 
+const TOC = [
+  ['#zaklad', 'Co je životní číslo'],
+  ['#prehled', 'Přehled čísel a shod'],
+  ['#faq', 'Časté otázky'],
+] as const
+
+const RELATED = [
+  {
+    href: '/numerologie-vztahy',
+    eyebrow: 'Esej',
+    title: 'Numerologie a vztahy — Jak čísla ovlivňují lásku',
+    desc: 'Praktický průvodce tím, jak životní číslo ovlivňuje partnerský výběr, komunikaci a dlouhodobou kompatibilitu.',
+  },
+  {
+    href: '/test',
+    eyebrow: 'Nástroj',
+    title: 'Numerologický kvíz',
+    desc: 'Zadej datum narození a za 30 sekund zjistíš svůj archetyp.',
+  },
+  {
+    href: '/manifest-duvery',
+    eyebrow: 'Manifest',
+    title: 'Sedm závazků Cosmatch',
+    desc: 'Co Cosmatch nedělá a co naopak slibuje — žádné swipy pro swipy, žádné reklamy, žádné prodávání dat.',
+  },
+] as const
+
+const READING_TIME_MIN = 6
+
 export default function KompatibilitaPage() {
+  // JSON-LD structured data for FAQ + Article
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Article',
+        headline: TITLE,
+        description: DESCRIPTION,
+        image: 'https://cosmatch.cz/icon-512.png',
+        author: { '@type': 'Person', name: 'Simona Cibulková' },
+        publisher: {
+          '@type': 'Organization',
+          name: 'Cosmatch',
+          logo: { '@type': 'ImageObject', url: 'https://cosmatch.cz/icon-512.png' },
+        },
+        datePublished: '2026-05-16',
+        dateModified: '2026-05-16',
+        mainEntityOfPage: { '@type': 'WebPage', '@id': URL },
+        inLanguage: 'cs-CZ',
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: FAQ.map(f => ({
+          '@type': 'Question',
+          name: f.q,
+          acceptedAnswer: { '@type': 'Answer', text: f.a },
+        })),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Cosmatch', item: 'https://cosmatch.cz' },
+          { '@type': 'ListItem', position: 2, name: 'Kompatibilita podle data narození', item: URL },
+        ],
+      },
+    ],
+  }
+
   return (
     <main className="min-h-screen bg-[#FAF6F0]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
       <div className="max-w-2xl mx-auto px-6 pt-6">
         <Link href="/" className="text-sm text-gray-500 hover:text-gray-900 transition">← Cosmatch</Link>
       </div>
 
       <article className="max-w-2xl mx-auto px-6 pt-16 pb-24">
+
         {/* Masthead */}
-        <header className="mb-16">
-          <p className="eyebrow text-pink-500 mb-6">Průvodce</p>
+        <header className="mb-12">
+          <p className="eyebrow text-pink-500 mb-6">Průvodce · {READING_TIME_MIN} min čtení</p>
           <h1 className="serif-display text-5xl sm:text-6xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-8">
             Kompatibilita<br/>podle <em className="italic text-pink-500">data narození</em>.
           </h1>
           <hr className="rule w-12 border-gray-900 mb-8" />
           <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
             Numerologie tvrdí, že datum tvého narození není náhoda — a má svou roli v tom, s kým
-            se přirozeně shodneš ve vztazích. Cosmatch tuto teorii aplikuje na všech 46\u202f949 párů.
+            se přirozeně shodneš ve vztazích. Cosmatch tuto teorii aplikuje na všech 46 949 párů.
+          </p>
+          <p className="text-sm text-gray-500 mt-6">
+            Autorka <span className="text-gray-900 italic serif">Simona Cibulková</span>
+            <span className="text-gray-300 mx-2">·</span>
+            <span>Praha, květen 2026</span>
           </p>
         </header>
 
-        {/* Body */}
-        <section className="mb-16">
+        {/* TOC */}
+        <nav className="mb-16 border-y border-gray-200 py-6" aria-label="Obsah článku">
+          <p className="eyebrow text-gray-500 mb-3">Obsah</p>
+          <ul className="space-y-1.5">
+            {TOC.map(([href, label], i) => (
+              <li key={href}>
+                <a href={href} className="text-gray-700 hover:text-pink-500 transition flex items-baseline gap-3">
+                  <span className="text-xs text-gray-400 tabular-nums w-6">{String(i+1).padStart(2,'0')}</span>
+                  <span>{label}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* Section 1: Co je životní číslo */}
+        <section id="zaklad" className="mb-16 scroll-mt-8">
           <p className="eyebrow text-gray-500 mb-4">Základ</p>
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-8">
             Co je životní číslo?
@@ -87,8 +208,8 @@ export default function KompatibilitaPage() {
 
         <hr className="rule mb-16" />
 
-        {/* Table */}
-        <section className="mb-16">
+        {/* Section 2: Přehled */}
+        <section id="prehled" className="mb-16 scroll-mt-8">
           <p className="eyebrow text-gray-500 mb-4">Přehled</p>
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-10">
             Čísla a jejich shody.
@@ -116,8 +237,8 @@ export default function KompatibilitaPage() {
 
         <hr className="rule mb-16" />
 
-        {/* FAQ */}
-        <section className="mb-16">
+        {/* Section 3: FAQ */}
+        <section id="faq" className="mb-16 scroll-mt-8">
           <p className="eyebrow text-gray-500 mb-4">Časté otázky</p>
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-10">
             Co se nejčastěji ptáte.
@@ -125,10 +246,12 @@ export default function KompatibilitaPage() {
 
           <div className="space-y-10">
             {FAQ.map(({ q, a }) => (
-              <div key={q} className="border-b border-gray-200 pb-10 last:border-b-0">
-                <h3 className="serif text-xl text-gray-900 font-medium leading-tight mb-3">{q}</h3>
+              <details key={q} className="border-b border-gray-200 pb-10 last:border-b-0 group" open>
+                <summary className="serif text-xl text-gray-900 font-medium leading-tight mb-3 cursor-pointer list-none">
+                  {q}
+                </summary>
                 <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">{a}</p>
-              </div>
+              </details>
             ))}
           </div>
         </section>
@@ -149,11 +272,30 @@ export default function KompatibilitaPage() {
           </Link>
         </section>
 
-        {/* Internal links */}
-        <footer className="mt-16 pt-12 border-t border-gray-200 flex flex-wrap gap-x-6 gap-y-2 text-sm">
-          <Link href="/numerologie-vztahy" className="text-pink-500 hover:text-pink-600 transition">Numerologie a vztahy →</Link>
-          <Link href="/manifest-duvery" className="text-gray-500 hover:text-gray-900 transition">Manifest důvěry</Link>
-          <Link href="/waitlist" className="text-gray-500 hover:text-gray-900 transition">Waitlist</Link>
+        {/* Related */}
+        <section className="mt-20">
+          <p className="eyebrow text-pink-500 mb-4">Pokračuj ve čtení</p>
+          <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-10">
+            Co se k tomu váže.
+          </h2>
+          <div className="space-y-6">
+            {RELATED.map(r => (
+              <Link key={r.href} href={r.href}
+                className="block bg-white border border-gray-100 hover:border-gray-300 rounded-3xl p-8 transition-all group">
+                <p className="eyebrow text-gray-400 mb-3">{r.eyebrow}</p>
+                <h3 className="serif text-xl text-gray-900 font-medium mb-2 group-hover:text-pink-500 transition">{r.title}</h3>
+                <p className="text-gray-600 leading-relaxed text-sm">{r.desc}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <footer className="mt-20 pt-12 border-t border-gray-200">
+          <p className="text-xs text-gray-400 leading-relaxed">
+            Mgr. Ing. Simona Cibulková · Cosmatch · IČO 08419531 · Praha 2026.
+            Numerologie není empirická věda — výsledky používejte jako podporu rozhodování,
+            ne jako absolutní pravdu.
+          </p>
         </footer>
       </article>
     </main>
