@@ -61,6 +61,28 @@ export default function RegisterPage() {
     ? `${String(form.month).padStart(2,'0')}-${String(form.day).padStart(2,'0')}`
     : ''
 
+  // Turnstile anti-bot
+  const [turnstileToken, setTurnstileToken] = useState('')
+  const [turnstileLoading, setTurnstileLoading] = useState(true)
+
+  useEffect(() => {
+    // Globální callback pro Turnstile widget
+    ;(window as Window & { __ts_cb__?: (t: string) => void; __ts_exp__?: () => void }).__ts_cb__ = (token: string) => {
+      setTurnstileToken(token)
+    }
+    ;(window as Window & { __ts_cb__?: (t: string) => void; __ts_exp__?: () => void }).__ts_exp__ = () => {
+      setTurnstileToken('')
+    }
+    const script = document.createElement('script')
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js'
+    script.async = true
+    script.onload = () => setTurnstileLoading(false)
+    document.head.appendChild(script)
+    return () => {
+      document.head.removeChild(script)
+    }
+  }, [])
+
   // OAuth prefill — přijde z Google/Facebook redirect
   useEffect(() => {
     const oauthData = localStorage.getItem('cosmatch_oauth')
@@ -277,8 +299,31 @@ export default function RegisterPage() {
               <input className="input" type="password" placeholder="min. 8 znaků" value={form.password}
                 onChange={e => set('password', e.target.value)} />
             </div>
-            <button className="btn-primary w-full mt-2" onClick={() => setStep(1)}
-              disabled={!form.name || !form.email || !form.password}>
+            {/* Cloudflare Turnstile — anti-bot ochrana */}
+            <div
+              className="cf-turnstile mt-2"
+              data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? '1x00000000000000000000AA'}
+              data-callback="__ts_cb__"
+              data-expired-callback="__ts_exp__"
+              data-theme="light"
+              data-size="flexible"
+            />
+            {turnstileLoading && <p className="text-xs text-gray-400 text-center">Načítám ověření...</p>}
+
+            <button className="btn-primary w-full mt-2"
+              onClick={async () => {
+                if (!turnstileToken) return
+                // Ověř token na serveru
+                const res = await fetch('https://xdotpadgbchhecwitbpe.supabase.co/functions/v1/verify-turnstile', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ token: turnstileToken }),
+                })
+                const { success } = await res.json()
+                if (success) setStep(1)
+                else setError('Ověření selhalo. Zkus to znovu.')
+              }}
+              disabled={!form.name || !form.email || !form.password || !turnstileToken}>
               Pokračovat →
             </button>
           </div>
