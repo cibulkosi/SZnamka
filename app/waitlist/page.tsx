@@ -55,11 +55,11 @@ export default function WaitlistPage() {
     const r = params.get('reason')
     if (r) setReason(r)
 
-    supabase.from('waitlist').select('*', { count: 'exact', head: true }).then(({ count }) => {
+    supabase.from('waitlist_public').select('*', { count: 'exact', head: true }).then(({ count }) => {
       setTotalCount(count || 0)
     })
 
-    supabase.from('waitlist').select('city').not('city', 'is', null).then(({ data }) => {
+    supabase.from('waitlist_public').select('city').not('city', 'is', null).then(({ data }) => {
       if (!data) return
       const byCity: Record<string, number> = {}
       const byDistrict: Record<string, number> = {}
@@ -107,7 +107,7 @@ export default function WaitlistPage() {
         body: JSON.stringify({ email, name: name || null, voucher_code: voucher, source: 'landing' }),
       }).catch(() => {})
       if (error && error.code !== '23505') console.error(error)
-      const { count } = await supabase.from('waitlist').select('*', { count: 'exact', head: true })
+      const { count } = await supabase.from('waitlist_public').select('*', { count: 'exact', head: true })
       setPosition(count || 1)
       setSubmitted(true)
       if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' })

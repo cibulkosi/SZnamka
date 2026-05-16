@@ -73,13 +73,15 @@ export default function VerifikacePage() {
             <div className="grid grid-cols-[auto,1fr] gap-x-8">
               <div className="roman text-3xl text-pink-500 pt-1">III</div>
               <div>
-                <h3 className="serif text-2xl text-gray-900 font-medium mb-3 leading-tight">ID verifikace s certifikátem „Ověřeno"</h3>
+                <h3 className="serif text-2xl text-gray-900 font-medium mb-3 leading-tight">Povinná ID verifikace pro Cosmatch Serious</h3>
                 <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-3">
-                  Uživatelé tarifu Cosmatch Serious procházejí přidanou kontrolou totožnosti
-                  přes renomovanou EU službu pro ověření identity. Po úspěšném ověření získá jejich
-                  profil zelený štítek <span className="inline-flex items-center gap-1 align-middle text-emerald-600 font-medium"><svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Ověřeno</span>, který vidí každý ostatní uživatel.
+                  Každý uživatel tarifu Cosmatch Serious projde kontrolou totožnosti
+                  přes renomovanou EU službu (občanský průkaz + selfie, zabere 2 minuty).
+                  Po ověření získá profil zelený štítek <span className="inline-flex items-center gap-1 align-middle text-emerald-600 font-medium"><svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Ověřeno</span> a uvidí jen ostatní ověřené.
                 </p>
-                <p className="text-sm text-gray-500 italic">Pokud chceš, můžeš si nastavit, aby ti aplikace zobrazovala pouze ověřené profily.</p>
+                <p className="text-sm text-gray-500 italic">
+                  Bez ověření Serious nefunguje. Pokud verifikaci nedokončíš do 7 dnů od platby, vracíme peníze zpět.
+                </p>
               </div>
             </div>
           </div>

@@ -69,7 +69,7 @@ export default function AdminPage() {
         supabase.from('profiles').select('*', { count: 'exact', head: true }).or('gender.eq.female,gender.eq.Žena'),
         supabase.from('profiles').select('*', { count: 'exact', head: true }).not('gender', 'in', '(male,female,Muž,Žena)'),
         supabase.from('profiles').select('*', { count: 'exact', head: true }).eq('premium', true),
-        supabase.from('waitlist').select('*', { count: 'exact', head: true }),
+        supabase.from('waitlist_public').select('*', { count: 'exact', head: true }),
         supabase.from('ambassadors').select('*', { count: 'exact', head: true }),
         supabase.from('profiles').select('*', { count: 'exact', head: true }).gte('last_seen', today),
         supabase.from('profiles').select('*', { count: 'exact', head: true }).gte('last_seen', weekAgo),

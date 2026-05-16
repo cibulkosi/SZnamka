@@ -224,7 +224,7 @@ export default function TestPage() {
         body: JSON.stringify({ email, name: name || null, voucher_code: voucher, archetype: archetype.name, life_path: lifePath, source: 'quiz' }),
       }).catch(() => { /* email is best-effort */ })
       if (error && error.code !== '23505') console.error(error)
-      const { count } = await supabase.from('waitlist').select('*', { count: 'exact', head: true })
+      const { count } = await supabase.from('waitlist_public').select('*', { count: 'exact', head: true })
       setWaitlistPos(count || 1)
       setStep('done')
       if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' })

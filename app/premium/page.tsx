@@ -66,13 +66,13 @@ const TIERS: Tier[] = [
     pricePerMonth: '349 Kč',
     priceTagline: 'měsíčně · pro vážný vztah',
     audience: 'Pro 35+ kteří chtějí vědět, s kým mluví',
-    description: 'Pro lidi, kteří už zbytečně netratí čas. ID verifikace, ověřené profily, prémiové filtry.',
+    description: 'Pro lidi, kteří už zbytečně netratí čas. Povinná ID verifikace každého Serious uživatele — žádné fake profily, žádné kompromisy.',
     features: [
       'Vše z Cosmatch+',
-      'ID verifikace — zelený štítek „Ověřeno“',
-      'Vidíš jen ověřené profily, pokud chceš',
+      'Povinná ID verifikace · zelený štítek „Ověřeno“',
+      'Vidíš jen ostatní ověřené Serious uživatele',
       'Prémiové filtry: vzdělání, výška, přesný záměr',
-      'Prioritní matchmaking s ostatními Serious uživateli',
+      'Prioritní matchmaking s ostatními Serious',
       'Vlastní privátní podpora · odpovídáme do 12 h',
     ],
     ctaLabel: 'Vybrat Serious',
@@ -256,6 +256,20 @@ export default function PremiumPage() {
             )
           })}
         </section>
+
+        <div className="bg-emerald-50 border border-emerald-200 rounded-3xl p-8 mb-20">
+          <p className="eyebrow text-emerald-600 mb-3">Důležité k Cosmatch Serious</p>
+          <h3 className="serif text-2xl text-gray-900 font-medium leading-tight mb-3">
+            Ověření je povinné.
+          </h3>
+          <p className="text-gray-700 leading-relaxed text-[1.0625rem] mb-3">
+            Hned po platbě tě nasměrujeme na rychlé ID ověření (občanský průkaz + selfie,
+            zabere 2 minuty). Bez něj nezískáš zelený štítek ani neuvidíš ostatní ověřené.
+          </p>
+          <p className="text-sm text-gray-600 italic">
+            Pokud ověření neuděláš do 7 dnů, peníze ti vrátíme zpět — bez ptaní.
+          </p>
+        </div>
 
         {/* Co je v ceně, co není */}
         <section className="mb-20">
