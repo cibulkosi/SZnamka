@@ -36,6 +36,41 @@ async function hashPassword(password: string, email: string): Promise<string> {
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('')
 }
 
+// ── UI helper components — MUST be defined OUTSIDE the component
+// Otherwise React remounts inputs on every keystroke (focus loss bug)
+function Underline(props: React.InputHTMLAttributes<HTMLInputElement>) {
+  return (
+    <input
+      {...props}
+      className={`w-full bg-transparent border-0 border-b-2 border-gray-300 focus:border-pink-500 px-0 py-3 text-lg text-gray-900 focus:outline-none transition-colors ${props.className || ''}`}
+    />
+  )
+}
+
+function Eyebrow({ children }: { children: React.ReactNode }) {
+  return <label className="eyebrow text-gray-500 mb-3 block">{children}</label>
+}
+
+function Pill({ active, children, onClick }: { active: boolean; children: React.ReactNode; onClick: () => void }) {
+  return (
+    <button type="button" onClick={onClick}
+      className={`px-5 py-2.5 rounded-full text-sm font-medium border transition-all ${
+        active
+          ? 'bg-gray-900 border-gray-900 text-white'
+          : 'bg-white border-gray-300 text-gray-700 hover:border-gray-900'
+      }`}
+    >{children}</button>
+  )
+}
+
+function PrimaryBtn({ children, disabled, onClick, type }: { children: React.ReactNode; disabled?: boolean; onClick?: () => void; type?: 'button'|'submit' }) {
+  return (
+    <button type={type || 'button'} onClick={onClick} disabled={disabled}
+      className="w-full bg-gray-900 text-white py-5 rounded-full text-base font-medium hover:bg-gray-800 active:scale-[0.99] transition-all disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed"
+    >{children}</button>
+  )
+}
+
 export default function RegisterPage() {
   const router = useRouter()
   const [step, setStep] = useState<Step>(0)
@@ -231,28 +266,6 @@ export default function RegisterPage() {
   }
 
   const daysInMonth = form.month ? DAYS_IN_MONTH[parseInt(form.month) - 1] : 31
-
-  // ======== UI HELPERS ========
-  const Underline = (props: React.InputHTMLAttributes<HTMLInputElement>) => (
-    <input {...props} className={`w-full bg-transparent border-0 border-b-2 border-gray-300 focus:border-pink-500 px-0 py-3 text-lg text-gray-900 focus:outline-none transition-colors ${props.className || ''}`} />
-  )
-  const Eyebrow = ({ children }: { children: React.ReactNode }) => (
-    <label className="eyebrow text-gray-500 mb-3 block">{children}</label>
-  )
-  const Pill = ({ active, children, onClick }: { active: boolean; children: React.ReactNode; onClick: () => void }) => (
-    <button type="button" onClick={onClick}
-      className={`px-5 py-2.5 rounded-full text-sm font-medium border transition-all ${
-        active
-          ? 'bg-gray-900 border-gray-900 text-white'
-          : 'bg-white border-gray-300 text-gray-700 hover:border-gray-900'
-      }`}
-    >{children}</button>
-  )
-  const PrimaryBtn = ({ children, disabled, onClick, type }: { children: React.ReactNode; disabled?: boolean; onClick?: () => void; type?: 'button'|'submit' }) => (
-    <button type={type || 'button'} onClick={onClick} disabled={disabled}
-      className="w-full bg-gray-900 text-white py-5 rounded-full text-base font-medium hover:bg-gray-800 active:scale-[0.99] transition-all disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed"
-    >{children}</button>
-  )
 
   return (
     <main className="min-h-screen bg-[#FAF6F0]">
