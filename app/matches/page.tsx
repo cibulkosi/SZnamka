@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { supabase, type Profile, type Compatibility } from '@/lib/supabase'
+import { supabase, loadCurrentProfile, type Profile, type Compatibility } from '@/lib/supabase'
 
 type Tab = 'mutual' | 'liked' | 'matches'
 
@@ -52,11 +52,14 @@ export default function MatchesPage() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const stored = localStorage.getItem('cosmatch_user')
-    if (!stored) { router.push('/login'); return }
-    const u = JSON.parse(stored) as Profile
-    setUser(u)
-    loadAll(u)
+    (async () => {
+      const r = await loadCurrentProfile()
+      if (r.kind === 'no-session') { router.push('/login'); return }
+      if (r.kind === 'no-profile') { router.push('/register'); return }
+      const u = r.profile
+      setUser(u)
+      loadAll(u)
+    })()
   }, [router])
 
   const loadAll = async (u: Profile) => {

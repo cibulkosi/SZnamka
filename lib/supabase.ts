@@ -118,3 +118,51 @@ export const COUNTRIES = [
   { code: 'HR', name: 'Croatia' },
   { code: 'OTHER', name: 'Other / Jiné' },
 ]
+
+// ── Session-based profile loading (Auth refactor — May 2026) ──────
+// 
+// Use this instead of localStorage.getItem('cosmatch_user').
+// localStorage is kept as cache for instant render, but Supabase Auth session
+// is the source of truth. Profile is always re-fetched from DB.
+//
+// Returns one of:
+//   { kind: 'no-session' } — user is not logged in → redirect to /login
+//   { kind: 'no-profile', authId, email } — logged in but no profile yet → redirect to /register
+//   { kind: 'ok', profile } — fully authenticated with profile
+//
+export type ProfileLoadResult =
+  | { kind: 'no-session' }
+  | { kind: 'no-profile'; authId: string; email: string; name: string }
+  | { kind: 'ok'; profile: Profile }
+
+export async function loadCurrentProfile(): Promise<ProfileLoadResult> {
+  // 1. Get session (returns immediately from in-memory cache)
+  const { data: { session } } = await supabase.auth.getSession()
+  if (!session?.user) return { kind: 'no-session' }
+  
+  const authId = session.user.id
+  const email = session.user.email || ''
+  const name = session.user.user_metadata?.full_name || session.user.user_metadata?.name || ''
+  
+  // 2. Fetch profile by auth user id (now that profiles.id == auth.users.id)
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('id', authId)
+    .single()
+  
+  if (!profile) return { kind: 'no-profile', authId, email, name }
+  
+  // 3. Update localStorage cache for backwards-compat during transition
+  try { localStorage.setItem('cosmatch_user', JSON.stringify(profile)) } catch {}
+  
+  return { kind: 'ok', profile: profile as Profile }
+}
+
+// Helper: clear all auth state (logout)
+export async function signOutCompletely() {
+  try { localStorage.removeItem('cosmatch_user') } catch {}
+  try { localStorage.removeItem('cosmatch_magic_seen') } catch {}
+  try { localStorage.removeItem('cosmatch_oauth') } catch {}
+  await supabase.auth.signOut()
+}

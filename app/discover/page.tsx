@@ -2,7 +2,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { supabase, type Profile, type Compatibility, getZodiac } from '@/lib/supabase'
+import { supabase, loadCurrentProfile, type Profile, type Compatibility, getZodiac } from '@/lib/supabase'
 import { CompatBadges, ScoreRing } from '@/components/CompatBadges'
 import { ProfileQuestion, PROFILE_QUESTIONS, type Question } from '@/components/ProfileQuestion'
 import { computeCompatibility, profileCompleteness, isOutsideDistanceLimit } from '@/lib/compat'
@@ -313,10 +313,11 @@ export default function DiscoverPage() {
  const [magicText, setMagicText] = useState('')
  const [magicViews, setMagicViews] = useState(0)
 
- useEffect(() => {
- const stored = localStorage.getItem('cosmatch_user')
- if (!stored) { router.push('/login'); return }
- const u = JSON.parse(stored) as Profile
+ useEffect(() => { (async () => {
+ const r = await loadCurrentProfile()
+ if (r.kind === 'no-session') { router.push('/login'); return }
+ if (r.kind === 'no-profile') { router.push('/register'); return }
+ const u = r.profile
  setUser(u)
 
  // Načti denní počet swipů z localStorage
@@ -356,7 +357,7 @@ export default function DiscoverPage() {
  loadProfiles(u)
  // Aktualizuj last_seen — ukazuje, že uživatel je aktivní
  supabase.from('profiles').update({ last_seen: new Date().toISOString() }).eq('id', u.id).then(() => {})
- }, [router])
+ })() }, [router])
 
  const loadProfiles = async (u: Profile) => {
  setLoading(true)

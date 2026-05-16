@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { supabase } from '@/lib/supabase'
+import { supabase, loadCurrentProfile } from '@/lib/supabase'
 
 const PADDLE_CLIENT_TOKEN = 'live_7067eb7e1dbaf8568cf7ce6600b'
 
@@ -116,9 +116,12 @@ export default function PremiumPage() {
   const [loading, setLoading] = useState<string | null>(null)
 
   useEffect(() => {
-    const raw = localStorage.getItem('cosmatch_user')
-    if (!raw) { router.push('/login'); return }
-    setUser(JSON.parse(raw))
+    (async () => {
+      const r = await loadCurrentProfile()
+      if (r.kind === 'no-session') { router.push('/login'); return }
+      if (r.kind === 'no-profile') { router.push('/register'); return }
+      setUser(r.profile)
+    })()
   }, [router])
 
   useEffect(() => {

@@ -195,11 +195,20 @@ export default function RegisterPage() {
     }
     setLoading(true); setError('')
     try {
-      const userId = crypto.randomUUID()
+      // Auth refactor: use Supabase Auth session id as profile id (must match auth.users.id)
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session?.user) {
+        setError('Tvoje přihlášení vypršelo. Přihlaš se znovu přes Google/Facebook.')
+        setLoading(false)
+        return
+      }
+      const userId = session.user.id
+      // Make sure the email matches what they registered with via OAuth
+      const finalEmail = form.email || session.user.email || ''
       const photoUrls = form.photos.length > 0 ? await uploadPhotos(userId) : []
-      const passwordHash = form.password ? await hashPassword(form.password, form.email) : null
+      const passwordHash = form.password ? await hashPassword(form.password, finalEmail) : null
       const { error: dbErr } = await supabase.from('profiles').insert([{
-        id: userId, name: form.name, email: form.email, birthday,
+        id: userId, name: form.name, email: finalEmail, birthday,
         birth_year: parseInt(form.birth_year) || new Date().getFullYear() - 25,
         birth_time: form.birth_time || null, birth_place: form.birth_place || null,
         gender: form.gender || 'other', looking_for: form.looking_for || 'everyone',
@@ -214,7 +223,7 @@ export default function RegisterPage() {
         password_hash: passwordHash, premium: false, active: true,
       }])
       if (dbErr) throw dbErr
-      const { data: profile } = await supabase.from('profiles').select('*').eq('email', form.email).single()
+      const { data: profile } = await supabase.from('profiles').select('*').eq('id', userId).single()
       if (profile) { localStorage.setItem('cosmatch_user', JSON.stringify(profile)); router.push('/discover') }
     } catch (e: unknown) {
       setError(e instanceof Error ? e.message : 'Chyba při registraci.')

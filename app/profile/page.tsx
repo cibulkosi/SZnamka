@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { supabase, type Profile, getZodiac } from '@/lib/supabase'
+import { supabase, loadCurrentProfile, signOutCompletely, type Profile, getZodiac } from '@/lib/supabase'
 
 const RELATIONSHIP_GOAL_LABELS: Record<string, string> = {
   serious: 'Vážný vztah',
@@ -42,20 +42,21 @@ export default function ProfilePage() {
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false)
 
   useEffect(() => {
-    const raw = localStorage.getItem('cosmatch_user')
-    if (!raw) { router.push('/login'); return }
-    const profile = JSON.parse(raw) as Profile
-    setUser(profile)
-    if (profile.birthday) {
-      supabase.from('personology').select('opening').eq('date_key', profile.birthday).single()
-        .then(({ data }) => { if (data?.opening) setPersonologyText(data.opening) })
-    }
+    (async () => {
+      const r = await loadCurrentProfile()
+      if (r.kind === 'no-session') { router.push('/login'); return }
+      if (r.kind === 'no-profile') { router.push('/register'); return }
+      const profile = r.profile
+      setUser(profile)
+      if (profile.birthday) {
+        supabase.from('personology').select('opening').eq('date_key', profile.birthday).single()
+          .then(({ data }) => { if (data?.opening) setPersonologyText(data.opening) })
+      }
+    })()
   }, [router])
 
-  const handleLogout = () => {
-    localStorage.removeItem('cosmatch_user')
-    localStorage.removeItem('cosmatch_magic_seen')
-    supabase.auth.signOut()
+  const handleLogout = async () => {
+    await signOutCompletely()
     router.push('/login')
   }
 
