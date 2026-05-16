@@ -66,8 +66,17 @@ const SECTIONS = [
     ],
   },
   {
-    id: 'master-cisla',
+    id: 'cesko-jine',
     num: 'IV',
+    title: 'V čem je Česko jiné',
+    paras: [
+      'Numerologie a esoterika nejsou v Česku okrajová záležitost. Pew Research Center (CEE 2017) ukazuje, že 43\u202f% Čechů věří v osud a 44\u202f% v existenci duše — a to navzdory tomu, že 72\u202f% se nehlásí k žádné církvi. Nielsen Admosphere přidává, že horoskopům věří 43\u202f% online Čechů; mezi ženami je to dokonce 56\u202f%.',
+      'Cosmatch z těchto čísel staví pozici, kterou si americké aplikace nemohou dovolit: jsme jediná česká seznamka, která hraje s tímhle hluboce zakořeněným systémem víry, ne proti němu. Pro 56\u202f% českých žen je vaše datum narození smysluplný signál, ne pověra.',
+    ],
+  },
+  {
+    id: 'master-cisla',
+    num: 'V',
     title: 'Master čísla ve vztazích',
     paras: [
       'Lidé s master číslem (11, 22, 33) bývají ve vztazích intenzivnější — v dobrém i špatném. Vizionář (11) potřebuje partnera, který zvládne jeho emocionální hloubku. Architekt (22) může být workoholik, který podceňuje vztahovou péči. Mistr lásky (33) dává tak moc, že riskuje vyhoření.',

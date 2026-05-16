@@ -99,6 +99,75 @@ export default function ManifestDuvery() {
           ))}
         </div>
 
+        {/* Verifikované profily — special callout */}
+        <section className="mt-24 bg-gradient-to-br from-emerald-50 to-white border border-emerald-200 rounded-3xl p-10">
+          <p className="eyebrow text-emerald-600 mb-6">Konkrétně k bezpečnosti</p>
+          <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-[1.1] tracking-tight mb-8">
+            Verifikované profily.<br/>
+            <em className="italic text-emerald-600">Nehraj o slepém.</em>
+          </h2>
+
+          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-8">
+            Česká republika je <strong className="text-gray-900 font-medium">šestá nejzranitelnější země světa vůči romance scams</strong>.
+            45\u202f% uživatelů českých seznamek pravidelně narazí na podezřelý profil, průměrná
+            zaznamenaná škoda dosahuje 47\u202f245\u202fKč. To se nestane, když víš, s kým mluvíš.
+          </p>
+
+          <div className="space-y-6 mb-8">
+            <div className="grid grid-cols-[auto,1fr] gap-4">
+              <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-500 text-white flex-shrink-0 mt-1">
+                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              </span>
+              <div>
+                <p className="serif text-lg text-gray-900 font-medium mb-1">ID verifikace v tarifu Cosmatch Serious</p>
+                <p className="text-gray-700 leading-relaxed text-[0.95rem]">
+                  Uživatel projde ověřením totožnosti přes EU službu (Veriff / iDenfy).
+                  Po úspěšném ověření získá zelený štítek <span className="inline-flex items-center gap-1 align-middle text-emerald-600 font-semibold text-xs">
+                    <svg className="w-2.5 h-2.5" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Ověřeno
+                  </span>, který vidí každý.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-[auto,1fr] gap-4">
+              <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-500 text-white flex-shrink-0 mt-1">
+                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              </span>
+              <div>
+                <p className="serif text-lg text-gray-900 font-medium mb-1">Filtr „jen ověřené"</p>
+                <p className="text-gray-700 leading-relaxed text-[0.95rem]">
+                  V nastavení si zapneš, aby ti aplikace zobrazovala jen profily se zeleným štítkem.
+                  Žádné kompromisy.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-[auto,1fr] gap-4">
+              <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-500 text-white flex-shrink-0 mt-1">
+                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              </span>
+              <div>
+                <p className="serif text-lg text-gray-900 font-medium mb-1">Rychlá reakce na nahlášení</p>
+                <p className="text-gray-700 leading-relaxed text-[0.95rem]">
+                  Po reportu zmizí profil z feedu do hodiny. Pokud potvrdíme scam, trvale ho mažeme
+                  a zapisujeme do interní blacklist databáze.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap gap-3">
+            <Link href="/verifikace"
+              className="inline-flex items-center justify-center bg-gray-900 text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-gray-800 transition">
+              Jak ověřujeme profily →
+            </Link>
+            <Link href="/premium"
+              className="inline-flex items-center justify-center text-gray-700 border border-gray-300 hover:border-gray-900 px-6 py-3 rounded-full text-sm font-medium transition">
+              Cosmatch Serious
+            </Link>
+          </div>
+        </section>
+
         {/* Signature */}
         <footer className="mt-24 pt-12 border-t border-gray-200">
           <p className="eyebrow text-gray-400 mb-4">Podepsáno</p>
