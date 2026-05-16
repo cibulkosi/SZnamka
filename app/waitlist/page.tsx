@@ -60,12 +60,11 @@ export default function WaitlistPage() {
         const c = (row.city || '').trim()
         if (!c) continue
         // Match Praha/Brno/Bratislava + their districts
-        let parent: string | null = null
+        let parent: string = 'Jiné'
         if (c.startsWith('Praha')) parent = 'Praha'
         else if (DISTRICTS.Brno.includes(c)) parent = 'Brno'
         else if (DISTRICTS.Bratislava.includes(c)) parent = 'Bratislava'
         else if (c === 'Praha' || c === 'Brno' || c === 'Bratislava') parent = c
-        else parent = 'Jiné'
         byCity[parent] = (byCity[parent] || 0) + 1
         byDistrict[c] = (byDistrict[c] || 0) + 1
       }
