@@ -208,7 +208,7 @@ export default function DemoPage() {
           <div className="text-4xl mb-4">✨</div>
           <h2 className="text-white text-2xl font-bold mb-3">Zaujaly tě ukázkové profily?</h2>
           <p className="text-white/60 mb-6 max-w-md mx-auto text-sm leading-relaxed">
-            Zadej datum narození a okamžitě uvidíš svůj personologický profil. Pak ti ukážeme reálné lidi seřazené právě pro tebe.
+            Zadej datum narození a okamžitě uvidíš svůj numerologický profil. Pak ti ukážeme reálné lidi seřazené právě pro tebe.
           </p>
           <Link href="/register" className="btn-primary text-lg py-4 px-10 inline-block">
             ✨ Začít zdarma — 30 sekund

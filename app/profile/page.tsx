@@ -61,7 +61,7 @@ export default function ProfilePage() {
  const profile = JSON.parse(raw) as Profile
  setUser(profile)
 
- // Načti personologický text
+ // Načti numerologický text
  if (profile.birthday) {
  supabase
  .from('personology')

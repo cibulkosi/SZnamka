@@ -70,7 +70,7 @@ export default function RegisterPage() {
  const [personologyPreview, setPersonologyPreview] = useState('')
  const [loadingPreview, setLoadingPreview] = useState(false)
 
- // Načte personologický náhled a otevře modal
+ // Načte numerologický náhled a otevře modal
  const openBirthdayConfirm = () => {
  if (!birthday || !form.birth_year) return
  setShowBirthdayModal(true)
@@ -219,6 +219,16 @@ export default function RegisterPage() {
      setLoading(false)
      return
    }
+ // Gender cap — pokud je >65% mužů, přesměruj na waitlist
+ if (form.gender === 'male' || form.gender === 'Muž') {
+   try {
+     const { data: capData } = await supabase.rpc('is_male_cap_reached')
+     if (capData === true) {
+       window.location.href = '/waitlist?reason=gender_cap'
+       return
+     }
+   } catch { /* pokračujeme pokud funkce selže */ }
+ }
  if (!form.name || !form.email || !form.password || !birthday) {
  setError('Vyplň všechna povinná pole.')
  return
@@ -431,7 +441,7 @@ export default function RegisterPage() {
  {/* BIRTHDAY CONFIRMATION MODAL */}
  {showBirthdayModal && (
  <div className="fixed inset-0 z-50 flex items-center justify-center px-5 bg-black/50 backdrop-blur-sm"> <div className="bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl"> <div className="text-center mb-6"> <div className="text-4xl mb-3"></div> <h3 className="text-lg font-bold text-gray-900 mb-1">Potvrzení data narození</h3> <p className="text-pink-500 font-semibold text-xl mt-2"> {String(form.day).padStart(2,'0')}. {['ledna','února','března','dubna','května','června','července','srpna','září','října','listopadu','prosince'][parseInt(form.month)-1]} {form.birth_year}
- </p> </div> <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 mb-6"> <p className="text-amber-800 text-sm leading-relaxed text-center"> Datum narození <strong>nelze po registraci změnit</strong> — je trvale svázáno s tvým personologickým profilem.
+ </p> </div> <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 mb-6"> <p className="text-amber-800 text-sm leading-relaxed text-center"> Datum narození <strong>nelze po registraci změnit</strong> — je trvale svázáno s tvým numerologickým profilem.
  </p> </div> <div className="flex gap-3"> <button
  className="btn-secondary flex-1 text-sm"
  onClick={() => setShowBirthdayModal(false)}

@@ -129,7 +129,7 @@ function HingeProfile({
  <div className="bg-white"> {/* Kompatibilita — hned pod fotkou */}
  {compat && (
  <div className="px-5 pt-4 pb-3 border-b border-gray-100"> <CompatBadges compat={compat} lang="cs" /> {compat.is_mutual && (
- <p className="text-pink-500 text-xs font-semibold mt-2 flex items-center gap-1"> <span></span> Oboustranná personologická shoda
+ <p className="text-pink-500 text-xs font-semibold mt-2 flex items-center gap-1"> <span></span> Oboustranná numerologická shoda
  </p> )}
  </div> )}
 
@@ -304,7 +304,7 @@ export default function DiscoverPage() {
  // Vypočítaná skóre (kombinace book + profil)
  const [enhancedScores, setEnhancedScores] = useState<Record<string, number>>({})
 
- // Magic moment — personologický text po prvních 3 swipech
+ // Magic moment — numerologický text po prvních 3 swipech
  const [showMagic, setShowMagic] = useState(false)
  const [magicText, setMagicText] = useState('')
  const [magicViews, setMagicViews] = useState(0)
@@ -339,7 +339,7 @@ export default function DiscoverPage() {
  )
  setAnsweredQuestionIds(answered)
 
- // Načti magic moment personologický text (jednou za registraci)
+ // Načti magic moment numerologický text (jednou za registraci)
  const magicSeen = localStorage.getItem('cosmatch_magic_seen')
  if (!magicSeen) {
  const bday = (JSON.parse(stored) as Profile).birthday

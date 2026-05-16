@@ -1,0 +1,63 @@
+{
+  "name": "Cosmatch — Kompatibilita podle data narození",
+  "short_name": "Cosmatch",
+  "description": "Najdi svou skutečnou shodu díky numerologii a datům narození.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAF6F0",
+  "theme_color": "#ec4899",
+  "orientation": "portrait",
+  "lang": "cs",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-120.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "categories": ["lifestyle", "social"],
+  "shortcuts": [
+    {
+      "name": "Discover",
+      "short_name": "Discover",
+      "url": "/discover",
+      "description": "Prohlížej kompatibilní profily"
+    },
+    {
+      "name": "Quiz",
+      "short_name": "Quiz",
+      "url": "/test",
+      "description": "Zjisti svůj numerologický profil"
+    }
+  ]
+}

@@ -25,8 +25,8 @@ export default function LandingPage() {
  <>Vesmír zná<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400">tvůj match</span></> ) : (
  <>The universe knows<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400">your match</span></> )}
  </h1> <p className="text-white/85 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed drop-shadow"> {isCs
- ? 'Seznamka postavená na vědě o datech narození. Tvůj personologický profil — z přes 2 350 stran výzkumu — najde ty, kteří ti opravdu odpovídají.'
- : 'A dating app built on the science of birth dates. Your personology profile — from 2,350+ pages of research — finds people who truly match you.'}
+ ? 'Seznamka postavená na vědě o datech narození. Tvůj numerologický profil — z přes 2 350 stran výzkumu — najde ty, kteří ti opravdu odpovídají.'
+ : 'A dating app built on the science of birth dates. Your numerology profile — from 2,350+ pages of research — finds people who truly match you.'}
  </p> <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6"> <Link href="/register" className="btn-primary text-lg py-4 px-8"> {isCs ? 'Začít zdarma' : 'Start for free'}
  </Link> <Link
  href="/demo"
@@ -36,7 +36,7 @@ export default function LandingPage() {
  </Link> </div> <p className="text-white/40 text-sm"> {isCs ? 'Žádná kreditní karta. Registrace za 30 sekund.' : 'No credit card. Sign up in 30 seconds.'}
  </p> </div> <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce"> <svg viewBox="0 0 24 24" className="w-6 h-6 text-white/40" fill="none" stroke="currentColor" strokeWidth="2"> <path d="M6 9l6 6 6-6"/> </svg> </div> </section> {/* STATS */}
  <section className="py-16 px-6" style={{ background: 'rgba(255,255,255,0.025)' }}> <div className="max-w-4xl mx-auto grid grid-cols-3 gap-6"> {[
- ['366', isCs ? 'personol. profilů' : 'personology profiles'],
+ ['366', isCs ? 'personol. profilů' : 'numerology profiles'],
  ['133 000+', isCs ? 'párů kompatibility' : 'compatibility pairs'],
  ['5', isCs ? 'kategorií shody' : 'match categories'],
  ].map(([num, label], i) => (
@@ -95,12 +95,12 @@ export default function LandingPage() {
  {
  icon: '', num: '01',
  title: isCs ? 'Zadáš datum narození' : 'Enter your birthday',
- desc: isCs ? 'Nic víc nepotřebujeme. Tvůj birthday odemkne tvůj přesný personologický profil.' : 'That\'s all we need. Your birthday unlocks your exact personology profile.',
+ desc: isCs ? 'Nic víc nepotřebujeme. Tvůj birthday odemkne tvůj přesný numerologický profil.' : 'That\'s all we need. Your birthday unlocks your exact numerology profile.',
  },
  {
  icon: '', num: '02',
  title: isCs ? 'Vesmír ti ukáže tvůj profil' : 'The universe shows your profile',
- desc: isCs ? 'Ihned po zadání data uvidíš svůj personologický výtah. Tento "magic moment" tě překvapí přesností.' : 'Right after entering your date, you\'ll see your personology excerpt. This magic moment will surprise you.',
+ desc: isCs ? 'Ihned po zadání data uvidíš svůj numerologický výtah. Tento "magic moment" tě překvapí přesností.' : 'Right after entering your date, you\'ll see your numerology excerpt. This magic moment will surprise you.',
  },
  {
  icon: '', num: '03',
@@ -133,7 +133,7 @@ export default function LandingPage() {
  <section className="py-24 px-6 max-w-5xl mx-auto"> <h2 className="text-3xl md:text-4xl font-bold text-center mb-16"> {isCs ? 'Proč Cosmatch?' : 'Why Cosmatch?'}
  </h2> <div className="grid md:grid-cols-2 gap-6"> {[
  { title: isCs ? 'Méně swipů, víc záměru' : 'Less swiping, more intent', desc: isCs ? '5 promyšlených swipů denně — záměrně omezené, protože věříme v kvalitu nad kvantitou. Slow dating, který má smysl.' : '5 thoughtful swipes per day — intentionally limited, because we believe in quality over quantity. Slow dating that makes sense.' },
- { title: isCs ? 'Věda, ne náhoda' : 'Science, not luck', desc: isCs ? '133 000+ párů kompatibility z 2 350 stran personologického výzkumu. Tvůj profil je unikátní — jako tvoje datum.' : '133,000+ compatibility pairs from 2,350 pages of research. Your profile is unique — just like your birth date.' },
+ { title: isCs ? 'Věda, ne náhoda' : 'Science, not luck', desc: isCs ? '133 000+ párů kompatibility z 2 350 stran numerologického výzkumu. Tvůj profil je unikátní — jako tvoje datum.' : '133,000+ compatibility pairs from 2,350 pages of research. Your profile is unique — just like your birth date.' },
  { title: isCs ? 'Navrženo pro vztah, ne závislost' : 'Designed for love, not addiction', desc: isCs ? 'Žádná gamifikace, žádné nekonečné scrollování. Cosmatch chce, abys ho jednou smazala — protože jsi našla toho pravého.' : 'No gamification, no endless scrolling. Cosmatch wants you to delete it one day — because you found the right person.' },
  { title: isCs ? 'Česká komunita' : 'Czech community', desc: isCs ? 'Navrženo pro česky mluvící uživatele — CZ/SK priorita, plná lokalizace, platby v CZK přes Paddle.' : 'Designed for Czech-speaking users — CZ/SK priority, full localization, CZK payments via Paddle.' },
  ].map((item, i) => (
