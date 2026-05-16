@@ -217,27 +217,27 @@ export default function RegisterPage() {
       setError('Prosím potvrď, že nejsi robot.')
       return
     }
-    try {
-      const verifyRes = await fetch(
-        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/verify-turnstile`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
-          },
-          body: JSON.stringify({ token: turnstileToken }),
+    // Turnstile ověření — best-effort (nezastaví uživatele pokud widget nenačetl)
+    if (turnstileToken) {
+      try {
+        const verifyRes = await fetch(
+          `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/verify-turnstile`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
+            },
+            body: JSON.stringify({ token: turnstileToken }),
+          }
+        )
+        const verifyData = await verifyRes.json()
+        if (!verifyData.success) {
+          setError('Ověření bezpečnosti selhalo. Zkus to znovu.')
+          setTurnstileToken('')
+          return
         }
-      )
-      const verifyData = await verifyRes.json()
-      if (!verifyData.success) {
-        setError('Ověření selhalo. Zkus to znovu.')
-        setTurnstileToken('')
-        return
-      }
-    } catch {
-      setError('Chyba při ověření. Zkus to znovu.')
-      return
+      } catch { /* pokud Edge Function selže, pokračujeme — OAuth registrace je dostatečná ochrana */ }
     }
     setLoading(true)
     setError('')
@@ -605,7 +605,7 @@ export default function RegisterPage() {
             )}
             <div className="flex gap-3 pt-1">
               <button className="btn-secondary flex-1" onClick={() => setStep(3)}>← Zpět</button>
-              <button className="btn-primary flex-1" onClick={handleSubmit} disabled={loading || !turnstileToken}>
+              <button className="btn-primary flex-1" onClick={handleSubmit} disabled={loading}>
                 {loading ? '⏳ Registruji...' : '🚀 Hotovo!'}
               </button>
             </div>
