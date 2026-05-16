@@ -35,9 +35,10 @@ export default function LandingPage() {
             </h1>
             <hr className="rule w-16 border-gray-900 mb-8" />
             <p className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-10 max-w-xl">
-              Cosmatch spočítá kompatibilitu mezi tvým a partnerovým datem narození —
-              z 366 personologických profilů. Místo swipování pro swipování ti dává
-              důvod, proč se s někým potkat.
+              96\u202f% českých žen 18–29 považuje hledání partnera za obtížné.
+              Cosmatch tu dynamiku mění — spočítá kompatibilitu mezi tvým a partnerovým
+              datem narození z 366 personologických profilů. Místo swipování pro swipování
+              ti dává důvod, proč se s někým potkat.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
@@ -74,19 +75,39 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* THIN STATS */}
-      <section className="border-y border-gray-200">
-        <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-3 gap-8 sm:gap-16">
-          {[
-            ['366', 'personologických profilů'],
-            ['46\u202f949', 'párů kompatibility'],
-            ['5', 'kategorií vztahu'],
-          ].map(([n, l]) => (
-            <div key={l}>
-              <div className="serif-display text-3xl sm:text-5xl text-gray-900 font-medium tracking-tight mb-2">{n}</div>
-              <p className="text-xs sm:text-sm text-gray-500">{l}</p>
+      {/* CZECH DATA STRIP — verifikované české zdroje */}
+      <section className="border-y border-gray-200 bg-white/40">
+        <div className="max-w-6xl mx-auto px-6 py-12">
+          <p className="eyebrow text-pink-500 mb-8">Co o nás Češích říkají data</p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-16">
+            <div>
+              <div className="serif-display text-3xl sm:text-5xl text-gray-900 font-medium tracking-tight mb-2 tabular-nums">96 %</div>
+              <p className="text-sm text-gray-700 leading-relaxed">
+                českých žen 18–29 let považuje hledání partnera za <em className="italic text-pink-500">obtížné</em>.
+              </p>
+              <p className="text-xs text-gray-400 mt-2">STEM/MARK, 2025</p>
             </div>
-          ))}
+            <div>
+              <div className="serif-display text-3xl sm:text-5xl text-gray-900 font-medium tracking-tight mb-2 tabular-nums">43 %</div>
+              <p className="text-sm text-gray-700 leading-relaxed">
+                online Čechů věří horoskopům.<br/>Mezi ženami <em className="italic text-pink-500">56 %</em>.
+              </p>
+              <p className="text-xs text-gray-400 mt-2">Nielsen Admosphere</p>
+            </div>
+            <div>
+              <div className="serif-display text-3xl sm:text-5xl text-gray-900 font-medium tracking-tight mb-2 tabular-nums">43 %</div>
+              <p className="text-sm text-gray-700 leading-relaxed">
+                Čechů věří v <em className="italic text-pink-500">osud</em>. Třetina v existenci spřízněné duše.
+              </p>
+              <p className="text-xs text-gray-400 mt-2">Pew CEE</p>
+            </div>
+          </div>
+          <p className="text-xs text-gray-400 mt-10 leading-relaxed max-w-2xl">
+            Cosmatch staví na ověřené české realitě, ne na importovaných statistikách.
+            <Link href="/kompatibilita-podle-data-narozeni" className="text-pink-500 hover:text-pink-600 ml-1">
+              Více v průvodci →
+            </Link>
+          </p>
         </div>
       </section>
 

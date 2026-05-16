@@ -30,7 +30,7 @@ const principles = [
   {
     numeral: 'V',
     title: 'Bezpečnost není nadstandard',
-    body: 'Přihlašuješ se přes Google nebo Facebook — heslo u nás neexistuje, takže ti ho nemůžeme ztratit. Servery běží ve Frankfurtu, v EU. Smazání účtu je nevratné — a vyřízené do hodiny.',
+    body: 'Česko je šestá nejzranitelnější země světa vůči romance scams — 45\u202f% uživatelů seznamek tu pravidelně narazí na podezřelý profil. Cosmatch proto nabízí ID verifikaci, Cloudflare Turnstile proti botům a Google/Facebook SSO bez hesla. Servery běží ve Frankfurtu (EU). Smazání účtu vyřídíme do hodiny.',
   },
   {
     numeral: 'VI',
@@ -41,6 +41,11 @@ const principles = [
     numeral: 'VII',
     title: 'Záruky, ne sliby',
     body: 'Pokud nejsi spokojen s předplatným do 14\u202fdnů, peníze vrátíme bez vysvětlení. Pokud nás potřebuješ, píšeš na ahoj@cosmatch.cz a odpovídáme do 48\u202fhodin. Občas dříve.',
+  },
+  {
+    numeral: 'VIII',
+    title: 'Transparentní reportování',
+    body: 'Každý měsíc zveřejníme, kolik podezřelých profilů jsme zablokovali, kolik reportů jsme vyřešili a kolik účtů jsme verifikovali. Žádné skrývání. Pokud Cosmatch v něčem selže, dozvíš se o tom první.',
   },
 ]
 

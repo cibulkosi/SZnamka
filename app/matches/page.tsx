@@ -157,7 +157,14 @@ export default function MatchesPage() {
  {displayList.map(p => {
  const c = compats[p.birthday]
  return (
- <div key={p.id} className="card p-4 flex items-center gap-4 hover:bg-white/15 transition-all"> <Avatar name={p.name} /> <div className="flex-1 min-w-0"> <div className="flex items-center gap-2 mb-1"> <span className="font-semibold">{p.name}</span> {p.birth_year && (
+ <div key={p.id} className="card p-4 flex items-center gap-4 hover:bg-white/15 transition-all"> <Avatar name={p.name} /> <div className="flex-1 min-w-0"> <div className="flex items-center gap-2 mb-1 flex-wrap"> <span className="font-semibold">{p.name}</span>
+ {p.verified && (
+   <span className="inline-flex items-center gap-1 bg-emerald-500 text-white text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full">
+     <svg className="w-2.5 h-2.5" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+     Ověřeno
+   </span>
+ )}
+ {p.birth_year && (
  <span className="text-white/40 text-xs">{new Date().getFullYear() - p.birth_year}y</span> )}
  {p.city && <span className="text-white/40 text-xs">· {p.city}</span>}
  </div> <div className="flex flex-wrap gap-1"> {c && <CompatBadges compat={c} lang={lang} />}

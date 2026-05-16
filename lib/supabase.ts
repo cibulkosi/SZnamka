@@ -54,6 +54,10 @@ export type Profile = {
   alcohol?: string   // 'never' | 'socially' | 'regularly'
   diet?: string      // 'omnivore' | 'vegetarian' | 'vegan' | 'other'
   exercise?: string  // 'never' | 'sometimes' | 'regularly'
+
+  // ── Trust & verifikace ──────────────────────────
+  verified?: boolean        // TRUE pokud uživatel prošel ID verifikací (Serious tier)
+  verified_at?: string      // ISO timestamp ověření
 }
 
 export const EDUCATION_OPTIONS = [

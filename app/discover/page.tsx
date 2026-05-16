@@ -113,7 +113,13 @@ function HingeProfile({
  > <ProfileAvatar profile={profile} /> {/* Skóre kompatibility — vpravo nahoře */}
  <div className="absolute top-4 right-4 z-10"> <ScoreRing score={enhancedScore} /> </div> {/* Gradient overlay spodek */}
  <div className="absolute bottom-0 left-0 right-0 h-56 bg-gradient-to-t from-black/90 via-black/50 to-transparent pointer-events-none" /> {/* Jméno, věk, lokalita — přes fotku dole */}
- <div className="absolute bottom-5 left-5 right-5"> <h2 className="text-white font-bold text-3xl tracking-tight"> {profile.name.split(' ')[0]}
+ <div className="absolute bottom-5 left-5 right-5"> <h2 className="text-white font-bold text-3xl tracking-tight flex items-center gap-2"> {profile.name.split(' ')[0]}
+ {profile.verified && (
+   <span className="inline-flex items-center gap-1 bg-emerald-500 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">
+     <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+     Ověřeno
+   </span>
+ )}
  {age && <span className="font-light">, {age}</span>}
  </h2> {(profile.city || profile.country) && (
  <p className="text-white/75 text-sm mt-1 flex items-center gap-1"> <span></span> {[profile.city, profile.country].filter(Boolean).join(' · ')}

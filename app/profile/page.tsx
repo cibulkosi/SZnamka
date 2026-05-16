@@ -106,7 +106,15 @@ export default function ProfilePage() {
  <img src={photo} alt={user.name} className="w-full h-full object-cover" /> ) : (
  <div className={`w-full h-full bg-gradient-to-br ${avatarGradient} flex items-center justify-center`}> <span className="text-white text-5xl font-bold opacity-80"> {user.name.charAt(0).toUpperCase()}
  </span> </div> )}
- </div> <h1 className="text-2xl font-bold text-gray-900 mb-1">{user.name}</h1> {birthdayDisplay && (
+ </div> <h1 className="text-2xl font-bold text-gray-900 mb-1 flex items-center gap-2">
+  {user.name}
+  {user.verified && (
+    <span className="inline-flex items-center gap-1 bg-emerald-500 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">
+      <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+      Ověřeno
+    </span>
+  )}
+</h1> {birthdayDisplay && (
  <p className="text-gray-500 text-sm mb-1"> {birthdayDisplay}</p> )}
  {zodiac && (
  <p className="text-gray-400 text-sm mb-3">{zodiac}</p> )}
