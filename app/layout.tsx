@@ -40,6 +40,14 @@ export const metadata: Metadata = {
   formatDetection: {
     telephone: false,
   },
+  metadataBase: new URL('https://cosmatch.cz'),
+  alternates: {
+    canonical: '/',
+    languages: {
+      'cs-CZ': '/',
+      'x-default': '/',
+    },
+  },
 }
 
 export const viewport: Viewport = {
@@ -53,6 +61,70 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="cs" className={`${inter.variable} ${fraunces.variable}`}>
       <head>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Organization",
+              "@id": "https://cosmatch.cz/#organization",
+              "name": "Cosmatch",
+              "alternateName": "Cosmatch.cz",
+              "url": "https://cosmatch.cz",
+              "logo": "https://cosmatch.cz/icon-512.png",
+              "description": "První česká seznamka založená na numerologické kompatibilitě dat narození.",
+              "founder": {
+                "@type": "Person",
+                "name": "Simona Cibulková",
+                "jobTitle": "Zakladatelka",
+              },
+              "foundingDate": "2026",
+              "foundingLocation": {
+                "@type": "Place",
+                "name": "Praha, Česká republika",
+              },
+              "knowsAbout": [
+                "numerologie",
+                "seznamka",
+                "kompatibilita partnerů",
+                "životní číslo",
+                "datum narození",
+                "personologie",
+              ],
+              "sameAs": [
+                "https://www.instagram.com/cosmatch.cz",
+                "https://www.facebook.com/cosmatch.cz",
+                "https://www.tiktok.com/@cosmatch.cz",
+              ],
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://cosmatch.cz/#website",
+              "url": "https://cosmatch.cz",
+              "name": "Cosmatch",
+              "publisher": { "@id": "https://cosmatch.cz/#organization" },
+              "inLanguage": "cs-CZ",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://cosmatch.cz/test?q={search_term_string}",
+                "query-input": "required name=search_term_string",
+              },
+            },
+            {
+              "@type": "SoftwareApplication",
+              "name": "Cosmatch",
+              "applicationCategory": "DatingApplication",
+              "operatingSystem": "Web, iOS, Android (PWA)",
+              "url": "https://cosmatch.cz",
+              "description": "Numerologická seznamka — najdi partnera podle data narození a kompatibility z 366 personologických profilů.",
+              "offers": [
+                { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "CZK" },
+                { "@type": "Offer", "name": "Cosmatch+", "price": "149", "priceCurrency": "CZK", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" } },
+                { "@type": "Offer", "name": "Cosmatch Serious", "price": "349", "priceCurrency": "CZK", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" } },
+              ],
+              "publisher": { "@id": "https://cosmatch.cz/#organization" },
+            },
+          ],
+        }) }} />
         <link rel="apple-touch-icon" sizes="180x180" href="/icon-180.png" />
         <link rel="apple-touch-icon" sizes="152x152" href="/icon-152.png" />
         <link rel="apple-touch-icon" sizes="120x120" href="/icon-120.png" />

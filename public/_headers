@@ -1,16 +1,60 @@
-# Security & rate-limit headers for Cloudflare Pages
-# Rate limiting is enforced at the Cloudflare WAF level (free tier: 10 rules)
-# These headers signal intent; actual IP-based rate limiting is set in CF dashboard
+# ════════════════════════════════════════════════════════════════
+# Cloudflare Pages security + cache headers
+# Rate limiting + WAF rules are configured in Cloudflare dashboard
+# ════════════════════════════════════════════════════════════════
 
+# Global security headers — applied to every path
 /*
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=(self)
+  Permissions-Policy: camera=(), microphone=(), geolocation=(self), interest-cohort=()
   X-XSS-Protection: 1; mode=block
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
 
-/register
-  Cache-Control: no-store, no-cache
+# HTML pages — short edge cache, browsers always revalidate
+/
+  Cache-Control: public, max-age=0, s-maxage=3600, must-revalidate
+/*/
+  Cache-Control: public, max-age=0, s-maxage=3600, must-revalidate
 
-/auth/callback
+# Sitemap + robots — daily cache
+/sitemap.xml
+  Cache-Control: public, max-age=3600, s-maxage=86400
+/robots.txt
+  Cache-Control: public, max-age=3600, s-maxage=86400
+
+# Static assets — immutable (hashed in URL)
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+/icon-*.png
+  Cache-Control: public, max-age=31536000, immutable
+/manifest.json
+  Cache-Control: public, max-age=86400
+
+# Sensitive routes — never cache (auth, registration, payments)
+/register/*
+  Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate
+  X-Robots-Tag: noindex, nofollow
+
+/auth/callback/*
   Cache-Control: no-store, no-cache
+  X-Robots-Tag: noindex, nofollow
+
+/admin/*
+  Cache-Control: no-store, no-cache
+  X-Robots-Tag: noindex, nofollow
+
+/premium/success/*
+  Cache-Control: no-store, no-cache
+  X-Robots-Tag: noindex, nofollow
+
+# Private app routes — noindex (user-only, no SEO value)
+/discover/*
+  X-Robots-Tag: noindex, nofollow
+/matches/*
+  X-Robots-Tag: noindex, nofollow
+/profile/*
+  X-Robots-Tag: noindex, nofollow
+/premium/*
+  X-Robots-Tag: noindex, nofollow
