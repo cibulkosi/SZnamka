@@ -61,6 +61,21 @@ export default function RegisterPage() {
     ? `${String(form.month).padStart(2,'0')}-${String(form.day).padStart(2,'0')}`
     : ''
 
+  // Birthday confirmation modal
+  const [showBirthdayModal, setShowBirthdayModal] = useState(false)
+  const [personologyPreview, setPersonologyPreview] = useState('')
+  const [loadingPreview, setLoadingPreview] = useState(false)
+
+  // Načte personologický náhled a otevře modal
+  const openBirthdayConfirm = async () => {
+    if (!birthday || !form.birth_year) return
+    setLoadingPreview(true)
+    const { data } = await supabase.from('personology').select('opening').eq('date_key', birthday).single()
+    setPersonologyPreview(data?.opening ?? '')
+    setLoadingPreview(false)
+    setShowBirthdayModal(true)
+  }
+
   // Turnstile anti-bot
   const [turnstileToken, setTurnstileToken] = useState('')
   const [turnstileLoading, setTurnstileLoading] = useState(true)
@@ -391,9 +406,10 @@ export default function RegisterPage() {
             </div>
             <div className="flex gap-3 pt-2">
               <button className="btn-secondary flex-1" onClick={() => setStep(0)}>← Zpět</button>
-              <button className="btn-primary flex-1" onClick={() => setStep(2)}
-                disabled={!birthday || !form.birth_year}>
-                Pokračovat →
+              <button className="btn-primary flex-1"
+                onClick={openBirthdayConfirm}
+                disabled={!birthday || !form.birth_year || loadingPreview}>
+                {loadingPreview ? '⏳' : 'Pokračovat →'}
               </button>
             </div>
           </div>
@@ -587,6 +603,56 @@ export default function RegisterPage() {
           </div>
         </div>
       )}
+
+      {/* ═══ BIRTHDAY CONFIRMATION MODAL ═══ */}
+      {showBirthdayModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-5 bg-black/50 backdrop-blur-sm">
+          <div className="bg-white rounded-3xl p-8 max-w-sm w-full shadow-2xl">
+            <div className="text-center mb-6">
+              <div className="text-4xl mb-3">🌟</div>
+              <h3 className="text-lg font-bold text-gray-900 mb-1">Je to tak?</h3>
+              <p className="text-pink-500 font-semibold text-base">
+                {String(form.day).padStart(2,'0')}. {['ledna','února','března','dubna','května','června','července','srpna','září','října','listopadu','prosince'][parseInt(form.month)-1]} {form.birth_year}
+              </p>
+            </div>
+
+            {personologyPreview ? (
+              <div className="bg-gradient-to-br from-pink-50 to-purple-50 rounded-2xl p-4 mb-6 border border-pink-100">
+                <p className="text-xs font-semibold text-pink-500 uppercase tracking-wide mb-2">Tvůj personologický profil</p>
+                <p className="text-gray-700 text-sm leading-relaxed">
+                  {personologyPreview.length > 180
+                    ? personologyPreview.slice(0, 180).trimEnd() + '…'
+                    : personologyPreview}
+                </p>
+              </div>
+            ) : (
+              <div className="bg-gray-50 rounded-2xl p-4 mb-6 border border-gray-100">
+                <p className="text-gray-400 text-sm text-center">Pro toto datum není profil k dispozici.</p>
+              </div>
+            )}
+
+            <p className="text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-xl px-3 py-2 mb-5 text-center">
+              🔒 Datum nelze po registraci změnit
+            </p>
+
+            <div className="flex gap-3">
+              <button
+                className="btn-secondary flex-1 text-sm"
+                onClick={() => setShowBirthdayModal(false)}
+              >
+                ← Opravit
+              </button>
+              <button
+                className="btn-primary flex-1 text-sm"
+                onClick={() => { setShowBirthdayModal(false); setStep(2) }}
+              >
+                Ano, to jsem já ✓
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   )
 }
