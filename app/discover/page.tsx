@@ -402,6 +402,11 @@ export default function DiscoverPage() {
   // Vypočítaná skóre (kombinace book + profil)
   const [enhancedScores, setEnhancedScores] = useState<Record<string, number>>({})
 
+  // Magic moment — personologický text po prvních 3 swipech
+  const [showMagic, setShowMagic] = useState(false)
+  const [magicText, setMagicText] = useState('')
+  const [magicViews, setMagicViews] = useState(0)
+
   useEffect(() => {
     const stored = localStorage.getItem('cosmatch_user')
     if (!stored) { router.push('/login'); return }
@@ -431,6 +436,16 @@ export default function DiscoverPage() {
       }).map(q => q.id)
     )
     setAnsweredQuestionIds(answered)
+
+    // Načti magic moment personologický text (jednou za registraci)
+    const magicSeen = localStorage.getItem('cosmatch_magic_seen')
+    if (!magicSeen) {
+      const bday = (JSON.parse(stored) as Profile).birthday
+      supabase.from('personology').select('opening').eq('date_key', bday).single()
+        .then(({ data }) => {
+          if (data?.opening) setMagicText(data.opening)
+        })
+    }
 
     loadProfiles(u)
   }, [router])
@@ -536,6 +551,14 @@ export default function DiscoverPage() {
       }
     }
 
+    // Magic moment — po 3. swipu, jednou za život
+    const newMagicViews = magicViews + 1
+    setMagicViews(newMagicViews)
+    if (newMagicViews === 3 && magicText && !localStorage.getItem('cosmatch_magic_seen')) {
+      setShowMagic(true)
+      return
+    }
+
     const newSwipeCount = swipesSinceQuestion + 1
 
     // Zobraz otázku každých 5 swipů
@@ -550,7 +573,7 @@ export default function DiscoverPage() {
     }
     setSwipesSinceQuestion(newSwipeCount)
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, idx, swipesSinceQuestion, answeredQuestionIds, dailySwipes, filteredProfiles])
+  }, [user, idx, swipesSinceQuestion, answeredQuestionIds, dailySwipes, filteredProfiles, magicViews, magicText])
 
   const handleQuestionAnswer = useCallback((updatedUser: Profile) => {
     setUser(updatedUser)
@@ -594,6 +617,30 @@ export default function DiscoverPage() {
   return (
     // Celá stránka — pevná výška viewportu, overflow skrytý (scroll je uvnitř HingeProfile)
     <div className="bg-[#FAF6F0]" style={{ height: '100dvh', display: 'flex', flexDirection: 'column' }}>
+
+      {/* ─── Magic Moment Modal ────────────────────────────────────── */}
+      {showMagic && magicText && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-5 bg-black/60 backdrop-blur-sm">
+          <div className="bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl">
+            <div className="text-5xl mb-4">🪐</div>
+            <h2 className="text-xl font-bold text-gray-900 mb-2">
+              {user?.name}, vesmír tě zná.
+            </h2>
+            <p className="text-gray-600 text-sm leading-relaxed mb-6 whitespace-pre-wrap">
+              {magicText}
+            </p>
+            <button
+              className="btn-primary w-full"
+              onClick={() => {
+                setShowMagic(false)
+                localStorage.setItem('cosmatch_magic_seen', '1')
+              }}
+            >
+              ✨ Pokračovat v hledání
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* ─── Horní navigace ─────────────────────────────────────────── */}
       <nav className="flex-shrink-0 flex items-center justify-between px-5 py-3 max-w-lg mx-auto w-full bg-[#FAF6F0] z-30">
