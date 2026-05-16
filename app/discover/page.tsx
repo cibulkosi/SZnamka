@@ -184,28 +184,73 @@ function HingeProfile({
  <span className="text-xs text-gray-500 bg-gray-50 border border-gray-100 px-3 py-1 rounded-full"> Nechce děti
  </span> )}
  </div> </div> {/* Personologický panel — vždy dole */}
- <div className="px-5 py-5"> <div className="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-100 rounded-3xl p-5"> <p className="text-xs font-bold text-purple-400 uppercase tracking-wide mb-2"> Personologická shoda</p> {compat ? (
- <div className="space-y-1.5"> {compat.is_mutual && (
- <p className="text-purple-700 text-sm font-semibold"> Oboustranná shoda</p> )}
- {compat.soul_mates && (
- <p className="text-purple-700 text-sm"> Spřízněné duše</p> )}
- {compat.love_friendship && (
- <p className="text-purple-700 text-sm"> Láska & přátelství</p> )}
- {compat.fatal_attraction && (
- <p className="text-purple-700 text-sm"> Osudová přitažlivost</p> )}
- {compat.beneficial && (
- <p className="text-purple-700 text-sm"> Prospěšný vztah</p> )}
- {compat.challenging && (
- <p className="text-purple-700 text-sm font-semibold flex items-center gap-1">
- <svg viewBox="0 0 24 24" className="w-4 h-4 text-yellow-500 fill-yellow-400" xmlns="http://www.w3.org/2000/svg"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+ <div className="px-5 py-5"> <div className="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-100 rounded-3xl p-5"> <p className="text-xs font-bold text-purple-400 uppercase tracking-wide mb-2"> Personologická shoda</p>
+ {compat ? (
+ <div className="space-y-2">
+ {compatLabel === 'absolute_resonance' && (
+ <div>
+ <p className="text-purple-700 text-sm font-bold">Absolutní rezonance</p>
+ <p className="text-purple-400 text-xs mt-0.5">Oboustranná vazba — oba vnímáte toto spojení jako výjimečné.</p>
+ </div>
+ )}
+ {compatLabel === 'magnetic_tension' && (
+ <div>
+ <p className="text-amber-700 text-sm font-bold flex items-center gap-1.5">
+ <svg viewBox="0 0 24 24" className="w-4 h-4 fill-amber-500 flex-shrink-0"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+ Magnetická tenze
+ </p>
+ <p className="text-amber-600 text-xs mt-0.5">Silný vzájemný tah, ale různé perspektivy. Jeden fascinován, druhý testován — intenzivní dynamika.</p>
+ </div>
+ )}
+ {compatLabel === 'karmic_challenge' && (
+ <div>
+ <p className="text-orange-700 text-sm font-bold flex items-center gap-1.5">
+ <svg viewBox="0 0 24 24" className="w-4 h-4 fill-orange-500 flex-shrink-0"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+ Karmická zkouška
+ </p>
+ <p className="text-orange-600 text-xs mt-0.5">Oba se budete vzájemně zkoušet. Bouřlivé, ale transformační.</p>
+ </div>
+ )}
+ {compatLabel === 'soul_mates' && (
+ <div>
+ <p className="text-purple-700 text-sm font-semibold">Spřízněné duše</p>
+ <p className="text-purple-400 text-xs mt-0.5">Hluboké vzájemné porozumění přesahující slova.</p>
+ </div>
+ )}
+ {compatLabel === 'fatal_attraction' && (
+ <div>
+ <p className="text-rose-700 text-sm font-semibold">Osudová přitažlivost</p>
+ <p className="text-rose-400 text-xs mt-0.5">Nevyhnutelné osudové setkání s extrémní přitažlivostí.</p>
+ </div>
+ )}
+ {compatLabel === 'love_friendship' && (
+ <div>
+ <p className="text-pink-700 text-sm font-semibold">Láska & přátelství</p>
+ <p className="text-pink-400 text-xs mt-0.5">Harmonické spojení s přirozenou náklonností.</p>
+ </div>
+ )}
+ {compatLabel === 'beneficial' && (
+ <div>
+ <p className="text-emerald-700 text-sm font-semibold">Prospěšný vztah</p>
+ <p className="text-emerald-500 text-xs mt-0.5">Vzájemně se posilujete a obohacujete.</p>
+ </div>
+ )}
+ {compatLabel === 'challenging' && (
+ <div>
+ <p className="text-yellow-700 text-sm font-semibold flex items-center gap-1.5">
+ <svg viewBox="0 0 24 24" className="w-4 h-4 fill-yellow-500 flex-shrink-0"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
  Výzva a růst
- </p> )}
- {!compat.is_mutual && !compat.soul_mates && !compat.love_friendship &&
- !compat.fatal_attraction && !compat.beneficial && !compat.challenging && (
- <p className="text-purple-500 text-sm">Neutrální kombinace dat.</p> )}
- </div> ) : (
- <p className="text-purple-500 text-sm"> Personologická data pro toto datum nejsou k dispozici.
- </p> )}
+ </p>
+ <p className="text-yellow-600 text-xs mt-0.5">Jiskřivá dynamika — vzájemná výzva, která přináší růst.</p>
+ </div>
+ )}
+ {compatLabel === 'neutral' && (
+ <p className="text-purple-400 text-xs">Neutrální kombinace dat.</p>
+ )}
+ </div>
+ ) : (
+ <p className="text-purple-500 text-sm">Personologická data pro toto datum nejsou k dispozici.</p>
+ )}
  </div> </div> {/* Hint pro scrollování */}
  <p className="text-center text-gray-300 text-xs pb-4"> ↑ Scrolluj nahoru zpět na fotku
  </p> </div> </div> {/* Fixní akční lišta — X vlevo, vpravo */}
@@ -239,6 +284,7 @@ export default function DiscoverPage() {
  const [user, setUser] = useState<Profile | null>(null)
  const [profiles, setProfiles] = useState<Profile[]>([])
  const [compats, setCompats] = useState<Record<string, Compatibility>>({})
+ const [reverseCompats, setReverseCompats] = useState<Record<string, Compatibility>>({})
  const [idx, setIdx] = useState(0)
  const [loading, setLoading] = useState(true)
  const [action, setAction] = useState<'like' | 'pass' | null>(null)
@@ -333,14 +379,28 @@ export default function DiscoverPage() {
  const compatMap: Record<string, Compatibility> = {}
  compatData?.forEach(c => { compatMap[c.date_b] = c })
 
+ // Fetch REVERSE compat — co vidí protistrana o uživateli
+ const { data: reverseData } = await supabase
+ .from('compatibility')
+ .select('*')
+ .in('date_a', bdays)
+ .eq('date_b', u.birthday)
+ const reverseMap: Record<string, Compatibility> = {}
+ reverseData?.forEach(c => { reverseMap[c.date_a] = c })
+
  // Vrstva 2 – Hard KO: vylouč profily mimo limit vzdálenosti uživatele
  const maxDistKm = (u as Profile & { max_distance?: number }).max_distance ?? 100
  const profsInRange = profs.filter(p => !isOutsideDistanceLimit(u, p, maxDistKm))
 
- // Vypočítej enhanced scores pro všechny profily
+ // Vypočítej enhanced scores — s Tension Score (vážený průměr obou perspektiv)
  const scores: Record<string, number> = {}
  profsInRange.forEach(p => {
- const bookScore = compatMap[p.birthday]?.score ?? null
+ const fwd = compatMap[p.birthday]?.score ?? null    // co vidí user o profilu
+ const rev = reverseMap[p.birthday]?.score ?? null   // co vidí profil o userovi
+ // Tension Score: 65 % perspektiva uživatele + 35 % perspektiva protistrany
+ const bookScore = fwd !== null
+ ? (rev !== null ? fwd * 0.65 + rev * 0.35 : fwd)
+ : (rev !== null ? rev * 0.5 : null)
  scores[p.id] = computeCompatibility(u, p, bookScore)
  })
 
@@ -354,6 +414,7 @@ export default function DiscoverPage() {
 
  setProfiles(sorted)
  setCompats(compatMap)
+ setReverseCompats(reverseMap)
  setEnhancedScores(scores)
  setLoading(false)
  }
@@ -468,7 +529,34 @@ export default function DiscoverPage() {
 
  const currentProfile = filteredProfiles[idx] ?? null
  const compat = currentProfile ? compats[currentProfile.birthday] : null
+ const reverseCompat = currentProfile ? reverseCompats[currentProfile.birthday] : null
  const enhancedScore = currentProfile ? (enhancedScores[currentProfile.id] ?? compat?.score ?? 0) : 0
+
+ // Asymmetry label logic
+ type CompatLabelType = 'mutual' | 'magnetic_tension' | 'karmic_challenge' | 'absolute_resonance' | 'soul_mates' | 'fatal_attraction' | 'love_friendship' | 'beneficial' | 'challenging' | 'neutral'
+ function getCompatLabel(fwd: typeof compat, rev: typeof compat): CompatLabelType {
+ if (!fwd) return 'neutral'
+ const fwdTop = fwd.soul_mates || fwd.fatal_attraction
+ const fwdMid = fwd.love_friendship || fwd.beneficial
+ const fwdLow = fwd.challenging
+ const revTop = rev && (rev.soul_mates || rev.fatal_attraction)
+ const revLow = rev && rev.challenging
+ // Absolutní rezonance — oboustranná shoda obou top kategorií
+ if (fwd.is_mutual && !fwdLow) return 'absolute_resonance'
+ // Magnetická tenze — jeden vidí top, druhý vidí výzvu
+ if ((fwdTop && revLow) || (fwdLow && revTop)) return 'magnetic_tension'
+ // Karmická zkouška — oba vidí výzvu
+ if (fwdLow && rev?.challenging) return 'karmic_challenge'
+ // Standardní jednostranné kategorie
+ if (fwd.soul_mates) return 'soul_mates'
+ if (fwd.fatal_attraction) return 'fatal_attraction'
+ if (fwd.love_friendship) return 'love_friendship'
+ if (fwd.beneficial) return 'beneficial'
+ if (fwd.challenging) return 'challenging'
+ if (fwdMid) return 'love_friendship'
+ return 'neutral'
+ }
+ const compatLabel = getCompatLabel(compat, reverseCompat)
  const completeness = user ? profileCompleteness(user) : 0
 
  if (loading) return (
