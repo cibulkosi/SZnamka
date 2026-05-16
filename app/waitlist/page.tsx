@@ -39,6 +39,8 @@ export default function WaitlistPage() {
   const [position, setPosition] = useState<number | null>(null)
   const [totalCount, setTotalCount] = useState(0)
   const [referralCode, setReferralCode] = useState('')
+  const [voucherCode, setVoucherCode] = useState('')
+  const [voucherCopied, setVoucherCopied] = useState(false)
   const [refCode, setRefCode] = useState('')
   const [copied, setCopied] = useState(false)
   const [reason, setReason] = useState<string | null>(null)
