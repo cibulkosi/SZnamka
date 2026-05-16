@@ -66,6 +66,7 @@ export default function RegisterPage() {
  const [showBirthdayModal, setShowBirthdayModal] = useState(false)
  const [geoLoading, setGeoLoading] = useState(false)
  const [geoError, setGeoError] = useState('')
+ const [honeypot, setHoneypot] = useState('') // Anti-bot honeypot
  const [personologyPreview, setPersonologyPreview] = useState('')
  const [loadingPreview, setLoadingPreview] = useState(false)
 
@@ -211,6 +212,13 @@ export default function RegisterPage() {
  }
 
  const handleSubmit = async () => {
+   // Honeypot — boti vyplní skryté pole, lidi ne
+   if (honeypot) {
+     setLoading(true)
+     await new Promise(r => setTimeout(r, 2000))
+     setLoading(false)
+     return
+   }
  if (!form.name || !form.email || !form.password || !birthday) {
  setError('Vyplň všechna povinná pole.')
  return
@@ -315,6 +323,10 @@ export default function RegisterPage() {
  onClick={handleFacebookSSO}
  className="w-full flex items-center justify-center gap-3 py-3.5 px-4 border-2 border-gray-200 rounded-2xl bg-white hover:border-blue-200 hover:bg-blue-50 transition-all font-medium text-gray-700"
  > <svg viewBox="0 0 24 24" className="w-5 h-5" fill="#1877F2"> <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/> </svg> Pokračovat přes Facebook
+ {/* Honeypot anti-bot field — skryté před lidmi */}
+ <input type="text" name="website" value={honeypot} onChange={e => setHoneypot(e.target.value)}
+   tabIndex={-1} autoComplete="off" aria-hidden="true"
+   style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }} />
  </button> </div> <p className="text-center text-gray-500 text-xs mt-8"> Už máš účet?{' '}
  <Link href="/login" className="text-pink-500 hover:text-pink-600 font-semibold">Přihlásit se</Link> </p> </div> )}
 

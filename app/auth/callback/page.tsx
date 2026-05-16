@@ -2,6 +2,7 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import { isDisposableEmail } from '@/lib/disposableEmails'
 
 export default function AuthCallbackPage() {
  const router = useRouter()
@@ -13,6 +14,13 @@ export default function AuthCallbackPage() {
  if (event === 'SIGNED_IN' && session?.user) {
  const user = session.user
  const email = user.email || ''
+
+ // Blokuj disposable emaily (boti z temp-mail služeb)
+ if (email && isDisposableEmail(email)) {
+   await supabase.auth.signOut()
+   router.push('/login?error=disposable_email')
+   return
+ }
  const name = user.user_metadata?.full_name || user.user_metadata?.name || ''
 
  // Zkontroluj jestli profil v DB existuje
