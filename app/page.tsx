@@ -245,7 +245,7 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div>
             <p className="serif-display text-xl font-medium text-gray-900 mb-1">Cosmatch</p>
-            <p className="text-sm text-gray-500">© 2026 · Mgr. Ing. Simona Cibulková · Praha</p>
+            <p className="text-sm text-gray-500">© 2026 · Mgr. Ing. Simona Cibulková · IČO 08419531 · Pnětluky</p>
           </div>
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
             <Link href="/test" className="text-gray-500 hover:text-gray-900 transition">Kvíz</Link>
@@ -253,6 +253,10 @@ export default function LandingPage() {
             <Link href="/manifest-duvery" className="text-gray-500 hover:text-gray-900 transition">Manifest důvěry</Link>
             <Link href="/zasady-ochrany-osobnich-udaju" className="text-gray-500 hover:text-gray-900 transition">GDPR</Link>
             <Link href="/obchodni-podminky" className="text-gray-500 hover:text-gray-900 transition">Obchodní podmínky</Link>
+            <Link href="/reklamacni-rad" className="text-gray-500 hover:text-gray-900 transition">Reklamace</Link>
+            <Link href="/odstoupeni-od-smlouvy" className="text-gray-500 hover:text-gray-900 transition">Odstoupení</Link>
+            <Link href="/cookies" className="text-gray-500 hover:text-gray-900 transition">Cookies</Link>
+            <Link href="/verifikace" className="text-gray-500 hover:text-gray-900 transition">Bezpečnost</Link>
             <Link href="/login" className="text-gray-500 hover:text-gray-900 transition">Přihlásit</Link>
           </div>
         </div>
