@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, Fraunces } from 'next/font/google'
 import './globals.css'
-import { CookieBannerLazy } from '@/components/CookieBannerLazy'
+import { CookieBanner } from '@/components/CookieBanner'
 
 const inter = Inter({
   subsets: ['latin', 'latin-ext'],
@@ -153,7 +153,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="apple-mobile-web-app-title" content="Cosmatch" />
         <meta name="mobile-web-app-capable" content="yes" />
       </head>
-      <body className={inter.className}>{children}<CookieBannerLazy /></body>
+      <body className={inter.className}>{children}<CookieBanner /></body>
     </html>
   )
 }
