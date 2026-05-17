@@ -315,6 +315,7 @@ export default function AdminPage() {
                 </a>
                 <Link href="/waitlist" className="px-5 py-2.5 rounded-full bg-white border border-gray-300 hover:border-gray-900 text-sm text-gray-700 hover:text-gray-900 transition">Waitlist</Link>
                 <Link href="/ambasadorky" className="px-5 py-2.5 rounded-full bg-white border border-gray-300 hover:border-gray-900 text-sm text-gray-700 hover:text-gray-900 transition">Ambasadorky</Link>
+                <Link href="/admin/gdpr-requests" className="px-5 py-2.5 rounded-full bg-white border border-pink-300 hover:border-pink-500 text-sm text-pink-700 hover:text-pink-900 transition">GDPR žádosti</Link>
                 <Link href="/discover" className="px-5 py-2.5 rounded-full bg-white border border-gray-300 hover:border-gray-900 text-sm text-gray-700 hover:text-gray-900 transition">Discover</Link>
               </div>
             </section>

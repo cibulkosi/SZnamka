@@ -40,6 +40,8 @@ export default function ProfilePage() {
   const [user, setUser] = useState<Profile | null>(null)
   const [personologyText, setPersonologyText] = useState('')
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false)
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
+  const [deleting, setDeleting] = useState(false)
 
   useEffect(() => {
     (async () => {
@@ -56,6 +58,18 @@ export default function ProfilePage() {
   }, [router])
 
   const handleLogout = async () => {
+    await signOutCompletely()
+  }
+
+  async function handleDeleteAccount() {
+    if (!profile) return
+    setDeleting(true)
+    // Soft-delete: data hard-deleted after 30 days by retention_hard_delete_daily cron
+    const { error } = await supabase
+      .from('profiles')
+      .update({ deleted_at: new Date().toISOString(), deletion_reason: 'user_initiated', active: false })
+      .eq('id', profile.id)
+    if (error) { alert('Chyba při mazání: ' + error.message); setDeleting(false); return }
     await signOutCompletely()
     router.push('/login')
   }
@@ -202,6 +216,10 @@ export default function ProfilePage() {
             className="w-full bg-white border border-gray-200 hover:border-gray-900 text-gray-900 py-4 rounded-full text-base font-medium transition">
             Odhlásit se
           </button>
+          <button onClick={() => setShowDeleteConfirm(true)}
+            className="w-full bg-white border border-red-200 hover:border-red-400 text-red-700 py-4 rounded-full text-sm font-medium transition">
+            Smazat účet (GDPR čl. 17)
+          </button>
         </section>
 
         <p className="text-xs text-gray-400 text-center pb-4">
@@ -228,6 +246,35 @@ export default function ProfilePage() {
               <button onClick={handleLogout}
                 className="flex-1 bg-gray-900 hover:bg-gray-800 text-white py-4 rounded-full font-medium transition">
                 Odhlásit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showDeleteConfirm && (
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center px-6">
+          <div className="bg-[#FAF6F0] rounded-3xl p-10 w-full max-w-md shadow-2xl">
+            <p className="eyebrow text-red-600 mb-4">Trvalé smazání účtu</p>
+            <h3 className="serif-display text-3xl text-gray-900 font-medium leading-tight mb-3">
+              Opravdu chceš smazat svůj účet?
+            </h3>
+            <p className="text-gray-700 leading-relaxed text-[1.0625rem] mb-3">
+              Účet bude okamžitě zneaktivněn a zmizí z aplikace.
+            </p>
+            <p className="text-sm text-gray-600 leading-relaxed mb-6">
+              Tvá data se trvale smažou za 30 dní. Do té doby můžeš poslat e-mail
+              na <span className="font-medium">ahoj@cosmatch.cz</span> a účet obnovíme.
+              Po 30 dnech je smazání nevratné.
+            </p>
+            <div className="flex gap-3">
+              <button onClick={() => setShowDeleteConfirm(false)} disabled={deleting}
+                className="flex-1 bg-white border border-gray-300 hover:border-gray-900 text-gray-900 py-4 rounded-full font-medium transition disabled:opacity-50">
+                Zrušit
+              </button>
+              <button onClick={handleDeleteAccount} disabled={deleting}
+                className="flex-1 bg-red-600 hover:bg-red-700 text-white py-4 rounded-full font-medium transition disabled:opacity-50">
+                {deleting ? 'Mažu…' : 'Ano, smazat'}
               </button>
             </div>
           </div>

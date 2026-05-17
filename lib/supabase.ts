@@ -58,6 +58,8 @@ export type Profile = {
   // ── Trust & verifikace ──────────────────────────
   verified?: boolean        // TRUE pokud uživatel prošel ID verifikací (Serious tier)
   verified_at?: string      // ISO timestamp ověření
+  deleted_at?: string       // Soft-delete (GDPR výmaz, 30 dní pak hard delete)
+  deletion_reason?: string  // 'user_initiated' / 'gdpr_request' / 'admin_action'
 }
 
 export const EDUCATION_OPTIONS = [
