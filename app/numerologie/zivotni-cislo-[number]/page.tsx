@@ -7,6 +7,7 @@ import { ARCHETYPES, LIFE_PATH_NUMBERS, type Archetype } from './data'
 type Props = { params: Promise<{ number: string }> }
 
 // Pre-generate all 12 pages at build time
+export const dynamicParams = false
 export function generateStaticParams() {
   return LIFE_PATH_NUMBERS.map(number => ({ number }))
 }
