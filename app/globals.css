@@ -83,7 +83,7 @@ body {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   font-weight: 500;
-  color: #6B7280;
+  color: #525a66;
 }
 
 /* roman numerals — use OpenType feature */
@@ -92,4 +92,25 @@ body {
   font-style: italic;
   font-weight: 400;
   letter-spacing: 0.04em;
+}
+
+
+/* === Accessibility: underline inline text links so they aren't distinguished by color alone === */
+/* Targets anchor tags inside prose; explicit buttons/nav links carry their own classes */
+.prose a:not([class]),
+article a:not([class]),
+main p > a:not([class]),
+main li > a:not([class]) {
+  text-decoration: underline;
+  text-decoration-color: rgba(236, 72, 153, 0.45);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  color: #ec4899;
+}
+
+.prose a:not([class]):hover,
+article a:not([class]):hover,
+main p > a:not([class]):hover,
+main li > a:not([class]):hover {
+  text-decoration-color: #ec4899;
 }

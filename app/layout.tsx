@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, Fraunces } from 'next/font/google'
 import './globals.css'
-import { CookieBanner } from '@/components/CookieBanner'
+import { CookieBannerLazy } from '@/components/CookieBannerLazy'
 
 const inter = Inter({
   subsets: ['latin', 'latin-ext'],
@@ -55,7 +55,7 @@ export const viewport: Viewport = {
   themeColor: '#ec4899',
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
+  maximumScale: 5,
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -99,7 +99,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 "https://www.wikidata.org/wiki/Q139824006",
                 "https://www.linkedin.com/company/122134659",
                 "https://x.com/cosmatch_cz",
-                "https://www.facebook.com/share/1CuFph4GTf/",
+                "https://www.facebook.com/profile.php?id=61590109883991",
                 "https://www.youtube.com/@cosmatch-cz",
                 "https://www.crunchbase.com/organization/cosmatch",
                 "https://www.instagram.com/cosmatch.cz",
@@ -153,7 +153,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="apple-mobile-web-app-title" content="Cosmatch" />
         <meta name="mobile-web-app-capable" content="yes" />
       </head>
-      <body className={inter.className}>{children}<CookieBanner /></body>
+      <body className={inter.className}>{children}<CookieBannerLazy /></body>
     </html>
   )
 }

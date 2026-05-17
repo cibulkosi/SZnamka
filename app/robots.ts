@@ -34,6 +34,5 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
     sitemap: 'https://cosmatch.cz/sitemap.xml',
-    host: 'https://cosmatch.cz',
   }
 }
