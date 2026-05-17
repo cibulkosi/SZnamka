@@ -571,6 +571,40 @@ export default function RegisterPage() {
                 <Underline value={form.prompt_a} onChange={e => set('prompt_a', e.target.value)} placeholder="Tvoje odpověď…" />
               </div>
 
+              {/* GDPR Article 9 explicit consent — required for processing gender/orientation/birth date */}
+              <div className="border border-gray-200 rounded-2xl p-5 bg-white space-y-3">
+                <p className="eyebrow text-gray-500 mb-2">Souhlasy</p>
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    required
+                    className="mt-1 w-4 h-4 accent-pink-500 flex-shrink-0"
+                  />
+                  <span className="text-sm text-gray-700 leading-relaxed">
+                    Souhlasím s <Link href="/obchodni-podminky" className="text-pink-500 underline">Obchodními podmínkami</Link> a <Link href="/zasady-ochrany-osobnich-udaju" className="text-pink-500 underline">Zásadami ochrany osobních údajů</Link>.
+                  </span>
+                </label>
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    required
+                    className="mt-1 w-4 h-4 accent-pink-500 flex-shrink-0"
+                  />
+                  <span className="text-sm text-gray-700 leading-relaxed">
+                    Výslovně souhlasím se zpracováním údajů o <strong>pohlaví, hledaném pohlaví a datu narození</strong> pro účely párování podle čl. 9 odst. 2 písm. a) GDPR. Bez tohoto souhlasu Cosmatch nemůže fungovat.
+                  </span>
+                </label>
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    className="mt-1 w-4 h-4 accent-pink-500 flex-shrink-0"
+                  />
+                  <span className="text-sm text-gray-700 leading-relaxed">
+                    <span className="text-gray-500">(volitelné)</span> Souhlasím s občasnými e-maily o novinkách Cosmatch. Můžeš kdykoli odhlásit.
+                  </span>
+                </label>
+              </div>
+
               <div className="flex justify-center pt-4">
                 <div className="cf-turnstile"
                   data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA'}
