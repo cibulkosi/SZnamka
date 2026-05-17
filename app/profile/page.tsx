@@ -216,14 +216,17 @@ export default function ProfilePage() {
             className="w-full bg-white border border-gray-200 hover:border-gray-900 text-gray-900 py-4 rounded-full text-base font-medium transition">
             Odhlásit se
           </button>
-          <button onClick={() => setShowDeleteConfirm(true)}
-            className="w-full bg-white border border-red-200 hover:border-red-400 text-red-700 py-4 rounded-full text-sm font-medium transition">
-            Smazat účet (GDPR čl. 17)
-          </button>
         </section>
 
         <p className="text-xs text-gray-400 text-center pb-4">
           cosmatch.cz · 2026
+        </p>
+
+        <p className="text-center pb-8">
+          <button onClick={() => setShowDeleteConfirm(true)}
+            className="text-[11px] text-gray-400 hover:text-red-600 underline underline-offset-4 decoration-gray-300 hover:decoration-red-400 transition">
+            Smazat účet
+          </button>
         </p>
       </div>
 
