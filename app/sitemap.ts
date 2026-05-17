@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: `${BASE}/`, lastModified: now, changeFrequency: 'weekly', priority: 1.0 },
+    { url: `${BASE}/about/`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE}/test/`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${BASE}/waitlist/`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     // ── Pillar SEO pages ──

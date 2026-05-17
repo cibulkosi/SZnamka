@@ -94,6 +94,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 "https://www.instagram.com/cosmatch.cz",
                 "https://www.facebook.com/cosmatch.cz",
                 "https://www.tiktok.com/@cosmatch.cz",
+                "https://www.linkedin.com/company/cosmatch",
+                "https://www.crunchbase.com/organization/cosmatch",
+                "https://www.producthunt.com/products/cosmatch",
+                "https://alternativeto.net/software/cosmatch/",
               ],
             },
             {
@@ -122,6 +126,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 { "@type": "Offer", "name": "Cosmatch Serious", "price": "349", "priceCurrency": "CZK", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" } },
               ],
               "publisher": { "@id": "https://cosmatch.cz/#organization" },
+              "sameAs": [
+                "https://www.linkedin.com/company/cosmatch",
+                "https://www.crunchbase.com/organization/cosmatch",
+                "https://www.producthunt.com/products/cosmatch",
+              ],
             },
           ],
         }) }} />
