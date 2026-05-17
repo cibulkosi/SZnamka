@@ -26,6 +26,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // ── Trust pages ──
     { url: `${BASE}/manifest-duvery/`, lastModified: lastMonth, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE}/verifikace/`, lastModified: lastMonth, changeFrequency: 'monthly', priority: 0.7 },
+    // ── Legal ──
+    { url: `${BASE}/zasady-ochrany-osobnich-udaju/`, lastModified: now, changeFrequency: 'yearly', priority: 0.4 },
+    { url: `${BASE}/obchodni-podminky/`, lastModified: now, changeFrequency: 'yearly', priority: 0.4 },
     // ── Other ──
     { url: `${BASE}/ambasadorky/`, lastModified: lastMonth, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE}/demo/`, lastModified: lastMonth, changeFrequency: 'monthly', priority: 0.5 },

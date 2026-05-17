@@ -252,6 +252,8 @@ export default function LandingPage() {
             <Link href="/test" className="text-gray-500 hover:text-gray-900 transition">Kvíz</Link>
             <Link href="/waitlist" className="text-gray-500 hover:text-gray-900 transition">Waitlist</Link>
             <Link href="/manifest-duvery" className="text-gray-500 hover:text-gray-900 transition">Manifest důvěry</Link>
+            <Link href="/zasady-ochrany-osobnich-udaju" className="text-gray-500 hover:text-gray-900 transition">GDPR</Link>
+            <Link href="/obchodni-podminky" className="text-gray-500 hover:text-gray-900 transition">Obchodní podmínky</Link>
             <Link href="/login" className="text-gray-500 hover:text-gray-900 transition">Přihlásit</Link>
           </div>
         </div>
