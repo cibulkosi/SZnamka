@@ -412,4 +412,4 @@ export const ARCHETYPES: Record<string, Archetype> = {
   }
 }
 
-export const LIFE_PATH_NUMBERS = ['1','2','3','4','5','6','7','8','9','11','22','33'] as const
+export const LIFE_PATH_NUMBERS: string[] = ['1','2','3','4','5','6','7','8','9','11','22','33']

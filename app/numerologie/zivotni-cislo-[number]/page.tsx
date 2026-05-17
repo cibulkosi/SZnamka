@@ -8,7 +8,8 @@ type Props = { params: Promise<{ number: string }> }
 
 // Pre-generate all 12 pages at build time
 export const dynamicParams = false
-export function generateStaticParams() {
+
+export async function generateStaticParams(): Promise<{ number: string }[]> {
   return LIFE_PATH_NUMBERS.map(number => ({ number }))
 }
 
