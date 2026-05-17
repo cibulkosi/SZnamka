@@ -142,6 +142,17 @@ export default function NumerologieVztahyPage() {
     <main className="min-h-screen bg-[#FAF6F0]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": 'Co je numerologie a jak souvisí se vztahy?', "acceptedAnswer": { "@type": "Answer", "text": 'Numerologie je systém interpretace čísel s tisíciletou tradicí. Vychází z předpokladu, že datum tvého narození nese specifické energetické kvality, které ovlivňují tvou osobnost a kompatibilitu s ostatními lidmi. Ve vztazích pomáhá pochopit, proč přitahuješ konkrétní typy partnerů.' } },
+          { "@type": "Question", "name": 'Jak si vypočítám životní číslo?', "acceptedAnswer": { "@type": "Answer", "text": 'Sečti všechny číslice svého data narození. Příklad: 23. 7. 1992 → 2+3+7+1+9+9+2 = 33. Pokud výsledek je vyšší než 9, redukuj dál, pokud to není master číslo 11, 22 nebo 33. Cosmatch tě tímto procesem provede v kvízu zdarma.' } },
+          { "@type": "Question", "name": 'Funguje numerologie ve vztazích vědecky?', "acceptedAnswer": { "@type": "Answer", "text": 'Numerologie není empirická věda. Je to interpretační framework s tisíciletou tradicí, který pomáhá strukturovat sebepoznání. Cosmatch ji používá jako jeden z faktorů při výpočtu kompatibility — spolu se záměrem vztahu, vzdáleností, společnými zájmy a aktivitou.' } },
+          { "@type": "Question", "name": 'Co jsou master čísla 11, 22 a 33?', "acceptedAnswer": { "@type": "Answer", "text": 'Master čísla jsou mistrovská čísla v numerologii — nejintenzivnější vibrace. Číslo 11 je Vizionář (intuice, citlivost), 22 je Architekt (vize plus praktičnost) a 33 je Mistr lásky (soucit a léčení). Lidé s master čísly tvoří jen ~4 % populace a ve vztazích jsou intenzivnější.' } },
+          { "@type": "Question", "name": 'Mohu najít partnera díky numerologii?', "acceptedAnswer": { "@type": "Answer", "text": 'Numerologie pomáhá pochopit, s jakými typy lidí přirozeně rezonuješ. Cosmatch propojuje tyto poznatky s reálnými profily lidí ve tvém okolí — vidíš tedy nejen kompatibilní čísla, ale skutečné lidi. Finální rozhodnutí je vždy na tvém srdci.' } }
+        ]
+      }) }} />
       <div className="max-w-2xl mx-auto px-6 pt-6">
         <Link href="/" className="text-sm text-gray-500 hover:text-gray-900 transition">← Cosmatch</Link>
       </div>

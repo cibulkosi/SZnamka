@@ -18,6 +18,17 @@ export const metadata: Metadata = {
 export default function VerifikacePage() {
   return (
     <main className="min-h-screen bg-[#FAF6F0]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": 'Jak Cosmatch ověřuje uživatele?', "acceptedAnswer": { "@type": "Answer", "text": 'Tři vrstvy: bot-shield při registraci (Cloudflare Turnstile), SSO bez hesla (Google/Facebook s reálným telefonem), a povinná ID verifikace pro Cosmatch Serious přes renomovanou EU službu.' } },
+          { "@type": "Question", "name": 'Je ID verifikace povinná?', "acceptedAnswer": { "@type": "Answer", "text": 'Ano, pro Cosmatch Serious (349 Kč/měs). Pro Free a Cosmatch+ tier je verifikace volitelná. Bez ID verifikace nezískáš zelený štítek Ověřeno ani neuvidíš ostatní ověřené.' } },
+          { "@type": "Question", "name": 'Co se stane když nahlásím podezřelý profil?', "acceptedAnswer": { "@type": "Answer", "text": 'V řádech minut profil dočasně skryjeme z feedu. Pokud potvrdíme scam, trvale ho mažeme a zapisujeme do interní blacklist databáze, aby se nemohl znovu zaregistrovat.' } },
+          { "@type": "Question", "name": 'Co Cosmatch dělá s mým ID dokladem?', "acceptedAnswer": { "@type": "Answer", "text": 'Doklad zpracovává externí EU služba pro identity verification. Cosmatch dostane jen výsledek (ověřeno / neověřeno). Tvůj sken dokladu si neukládáme.' } },
+          { "@type": "Question", "name": 'Kde najdu měsíční reporty bezpečnosti?', "acceptedAnswer": { "@type": "Answer", "text": 'Na této stránce. Aktualizujeme statistiky reportů, zablokovaných profilů a ověřených uživatelů každý měsíc po ostrém spuštění.' } }
+        ]
+      }) }} />
       <div className="max-w-2xl mx-auto px-6 pt-6">
         <Link href="/" className="text-sm text-gray-500 hover:text-gray-900 transition">← Cosmatch</Link>
       </div>

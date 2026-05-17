@@ -52,6 +52,17 @@ const principles = [
 export default function ManifestDuvery() {
   return (
     <main className="min-h-screen bg-[#FAF6F0]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": 'Co znamená Manifest důvěry Cosmatch?', "acceptedAnswer": { "@type": "Answer", "text": 'Manifest důvěry je veřejný závazek Cosmatch vůči uživatelům. Obsahuje 8 principů, kterými se Cosmatch zavazuje vést — od žádného swipování pro swipování, přes zákaz reklamy a prodeje dat, až po povinnou ID verifikaci pro Cosmatch Serious.' } },
+          { "@type": "Question", "name": 'Prodává Cosmatch moje data?', "acceptedAnswer": { "@type": "Answer", "text": 'Ne. Cosmatch je financován výhradně předplatným uživatelů. Tvoje datum narození používáme jen k výpočtu kompatibility. Nikdy ho neprodáváme, nepředáváme reklamním sítím ani datovým brokerem.' } },
+          { "@type": "Question", "name": 'Jak Cosmatch chrání proti scammerům?', "acceptedAnswer": { "@type": "Answer", "text": 'Tři vrstvy ochrany: Cloudflare Turnstile proti botům, SSO bez hesla (Google/Facebook), a povinná ID verifikace pro Cosmatch Serious tier. Detailně popsáno na stránce Jak ověřujeme profily.' } },
+          { "@type": "Question", "name": 'Jsou u Cosmatch reklamy?', "acceptedAnswer": { "@type": "Answer", "text": 'Ne, a nikdy nebudou. Cosmatch financují uživatelé skrz předplatné Cosmatch+ (149 Kč/měs) a Cosmatch Serious (349 Kč/měs). Tvoje pozornost není zboží.' } },
+          { "@type": "Question", "name": 'Co když Cosmatch v něčem selže?', "acceptedAnswer": { "@type": "Answer", "text": 'Měsíčně zveřejníme statistiky reportů a zablokovaných profilů. Pokud Cosmatch v něčem zhorší, dozvíš se to první. Refundace předplatného do 14 dnů bez vysvětlení.' } }
+        ]
+      }) }} />
       {/* Top nav */}
       <div className="max-w-2xl mx-auto px-6 pt-8">
         <Link href="/" className="inline-block text-gray-500 hover:text-gray-900 text-sm transition">

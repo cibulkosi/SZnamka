@@ -13,10 +13,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/`, lastModified: now, changeFrequency: 'weekly', priority: 1.0 },
     { url: `${BASE}/test/`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${BASE}/waitlist/`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    // ── Pillar SEO pages ──
+    { url: `${BASE}/numerologie/`, lastModified: now, changeFrequency: 'monthly', priority: 0.95 },
+    { url: `${BASE}/numerologie/master-cisla-11-22-33/`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${BASE}/numerologie/numerologicka-mrizka/`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${BASE}/jak-funguje-cosmatch/`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/kompatibilita-podle-data-narozeni/`, lastModified: lastMonth, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/numerologie-vztahy/`, lastModified: lastMonth, changeFrequency: 'monthly', priority: 0.85 },
+    // ── Trust pages ──
     { url: `${BASE}/manifest-duvery/`, lastModified: lastMonth, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE}/verifikace/`, lastModified: lastMonth, changeFrequency: 'monthly', priority: 0.7 },
+    // ── Other ──
     { url: `${BASE}/ambasadorky/`, lastModified: lastMonth, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE}/demo/`, lastModified: lastMonth, changeFrequency: 'monthly', priority: 0.5 },
   ]
@@ -24,9 +31,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Programatic life-path pages (will exist once Phase 3 lands)
   const lifePathPages: MetadataRoute.Sitemap = LIFE_PATH_NUMBERS.map(n => ({
     url: `${BASE}/numerologie/zivotni-cislo-${n}/`,
-    lastModified: lastMonth,
+    lastModified: now,
     changeFrequency: 'monthly',
-    priority: 0.8,
+    priority: 0.85,
   }))
 
   return [...staticPages, ...lifePathPages]
