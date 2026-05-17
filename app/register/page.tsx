@@ -370,7 +370,7 @@ export default function RegisterPage() {
                     <option value="">Měsíc</option>
                     {MONTHS.map((m, i) => <option key={i} value={i + 1}>{m}</option>)}
                   </select>
-                  <input type="number" placeholder="Rok" min="1925" max="2008"
+                  <input type="number" placeholder="Rok" min="1925" max={String(new Date().getFullYear() - 18)}
                     value={form.birth_year} onChange={e => set('birth_year', e.target.value)}
                     className="bg-transparent border-0 border-b-2 border-gray-300 focus:border-pink-500 py-3 text-lg text-gray-900 focus:outline-none w-full" />
                 </div>

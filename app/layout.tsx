@@ -99,7 +99,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 "https://www.wikidata.org/wiki/Q139824006",
                 "https://www.linkedin.com/company/122134659",
                 "https://x.com/cosmatch_cz",
-                "https://www.facebook.com/cosmatch.cz",
+                "https://www.facebook.com/share/1CuFph4GTf/",
                 "https://www.youtube.com/@cosmatch-cz",
                 "https://www.crunchbase.com/organization/cosmatch",
                 "https://www.instagram.com/cosmatch.cz",
