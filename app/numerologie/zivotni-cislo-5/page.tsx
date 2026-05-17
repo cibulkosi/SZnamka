@@ -2,22 +2,17 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ARCHETYPES, type Archetype } from './data'
+import { ARCHETYPES, type Archetype } from '../zivotni-cislo-1/data'
 
 const LIFE_PATH_NUMBERS: string[] = ['1','2','3','4','5','6','7','8','9','11','22','33']
 
-type Props = { params: Promise<{ number: string }> }
 
-// Pre-generate all 12 pages at build time
-export const dynamicParams = false
 
-export async function generateStaticParams(): Promise<{ number: string }[]> {
-  return LIFE_PATH_NUMBERS.map(number => ({ number }))
-}
+
 
 // Per-page metadata + canonical
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { number } = await params
+export async function generateMetadata(): Promise<Metadata> {
+  const number = '5'
   const a = ARCHETYPES[number]
   if (!a) return { title: 'Životní číslo — Cosmatch' }
   const TITLE = `Životní číslo ${number} — ${a.name} | Numerologie | Cosmatch`
@@ -34,10 +29,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function LifePathPage({ params }: Props) {
-  const { number } = await params
-  const a: Archetype | undefined = ARCHETYPES[number]
-  if (!a) notFound()
+export default function LifePathPage() {
+  const number = '5'
+  const a: Archetype = ARCHETYPES[number]
 
   const URL = `https://cosmatch.cz/numerologie/zivotni-cislo-${number}`
 
