@@ -27,6 +27,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/manifest-duvery/`, lastModified: lastMonth, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE}/verifikace/`, lastModified: lastMonth, changeFrequency: 'monthly', priority: 0.7 },
     // ── Legal ──
+    { url: `${BASE}/cookies/`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
+    { url: `${BASE}/reklamacni-rad/`, lastModified: now, changeFrequency: 'yearly', priority: 0.4 },
+    { url: `${BASE}/odstoupeni-od-smlouvy/`, lastModified: now, changeFrequency: 'yearly', priority: 0.4 },
     { url: `${BASE}/zasady-ochrany-osobnich-udaju/`, lastModified: now, changeFrequency: 'yearly', priority: 0.4 },
     { url: `${BASE}/obchodni-podminky/`, lastModified: now, changeFrequency: 'yearly', priority: 0.4 },
     // ── Other ──

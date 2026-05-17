@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, Fraunces } from 'next/font/google'
 import './globals.css'
+import { CookieBanner } from '@/components/CookieBanner'
 
 const inter = Inter({
   subsets: ['latin', 'latin-ext'],
@@ -97,10 +98,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "sameAs": [
                 "https://www.wikidata.org/wiki/Q139824006",
                 "https://www.linkedin.com/company/122134659",
-                "https://www.instagram.com/cosmatch.cz",
+                "https://x.com/cosmatch_cz",
                 "https://www.facebook.com/cosmatch.cz",
-                "https://www.tiktok.com/@cosmatch.cz",
+                "https://www.youtube.com/@cosmatch-cz",
                 "https://www.crunchbase.com/organization/cosmatch",
+                "https://www.instagram.com/cosmatch.cz",
+                "https://www.tiktok.com/@cosmatch.cz",
                 "https://www.producthunt.com/products/cosmatch",
                 "https://alternativeto.net/software/cosmatch/",
               ],
@@ -132,8 +135,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               ],
               "publisher": { "@id": "https://cosmatch.cz/#organization" },
               "sameAs": [
+                "https://www.wikidata.org/wiki/Q139824006",
                 "https://www.linkedin.com/company/122134659",
                 "https://www.crunchbase.com/organization/cosmatch",
+                "https://x.com/cosmatch_cz",
+                "https://www.youtube.com/@cosmatch-cz",
                 "https://www.producthunt.com/products/cosmatch",
               ],
             },
@@ -147,7 +153,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="apple-mobile-web-app-title" content="Cosmatch" />
         <meta name="mobile-web-app-capable" content="yes" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>{children}<CookieBanner /></body>
     </html>
   )
 }

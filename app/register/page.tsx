@@ -104,6 +104,26 @@ export default function RegisterPage() {
 
   const openBirthdayConfirm = () => {
     if (!birthday || !form.birth_year) return
+    // Age verification: must be 18+
+    const year = parseInt(form.birth_year)
+    const month = parseInt(form.month) - 1 // JS months 0-indexed
+    const day = parseInt(form.day)
+    const dob = new Date(year, month, day)
+    const today = new Date()
+    let age = today.getFullYear() - year
+    const monthDiff = today.getMonth() - dob.getMonth()
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+      age--
+    }
+    if (age < 18) {
+      setError('Cosmatch je určen výhradně osobám starším 18 let. Pokud jsi pod 18 let, počkej prosím do plnoletosti.')
+      return
+    }
+    if (age > 100) {
+      setError('Zadej prosím správné datum narození.')
+      return
+    }
+    setError('')
     setShowBirthdayModal(true)
   }
 
@@ -350,7 +370,7 @@ export default function RegisterPage() {
                     <option value="">Měsíc</option>
                     {MONTHS.map((m, i) => <option key={i} value={i + 1}>{m}</option>)}
                   </select>
-                  <input type="number" placeholder="Rok" min="1940" max="2007"
+                  <input type="number" placeholder="Rok" min="1925" max="2008"
                     value={form.birth_year} onChange={e => set('birth_year', e.target.value)}
                     className="bg-transparent border-0 border-b-2 border-gray-300 focus:border-pink-500 py-3 text-lg text-gray-900 focus:outline-none w-full" />
                 </div>

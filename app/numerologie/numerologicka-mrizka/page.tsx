@@ -30,12 +30,57 @@ export default function NumerologickaMrizkaPage() {
   return (
     <main className="min-h-screen bg-[#FAF6F0]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        '@context': 'https://schema.org', '@type': 'Article',
-        headline: TITLE, description: DESC,
-        author: { '@type': 'Person', name: 'Simona Cibulková' },
-        publisher: { '@type': 'Organization', name: 'Cosmatch', logo: { '@type': 'ImageObject', url: 'https://cosmatch.cz/icon-512.png' } },
-        datePublished: '2026-05-16', dateModified: '2026-05-16',
-        inLanguage: 'cs-CZ',
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'Article',
+            headline: TITLE, description: DESC,
+            author: { '@type': 'Person', name: 'Simona Cibulková' },
+            publisher: { '@type': 'Organization', name: 'Cosmatch', logo: { '@type': 'ImageObject', url: 'https://cosmatch.cz/icon-512.png' } },
+            datePublished: '2026-05-17', dateModified: '2026-05-17',
+            inLanguage: 'cs-CZ',
+          },
+          {
+            '@type': 'HowTo',
+            name: 'Jak vypočítat numerologickou mřížku',
+            description: 'Krok-po-kroku jak sestavit Pythagorovu numerologickou mřížku z data narození.',
+            totalTime: 'PT2M',
+            step: [
+              {
+                '@type': 'HowToStep',
+                position: 1,
+                name: 'Napiš si datum narození',
+                text: 'Napiš si datum narození ve formátu DD.MM.YYYY (např. 23.7.1992).',
+              },
+              {
+                '@type': 'HowToStep',
+                position: 2,
+                name: 'Rozlož na jednotlivé číslice',
+                text: 'Rozlož datum na jednotlivé číslice — z 23.7.1992 dostaneš: 2, 3, 7, 1, 9, 9, 2.',
+              },
+              {
+                '@type': 'HowToStep',
+                position: 3,
+                name: 'Sestav mřížku 3×3',
+                text: 'Sestav mřížku 3×3 s pozicemi pro čísla 1–9. Pozice: nahoře 1-2-3, uprostřed 4-5-6, dole 7-8-9.',
+              },
+              {
+                '@type': 'HowToStep',
+                position: 4,
+                name: 'Zapiš počty výskytů',
+                text: 'Zapiš každé z čísel do jeho pozice. Pro datum 23.7.1992: 1× číslo 1, 2× číslo 2, 1× číslo 3, 1× číslo 7, 2× číslo 9. Chybí čísla 4, 5, 6, 8.',
+              },
+              {
+                '@type': 'HowToStep',
+                position: 5,
+                name: 'Interpretuj chybějící čísla',
+                text: 'Chybějící čísla představují charakterové vlastnosti, které musíš v životě vědomě budovat. Pro výše uvedené datum chybí disciplína (4), adaptabilita (5), zodpovědnost (6) a materiální stabilita (8).',
+              },
+            ],
+            supply: [{ '@type': 'HowToSupply', name: 'Datum narození ve formátu DD.MM.YYYY' }],
+            tool: [{ '@type': 'HowToTool', name: 'Tužka a papír (nebo Cosmatch kvíz na cosmatch.cz/test)' }],
+          },
+        ],
       })}} />
 
       <div className="max-w-2xl mx-auto px-6 pt-6">
