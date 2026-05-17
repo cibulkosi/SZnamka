@@ -52,6 +52,7 @@ export default function GdprPage() {
               <strong className="text-gray-900 font-medium">Mgr. Ing. Simona Cibulková</strong><br/>
               IČO: 08419531<br/>
               Sídlo: Pnětluky, Česká republika<br/>
+              Datová schránka: <strong className="text-gray-900 font-medium">tttkfnk</strong><br/>
               E-mail: <a href="mailto:ahoj@cosmatch.cz" className="text-pink-500 underline">ahoj@cosmatch.cz</a>
             </p>
             <p>

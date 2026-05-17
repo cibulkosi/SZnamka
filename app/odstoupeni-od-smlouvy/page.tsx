@@ -55,6 +55,8 @@ export default function OdstoupeniPage() {
 {`Adresát:
 Mgr. Ing. Simona Cibulková
 IČO: 08419531
+Sídlo: Pnětluky, Česká republika
+Datová schránka: tttkfnk
 ahoj@cosmatch.cz
 
 Věc: Odstoupení od smlouvy

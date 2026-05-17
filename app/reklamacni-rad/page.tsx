@@ -33,7 +33,7 @@ export default function ReklamacniRadPage() {
           <section>
             <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">1. Úvodní ustanovení</h2>
             <p className="mb-3">
-              <strong className="text-gray-900 font-medium">1.1</strong> Tento reklamační řád upravuje způsob a podmínky uplatňování reklamací digitálních služeb poskytovaných na Cosmatch.cz provozovaných Mgr. Ing. Simonou Cibulkovou, IČO 08419531 (dále jen „<strong>Provozovatel</strong>").
+              <strong className="text-gray-900 font-medium">1.1</strong> Tento reklamační řád upravuje způsob a podmínky uplatňování reklamací digitálních služeb poskytovaných na Cosmatch.cz provozovaných Mgr. Ing. Simonou Cibulkovou, IČO 08419531, datová schránka tttkfnk (dále jen „<strong>Provozovatel</strong>").
             </p>
             <p>
               <strong className="text-gray-900 font-medium">1.2</strong> Reklamační řád je vypracován v souladu se zákonem č. 89/2012 Sb. (občanský zákoník) a zákonem č. 634/1992 Sb. (zákon o ochraně spotřebitele).
@@ -110,7 +110,7 @@ export default function ReklamacniRadPage() {
             <p>
               Reklamace, dotazy, stížnosti: <a href="mailto:ahoj@cosmatch.cz" className="text-pink-500 underline">ahoj@cosmatch.cz</a>
               <br/>
-              Provozovatel: Mgr. Ing. Simona Cibulková, IČO 08419531, Pnětluky, Česká republika.
+              Provozovatel: Mgr. Ing. Simona Cibulková, IČO 08419531, datová schránka tttkfnk, Pnětluky, Česká republika.
             </p>
           </section>
         </div>
