@@ -67,6 +67,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {
               "@type": "Organization",
               "@id": "https://cosmatch.cz/#organization",
+              "identifier": [
+                { "@type": "PropertyValue", "propertyID": "Wikidata", "value": "Q139824006" },
+                { "@type": "PropertyValue", "propertyID": "IČO", "value": "08419531" },
+              ],
               "name": "Cosmatch",
               "alternateName": "Cosmatch.cz",
               "url": "https://cosmatch.cz",
@@ -91,10 +95,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 "personologie",
               ],
               "sameAs": [
+                "https://www.wikidata.org/wiki/Q139824006",
+                "https://www.linkedin.com/company/122134659",
                 "https://www.instagram.com/cosmatch.cz",
                 "https://www.facebook.com/cosmatch.cz",
                 "https://www.tiktok.com/@cosmatch.cz",
-                "https://www.linkedin.com/company/cosmatch",
                 "https://www.crunchbase.com/organization/cosmatch",
                 "https://www.producthunt.com/products/cosmatch",
                 "https://alternativeto.net/software/cosmatch/",
@@ -127,7 +132,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               ],
               "publisher": { "@id": "https://cosmatch.cz/#organization" },
               "sameAs": [
-                "https://www.linkedin.com/company/cosmatch",
+                "https://www.linkedin.com/company/122134659",
                 "https://www.crunchbase.com/organization/cosmatch",
                 "https://www.producthunt.com/products/cosmatch",
               ],
