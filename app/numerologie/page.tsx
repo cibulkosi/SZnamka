@@ -1,7 +1,7 @@
 
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ARCHETYPES, LIFE_PATH_NUMBERS } from './zivotni-cislo-[number]/data'
+import { ARCHETYPES, LIFE_PATH_NUMBERS } from './zivotni-cislo-1/data'
 
 const TITLE = 'Numerologie — Životní čísla, kompatibilita a master čísla | Cosmatch'
 const DESC = 'Kompletní průvodce numerologií v češtině. 12 životních čísel, kompatibilita partnerů, master čísla, numerologická mřížka. Postaveno na knize The Power of Birthdays a personologii.'
