@@ -62,13 +62,13 @@ export default function ProfilePage() {
   }
 
   async function handleDeleteAccount() {
-    if (!profile) return
+    if (!user) return
     setDeleting(true)
     // Soft-delete: data hard-deleted after 30 days by retention_hard_delete_daily cron
     const { error } = await supabase
       .from('profiles')
       .update({ deleted_at: new Date().toISOString(), deletion_reason: 'user_initiated', active: false })
-      .eq('id', profile.id)
+      .eq('id', user.id)
     if (error) { alert('Chyba při mazání: ' + error.message); setDeleting(false); return }
     await signOutCompletely()
     router.push('/login')
