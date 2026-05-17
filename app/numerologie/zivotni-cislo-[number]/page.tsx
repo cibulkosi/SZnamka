@@ -2,7 +2,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ARCHETYPES, LIFE_PATH_NUMBERS, type Archetype } from './data'
+import { ARCHETYPES, type Archetype } from './data'
+
+const LIFE_PATH_NUMBERS: string[] = ['1','2','3','4','5','6','7','8','9','11','22','33']
 
 type Props = { params: Promise<{ number: string }> }
 
