@@ -43,10 +43,10 @@ const TIERS: Tier[] = [
     id: 'plus',
     priceId: 'pri_01krneagtvx17vy1yebscmr0a5',
     name: 'Cosmatch+',
-    pricePerMonth: '149 Kč',
-    priceTagline: 'měsíčně · cílovka 27–45 let',
+    pricePerMonth: '199 Kč',
+    priceTagline: 'měsíčně · 499 Kč / 3 měsíce · 1 499 Kč / rok',
     audience: 'Pro ty, co Cosmatch reálně používají',
-    description: 'Dostupný standard. Vidíš všechno, ale dělá to za polovinu ceny Tinderu.',
+    description: 'Dostupný standard za 199 Kč měsíčně. Vidíš všechno, ale dělá to za polovinu ceny Tinderu. Roční plán vychází na 125 Kč/měs (sleva 37 %).',
     features: [
       'Neomezené lajky a zprávy',
       'Hloubková personologická analýza',
@@ -194,6 +194,35 @@ export default function PremiumPage() {
           </p>
         </header>
 
+        {/* Price summary — pro GoPay reviewer + uživatele */}
+        <section className="mb-12 bg-white border border-gray-200 rounded-3xl p-8" id="ceny">
+          <p className="eyebrow text-pink-500 mb-3">Cosmatch+ ceník</p>
+          <h2 className="serif-display text-2xl text-gray-900 font-medium leading-tight tracking-tight mb-6">
+            Jedna služba, tři způsoby platby.
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="border border-gray-200 rounded-2xl p-5">
+              <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Měsíčně</p>
+              <p className="serif-display text-3xl text-gray-900 font-medium tabular-nums">199 Kč</p>
+              <p className="text-xs text-gray-500 mt-1">obnovení každých 30 dní</p>
+            </div>
+            <div className="border border-gray-200 rounded-2xl p-5">
+              <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">3 měsíce</p>
+              <p className="serif-display text-3xl text-gray-900 font-medium tabular-nums">499 Kč</p>
+              <p className="text-xs text-emerald-600 mt-1">166 Kč/měs · sleva 16 %</p>
+            </div>
+            <div className="border border-pink-200 bg-pink-50 rounded-2xl p-5">
+              <p className="text-xs text-pink-600 uppercase tracking-wider mb-1">Ročně</p>
+              <p className="serif-display text-3xl text-gray-900 font-medium tabular-nums">1 499 Kč</p>
+              <p className="text-xs text-pink-600 mt-1">125 Kč/měs · sleva 37 %</p>
+            </div>
+          </div>
+          <p className="text-xs text-gray-500 mt-4 leading-relaxed">
+            Ceny včetně DPH (digitální služba dle § 54 ZDPH osvobozená). Platby zpracovává GoPay s.r.o.
+            Předplatné se obnovuje automaticky, zrušení kdykoli v profilu bez sankce. Více v <a href="/opakovane-platby" className="text-pink-500 underline">Opakované platby</a>.
+          </p>
+        </section>
+
         {/* Tiers */}
         <section className="space-y-6 mb-20">
           {TIERS.map(tier => {
@@ -309,10 +338,10 @@ export default function PremiumPage() {
           <div className="space-y-8">
             {[
               ['Mohu předplatné kdykoli zrušit?','Ano. Zrušení je v profilu jedním klikem. Zbývající dny ti zůstanou aktivní.'],
-              ['Jak se platí?','Platbu zpracovává Paddle — přijímá karty Visa, Mastercard, Apple Pay i Google Pay. EU faktura s DPH automaticky.'],
+              ['Jak se platí?','Platbu zpracovává GoPay — česká platební instituce regulovaná ČNB. Přijímá Visa, Mastercard, Apple Pay i Google Pay. Faktura ti přijde automaticky e-mailem.'],
               ['Co se stane, když přejdu z Plus na Serious?','Doplatíš jen rozdíl za zbývající dny. Automaticky se zapne ID verifikace.'],
               ['Vrátíte mi peníze, když to nebude fungovat?','Do 14 dnů ano, bez vysvětlení. Po 14 dnech vyhodnocujeme případ od případu.'],
-              ['Proč není roční sleva?','Protože nejsme banka, abychom tě zamykali. Měsíční flexibilita ti dává možnost odejít, kdykoli najdeš toho člověka.'],
+              ['Můžu platit ročně nebo kvartálně?','Ano — měsíčně 199 Kč, kvartálně 499 Kč (sleva 16 %, efektivně 166 Kč/měs), ročně 1 499 Kč (sleva 37 %, efektivně 125 Kč/měs). Pokud najdeš někoho dřív, zbývající dny ti zůstanou nebo můžeš požádat o vrácení alikvotní části.'],
             ].map(([q, a]) => (
               <details key={q as string} className="border-b border-gray-200 pb-8 last:border-b-0 group" open>
                 <summary className="serif text-xl text-gray-900 font-medium leading-tight mb-3 cursor-pointer list-none">
@@ -327,8 +356,14 @@ export default function PremiumPage() {
         {/* Footer trust */}
         <footer className="border-t border-gray-200 pt-12">
           <p className="text-sm text-gray-500 leading-relaxed mb-6">
-            Cosmatch je financován výhradně předplatným uživatelů. Platí Paddle, EU s DPH automaticky.
-            Tvoje datum narození používáme jen k výpočtu kompatibility — nikdy ho neprodáme.
+            Cosmatch je financován výhradně předplatným uživatelů. Platby zpracovává GoPay
+            (česká platební instituce regulovaná ČNB). Tvoje datum narození používáme jen
+            k výpočtu kompatibility — nikdy ho neprodáme.
+          </p>
+          <p className="text-xs text-gray-500 leading-relaxed mb-6">
+            <strong className="text-gray-700 font-medium">18+</strong> · Cosmatch je seznamovací služba určená výhradně osobám starším 18 let.
+            Předplatné se obnovuje automaticky, můžeš ho kdykoli zrušit v <a href="/profile" className="underline hover:text-gray-700">profilu</a>.
+            Detaily viz <a href="/opakovane-platby" className="underline hover:text-gray-700">Opakované platby</a> a <a href="/obchodni-podminky" className="underline hover:text-gray-700">Obchodní podmínky</a>.
           </p>
           <div className="flex flex-wrap gap-6 text-sm">
             <Link href="/manifest-duvery" className="text-pink-500 hover:text-pink-600 transition">Manifest důvěry →</Link>

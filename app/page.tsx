@@ -242,11 +242,19 @@ export default function LandingPage() {
 
       {/* FOOTER */}
       <footer className="border-t border-gray-200 py-12 px-6">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-          <div>
-            <p className="serif-display text-xl font-medium text-gray-900 mb-1">Cosmatch</p>
-            <p className="text-sm text-gray-500">© 2026 · Mgr. Ing. Simona Cibulková · IČO 08419531 · Pnětluky</p>
-          </div>
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-8">
+            <div>
+              <p className="serif-display text-xl font-medium text-gray-900 mb-1">Cosmatch</p>
+              <p className="text-sm text-gray-500">© 2026 · Mgr. Ing. Simona Cibulková · IČO 08419531 · Pnětluky</p>
+              <p className="text-xs text-gray-500 mt-2">
+                <span className="inline-block bg-gray-900 text-white px-2 py-0.5 rounded-full text-[10px] font-medium tracking-wider mr-2">18+</span>
+                Seznamovací služba určená výhradně osobám starším 18 let.
+              </p>
+              <p className="text-xs text-gray-500 mt-1">
+                Cosmatch+ od 199 Kč/měsíc (499 Kč/3 měs · 1 499 Kč/rok). Platby zpracovává GoPay, předplatné lze kdykoli zrušit.
+              </p>
+            </div>
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
             <Link href="/test" className="text-gray-500 hover:text-gray-900 transition">Kvíz</Link>
             <Link href="/waitlist" className="text-gray-500 hover:text-gray-900 transition">Waitlist</Link>
@@ -260,6 +268,7 @@ export default function LandingPage() {
             <Link href="/cookies" className="text-gray-500 hover:text-gray-900 transition">Cookies</Link>
             <Link href="/verifikace" className="text-gray-500 hover:text-gray-900 transition">Bezpečnost</Link>
             <Link href="/login" className="text-gray-500 hover:text-gray-900 transition">Přihlásit</Link>
+            </div>
           </div>
         </div>
       </footer>
