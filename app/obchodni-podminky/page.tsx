@@ -98,7 +98,7 @@ export default function ObchodniPodminkyPage() {
               <strong className="text-gray-900 font-medium">3.2</strong> Ceny jsou uvedeny včetně DPH. Platí se měsíčně, automaticky se obnovují.
             </p>
             <p className="mb-3">
-              <strong className="text-gray-900 font-medium">3.3</strong> Platby zpracovává společnost <strong className="text-gray-900 font-medium">Paddle.com Market Limited</strong> (Irsko) jako Merchant of Record. Faktura s DPH dle EU pravidel je vystavena automaticky a zaslána na e-mail.
+              <strong className="text-gray-900 font-medium">3.3</strong> Platby zpracovává společnost <strong className="text-gray-900 font-medium">GoPay s.r.o.</strong> (Česká republika, IČO 26046768), platební instituce regulovaná Českou národní bankou. Faktura je vystavena automaticky a zaslána na e-mail.
             </p>
             <p>
               <strong className="text-gray-900 font-medium">3.4</strong> Cosmatch může ceny upravit s minimálně 30denním předstihem. O změně je Uživatel informován e-mailem. Uživatel má právo do účinnosti změny předplatné zrušit.

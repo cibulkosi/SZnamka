@@ -90,7 +90,7 @@ export default function GdprPage() {
 
             <h3 className="serif text-xl text-gray-900 font-medium mb-2 mt-6">2.5 Platební údaje (Cosmatch+ a Serious)</h3>
             <ul className="list-disc pl-6 space-y-1 mb-4">
-              <li>Platby zpracovává <strong className="text-gray-900 font-medium">Paddle.com Market Limited</strong> (samostatný správce). Cosmatch dostává jen informaci o stavu předplatného, ne čísla karet.</li>
+              <li>Platby zpracovává <strong className="text-gray-900 font-medium">GoPay s.r.o.</strong> (samostatný správce, IČO 26046768). Cosmatch dostává jen informaci o stavu předplatného, ne čísla karet.</li>
             </ul>
 
             <h3 className="serif text-xl text-gray-900 font-medium mb-2 mt-6">2.6 ID verifikace (jen Cosmatch Serious)</h3>
@@ -119,7 +119,7 @@ export default function GdprPage() {
             <ul className="list-disc pl-6 space-y-2">
               <li><strong className="text-gray-900 font-medium">Supabase (USA, EU servery)</strong> — databáze a autentizace. Servery ve Frankfurtu (EU). <a href="https://supabase.com/privacy" target="_blank" rel="noopener" className="text-pink-500 underline">Zásady Supabase</a></li>
               <li><strong className="text-gray-900 font-medium">Cloudflare (USA, globální)</strong> — hosting webu, DDoS ochrana, CDN. <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener" className="text-pink-500 underline">Zásady Cloudflare</a></li>
-              <li><strong className="text-gray-900 font-medium">Paddle (Irsko)</strong> — zpracování plateb. <a href="https://www.paddle.com/legal/privacy" target="_blank" rel="noopener" className="text-pink-500 underline">Zásady Paddle</a></li>
+              <li><strong className="text-gray-900 font-medium">GoPay s.r.o. (Česká republika)</strong> — zpracování plateb, regulovaná ČNB. <a href="https://www.gopay.com/cs/ochrana-osobnich-udaju" target="_blank" rel="noopener" className="text-pink-500 underline">Zásady GoPay</a></li>
               <li><strong className="text-gray-900 font-medium">Google (Irsko)</strong> — Google OAuth pro přihlášení.</li>
               <li><strong className="text-gray-900 font-medium">Meta (Irsko)</strong> — Facebook OAuth pro přihlášení.</li>
               <li><strong className="text-gray-900 font-medium">Resend (USA)</strong> — odesílání transakčních e-mailů (potvrzení registrace, voucher).</li>

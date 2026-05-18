@@ -91,7 +91,7 @@ Podpis:   ____________________
             <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">Co se stane po odstoupení</h2>
             <ul className="list-disc pl-6 space-y-2">
               <li>Předplatné okamžitě deaktivujeme.</li>
-              <li>Uhrazené peníze ti vrátíme stejným způsobem, kterým jsi je zaplatil/a (typicky Paddle vrátí na kartu) do 14 dnů.</li>
+              <li>Uhrazené peníze ti vrátíme stejným způsobem, kterým jsi je zaplatil/a (typicky GoPay vrátí na kartu) do 14 dnů.</li>
               <li>Tvůj profil zůstává aktivní jako Free tier — můžeš ho dál používat nebo smazat.</li>
             </ul>
           </section>
