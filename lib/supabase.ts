@@ -55,6 +55,12 @@ export type Profile = {
   diet?: string      // 'omnivore' | 'vegetarian' | 'vegan' | 'other'
   exercise?: string  // 'never' | 'sometimes' | 'regularly'
 
+  // ── Compatibility filter (uživatel si volí min %) ──────────
+  min_compatibility?: number      // 0 / 25 / 50 / 75 — pod tuto hranici se profil nezobrazí
+
+  // ── Opt-in deal-breakers ──────────
+  smoking_dealbreaker?: boolean   // pokud true: 'never' uživatel × 'often' partner → HARD FILTER
+
   // ── F) Fyzické preference (jen filtry, NIKDY skóre) ──────────
   height_cm?: number              // vlastní výška v cm (volitelné)
   body_type?: string              // 'slim' | 'athletic' | 'average' | 'curvy' | 'plus' | 'prefer_not_say'

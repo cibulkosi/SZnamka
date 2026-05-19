@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { supabase, loadCurrentProfile, type Profile, type Compatibility, getZodiac } from '@/lib/supabase'
 import { CompatBadges, ScoreRing } from '@/components/CompatBadges'
 import { ProfileQuestion, PROFILE_QUESTIONS, type Question } from '@/components/ProfileQuestion'
-import { computeCompatibility, profileCompleteness, isOutsideDistanceLimit, isOutsidePhysicalPrefs} from '@/lib/compat'
+import { computeCompatibility, profileCompleteness, isOutsideDistanceLimit, isOutsidePhysicalPrefs, isChildrenIncompatible, isSmokingIncompatible } from '@/lib/compat'
 
 // Pastelové gradienty jako avatar fallback (bez fotky)
 const AVATAR_GRADIENTS = [
@@ -395,7 +395,12 @@ export default function DiscoverPage() {
 
  // Vrstva 2 – Hard KO: vylouč profily mimo limit vzdálenosti uživatele
  const maxDistKm = (u as Profile & { max_distance?: number }).max_distance ?? 100
- const profsInRange = profs.filter(p => !isOutsideDistanceLimit(u, p, maxDistKm) && !isOutsidePhysicalPrefs(u, p))
+ const profsInRange = profs.filter(p =>
+        !isOutsideDistanceLimit(u, p, maxDistKm) &&
+        !isOutsidePhysicalPrefs(u, p) &&
+        !isChildrenIncompatible(u, p) &&
+        !isSmokingIncompatible(u, p)
+      )
 
  // Vypočítej enhanced scores — s Tension Score (vážený průměr obou perspektiv)
  const scores: Record<string, number> = {}
@@ -420,7 +425,17 @@ export default function DiscoverPage() {
  setProfiles(sorted)
  setCompats(compatMap)
  setReverseCompats(reverseMap)
- setEnhancedScores(scores)
+ // Filter scoring by min_compatibility (user-set threshold, default 0)
+ const minComp = (u as typeof u & { min_compatibility?: number }).min_compatibility ?? 0
+ if (minComp > 0) {
+   const filtered: Record<string, number> = {}
+   Object.entries(scores).forEach(([id, score]) => {
+     if (score >= minComp) filtered[id] = score
+   })
+   setEnhancedScores(filtered)
+ } else {
+   setEnhancedScores(scores)
+ }
  setLoading(false)
  }
 

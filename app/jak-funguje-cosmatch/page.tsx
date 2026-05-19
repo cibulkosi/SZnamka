@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 const TITLE = 'Jak funguje Cosmatch — Algoritmus, zdroje, metodologie | Cosmatch'
-const DESC = 'Cosmatch počítá shodu transparentně — 40 % kompatibilita podle data narození (kniha Power of Birthdays + životní číslo), 35 % hodnoty, 20 % aktivita, 5 % zájmy. Bez magie, bez skrytých vzorců.'
+const DESC = 'Cosmatch počítá shodu transparentně — 35 % kompatibilita podle data narození (kniha Power of Birthdays), 20 % životní hodnoty, 15 % osobnost, 10 % intimní soulad, 10 % životní styl, 5 % zájmy, 5 % aktivita. Bez magie, bez skrytých vzorců.'
 const URL = 'https://cosmatch.cz/jak-funguje-cosmatch'
 
 export const metadata: Metadata = {
@@ -50,7 +50,7 @@ export default function JakFungujeCosmatchPage() {
           </h1>
           <hr className="rule w-12 border-gray-900 mb-8" />
           <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
-            Čtyři vrstvy výpočtu, hlavní zdroj kniha The Power of Birthdays + životní číslo z numerologie, žádné magické tlačítko.
+            Sedm vrstev výpočtu, hlavní zdroj kniha The Power of Birthdays. Životní číslo zde NENÍ — používáme ho jen pro sebepoznání v kvízu a Magic Moment, ne pro párování.
             Tady je přesný popis, jak Cosmatch dochází k procentu kompatibility.
           </p>
         </header>
@@ -77,15 +77,18 @@ export default function JakFungujeCosmatchPage() {
         <section className="mb-16">
           <p className="eyebrow text-gray-500 mb-4">Algoritmus — top-level</p>
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-10">
-            Čtyři vrstvy výpočtu.
+            Sedm vrstev výpočtu.
           </h2>
 
           <div className="space-y-12">
             {[
-              ['I', 'Kompatibilita podle data narození', '40 %', 'Hlavní vrstva — viz detail níže. Skládá se ze dvou pod-vrstev: profil dne narození z knihy The Power of Birthdays (80 %) a kompatibilita životních čísel z klasické numerologie (20 %).'],
-              ['II', 'Hodnoty a záměr', '35 %', 'Hledáte oba vážný vztah? Jen přátelství? Casual? Pokud máte stejný záměr, skóre se znásobí 1.2. Pokud máte protichůdný (jeden seriózní, druhý casual), skóre × 0.5.'],
-              ['III', 'Aktivita', '20 %', 'Activity boost: kdo byl online v posledních 24 h, dostane +15 bodů. ELO tie-break: při stejném skóre se atraktivnější profily zobrazí novým uživatelům první. Žádný „pay to win".'],
-              ['IV', 'Společné zájmy', '5 %', 'Plus tension factor pro asymetrické vztahy — když jeden vidí osudovou přitažlivost a druhý výzvu, dostaneš label „Magnetická tenze".'],
+              ['I', 'Kompatibilita podle data narození', '35 %', 'Hlavní vrstva. Vyhledá v knize Power of Birthdays (Goldschneider) jak se k sobě hodí konkrétní den a měsíc dvou lidí. 5 kategorií: Spřízněné duše, Láska & přátelství, Prospěšné, Osudové přitažlivosti, Náročné. Kniha už syntetizuje astrologii + numerologii + fixní hvězdy do těch kategorií, takže Cosmatch tu jejich práci jen vyhledává, ne znovu počítá.'],
+              ['II', 'Životní hodnoty a vize', '20 %', 'Rodinné plány (chcete děti?), typ vztahu (vážný/casual/přátelství), náboženství a finanční přístup. Sdílené hodnoty drží dlouhodobě vztah víc než vášeň prvních týdnů.'],
+              ['III', 'Osobnost a týmovost', '15 %', 'Vizionář nebo realizátor? Introvert nebo extrovert? Skřivan nebo sova? Jak řešíš konflikty? Komplementární vzorce fungují, dva totožní lidé se začnou nudit.'],
+              ['IV', 'Intimní soulad', '10 %', 'Libido frekvence (1–5). Sex je v dlouhodobém vztahu pojistka, ne zábava — soulad v této oblasti chrání před tichou frustrací.'],
+              ['V', 'Životní styl a návyky', '10 %', 'Kouření, alkohol, strava, pohyb. Každodenní soužití. Můžeš si zvolit kouření jako tvrdý deal-breaker — pak se ti kuřáci neukáží.'],
+              ['VI', 'Společné zájmy', '5 %', 'Procentní překryv tagů (záliby z 45 možností). Společná řeč pro první rande, ne hlavní faktor dlouhodobé kompatibility.'],
+              ['VII', 'Aktivita', '5 %', 'Online v posledních 24 h = 100 b., týden = 75 b., měsíc = 50 b., starší = 30 b. Sebelepší shoda nepovede nikam, pokud druhý aplikaci nepoužívá.'],
             ].map(([num, title, weight, body]) => (
               <div key={num} className="grid grid-cols-[auto,1fr] gap-x-8">
                 <div className="text-right">
@@ -100,9 +103,15 @@ export default function JakFungujeCosmatchPage() {
             ))}
           </div>
 
-          <div className="mt-8 bg-white border border-gray-200 rounded-2xl p-6">
+          <div className="mt-8 bg-white border border-gray-200 rounded-2xl p-6 space-y-3">
             <p className="text-sm text-gray-700 leading-relaxed">
-              <strong className="text-gray-900 font-medium">A co vzdálenost?</strong> Vzdálenost není součástí kompatibility skóre — používáš ji jako <strong className="text-gray-900 font-medium">filtr</strong> ve svých preferencích. V nastavení profilu si určíš maximální vzdálenost (např. „do 30 km"), a profily mimo tento okruh se ti vůbec nezobrazí. Lidé blíž tě neporazí v algoritmu, jen máš víc šancí se s nimi reálně setkat.
+              <strong className="text-gray-900 font-medium">A co vzdálenost, věk a fyzické preference?</strong> Tyto věci NEJSOU součástí kompatibility skóre. Jsou to <strong className="text-gray-900 font-medium">filtry</strong>, které si nastavíš sám. V profilu si určíš maximální vzdálenost (např. do 30 km), věkový rozsah, případně výšku nebo postavu — profily mimo tvoje preference se ti vůbec neukážou. Algoritmus tak nikoho nepenalizuje za výšku ani věk; jen ti pomáhá filtrovat.
+            </p>
+            <p className="text-sm text-gray-700 leading-relaxed">
+              <strong className="text-gray-900 font-medium">Deal-breakers:</strong> Pokud máš jeden chcete děti a druhý nechce, profil se ti neukáže (vždy). Kouření můžeš označit jako deal-breaker — pak ti zmizí pravidelní kuřáci.
+            </p>
+            <p className="text-sm text-gray-700 leading-relaxed">
+              <strong className="text-gray-900 font-medium">Minimální kompatibilita:</strong> V nastavení můžeš zvolit, že chceš vidět jen profily nad 25 / 50 / 75 % shody. Default je 0 % (vidíš všechny).
             </p>
           </div>
         </section>
@@ -111,75 +120,31 @@ export default function JakFungujeCosmatchPage() {
 
         {/* Deep dive: birth_date_score */}
         <section className="mb-16">
-          <p className="eyebrow text-gray-500 mb-4">Detail vrstvy I — 40 %</p>
+          <p className="eyebrow text-gray-500 mb-4">Detail vrstvy I — 35 %</p>
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-6">
             Kompatibilita podle data narození — pod kapotou.
           </h2>
-          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-10">
-            Datum narození každého uživatele neseme dvěma cestami: <strong className="text-gray-900 font-medium">profil dne+měsíce</strong> (Goldschneider, kniha The Power of Birthdays) a <strong className="text-gray-900 font-medium">životní číslo</strong> (klasická numerologie, součet všech číslic data). Každý zachycuje něco jiného, dohromady dávají kompletní obraz.
+          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
+            Pro každý ze 366 dnů v roce má kniha The Power of Birthdays vlastní profil — sluneční znamení, dekanát, stupeň, fixní hvězdy, dominantní planeta, klíčové numerologické rezonance. Na konci každého profilu autoři uvádí seznam <strong className="text-gray-900 font-medium">5 vztahových kategorií</strong>:
           </p>
-
-          <div className="space-y-12">
-            <div className="grid grid-cols-[auto,1fr] gap-x-8">
-              <div className="text-right">
-                <div className="roman text-3xl text-pink-500 leading-none mb-2">A</div>
-                <div className="text-xs text-gray-500 tracking-wider">80 %</div>
-              </div>
-              <div>
-                <h3 className="serif text-xl text-gray-900 font-medium mb-2 leading-tight">Profil dne narození</h3>
-                <p className="text-gray-700 leading-[1.75] text-[0.95rem] mb-3">
-                  Pro každý ze 366 dnů v roce má kniha vlastní profil — sluneční znamení, dekanát, stupeň, fixní hvězdy, dominantní planeta, klíčové numerologické rezonance. Na konci každého profilu autoři uvádí seznam <strong className="text-gray-900 font-medium">5 vztahových kategorií</strong>:
-                </p>
-                <ul className="space-y-2 text-[0.95rem] text-gray-700 leading-relaxed mb-3">
-                  <li><strong className="text-gray-900 font-medium">Spřízněné duše</strong> (Soul Mates) — nejhlubší karmické vazby, 100 bodů</li>
-                  <li><strong className="text-gray-900 font-medium">Láska a přátelství</strong> (Love &amp; Friendship) — přirozená harmonie, 85 bodů</li>
-                  <li><strong className="text-gray-900 font-medium">Prospěšný vztah</strong> (Beneficial) — vzájemná podpora, mentoring, 70 bodů</li>
-                  <li><strong className="text-gray-900 font-medium">Osudová přitažlivost</strong> (Fatal Attractions) — intenzivní magnetismus, 60 bodů</li>
-                  <li><strong className="text-gray-900 font-medium">Náročný vztah</strong> (Challenging) — růst přes konflikt, 40 bodů</li>
-                  <li><em className="italic">Žádná kategorie</em> — neutrální, 50 bodů</li>
-                </ul>
-                <p className="text-gray-700 leading-[1.75] text-[0.95rem] mb-3">
-                  Tyto kategorie už v sobě <em className="italic">obsahují</em> astrologickou logiku (trigon, sextil, opozice, čtverec, kvintil) i numerologickou harmonii — Goldschneider je všechny zohlednil při sestavování knihy. Cosmatch tu jejich práci jen vyhledává, ne ji znovu počítá.
-                </p>
-                <p className="text-gray-700 leading-[1.75] text-[0.95rem]">
-                  Vyhledání je <strong className="text-gray-900 font-medium">vzájemné</strong>: hledáme, do jaké kategorie patří B v A's profilu, a obráceně. Výsledek je průměr obou směrů. Když oba mají v sobě navzájem pozitivní kategorii, dostávají bonus 1.15×.
-                </p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-[auto,1fr] gap-x-8">
-              <div className="text-right">
-                <div className="roman text-3xl text-pink-500 leading-none mb-2">B</div>
-                <div className="text-xs text-gray-500 tracking-wider">20 %</div>
-              </div>
-              <div>
-                <h3 className="serif text-xl text-gray-900 font-medium mb-2 leading-tight">Životní číslo</h3>
-                <p className="text-gray-700 leading-[1.75] text-[0.95rem] mb-3">
-                  Životní číslo se počítá z <em className="italic">celého</em> data narození (den + měsíc + rok), takže rozliší dva lidi narozené ve stejný den, ale v jiném roce. To je něco, co kniha sama nedělá — pracuje jen s dnem a měsícem. Životní číslo doplňuje obraz o vrstvu životního účelu a archetypu.
-                </p>
-                <p className="text-gray-700 leading-[1.75] text-[0.95rem] mb-3">
-                  Postup: sečteme všechny číslice data, redukujeme na 1–9 (s výjimkou mistrovských čísel 11, 22, 33, která ponecháváme). Páry životních čísel mají různé energetické dynamiky — některé se přirozeně doplňují (4+6, 2+8, 1+3), jiné srážejí.
-                </p>
-                <p className="text-gray-700 leading-[1.75] text-[0.95rem]">
-                  Cosmatch má interní matici 9×9 (+master modifikátory), kde každá kombinace má skóre 0–100 podle klasické numerologické tradice (Pythagoras → moderní zpracování Kadlecová, Goldschneider).
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Konkrétní příklad výpočtu */}
-          <div className="mt-12 bg-white border border-gray-200 rounded-3xl p-8">
-            <p className="eyebrow text-pink-500 mb-3">Konkrétní příklad</p>
-            <h3 className="serif text-xl text-gray-900 font-medium mb-4 leading-tight">
-              Anna (15. 4. 1992) × Petr (22. 10. 1990)
-            </h3>
-            <div className="space-y-3 text-[0.95rem] text-gray-700 leading-relaxed">
-              <p><strong className="text-gray-900 font-medium">Profil dne (80 %):</strong> 22.10. je v Annině sekci „Osudová přitažlivost" (60 b.). 15.4. je v Petrově sekci „Láska a přátelství" (85 b.). Průměr = <strong>72.5 b.</strong></p>
-              <p><strong className="text-gray-900 font-medium">Životní číslo (20 %):</strong> Anna 1+5+4+1+9+9+2 = 31 → 4 (Stavitel). Petr 2+2+1+0+1+9+9+0 = 24 → 6 (Pečovatel). 4+6 v matici = <strong>90 b.</strong> (klasická harmonie).</p>
-              <p className="pt-2 border-t border-gray-200">
-                <strong className="text-gray-900 font-medium">Výsledek vrstvy I:</strong> 0.80 × 72.5 + 0.20 × 90 = <strong className="serif-display text-2xl text-pink-500">76 %</strong> kompatibilita podle data narození. To je 30 procentních bodů z maximálních 40 % v Cosmatch score.
-              </p>
-            </div>
+          <ul className="space-y-2 text-[0.95rem] text-gray-700 leading-relaxed mb-6">
+            <li><strong className="text-gray-900 font-medium">Spřízněné duše</strong> (Soul Mates) — nejhlubší karmické vazby, 100 bodů</li>
+            <li><strong className="text-gray-900 font-medium">Láska a přátelství</strong> (Love & Friendship) — přirozená harmonie, 85 bodů</li>
+            <li><strong className="text-gray-900 font-medium">Prospěšný vztah</strong> (Beneficial) — vzájemná podpora, mentoring, 70 bodů</li>
+            <li><strong className="text-gray-900 font-medium">Osudová přitažlivost</strong> (Fatal Attractions) — intenzivní magnetismus, 60 bodů</li>
+            <li><strong className="text-gray-900 font-medium">Náročný vztah</strong> (Challenging) — růst přes konflikt, 45 bodů</li>
+            <li><em className="italic">Žádná kategorie</em> — neutrální default, 50 bodů</li>
+          </ul>
+          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
+            Tyto kategorie už v sobě <em className="italic">obsahují</em> astrologickou logiku (trigon, sextil, opozice, čtverec, kvintil) i numerologickou harmonii — Goldschneider je všechny zohlednil při sestavování knihy. Cosmatch tu jejich práci jen vyhledává, ne znovu počítá. Proto se v algoritmu nepřidává samostatná vrstva pro „elementy" nebo „astrologické aspekty" — to by bylo trojí započítání toho samého.
+          </p>
+          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
+            Vyhledání je <strong className="text-gray-900 font-medium">vzájemné</strong>: hledáme, do jaké kategorie patří B v A's profilu, a obráceně. Výsledek je průměr obou směrů. Když oba mají v sobě navzájem pozitivní kategorii, dostávají bonus 5 %.
+          </p>
+          <div className="mt-8 bg-white border border-gray-200 rounded-2xl p-6">
+            <p className="text-sm text-gray-700 leading-relaxed">
+              <strong className="text-gray-900 font-medium">A co životní číslo?</strong> Životní číslo (součet celého data narození) Cosmatch používá <strong className="text-gray-900 font-medium">jen pro sebepoznání</strong> — v numerologickém kvízu a v Magic Moment po registraci. <strong className="text-gray-900 font-medium">Není součástí matchingu</strong>, protože by to bylo zdvojené započítání toho, co už kniha pokrývá detailněji (366 unikátních profilů vs. 12 archetypů). Pro samotnou kompatibilitu používáme jen book lookup, který je přesnější.
+            </p>
           </div>
         </section>
 

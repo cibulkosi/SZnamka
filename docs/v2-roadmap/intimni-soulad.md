@@ -1,7 +1,7 @@
 # Cosmatch v2 — Intimní soulad sekce
 
 **Status:** Naplánováno pro v2 Cosmatch Serious. NEIMPLEMENTOVÁNO v1 launchi.
-**Created:** Květen 2026
+**Updated:** Květen 2026
 **Owner:** Simona Cibulková
 
 ---
@@ -17,75 +17,38 @@ a uživatelé tedy zažívají frustraci, když po několika rande zjistí
 intimní inkompatibilitu. Cosmatch jako "premium-but-honest" platform
 může tohle řešit profesionálně a citlivě.
 
-## Klíčové principy implementace
+## Klíčové principy implementace (verze A+B+C, květen 2026)
 
-1. **Opt-in extended profile** — uživatel sekci aktivuje volitelně
-   v nastavení profilu. Není povinné k registraci, není povinné
-   pro Cosmatch+.
+### A) NIKDY anatomické self-disclosure
 
-2. **Mutual reveal only** — sekce není viditelná v Discover.
-   Stává se viditelnou až po vzájemném lajku obou stran (mutual match).
+Self-reported anatomické údaje (velikost, prsa, atd.) jsou notoricky
+nepravdivé:
+- Muži často přepisují velikost nahoru (Reddit surveys 25-30 %)
+- Ženy podceňují / přepisují kategorie postav
+- Self-disclosure je nezávislé na realitě = filter nefunguje
 
-3. **Funguje jako filtr, NIKDY jako součást skóre** — preference
-   skryjí profily mimo tvoje preference, ale neovlivňují CCS skóre
-   ostatních uživatelů.
+**Cosmatch v2 NEPOUŽÍVÁ anatomická self-disclosure pole.** Pouze:
+- Libido frekvence (denně / týdně / měsíčně / sporadicky)
+- Role preference (dominant / switch / submissive / nezáleží)
+- Sexuální styl (vanilla / kink-friendly / nezáleží)
 
-4. **Article 9 GDPR compliance** — explicit consent při zapnutí
-   sekce. Možnost kdykoli odvolat. Data uložena v separátní tabulce
-   s šifrováním na klíč uživatele.
+To je „intimní soulad", ne „body matching".
 
-5. **Brand-safety** — Manifest důvěry princip III-C říká:
-   "Cosmatch nikdy nehodnotí přitažlivost — fyzické a intimní
-   preference jsou pouze filtry, které si nastavíš sám."
+### B) Volný text místo strukturovaných polí pro anatomické
 
-## Datová struktura
+Místo „Preferuju partnera s X velikostí" má uživatel volné textové
+pole *Co je pro mě v intimní rovině důležité*. Příklad:
 
-### Tabulka `intimate_profiles` (separátní od `profiles`)
+> „Hledám partnera, který má podobnou frekvenci sexu jako já.
+> Tělo nehraje roli, charakter ano."
 
-```sql
-CREATE TABLE intimate_profiles (
-  user_id           UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+Tento text je SOUČÁSTÍ profilu (viditelné po mutual match), ne filteru.
 
-  -- Pouze pokud uživatel sekci aktivně zapne
-  enabled           BOOLEAN NOT NULL DEFAULT FALSE,
-  consented_at      TIMESTAMPTZ,
-  consent_version   TEXT,                    -- verze consent textu (audit trail)
+### C) Reciprocity model
 
-  -- A. Libido / frekvence (ideální stav)
-  libido_frequency  TEXT,                    -- 'daily' | 'multiple_weekly' | 'weekly' | 'monthly' | 'sporadic'
-
-  -- B. Role (kdo má rád)
-  role_preference   TEXT,                    -- 'dominant' | 'switch' | 'submissive' | 'no_preference'
-
-  -- C. Sexuální styl
-  sexual_style      TEXT,                    -- 'vanilla' | 'kink_friendly' | 'open' | 'no_preference'
-
-  -- D. Anatomické preference (preferovaný partner)
-  partner_pref_size_male    TEXT,            -- 'small' | 'average' | 'above_average' | 'no_preference' (NULL pokud nehledá muže)
-  partner_pref_chest_female TEXT,            -- 'petite' | 'average' | 'curvy' | 'no_preference' (NULL pokud nehledá ženu)
-  partner_pref_body_general TEXT,            -- volný text limit 200 znaků
-
-  -- Pro vlastní self-disclosure (NEPOVINNÉ, nikdy filter)
-  self_size_male            TEXT,            -- pouze pokud uživatel chce sdílet
-  self_chest_female         TEXT,
-
-  created_at        TIMESTAMPTZ DEFAULT NOW(),
-  updated_at        TIMESTAMPTZ DEFAULT NOW()
-);
-
--- RLS: pouze vlastník + uživatel s mutual match
-CREATE POLICY "Vlastník vidí vše" ON intimate_profiles
-  FOR ALL USING (auth.uid() = user_id);
-
-CREATE POLICY "Mutual match vidí jen po like obou stran" ON intimate_profiles
-  FOR SELECT USING (
-    EXISTS (
-      SELECT 1 FROM matches WHERE
-        (user_a = auth.uid() AND user_b = intimate_profiles.user_id) OR
-        (user_b = auth.uid() AND user_a = intimate_profiles.user_id)
-    )
-  );
-```
+Filter funguje JEN když OBA uživatelé sekci Intimní soulad aktivovali.
+Pokud user A má sekci ZAP a user B VYP, A vidí B beze změny (žádné
+„neviditelné penalizace"). Tím se eliminuje „tichá penalizace".
 
 ## UI Flow
 
@@ -98,15 +61,15 @@ CREATE POLICY "Mutual match vidí jen po like obou stran" ON intimate_profiles
 
 [Modal opens]
 "Cosmatch nabízí volitelnou sekci 'Intimní soulad' pro uživatele,
- kteří chtějí vyjádřit svoje sexuální / intimní preference.
+ kteří chtějí vyjádřit svoje intimní preference.
 
  Důležité:
- • Sekce je VIDITELNÁ JEN po vzájemném lajku — nikdy v Discover
- • Preference SLOUŽÍ JEN jako filtr, nesnižují skóre nikomu
- • Tvoje data jsou šifrovaná na klíč tvojí relace
- • Můžeš sekci kdykoli vypnout — data se smažou
+ - Sekce je VIDITELNÁ JEN po vzájemném lajku — nikdy v Discover
+ - Filtruje JEN profily, kteří mají sekci taky aktivní (reciprocity)
+ - Tvoje data jsou šifrovaná na klíč tvojí relace
+ - Můžeš sekci kdykoli vypnout — data se smažou
 
- Souhlasím se zpracováním údajů o sexuálních preferencích
+ Souhlasím se zpracováním údajů o intimních preferencích
  (čl. 9 odst. 2 písm. a) GDPR — výslovný souhlas)?
 
  [ ] Souhlasím (vyžadováno)
@@ -115,7 +78,7 @@ CREATE POLICY "Mutual match vidí jen po like obou stran" ON intimate_profiles
 
 ### 2. Editace preferencí (po aktivaci)
 
-5 podsekcí s jasným branding:
+3 strukturované podsekce + 1 volný text:
 
 **A. Libido**
 "Jak často bys ideálně chtěl/a intimitu?"
@@ -142,60 +105,92 @@ CREATE POLICY "Mutual match vidí jen po like obou stran" ON intimate_profiles
 - Nezáleží mi
 - Raději neuvádím
 
-**D. Preferovaný partner — anatomicky**
-Frame: "Tyto preference filtrují, koho ti ukážeme v Discover po mutual
-match. Nesnižujeme tím skóre nikomu — jen pomáháme tobě."
+**D. Volný text (max 200 znaků)**
+"Co je pro tebe v intimní rovině důležité?"
+*Doporučení: konkrétní, autentické, žádné anatomické nároky.*
 
-(Zobrazí se jen relevantní podle toho koho hledá uživatel)
-
-Pokud hledá MUŽE:
-"Preferovaná anatomická velikost partnera"
-- Malé
-- Průměrné
-- Větší
-- Nezáleží mi
-
-Pokud hledá ŽENU:
-"Preferovaná velikost prsou partnerky"
-- Drobné
-- Průměrné
-- Plnější
-- Nezáleží mi
-
-**E. O mně (volitelné — self-disclosure)**
-Frame: "Pokud chceš, můžeš sdílet vlastní anatomické rysy.
-Toto se zobrazí JEN po vzájemném lajku partnerovi, který tě bude lajknut.
-Není povinné."
+ŽÁDNÉ pole pro anatomické self-disclosure (velikost atd.).
+ŽÁDNÉ pole pro anatomické preference partnera.
 
 ### 3. Po mutual match (v chatu)
 
 Když oba uživatelé lajknou a vznikne match:
-- V chat header objeví se nová sekce "Intimní soulad" (pokud oba ji mají aktivovanou)
-- Klik → zobrazí side-by-side comparison preferencí
-- Soft labels: "Oba preferujete tradiční přístup", "Vaše libido frekvence se shodují"
+- Pokud OBA mají sekci aktivovanou → v chat header se objeví nová
+  sekce "Intimní soulad"
+- Klik → side-by-side comparison strukturovaných preferencí
+  (libido frekvence, role, styl)
+- + volný text obou uživatelů
+- Pokud jen jeden má sekci aktivovanou → druhý nevidí nic (reciprocity)
 
-## Filter logika
+### 4. Filter logika (na mutual matches)
 
 ```typescript
-// V discover po mutual match check, navíc:
+// Filter funguje JEN když OBA uživatelé sekci aktivovali (reciprocity)
+function intimateMatch(viewer: IntimateProfile, candidate: IntimateProfile): boolean {
+  if (!viewer.enabled || !candidate.enabled) return true  // reciprocity — kdokoli nemá sekci, nefiltrujeme
 
-function isOutsideIntimatePrefs(viewer: IntimateProfile, candidate: IntimateProfile): boolean {
-  if (!viewer.enabled || !candidate.enabled) return false  // pokud sekci nemají, nefiltruj
+  // Pouze libido frekvence + role + styl (strukturované preference)
+  // Volný text (D) NENÍ ve filtru — jen pro lidský úsudek po match
 
-  // Anatomické preference (pokud viewer chce filtrovat)
-  if (viewer.partner_pref_size_male && viewer.partner_pref_size_male !== 'no_preference') {
-    if (candidate.self_size_male && candidate.self_size_male !== viewer.partner_pref_size_male) {
-      return true
-    }
-  }
-  if (viewer.partner_pref_chest_female && viewer.partner_pref_chest_female !== 'no_preference') {
-    if (candidate.self_chest_female && candidate.self_chest_female !== viewer.partner_pref_chest_female) {
-      return true
-    }
-  }
+  // Libido tolerance: rozdíl 0 = 100, rozdíl 4 = 0
+  const libidoDiff = Math.abs(libidoToNumber(viewer.libido_frequency) - libidoToNumber(candidate.libido_frequency))
+  if (libidoDiff >= 4) return false  // diametrální rozdíl = skryj
 
-  return false
+  return true
 }
+```
+
+## Datová struktura
+
+```sql
+CREATE TABLE intimate_profiles (
+  user_id           UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+
+  -- Pouze pokud uživatel sekci aktivně zapne
+  enabled           BOOLEAN NOT NULL DEFAULT FALSE,
+  consented_at      TIMESTAMPTZ,
+  consent_version   TEXT,                    -- verze consent textu (audit trail)
+
+  -- A. Libido / frekvence (ideální stav)
+  libido_frequency  TEXT,                    -- 'daily' | 'multiple_weekly' | 'weekly' | 'monthly' | 'sporadic' | 'prefer_not_say'
+
+  -- B. Role (kdo má rád)
+  role_preference   TEXT,                    -- 'dominant' | 'switch' | 'submissive' | 'no_preference' | 'prefer_not_say'
+
+  -- C. Sexuální styl
+  sexual_style      TEXT,                    -- 'vanilla' | 'kink_friendly' | 'open' | 'no_preference' | 'prefer_not_say'
+
+  -- D. Volný text (max 200 znaků)
+  important_to_me   VARCHAR(200),            -- "Co je pro mě v intimní rovině důležité"
+
+  -- ŽÁDNÁ anatomická self-disclosure pole (A+B+C decision)
+  -- ŽÁDNÁ anatomická preference pole
+
+  created_at        TIMESTAMPTZ DEFAULT NOW(),
+  updated_at        TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- RLS: pouze vlastník + uživatel s mutual match (a oba mají sekci aktivovanou)
+CREATE POLICY "Vlastník vidí vše" ON intimate_profiles
+  FOR ALL USING (auth.uid() = user_id);
+
+CREATE POLICY "Mutual match s reciprocity vidí" ON intimate_profiles
+  FOR SELECT USING (
+    -- Druhý user má mutual match
+    EXISTS (
+      SELECT 1 FROM matches WHERE
+        (user_a = auth.uid() AND user_b = intimate_profiles.user_id) OR
+        (user_b = auth.uid() AND user_a = intimate_profiles.user_id)
+    )
+    AND
+    -- A já také mám sekci aktivovanou (reciprocity)
+    EXISTS (
+      SELECT 1 FROM intimate_profiles WHERE user_id = auth.uid() AND enabled = TRUE
+    )
+    AND
+    -- A cílový profil ji má aktivovanou
+    intimate_profiles.enabled = TRUE
+  );
 ```
 
 ## Risk mitigace
@@ -203,28 +198,28 @@ function isOutsideIntimatePrefs(viewer: IntimateProfile, candidate: IntimateProf
 | Risk | Mitigace |
 |---|---|
 | GDPR Article 9 sankce | Explicit opt-in consent, separátní table, šifrování, audit trail |
-| Anti-diskriminační žaloba | Preference jsou symetrické (každý si volí), nepenalizují, jsou filter not score |
-| Tinder-style FTC settlement | Žádná hidden scoring, plně transparentní v UI a Manifest důvěry |
-| PR riziko ("dating app pro úchyly") | Brand jako "premium serious dating", access jen ve Cosmatch Serious tier |
-| Underage abuse | Sekce dostupná jen pro plně 18+ verified users (KYC), age verification přes iDenfy |
+| Anti-diskriminační žaloba | Žádné anatomické filtry — sexuální preference jsou symetrické |
+| Self-disclosure nepravdivost | ŘEŠENO — neexistují anatomická self-disclosure pole |
+| Tinder-style FTC settlement | Žádná hidden scoring, plně transparentní v UI + Manifest III-C |
+| PR riziko ("dating app pro fetišisty") | Brand jako "premium serious dating", focus na soulad ne body |
+| Tichá penalizace | ŘEŠENO — reciprocity model: filter funguje jen když OBA aktivovali |
 
 ## Pre-launch checklist (před spuštěním v2)
 
-- [ ] DPIA (Data Protection Impact Assessment) review s právníkem
+- [ ] DPIA review s právníkem
 - [ ] Šifrování AES-256 dat v `intimate_profiles` table
-- [ ] Audit trail pro consent (verze + timestamp + user_agent)
-- [ ] Test mutual reveal logiky — žádné leaking dat před mutual
+- [ ] Audit trail pro consent (verze + timestamp)
+- [ ] Test reciprocity logiky — kde jeden user nemá sekci, druhý ho vidí normálně
 - [ ] User research: 20+ rozhovorů zda uživatelé Sekci skutečně chtějí
-- [ ] Brand-safety review s Manifest důvěry konzistentní
+- [ ] Brand-safety review s Manifest III-C konzistentní
 - [ ] Marketing copy review (žádné explicitní termíny, citlivá komunikace)
-- [ ] iDenfy KYC integrace (Serious tier requirement)
 
 ## Estimated effort
 
-- Backend: 2 dny (DB schema, RLS, edge functions)
-- Frontend UI: 3 dny (Settings flow, mutual reveal UI, filter logic)
+- Backend: 1.5 dne (DB schema, RLS, reciprocity)
+- Frontend UI: 2 dny (Settings flow, mutual reveal UI, filter logic)
 - Compliance: 1 den (DPIA, consent flows, audit)
-- Total: ~6 dny developer time + 2 týdny user research
+- Total: ~4.5 dne developer time + 2 týdny user research
 
 **Implementace AŽ PO** dosažení 1 000 platících uživatelů Cosmatch+
 nebo 6 měsíců od launchu (cokoli přijde dřív).

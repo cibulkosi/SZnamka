@@ -30,12 +30,12 @@ const principles = [
   {
     numeral: 'III-C',
     title: 'Nehodnotíme přitažlivost',
-    body: 'Cosmatch nikdy nepoužívá fotku, výšku, postavu ani fyzické rysy ve výpočtu kompatibility. Algoritmus zohledňuje pouze datum narození, hodnoty a životní styl. Fyzické a intimní preference jsou pouze filtry, které si nastavíš sám — skrývají profily mimo tvoje preference před tebou, ale nikoho nepenalizují v skóre.',
+    body: 'Cosmatch nikdy nepoužívá fotku, výšku, postavu ani fyzické rysy ve výpočtu kompatibility. Algoritmus zohledňuje pouze datum narození, hodnoty a životní styl. Veškeré preference jsou pouze filtry, které si nastavíš sám — skrývají profily mimo tvoje preference před tebou, ale nikoho nepenalizují v skóre.',
   },
   {
     numeral: 'IV',
     title: 'Algoritmus, který umíme vysvětlit',
-    body: 'Kompatibilita podle data narození 40 %, hodnoty a záměry 35 %, aktivita 20 %, společné zájmy 5 %. Vzdálenost je filtr v preferences, ne součást skóre. Žádné placené pozice. Žádné skryté penalizace. Vzorec si můžeš přepočítat.',
+    body: 'Kompatibilita podle data narození 35 %, životní hodnoty 20 %, osobnost 15 %, intimní soulad 10 %, životní styl 10 %, společné zájmy 5 %, aktivita 5 %. Vzdálenost, věk a fyzické preference jsou filtry — ne součást skóre. Žádné placené pozice. Žádné skryté penalizace. Vzorec si můžeš přepočítat.',
   },
   {
     numeral: 'V',

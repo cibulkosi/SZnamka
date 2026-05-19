@@ -1,18 +1,25 @@
 /**
- * Cosmatch – Enhanced Compatibility Algorithm v2
- *
- * Vrstva 1 – Core Personology Score      (35 % váha bookScore)
- * Vrstva 2 – Vzdálenost: HARD FILTER (max_distance v preferences, není ve scoringu)
- * Vrstva 2b– Věk: HARD FILTER (age_min/age_max v preferences, není ve scoringu)
- * Vrstva 3 – Intent Multiplier           ×0.5 / ×1.0 / ×1.2
- * Vrstva 4 – Activity Boost             +15 bodů (online < 24 h)
- * Vrstva 5 – Společné zájmy             5 % váhy (shared / max × 100)
- *
- * Interní váhování dalších dimenzí (B–E):
- *   B) Životní vize & hodnoty  20 %
- *   C) Osobnost & týmovost     15 %
- *   D) Intimní kompatibilita   10 %
- *   E) Lifestyle & návyky      10 %
+ * Cosmatch – Compatibility Algorithm v3 (květen 2026)
+ * 
+ * CCS = (
+ *    35 % × birth_date_score (book lookup ONLY — life path je teď jen v Magic Moment, ne v matchingu)
+ *  + 20 % × life_vision_score (family/relationship_type/religion/finances)
+ *  + 15 % × personality_score (role/social/schedule/conflict)
+ *  + 10 % × intimate_score (libido 1–5)
+ *  + 10 % × lifestyle_score (smoking/alcohol/diet/exercise)
+ *  +  5 % × interests_score (záliby procentně, sharedCount/max × 100)
+ *  +  5 % × activity_score (0–100 podle last_seen, ne absolutní bonus)
+ * ) × intent_multiplier (0.5 / 1.0 / 1.2)
+ * 
+ * Total: 100 % weighted + multiplier ±. Žádné absolutní bonusy.
+ * 
+ * HARD FILTRY (skryjí profil, nevstupují do skóre):
+ *   - distance > max_distance
+ *   - age outside age_min/age_max
+ *   - height/body_type outside pref_*
+ *   - children incompatible (want_kids × no_kids = vždy hard)
+ *   - smoking incompatible (jen pokud user označí smoking_dealbreaker)
+ *   - CCS < min_compatibility
  */
 
 import type { Profile } from './supabase'
@@ -66,6 +73,33 @@ export function isOutsideDistanceLimit(me: Profile, other: Profile, maxKm: numbe
   const d = distanceKm(me, other)
   if (d === null) return false   // neznámá poloha → nezablokovat
   return d > maxKm
+}
+
+/**
+ * Vrací true pokud A=want_kids × B=no_kids (nebo opačně) = HARD INCOMPATIBLE.
+ * Toto je vždy aktivní deal-breaker — neuvedeno = nezablokovat.
+ */
+export function isChildrenIncompatible(me: Profile, other: Profile): boolean {
+  if (!me.family_plans || !other.family_plans) return false
+  const hardPairs: Array<[string, string]> = [
+    ['want_kids', 'no_kids'],
+    ['no_kids', 'want_kids'],
+    ['have_kids_want_more', 'no_kids'],
+    ['no_kids', 'have_kids_want_more'],
+  ]
+  return hardPairs.some(([a, b]) => me.family_plans === a && other.family_plans === b)
+}
+
+/**
+ * Vrací true pokud uživatel označil smoking jako deal-breaker A je neshoda.
+ * Opt-in — pokud user nemá smoking_dealbreaker=true, vrací false.
+ */
+export function isSmokingIncompatible(me: Profile, other: Profile): boolean {
+  if (!(me as Profile & { smoking_dealbreaker?: boolean }).smoking_dealbreaker) return false
+  if (!me.smoking || !other.smoking) return false
+  // Pokud user je 'never' a partner 'often', → hard incompatible
+  if (me.smoking === 'never' && other.smoking === 'often') return true
+  return false
 }
 
 /**
@@ -124,13 +158,18 @@ function ageBonus(me: Profile, other: Profile): number {
 }
 
 // ──────────────────────────────────────────────
-// Activity boost – online < 24 h (Vrstva 4)
+// Activity score 0–100 (Vrstva G)
+// 100 if ≤ 24h, 75 if ≤ 7d, 50 if ≤ 30d, 30 older
+// Použito jako 5 % váhy v CCS — ne absolutní bonus
 // ──────────────────────────────────────────────
-function activityBoost(other: Profile): number {
-  if (!other.last_seen) return 0
+function activityScore(other: Profile): number {
+  if (!other.last_seen) return 30
   const diffMs = Date.now() - new Date(other.last_seen).getTime()
   const diffH = diffMs / (1000 * 60 * 60)
-  return diffH < 24 ? 15 : 0
+  if (diffH < 24) return 100
+  if (diffH < 24 * 7) return 75
+  if (diffH < 24 * 30) return 50
+  return 30
 }
 
 // ──────────────────────────────────────────────
@@ -154,31 +193,37 @@ export function computeCompatibility(
   other: Profile,
   bookScore: number | null
 ): number {
-  // Vrstva 1 – Core personology (35 %)
-  const bookRaw = bookScore ?? 0
+  // Vrstva A – Birth date score (35 %, ONLY book lookup, no life path)
+  const bookRaw = bookScore ?? 50  // neutrální default pokud chybí
   const aScore  = bookRaw * 0.35
 
-  // B–E interní váhy
+  // Vrstva B – Životní vize (20 %)
   const bScore = scoreLifeVision(me, other) * 0.20
+
+  // Vrstva C – Osobnost (15 %)
   const cScore = scorePersonality(me, other) * 0.15
+
+  // Vrstva D – Intimní (10 %) — libido
   const dScore = scoreIntimate(me, other) * 0.10
+
+  // Vrstva E – Lifestyle (10 %)
   const eScore = scoreLifestyle(me, other) * 0.10
 
-  // Vrstva 5 – Společné zájmy (5 % váhy, procentní scoring s diminishing returns)
-  // Formula: shared / max(me.hobbies, other.hobbies) × 100, capped at 100
+  // Vrstva F – Společné zájmy (5 %)
   const ah = me.hobbies ?? []
   const bh = other.hobbies ?? []
   const sharedCount = bh.filter(h => ah.includes(h)).length
   const maxTags = Math.max(ah.length, bh.length)
   const interestPercent = maxTags > 0 ? (sharedCount / maxTags) * 100 : 0
-  const interestScore = Math.min(100, interestPercent) * 0.05  // 5 % váhy
+  const fScore = Math.min(100, interestPercent) * 0.05
 
-  // Vrstva 4 – Activity boost (0–15)
-  const activity = activityBoost(other)
+  // Vrstva G – Activity (5 %)
+  const gScore = activityScore(other) * 0.05
 
-  const rawScore = aScore + bScore + cScore + dScore + eScore + interestScore + activity
+  // Total weighted: 100 % (clean math, žádné absolutní bonusy)
+  const rawScore = aScore + bScore + cScore + dScore + eScore + fScore + gScore
 
-  // Vrstva 3 – Intent multiplier
+  // Intent multiplier
   const multiplier = intentMultiplier(me.relationship_goal, other.relationship_goal)
 
   return Math.min(100, Math.round(rawScore * multiplier))
