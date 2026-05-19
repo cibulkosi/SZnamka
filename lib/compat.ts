@@ -215,10 +215,9 @@ export function computeCompatibility(
 ): number {
   // Vrstva A – Birth date score (35 %)
   // ONLY book lookup as main signal — life path je jen pro Magic Moment, ne pro matching.
-  // EXCEPTION: když book lookup je 'neutral' (50, žádná kategorie v knize),
-  // použijeme 3-tier life-path matrix jako fallback boost/penalty (-10 až +25).
-  let bookRaw = bookScore ?? 50
-  // Note: 3-tier fallback boost je aplikován v /discover (kde máme přístup k archetypes lib)
+  // 3-tier life-path fallback boost je aplikován v /discover (kde máme přístup k archetypes lib)
+  // takže sem už chodí buď reálné book score nebo tier-adjusted score.
+  const bookRaw = bookScore ?? 50
   const aScore  = bookRaw * 0.35
 
   // Vrstva B – Životní vize (20 %)

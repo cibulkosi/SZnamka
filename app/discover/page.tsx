@@ -735,6 +735,7 @@ export default function DiscoverPage() {
  onPass={() => handleAction(false)}
  onLike={() => handleAction(true)}
  actionState={action}
+ currentUser={user}
  /> )}
  </div> {/* Bottom nav */}
  <BottomNav active="discover" /> </div> )
