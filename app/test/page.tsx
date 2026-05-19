@@ -546,13 +546,19 @@ export default function TestPage() {
             <hr className="rule my-12" />
 
             <div className="bg-white rounded-3xl p-8 border border-gray-100">
-              <p className="eyebrow text-pink-500 mb-3">Další krok</p>
+              <p className="eyebrow text-pink-500 mb-3">Co tě čeká v aplikaci</p>
               <h3 className="serif-display text-3xl text-gray-900 font-medium leading-tight mb-3">
-                Najdi svůj protějšek
+                Tohle je jen úvod.
               </h3>
+              <p className="text-gray-600 leading-relaxed mb-4 text-[1.0625rem]">
+                Tvoje životní číslo je <strong className="text-gray-900 font-medium">numerologický základ</strong> —
+                kdo jsi v jádru. V Cosmatch aplikaci ale uvidíš svůj <strong className="text-gray-900 font-medium">kompletní profil podle dne narození</strong>
+                (1 z 366 unikátních archetypů) a kompatibilitu s konkrétními lidmi, kteří hledají taky.
+              </p>
               <p className="text-gray-600 leading-relaxed mb-6 text-[1.0625rem]">
-                Cosmatch spočítá kompatibilitu mezi tvým a partnerovým datem — z 366 unikátních archetypů
-                profilů. Přidej se do waitlistu a buď u toho jako první.
+                Algoritmus shody čerpá ze 4 vrstev: profily Goldschneidera, harmonie životních čísel,
+                elementární souznění a astrologické aspekty.
+                <a href="/jak-funguje-cosmatch" className="text-pink-500 hover:underline"> Detail výpočtu →</a>
               </p>
               <p className="text-sm text-gray-500 mb-6">
                 Prvních 1 000 dostane voucher na 3 měsíce Cosmatch+ zdarma.
