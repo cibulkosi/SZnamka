@@ -153,7 +153,7 @@ export default function LandingPage() {
         <div className="max-w-3xl mx-auto">
           <p className="eyebrow text-pink-400 mb-6">Pět kategorií vztahu</p>
           <h2 className="serif-display text-4xl sm:text-6xl font-medium leading-[1.05] tracking-tight mb-12 text-white">
-            Každý člověk má s tebou<br/><em className="italic text-pink-400">jiný příběh</em>.
+            Každý člověk s tebou<br/><em className="italic text-pink-400">vytváří jiný příběh</em>.
           </h2>
           <p className="text-white/70 text-lg leading-[1.8] mb-16 max-w-xl">
             Cosmatch umí spočítat tisíce kombinací mezi lidmi a ukázat ti, jak by mohl
