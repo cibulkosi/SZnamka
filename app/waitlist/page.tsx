@@ -385,7 +385,7 @@ export default function WaitlistPage() {
                 {[
                   ['I','Voucher na 3 měsíce do Cosmatch+','Prvních 1{\ }000 lidí dostane prémium členství zdarma a tím si otevřou neomezené shody, otevírání profilů bez čekání, a hlubší analýzy.'],
                   ['II','Odznak Zakládajícího člena','Můžeš si dát na Tvůj profil odznak „Zakládající člen" a získáš tak podpis u příběhu, který pomáháš psát od první stránky.'],
-                  ['III','Early access k novinkám','Prvních 1{\ }000 členů zkouší nové funkce dřív než ostatní a jejich zpětná vazba má vyšší váhu. Žádný hromadný chat ani schůzky — jen občasná krátká anketa e-mailem.'],
+                  ['III','Early access k novinkám','Prvních 1{\ }000 členů zkouší nové funkce dřív než ostatní a jejich zpětná vazba má vyšší váhu.'],
                 ].map(([num, title, body]) => (
                   <div key={num} className="grid grid-cols-[auto,1fr] gap-x-8">
                     <div className="roman text-3xl text-pink-500 pt-1">{num}</div>
