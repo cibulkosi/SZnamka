@@ -1,6 +1,7 @@
 
 'use client'
 import { useState, useEffect } from 'react'
+import { BODY_TYPES } from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase, loadCurrentProfile, signOutCompletely, type Profile, getZodiac } from '@/lib/supabase'
@@ -208,6 +209,151 @@ export default function ProfilePage() {
             </Link>
           </section>
         )}
+
+        {/* Filtry preferencí */}
+        <section className="mb-12">
+          <p className="eyebrow text-gray-500 mb-3">Filtry pro Discover</p>
+          <h2 className="serif text-xl text-gray-900 font-medium leading-tight mb-4">
+            Co ti budeme ukazovat
+          </h2>
+
+          {/* Minimální kompatibilita */}
+          <div className="bg-white border border-gray-200 rounded-2xl p-5 mb-3">
+            <label className="block">
+              <span className="text-sm font-medium text-gray-900 mb-2 block">Minimální kompatibilita</span>
+              <p className="text-xs text-gray-500 mb-3">Profily pod tuto hranici se ti nezobrazí v Discover.</p>
+              <div className="grid grid-cols-4 gap-2">
+                {[0, 25, 50, 75].map(pct => (
+                  <button
+                    key={pct}
+                    type="button"
+                    onClick={async () => {
+                      await import('@/lib/supabase').then(({ supabase }) =>
+                        supabase.from('profiles').update({ min_compatibility: pct }).eq('id', user.id)
+                      )
+                      setUser({ ...user, min_compatibility: pct } as typeof user)
+                    }}
+                    className={`py-2 rounded-full text-sm font-medium transition ${
+                      (user.min_compatibility ?? 0) === pct
+                        ? 'bg-gray-900 text-white'
+                        : 'bg-white border border-gray-300 text-gray-700 hover:border-gray-900'
+                    }`}
+                  >
+                    {pct === 0 ? 'Vše' : `${pct} % +`}
+                  </button>
+                ))}
+              </div>
+            </label>
+          </div>
+
+          {/* Smoking dealbreaker */}
+          {user.smoking === 'never' && (
+            <div className="bg-white border border-gray-200 rounded-2xl p-5 mb-3">
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={!!user.smoking_dealbreaker}
+                  onChange={async (e) => {
+                    const newVal = e.target.checked
+                    await import('@/lib/supabase').then(({ supabase }) =>
+                      supabase.from('profiles').update({ smoking_dealbreaker: newVal }).eq('id', user.id)
+                    )
+                    setUser({ ...user, smoking_dealbreaker: newVal } as typeof user)
+                  }}
+                  className="mt-1 w-4 h-4 rounded border-gray-300"
+                />
+                <div>
+                  <span className="text-sm font-medium text-gray-900 block">Kouření je deal-breaker</span>
+                  <p className="text-xs text-gray-500 mt-1">Pravidelní kuřáci se ti nezobrazí. (Občasní ano.)</p>
+                </div>
+              </label>
+            </div>
+          )}
+
+          {/* Výška */}
+          <div className="bg-white border border-gray-200 rounded-2xl p-5 mb-3">
+            <label className="block">
+              <span className="text-sm font-medium text-gray-900 mb-2 block">Preferovaná výška partnera</span>
+              <p className="text-xs text-gray-500 mb-3">Profily mimo rozsah se ti nezobrazí. Necháš-li prázdné, neomezuje se.</p>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <p className="text-xs text-gray-500 mb-1">od (cm)</p>
+                  <input
+                    type="number"
+                    min="140"
+                    max="220"
+                    placeholder="—"
+                    value={user.pref_height_min ?? ''}
+                    onChange={async (e) => {
+                      const v = e.target.value ? parseInt(e.target.value) : null
+                      await import('@/lib/supabase').then(({ supabase }) =>
+                        supabase.from('profiles').update({ pref_height_min: v }).eq('id', user.id)
+                      )
+                      setUser({ ...user, pref_height_min: v ?? undefined } as typeof user)
+                    }}
+                    className="w-full border border-gray-300 rounded-xl px-3 py-2 text-sm"
+                  />
+                </div>
+                <div>
+                  <p className="text-xs text-gray-500 mb-1">do (cm)</p>
+                  <input
+                    type="number"
+                    min="140"
+                    max="220"
+                    placeholder="—"
+                    value={user.pref_height_max ?? ''}
+                    onChange={async (e) => {
+                      const v = e.target.value ? parseInt(e.target.value) : null
+                      await import('@/lib/supabase').then(({ supabase }) =>
+                        supabase.from('profiles').update({ pref_height_max: v }).eq('id', user.id)
+                      )
+                      setUser({ ...user, pref_height_max: v ?? undefined } as typeof user)
+                    }}
+                    className="w-full border border-gray-300 rounded-xl px-3 py-2 text-sm"
+                  />
+                </div>
+              </div>
+            </label>
+          </div>
+
+          {/* Postava */}
+          <div className="bg-white border border-gray-200 rounded-2xl p-5 mb-3">
+            <label className="block">
+              <span className="text-sm font-medium text-gray-900 mb-2 block">Preferovaná postava partnera</span>
+              <p className="text-xs text-gray-500 mb-3">Vyber typy, které tě zajímají. Nezaškrtnuté znamená „kdokoli".</p>
+              <div className="flex flex-wrap gap-2">
+                {BODY_TYPES.map(bt => {
+                  const isSelected = (user.pref_body_types ?? []).includes(bt.value)
+                  return (
+                    <button
+                      key={bt.value}
+                      type="button"
+                      onClick={async () => {
+                        const cur = user.pref_body_types ?? []
+                        const newPref = isSelected ? cur.filter(v => v !== bt.value) : [...cur, bt.value]
+                        await import('@/lib/supabase').then(({ supabase }) =>
+                          supabase.from('profiles').update({ pref_body_types: newPref }).eq('id', user.id)
+                        )
+                        setUser({ ...user, pref_body_types: newPref } as typeof user)
+                      }}
+                      className={`px-3 py-1.5 rounded-full text-xs font-medium transition ${
+                        isSelected
+                          ? 'bg-gray-900 text-white'
+                          : 'bg-white border border-gray-300 text-gray-700 hover:border-gray-900'
+                      }`}
+                    >
+                      {bt.label}
+                    </button>
+                  )
+                })}
+              </div>
+            </label>
+          </div>
+
+          <p className="text-xs text-gray-500 leading-relaxed mt-4 italic">
+            Veškeré preference jsou pouze filtry — skrývají profily mimo tvoje preference, ale nikoho nepenalizují v skóre. Cosmatch nikdy nehodnotí přitažlivost. <a href="/manifest-duvery" className="text-pink-500 underline">Manifest důvěry</a>.
+          </p>
+        </section>
 
         {/* Settings */}
         <section className="mb-12 space-y-3">

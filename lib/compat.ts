@@ -103,6 +103,26 @@ export function isSmokingIncompatible(me: Profile, other: Profile): boolean {
 }
 
 /**
+ * Tier fallback pro book_score — když je book lookup 'neutral' (žádná kategorie),
+ * použijeme 3-tier life path matrix (z research dossier) pro mírný adjustment.
+ *
+ * Tier 1 (přirozená harmonie): 50 → 75 (+25)
+ * Tier 2 (růstové partnerství): 50 → 60 (+10)
+ * Tier 3 (vysoké napětí): 50 → 40 (-10)
+ * Žádný tier match: 50 (default neutral)
+ *
+ * Pouze pro životní čísla — book lookup zůstává hlavní vrstva.
+ */
+export function tierFallbackBoost(myLP: number, otherLP: number, archetypes: Record<number, { tier1?: number[]; tier2?: number[]; tier3?: number[] }>): number {
+  const me = archetypes[myLP]
+  if (!me) return 50
+  if (me.tier1?.includes(otherLP)) return 75
+  if (me.tier2?.includes(otherLP)) return 60
+  if (me.tier3?.includes(otherLP)) return 40
+  return 50
+}
+
+/**
  * Vrací true pokud kandidát NESPLŇUJE uživatelovy fyzické preference.
  * Hard filter — profil se nezobrazí v Discover. NEpoužívá se ve scoringu.
  * Pokud uživatel preference nemá nastaveny nebo kandidát neuvedl údaj, vrací false (nezablokovat).
@@ -193,8 +213,12 @@ export function computeCompatibility(
   other: Profile,
   bookScore: number | null
 ): number {
-  // Vrstva A – Birth date score (35 %, ONLY book lookup, no life path)
-  const bookRaw = bookScore ?? 50  // neutrální default pokud chybí
+  // Vrstva A – Birth date score (35 %)
+  // ONLY book lookup as main signal — life path je jen pro Magic Moment, ne pro matching.
+  // EXCEPTION: když book lookup je 'neutral' (50, žádná kategorie v knize),
+  // použijeme 3-tier life-path matrix jako fallback boost/penalty (-10 až +25).
+  let bookRaw = bookScore ?? 50
+  // Note: 3-tier fallback boost je aplikován v /discover (kde máme přístup k archetypes lib)
   const aScore  = bookRaw * 0.35
 
   // Vrstva B – Životní vize (20 %)

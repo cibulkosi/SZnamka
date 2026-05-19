@@ -181,10 +181,16 @@ export default function JakFungujeCosmatchPage() {
         <section className="mb-16">
           <p className="eyebrow text-pink-500 mb-4">Čestnost</p>
           <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-6">
-            Numerologie není věda.
+            Numerologie není věda. A to nevadí.
           </h2>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
             Cosmatch používá numerologické a astrologické vzorce k odhadu strukturálního souznění mezi dvěma lidmi. <strong className="text-gray-900 font-medium">Numerologie a astrologie nejsou vědecky validované jako spolehlivé prediktory vztahových výsledků.</strong>
+          </p>
+          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
+            Část pocitu „tohle sedí přesně!" je dokumentovaný psychologický jev zvaný <strong className="text-gray-900 font-medium">Barnumův/Forerův efekt</strong>. V roce 1949 psycholog Bertram Forer dal 39 studentům identický popis osobnosti a oni ho ohodnotili průměrnou známkou <strong className="text-gray-900 font-medium">4.26 z 5.0</strong> jako „přesně mě". To samé funguje s numerologií a astrologií — popisy jsou obecné natolik, aby v nich každý našel kus sebe.
+          </p>
+          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
+            <strong className="text-gray-900 font-medium">Proč to nevadí?</strong> Protože hodnota nástroje není v jeho prediktivní přesnosti — je v tom, k jakému rozhovoru ti otevírá dveře. Numerologický archetyp je <strong className="text-gray-900 font-medium">zrcadlo</strong>, ne diagnóza. „Tohle jsem já?" je první otázka. „Jak s tím nakládám?" je druhá. „Jak komunikuju partnerovi, co potřebuju?" je třetí. Cosmatch ti dává jazyk pro tyto rozhovory.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
             Cosmatch shoda je interpretační nástroj, ne predikce. Žádná aplikace nedokáže garantovat úspěch vztahu — záleží na vás, jak ho dokážete vybudovat.
