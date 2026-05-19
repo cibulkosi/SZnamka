@@ -28,7 +28,7 @@ export default function LandingPage() {
       <section className="min-h-screen flex items-end pt-32 pb-20 px-6">
         <div className="max-w-6xl mx-auto w-full grid lg:grid-cols-[1.2fr_1fr] gap-16 items-end">
           <div>
-            <p className="eyebrow text-pink-500 mb-6">Numerologická seznamka · Praha</p>
+            
             <h1 className="serif-display text-[3.25rem] sm:text-7xl lg:text-[5.5rem] text-gray-900 font-medium leading-[0.98] tracking-tight mb-10">
               Najdi člověka,<br/>se kterým<br/><em className="italic text-pink-500">dává život smysl</em>.
             </h1>
@@ -63,8 +63,8 @@ export default function LandingPage() {
             <div className="bg-white rounded-3xl p-10 border border-gray-100 shadow-sm">
               <p className="eyebrow text-gray-400 mb-6">Z Manifestu důvěry</p>
               <p className="serif text-2xl text-gray-900 leading-[1.45] mb-8 italic">
-                "Většina stránek včetně seznamek vydělává na tom, jak dlouho na nich zůstaneš.
-                My ale chceme, aby sis našel vhodný protějšek a opustil nás."
+                "Většina stránek včetně seznamek vydělává na tom, jak dlouho na nich zůstanete.
+                My ale chceme, abyste si našli vhodný protějšek a opustili nás."
               </p>
               <Link href="/manifest-duvery" className="text-sm text-pink-500 hover:text-pink-600 transition">
                 Přečíst všech sedm závazků →
