@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Manifest důvěry — Cosmatch',
-  description: 'Sedm věcí, kterými se Cosmatch zavazuje vůči uživatelům. Žádné falešné zprávy, žádné reklamy, žádné prodávání dat.',
+  description: 'Sedm věcí, ke kterým se Cosmatch zavazuje vůči uživatelům. Žádné falešné zprávy, žádné reklamy, žádné prodávání dat.',
 }
 
 const principles = [
@@ -86,7 +86,7 @@ export default function ManifestDuvery() {
         <header className="mb-20">
           <p className="eyebrow mb-6 text-pink-500">Manifest důvěry</p>
           <h1 className="serif-display text-5xl sm:text-6xl text-gray-900 leading-[1.05] font-medium mb-8 tracking-tight">
-            Sedm věcí,<br />kterými se Ti<br /><em className="italic text-pink-500">zavazujeme</em>.
+            Sedm věcí,<br />ke kterým se<br /><em className="italic text-pink-500">zavazujeme</em>.
           </h1>
           <hr className="rule w-16 border-gray-900 mb-8" />
           <p className="text-lg text-gray-600 leading-relaxed max-w-xl">
