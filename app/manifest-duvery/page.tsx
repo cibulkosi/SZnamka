@@ -3,59 +3,59 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Manifest důvěry — Cosmatch',
-  description: 'Sedm závazků, kterými se Cosmatch zavazuje vůči svým uživatelům. Žádné tmavé vzory, žádné reklamy, žádné prodávání dat.',
+  description: 'Sedm věcí, kterými se Cosmatch zavazuje vůči uživatelům. Žádné falešné zprávy, žádné reklamy, žádné prodávání dat.',
 }
 
 const principles = [
   {
     numeral: 'I',
-    title: 'Žádné swipy pro swipy',
-    body: 'Tinder vydělává na tom, jak dlouho v něm zůstaneš. My vyděláváme na tom, jak rychle nás opustíš. Cosmatch je navržen tak, aby se odstranil sám — ve chvíli, kdy najdeš člověka, se kterým to dává smysl.',
+    title: 'Žádné bezduché swipy',
+    body: 'Většina stránek včetně seznamek vydělává na tom, jak dlouho na nich zůstaneš. My ale chceme, aby sis našel vhodný protějšek a opustil nás. Cosmatch je navržen tak, abys mohl svůj profil jednoduše odstranit sám ve chvíli, kdy najdeš člověka, se kterým ti život dává smysl.',
   },
   {
     numeral: 'II',
-    title: 'Datum narození není data',
-    body: 'Tvoje datum používáme jen k jediné věci: výpočtu kompatibility. Neprodáváme ho. Nepředáváme ho. Neprofilujeme tě podle něj mimo aplikaci. Je to klíč k tvému profilu, ne komodita.',
+    title: 'Datum narození zůstává utajeno',
+    body: 'Tvoje datum používáme jen k jediné věci, a to k výpočtu kompatibility. Neprodáváme ho. Nikomu ho nepředáváme. Neprofilujeme tě podle něj mimo aplikaci. Je to klíč k tvému profilu, ne komodita.',
   },
   {
     numeral: 'III',
-    title: 'Žádné tmavé vzory',
-    body: 'Falešné notifikace neexistují. Skryté tlačítko pro zrušení neexistuje. Když ti přijde zpráva, někdo ti opravdu napsal.',
+    title: 'Žádné falešné zprávy',
+    body: 'Neposíláme falešné notifikace. Když ti přijde zpráva, znamená to, že Ti někdo opravdu napsal.',
   },
   {
     numeral: 'III-B',
     title: 'Nulové fake profily',
-    body: 'Cosmatch nikdy nepoužívá AI generované profily, seed profily ani „demo postavičky“, aby aplikace vypadala plnější. Každý profil v Cosmatch je skutečný člověk, který se sám zaregistroval a souhlasil s podmínkami. Spouštíme se s méně lidmi, ale s reálnými lidmi.',
+    body: 'Cosmatch nikdy nepoužívá AI generované profily, seed profily ani „demo postavičky“, aby aplikace vypadala plnější. Každý profil v Cosmatch je skutečný člověk, který se sám zaregistroval a souhlasil s podmínkami. Na seznamce možná sice najdeš méně lidí než jinde, ale zato jsou reální.',
   },
   {
     numeral: 'III-C',
-    title: 'Nehodnotíme přitažlivost',
-    body: 'Cosmatch nikdy nepoužívá fotku, výšku, postavu ani fyzické rysy ve výpočtu kompatibility. Algoritmus zohledňuje pouze datum narození, hodnoty a životní styl. Veškeré preference jsou pouze filtry, které si nastavíš sám — skrývají profily mimo tvoje preference před tebou, ale nikoho nepenalizují v skóre.',
+    title: 'Fyzickou přitažlivost hodnotíš jen ty',
+    body: 'Cosmatch nepoužívá fotku, výšku, postavu ani fyzické rysy ve výpočtu kompatibility. Algoritmus zohledňuje pouze datum narození, hodnoty a životní styl. Fyzické preference jsou filtry, které si nastavíš jen ty sám, nikoho nepenalizují ve skóre.',
   },
   {
     numeral: 'IV',
     title: 'Algoritmus, který umíme vysvětlit',
-    body: 'Kompatibilita podle data narození 35 %, životní hodnoty 20 %, osobnost 15 %, intimní soulad 10 %, životní styl 10 %, společné zájmy 5 %, aktivita 5 %. Vzdálenost, věk a fyzické preference jsou filtry — ne součást skóre. Žádné placené pozice. Žádné skryté penalizace. Vzorec si můžeš přepočítat.',
+    body: 'Součástí algoritmu je třeba kompatibilita podle data narození 35 %, hodnoty a záměry 35 %, aktivita 20 %, společné zájmy 5 %. Vzdálenost, věk a vztah k dětem je filtr v preferencích, ne součást skóre. Žádné pozice nejsou placené. Nepoužíváme žádné skryté penalizace.',
   },
   {
     numeral: 'V',
     title: 'Bezpečnost není nadstandard',
-    body: 'Česko je šestá nejzranitelnější země světa vůči romance scams — 45 % uživatelů seznamek tu pravidelně narazí na podezřelý profil. Cosmatch proto nabízí ID verifikaci, Cloudflare Turnstile proti botům a Google/Facebook SSO bez hesla. Servery běží ve Frankfurtu (EU). Smazání účtu vyřídíme do hodiny.',
+    body: 'Česko je šestá nejzranitelnější země světa vůči romance scams, 45 % uživatelů seznamek totiž pravidelně narazí na podezřelý profil. Cosmatch proto nabízí ID verifikaci, Cloudflare Turnstile proti botům a Google/Facebook SSO bez hesla. Servery běží ve Frankfurtu (EU). Smazání účtu vyřídíme co nejdříve.',
   },
   {
     numeral: 'VI',
     title: 'Žádné reklamy. Nikdy.',
-    body: 'Cosmatch financují uživatelé, ne inzerenti. Tvoje pozornost není zboží. Pokud jednou uvidíš v aplikaci reklamu, znamená to, že jsme ji prodali — a tehdy bude na čase odejít.',
+    body: 'Cosmatch financují uživatelé, ne inzerenti. Tvoje pozornost není zboží. Pokud jednou uvidíš v aplikaci reklamu, znamená to, že jsme ji prodali, a tehdy bude na čase odejít.',
   },
   {
     numeral: 'VII',
     title: 'Záruky, ne sliby',
-    body: 'Pokud nejsi spokojen s předplatným do 14 dnů, peníze vrátíme bez vysvětlení. Pokud nás potřebuješ, píšeš na ahoj@cosmatch.cz a odpovídáme do 48 hodin. Občas dříve.',
+    body: 'Pokud nejsi spokojen s předplatným, do 14 dnů Ti vrátíme peníze bez vysvětlení. Pokud se potřebuješ na něco zeptat, napiš na ahoj@cosmatch.cz a odpovíme Ti do týdne. Většinou dříve.',
   },
   {
     numeral: 'VIII',
     title: 'Transparentní reportování',
-    body: 'Každý měsíc zveřejníme, kolik podezřelých profilů jsme zablokovali, kolik reportů jsme vyřešili a kolik účtů jsme verifikovali. Žádné skrývání. Pokud Cosmatch v něčem selže, dozvíš se o tom první.',
+    body: 'Každý měsíc zveřejníme, kolik podezřelých profilů jsme zablokovali a kolik účtů jsme verifikovali. Žádné skrývání. Pokud Cosmatch v něčem selže, dozvíš se o tom první.',
   },
 ]
 
@@ -86,13 +86,13 @@ export default function ManifestDuvery() {
         <header className="mb-20">
           <p className="eyebrow mb-6 text-pink-500">Manifest důvěry</p>
           <h1 className="serif-display text-5xl sm:text-6xl text-gray-900 leading-[1.05] font-medium mb-8 tracking-tight">
-            Sedm závazků,<br />kterými se zavazujeme<br /><em className="italic text-pink-500">vůči tobě</em>.
+            Sedm věcí,<br />kterými se Ti<br /><em className="italic text-pink-500">zavazujeme</em>.
           </h1>
           <hr className="rule w-16 border-gray-900 mb-8" />
           <p className="text-lg text-gray-600 leading-relaxed max-w-xl">
-            Cosmatch není aplikace o tom, jak tě udržet uvnitř. Je o tom, jak tě dostat ven —
-            do skutečného života, ke skutečnému člověku. Pokud se v něčem z následujícího
-            zmýlíme, čekáme tvůj e-mail.
+            Cosmatch není aplikace, která by Tě chtěla udržovat nalepeného u obrazovky. Naopak
+            si klademe za cíl Tě dostat mimo Cosmatch, do skutečného života, ke skutečnému člověku.
+            Pokud se v něčem z následujícího zmýlíme, dej nám vědět.
           </p>
         </header>
 
@@ -125,13 +125,12 @@ export default function ManifestDuvery() {
           <p className="eyebrow text-emerald-600 mb-6">Konkrétně k bezpečnosti</p>
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-[1.1] tracking-tight mb-8">
             Verifikované profily.<br/>
-            <em className="italic text-emerald-600">Nehraj o slepém.</em>
+            <em className="italic text-emerald-600">Nehrajeme na slepou bábu.</em>
           </h2>
 
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-8">
-            Česká republika je <strong className="text-gray-900 font-medium">šestá nejzranitelnější země světa vůči romance scams</strong>.
-            45 % uživatelů českých seznamek pravidelně narazí na podezřelý profil, průměrná
-            zaznamenaná škoda dosahuje 47 245 Kč. To se nestane, když víš, s kým mluvíš.
+            <strong className="text-gray-900 font-medium">45 % uživatelů českých seznamek pravidelně narazí na podezřelý profil.</strong>
+            To se nestane, když víš, s kým mluvíš.
           </p>
 
           <div className="space-y-6 mb-8">
@@ -142,10 +141,10 @@ export default function ManifestDuvery() {
               <div>
                 <p className="serif text-lg text-gray-900 font-medium mb-1">Vícevrstvá ochrana před scammery</p>
                   <p className="text-gray-600 text-sm leading-relaxed">Cloudflare Turnstile anti-bot, SSO bez hesla a transparentní reportování. Detaily na stránce <a href="/verifikace" className="text-pink-500 hover:underline">Bezpečnost</a>.</p>
-                <p className="serif text-lg text-gray-900 font-medium mb-1">Filtr „jen ověřené"</p>
+                <p className="serif text-lg text-gray-900 font-medium mb-1">Nabízíme filtr „jen ověřené"</p>
                 <p className="text-gray-700 leading-relaxed text-[0.95rem]">
-                  V nastavení si zapneš, aby ti aplikace zobrazovala jen profily se zeleným štítkem.
-                  Žádné kompromisy.
+                  V nastavení si zapneš, aby ti aplikace zobrazovala jen profily se zeleným štítkem,
+                  což jsou ověřené profily, tedy reální lidé. Neděláme žádné kompromisy.
                 </p>
               </div>
             </div>
@@ -155,7 +154,7 @@ export default function ManifestDuvery() {
                 <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
               </span>
               <div>
-                <p className="serif text-lg text-gray-900 font-medium mb-1">Rychlá reakce na nahlášení</p>
+                <p className="serif text-lg text-gray-900 font-medium mb-1">Nahlášení podezřelého profilu</p>
                 <p className="text-gray-700 leading-relaxed text-[0.95rem]">
                   Po reportu zmizí profil z feedu do hodiny. Pokud potvrdíme scam, trvale ho mažeme
                   a zapisujeme do interní blacklist databáze.

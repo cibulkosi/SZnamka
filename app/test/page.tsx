@@ -258,7 +258,7 @@ export default function TestPage() {
           <div className="pt-8">
             <p className="eyebrow text-pink-500 mb-6">Numerologický kvíz</p>
             <h1 className="serif-display text-5xl sm:text-6xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-8">
-              Proč se pořád<br/>přitahuješ<br/>k <em className="italic text-pink-500">stejnému typu</em><br/>lidí?
+              Proč pořád<br/>přitahuješ<br/><em className="italic text-pink-500">stejný typ</em><br/>lidí?
             </h1>
             <hr className="rule w-12 border-gray-900 mb-8" />
             <p className="text-lg text-gray-700 leading-relaxed mb-4">
@@ -266,7 +266,7 @@ export default function TestPage() {
               numerologický archetyp a ukáže ti, jaký partner ti skutečně sedí.
             </p>
             <p className="text-gray-500 leading-relaxed mb-12">
-              Zdarma. Bez registrace. Bez e-mailu, dokud sám nechceš.
+              Zdarma. Bez registrace. Nemusíš se přihlašovat, pokud nechceš.
             </p>
 
             <button

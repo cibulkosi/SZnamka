@@ -30,14 +30,14 @@ export default function LandingPage() {
           <div>
             <p className="eyebrow text-pink-500 mb-6">Numerologická seznamka · Praha</p>
             <h1 className="serif-display text-[3.25rem] sm:text-7xl lg:text-[5.5rem] text-gray-900 font-medium leading-[0.98] tracking-tight mb-10">
-              Najdi člověka,<br/>se kterým<br/><em className="italic text-pink-500">to dává smysl</em>.
+              Najdi člověka,<br/>se kterým<br/><em className="italic text-pink-500">dává život smysl</em>.
             </h1>
             <hr className="rule w-16 border-gray-900 mb-8" />
             <p className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-10 max-w-xl">
-              96 % českých žen 18–29 považuje hledání partnera za obtížné.
-              Cosmatch tu dynamiku mění — spočítá kompatibilitu mezi tvým a partnerovým
-              datem narození z 366 unikátních archetypů. Místo swipování pro swipování
-              ti dává důvod, proč se s někým potkat.
+              96 % českých žen ve věku 18–29 let považuje nalezení správného partnera za velmi obtížné.
+              Cosmatch se snaží tuto dynamiku měnit a spočítá kompatibilitu mezi tvým a partnerovým
+              datem narození z 366 unikátních archetypů. Místo bezduchého swipování ti dává důvod,
+              proč se s někým opravdu potkat.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
@@ -63,8 +63,8 @@ export default function LandingPage() {
             <div className="bg-white rounded-3xl p-10 border border-gray-100 shadow-sm">
               <p className="eyebrow text-gray-400 mb-6">Z Manifestu důvěry</p>
               <p className="serif text-2xl text-gray-900 leading-[1.45] mb-8 italic">
-                "Tinder vydělává na tom, jak dlouho v něm zůstaneš.
-                My vyděláváme na tom, jak rychle nás opustíš."
+                "Většina stránek včetně seznamek vydělává na tom, jak dlouho na nich zůstaneš.
+                My ale chceme, aby sis našel vhodný protějšek a opustil nás."
               </p>
               <Link href="/manifest-duvery" className="text-sm text-pink-500 hover:text-pink-600 transition">
                 Přečíst všech sedm závazků →
@@ -82,7 +82,7 @@ export default function LandingPage() {
             <div>
               <div className="serif-display text-3xl sm:text-5xl text-gray-900 font-medium tracking-tight mb-2 tabular-nums">96 %</div>
               <p className="text-sm text-gray-700 leading-relaxed">
-                českých žen 18–29 let považuje hledání partnera za <em className="italic text-pink-500">obtížné</em>.
+                českých žen ve věku 18–29 let považuje hledání partnera za <em className="italic text-pink-500">obtížné</em>.
               </p>
               <p className="text-xs text-gray-400 mt-2">STEM/MARK, 2025</p>
             </div>
@@ -200,7 +200,7 @@ export default function LandingPage() {
 
           <div className="space-y-12">
             {[
-              ['Žádné swipování pro swipování.', 'Dostaneš pět profilů denně — seřazené přesně pro tebe.'],
+              ['Konec bezduchému swipování.', 'Dostaneš pět profilů denně, s nejlepší shodou přesně pro tebe.'],
               ['Žádné falešné notifikace.', 'Když ti přijde zpráva, někdo ti opravdu napsal.'],
               ['Žádné placené pozice v algoritmu.', 'Vzorec si můžeš přepočítat. Placené předplatné mění tvé možnosti, ne tvoji viditelnost.'],
               ['Žádné reklamy. Nikdy.', 'Cosmatch financují uživatelé, ne inzerenti.'],
