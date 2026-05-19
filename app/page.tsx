@@ -156,9 +156,8 @@ export default function LandingPage() {
             Každý člověk má s tebou<br/><em className="italic text-pink-400">jiný příběh</em>.
           </h2>
           <p className="text-white/70 text-lg leading-[1.8] mb-16 max-w-xl">
-            Kniha The Power of Birthdays definuje pět typů vztahu mezi dvěma daty narození.
-            Cosmatch je spočítal všech 46 949 a ukazuje ti, jak by to mohlo vypadat,
-            ještě než si napíšeš první zprávu.
+            Cosmatch umí spočítat tisíce kombinací mezi lidmi a ukázat ti, jak by mohl
+            vás vztah vypadat, ještě předtím, než si napíšete první zprávu.
           </p>
 
           <div className="space-y-8">
