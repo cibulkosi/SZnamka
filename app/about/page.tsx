@@ -66,7 +66,7 @@ const jsonLd = {
         {
           '@type': 'Question',
           name: 'Does Cosmatch verify users?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Cosmatch Serious tier (399 CZK/month, 249 CZK/month annual) requires mandatory ID verification through a renowned EU identity verification service. Free and Cosmatch+ tiers use Google/Facebook SSO and Cloudflare Turnstile bot protection.' },
+          acceptedAnswer: { '@type': 'Answer', text: 'Cosmatch Serious tier (399 CZK/month, 2 988 CZK/year — 38 % off) requires mandatory ID verification through a renowned EU identity verification service. Free and Cosmatch+ tiers use Google/Facebook SSO and Cloudflare Turnstile bot protection.' },
         },
       ],
     },
@@ -111,7 +111,7 @@ export default function AboutPage() {
             Founded by Mgr. Ing. Simona Cibulková in 2026, Cosmatch operates from Prague, Czech Republic. The web application is built on Next.js, hosted on Cloudflare Pages, with Supabase (PostgreSQL) backing user data in Frankfurt EU data centers.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
-            Cosmatch is funded exclusively by user subscriptions — no advertising, no data selling, no paid algorithmic positions. Three tiers: Free (5 likes/day), Cosmatch+ (from 249 CZK/month, 149 CZK/month annual), Cosmatch Serious (from 399 CZK/month, 249 CZK/month annual, with mandatory ID verification).
+            Cosmatch is funded exclusively by user subscriptions — no advertising, no data selling, no paid algorithmic positions. Three tiers: Free (5 likes/day), Cosmatch+ (249 CZK/month, 597 CZK/quarter, 1 788 CZK/year), Cosmatch Serious (399 CZK/month, 987 CZK/quarter, 2 988 CZK/year, with mandatory ID verification).
           </p>
         </section>
 

@@ -7,11 +7,11 @@ const URL = 'https://cosmatch.cz/premium'
 const FAQS = [
   {
     q: 'Kolik stojí Cosmatch+?',
-    a: 'Měsíčně 249 Kč, kvartálně 597 Kč (199 Kč/měs, sleva 20 %), nebo ročně 1 788 Kč (149 Kč/měs, sleva 40 %). Free verze je plně použitelná zdarma.',
+    a: 'Měsíčně 249 Kč, kvartálně 597 Kč (sleva 20 %), nebo ročně 1 788 Kč (sleva 40 %). Free verze je plně použitelná zdarma.',
   },
   {
     q: 'Kolik stojí Cosmatch Serious?',
-    a: 'Měsíčně 399 Kč, kvartálně 987 Kč (329 Kč/měs, sleva 18 %), nebo ročně 2 988 Kč (249 Kč/měs, sleva 38 %). Serious obsahuje povinnou ID verifikaci a zelený štítek Ověřeno.',
+    a: 'Měsíčně 399 Kč, kvartálně 987 Kč (sleva 18 %), nebo ročně 2 988 Kč (sleva 38 %). Serious obsahuje povinnou ID verifikaci a zelený štítek Ověřeno.',
   },
   {
     q: 'Mohu předplatné kdykoli zrušit?',
