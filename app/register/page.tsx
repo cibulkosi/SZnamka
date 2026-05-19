@@ -337,8 +337,7 @@ export default function RegisterPage() {
             </h1>
             <hr className="rule w-12 border-gray-900 mb-8" />
             <p className="text-gray-700 leading-relaxed text-[1.0625rem] mb-10">
-              Přihlásíme tě bezpečně přes Google nebo Facebook. Heslo u nás neexistuje —
-              nemůžeme ti ho ztratit.
+              Přihlásíme tě bezpečně přes Google nebo Facebook.
             </p>
 
             <div className="space-y-3 mb-10">
