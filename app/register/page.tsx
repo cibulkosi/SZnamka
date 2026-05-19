@@ -91,6 +91,7 @@ export default function RegisterPage() {
     bio: '', occupation: '', education: '',
     hobbies: [] as string[],
     prompt_q: HINGE_PROMPTS[0], prompt_a: '',
+    voucher_code: '',
   })
 
   const birthday = form.month && form.day
@@ -287,6 +288,23 @@ export default function RegisterPage() {
         password_hash: passwordHash, premium: false, active: true,
       }])
       if (dbErr) throw dbErr
+
+      // Voucher redemption (optional — silently no-op if voucher_code empty or invalid)
+      if (form.voucher_code && form.voucher_code.trim()) {
+        try {
+          const { data: redeemResult } = await supabase.rpc('redeem_voucher', {
+            p_user_id: userId,
+            p_code: form.voucher_code.trim().toUpperCase(),
+          })
+          if (redeemResult?.ok && redeemResult.is_founding_member) {
+            // Stored — badge will show in profile based on is_founding_member flag
+            console.info('Founding member badge granted, position:', redeemResult.position)
+          } else if (!redeemResult?.ok) {
+            console.warn('Voucher redemption failed:', redeemResult?.error)
+          }
+        } catch (e) { console.warn('Voucher RPC error:', e) }
+      }
+
       const { data: profile } = await supabase.from('profiles').select('*').eq('id', userId).single()
       if (profile) { localStorage.setItem('cosmatch_user', JSON.stringify(profile)); router.push('/discover') }
     } catch (e: unknown) {
@@ -578,6 +596,18 @@ export default function RegisterPage() {
                   {HINGE_PROMPTS.map(p => <option key={p} value={p}>{p}</option>)}
                 </select>
                 <Underline value={form.prompt_a} onChange={e => set('prompt_a', e.target.value)} placeholder="Tvoje odpověď…" />
+              </div>
+
+              <div>
+                <Eyebrow>Voucher kód <span className="normal-case tracking-normal text-gray-400 ml-2">volitelné</span></Eyebrow>
+                <Underline
+                  value={form.voucher_code}
+                  onChange={e => set('voucher_code', e.target.value.toUpperCase())}
+                  placeholder="např. K7XP9M2A"
+                />
+                <p className="text-xs text-gray-400 mt-2 leading-relaxed">
+                  Pokud jsi dostal/a kód z e-mailu po waitlist signup, vlož ho sem. Odemkne ti 3 měsíce Cosmatch+ zdarma až ho spustíme.
+                </p>
               </div>
 
               {/* GDPR Article 9 explicit consent — required for processing gender/orientation/birth date */}

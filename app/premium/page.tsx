@@ -29,7 +29,7 @@ const TIERS: Tier[] = [
     pricePerMonth: '0 Kč',
     priceTagline: 'navždy zdarma',
     audience: 'Pro každého, kdo Cosmatch zkouší',
-    description: 'Plně použitelný start. Aby aplikace nebyla prázdná a měl jsi kde začít.',
+    description: 'Plně použitelný start. Aby aplikace nebyla prázdná a měl/a jsi kde začít.',
     features: [
       'Neomezené prohlížení profilů',
       '5 lajků a 5 zpráv denně',

@@ -287,7 +287,7 @@ export default function TestPage() {
           <div className="pt-4">
             <p className="eyebrow text-gray-400 mb-6">Krok 1 ze 2</p>
             <h2 className="serif-display text-4xl sm:text-5xl text-gray-900 font-medium leading-[1.1] tracking-tight mb-6">
-              Kdy ses narodil?
+              Kdy ses narodil/a?
             </h2>
             <p className="text-gray-600 leading-relaxed mb-10 text-[1.0625rem]">
               Zadej přesný datum narození. Rok je důležitý — ovlivňuje životní číslo.

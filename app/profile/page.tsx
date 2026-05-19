@@ -5,6 +5,7 @@ import { BODY_TYPES } from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase, loadCurrentProfile, signOutCompletely, type Profile, getZodiac } from '@/lib/supabase'
+import FoundingBadge from '@/components/FoundingBadge'
 
 const RELATIONSHIP_GOAL_LABELS: Record<string, string> = {
   serious: 'Vážný vztah',
@@ -120,6 +121,11 @@ export default function ProfilePage() {
                     Ověřeno
                   </span>
                 )}
+                <FoundingBadge
+                  isFoundingMember={!!user.is_founding_member}
+                  visible={user.founding_badge_visible !== false}
+                  compact
+                />
               </h1>
               <p className="text-gray-500 text-[1.0625rem] leading-relaxed">
                 {birthdayDisplay}

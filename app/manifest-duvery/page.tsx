@@ -10,7 +10,7 @@ const principles = [
   {
     numeral: 'I',
     title: 'Žádné bezduché swipy',
-    body: 'Většina stránek včetně seznamek vydělává na tom, jak dlouho na nich zůstaneš. My ale chceme, aby sis našel vhodný protějšek a opustil nás. Cosmatch je navržen tak, abys mohl svůj profil jednoduše odstranit sám ve chvíli, kdy najdeš člověka, se kterým ti život dává smysl.',
+    body: 'Většina stránek včetně seznamek vydělává na tom, jak dlouho na nich zůstaneš. My ale chceme, aby sis našel/našla vhodný protějšek a opustil/a nás. Cosmatch je navržen tak, abys mohl/a svůj profil jednoduše odstranit sám/sama ve chvíli, kdy najdeš člověka, se kterým ti život dává smysl.',
   },
   {
     numeral: 'II',
