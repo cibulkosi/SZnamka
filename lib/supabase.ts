@@ -77,6 +77,14 @@ export type Profile = {
   verified_at?: string      // ISO timestamp ověření
   deleted_at?: string       // Soft-delete (GDPR výmaz, 30 dní pak hard delete)
   deletion_reason?: string  // 'user_initiated' / 'gdpr_request' / 'admin_action'
+  // ── Voucher + Founding member (added 19. 5. 2026) ──
+  voucher_code?: string | null
+  voucher_redeemed_at?: string | null
+  life_path?: number | null
+  archetype?: string | null
+  is_founding_member?: boolean
+  founding_badge_visible?: boolean
+
 }
 
 export const EDUCATION_OPTIONS = [
