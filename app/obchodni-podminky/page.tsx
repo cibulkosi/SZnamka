@@ -86,11 +86,11 @@ export default function ObchodniPodminkyPage() {
                 <p className="text-gray-700 text-[0.95rem]">Neomezené prohlížení profilů, 5 lajků/zpráv denně, základní kompatibilita.</p>
               </div>
               <div>
-                <p className="font-medium text-gray-900">Cosmatch+ — 149 Kč/měsíc</p>
+                <p className="font-medium text-gray-900">Cosmatch+ — 249 Kč/měsíc (kvartálně 597 Kč · ročně 1 788 Kč)</p>
                 <p className="text-gray-700 text-[0.95rem]">Neomezené lajky, hloubková personologická analýza, zobrazení kdo Tě lajknul, prioritní zobrazení profilu.</p>
               </div>
               <div>
-                <p className="font-medium text-gray-900">Cosmatch Serious — 349 Kč/měsíc</p>
+                <p className="font-medium text-gray-900">Cosmatch Serious — 399 Kč/měsíc (kvartálně 987 Kč · ročně 2 988 Kč)</p>
                 <p className="text-gray-700 text-[0.95rem]">Vše z Cosmatch+ plus povinná ID verifikace, štítek „Ověřeno", prémiové filtry, prioritní matchmaking.</p>
               </div>
             </div>

@@ -130,8 +130,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "description": "Numerologická seznamka — najdi partnera podle data narození a kompatibility z 366 personologických profilů.",
               "offers": [
                 { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "CZK" },
-                { "@type": "Offer", "name": "Cosmatch+", "price": "149", "priceCurrency": "CZK", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" } },
-                { "@type": "Offer", "name": "Cosmatch Serious", "price": "349", "priceCurrency": "CZK", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" } },
+                { "@type": "Offer", "name": "Cosmatch+ měsíčně", "price": "249", "priceCurrency": "CZK", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" } },
+                { "@type": "Offer", "name": "Cosmatch+ kvartálně", "price": "597", "priceCurrency": "CZK", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P3M" } },
+                { "@type": "Offer", "name": "Cosmatch+ ročně", "price": "1788", "priceCurrency": "CZK", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1Y" } },
+                { "@type": "Offer", "name": "Cosmatch Serious měsíčně", "price": "399", "priceCurrency": "CZK", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" } },
+                { "@type": "Offer", "name": "Cosmatch Serious kvartálně", "price": "987", "priceCurrency": "CZK", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P3M" } },
+                { "@type": "Offer", "name": "Cosmatch Serious ročně", "price": "2988", "priceCurrency": "CZK", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1Y" } },
               ],
               "publisher": { "@id": "https://cosmatch.cz/#organization" },
               "sameAs": [

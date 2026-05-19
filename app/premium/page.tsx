@@ -43,10 +43,10 @@ const TIERS: Tier[] = [
     id: 'plus',
     priceId: 'pri_01krneagtvx17vy1yebscmr0a5',
     name: 'Cosmatch+',
-    pricePerMonth: '149 Kč',
-    priceTagline: 'měsíčně · cílovka 27–45 let',
+    pricePerMonth: '249 Kč',
+    priceTagline: 'měsíčně · 597 Kč / 3 měsíce · 1 788 Kč / rok',
     audience: 'Pro ty, co Cosmatch reálně používají',
-    description: 'Dostupný standard. Vidíš všechno, ale dělá to za polovinu ceny Tinderu.',
+    description: 'Dostupný standard za 249 Kč měsíčně. Vidíš všechno, ale o 36 % levněji než Tinder Gold. Roční plán vychází na 149 Kč/měs (sleva 40 %).',
     features: [
       'Neomezené lajky a zprávy',
       'Hloubková personologická analýza',
@@ -63,8 +63,8 @@ const TIERS: Tier[] = [
     id: 'serious',
     priceId: 'pri_01krnededcj37m5g4bmy5y7zcy',
     name: 'Cosmatch Serious',
-    pricePerMonth: '349 Kč',
-    priceTagline: 'měsíčně · pro vážný vztah',
+    pricePerMonth: '399 Kč',
+    priceTagline: 'měsíčně · 987 Kč / 3 měsíce · 2 988 Kč / rok',
     audience: 'Pro 35+ kteří chtějí vědět, s kým mluví',
     description: 'Pro lidi, kteří už zbytečně netratí čas. Povinná ID verifikace každého Serious uživatele — žádné fake profily, žádné kompromisy.',
     features: [
@@ -312,7 +312,7 @@ export default function PremiumPage() {
               ['Jak se platí?','Platbu zpracovává Paddle — přijímá karty Visa, Mastercard, Apple Pay i Google Pay. EU faktura s DPH automaticky.'],
               ['Co se stane, když přejdu z Plus na Serious?','Doplatíš jen rozdíl za zbývající dny. Automaticky se zapne ID verifikace.'],
               ['Vrátíte mi peníze, když to nebude fungovat?','Do 14 dnů ano, bez vysvětlení. Po 14 dnech vyhodnocujeme případ od případu.'],
-              ['Proč není roční sleva?','Protože nejsme banka, abychom tě zamykali. Měsíční flexibilita ti dává možnost odejít, kdykoli najdeš toho člověka.'],
+              ['Můžu platit ročně nebo kvartálně?','Ano — Cosmatch+ měsíčně 249 Kč, kvartálně 597 Kč (199 Kč/měs, sleva 20 %), ročně 1 788 Kč (149 Kč/měs, sleva 40 %). Cosmatch Serious měsíčně 399 Kč, kvartálně 987 Kč (329 Kč/měs), ročně 2 988 Kč (249 Kč/měs). Pokud najdeš někoho dřív, zbývající dny ti zůstanou nebo můžeš požádat o vrácení alikvotní části.'],
             ].map(([q, a]) => (
               <details key={q as string} className="border-b border-gray-200 pb-8 last:border-b-0 group" open>
                 <summary className="serif text-xl text-gray-900 font-medium leading-tight mb-3 cursor-pointer list-none">

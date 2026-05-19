@@ -251,6 +251,9 @@ export default function LandingPage() {
                 <span className="inline-block bg-gray-900 text-white px-2 py-0.5 rounded-full text-[10px] font-medium tracking-wider mr-2">18+</span>
                 Seznamovací služba určená výhradně osobám starším 18 let.
               </p>
+              <p className="text-xs text-gray-500 mt-1">
+                Cosmatch+ od 249 Kč/měs (597 Kč/3 měs · 1 788 Kč/rok). Cosmatch Serious od 399 Kč/měs. Platby zpracovává GoPay, předplatné lze kdykoli zrušit.
+              </p>
             </div>
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
             <Link href="/test" className="text-gray-500 hover:text-gray-900 transition">Kvíz</Link>
