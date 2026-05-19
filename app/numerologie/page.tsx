@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { ARCHETYPES, LIFE_PATH_NUMBERS } from './zivotni-cislo-1/data'
 
 const TITLE = 'Numerologie — Životní čísla, kompatibilita a master čísla | Cosmatch'
-const DESC = 'Kompletní průvodce numerologií v češtině. 12 životních čísel, kompatibilita partnerů, master čísla, numerologická mřížka. Postaveno na knize The Power of Birthdays a personologii.'
+const DESC = 'Kompletní průvodce numerologií v češtině. 12 životních čísel, kompatibilita partnerů, master čísla, numerologická mřížka. Postaveno na knize The Power of Birthdays a české tradici Jitky Kadlecové.'
 const URL = 'https://cosmatch.cz/numerologie'
 
 export const metadata: Metadata = {
@@ -59,7 +59,7 @@ export default function NumerologiePillarPage() {
           <hr className="rule w-12 border-gray-900 mb-8" />
           <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
             Numerologie je systém interpretace čísel s tisíciletou tradicí. V Cosmatch ji používáme
-            k výpočtu kompatibility mezi dvěma daty narození — z 366 personologických profilů.
+            k výpočtu kompatibility mezi dvěma daty narození — z 366 unikátních archetypů.
           </p>
         </header>
 

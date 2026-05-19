@@ -24,7 +24,7 @@ const jsonLd = {
     name: 'Simona Cibulková',
     jobTitle: 'Zakladatelka Cosmatch',
     description: 'Zakladatelka cosmatch.cz, první české seznamky postavené na numerologické kompatibilitě dat narození.',
-    knowsAbout: ['numerologie', 'personologie', 'seznamovací aplikace', 'kompatibilita partnerů'],
+    knowsAbout: ['numerologie', 'kompatibilita podle data narození', 'seznamovací aplikace', 'kompatibilita partnerů'],
   },
   publisher: { '@type': 'Organization', name: 'Cosmatch', logo: { '@type': 'ImageObject', url: 'https://cosmatch.cz/icon-512.png' } },
   datePublished: '2026-05-16', dateModified: '2026-05-16',
@@ -63,7 +63,7 @@ export default function JakFungujeCosmatchPage() {
           </h2>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
             Zakladatelka a jediná osoba za Cosmatch. Před Cosmatch jsem strávila roky studiem
-            personologie, vztahové dynamiky a numerologie. Cosmatch staví na knize <em className="italic">The Power of Birthdays, Stars &amp; Numbers</em> od Garyho Goldschneidera a české numerologické tradici Jitky Kadlecové.
+            vztahové dynamiky, numerologie a kompatibility podle data narození. Cosmatch staví na knize <em className="italic">The Power of Birthdays, Stars &amp; Numbers</em> od Garyho Goldschneidera a české numerologické tradici Jitky Kadlecové.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
             Cosmatch nevyvíjím proto, abych ti slibovala partnera. Vyvíjím ho proto, že jsem byla unavená
@@ -112,10 +112,10 @@ export default function JakFungujeCosmatchPage() {
           </h2>
           <ul className="space-y-4">
             <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
-              <strong className="text-gray-900 font-medium">The Power of Birthdays, Stars &amp; Numbers</strong> (Goldschneider &amp; Elffers, 1994) — 832 stran personologických profilů pro každý den v roce, plus kompletní matice kompatibility.
+              <strong className="text-gray-900 font-medium">The Power of Birthdays, Stars &amp; Numbers</strong> (Goldschneider &amp; Elffers, 1994) — 832 stran profilů pro každý den v roce, plus kompletní matice kompatibility.
             </li>
             <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
-              <strong className="text-gray-900 font-medium">Datum narození a jeho vliv na náš charakter</strong> (Jitka Kadlecová, Eminent, 2006) — česká personologická tradice.
+              <strong className="text-gray-900 font-medium">Datum narození a jeho vliv na náš charakter</strong> (Jitka Kadlecová, Eminent, 2006) — česká tradice numerologie podle data narození.
             </li>
             <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
               <strong className="text-gray-900 font-medium">Pew Research CEE 2017</strong> — 43 % Čechů věří v osud, 44 % v existenci duše.

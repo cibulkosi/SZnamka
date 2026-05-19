@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 const TITLE = 'Předplatné Cosmatch — Cosmatch+ od 249 Kč/měs | Cosmatch'
-const DESC = 'Cosmatch+ za 249 Kč/měs, 597 Kč za 3 měsíce (sleva 20 %), nebo 2 088 Kč ročně (sleva 30 %). Neomezené lajky, hloubková personologická analýza, vidíš kdo tě lajknul. Bez reklam, bez prodávání dat.'
+const DESC = 'Cosmatch+ za 249 Kč/měs, 597 Kč za 3 měsíce (sleva 20 %), nebo 2 088 Kč ročně (sleva 30 %). Neomezené lajky, hloubková analýza podle data narození, vidíš kdo tě lajknul. Bez reklam, bez prodávání dat.'
 const URL = 'https://cosmatch.cz/premium'
 
 const FAQS = [
@@ -41,7 +41,7 @@ const OFFER_JSONLD = {
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: 'Cosmatch+',
-  description: 'Předplatné numerologické seznamky Cosmatch — neomezené lajky, hloubková personologická analýza, vidíš kdo tě lajknul, prioritní zobrazení ve feedu.',
+  description: 'Předplatné numerologické seznamky Cosmatch — neomezené lajky, hloubková analýza podle data narození, vidíš kdo tě lajknul, prioritní zobrazení ve feedu.',
   brand: { '@type': 'Brand', name: 'Cosmatch' },
   offers: [
     { '@type': 'Offer', name: 'Cosmatch+ měsíčně', price: '249', priceCurrency: 'CZK', availability: 'https://schema.org/InStock', url: URL, priceSpecification: { '@type': 'UnitPriceSpecification', billingDuration: 'P1M', price: '249', priceCurrency: 'CZK' } },

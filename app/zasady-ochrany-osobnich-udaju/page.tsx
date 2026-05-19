@@ -68,7 +68,7 @@ export default function GdprPage() {
             <ul className="list-disc pl-6 space-y-1 mb-4">
               <li><strong className="text-gray-900 font-medium">E-mail</strong> — pro přihlášení a komunikaci. Získáváme z tvého Google nebo Facebook účtu (OAuth) nebo přímo od tebe.</li>
               <li><strong className="text-gray-900 font-medium">Jméno</strong> — jak chceš být oslovován/a.</li>
-              <li><strong className="text-gray-900 font-medium">Datum narození</strong> — pro výpočet numerologické kompatibility (klíčová funkce aplikace).</li>
+              <li><strong className="text-gray-900 font-medium">Datum narození</strong> — pro výpočet kompatibility podle data narození (klíčová funkce aplikace).</li>
             </ul>
 
             <h3 className="serif text-xl text-gray-900 font-medium mb-2 mt-6">2.2 Profilové údaje</h3>
@@ -87,6 +87,18 @@ export default function GdprPage() {
             <ul className="list-disc pl-6 space-y-1 mb-4">
               <li>Lajky, shody (matches), zprávy mezi shodami, čas posledního přihlášení.</li>
             </ul>
+
+            <h3 className="serif text-xl text-gray-900 font-medium mb-2 mt-6">2.5 Zvláštní právní základ pro datum narození (čl. 9 GDPR)</h3>
+            <p className="mb-3">
+              Datum narození používá Cosmatch nejen pro ověření plnoletosti (18+), ale také jako vstup do algoritmu kompatibility podle data narození. Tento výpočet vychází z numerologické tradice a může být interpretován jako zpracování údajů, které mohou nepřímo vypovídat o filozofickém přesvědčení uživatele ve smyslu <strong className="text-gray-900 font-medium">čl. 9 odst. 1 GDPR</strong> (zvláštní kategorie osobních údajů).
+            </p>
+            <p className="mb-3">
+              Z opatrnosti proto Cosmatch zpracovává datum narození pro účely kompatibility na základě <strong className="text-gray-900 font-medium">výslovného souhlasu</strong> uživatele dle čl. 9 odst. 2 písm. a) GDPR. Tento souhlas uživatel uděluje aktivně při registraci samostatným zaškrtnutím („Souhlasím se zpracováním data narození pro výpočet kompatibility podle data narození").
+            </p>
+            <p className="mb-3">
+              Souhlas lze kdykoli odvolat — buď e‑mailem na <a href="mailto:ahoj@cosmatch.cz" className="text-pink-500 underline">ahoj@cosmatch.cz</a>, nebo smazáním účtu v profilu. Odvolání souhlasu nemá zpětnou účinnost na zpracování provedené před odvoláním. Odvoláním souhlasu skončí funkce kompatibility a profil se vrátí na základní režim (případně bude smazán dle volby uživatele).
+            </p>
+
 
             <h3 className="serif text-xl text-gray-900 font-medium mb-2 mt-6">2.5 Platební údaje (Cosmatch+ a Serious)</h3>
             <ul className="list-disc pl-6 space-y-1 mb-4">

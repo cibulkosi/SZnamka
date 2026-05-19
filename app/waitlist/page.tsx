@@ -9,11 +9,14 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 )
 
-type CityKey = 'Praha' | 'Brno' | 'Bratislava' | 'Jiné' | ''
+type CityKey = 'Praha' | 'Brno' | 'Plzeň' | 'Ostrava' | 'Olomouc' | 'Bratislava' | 'Jiné' | ''
 
 const DISTRICTS: Record<Exclude<CityKey, '' | 'Jiné'>, string[]> = {
   Praha: ['Praha 1','Praha 2','Praha 3','Praha 4','Praha 5','Praha 6','Praha 7','Praha 8','Praha 9','Praha 10'],
   Brno: ['Brno-střed','Královo Pole','Žabovřesky','Vinohrady','Líšeň','Bystrc','Jundrov','Komín','Černá Pole','Žebětín'],
+  Plzeň: ['Plzeň 1','Plzeň 2-Slovany','Plzeň 3','Plzeň 4','Plzeň 5-Křimice','Plzeň 6-Litice','Plzeň 7-Radčice','Plzeň 8-Černice','Plzeň 9-Malesice','Plzeň 10-Lhota'],
+  Ostrava: ['Moravská Ostrava a Přívoz','Mariánské Hory a Hulváky','Slezská Ostrava','Vítkovice','Poruba','Hrabová','Nová Bělá','Stará Bělá','Polanka nad Odrou','Třebovice'],
+  Olomouc: ['Centrum','Hodolany','Nové Sady','Nová Ulice','Slavonín','Holice','Černovír','Lazce','Neředín','Povel'],
   Bratislava: ['Staré Mesto','Ružinov','Petržalka','Nové Mesto','Karlova Ves','Dúbravka','Rača','Vrakuňa','Lamač','Devínska Nová Ves'],
 }
 
@@ -25,7 +28,10 @@ function makeVoucher(): string {
 const CITY_TAGLINE: Record<Exclude<CityKey, '' | 'Jiné'>, string> = {
   Praha: 'Praha jde první. Spouštíme jakmile překročíme 1 000 lidí.',
   Brno: 'Brno otevřeme po Praze — sbíráme tě, abychom věděli, odkud začít.',
-  Bratislava: 'Bratislavu otevřeme po Praze a Brně — pasivní waitlist.',
+  Plzeň: 'Plzeň otevřeme po Praze a Brně — pasivní waitlist.',
+  Ostrava: 'Ostravu otevřeme po Praze a Brně — pasivní waitlist.',
+  Olomouc: 'Olomouc otevřeme po Praze a Brně — pasivní waitlist.',
+  Bratislava: 'Bratislavu otevřeme jako samostatný slovenský launch — později, pasivní waitlist.',
 }
 
 export default function WaitlistPage() {
@@ -70,8 +76,11 @@ export default function WaitlistPage() {
         let parent: string = 'Jiné'
         if (c.startsWith('Praha')) parent = 'Praha'
         else if (DISTRICTS.Brno.includes(c)) parent = 'Brno'
+        else if (DISTRICTS.Plzeň.includes(c)) parent = 'Plzeň'
+        else if (DISTRICTS.Ostrava.includes(c)) parent = 'Ostrava'
+        else if (DISTRICTS.Olomouc.includes(c)) parent = 'Olomouc'
         else if (DISTRICTS.Bratislava.includes(c)) parent = 'Bratislava'
-        else if (c === 'Praha' || c === 'Brno' || c === 'Bratislava') parent = c
+        else if (c === 'Praha' || c === 'Brno' || c === 'Plzeň' || c === 'Ostrava' || c === 'Olomouc' || c === 'Bratislava') parent = c
         byCity[parent] = (byCity[parent] || 0) + 1
         byDistrict[c] = (byDistrict[c] || 0) + 1
       }
@@ -126,7 +135,7 @@ export default function WaitlistPage() {
     if (navigator.share) {
       navigator.share({
         title: 'Cosmatch — Numerologická seznamka',
-        text: 'První česká seznamka založená na numerologické kompatibilitě. Přidej se ke mně.',
+        text: 'První česká seznamka, která tě páruje podle data narození. Přidej se ke mně.',
         url,
       })
     } else { copyLink() }
@@ -134,8 +143,8 @@ export default function WaitlistPage() {
 
   const founderCount = 1000
   const remaining = Math.max(0, founderCount - totalCount)
-  const isCityLaunch = city === 'Praha' || city === 'Brno' || city === 'Bratislava'
-  const districts = (city === 'Praha' || city === 'Brno' || city === 'Bratislava') ? DISTRICTS[city] : []
+  const isCityLaunch = city === 'Praha' || city === 'Brno' || city === 'Plzeň' || city === 'Ostrava' || city === 'Olomouc' || city === 'Bratislava'
+  const districts = (city === 'Praha' || city === 'Brno' || city === 'Plzeň' || city === 'Ostrava' || city === 'Olomouc' || city === 'Bratislava') ? DISTRICTS[city] : []
   const maxDistrictCount = Math.max(...districts.map(d => districtCounts[d] || 0), 1)
 
   return (
@@ -167,11 +176,11 @@ export default function WaitlistPage() {
               <hr className="rule w-12 border-gray-900 mb-8" />
               <p className="text-lg text-gray-700 leading-relaxed mb-4 max-w-xl">
                 Cosmatch spočítá kompatibilitu mezi tvým a partnerovým datem narození —
-                z 366 personologických profilů. Místo swipování pro swipování ti nabízí
+                z 366 unikátních archetypů. Místo swipování pro swipování ti nabízí
                 důvod, proč se s někým potkat.
               </p>
               <p className="text-gray-500 leading-relaxed max-w-xl">
-                Spouštíme v Praze. Brno a Bratislava potom — podle toho, kde je vás víc.
+                Spouštíme v Praze. Brno, Plzeň, Ostrava a Olomouc následují — podle toho, kde je vás víc. Bratislava jako samostatný slovenský launch později.
                 Prvních <strong className="font-medium text-gray-900">1{' '}000 lidí</strong>
                 {' '}dostane voucher na 3{' '}měsíce Cosmatch+ zdarma.
               </p>
@@ -181,7 +190,7 @@ export default function WaitlistPage() {
             <section className="mb-16">
               <p className="eyebrow text-gray-500 mb-4">Hustota podle města</p>
               <div className="grid grid-cols-3 gap-3 sm:gap-6">
-                {(['Praha','Brno','Bratislava'] as const).map(c => {
+                {(['Praha','Brno','Plzeň','Ostrava','Olomouc','Bratislava'] as const).map(c => {
                   const n = cityCounts[c] || 0
                   const isActive = city === c
                   return (
@@ -268,6 +277,9 @@ export default function WaitlistPage() {
                     <option value="">Vyber město</option>
                     <option value="Praha">Praha</option>
                     <option value="Brno">Brno</option>
+                    <option value="Plzeň">Plzeň</option>
+                    <option value="Ostrava">Ostrava</option>
+                    <option value="Olomouc">Olomouc</option>
                     <option value="Bratislava">Bratislava</option>
                     <option value="Jiné">Jiné</option>
                   </select>
@@ -276,7 +288,7 @@ export default function WaitlistPage() {
                 {isCityLaunch && (
                   <>
                     <p className="text-sm text-gray-500 italic leading-relaxed -mt-3">
-                      {CITY_TAGLINE[city as 'Praha'|'Brno'|'Bratislava']}
+                      {CITY_TAGLINE[city as 'Praha'|'Brno'|'Plzeň'|'Ostrava'|'Olomouc'|'Bratislava']}
                     </p>
                     <div>
                       <label className="eyebrow text-gray-500 mb-3 block">
@@ -339,7 +351,7 @@ export default function WaitlistPage() {
                           <div className="serif-display text-2xl font-medium text-gray-900 tabular-nums">{count}</div>
                         </div>
                         <p className="text-xs text-gray-500 font-medium leading-tight">
-                          {d.replace('Praha ', 'P').replace('Brno-', '').replace('Bratislava-', '')}
+                          {d.replace('Praha ', 'P').replace('Brno-', '').replace('Plzeň ', 'P').replace('Bratislava-', '')}
                         </p>
                       </div>
                     )
@@ -355,7 +367,7 @@ export default function WaitlistPage() {
                   Vyber město a uvidíš čtvrti.
                 </h2>
                 <p className="text-gray-600 leading-relaxed text-[1.0625rem]">
-                  Když zvolíš Prahu, Brno nebo Bratislavu, ukážeme ti živou hustotu waitlistu
+                  Když zvolíš Prahu, Brno, Plzeň, Ostravu, Olomouc nebo Bratislavu, ukážeme ti živou hustotu waitlistu
                   podle jednotlivých čtvrtí. Pomáhá nám to rozhodnout, kde otevřít první.
                 </p>
               </section>

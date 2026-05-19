@@ -416,7 +416,7 @@ export default function TestPage() {
             </button>
 
             <p className="text-xs text-gray-400 text-center mt-6">
-              Cosmatch je první česká seznamka založená na numerologické kompatibilitě.
+              Cosmatch je první česká seznamka, která tě páruje podle data narození.
             </p>
           </div>
         )}
@@ -551,7 +551,7 @@ export default function TestPage() {
                 Najdi svůj protějšek
               </h3>
               <p className="text-gray-600 leading-relaxed mb-6 text-[1.0625rem]">
-                Cosmatch spočítá kompatibilitu mezi tvým a partnerovým datem — z 366 personologických
+                Cosmatch spočítá kompatibilitu mezi tvým a partnerovým datem — z 366 unikátních archetypů
                 profilů. Přidej se do waitlistu a buď u toho jako první.
               </p>
               <p className="text-sm text-gray-500 mb-6">

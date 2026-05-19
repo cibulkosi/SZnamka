@@ -162,7 +162,7 @@ export default function MatchesPage() {
           <div className="bg-white border border-gray-100 rounded-3xl p-6 mb-6">
             <p className="eyebrow text-pink-500 mb-2">Kosmické shody</p>
             <p className="text-sm text-gray-700 leading-relaxed">
-              Tito uživatelé mají s tebou oboustrannou numerologickou kompatibilitu —
+              Tito uživatelé mají s tebou oboustrannou kompatibilitu podle data narození —
               podle data narození. Líbí se ti? Najdi je v Discover.
             </p>
           </div>

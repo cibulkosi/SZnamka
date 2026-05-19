@@ -18,7 +18,7 @@ const fraunces = Fraunces({
 
 export const metadata: Metadata = {
   title: 'Cosmatch — Kompatibilita podle data narození',
-  description: 'Česká seznamka založená na numerologické kompatibilitě dat narození. Najdi svou skutečnou shodu — věda, ne náhoda.',
+  description: 'Česká seznamka, která tě páruje podle data narození. Najdi svou skutečnou shodu — věda, ne náhoda.',
   keywords: 'numerologie, kompatibilita, datum narození, numerologický profil, datování, seznamka',
   openGraph: {
     title: 'Cosmatch — Kompatibilita podle data narození',
@@ -76,7 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "alternateName": "Cosmatch.cz",
               "url": "https://cosmatch.cz",
               "logo": "https://cosmatch.cz/icon-512.png",
-              "description": "První česká seznamka založená na numerologické kompatibilitě dat narození.",
+              "description": "První česká seznamka, která tě páruje podle data narození.",
               "founder": {
                 "@type": "Person",
                 "name": "Simona Cibulková",
@@ -93,7 +93,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 "kompatibilita partnerů",
                 "životní číslo",
                 "datum narození",
-                "personologie",
+                "kompatibilita podle data narození",
               ],
               "sameAs": [
                 "https://www.wikidata.org/wiki/Q139824006",
@@ -127,7 +127,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "applicationCategory": "DatingApplication",
               "operatingSystem": "Web, iOS, Android (PWA)",
               "url": "https://cosmatch.cz",
-              "description": "Numerologická seznamka — najdi partnera podle data narození a kompatibility z 366 personologických profilů.",
+              "description": "Česká seznamka, která tě páruje podle data narození. Vychází z 366 unikátních archetypů.",
               "offers": [
                 { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "CZK" },
                 { "@type": "Offer", "name": "Cosmatch+ měsíčně", "price": "249", "priceCurrency": "CZK", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" } },

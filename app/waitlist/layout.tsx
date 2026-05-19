@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 const TITLE = 'Waitlist — Buď u toho jako první | Cosmatch'
-const DESC = 'První 1 000 členů Cosmatch waitlistu dostane voucher na 3 měsíce Cosmatch+ zdarma. Spouštíme v Praze, pak Brno a Bratislava.'
+const DESC = 'První 1 000 členů Cosmatch waitlistu dostane voucher na 3 měsíce Cosmatch+ zdarma. Spouštíme v Praze, pak Brno. Plzeň, Ostrava a Olomouc následují. Bratislava jako samostatný slovenský launch později.'
 const URL = 'https://cosmatch.cz/waitlist'
 
 export const metadata: Metadata = {

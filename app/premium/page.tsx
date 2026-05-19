@@ -49,7 +49,7 @@ const TIERS: Tier[] = [
     description: 'Dostupný standard za 249 Kč měsíčně. Vidíš všechno, ale o 36 % levněji než Tinder Gold. Roční plán 2 088 Kč — sleva 30 %.',
     features: [
       'Neomezené lajky a zprávy',
-      'Hloubková personologická analýza',
+      'Hloubková analýza podle data narození',
       'Vidíš, kdo tě lajknul, dřív než ty je',
       'Prioritní zobrazení profilu ve feedu ostatních',
       'Pět filtrů včetně záměru a vzdálenosti',
@@ -204,6 +204,29 @@ export default function PremiumPage() {
           <p className="text-xs text-gray-500 mt-4 leading-relaxed">
             Ceny včetně DPH (digitální služba dle § 54 ZDPH osvobozená). Předplatné se obnovuje automaticky,
             zrušení kdykoli v profilu bez sankce. Více v <a href="/opakovane-platby" className="text-pink-500 underline">Opakované platby</a>.
+          </p>
+        </section>
+
+        {/* Akce pro zakládajících 2 000 ověřených uživatelů */}
+        <section className="mb-12 bg-pink-50 border border-pink-200 rounded-3xl p-8">
+          <p className="eyebrow text-pink-600 mb-3">Spouštěcí akce · pro všechny zakládající</p>
+          <h2 className="serif-display text-2xl text-gray-900 font-medium leading-tight tracking-tight mb-4">
+            Zakládající členové dostávají Cosmatch+ <em className="italic text-pink-500">zdarma</em>.
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            <div className="border border-pink-200 bg-white rounded-2xl p-5">
+              <p className="text-xs text-pink-600 uppercase tracking-wider mb-1">Prvních 500 ověřených</p>
+              <p className="serif-display text-3xl text-gray-900 font-medium">6 měsíců zdarma</p>
+              <p className="text-xs text-gray-500 mt-2">Po ověření profilu (jméno, fotka, e‑mail).</p>
+            </div>
+            <div className="border border-pink-200 bg-white rounded-2xl p-5">
+              <p className="text-xs text-pink-600 uppercase tracking-wider mb-1">Dalších 1 500 ověřených</p>
+              <p className="serif-display text-3xl text-gray-900 font-medium">3 měsíce zdarma</p>
+              <p className="text-xs text-gray-500 mt-2">Po ověření profilu (jméno, fotka, e‑mail).</p>
+            </div>
+          </div>
+          <p className="text-xs text-gray-500 leading-relaxed">
+            Akce platí pro všechny ověřené uživatele bez ohledu na pohlaví, věk nebo jiné charakteristiky. Po vyčerpání 2 000 pozic se akce automaticky zavře. Kdokoli může získat voucher bez ohledu na pohlaví.
           </p>
         </section>
 

@@ -20,7 +20,12 @@ const principles = [
   {
     numeral: 'III',
     title: 'Žádné tmavé vzory',
-    body: 'Falešné notifikace neexistují. Skryté tlačítko pro zrušení neexistuje. Profil, který napsal robot, neexistuje. Když ti přijde zpráva, někdo ti opravdu napsal.',
+    body: 'Falešné notifikace neexistují. Skryté tlačítko pro zrušení neexistuje. Když ti přijde zpráva, někdo ti opravdu napsal.',
+  },
+  {
+    numeral: 'III-B',
+    title: 'Nulové fake profily',
+    body: 'Cosmatch nikdy nepoužívá AI generované profily, seed profily ani „demo postavičky“, aby aplikace vypadala plnější. Každý profil v Cosmatch je skutečný člověk, který se sám zaregistroval a souhlasil s podmínkami. Spouštíme se s méně lidmi, ale s reálnými lidmi.',
   },
   {
     numeral: 'IV',
@@ -58,7 +63,7 @@ export default function ManifestDuvery() {
         "mainEntity": [
           { "@type": "Question", "name": 'Co znamená Manifest důvěry Cosmatch?', "acceptedAnswer": { "@type": "Answer", "text": 'Manifest důvěry je veřejný závazek Cosmatch vůči uživatelům. Obsahuje 8 principů, kterými se Cosmatch zavazuje vést — od žádného swipování pro swipování, přes zákaz reklamy a prodeje dat, až po transparentní reportování bezpečnostních incidentů.' } },
           { "@type": "Question", "name": 'Prodává Cosmatch moje data?', "acceptedAnswer": { "@type": "Answer", "text": 'Ne. Cosmatch je financován výhradně předplatným uživatelů. Tvoje datum narození používáme jen k výpočtu kompatibility. Nikdy ho neprodáváme, nepředáváme reklamním sítím ani datovým brokerem.' } },
-          { "@type": "Question", "name": 'Jak Cosmatch chrání proti scammerům?', "acceptedAnswer": { "@type": "Answer", "text": 'Dvě vrstvy ochrany: Cloudflare Turnstile proti botům a SSO bez hesla (Google/Facebook). Detailně popsáno na stránce Jak chráníme uživatele. ID verifikace s green badge se připravuje pro budoucí Serious tier.' } },
+          { "@type": "Question", "name": 'Jak Cosmatch chrání proti scammerům?', "acceptedAnswer": { "@type": "Answer", "text": 'Tři pilíře: (1) Cloudflare Turnstile proti botům, (2) SSO bez hesla (Google/Facebook), (3) nulové fake profily — Cosmatch nikdy nepoužívá AI generované ani seed profily. Detailně popsáno na stránce Jak chráníme uživatele. ID verifikace s green badge se připravuje pro budoucí Serious tier.' } },
           { "@type": "Question", "name": 'Jsou u Cosmatch reklamy?', "acceptedAnswer": { "@type": "Answer", "text": 'Ne, a nikdy nebudou. Cosmatch financují uživatelé skrz předplatné Cosmatch+ (od 249 Kč/měs, ročně 2 088 Kč). Tvoje pozornost není zboží.' } },
           { "@type": "Question", "name": 'Co když Cosmatch v něčem selže?', "acceptedAnswer": { "@type": "Answer", "text": 'Měsíčně zveřejníme statistiky reportů a zablokovaných profilů. Pokud Cosmatch v něčem zhorší, dozvíš se to první. Refundace předplatného do 14 dnů bez vysvětlení.' } }
         ]
