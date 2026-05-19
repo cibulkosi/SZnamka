@@ -173,7 +173,7 @@ export default function ObchodniPodminkyPage() {
               <strong className="text-gray-900 font-medium">7.1</strong> Cosmatch je technologická platforma. <strong className="text-gray-900 font-medium">Cosmatch negarantuje</strong>, že Uživatel najde partnera, že shoda povede k úspěšnému vztahu, ani správnost údajů poskytnutých jinými Uživateli.
             </p>
             <p className="mb-3">
-              <strong className="text-gray-900 font-medium">7.2</strong> Numerologická kompatibilita je interpretační framework, nikoli vědecká predikce. Slouží jako podpora rozhodování, ne jako diagnóza.
+              <strong className="text-gray-900 font-medium">7.2</strong> Cosmatch používá numerologické a astrologické vzorce k odhadu strukturálního souznění mezi dvěma lidmi. <strong className="text-gray-900 font-medium">Numerologie a astrologie nejsou vědecky validované jako spolehlivé prediktory vztahových výsledků.</strong> Cosmatch shoda je interpretační nástroj, ne predikce. Žádná aplikace nedokáže garantovat úspěch vztahu — záleží na vás, jak ho dokážete vybudovat.
             </p>
             <p className="mb-3">
               <strong className="text-gray-900 font-medium">7.3</strong> Cosmatch neodpovídá za chování Uživatelů v reálném světě po seznámení přes aplikaci. Uživatelům doporučujeme dodržovat základní bezpečnostní pravidla: první schůzku v veřejném prostoru, informovat blízké, neposílat peníze cizím lidem.

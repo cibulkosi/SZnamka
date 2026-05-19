@@ -51,7 +51,7 @@ const jsonLd = {
         {
           '@type': 'Question',
           name: 'How does Cosmatch work?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Cosmatch calculates each user\'s life path number from their birth date and matches them with compatible numbers using 366 personology profiles from the book The Power of Birthdays. Five additional layers refine the match: intent, distance, activity, shared interests, and tension dynamics.' },
+          acceptedAnswer: { '@type': 'Answer', text: 'Cosmatch calculates each user\'s life path number from their birth date and matches them with compatible numbers using 366 personology profiles from the book The Power of Birthdays. Three additional layers refine the match: intent (35%), activity (20%), and shared interests (5%). Distance is used as a filter in user preferences, not as a score component.' },
         },
         {
           '@type': 'Question',
@@ -61,7 +61,7 @@ const jsonLd = {
         {
           '@type': 'Question',
           name: 'How is Cosmatch different from Tinder or Hinge?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Cosmatch shows users five profiles per day, sorted by actual compatibility — not endless swipes. Match scoring uses numerological compatibility (35%), shared intent (30%), distance (15%), activity (15%), and interests (5%). No paid algorithmic positions, no ads, no data selling.' },
+          acceptedAnswer: { '@type': 'Answer', text: 'Cosmatch shows users five profiles per day, sorted by actual compatibility — not endless swipes. Match scoring uses date-of-birth compatibility (40%), shared intent (35%), activity (20%), and shared interests (5%). Distance is a user-configurable filter, not part of the compatibility score. No paid algorithmic positions, no ads, no data selling.' },
         },
         {
           '@type': 'Question',

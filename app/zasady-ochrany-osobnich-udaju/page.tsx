@@ -98,6 +98,9 @@ export default function GdprPage() {
             <p className="mb-3">
               Souhlas lze kdykoli odvolat — buď e‑mailem na <a href="mailto:ahoj@cosmatch.cz" className="text-pink-500 underline">ahoj@cosmatch.cz</a>, nebo smazáním účtu v profilu. Odvolání souhlasu nemá zpětnou účinnost na zpracování provedené před odvoláním. Odvoláním souhlasu skončí funkce kompatibility a profil se vrátí na základní režim (případně bude smazán dle volby uživatele).
             </p>
+            <p className="mb-3">
+              <strong className="text-gray-900 font-medium">Vědecký status:</strong> Numerologie a astrologie nejsou vědecky validované jako spolehlivé prediktory vztahových výsledků. Cosmatch je prezentuje jako interpretační framework, nikoli jako predikci. Detaily viz <a href="/jak-funguje-cosmatch" className="text-pink-500 underline">Jak funguje Cosmatch</a>.
+            </p>
 
 
             <h3 className="serif text-xl text-gray-900 font-medium mb-2 mt-6">2.5 Platební údaje (Cosmatch+ a Serious)</h3>

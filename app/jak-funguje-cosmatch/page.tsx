@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 const TITLE = 'Jak funguje Cosmatch — Algoritmus, zdroje, metodologie | Cosmatch'
-const DESC = 'Cosmatch počítá shodu transparentně — 35 % kompatibilita podle data narození (kniha Power of Birthdays + životní číslo), 30 % hodnoty, 15 % vzdálenost, 15 % aktivita, 5 % zájmy. Bez magie, bez skrytých vzorců.'
+const DESC = 'Cosmatch počítá shodu transparentně — 40 % kompatibilita podle data narození (kniha Power of Birthdays + životní číslo), 35 % hodnoty, 20 % aktivita, 5 % zájmy. Bez magie, bez skrytých vzorců.'
 const URL = 'https://cosmatch.cz/jak-funguje-cosmatch'
 
 export const metadata: Metadata = {
@@ -50,7 +50,7 @@ export default function JakFungujeCosmatchPage() {
           </h1>
           <hr className="rule w-12 border-gray-900 mb-8" />
           <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
-            Pět vrstev výpočtu, hlavní zdroj kniha The Power of Birthdays + život­ní číslo z numerologie, žádné magické tlačítko.
+            Čtyři vrstvy výpočtu, hlavní zdroj kniha The Power of Birthdays + životní číslo z numerologie, žádné magické tlačítko.
             Tady je přesný popis, jak Cosmatch dochází k procentu kompatibility.
           </p>
         </header>
@@ -77,16 +77,15 @@ export default function JakFungujeCosmatchPage() {
         <section className="mb-16">
           <p className="eyebrow text-gray-500 mb-4">Algoritmus — top-level</p>
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-10">
-            Pět vrstev výpočtu.
+            Čtyři vrstvy výpočtu.
           </h2>
 
           <div className="space-y-12">
             {[
-              ['I', 'Kompatibilita podle data narození', '35 %', 'Hlavní vrstva — viz detail níže. Skládá se ze dvou pod-vrstev: profil dne narození z knihy The Power of Birthdays (80 %) a kompatibilita životních čísel z klasické numerologie (20 %).'],
-              ['II', 'Hodnoty a záměr', '30 %', 'Hledáte oba vážný vztah? Jen přátelství? Casual? Pokud máte stejný záměr, skóre se znásobí 1.2. Pokud máte protichůdný (jeden seriózní, druhý casual), skóre × 0.5.'],
-              ['III', 'Vzdálenost', '15 %', 'Decay funkce, ne lineární. 0–5 km = plný bonus. 5–15 km = 66 %. 15–30 km = 33 %. Nad uživatelem stanovený limit = profil se nezobrazí.'],
-              ['IV', 'Aktivita', '15 %', 'Activity boost: kdo byl online v posledních 24 h, dostane +15 bodů. ELO tie-break: při stejném skóre se atraktivnější profily zobrazí novým uživatelům první. Žádný „pay to win".'],
-              ['V', 'Společné zájmy', '5 %', 'Plus tension factor pro asymetrické vztahy — když jeden vidí osudovou přitažlivost a druhý výzvu, dostaneš label „Magnetická tenze".'],
+              ['I', 'Kompatibilita podle data narození', '40 %', 'Hlavní vrstva — viz detail níže. Skládá se ze dvou pod-vrstev: profil dne narození z knihy The Power of Birthdays (80 %) a kompatibilita životních čísel z klasické numerologie (20 %).'],
+              ['II', 'Hodnoty a záměr', '35 %', 'Hledáte oba vážný vztah? Jen přátelství? Casual? Pokud máte stejný záměr, skóre se znásobí 1.2. Pokud máte protichůdný (jeden seriózní, druhý casual), skóre × 0.5.'],
+              ['III', 'Aktivita', '20 %', 'Activity boost: kdo byl online v posledních 24 h, dostane +15 bodů. ELO tie-break: při stejném skóre se atraktivnější profily zobrazí novým uživatelům první. Žádný „pay to win".'],
+              ['IV', 'Společné zájmy', '5 %', 'Plus tension factor pro asymetrické vztahy — když jeden vidí osudovou přitažlivost a druhý výzvu, dostaneš label „Magnetická tenze".'],
             ].map(([num, title, weight, body]) => (
               <div key={num} className="grid grid-cols-[auto,1fr] gap-x-8">
                 <div className="text-right">
@@ -100,13 +99,19 @@ export default function JakFungujeCosmatchPage() {
               </div>
             ))}
           </div>
+
+          <div className="mt-8 bg-white border border-gray-200 rounded-2xl p-6">
+            <p className="text-sm text-gray-700 leading-relaxed">
+              <strong className="text-gray-900 font-medium">A co vzdálenost?</strong> Vzdálenost není součástí kompatibility skóre — používáš ji jako <strong className="text-gray-900 font-medium">filtr</strong> ve svých preferencích. V nastavení profilu si určíš maximální vzdálenost (např. „do 30 km"), a profily mimo tento okruh se ti vůbec nezobrazí. Lidé blíž tě neporazí v algoritmu, jen máš víc šancí se s nimi reálně setkat.
+            </p>
+          </div>
         </section>
 
         <hr className="rule mb-16" />
 
         {/* Deep dive: birth_date_score */}
         <section className="mb-16">
-          <p className="eyebrow text-gray-500 mb-4">Detail vrstvy I — 35 %</p>
+          <p className="eyebrow text-gray-500 mb-4">Detail vrstvy I — 40 %</p>
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-6">
             Kompatibilita podle data narození — pod kapotou.
           </h2>
@@ -172,7 +177,7 @@ export default function JakFungujeCosmatchPage() {
               <p><strong className="text-gray-900 font-medium">Profil dne (80 %):</strong> 22.10. je v Annině sekci „Osudová přitažlivost" (60 b.). 15.4. je v Petrově sekci „Láska a přátelství" (85 b.). Průměr = <strong>72.5 b.</strong></p>
               <p><strong className="text-gray-900 font-medium">Životní číslo (20 %):</strong> Anna 1+5+4+1+9+9+2 = 31 → 4 (Stavitel). Petr 2+2+1+0+1+9+9+0 = 24 → 6 (Pečovatel). 4+6 v matici = <strong>90 b.</strong> (klasická harmonie).</p>
               <p className="pt-2 border-t border-gray-200">
-                <strong className="text-gray-900 font-medium">Výsledek vrstvy I:</strong> 0.80 × 72.5 + 0.20 × 90 = <strong className="serif-display text-2xl text-pink-500">76 %</strong> kompatibilita podle data narození. To je 27 procentních bodů z maximálních 35 % v Cosmatch score.
+                <strong className="text-gray-900 font-medium">Výsledek vrstvy I:</strong> 0.80 × 72.5 + 0.20 × 90 = <strong className="serif-display text-2xl text-pink-500">76 %</strong> kompatibilita podle data narození. To je 30 procentních bodů z maximálních 40 % v Cosmatch score.
               </p>
             </div>
           </div>
@@ -214,8 +219,10 @@ export default function JakFungujeCosmatchPage() {
             Numerologie není věda.
           </h2>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-            Numerologie je interpretační framework s tisíciletou tradicí, ne empirická věda. Cosmatch
-            ji prezentuje jako jednu vrstvu rozhodování, ne jako absolutní pravdu.
+            Cosmatch používá numerologické a astrologické vzorce k odhadu strukturálního souznění mezi dvěma lidmi. <strong className="text-gray-900 font-medium">Numerologie a astrologie nejsou vědecky validované jako spolehlivé prediktory vztahových výsledků.</strong>
+          </p>
+          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
+            Cosmatch shoda je interpretační nástroj, ne predikce. Žádná aplikace nedokáže garantovat úspěch vztahu — záleží na vás, jak ho dokážete vybudovat.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
             Tvoje srdce má vždy poslední slovo. Cosmatch je tu, aby ti dal lepší startovací podmínky — ne diagnózu.

@@ -254,6 +254,9 @@ export default function LandingPage() {
               <p className="text-xs text-gray-500 mt-1">
                 Cosmatch+ od 249 Kč/měs (597 Kč/3 měs · 2 088 Kč/rok, sleva 30 %). Předplatné lze kdykoli zrušit v profilu bez sankce.
               </p>
+              <p className="text-xs text-gray-400 mt-2 max-w-md leading-relaxed">
+                Cosmatch používá numerologické a astrologické vzorce. Tyto nejsou vědecky validované jako prediktory vztahů — jde o interpretační nástroj, ne predikci. <a href="/jak-funguje-cosmatch" className="underline hover:text-gray-700">Detail</a>.
+              </p>
             </div>
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
             <Link href="/test" className="text-gray-500 hover:text-gray-900 transition">Kvíz</Link>

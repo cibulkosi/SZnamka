@@ -30,7 +30,7 @@ const principles = [
   {
     numeral: 'IV',
     title: 'Algoritmus, který umíme vysvětlit',
-    body: 'Numerologická kompatibilita 35 %, hodnoty a záměry 30 %, vzdálenost 15 %, aktivita 15 %, společné zájmy 5 %. Žádné placené pozice. Žádné skryté penalizace. Vzorec si můžeš přepočítat.',
+    body: 'Kompatibilita podle data narození 40 %, hodnoty a záměry 35 %, aktivita 20 %, společné zájmy 5 %. Vzdálenost je filtr v preferences, ne součást skóre. Žádné placené pozice. Žádné skryté penalizace. Vzorec si můžeš přepočítat.',
   },
   {
     numeral: 'V',

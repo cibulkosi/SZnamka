@@ -65,7 +65,7 @@ const FAQ = [
   },
   {
     q: 'Čím se Cosmatch liší od horoskopu?',
-    a: 'Horoskopy jsou obecné — jeden text pro jednu dvanáctinu populace. Cosmatch počítá kompatibilitu pro 46 949 konkrétních kombinací dat narození. Navíc zohledňuje záměr vztahu, vzdálenost a společné zájmy — nejde jen o datum.',
+    a: 'Horoskopy jsou obecné — jeden text pro jednu dvanáctinu populace. Cosmatch počítá kompatibilitu pro 46 949 konkrétních kombinací dat narození. Navíc zohledňuje záměr vztahu, aktivitu a společné zájmy — nejde jen o datum.',
   },
   {
     q: 'Mohu najít svého partnera díky numerologii?',
@@ -203,7 +203,7 @@ export default function KompatibilitaPage() {
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
             Kompatibilita se počítá z kombinace dvou životních čísel — spolu se záměrem vztahu,
-            vzdáleností, aktivitou a společnými zájmy.
+            aktivitou a společnými zájmy.
           </p>
         </section>
 
