@@ -30,7 +30,7 @@ export default function LoginPage() {
         <div className="w-full max-w-md">
           <p className="eyebrow text-pink-500 mb-6">Vítej zpátky</p>
           <h1 className="serif-display text-5xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-6">
-            Pokračuj tam,<br/>kde jsi <em className="italic text-pink-500">přestala</em>.
+            Pokračuj tam,<br/>kde jsi <em className="italic text-pink-500">přestal/a</em>.
           </h1>
           <hr className="rule w-12 border-gray-900 mb-10" />
 

@@ -50,7 +50,7 @@ const TIERS: Tier[] = [
     features: [
       'Neomezené lajky a zprávy',
       'Hloubková analýza podle data narození',
-      'Vidíš, kdo tě lajknul, dřív než ty je',
+      'Vidíš, kdo tě lajknul/a, dřív než ty je',
       'Prioritní zobrazení profilu ve feedu ostatních',
       'Pět filtrů včetně záměru a vzdálenosti',
       'Možnost vrátit poslední pass',
