@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 const TITLE = 'Předplatné Cosmatch — Cosmatch+ od 249 Kč/měs | Cosmatch'
-const DESC = 'Cosmatch+ za 249 Kč/měs, 597 Kč za 3 měsíce (sleva 20 %), nebo 2 088 Kč ročně (sleva 30 %). Neomezené lajky, hloubková analýza podle data narození, vidíš kdo tě lajknul/a/a. Bez reklam, bez prodávání dat.'
+const DESC = 'Cosmatch+ za 249 Kč/měs, 597 Kč za 3 měsíce (sleva 20 %), nebo 2 088 Kč ročně (sleva 30 %). Neomezené lajky, hloubková analýza podle data narození, vidíš kdo tě lajknul/a. Bez reklam, bez prodávání dat.'
 const URL = 'https://cosmatch.cz/premium'
 
 const FAQS = [
