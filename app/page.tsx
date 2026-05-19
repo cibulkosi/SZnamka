@@ -50,11 +50,11 @@ export default function LandingPage() {
                 href="/waitlist"
                 className="inline-flex items-center justify-center text-gray-900 border border-gray-300 hover:border-gray-900 px-8 py-5 rounded-full text-base font-medium transition-all"
               >
-                Přidat se na waitlist
+                Přidej se na waitlist
               </Link>
             </div>
             <p className="text-sm text-gray-500 mt-6">
-              Spouštíme v Praze. Prvních 1 000 dostane voucher na 3 měsíce zdarma.
+              Seznamku spouštíme v Praze a okolí. Prvních 1 000 zaregistrovaných dostane voucher na 3 měsíce zdarma.
             </p>
           </div>
 
