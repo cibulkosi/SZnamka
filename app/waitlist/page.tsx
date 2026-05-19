@@ -330,10 +330,10 @@ export default function WaitlistPage() {
               <section className="mb-16">
                 <p className="eyebrow text-pink-500 mb-4">Mapa hustoty · {city}</p>
                 <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-3">
-                  Kde už jsou ostatní?
+                  Kolik je tu lidí?
                 </h2>
                 <p className="text-gray-600 leading-relaxed mb-8 text-[1.0625rem]">
-                  Hustota waitlistu podle čtvrtí. Tam, kde žijí čísla, tam spustíme nejdřív.
+                  Hustota waitlistu podle měst. Tam, kde žijí čísla, spustíme seznamku nejdřív.
                 </p>
 
                 <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
