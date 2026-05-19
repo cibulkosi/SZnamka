@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { supabase, loadCurrentProfile, type Profile, type Compatibility, getZodiac } from '@/lib/supabase'
 import { CompatBadges, ScoreRing } from '@/components/CompatBadges'
 import { ProfileQuestion, PROFILE_QUESTIONS, type Question } from '@/components/ProfileQuestion'
-import { computeCompatibility, profileCompleteness, isOutsideDistanceLimit } from '@/lib/compat'
+import { computeCompatibility, profileCompleteness, isOutsideDistanceLimit, isOutsidePhysicalPrefs} from '@/lib/compat'
 
 // Pastelové gradienty jako avatar fallback (bez fotky)
 const AVATAR_GRADIENTS = [
@@ -395,7 +395,7 @@ export default function DiscoverPage() {
 
  // Vrstva 2 – Hard KO: vylouč profily mimo limit vzdálenosti uživatele
  const maxDistKm = (u as Profile & { max_distance?: number }).max_distance ?? 100
- const profsInRange = profs.filter(p => !isOutsideDistanceLimit(u, p, maxDistKm))
+ const profsInRange = profs.filter(p => !isOutsideDistanceLimit(u, p, maxDistKm) && !isOutsidePhysicalPrefs(u, p))
 
  // Vypočítej enhanced scores — s Tension Score (vážený průměr obou perspektiv)
  const scores: Record<string, number> = {}

@@ -2,11 +2,11 @@
  * Cosmatch – Enhanced Compatibility Algorithm v2
  *
  * Vrstva 1 – Core Personology Score      (35 % váha bookScore)
- * Vrstva 2 – Geolokace (decay)           +0–15 bodů, tvrdé KO nad limit
- * Vrstva 2b– Age bonus (středová shoda)  +0–10 bodů
+ * Vrstva 2 – Vzdálenost: HARD FILTER (max_distance v preferences, není ve scoringu)
+ * Vrstva 2b– Věk: HARD FILTER (age_min/age_max v preferences, není ve scoringu)
  * Vrstva 3 – Intent Multiplier           ×0.5 / ×1.0 / ×1.2
  * Vrstva 4 – Activity Boost             +15 bodů (online < 24 h)
- * Vrstva 5 – Shared interests            +5 bodů / shodný tag (max 25)
+ * Vrstva 5 – Společné zájmy             5 % váhy (shared / max × 100)
  *
  * Interní váhování dalších dimenzí (B–E):
  *   B) Životní vize & hodnoty  20 %
@@ -68,8 +68,34 @@ export function isOutsideDistanceLimit(me: Profile, other: Profile, maxKm: numbe
   return d > maxKm
 }
 
+/**
+ * Vrací true pokud kandidát NESPLŇUJE uživatelovy fyzické preference.
+ * Hard filter — profil se nezobrazí v Discover. NEpoužívá se ve scoringu.
+ * Pokud uživatel preference nemá nastaveny nebo kandidát neuvedl údaj, vrací false (nezablokovat).
+ */
+export function isOutsidePhysicalPrefs(me: Profile, other: Profile): boolean {
+  // Výška — pokud má uživatel nastavený rozsah a kandidát uvedl výšku
+  if (me.pref_height_min != null && other.height_cm != null) {
+    if (other.height_cm < me.pref_height_min) return true
+  }
+  if (me.pref_height_max != null && other.height_cm != null) {
+    if (other.height_cm > me.pref_height_max) return true
+  }
+  // Postava — pokud má uživatel preferované typy a kandidát uvedl
+  if (me.pref_body_types && me.pref_body_types.length > 0 && other.body_type) {
+    // 'prefer_not_say' nikdy nefiltruj — user nesdílí, je v pohodě
+    if (other.body_type !== 'prefer_not_say' && !me.pref_body_types.includes(other.body_type)) {
+      return true
+    }
+  }
+  return false
+}
+
 // ──────────────────────────────────────────────
-// Geolokační bonus (Vrstva 2)
+// Geolokační bonus – DEPRECATED (květen 2026)
+// Důvod: vzdálenost je preference, ne kompatibilita. Lidi si volí sami.
+// Nyní: max_distance je HARD FILTER v /discover (profile mimo limit se nezobrazí).
+// Funkce ponechaná pro případnou referenci, ale NIKDE se nevolá ve scoringu.
 // ──────────────────────────────────────────────
 function geoBonus(me: Profile, other: Profile): number {
   const d = distanceKm(me, other)
@@ -138,22 +164,19 @@ export function computeCompatibility(
   const dScore = scoreIntimate(me, other) * 0.10
   const eScore = scoreLifestyle(me, other) * 0.10
 
-  // Vrstva 5 – Shared interests (max 25 bodů, 5 za každý shodný tag)
+  // Vrstva 5 – Společné zájmy (5 % váhy, procentní scoring s diminishing returns)
+  // Formula: shared / max(me.hobbies, other.hobbies) × 100, capped at 100
   const ah = me.hobbies ?? []
   const bh = other.hobbies ?? []
   const sharedCount = bh.filter(h => ah.includes(h)).length
-  const interestBonus = Math.min(25, sharedCount * 5)
-
-  // Vrstva 2 – Geolokace decay bonus (0–15)
-  const geo = geoBonus(me, other)
-
-  // Vrstva 2b – Věkový bonus (0–10)
-  const age = ageBonus(me, other)
+  const maxTags = Math.max(ah.length, bh.length)
+  const interestPercent = maxTags > 0 ? (sharedCount / maxTags) * 100 : 0
+  const interestScore = Math.min(100, interestPercent) * 0.05  // 5 % váhy
 
   // Vrstva 4 – Activity boost (0–15)
   const activity = activityBoost(other)
 
-  const rawScore = aScore + bScore + cScore + dScore + eScore + interestBonus + geo + age + activity
+  const rawScore = aScore + bScore + cScore + dScore + eScore + interestScore + activity
 
   // Vrstva 3 – Intent multiplier
   const multiplier = intentMultiplier(me.relationship_goal, other.relationship_goal)

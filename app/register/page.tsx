@@ -3,7 +3,8 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { supabase, HOBBIES, COUNTRIES, EDUCATION_OPTIONS } from '@/lib/supabase'
+import { supabase, HOBBIES, MIN_HOBBIES, MAX_HOBBIES, COUNTRIES, EDUCATION_OPTIONS } from '@/lib/supabase'
+import { lifePathNumber, ARCHETYPES, MAGIC_MOMENT_PARTNER_LINE } from '@/lib/archetypes'
 
 const MONTHS = [
   'Leden','Únor','Březen','Duben','Květen','Červen',
@@ -97,6 +98,7 @@ export default function RegisterPage() {
     : ''
 
   const [showBirthdayModal, setShowBirthdayModal] = useState(false)
+  const [birthdayStage, setBirthdayStage] = useState<'confirm' | 'magic'>('confirm')
   const [geoLoading, setGeoLoading] = useState(false)
   const [geoError, setGeoError] = useState('')
   const [honeypot, setHoneypot] = useState('')
@@ -150,8 +152,14 @@ export default function RegisterPage() {
   }, [])
 
   const set = (key: string, val: unknown) => setForm(f => ({ ...f, [key]: val }))
-  const toggleHobby = (h: string) => set('hobbies',
-    form.hobbies.includes(h) ? form.hobbies.filter((x: string) => x !== h) : [...form.hobbies, h])
+  const toggleHobby = (h: string) => {
+    if (form.hobbies.includes(h)) {
+      set('hobbies', form.hobbies.filter((x: string) => x !== h))
+    } else if (form.hobbies.length < MAX_HOBBIES) {
+      set('hobbies', [...form.hobbies, h])
+    }
+    // Pokud už uživatel má MAX_HOBBIES, ignoruj kliknutí (musí nejdřív odznačit)
+  }
 
   const detectLocation = () => {
     if (!navigator.geolocation) { setGeoError('Tvůj prohlížeč nepodporuje GPS.'); return }
@@ -237,6 +245,7 @@ export default function RegisterPage() {
       } catch {}
     }
     if (!form.name || !form.email || !birthday) { setError('Vyplň všechna povinná pole.'); return }
+    if (form.hobbies.length < MIN_HOBBIES) { setError(`Vyber alespoň ${MIN_HOBBIES} záliby — pomůže nám tě lépe párovat.`); return }
     if (turnstileToken) {
       try {
         const v = await fetch(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/verify-turnstile`, {
@@ -548,7 +557,7 @@ export default function RegisterPage() {
               </div>
 
               <div>
-                <Eyebrow>Zájmy <span className="normal-case tracking-normal text-gray-400 ml-2">vybrané: {form.hobbies.length}</span></Eyebrow>
+                <Eyebrow>Záliby <span className="normal-case tracking-normal text-gray-400 ml-2">vybráno: {form.hobbies.length} / {MAX_HOBBIES} <span className={form.hobbies.length < MIN_HOBBIES ? "text-pink-500" : "text-emerald-600"}>(min {MIN_HOBBIES})</span></span></Eyebrow>
                 <div className="flex flex-wrap gap-2 max-h-44 overflow-y-auto">
                   {HOBBIES.map(h => (
                     <button key={h} type="button" onClick={() => toggleHobby(h)}
@@ -623,30 +632,61 @@ export default function RegisterPage() {
       </div>
 
       {/* BIRTHDAY CONFIRM MODAL */}
-      {showBirthdayModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center px-6 bg-black/40 backdrop-blur-sm">
-          <div className="bg-[#FAF6F0] rounded-3xl p-10 max-w-md w-full shadow-2xl">
-            <p className="eyebrow text-pink-500 mb-4">Potvrzení</p>
-            <h3 className="serif-display text-3xl text-gray-900 font-medium leading-tight mb-3">
-              {String(form.day).padStart(2,'0')}. {['ledna','února','března','dubna','května','června','července','srpna','září','října','listopadu','prosince'][parseInt(form.month)-1]} {form.birth_year}
-            </h3>
-            <p className="text-gray-600 leading-relaxed text-[1.0625rem] mb-8">
-              Datum narození <strong className="font-medium text-gray-900">nelze po registraci změnit</strong> —
-              je trvale svázané s tvým numerologickým profilem.
-            </p>
-            <div className="flex gap-3">
-              <button onClick={() => setShowBirthdayModal(false)}
-                className="flex-1 bg-white border border-gray-300 hover:border-gray-900 text-gray-900 py-4 rounded-full font-medium transition">
-                Opravit
-              </button>
-              <button onClick={() => { setShowBirthdayModal(false); setStep(2) }}
-                className="flex-1 bg-gray-900 hover:bg-gray-800 text-white py-4 rounded-full font-medium transition">
-                Souhlasím
-              </button>
+      {showBirthdayModal && (() => {
+        const fullDate = `${form.birth_year}-${String(form.month).padStart(2,'0')}-${String(form.day).padStart(2,'0')}`
+        const lp = lifePathNumber(fullDate)
+        const archetype = ARCHETYPES[lp] || ARCHETYPES[9]
+        const partnerLine = MAGIC_MOMENT_PARTNER_LINE[lp] || MAGIC_MOMENT_PARTNER_LINE[9]
+        return (
+          <div className="fixed inset-0 z-50 flex items-center justify-center px-6 bg-black/40 backdrop-blur-sm">
+            <div className="bg-[#FAF6F0] rounded-3xl p-10 max-w-md w-full shadow-2xl">
+              {birthdayStage === 'confirm' ? (
+                <>
+                  <p className="eyebrow text-pink-500 mb-4">Potvrzení</p>
+                  <h3 className="serif-display text-3xl text-gray-900 font-medium leading-tight mb-3">
+                    {String(form.day).padStart(2,'0')}. {['ledna','února','března','dubna','května','června','července','srpna','září','října','listopadu','prosince'][parseInt(form.month)-1]} {form.birth_year}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed text-[1.0625rem] mb-8">
+                    Datum narození <strong className="font-medium text-gray-900">nelze po registraci změnit</strong> —
+                    je trvale svázané s tvým numerologickým profilem.
+                  </p>
+                  <div className="flex gap-3">
+                    <button onClick={() => { setShowBirthdayModal(false); setBirthdayStage('confirm') }}
+                      className="flex-1 bg-white border border-gray-300 hover:border-gray-900 text-gray-900 py-4 rounded-full font-medium transition">
+                      Opravit
+                    </button>
+                    <button onClick={() => setBirthdayStage('magic')}
+                      className="flex-1 bg-gray-900 hover:bg-gray-800 text-white py-4 rounded-full font-medium transition">
+                      Souhlasím
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <p className="eyebrow mb-4" style={{ color: archetype.accent }}>Tvůj numerologický archetyp</p>
+                  <h3 className="serif-display text-4xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-2">
+                    <em className="italic" style={{ color: archetype.accent }}>{archetype.name}</em>
+                  </h3>
+                  <p className="text-gray-500 text-sm mb-6">{archetype.tagline}</p>
+                  <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
+                    {archetype.description}
+                  </p>
+                  <p className="text-gray-900 leading-[1.75] text-[1.0625rem] font-medium mb-8 border-l-2 pl-4" style={{ borderColor: archetype.accent }}>
+                    {partnerLine}
+                  </p>
+                  <button onClick={() => { setShowBirthdayModal(false); setBirthdayStage('confirm'); setStep(2) }}
+                    className="w-full bg-gray-900 hover:bg-gray-800 text-white py-4 rounded-full font-medium transition">
+                    Pokračovat v registraci
+                  </button>
+                  <p className="text-xs text-gray-400 text-center mt-4 leading-relaxed">
+                    Tento výklad je interpretační rámec, ne predikce. Cosmatch staví na 366 archetypech podle dne narození pro skutečné matchování.
+                  </p>
+                </>
+              )}
             </div>
           </div>
-        </div>
-      )}
+        )
+      })()}
     </main>
   )
 }

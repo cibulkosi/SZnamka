@@ -28,6 +28,11 @@ const principles = [
     body: 'Cosmatch nikdy nepoužívá AI generované profily, seed profily ani „demo postavičky“, aby aplikace vypadala plnější. Každý profil v Cosmatch je skutečný člověk, který se sám zaregistroval a souhlasil s podmínkami. Spouštíme se s méně lidmi, ale s reálnými lidmi.',
   },
   {
+    numeral: 'III-C',
+    title: 'Nehodnotíme přitažlivost',
+    body: 'Cosmatch nikdy nepoužívá fotku, výšku, postavu ani fyzické rysy ve výpočtu kompatibility. Algoritmus zohledňuje pouze datum narození, hodnoty a životní styl. Fyzické a intimní preference jsou pouze filtry, které si nastavíš sám — skrývají profily mimo tvoje preference před tebou, ale nikoho nepenalizují v skóre.',
+  },
+  {
     numeral: 'IV',
     title: 'Algoritmus, který umíme vysvětlit',
     body: 'Kompatibilita podle data narození 40 %, hodnoty a záměry 35 %, aktivita 20 %, společné zájmy 5 %. Vzdálenost je filtr v preferences, ne součást skóre. Žádné placené pozice. Žádné skryté penalizace. Vzorec si můžeš přepočítat.',

@@ -55,6 +55,13 @@ export type Profile = {
   diet?: string      // 'omnivore' | 'vegetarian' | 'vegan' | 'other'
   exercise?: string  // 'never' | 'sometimes' | 'regularly'
 
+  // ── F) Fyzické preference (jen filtry, NIKDY skóre) ──────────
+  height_cm?: number              // vlastní výška v cm (volitelné)
+  body_type?: string              // 'slim' | 'athletic' | 'average' | 'curvy' | 'plus' | 'prefer_not_say'
+  pref_height_min?: number        // preferovaná výška partnera min (cm) — filtr
+  pref_height_max?: number        // preferovaná výška partnera max (cm) — filtr
+  pref_body_types?: string[]      // preferované postavy partnera — filtr (array)
+
   // ── Trust & verifikace ──────────────────────────
   verified?: boolean        // TRUE pokud uživatel prošel ID verifikací (rezervováno pro budoucí Serious tier)
   verified_at?: string      // ISO timestamp ověření
@@ -98,10 +105,35 @@ export type Compatibility = {
 }
 
 export const HOBBIES = [
-  'Cestování', 'Hudba', 'Sport', 'Příroda', 'Vaření', 'Umění',
-  'Čtení', 'Filmy', 'Tanec', 'Fitness', 'Fotografování', 'Jóga',
-  'Hry', 'Zahradničení', 'Meditace', 'Dobrovolnictví',
-  'Travel', 'Music', 'Hiking', 'Cooking', 'Art', 'Dancing'
+  // Aktivní pohyb (8)
+  'Běhání', 'Cyklistika', 'Fitness', 'Jóga', 'Plavání', 'Lyžování', 'Tanec', 'Turistika',
+  // Příroda & cestování (5)
+  'Cestování', 'Příroda', 'Camping', 'Horolezectví', 'Zahradničení',
+  // Kultura (8)
+  'Filmy', 'Hudba', 'Koncerty', 'Divadlo', 'Čtení', 'Umění', 'Muzea', 'Fotografování',
+  // Tvoření & jídlo (5)
+  'Vaření', 'Pečení', 'Káva', 'Víno', 'Kreslení',
+  // Spiritualita & sebepoznání (5)
+  'Meditace', 'Numerologie', 'Astrologie', 'Psychologie', 'Filozofie',
+  // Sociální & komunita (4)
+  'Dobrovolnictví', 'Společenské akce', 'Festivaly', 'Rodina',
+  // Domov & pohoda (5)
+  'Domácí mazlíčci', 'Hry', 'Deskové hry', 'Vinyly', 'Bylinky',
+  // Tech & moderní (5)
+  'Technologie', 'Podnikání', 'Investování', 'Podcasty', 'Programování',
+]
+
+export const MIN_HOBBIES = 3
+export const MAX_HOBBIES = 8
+
+// ── Fyzické preference (jen filtry, nikdy součást skóre) ────────
+export const BODY_TYPES = [
+  { value: 'slim',            label: 'Štíhlá' },
+  { value: 'athletic',        label: 'Sportovní' },
+  { value: 'average',         label: 'Průměrná' },
+  { value: 'curvy',           label: 'Křivky' },
+  { value: 'plus',            label: 'Plus size' },
+  { value: 'prefer_not_say',  label: 'Neuvedeno' },
 ]
 
 export const COUNTRIES = [
