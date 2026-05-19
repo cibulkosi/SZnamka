@@ -380,7 +380,8 @@ export default function RegisterPage() {
             <hr className="rule w-12 border-gray-900 mb-8" />
             <p className="text-gray-700 leading-relaxed text-[1.0625rem] mb-10">
               Tvoje datum je neměnný základ kompatibility. Vyber přesný den, měsíc a rok —
-              vše ostatní z toho vychází.
+              z toho vychází vše ostatní. Pro přesnější a hlubší analýzy doporučujeme přidat
+              také čas a místo narození.
             </p>
 
             <div className="space-y-7 mb-10">

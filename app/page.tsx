@@ -200,7 +200,7 @@ export default function LandingPage() {
           <div className="space-y-12">
             {[
               ['Konec bezduchému swipování.', 'Dostaneš pět profilů denně, s nejlepší shodou přesně pro tebe.'],
-              ['Žádné falešné notifikace.', 'Když ti přijde zpráva, někdo ti opravdu napsal/a.'],
+              ['Žádné falešné notifikace.', 'Když ti přijde zpráva, někdo ti opravdu napsal.'],
               ['Žádné placené pozice v algoritmu.', 'Placené předplatné mění tvé možnosti, ne tvoji viditelnost.'],
               ['Žádné reklamy. Nikdy.', 'Cosmatch financují uživatelé, ne inzerenti.'],
             ].map(([t, b]) => (

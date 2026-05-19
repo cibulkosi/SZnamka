@@ -20,7 +20,7 @@ const principles = [
   {
     numeral: 'III',
     title: 'Žádné falešné zprávy',
-    body: 'Neposíláme falešné notifikace. Když ti přijde zpráva, znamená to, že Ti někdo opravdu napsal/a.',
+    body: 'Neposíláme falešné notifikace. Když ti přijde zpráva, znamená to, že Ti někdo opravdu napsal.',
   },
   {
     numeral: 'III-B',
