@@ -148,7 +148,6 @@ export default function WaitlistPage() {
   const remaining = Math.max(0, founderCount - totalCount)
   const isCityLaunch = city === 'Praha' || city === 'Brno' || city === 'Plzeň' || city === 'České Budějovice' || city === 'Ostrava' || city === 'Olomouc' || city === 'Bratislava'
   const districts = (city === 'Praha' || city === 'Brno' || city === 'Plzeň' || city === 'České Budějovice' || city === 'Ostrava' || city === 'Olomouc' || city === 'Bratislava') ? DISTRICTS[city] : []
-  const maxDistrictCount = Math.max(...districts.map(d => districtCounts[d] || 0), 1)
 
   return (
     <main className="min-h-screen bg-[#FAF6F0]">
@@ -324,42 +323,6 @@ export default function WaitlistPage() {
             </section>
 
             <hr className="rule mb-16" />
-
-            {/* District heatmap */}
-            {isCityLaunch && (
-              <section className="mb-16">
-                <p className="eyebrow text-pink-500 mb-4">Mapa hustoty · {city}</p>
-                <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-3">
-                  Kolik je tu lidí?
-                </h2>
-                <p className="text-gray-600 leading-relaxed mb-8 text-[1.0625rem]">
-                  Hustota waitlistu podle měst. Tam, kde žijí čísla, spustíme seznamku nejdřív.
-                </p>
-
-                <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
-                  {districts.map(d => {
-                    const count = districtCounts[d] || 0
-                    const intensity = count / maxDistrictCount
-                    return (
-                      <div key={d} className="text-center">
-                        <div
-                          className="rounded-2xl py-6 mb-2 transition-all"
-                          style={{
-                            backgroundColor: `rgba(236, 72, 153, ${0.05 + intensity * 0.6})`,
-                            border: '1px solid rgba(236, 72, 153, 0.15)',
-                          }}
-                        >
-                          <div className="serif-display text-2xl font-medium text-gray-900 tabular-nums">{count}</div>
-                        </div>
-                        <p className="text-xs text-gray-500 font-medium leading-tight">
-                          {d.replace('Praha ', 'P').replace('Brno-', '').replace('Plzeň ', 'P').replace('Bratislava-', '')}
-                        </p>
-                      </div>
-                    )
-                  })}
-                </div>
-              </section>
-            )}
 
             {!isCityLaunch && (
               <section className="mb-16">

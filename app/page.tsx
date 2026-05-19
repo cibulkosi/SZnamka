@@ -28,7 +28,7 @@ export default function LandingPage() {
       <section className="min-h-screen flex items-end pt-32 pb-20 px-6">
         <div className="max-w-6xl mx-auto w-full grid lg:grid-cols-[1.2fr_1fr] gap-16 items-end">
           <div>
-            
+            <p className="eyebrow text-pink-500 mb-6">Numerologická seznamka</p>
             <h1 className="serif-display text-[3.25rem] sm:text-7xl lg:text-[5.5rem] text-gray-900 font-medium leading-[0.98] tracking-tight mb-10">
               Najdi člověka,<br/>se kterým<br/><em className="italic text-pink-500">dává život smysl</em>.
             </h1>
@@ -157,7 +157,7 @@ export default function LandingPage() {
           </h2>
           <p className="text-white/70 text-lg leading-[1.8] mb-16 max-w-xl">
             Cosmatch umí spočítat tisíce kombinací mezi lidmi a ukázat ti, jak by mohl
-            vás vztah vypadat, ještě předtím, než si napíšete první zprávu.
+            váš vztah vypadat, ještě předtím, než si napíšete první zprávu.
           </p>
 
           <div className="space-y-8">

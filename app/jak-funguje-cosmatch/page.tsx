@@ -105,7 +105,7 @@ export default function JakFungujeCosmatchPage() {
 
           <div className="mt-8 bg-white border border-gray-200 rounded-2xl p-6 space-y-3">
             <p className="text-sm text-gray-700 leading-relaxed">
-              <strong className="text-gray-900 font-medium">A co vzdálenost, věk a fyzické preference?</strong> Tyto věci NEJSOU součástí kompatibility skóre. Jsou to <strong className="text-gray-900 font-medium">filtry</strong>, které si nastavíš sám. V profilu si určíš maximální vzdálenost (např. do 30 km), věkový rozsah, případně výšku nebo postavu — profily mimo tvoje preference se ti vůbec neukážou. Algoritmus tak nikoho nepenalizuje za výšku ani věk; jen ti pomáhá filtrovat.
+              <strong className="text-gray-900 font-medium">A co vzdálenost, věk a fyzické preference?</strong> Tyto věci NEJSOU součástí kompatibility skóre. Jsou to <strong className="text-gray-900 font-medium">filtry</strong>, které si nastavíš sám/sama. V profilu si určíš maximální vzdálenost (např. do 30 km), věkový rozsah, případně výšku nebo postavu — profily mimo tvoje preference se ti vůbec neukážou. Algoritmus tak nikoho nepenalizuje za výšku ani věk; jen ti pomáhá filtrovat.
             </p>
             <p className="text-sm text-gray-700 leading-relaxed">
               <strong className="text-gray-900 font-medium">Deal-breakers:</strong> Pokud máš jeden chcete děti a druhý nechce, profil se ti neukáže (vždy). Kouření můžeš označit jako deal-breaker — pak ti zmizí pravidelní kuřáci.

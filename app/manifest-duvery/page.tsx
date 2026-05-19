@@ -25,12 +25,12 @@ const principles = [
   {
     numeral: 'III-B',
     title: 'Nulové fake profily',
-    body: 'Cosmatch nikdy nepoužívá AI generované profily, seed profily ani „demo postavičky“, aby aplikace vypadala plnější. Každý profil v Cosmatch je skutečný člověk, který se sám zaregistroval a souhlasil s podmínkami. Na seznamce možná sice najdeš méně lidí než jinde, ale zato jsou reální.',
+    body: 'Cosmatch nikdy nepoužívá AI generované profily, seed profily ani „demo postavičky“, aby aplikace vypadala plnější. Každý profil v Cosmatch je skutečný člověk, který se sám/sama zaregistroval/a a souhlasil/a s podmínkami. Na seznamce možná sice najdeš méně lidí než jinde, ale zato jsou reální.',
   },
   {
     numeral: 'III-C',
     title: 'Fyzickou přitažlivost hodnotíš jen ty',
-    body: 'Cosmatch nepoužívá fotku, výšku, postavu ani fyzické rysy ve výpočtu kompatibility. Algoritmus zohledňuje pouze datum narození, hodnoty a životní styl. Fyzické preference jsou filtry, které si nastavíš jen ty sám, nikoho nepenalizují ve skóre.',
+    body: 'Cosmatch nepoužívá fotku, výšku, postavu ani fyzické rysy ve výpočtu kompatibility. Algoritmus zohledňuje pouze datum narození, hodnoty a životní styl. Fyzické preference jsou filtry, které si nastavíš jen ty sám/sama, nikoho nepenalizují ve skóre.',
   },
   {
     numeral: 'IV',
