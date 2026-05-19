@@ -62,7 +62,7 @@ ahoj@cosmatch.cz
 Věc: Odstoupení od smlouvy
 
 Oznamuji, že tímto odstupuji od smlouvy o poskytování digitálních služeb
-Cosmatch+ / Cosmatch Serious uzavřené dne: ____________________
+Cosmatch+ uzavřené dne: ____________________
 
 Datum objednávky:            ____________________
 Datum obdržení potvrzení:    ____________________

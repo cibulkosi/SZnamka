@@ -56,7 +56,7 @@ export type Profile = {
   exercise?: string  // 'never' | 'sometimes' | 'regularly'
 
   // ── Trust & verifikace ──────────────────────────
-  verified?: boolean        // TRUE pokud uživatel prošel ID verifikací (Serious tier)
+  verified?: boolean        // TRUE pokud uživatel prošel ID verifikací (rezervováno pro budoucí Serious tier)
   verified_at?: string      // ISO timestamp ověření
   deleted_at?: string       // Soft-delete (GDPR výmaz, 30 dní pak hard delete)
   deletion_reason?: string  // 'user_initiated' / 'gdpr_request' / 'admin_action'

@@ -86,11 +86,11 @@ export default function ObchodniPodminkyPage() {
                 <p className="text-gray-700 text-[0.95rem]">Neomezené prohlížení profilů, 5 lajků/zpráv denně, základní kompatibilita.</p>
               </div>
               <div>
-                <p className="font-medium text-gray-900">Cosmatch+ — 249 Kč/měsíc (kvartálně 597 Kč · ročně 1 788 Kč)</p>
+                <p className="font-medium text-gray-900">Cosmatch+ — 249 Kč/měsíc · kvartálně 597 Kč (sleva 20 %) · ročně 2 088 Kč (sleva 30 %)</p>
                 <p className="text-gray-700 text-[0.95rem]">Neomezené lajky, hloubková personologická analýza, zobrazení kdo Tě lajknul, prioritní zobrazení profilu.</p>
               </div>
               <div>
-                <p className="font-medium text-gray-900">Cosmatch Serious — 399 Kč/měsíc (kvartálně 987 Kč · ročně 2 988 Kč)</p>
+                <p className="font-medium text-gray-900">Cosmatch Serious — připravuje se (bude k dispozici později)</p>
                 <p className="text-gray-700 text-[0.95rem]">Vše z Cosmatch+ plus povinná ID verifikace, štítek „Ověřeno", prémiové filtry, prioritní matchmaking.</p>
               </div>
             </div>
@@ -105,40 +105,26 @@ export default function ObchodniPodminkyPage() {
             </p>
           </section>
 
-          {/* 4. Cosmatch Serious */}
+          {/* 4. Odstoupení od smlouvy */}
           <section>
-            <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">4. Cosmatch Serious — povinná ID verifikace</h2>
+            <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">4. Odstoupení od smlouvy a refundace</h2>
             <p className="mb-3">
-              <strong className="text-gray-900 font-medium">4.1</strong> Po zakoupení tarifu Cosmatch Serious je Uživatel povinen do <strong className="text-gray-900 font-medium">7 dnů</strong> dokončit ID verifikaci prostřednictvím externí EU služby pro ověření identity.
+              <strong className="text-gray-900 font-medium">4.1</strong> Uživatel-spotřebitel má dle § 1829 občanského zákoníku právo odstoupit od smlouvy o předplatném do <strong className="text-gray-900 font-medium">14 dnů</strong> od jejího uzavření bez udání důvodu.
             </p>
             <p className="mb-3">
-              <strong className="text-gray-900 font-medium">4.2</strong> Pokud Uživatel ID verifikaci v této lhůtě nedokončí, má nárok na <strong className="text-gray-900 font-medium">plné vrácení uhrazené částky</strong> — Cosmatch refund provede do 14 dnů od žádosti.
+              <strong className="text-gray-900 font-medium">4.2</strong> Pro odstoupení stačí napsat na <a href="mailto:ahoj@cosmatch.cz" className="text-pink-500 underline">ahoj@cosmatch.cz</a>. Cosmatch refund provede do 14 dnů na stejný platební prostředek.
+            </p>
+            <p className="mb-3">
+              <strong className="text-gray-900 font-medium">4.3</strong> Po uplynutí 14 dnů vyhodnocujeme refundace případ od případu. Pokud aplikace prokazatelně nefungovala (technický výpadek), refundujeme alikvotní část.
             </p>
             <p>
-              <strong className="text-gray-900 font-medium">4.3</strong> Po úspěšném ověření získá Uživatel zelený štítek „Ověřeno" viditelný ostatním a má přístup k funkci „zobrazit pouze ověřené profily".
+              <strong className="text-gray-900 font-medium">4.4</strong> Předplatné lze kdykoli zrušit přes profil. Zbývající dny aktivního období zůstanou Uživateli k dispozici.
             </p>
           </section>
 
-          {/* 5. Odstoupení od smlouvy */}
+          {/* 5. Práva a povinnosti Uživatele */}
           <section>
-            <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">5. Odstoupení od smlouvy a refundace</h2>
-            <p className="mb-3">
-              <strong className="text-gray-900 font-medium">5.1</strong> Uživatel-spotřebitel má dle § 1829 občanského zákoníku právo odstoupit od smlouvy o předplatném do <strong className="text-gray-900 font-medium">14 dnů</strong> od jejího uzavření bez udání důvodu.
-            </p>
-            <p className="mb-3">
-              <strong className="text-gray-900 font-medium">5.2</strong> Pro odstoupení stačí napsat na <a href="mailto:ahoj@cosmatch.cz" className="text-pink-500 underline">ahoj@cosmatch.cz</a>. Cosmatch refund provede do 14 dnů na stejný platební prostředek.
-            </p>
-            <p className="mb-3">
-              <strong className="text-gray-900 font-medium">5.3</strong> Po uplynutí 14 dnů vyhodnocujeme refundace případ od případu. Pokud aplikace prokazatelně nefungovala (technický výpadek), refundujeme alikvotní část.
-            </p>
-            <p>
-              <strong className="text-gray-900 font-medium">5.4</strong> Předplatné lze kdykoli zrušit přes profil. Zbývající dny aktivního období zůstanou Uživateli k dispozici.
-            </p>
-          </section>
-
-          {/* 6. Práva a povinnosti Uživatele */}
-          <section>
-            <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">6. Práva a povinnosti Uživatele</h2>
+            <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">5. Práva a povinnosti Uživatele</h2>
             <p className="mb-3">
               <strong className="text-gray-900 font-medium">6.1 Uživatel se zavazuje:</strong>
             </p>
@@ -155,11 +141,11 @@ export default function ObchodniPodminkyPage() {
             </p>
           </section>
 
-          {/* 7. Zakázané chování */}
+          {/* 6. Zakázané chování */}
           <section>
-            <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">7. Zakázané chování a sankce</h2>
+            <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">6. Zakázané chování a sankce</h2>
             <p className="mb-3">
-              <strong className="text-gray-900 font-medium">7.1</strong> V aplikaci je zakázáno zejména:
+              <strong className="text-gray-900 font-medium">6.1</strong> V aplikaci je zakázáno zejména:
             </p>
             <ul className="list-disc pl-10 space-y-1 mb-4">
               <li>vytvářet fake profily nebo profily s cizími fotkami,</li>
@@ -173,69 +159,69 @@ export default function ObchodniPodminkyPage() {
               <li>obcházet bezpečnostní opatření (Turnstile, rate limiting).</li>
             </ul>
             <p className="mb-3">
-              <strong className="text-gray-900 font-medium">7.2</strong> Porušení vede k <strong className="text-gray-900 font-medium">okamžitému zablokování účtu</strong> bez nároku na vrácení předplatného. V závažných případech (romance scams, dětská pornografie) Cosmatch nahlásí věc orgánům činným v trestním řízení.
+              <strong className="text-gray-900 font-medium">6.2</strong> Porušení vede k <strong className="text-gray-900 font-medium">okamžitému zablokování účtu</strong> bez nároku na vrácení předplatného. V závažných případech (romance scams, dětská pornografie) Cosmatch nahlásí věc orgánům činným v trestním řízení.
             </p>
             <p>
-              <strong className="text-gray-900 font-medium">7.3</strong> Cosmatch měsíčně zveřejňuje transparentní statistiky zablokovaných účtů na stránce <Link href="/verifikace" className="text-pink-500 underline">verifikace</Link>.
+              <strong className="text-gray-900 font-medium">6.3</strong> Cosmatch měsíčně zveřejňuje transparentní statistiky zablokovaných účtů na stránce <Link href="/verifikace" className="text-pink-500 underline">verifikace</Link>.
             </p>
           </section>
 
-          {/* 8. Odpovědnost */}
+          {/* 7. Odpovědnost */}
           <section>
-            <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">8. Vyloučení a omezení odpovědnosti</h2>
+            <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">7. Vyloučení a omezení odpovědnosti</h2>
             <p className="mb-3">
-              <strong className="text-gray-900 font-medium">8.1</strong> Cosmatch je technologická platforma. <strong className="text-gray-900 font-medium">Cosmatch negarantuje</strong>, že Uživatel najde partnera, že shoda povede k úspěšnému vztahu, ani správnost údajů poskytnutých jinými Uživateli.
+              <strong className="text-gray-900 font-medium">7.1</strong> Cosmatch je technologická platforma. <strong className="text-gray-900 font-medium">Cosmatch negarantuje</strong>, že Uživatel najde partnera, že shoda povede k úspěšnému vztahu, ani správnost údajů poskytnutých jinými Uživateli.
             </p>
             <p className="mb-3">
-              <strong className="text-gray-900 font-medium">8.2</strong> Numerologická kompatibilita je interpretační framework, nikoli vědecká predikce. Slouží jako podpora rozhodování, ne jako diagnóza.
+              <strong className="text-gray-900 font-medium">7.2</strong> Numerologická kompatibilita je interpretační framework, nikoli vědecká predikce. Slouží jako podpora rozhodování, ne jako diagnóza.
             </p>
             <p className="mb-3">
-              <strong className="text-gray-900 font-medium">8.3</strong> Cosmatch neodpovídá za chování Uživatelů v reálném světě po seznámení přes aplikaci. Uživatelům doporučujeme dodržovat základní bezpečnostní pravidla: první schůzku v veřejném prostoru, informovat blízké, neposílat peníze cizím lidem.
+              <strong className="text-gray-900 font-medium">7.3</strong> Cosmatch neodpovídá za chování Uživatelů v reálném světě po seznámení přes aplikaci. Uživatelům doporučujeme dodržovat základní bezpečnostní pravidla: první schůzku v veřejném prostoru, informovat blízké, neposílat peníze cizím lidem.
             </p>
             <p>
-              <strong className="text-gray-900 font-medium">8.4</strong> Cosmatch usiluje o nepřetržitý provoz, ale neodpovídá za výpadky způsobené třetími stranami (Cloudflare, Supabase, internet provider).
+              <strong className="text-gray-900 font-medium">7.4</strong> Cosmatch usiluje o nepřetržitý provoz, ale neodpovídá za výpadky způsobené třetími stranami (Cloudflare, Supabase, internet provider).
             </p>
           </section>
 
-          {/* 9. Ukončení smlouvy */}
+          {/* 8. Ukončení smlouvy */}
           <section>
-            <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">9. Ukončení smlouvy</h2>
+            <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">8. Ukončení smlouvy</h2>
             <p className="mb-3">
-              <strong className="text-gray-900 font-medium">9.1</strong> Uživatel může smlouvu kdykoli vypovědět smazáním profilu v aplikaci. Data jsou nevratně smazána do 30 dnů.
+              <strong className="text-gray-900 font-medium">8.1</strong> Uživatel může smlouvu kdykoli vypovědět smazáním profilu v aplikaci. Data jsou nevratně smazána do 30 dnů.
             </p>
             <p className="mb-3">
-              <strong className="text-gray-900 font-medium">9.2</strong> Cosmatch může smlouvu vypovědět při hrubém porušení Podmínek (viz čl. 7) bez výpovědní lhůty.
+              <strong className="text-gray-900 font-medium">8.2</strong> Cosmatch může smlouvu vypovědět při hrubém porušení Podmínek (viz čl. 7) bez výpovědní lhůty.
             </p>
             <p>
-              <strong className="text-gray-900 font-medium">9.3</strong> Cosmatch může službu ukončit jako celek s minimálně 90denním předstihem. Uživatelé jsou informováni e-mailem a mají možnost export dat.
+              <strong className="text-gray-900 font-medium">8.3</strong> Cosmatch může službu ukončit jako celek s minimálně 90denním předstihem. Uživatelé jsou informováni e-mailem a mají možnost export dat.
             </p>
           </section>
 
-          {/* 10. Řešení sporů */}
+          {/* 9. Řešení sporů */}
           <section>
-            <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">10. Řešení sporů</h2>
+            <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">9. Řešení sporů</h2>
             <p className="mb-3">
-              <strong className="text-gray-900 font-medium">10.1</strong> V případě sporu se Uživatel může obrátit na Cosmatch e-mailem na <a href="mailto:ahoj@cosmatch.cz" className="text-pink-500 underline">ahoj@cosmatch.cz</a>. Cosmatch se zavazuje k pokusu o mimosoudní řešení.
+              <strong className="text-gray-900 font-medium">9.1</strong> V případě sporu se Uživatel může obrátit na Cosmatch e-mailem na <a href="mailto:ahoj@cosmatch.cz" className="text-pink-500 underline">ahoj@cosmatch.cz</a>. Cosmatch se zavazuje k pokusu o mimosoudní řešení.
             </p>
             <p className="mb-3">
-              <strong className="text-gray-900 font-medium">10.2</strong> K mimosoudnímu řešení spotřebitelských sporů je příslušná <strong className="text-gray-900 font-medium">Česká obchodní inspekce</strong> (<a href="https://www.coi.cz" target="_blank" rel="noopener" className="text-pink-500 underline">coi.cz</a>). Pro online spory lze využít platformu <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener" className="text-pink-500 underline">ec.europa.eu/consumers/odr</a>.
+              <strong className="text-gray-900 font-medium">9.2</strong> K mimosoudnímu řešení spotřebitelských sporů je příslušná <strong className="text-gray-900 font-medium">Česká obchodní inspekce</strong> (<a href="https://www.coi.cz" target="_blank" rel="noopener" className="text-pink-500 underline">coi.cz</a>). Pro online spory lze využít platformu <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener" className="text-pink-500 underline">ec.europa.eu/consumers/odr</a>.
             </p>
             <p>
-              <strong className="text-gray-900 font-medium">10.3</strong> Pokud spor nelze vyřešit mimosoudně, je příslušný obecný soud podle bydliště Uživatele-spotřebitele.
+              <strong className="text-gray-900 font-medium">9.3</strong> Pokud spor nelze vyřešit mimosoudně, je příslušný obecný soud podle bydliště Uživatele-spotřebitele.
             </p>
           </section>
 
-          {/* 11. Závěrečná */}
+          {/* 10. Závěrečná */}
           <section>
-            <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">11. Závěrečná ustanovení</h2>
+            <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">10. Závěrečná ustanovení</h2>
             <p className="mb-3">
-              <strong className="text-gray-900 font-medium">11.1</strong> Pokud se jakékoli ustanovení Podmínek stane neplatným, platnost ostatních ustanovení tím není dotčena.
+              <strong className="text-gray-900 font-medium">10.1</strong> Pokud se jakékoli ustanovení Podmínek stane neplatným, platnost ostatních ustanovení tím není dotčena.
             </p>
             <p className="mb-3">
-              <strong className="text-gray-900 font-medium">11.2</strong> Cosmatch může Podmínky měnit. O změně je Uživatel informován e-mailem minimálně 30 dnů předem. Pokud se změnami nesouhlasí, může smlouvu vypovědět bez sankce.
+              <strong className="text-gray-900 font-medium">10.2</strong> Cosmatch může Podmínky měnit. O změně je Uživatel informován e-mailem minimálně 30 dnů předem. Pokud se změnami nesouhlasí, může smlouvu vypovědět bez sankce.
             </p>
             <p>
-              <strong className="text-gray-900 font-medium">11.3</strong> Tyto Podmínky nabývají účinnosti dnem zveřejnění na cosmatch.cz/obchodni-podminky.
+              <strong className="text-gray-900 font-medium">10.3</strong> Tyto Podmínky nabývají účinnosti dnem zveřejnění na cosmatch.cz/obchodni-podminky.
             </p>
           </section>
         </div>

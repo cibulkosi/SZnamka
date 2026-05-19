@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 const TITLE = 'Reklamační řád | Cosmatch'
-const DESC = 'Postup řešení reklamací předplatného Cosmatch+ a Cosmatch Serious podle českého občanského zákoníku.'
+const DESC = 'Postup řešení reklamací předplatného Cosmatch+ podle českého občanského zákoníku.'
 const URL = 'https://cosmatch.cz/reklamacni-rad'
 
 export const metadata: Metadata = {
@@ -46,7 +46,7 @@ export default function ReklamacniRadPage() {
               <strong className="text-gray-900 font-medium">2.1</strong> Reklamovat lze:
             </p>
             <ul className="list-disc pl-6 space-y-2">
-              <li><strong className="text-gray-900 font-medium">Vadné poskytnutí placené služby</strong> — např. nefunkční prémiová funkce Cosmatch+ nebo Cosmatch Serious, ke které máš zaplacený přístup.</li>
+              <li><strong className="text-gray-900 font-medium">Vadné poskytnutí placené služby</strong> — např. nefunkční prémiová funkce Cosmatch+, ke které máš zaplacený přístup.</li>
               <li><strong className="text-gray-900 font-medium">Neoprávněné zúčtování</strong> — opakovaná platba, chybná částka, dvojitá platba.</li>
               <li><strong className="text-gray-900 font-medium">Nedoručení voucheru</strong> — pokud jsi se přidal na waitlist a slíbený voucher na 3 měsíce Cosmatch+ ti nedorazil.</li>
               <li><strong className="text-gray-900 font-medium">Dlouhodobý výpadek aplikace</strong> — pokud Cosmatch nefunguje déle než 24 hodin v měsíci po dobu placeného předplatného.</li>

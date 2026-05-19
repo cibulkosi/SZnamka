@@ -1,29 +1,21 @@
 import type { Metadata } from 'next'
 
-const TITLE = 'Předplatné Cosmatch — Cosmatch+ od 249 Kč/měs, Serious od 399 Kč/měs | Cosmatch'
-const DESC = 'Cosmatch+ od 249 Kč/měs (kvartálně 597 Kč · ročně 1 788 Kč). Cosmatch Serious od 399 Kč/měs s povinnou ID verifikací (kvartálně 987 Kč · ročně 2 988 Kč). Bez reklam, bez prodávání dat. Platby zpracovává GoPay.'
+const TITLE = 'Předplatné Cosmatch — Cosmatch+ od 249 Kč/měs | Cosmatch'
+const DESC = 'Cosmatch+ za 249 Kč/měs, 597 Kč za 3 měsíce (sleva 20 %), nebo 2 088 Kč ročně (sleva 30 %). Neomezené lajky, hloubková personologická analýza, vidíš kdo tě lajknul. Bez reklam, bez prodávání dat.'
 const URL = 'https://cosmatch.cz/premium'
 
 const FAQS = [
   {
     q: 'Kolik stojí Cosmatch+?',
-    a: 'Měsíčně 249 Kč, kvartálně 597 Kč (sleva 20 %), nebo ročně 1 788 Kč (sleva 40 %). Free verze je plně použitelná zdarma.',
-  },
-  {
-    q: 'Kolik stojí Cosmatch Serious?',
-    a: 'Měsíčně 399 Kč, kvartálně 987 Kč (sleva 18 %), nebo ročně 2 988 Kč (sleva 38 %). Serious obsahuje povinnou ID verifikaci a zelený štítek Ověřeno.',
+    a: 'Měsíčně 249 Kč, kvartálně 597 Kč (sleva 20 %), nebo ročně 2 088 Kč (sleva 30 %). Free verze je plně použitelná zdarma.',
   },
   {
     q: 'Mohu předplatné kdykoli zrušit?',
     a: 'Ano, zrušení je v profilu jedním klikem. Zbývající dny ti zůstanou aktivní.',
   },
   {
-    q: 'Jak se platí Cosmatch?',
-    a: 'Platbu zpracovává GoPay — česká platební instituce regulovaná ČNB. Přijímá Visa, Mastercard, Apple Pay i Google Pay. Faktura ti přijde automaticky e-mailem.',
-  },
-  {
-    q: 'Co se stane když přejdu z Plus na Serious?',
-    a: 'Doplatíš jen rozdíl za zbývající dny. Změna je okamžitá a automaticky se zapne ID verifikace.',
+    q: 'Jak se platí Cosmatch+?',
+    a: 'Platbu zpracovává zabezpečená platební brána. Přijímá Visa, Mastercard, Apple Pay i Google Pay. Faktura ti přijde automaticky e-mailem.',
   },
   {
     q: 'Vrátíte peníze pokud nebudu spokojen?',
@@ -48,16 +40,13 @@ const FAQ_JSONLD = {
 const OFFER_JSONLD = {
   '@context': 'https://schema.org',
   '@type': 'Product',
-  name: 'Cosmatch — předplatné',
-  description: 'Předplatné numerologické seznamky Cosmatch. Cosmatch+ (neomezené lajky, kdo mě lajknul, prioritní feed) nebo Cosmatch Serious (vše z + povinná ID verifikace + zelený štítek Ověřeno + prémiové filtry).',
+  name: 'Cosmatch+',
+  description: 'Předplatné numerologické seznamky Cosmatch — neomezené lajky, hloubková personologická analýza, vidíš kdo tě lajknul, prioritní zobrazení ve feedu.',
   brand: { '@type': 'Brand', name: 'Cosmatch' },
   offers: [
     { '@type': 'Offer', name: 'Cosmatch+ měsíčně', price: '249', priceCurrency: 'CZK', availability: 'https://schema.org/InStock', url: URL, priceSpecification: { '@type': 'UnitPriceSpecification', billingDuration: 'P1M', price: '249', priceCurrency: 'CZK' } },
     { '@type': 'Offer', name: 'Cosmatch+ kvartálně', price: '597', priceCurrency: 'CZK', availability: 'https://schema.org/InStock', url: URL, priceSpecification: { '@type': 'UnitPriceSpecification', billingDuration: 'P3M', price: '597', priceCurrency: 'CZK' } },
-    { '@type': 'Offer', name: 'Cosmatch+ ročně', price: '1788', priceCurrency: 'CZK', availability: 'https://schema.org/InStock', url: URL, priceSpecification: { '@type': 'UnitPriceSpecification', billingDuration: 'P1Y', price: '1788', priceCurrency: 'CZK' } },
-    { '@type': 'Offer', name: 'Cosmatch Serious měsíčně', price: '399', priceCurrency: 'CZK', availability: 'https://schema.org/InStock', url: URL, priceSpecification: { '@type': 'UnitPriceSpecification', billingDuration: 'P1M', price: '399', priceCurrency: 'CZK' } },
-    { '@type': 'Offer', name: 'Cosmatch Serious kvartálně', price: '987', priceCurrency: 'CZK', availability: 'https://schema.org/InStock', url: URL, priceSpecification: { '@type': 'UnitPriceSpecification', billingDuration: 'P3M', price: '987', priceCurrency: 'CZK' } },
-    { '@type': 'Offer', name: 'Cosmatch Serious ročně', price: '2988', priceCurrency: 'CZK', availability: 'https://schema.org/InStock', url: URL, priceSpecification: { '@type': 'UnitPriceSpecification', billingDuration: 'P1Y', price: '2988', priceCurrency: 'CZK' } },
+    { '@type': 'Offer', name: 'Cosmatch+ ročně', price: '2088', priceCurrency: 'CZK', availability: 'https://schema.org/InStock', url: URL, priceSpecification: { '@type': 'UnitPriceSpecification', billingDuration: 'P1Y', price: '2088', priceCurrency: 'CZK' } },
   ],
 }
 

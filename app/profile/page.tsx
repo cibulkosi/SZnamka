@@ -202,7 +202,7 @@ export default function ProfilePage() {
                 Odemkni hloubku, neomezené lajky.
               </h2>
               <p className="text-gray-600 leading-relaxed mb-6 text-[1.0625rem]">
-                Cosmatch+ od 249 Kč/měs (ročně 1 788 Kč). Cosmatch Serious s povinnou ID verifikací od 399 Kč/měs (ročně 2 988 Kč).
+                Cosmatch+ od 249 Kč/měs (kvartálně 597 Kč · ročně 2 088 Kč, sleva 30 %).
               </p>
               <span className="text-pink-500 font-medium text-sm">Prohlédnout plány →</span>
             </Link>

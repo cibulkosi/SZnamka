@@ -252,7 +252,7 @@ export default function LandingPage() {
                 Seznamovací služba určená výhradně osobám starším 18 let.
               </p>
               <p className="text-xs text-gray-500 mt-1">
-                Cosmatch+ od 249 Kč/měs (597 Kč/3 měs · 1 788 Kč/rok). Cosmatch Serious od 399 Kč/měs. Platby zpracovává GoPay, předplatné lze kdykoli zrušit.
+                Cosmatch+ od 249 Kč/měs (597 Kč/3 měs · 2 088 Kč/rok, sleva 30 %). Předplatné lze kdykoli zrušit v profilu bez sankce.
               </p>
             </div>
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">

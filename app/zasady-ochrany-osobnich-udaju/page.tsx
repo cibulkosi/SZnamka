@@ -92,12 +92,7 @@ export default function GdprPage() {
             <ul className="list-disc pl-6 space-y-1 mb-4">
               <li>Platby zpracovává <strong className="text-gray-900 font-medium">GoPay s.r.o.</strong> (samostatný správce, IČO 26046768). Cosmatch dostává jen informaci o stavu předplatného, ne čísla karet.</li>
             </ul>
-
-            <h3 className="serif text-xl text-gray-900 font-medium mb-2 mt-6">2.6 ID verifikace (jen Cosmatch Serious)</h3>
-            <ul className="list-disc pl-6 space-y-1 mb-4">
-              <li>Doklad totožnosti a selfie zpracovává externí EU služba pro ověření identity. Cosmatch dostane pouze výsledek (ověřeno/neověřeno) — sken dokladu si neukládá.</li>
-            </ul>
-          </section>
+            </section>
 
           {/* 3. Právní základ */}
           <section>
@@ -123,7 +118,6 @@ export default function GdprPage() {
               <li><strong className="text-gray-900 font-medium">Google (Irsko)</strong> — Google OAuth pro přihlášení.</li>
               <li><strong className="text-gray-900 font-medium">Meta (Irsko)</strong> — Facebook OAuth pro přihlášení.</li>
               <li><strong className="text-gray-900 font-medium">Resend (USA)</strong> — odesílání transakčních e-mailů (potvrzení registrace, voucher).</li>
-              <li><strong className="text-gray-900 font-medium">EU služba pro ověření identity</strong> — pouze pro Cosmatch Serious uživatele, kteří aktivně podstupují verifikaci.</li>
             </ul>
             <p className="mt-4">
               Pokud se některý zpracovatel nachází mimo EU/EHP, předání dat je zabezpečeno standardními smluvními doložkami schválenými Evropskou komisí.
@@ -191,7 +185,6 @@ export default function GdprPage() {
               <li>Veškerá komunikace je šifrována přes HTTPS (TLS 1.3).</li>
               <li>Hesla u nás <strong className="text-gray-900 font-medium">neexistují</strong> — používáme jen Google/Facebook SSO, takže nemůžeme heslo ztratit.</li>
               <li>Row Level Security na úrovni databáze — nikdo nevidí cizí zprávy, lajky, ani profily mimo dating feed.</li>
-              <li>Pro Cosmatch Serious je povinná ID verifikace přes EU službu.</li>
               <li>V případě porušení zabezpečení (data breach) tě informujeme do 72 hodin podle čl. 33 GDPR.</li>
             </ul>
           </section>

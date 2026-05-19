@@ -2,7 +2,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 const TITLE = 'Jak Cosmatch ověřuje profily — Ochrana před scammery | Cosmatch'
-const DESCRIPTION = 'ID verifikace, kontrola fotek a transparentní reportování. Česká republika je 6. nejzranitelnější země vůči romance scams. Cosmatch nabízí ověřené profily se zeleným štítkem.'
+const DESCRIPTION = 'Cloudflare Turnstile anti-bot, SSO přihlášení bez hesla a transparentní reportování. Česká republika je 6. nejzranitelnější země vůči romance scams. Cosmatch staví na vícevrstvé ochraně před scammery.'
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -22,10 +22,9 @@ export default function VerifikacePage() {
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": [
-          { "@type": "Question", "name": 'Jak Cosmatch ověřuje uživatele?', "acceptedAnswer": { "@type": "Answer", "text": 'Tři vrstvy: bot-shield při registraci (Cloudflare Turnstile), SSO bez hesla (Google/Facebook s reálným telefonem), a povinná ID verifikace pro Cosmatch Serious přes renomovanou EU službu.' } },
-          { "@type": "Question", "name": 'Je ID verifikace povinná?', "acceptedAnswer": { "@type": "Answer", "text": 'Ano, pro Cosmatch Serious (od 399 Kč/měs, ročně 2 988 Kč). Pro Free a Cosmatch+ tier je verifikace volitelná. Bez ID verifikace nezískáš zelený štítek Ověřeno ani neuvidíš ostatní ověřené.' } },
+          { "@type": "Question", "name": 'Jak Cosmatch ověřuje uživatele?', "acceptedAnswer": { "@type": "Answer", "text": 'Dvě vrstvy: bot-shield při registraci (Cloudflare Turnstile, neviditelný anti-bot test) a SSO bez hesla (Google/Facebook s reálným telefonem). ID verifikace s občanským průkazem se připravuje pro budoucí Serious tier.' } },
+          { "@type": "Question", "name": 'Je ID verifikace povinná?', "acceptedAnswer": { "@type": "Answer", "text": 'Ne. V současné single-tier launch fázi Cosmatch nepoužívá ID verifikaci s občanským průkazem. Ochrana stojí na Cloudflare Turnstile + SSO. ID verifikace s green badge přijde v budoucím Serious tieru.' } },
           { "@type": "Question", "name": 'Co se stane když nahlásím podezřelý profil?', "acceptedAnswer": { "@type": "Answer", "text": 'V řádech minut profil dočasně skryjeme z feedu. Pokud potvrdíme scam, trvale ho mažeme a zapisujeme do interní blacklist databáze, aby se nemohl znovu zaregistrovat.' } },
-          { "@type": "Question", "name": 'Co Cosmatch dělá s mým ID dokladem?', "acceptedAnswer": { "@type": "Answer", "text": 'Doklad zpracovává externí EU služba pro identity verification. Cosmatch dostane jen výsledek (ověřeno / neověřeno). Tvůj sken dokladu si neukládáme.' } },
           { "@type": "Question", "name": 'Kde najdu měsíční reporty bezpečnosti?', "acceptedAnswer": { "@type": "Answer", "text": 'Na této stránce. Aktualizujeme statistiky reportů, zablokovaných profilů a ověřených uživatelů každý měsíc po ostrém spuštění.' } }
         ]
       }) }} />
@@ -43,13 +42,13 @@ export default function VerifikacePage() {
           <hr className="rule w-12 border-gray-900 mb-8" />
           <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
             Česká republika je šestá nejzranitelnější země světa vůči romance scams.
-            Cosmatch proto staví na třech vrstvách ochrany, jejichž společným cílem
+            Cosmatch proto staví na dvou vrstvách ochrany, jejichž společným cílem
             je jediné: aby ses na cosmatch.cz nemusela bát.
           </p>
         </header>
 
         <section className="mb-16">
-          <p className="eyebrow text-gray-500 mb-4">Tři vrstvy</p>
+          <p className="eyebrow text-gray-500 mb-4">Dvě vrstvy</p>
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-12">
             Co děláme proti scammerům.
           </h2>
@@ -78,21 +77,6 @@ export default function VerifikacePage() {
                   telefonní číslo, což je pro většinu botů příliš drahá překážka.
                 </p>
                 <p className="text-sm text-gray-500 italic">Žádné e-maily z mailinatoru, žádné fake registrace.</p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-[auto,1fr] gap-x-8">
-              <div className="roman text-3xl text-pink-500 pt-1">III</div>
-              <div>
-                <h3 className="serif text-2xl text-gray-900 font-medium mb-3 leading-tight">Povinná ID verifikace pro Cosmatch Serious</h3>
-                <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-3">
-                  Každý uživatel tarifu Cosmatch Serious projde kontrolou totožnosti
-                  přes renomovanou EU službu (občanský průkaz + selfie, zabere 2 minuty).
-                  Po ověření získá profil zelený štítek <span className="inline-flex items-center gap-1 align-middle text-emerald-600 font-medium"><svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Ověřeno</span> a uvidí jen ostatní ověřené.
-                </p>
-                <p className="text-sm text-gray-500 italic">
-                  Bez ověření Serious nefunguje. Pokud verifikaci nedokončíš do 7 dnů od platby, vracíme peníze zpět.
-                </p>
               </div>
             </div>
           </div>
@@ -153,20 +137,6 @@ export default function VerifikacePage() {
               Cosmatch ještě nezačal naostro — tato čísla aktualizujeme každý měsíc od ostrého spuštění.
             </p>
           </div>
-        </section>
-
-        <section className="bg-white rounded-3xl border border-gray-100 p-10 mt-12">
-          <p className="eyebrow text-pink-500 mb-4">Chceš ověřit svůj profil?</p>
-          <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">
-            ID verifikace je v tarifu Cosmatch Serious.
-          </h2>
-          <p className="text-gray-600 leading-relaxed mb-8 text-[1.0625rem]">
-            Ověřením získáš zelený štítek <span className="inline-flex items-center gap-1 align-middle text-emerald-600 font-medium"><svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Ověřeno</span>, prémiové filtry
-            a možnost vidět jen ověřené profily.
-          </p>
-          <Link href="/premium" className="inline-flex items-center justify-center bg-gray-900 text-white px-8 py-4 rounded-full text-base font-medium hover:bg-gray-800 transition-all">
-            Přejít na předplatné
-          </Link>
         </section>
 
         <footer className="mt-20 pt-12 border-t border-gray-200">

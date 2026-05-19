@@ -44,9 +44,9 @@ const TIERS: Tier[] = [
     priceId: 'pri_01krneagtvx17vy1yebscmr0a5',
     name: 'Cosmatch+',
     pricePerMonth: '249 Kč',
-    priceTagline: 'měsíčně · 597 Kč / 3 měsíce · 1 788 Kč / rok',
+    priceTagline: 'měsíčně · 597 Kč / 3 měsíce · 2 088 Kč / rok',
     audience: 'Pro ty, co Cosmatch reálně používají',
-    description: 'Dostupný standard za 249 Kč měsíčně. Vidíš všechno, ale o 36 % levněji než Tinder Gold. Roční plán 1 788 Kč — sleva 40 %.',
+    description: 'Dostupný standard za 249 Kč měsíčně. Vidíš všechno, ale o 36 % levněji než Tinder Gold. Roční plán 2 088 Kč — sleva 30 %.',
     features: [
       'Neomezené lajky a zprávy',
       'Hloubková personologická analýza',
@@ -59,24 +59,8 @@ const TIERS: Tier[] = [
     highlight: true,
     badge: 'Nejoblíbenější',
   },
-  {
-    id: 'serious',
-    priceId: 'pri_01krnededcj37m5g4bmy5y7zcy',
-    name: 'Cosmatch Serious',
-    pricePerMonth: '399 Kč',
-    priceTagline: 'měsíčně · 987 Kč / 3 měsíce · 2 988 Kč / rok',
-    audience: 'Pro 35+ kteří chtějí vědět, s kým mluví',
-    description: 'Pro lidi, kteří už zbytečně netratí čas. Povinná ID verifikace každého Serious uživatele — žádné fake profily, žádné kompromisy.',
-    features: [
-      'Vše z Cosmatch+',
-      'Povinná ID verifikace · zelený štítek „Ověřeno“',
-      'Vidíš jen ostatní ověřené Serious uživatele',
-      'Prémiové filtry: vzdělání, výška, přesný záměr',
-      'Prioritní matchmaking s ostatními Serious',
-      'Vlastní privátní podpora · odpovídáme do 12 h',
-    ],
-    ctaLabel: 'Vybrat Serious',
-  },
+  // Cosmatch Serious tier — bude přidán po dosažení 1 000+ platících (single-tier launch)
+  // ID verifikace + green badge přijde s ním
 ]
 
 declare global {
@@ -194,6 +178,35 @@ export default function PremiumPage() {
           </p>
         </header>
 
+        {/* Price summary — pro reviewera + uživatele */}
+        <section className="mb-12 bg-white border border-gray-200 rounded-3xl p-8" id="ceny">
+          <p className="eyebrow text-pink-500 mb-3">Ceník Cosmatch+</p>
+          <h2 className="serif-display text-2xl text-gray-900 font-medium leading-tight tracking-tight mb-6">
+            Jedna služba, tři způsoby platby.
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="border border-gray-200 rounded-2xl p-5">
+              <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Měsíčně</p>
+              <p className="serif-display text-3xl text-gray-900 font-medium tabular-nums">249 Kč</p>
+              <p className="text-xs text-gray-500 mt-1">obnovení každých 30 dní</p>
+            </div>
+            <div className="border border-gray-200 rounded-2xl p-5">
+              <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">3 měsíce</p>
+              <p className="serif-display text-3xl text-gray-900 font-medium tabular-nums">597 Kč</p>
+              <p className="text-xs text-emerald-600 mt-1">Sleva 20 %</p>
+            </div>
+            <div className="border border-pink-200 bg-pink-50 rounded-2xl p-5">
+              <p className="text-xs text-pink-600 uppercase tracking-wider mb-1">Ročně</p>
+              <p className="serif-display text-3xl text-gray-900 font-medium tabular-nums">2 088 Kč</p>
+              <p className="text-xs text-pink-600 mt-1">Sleva 30 %</p>
+            </div>
+          </div>
+          <p className="text-xs text-gray-500 mt-4 leading-relaxed">
+            Ceny včetně DPH (digitální služba dle § 54 ZDPH osvobozená). Předplatné se obnovuje automaticky,
+            zrušení kdykoli v profilu bez sankce. Více v <a href="/opakovane-platby" className="text-pink-500 underline">Opakované platby</a>.
+          </p>
+        </section>
+
         {/* Tiers */}
         <section className="space-y-6 mb-20">
           {TIERS.map(tier => {
@@ -259,21 +272,6 @@ export default function PremiumPage() {
             )
           })}
         </section>
-
-        <div className="bg-emerald-50 border border-emerald-200 rounded-3xl p-8 mb-20">
-          <p className="eyebrow text-emerald-600 mb-3">Důležité k Cosmatch Serious</p>
-          <h3 className="serif text-2xl text-gray-900 font-medium leading-tight mb-3">
-            Ověření je povinné.
-          </h3>
-          <p className="text-gray-700 leading-relaxed text-[1.0625rem] mb-3">
-            Hned po platbě tě nasměrujeme na rychlé ID ověření (občanský průkaz + selfie,
-            zabere 2 minuty). Bez něj nezískáš zelený štítek ani neuvidíš ostatní ověřené.
-          </p>
-          <p className="text-sm text-gray-600 italic">
-            Pokud ověření neuděláš do 7 dnů, peníze ti vrátíme zpět — bez ptaní.
-          </p>
-        </div>
-
         {/* Co je v ceně, co není */}
         <section className="mb-20">
           <p className="eyebrow text-pink-500 mb-4">Co Cosmatch nedělá</p>
@@ -310,9 +308,8 @@ export default function PremiumPage() {
             {[
               ['Mohu předplatné kdykoli zrušit?','Ano. Zrušení je v profilu jedním klikem. Zbývající dny ti zůstanou aktivní.'],
               ['Jak se platí?','Platbu zpracovává Paddle — přijímá karty Visa, Mastercard, Apple Pay i Google Pay. EU faktura s DPH automaticky.'],
-              ['Co se stane, když přejdu z Plus na Serious?','Doplatíš jen rozdíl za zbývající dny. Automaticky se zapne ID verifikace.'],
               ['Vrátíte mi peníze, když to nebude fungovat?','Do 14 dnů ano, bez vysvětlení. Po 14 dnech vyhodnocujeme případ od případu.'],
-              ['Můžu platit ročně nebo kvartálně?','Ano — Cosmatch+ má tři plány: měsíčně 249 Kč, kvartálně 597 Kč (sleva 20 %), ročně 1 788 Kč (sleva 40 %). Cosmatch Serious také tři: měsíčně 399 Kč, kvartálně 987 Kč (sleva 18 %), ročně 2 988 Kč (sleva 38 %). Pokud najdeš někoho dřív, zbývající dny ti zůstanou aktivní nebo můžeš požádat o vrácení alikvotní části.'],
+              ['Můžu platit ročně nebo kvartálně?','Ano — Cosmatch+ má tři plány: měsíčně 249 Kč, kvartálně 597 Kč (sleva 20 %), ročně 2 088 Kč (sleva 30 %). Pokud najdeš někoho dřív, zbývající dny ti zůstanou aktivní nebo můžeš požádat o vrácení alikvotní části.'],
             ].map(([q, a]) => (
               <details key={q as string} className="border-b border-gray-200 pb-8 last:border-b-0 group" open>
                 <summary className="serif text-xl text-gray-900 font-medium leading-tight mb-3 cursor-pointer list-none">

@@ -56,10 +56,10 @@ export default function ManifestDuvery() {
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": [
-          { "@type": "Question", "name": 'Co znamená Manifest důvěry Cosmatch?', "acceptedAnswer": { "@type": "Answer", "text": 'Manifest důvěry je veřejný závazek Cosmatch vůči uživatelům. Obsahuje 8 principů, kterými se Cosmatch zavazuje vést — od žádného swipování pro swipování, přes zákaz reklamy a prodeje dat, až po povinnou ID verifikaci pro Cosmatch Serious.' } },
+          { "@type": "Question", "name": 'Co znamená Manifest důvěry Cosmatch?', "acceptedAnswer": { "@type": "Answer", "text": 'Manifest důvěry je veřejný závazek Cosmatch vůči uživatelům. Obsahuje 8 principů, kterými se Cosmatch zavazuje vést — od žádného swipování pro swipování, přes zákaz reklamy a prodeje dat, až po transparentní reportování bezpečnostních incidentů.' } },
           { "@type": "Question", "name": 'Prodává Cosmatch moje data?', "acceptedAnswer": { "@type": "Answer", "text": 'Ne. Cosmatch je financován výhradně předplatným uživatelů. Tvoje datum narození používáme jen k výpočtu kompatibility. Nikdy ho neprodáváme, nepředáváme reklamním sítím ani datovým brokerem.' } },
-          { "@type": "Question", "name": 'Jak Cosmatch chrání proti scammerům?', "acceptedAnswer": { "@type": "Answer", "text": 'Tři vrstvy ochrany: Cloudflare Turnstile proti botům, SSO bez hesla (Google/Facebook), a povinná ID verifikace pro Cosmatch Serious tier. Detailně popsáno na stránce Jak ověřujeme profily.' } },
-          { "@type": "Question", "name": 'Jsou u Cosmatch reklamy?', "acceptedAnswer": { "@type": "Answer", "text": 'Ne, a nikdy nebudou. Cosmatch financují uživatelé skrz předplatné Cosmatch+ (od 249 Kč/měs, ročně 1 788 Kč) a Cosmatch Serious (od 399 Kč/měs, ročně 2 988 Kč). Tvoje pozornost není zboží.' } },
+          { "@type": "Question", "name": 'Jak Cosmatch chrání proti scammerům?', "acceptedAnswer": { "@type": "Answer", "text": 'Dvě vrstvy ochrany: Cloudflare Turnstile proti botům a SSO bez hesla (Google/Facebook). Detailně popsáno na stránce Jak chráníme uživatele. ID verifikace s green badge se připravuje pro budoucí Serious tier.' } },
+          { "@type": "Question", "name": 'Jsou u Cosmatch reklamy?', "acceptedAnswer": { "@type": "Answer", "text": 'Ne, a nikdy nebudou. Cosmatch financují uživatelé skrz předplatné Cosmatch+ (od 249 Kč/měs, ročně 2 088 Kč). Tvoje pozornost není zboží.' } },
           { "@type": "Question", "name": 'Co když Cosmatch v něčem selže?', "acceptedAnswer": { "@type": "Answer", "text": 'Měsíčně zveřejníme statistiky reportů a zablokovaných profilů. Pokud Cosmatch v něčem zhorší, dozvíš se to první. Refundace předplatného do 14 dnů bez vysvětlení.' } }
         ]
       }) }} />
@@ -130,21 +130,8 @@ export default function ManifestDuvery() {
                 <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
               </span>
               <div>
-                <p className="serif text-lg text-gray-900 font-medium mb-1">ID verifikace v tarifu Cosmatch Serious</p>
-                <p className="text-gray-700 leading-relaxed text-[0.95rem]">
-                  Uživatel projde ověřením totožnosti přes EU službu (Veriff / iDenfy).
-                  Po úspěšném ověření získá zelený štítek <span className="inline-flex items-center gap-1 align-middle text-emerald-600 font-semibold text-xs">
-                    <svg className="w-2.5 h-2.5" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Ověřeno
-                  </span>, který vidí každý.
-                </p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-[auto,1fr] gap-4">
-              <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-500 text-white flex-shrink-0 mt-1">
-                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-              </span>
-              <div>
+                <p className="serif text-lg text-gray-900 font-medium mb-1">Vícevrstvá ochrana před scammery</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">Cloudflare Turnstile anti-bot, SSO bez hesla a transparentní reportování. Detaily na stránce <a href="/verifikace" className="text-pink-500 hover:underline">Bezpečnost</a>.</p>
                 <p className="serif text-lg text-gray-900 font-medium mb-1">Filtr „jen ověřené"</p>
                 <p className="text-gray-700 leading-relaxed text-[0.95rem]">
                   V nastavení si zapneš, aby ti aplikace zobrazovala jen profily se zeleným štítkem.
@@ -172,9 +159,9 @@ export default function ManifestDuvery() {
               className="inline-flex items-center justify-center bg-gray-900 text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-gray-800 transition">
               Jak ověřujeme profily →
             </Link>
-            <Link href="/premium"
+            <Link href="/verifikace"
               className="inline-flex items-center justify-center text-gray-700 border border-gray-300 hover:border-gray-900 px-6 py-3 rounded-full text-sm font-medium transition">
-              Cosmatch Serious
+              Jak chráníme uživatele
             </Link>
           </div>
         </section>

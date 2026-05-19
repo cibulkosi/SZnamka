@@ -99,7 +99,7 @@ export default function CookiesPage() {
           <section>
             <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">Cookies z platby (GoPay)</h2>
             <p>
-              Pokud platíš Cosmatch+ nebo Cosmatch Serious, GoPay s.r.o. (česká platební instituce regulovaná ČNB) si v rámci checkout flow uloží své vlastní cookies pro zpracování platby. Cosmatch k těmto cookies nemá přístup. Více: <a href="https://www.gopay.com/cs/ochrana-osobnich-udaju" target="_blank" rel="noopener" className="text-pink-500 underline">gopay.com/cs/ochrana-osobnich-udaju</a>.
+              Pokud platíš Cosmatch+, GoPay s.r.o. (česká platební instituce regulovaná ČNB) si v rámci checkout flow uloží své vlastní cookies pro zpracování platby. Cosmatch k těmto cookies nemá přístup. Více: <a href="https://www.gopay.com/cs/ochrana-osobnich-udaju" target="_blank" rel="noopener" className="text-pink-500 underline">gopay.com/cs/ochrana-osobnich-udaju</a>.
             </p>
           </section>
 

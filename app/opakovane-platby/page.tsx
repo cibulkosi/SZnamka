@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 const TITLE = 'Opakované platby | Cosmatch'
-const DESC = 'Jak fungují opakované platby u Cosmatch+. Cosmatch+ 249 Kč/měs (597/3 měs · 1 788/rok), Cosmatch Serious 399 Kč/měs (987/3 měs · 2 988/rok). Automatická obnova, zrušení kdykoli z profilu, žádná smlouva na dobu určitou.'
+const DESC = 'Jak fungují opakované platby u Cosmatch+. Měsíčně 249 Kč, kvartálně 597 Kč (sleva 20 %), ročně 2 088 Kč (sleva 30 %). Automatická obnova, zrušení kdykoli z profilu, žádná smlouva na dobu určitou.'
 const URL = 'https://cosmatch.cz/opakovane-platby'
 
 export const metadata: Metadata = {
@@ -37,7 +37,7 @@ export default function OpakovanePlatbyPage() {
           <section>
             <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">Co jsou opakované platby</h2>
             <p className="mb-3">
-              Opakovaná platba (anglicky <em>recurring payment</em>) je automatické stržení předem dohodnuté částky z vaší platební karty v pravidelném intervalu — u Cosmatch+ <strong className="text-gray-900 font-medium">249 Kč / měsíc</strong>, <strong className="text-gray-900 font-medium">597 Kč / 3 měsíce</strong> nebo <strong className="text-gray-900 font-medium">1 788 Kč / rok</strong> dle plánu (Cosmatch Serious: 399 / 987 / 2 988 Kč).
+              Opakovaná platba (anglicky <em>recurring payment</em>) je automatické stržení předem dohodnuté částky z vaší platební karty v pravidelném intervalu — u Cosmatch+ <strong className="text-gray-900 font-medium">249 Kč / měsíc</strong>, <strong className="text-gray-900 font-medium">597 Kč / 3 měsíce</strong> nebo <strong className="text-gray-900 font-medium">2 088 Kč / rok</strong> dle plánu, který si vybereš.
             </p>
             <p className="mb-3">
               Slouží k tomu, abyste si nemuseli každý měsíc znovu zadávat údaje karty a aby vám služba Cosmatch+ běžela bez přerušení.
@@ -51,7 +51,7 @@ export default function OpakovanePlatbyPage() {
             <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">Jak vznikne souhlas s opakovanou platbou</h2>
             <p className="mb-3"><strong className="text-gray-900 font-medium">1.</strong> V sekci <Link href="/premium" className="text-pink-500 hover:underline">Premium</Link> kliknete na tlačítko „Aktivovat Cosmatch+".</p>
             <p className="mb-3"><strong className="text-gray-900 font-medium">2.</strong> Otevře se vám zabezpečená platební brána GoPay, kde zadáte údaje své platební karty.</p>
-            <p className="mb-3"><strong className="text-gray-900 font-medium">3.</strong> Před potvrzením platby vám brána GoPay <strong className="text-gray-900 font-medium">výslovně oznámí</strong>, že potvrzením této platby souhlasíte s automatickým strháváním zvolené částky dle vybraného plánu (Cosmatch+ 249 / 597 / 1 788 Kč; Cosmatch Serious 399 / 987 / 2 988 Kč).</p>
+            <p className="mb-3"><strong className="text-gray-900 font-medium">3.</strong> Před potvrzením platby vám brána GoPay <strong className="text-gray-900 font-medium">výslovně oznámí</strong>, že potvrzením této platby souhlasíte s automatickým strháváním zvolené částky dle vybraného plánu (249 Kč / 30 dní, 597 Kč / 90 dní, nebo 2 088 Kč / 365 dní).</p>
             <p className="mb-3"><strong className="text-gray-900 font-medium">4.</strong> Po úspěšné první platbě obdržíte na váš e-mail potvrzení s detaily: výše částky, perioda, datum příští platby a odkaz pro zrušení.</p>
             <p><strong className="text-gray-900 font-medium">5.</strong> Cosmatch+ se aktivuje okamžitě.</p>
           </section>
@@ -61,12 +61,9 @@ export default function OpakovanePlatbyPage() {
             <div className="border border-gray-200 rounded-lg overflow-hidden">
               <dl className="divide-y divide-gray-200">
                 <div className="grid grid-cols-2 px-4 py-3"><dt className="text-gray-500">Služba</dt><dd className="font-medium text-gray-900">Cosmatch+</dd></div>
-                <div className="grid grid-cols-2 px-4 py-3"><dt className="text-gray-500">Cosmatch+ měsíčně</dt><dd className="font-medium text-gray-900">249 Kč / 30 dní</dd></div>
-                <div className="grid grid-cols-2 px-4 py-3"><dt className="text-gray-500">Cosmatch+ kvartálně</dt><dd className="font-medium text-gray-900">597 Kč / 90 dní <span className="text-emerald-600 text-sm">(sleva 20 %)</span></dd></div>
-                <div className="grid grid-cols-2 px-4 py-3"><dt className="text-gray-500">Cosmatch+ ročně</dt><dd className="font-medium text-gray-900">1 788 Kč / 365 dní <span className="text-emerald-600 text-sm">(sleva 40 %)</span></dd></div>
-                <div className="grid grid-cols-2 px-4 py-3"><dt className="text-gray-500">Cosmatch Serious měsíčně</dt><dd className="font-medium text-gray-900">399 Kč / 30 dní</dd></div>
-                <div className="grid grid-cols-2 px-4 py-3"><dt className="text-gray-500">Cosmatch Serious kvartálně</dt><dd className="font-medium text-gray-900">987 Kč / 90 dní <span className="text-emerald-600 text-sm">(sleva 18 %)</span></dd></div>
-                <div className="grid grid-cols-2 px-4 py-3"><dt className="text-gray-500">Cosmatch Serious ročně</dt><dd className="font-medium text-gray-900">2 988 Kč / 365 dní <span className="text-emerald-600 text-sm">(sleva 38 %)</span></dd></div>
+                <div className="grid grid-cols-2 px-4 py-3"><dt className="text-gray-500">Měsíčně</dt><dd className="font-medium text-gray-900">249 Kč / 30 dní</dd></div>
+                <div className="grid grid-cols-2 px-4 py-3"><dt className="text-gray-500">Kvartálně</dt><dd className="font-medium text-gray-900">597 Kč / 90 dní <span className="text-emerald-600 text-sm">(sleva 20 %)</span></dd></div>
+                <div className="grid grid-cols-2 px-4 py-3"><dt className="text-gray-500">Ročně</dt><dd className="font-medium text-gray-900">2 088 Kč / 365 dní <span className="text-emerald-600 text-sm">(sleva 30 %)</span></dd></div>
                 <div className="grid grid-cols-2 px-4 py-3"><dt className="text-gray-500">Měna</dt><dd className="font-medium text-gray-900">CZK</dd></div>
                 <div className="grid grid-cols-2 px-4 py-3"><dt className="text-gray-500">Perioda obnovy</dt><dd className="font-medium text-gray-900">Dle zvoleného plánu (30 / 90 / 365 dní)</dd></div>
                 <div className="grid grid-cols-2 px-4 py-3"><dt className="text-gray-500">Doba trvání</dt><dd className="font-medium text-gray-900">Na dobu neurčitou (do zrušení)</dd></div>
