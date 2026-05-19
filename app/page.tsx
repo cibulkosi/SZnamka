@@ -115,7 +115,7 @@ export default function LandingPage() {
         <div className="max-w-3xl mx-auto">
           <p className="eyebrow text-pink-500 mb-6">Jak to funguje</p>
           <h2 className="serif-display text-4xl sm:text-6xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-20">
-            Tři kroky.<br/>Žádné dotazníky.
+            Tři kroky.<br/>Žádné zdlouhavé dotazníky.
           </h2>
 
           <div className="space-y-16">
@@ -123,17 +123,17 @@ export default function LandingPage() {
               {
                 num: 'I',
                 title: 'Zadej datum narození',
-                body: 'Cosmatch z něj spočítá tvůj numerologický archetyp — jeden z dvanácti. Vidíš jméno, vlastnosti, stín, jak miluješ. Žádné dotazníky, žádné testy osobnosti.'
+                body: 'Cosmatch z něj spočítá tvůj numerologický archetyp — jeden z dvanácti. Vidíš jméno svého archetypu, jeho vlastnosti, nebo to, jak miluješ.'
               },
               {
                 num: 'II',
-                title: 'Uvidíš profily, ne karty',
-                body: 'Místo nekonečného swipování dostaneš pět profilů denně — seřazené podle skutečné kompatibility. Každý profil ti řekne, proč právě on.'
+                title: 'Na seznamce uvidíš profily, ne jen karty',
+                body: 'Místo nekonečného swipování se můžeš kouknout zdarma na pět profilů denně seřazených podle skutečné kompatibility. Každý profil ti řekne, proč právě tato osoba je pro Tebe ta pravá.'
               },
               {
                 num: 'III',
                 title: 'Potkáš se v reálném světě',
-                body: 'Match → zpráva → káva. Cosmatch je navržen tak, aby tě co nejrychleji odpojil — a vrátil zpátky do skutečného života.'
+                body: 'Match → zpráva → káva. Odpoj se co nejrychleji a vrať se zpátky do skutečného života.'
               },
             ].map((s) => (
               <div key={s.num} className="grid grid-cols-[auto,1fr] gap-x-8 sm:gap-x-12">
@@ -153,7 +153,7 @@ export default function LandingPage() {
         <div className="max-w-3xl mx-auto">
           <p className="eyebrow text-pink-400 mb-6">Pět kategorií vztahu</p>
           <h2 className="serif-display text-4xl sm:text-6xl font-medium leading-[1.05] tracking-tight mb-12 text-white">
-            Každý člověk s tebou<br/>má <em className="italic text-pink-400">jiný příběh</em>.
+            Každý člověk má s tebou<br/><em className="italic text-pink-400">jiný příběh</em>.
           </h2>
           <p className="text-white/70 text-lg leading-[1.8] mb-16 max-w-xl">
             Kniha The Power of Birthdays definuje pět typů vztahu mezi dvěma daty narození.
@@ -163,11 +163,11 @@ export default function LandingPage() {
 
           <div className="space-y-8">
             {[
-              { name: 'Spřízněné duše', body: 'Hluboké, klidné spojení. Přirozený soulad bez snahy. Vzácné a vyhledávané.' },
-              { name: 'Láska a přátelství', body: 'Vzájemná podpora, sdílené hodnoty, pohoda. Dlouhodobý vztah, ne fireworky.' },
-              { name: 'Osudová přitažlivost', body: 'Intenzivní magnetický tah. Vášeň, kterou nelze ovládat. Buď okouzlující, nebo destruktivní.' },
-              { name: 'Prospěšný vztah', body: 'Komplementární partnerství — každý přináší něco, co druhému chybí. Růst.' },
-              { name: 'Náročný vztah', body: 'Vztah plný napětí a transformace. Učí tě věci, které by ses jinde nenaučil.' },
+              { name: 'Spřízněné duše', body: 'Hluboké, klidné spojení. Přirozený soulad bez snahy. Vzácné a velmi ceněné spojení.' },
+              { name: 'Láska a přátelství', body: 'Vzájemná podpora, sdílené hodnoty, pohoda. Velmi příznivá kombinace pro dlouhodobý vztah.' },
+              { name: 'Osudová přitažlivost', body: 'Intenzivní magnetická přitažlivost. Vášeň, kterou nelze ovládat. Může být jak okouzlující, tak destruktivní.' },
+              { name: 'Prospěšný vztah', body: 'Komplementární partnerství — druhý Ti přináší něco, co Ti chybí. Podporuje růst.' },
+              { name: 'Náročný vztah', body: 'Vztah plný napětí a transformace. Učí tě věci, které by ses jinde nenaučil/a.' },
             ].map((c, i) => (
               <div key={c.name} className="grid grid-cols-[auto,1fr] gap-x-8 border-b border-white/10 pb-8 last:border-b-0">
                 <div className="serif text-xl text-pink-400 leading-none pt-1 tabular-nums">{String(i+1).padStart(2,'0')}</div>
@@ -195,14 +195,14 @@ export default function LandingPage() {
         <div className="max-w-3xl mx-auto">
           <p className="eyebrow text-pink-500 mb-6">Co Cosmatch nedělá</p>
           <h2 className="serif-display text-4xl sm:text-6xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-16">
-            Méně. Pomaleji.<br/><em className="italic text-pink-500">S důvodem.</em>
+            Nezahltí Tě profily.<br/>Doručí Ti <em className="italic text-pink-500">kvalitní shody</em>.
           </h2>
 
           <div className="space-y-12">
             {[
               ['Konec bezduchému swipování.', 'Dostaneš pět profilů denně, s nejlepší shodou přesně pro tebe.'],
               ['Žádné falešné notifikace.', 'Když ti přijde zpráva, někdo ti opravdu napsal.'],
-              ['Žádné placené pozice v algoritmu.', 'Vzorec si můžeš přepočítat. Placené předplatné mění tvé možnosti, ne tvoji viditelnost.'],
+              ['Žádné placené pozice v algoritmu.', 'Placené předplatné mění tvé možnosti, ne tvoji viditelnost.'],
               ['Žádné reklamy. Nikdy.', 'Cosmatch financují uživatelé, ne inzerenti.'],
             ].map(([t, b]) => (
               <div key={t} className="border-b border-gray-200 pb-12 last:border-b-0">
@@ -223,9 +223,9 @@ export default function LandingPage() {
       {/* FINAL CTA */}
       <section className="py-32 px-6 bg-white border-t border-gray-200">
         <div className="max-w-2xl mx-auto text-center">
-          <p className="eyebrow text-pink-500 mb-6">Začni teď</p>
+          <p className="eyebrow text-pink-500 mb-6">Začni třeba hned teď</p>
           <h2 className="serif-display text-4xl sm:text-6xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-8">
-            30 sekund.<br/>Žádná registrace.
+            Stačí Ti 30 sekund.<br/>Nepotřebuješ žádnou registraci.
           </h2>
           <p className="text-gray-600 leading-relaxed text-lg mb-12 max-w-lg mx-auto">
             Zadej datum narození a uvidíš svůj numerologický archetyp.
