@@ -75,6 +75,7 @@ function HingeProfile({
  onPass,
  onLike,
  actionState,
+ currentUser,
 }: {
  profile: Profile
  compat: Compatibility | null
@@ -83,6 +84,7 @@ function HingeProfile({
  onPass: () => void
  onLike: () => void
  actionState: 'like' | 'pass' | null
+ currentUser: Profile | null
 }) {
  const scrollRef = useRef<HTMLDivElement>(null)
 
@@ -136,6 +138,42 @@ function HingeProfile({
  <p className="text-pink-500 text-xs font-semibold mt-2 flex items-center gap-1"> <span></span> Oboustranná numerologická shoda
  </p> )}
  </div> )}
+
+ {/* Kolo kompatibility — Premium feature (Cosmatch+) */}
+ <div className="px-5 py-4 border-b border-gray-100 relative">
+   <p className="text-xs font-bold text-gray-400 uppercase tracking-wide mb-3 flex items-center justify-between">
+     <span>Kolo kompatibility</span>
+     {!currentUser?.premium && (
+       <span className="text-pink-500 text-[10px] font-bold">COSMATCH+</span>
+     )}
+   </p>
+   <div className={`space-y-2 ${!currentUser?.premium ? 'blur-sm select-none pointer-events-none' : ''}`}>
+     {[
+       { label: 'Data narození', weight: 35, color: 'bg-pink-500' },
+       { label: 'Hodnoty &amp; vize', weight: 20, color: 'bg-purple-500' },
+       { label: 'Osobnost', weight: 15, color: 'bg-blue-500' },
+       { label: 'Intimní soulad', weight: 10, color: 'bg-rose-400' },
+       { label: 'Životní styl', weight: 10, color: 'bg-emerald-500' },
+       { label: 'Společné zájmy', weight: 5, color: 'bg-amber-500' },
+       { label: 'Aktivita', weight: 5, color: 'bg-gray-500' },
+     ].map(layer => (
+       <div key={layer.label} className="flex items-center gap-2">
+         <span className="text-xs text-gray-600 w-32 flex-shrink-0" dangerouslySetInnerHTML={{ __html: layer.label }} />
+         <div className="flex-1 bg-gray-100 rounded-full h-2 overflow-hidden">
+           <div className={`h-full ${layer.color}`} style={{ width: `${Math.min(100, enhancedScore + Math.random() * 20 - 10)}%` }} />
+         </div>
+         <span className="text-xs text-gray-500 w-8 text-right">{layer.weight}%</span>
+       </div>
+     ))}
+   </div>
+   {!currentUser?.premium && (
+     <div className="absolute inset-0 flex items-center justify-center pt-6">
+       <a href="/premium" className="bg-gray-900 text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-gray-800 transition shadow-lg">
+         Odemknout v Cosmatch+
+       </a>
+     </div>
+   )}
+ </div>
 
  {/* Základní info: povolání / znamení / vzdělání */}
  <div className="px-5 py-4 border-b border-gray-100"> <div className="flex flex-wrap gap-x-5 gap-y-1.5 text-sm text-gray-500"> {profile.occupation && (
