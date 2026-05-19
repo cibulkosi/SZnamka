@@ -169,18 +169,18 @@ export default function WaitlistPage() {
         {!submitted ? (
           <>
             <header className="mb-16">
-              <p className="eyebrow text-pink-500 mb-6">Waitlist · 3 města</p>
+              <p className="eyebrow text-pink-500 mb-6">Waitlist</p>
               <h1 className="serif-display text-5xl sm:text-6xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-8">
                 Seznamka<br/>postavená na <em className="italic text-pink-500">numerologii</em>,<br/>ne na náhodě.
               </h1>
               <hr className="rule w-12 border-gray-900 mb-8" />
               <p className="text-lg text-gray-700 leading-relaxed mb-4 max-w-xl">
-                Cosmatch spočítá kompatibilitu mezi tvým a partnerovým datem narození —
-                z 366 unikátních archetypů. Místo swipování pro swipování ti nabízí
-                důvod, proč se s někým potkat.
+                Cosmatch počítá kompatibilitu mezi Tvým datem narození a datem narození
+                potenciálního partnera, a to na základě 366 unikátních archetypů.
+                Místo bezduchého swipování ti dává reálný důvod, zda se s danou osobou potkat nebo ne.
               </p>
               <p className="text-gray-500 leading-relaxed max-w-xl">
-                Spouštíme v Praze. Brno, Plzeň, Ostrava a Olomouc následují — podle toho, kde je vás víc. Bratislava jako samostatný slovenský launch později.
+                Seznamku spouštíme nejdříve ve větších městech jako je Praha, Brno, Plzeň, Ostrava a Olomouc, prostě tam, kde vás bude nejvíc. Bratislava přijde jako samostatný slovenský launch později.
                 Prvních <strong className="font-medium text-gray-900">1{' '}000 lidí</strong>
                 {' '}dostane voucher na 3{' '}měsíce Cosmatch+ zdarma.
               </p>
@@ -208,9 +208,6 @@ export default function WaitlistPage() {
                       <p className={`serif-display text-3xl sm:text-4xl font-medium tracking-tight tabular-nums ${
                         isActive ? 'text-pink-500' : 'text-gray-900'
                       }`}>{n.toLocaleString('cs-CZ')}</p>
-                      <p className="text-[10px] sm:text-xs text-gray-400 mt-1 tracking-wide">
-                        {c === 'Praha' ? 'spouštíme první' : c === 'Brno' ? 'druhé v pořadí' : 'třetí v pořadí'}
-                      </p>
                     </button>
                   )
                 })}
@@ -238,7 +235,7 @@ export default function WaitlistPage() {
             <section className="mb-16">
               <p className="eyebrow text-pink-500 mb-4">Přidej se</p>
               <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-8">
-                Buď u toho jako první.
+                Prozkoumej seznamku jako jeden z prvních členů!
               </h2>
 
               <form onSubmit={handleSubmit} className="space-y-7">
@@ -278,6 +275,7 @@ export default function WaitlistPage() {
                     <option value="Praha">Praha</option>
                     <option value="Brno">Brno</option>
                     <option value="Plzeň">Plzeň</option>
+                    <option value="České Budějovice">České Budějovice</option>
                     <option value="Ostrava">Ostrava</option>
                     <option value="Olomouc">Olomouc</option>
                     <option value="Bratislava">Bratislava</option>
@@ -316,7 +314,7 @@ export default function WaitlistPage() {
                     {submitting ? 'Přidávám tě…' : 'Rezervovat místo'}
                   </button>
                   <p className="text-xs text-gray-400 text-center mt-4">
-                    Žádný spam. Pouze e-mail, když spustíme v tvém městě.
+                    Neposíláme žádný spam. Pouze e-mail, když seznamku spustíme ve tvém městě.
                   </p>
                 </div>
               </form>
@@ -364,11 +362,10 @@ export default function WaitlistPage() {
               <section className="mb-16">
                 <p className="eyebrow text-pink-500 mb-4">Tip</p>
                 <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">
-                  Vyber město a uvidíš čtvrti.
+                  Vyber město.
                 </h2>
                 <p className="text-gray-600 leading-relaxed text-[1.0625rem]">
-                  Když zvolíš Prahu, Brno, Plzeň, Ostravu, Olomouc nebo Bratislavu, ukážeme ti živou hustotu waitlistu
-                  podle jednotlivých čtvrtí. Pomáhá nám to rozhodnout, kde otevřít první.
+                  Když zvolíš jako svoje nejbližší město Prahu, Brno, Plzeň, České Budějovice, Ostravu, Olomouc nebo Bratislavu, ukážeme ti živou hustotu waitlistu. Pomáhá nám to rozhodnout, kde otevřít první.
                 </p>
               </section>
             )}
@@ -378,13 +375,13 @@ export default function WaitlistPage() {
             <section className="mb-16">
               <p className="eyebrow text-pink-500 mb-4">Co dostaneš</p>
               <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-10">
-                Tři důvody být první.
+                Tři důvody proč být první.
               </h2>
 
               <div className="space-y-10">
                 {[
                   ['I','Voucher na 3 měsíce Cosmatch+','Prvních 1{\ }000 dostane prémium zdarma — neomezené shody, otevírání profilů bez čekání, hlubší analýza.'],
-                  ['II','Odznak Zakládajícího člena','Tvůj profil bude označen jako „Zakládající" — podpis u příběhu, který pomáháš psát od první stránky.'],
+                  ['II','Odznak Zakládajícího člena','Můžeš si dát na Tvůj profil odznak „Zakládající člen" a získáš tak podpis u příběhu, který pomáháš psát od první stránky.'],
                   ['III','Hlas v rozhodování','Prvních 1{\ }000 dostane přístup k privátnímu chatu se zakladatelkou a možnost ovlivnit, kam se Cosmatch posune.'],
                 ].map(([num, title, body]) => (
                   <div key={num} className="grid grid-cols-[auto,1fr] gap-x-8">
