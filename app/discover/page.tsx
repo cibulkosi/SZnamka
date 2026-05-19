@@ -5,7 +5,8 @@ import Link from 'next/link'
 import { supabase, loadCurrentProfile, type Profile, type Compatibility, getZodiac } from '@/lib/supabase'
 import { CompatBadges, ScoreRing } from '@/components/CompatBadges'
 import { ProfileQuestion, PROFILE_QUESTIONS, type Question } from '@/components/ProfileQuestion'
-import { computeCompatibility, profileCompleteness, isOutsideDistanceLimit, isOutsidePhysicalPrefs, isChildrenIncompatible, isSmokingIncompatible } from '@/lib/compat'
+import { ARCHETYPES, lifePathNumber } from '@/lib/archetypes'
+import { computeCompatibility, profileCompleteness, isOutsideDistanceLimit, isOutsidePhysicalPrefs, isChildrenIncompatible, isSmokingIncompatible, tierFallbackBoost } from '@/lib/compat'
 
 // Pastelové gradienty jako avatar fallback (bez fotky)
 const AVATAR_GRADIENTS = [
@@ -433,18 +434,41 @@ export default function DiscoverPage() {
 
  // Vrstva 2 – Hard KO: vylouč profily mimo limit vzdálenosti uživatele
  const maxDistKm = (u as Profile & { max_distance?: number }).max_distance ?? 100
- const profsInRange = profs.filter(p =>
-        !isOutsideDistanceLimit(u, p, maxDistKm) &&
-        !isOutsidePhysicalPrefs(u, p) &&
-        !isChildrenIncompatible(u, p) &&
-        !isSmokingIncompatible(u, p)
-      )
+ const profsInRange = profs.filter(p => {
+        if (isOutsideDistanceLimit(u, p, maxDistKm)) return false
+        if (isOutsidePhysicalPrefs(u, p)) return false
+        if (isChildrenIncompatible(u, p)) return false
+        if (isSmokingIncompatible(u, p)) return false
+
+        // Premium filtry: aktivní jen pro Cosmatch+ uživatele
+        if (u.premium) {
+          const fwd = compatMap[p.birthday]
+          if ((u as Profile & { filter_soul_mates_only?: boolean }).filter_soul_mates_only) {
+            if (!fwd?.soul_mates) return false
+          }
+          if ((u as Profile & { filter_mutual_only?: boolean }).filter_mutual_only) {
+            if (!fwd?.is_mutual) return false
+          }
+        }
+        return true
+      })
 
  // Vypočítej enhanced scores — s Tension Score (vážený průměr obou perspektiv)
  const scores: Record<string, number> = {}
  profsInRange.forEach(p => {
- const fwd = compatMap[p.birthday]?.score ?? null    // co vidí user o profilu
- const rev = reverseMap[p.birthday]?.score ?? null   // co vidí profil o userovi
+ let fwd = compatMap[p.birthday]?.score ?? null    // co vidí user o profilu
+ let rev = reverseMap[p.birthday]?.score ?? null   // co vidí profil o userovi
+ // 3-tier fallback: pokud book lookup chybí (žádný záznam v DB), použij life-path tier matrix
+ if (fwd === null && u.birthday && p.birthday) {
+   const myLP = lifePathNumber(`${u.birth_year}-${u.birthday}`)
+   const otherLP = lifePathNumber(`${p.birth_year}-${p.birthday}`)
+   fwd = tierFallbackBoost(myLP, otherLP, ARCHETYPES)
+ }
+ if (rev === null && u.birthday && p.birthday) {
+   const myLP = lifePathNumber(`${p.birth_year}-${p.birthday}`)
+   const otherLP = lifePathNumber(`${u.birth_year}-${u.birthday}`)
+   rev = tierFallbackBoost(myLP, otherLP, ARCHETYPES)
+ }
  // Tension Score: 65 % perspektiva uživatele + 35 % perspektiva protistrany
  const bookScore = fwd !== null
  ? (rev !== null ? fwd * 0.65 + rev * 0.35 : fwd)

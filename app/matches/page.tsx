@@ -185,13 +185,31 @@ export default function MatchesPage() {
             </Link>
           </div>
         ) : (
-          <div className="space-y-3">
-            {displayList.map(p => {
+          <div className="space-y-3 relative">
+            {/* Premium gate pro 'Líbím se' tab — free user vidí blur + count + CTA */}
+            {tab === 'liked' && !user?.premium && displayList.length > 0 && (
+              <div className="absolute inset-0 z-10 flex items-center justify-center pt-20 pointer-events-none">
+                <div className="bg-white border border-pink-200 rounded-3xl p-8 max-w-sm text-center shadow-xl pointer-events-auto">
+                  <p className="eyebrow text-pink-500 mb-3">Cosmatch+</p>
+                  <h3 className="serif text-2xl text-gray-900 font-medium mb-3">
+                    {displayList.length} {displayList.length === 1 ? 'člověk' : displayList.length < 5 ? 'lidé' : 'lidí'} tě lajkne.
+                  </h3>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-6">
+                    V Cosmatch+ uvidíš, kdo přesně to je — a můžeš mu/jí napsat jako první.
+                  </p>
+                  <Link href="/premium" className="inline-flex items-center justify-center bg-gray-900 text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-gray-800 transition">
+                    Odemknout v Cosmatch+
+                  </Link>
+                </div>
+              </div>
+            )}
+            <div className={tab === 'liked' && !user?.premium ? 'blur-md select-none pointer-events-none' : ''}>
+              {displayList.map(p => {
               const c = compats[p.birthday]
               const age = p.birth_year ? new Date().getFullYear() - p.birth_year : null
               return (
                 <Link key={p.id} href={`/discover`}
-                  className="block bg-white border border-gray-100 hover:border-gray-300 rounded-3xl p-5 transition-all">
+                  className="block bg-white border border-gray-100 hover:border-gray-300 rounded-3xl p-5 transition-all mb-3">
                   <div className="flex items-center gap-4">
                     <Avatar name={p.name} />
                     <div className="flex-1 min-w-0">
@@ -220,6 +238,7 @@ export default function MatchesPage() {
                 </Link>
               )
             })}
+            </div>
           </div>
         )}
       </div>

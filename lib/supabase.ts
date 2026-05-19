@@ -58,6 +58,10 @@ export type Profile = {
   // ── Compatibility filter (uživatel si volí min %) ──────────
   min_compatibility?: number      // 0 / 25 / 50 / 75 — pod tuto hranici se profil nezobrazí
 
+  // ── Premium filtry (Cosmatch+) ──────────
+  filter_soul_mates_only?: boolean   // jen profily ze Soul Mates kategorie
+  filter_mutual_only?: boolean       // jen profily s mutual ↔ kompatibilitou
+
   // ── Opt-in deal-breakers ──────────
   smoking_dealbreaker?: boolean   // pokud true: 'never' uživatel × 'often' partner → HARD FILTER
 

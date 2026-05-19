@@ -246,6 +246,49 @@ export default function ProfilePage() {
             </label>
           </div>
 
+          {/* Premium filtry (jen pro Cosmatch+) */}
+          {user.premium && (
+            <div className="bg-pink-50 border border-pink-200 rounded-2xl p-5 mb-3">
+              <p className="text-xs font-bold text-pink-600 uppercase tracking-wide mb-3">Cosmatch+ filtry</p>
+              <label className="flex items-start gap-3 cursor-pointer mb-3">
+                <input
+                  type="checkbox"
+                  checked={!!(user as typeof user & { filter_soul_mates_only?: boolean }).filter_soul_mates_only}
+                  onChange={async (e) => {
+                    const newVal = e.target.checked
+                    await import('@/lib/supabase').then(({ supabase }) =>
+                      supabase.from('profiles').update({ filter_soul_mates_only: newVal }).eq('id', user.id)
+                    )
+                    setUser({ ...user, filter_soul_mates_only: newVal } as typeof user)
+                  }}
+                  className="mt-1 w-4 h-4 rounded border-gray-300"
+                />
+                <div>
+                  <span className="text-sm font-medium text-gray-900 block">Jen Spřízněné duše</span>
+                  <p className="text-xs text-gray-500 mt-1">Zobrazí se ti pouze profily ze Soul Mates kategorie podle data narození.</p>
+                </div>
+              </label>
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={!!(user as typeof user & { filter_mutual_only?: boolean }).filter_mutual_only}
+                  onChange={async (e) => {
+                    const newVal = e.target.checked
+                    await import('@/lib/supabase').then(({ supabase }) =>
+                      supabase.from('profiles').update({ filter_mutual_only: newVal }).eq('id', user.id)
+                    )
+                    setUser({ ...user, filter_mutual_only: newVal } as typeof user)
+                  }}
+                  className="mt-1 w-4 h-4 rounded border-gray-300"
+                />
+                <div>
+                  <span className="text-sm font-medium text-gray-900 block">Jen oboustranná kompatibilita ↔</span>
+                  <p className="text-xs text-gray-500 mt-1">Zobrazí se ti pouze profily, kde jste si vzájemně kompatibilní (mutual mark v knize).</p>
+                </div>
+              </label>
+            </div>
+          )}
+
           {/* Smoking dealbreaker */}
           {user.smoking === 'never' && (
             <div className="bg-white border border-gray-200 rounded-2xl p-5 mb-3">
