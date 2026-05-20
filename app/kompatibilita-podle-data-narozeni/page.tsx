@@ -57,7 +57,7 @@ const FAQ = [
   },
   {
     q: 'Jaká čísla jsou nejkompatibilnější?',
-    a: 'Záleží na konkrétní kombinaci. Obecně: 1 ladí s 3, 5 a 6; 2 s 4, 6 a 8; 4 s 2, 6 a 8. Master čísla 11, 22, 33 mají nejsilnější spojení s 2, 6 a 9. Cosmatch toto počítá pro všech 46 949 párů.',
+    a: 'Záleží na konkrétní kombinaci. Obecně: 1 ladí s 3, 5 a 6; 2 s 4, 6 a 8; 4 s 2, 6 a 8. Master čísla 11, 22, 33 mají nejsilnější spojení s 2, 6 a 9. Cosmatch toto počítá pro všechny možné kombinace párů.',
   },
   {
     q: 'Je numerologie vědecky prokázána?',
@@ -65,11 +65,11 @@ const FAQ = [
   },
   {
     q: 'Čím se Cosmatch liší od horoskopu?',
-    a: 'Horoskopy jsou obecné — jeden text pro jednu dvanáctinu populace. Cosmatch počítá kompatibilitu pro 46 949 konkrétních kombinací dat narození. Navíc zohledňuje záměr vztahu, aktivitu a společné zájmy — nejde jen o datum.',
+    a: 'Horoskopy mohou být příliš obecné, protože poskytují jeden text pro dvanáctinu populace. Cosmatch počítá kompatibilitu pro 46 949 konkrétních kombinací dat narození. Numerologie tu ale ovlivňuje pouze část vzájemné kompatibility, z velké části je kompatibilita ovlivňována také záměrem vztahu, některými povahovými rysy a společnými zájmy, nejde tedy jen o datum.',
   },
   {
     q: 'Mohu najít svého partnera díky numerologii?',
-    a: 'Numerologie pomáhá pochopit, s jakými typy lidí přirozeně rezonuješ — a kde jsou třecí plochy. Cosmatch tohle propojuje s reálnými profily skutečných lidí ve tvém okolí. Finální slovo má vždy tvoje srdce.',
+    a: 'Numerologie pomáhá pochopit, s jakými typy lidí přirozeně rezonuješ, a s jakými ne. Cosmatch tohle propojuje s reálnými profily skutečných lidí ve tvém okolí. Finální slovo má ale vždy tvé srdce.',
   },
 ]
 
@@ -160,8 +160,9 @@ export default function KompatibilitaPage() {
           </h1>
           <hr className="rule w-12 border-gray-900 mb-8" />
           <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
-            Numerologie tvrdí, že datum tvého narození není náhoda — a má svou roli v tom, s kým
-            se přirozeně shodneš ve vztazích. Cosmatch tuto teorii aplikuje na všech 46 949 párů.
+            Numerologie tvrdí, že datum Tvého narození není náhoda a také, že hraje svou roli v tom,
+            s kým si budeš ve vztazích vyhovovat. Cosmatch tuto teorii aplikuje na všechny možné
+            kombinace datumů narození.
           </p>
           <p className="text-sm text-gray-500 mt-6">
             Autorka <span className="text-gray-900 italic serif">Simona Cibulková</span>
@@ -192,7 +193,7 @@ export default function KompatibilitaPage() {
             Co je životní číslo?
           </h2>
           <p className="text-gray-800 leading-[1.75] text-[1.0625rem] dropcap mb-6">
-            Životní číslo (číslo životní cesty) je základem numerologie. Získáš ho součtem všech číslic
+            Životní číslo (číslo Tvé životní cesty) je základem numerologie. Získáš ho součtem všech číslic
             svého data narození, opakovaně redukovaným na jednociferné číslo. Existuje devět základních
             čísel (1–9) a tři master čísla (11, 22, 33).
           </p>
@@ -202,8 +203,8 @@ export default function KompatibilitaPage() {
             Architekt (22) a Mistr lásky (33).
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
-            Kompatibilita se počítá z kombinace dvou životních čísel — spolu se záměrem vztahu,
-            aktivitou a společnými zájmy.
+            Kompatibilita v seznamce se počítá z kombinace dvou životních čísel spolu se záměrem vztahu,
+            povahovými vlastnostmi a společnými zájmy.
           </p>
         </section>
 
@@ -232,7 +233,7 @@ export default function KompatibilitaPage() {
             ))}
           </div>
           <p className="text-xs text-gray-400 mt-6 leading-relaxed">
-            Zjednodušený přehled. Cosmatch počítá vícevrstvý skór pro každou konkrétní kombinaci dat.
+            Toto je zjednodušený přehled. Cosmatch počítá vícevrstvý skór pro každou konkrétní kombinaci dat.
           </p>
         </section>
 
@@ -258,7 +259,7 @@ export default function KompatibilitaPage() {
               <div className="serif-display text-4xl text-pink-500 font-medium tabular-nums">43 %</div>
               <div>
                 <p className="text-gray-800 leading-[1.75] text-[1.0625rem] font-medium mb-1">
-                  online Čechů věří horoskopům. Mezi ženami stoupá na 56 %.
+                  Čechů věří horoskopům. Mezi ženami tento počet stoupá na 56 %.
                 </p>
                 <p className="text-xs text-gray-400">Nielsen Admosphere, 2017</p>
               </div>
@@ -279,16 +280,12 @@ export default function KompatibilitaPage() {
               <div>
                 <p className="text-gray-800 leading-[1.75] text-[1.0625rem] font-medium mb-1">
                   Čechů ve věku 27–35 let už někdy použilo seznamovací aplikaci.
-                  Jen čtvrtina za ni zaplatila.
                 </p>
                 <p className="text-xs text-gray-400">Visa &times; Instant Research, únor 2026</p>
               </div>
             </div>
           </div>
 
-          <p className="text-sm text-gray-600 leading-relaxed mt-10 italic">
-            Tahle čísla jsou český kontext — ne extrapolace z USA. Cosmatch staví na nich.
-          </p>
         </section>
 
         <hr className="rule mb-16" />
