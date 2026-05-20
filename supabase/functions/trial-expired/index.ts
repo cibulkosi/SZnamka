@@ -1,5 +1,4 @@
-// trial-expired — odešle se ráno dne 7 (den vypršení trialu).
-// Volá se z pg_cron jednou denně pro uživatele kde premium_source='trial' AND premium_until BETWEEN now() AND now()+12h.
+// trial-expired — odešle se ráno dne 7 trialu. v2 — final copy 20. 5. 2026
 import { sendEmail, corsHeaders } from '../_shared/resend.ts'
 import { emailLayout } from '../_shared/email-layout.ts'
 import { vocative } from '../_shared/czech.ts'
@@ -14,13 +13,13 @@ Deno.serve(async (req) => {
       return new Response(JSON.stringify({ error: 'Missing email' }), { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } })
     }
 
-    const greeting = name ? `${vocative(name)},` : 'Ahoj,'
+    const voc = name ? vocative(name) : ''
+    const headingPrefix = voc ? `${voc}, ` : ''
 
     const html = emailLayout({
-      heading: 'Dnes ti končí trial.',
+      heading: `${headingPrefix}dnes Ti končí zkušební verze Cosmatch+ zdarma.`,
       body: `
-        <p style="margin: 0 0 16px;">${greeting}</p>
-        <p style="margin: 0 0 16px;">dnes večer ztratíš přístup k Cosmatch+ features. Pojďme rovnou:</p>
+        <p style="margin: 0 0 16px;">Dnes večer ztratíš přístup k výhodám v premium členství Cosmatch+.</p>
 
         <p style="margin: 24px 0 8px; font-weight: 600; color: #111827;">Co ti zůstane:</p>
         <ul style="margin: 0 0 20px; padding-left: 20px; color: #374151;">
@@ -30,24 +29,24 @@ Deno.serve(async (req) => {
           <li style="margin-bottom: 6px;">Tvůj numerologický archetyp</li>
         </ul>
 
-        <p style="margin: 24px 0 8px; font-weight: 600; color: #111827;">Co ztratíš:</p>
+        <p style="margin: 24px 0 8px; font-weight: 600; color: #111827;">Co už nebude viditelné:</p>
         <ul style="margin: 0 0 24px; padding-left: 20px; color: #374151;">
           <li style="margin-bottom: 6px;">Detail kompatibility (Soulmate Wheel)</li>
-          <li style="margin-bottom: 6px;">Pohled na to, kdo si tě lajknul</li>
-          <li style="margin-bottom: 6px;">Neomezené lajky a zprávy</li>
+          <li style="margin-bottom: 6px;">Neuvidíš, kdo Tě lajknul</li>
+          <li style="margin-bottom: 6px;">Odpadne možnost neomezených lajků a zpráv</li>
           <li style="margin-bottom: 6px;">Filtry vzdálenosti a záměru</li>
           <li style="margin-bottom: 6px;">Prioritní zobrazení ve feedu</li>
         </ul>
 
-        <p style="margin: 24px 0 16px; color: #6b7280; font-size: 14px;">Nebo dnes nedělej nic — z trialu se přesuneš na free a appku používáš dál. Žádné stržení peněz se neděje, kartu jsme nikdy nepožadovali.</p>
+        <p style="margin: 24px 0 16px; color: #6b7280; font-size: 14px;">Pokud nebudeš dělat nic, tak se přesuneš do free členství a appku můžeš používat dál. Peníze se Ti žádné nestrhnou, protože kartu jsme od Tebe zatím nepožadovali.</p>
       `,
       ctaUrl: 'https://cosmatch.cz/premium',
       ctaLabel: 'Předplatit Cosmatch+ za 249 Kč/měs',
     })
 
-    const text = `${greeting}\n\nDnes večer ztratíš přístup k Cosmatch+ features.\n\nCo ti zůstane:\n• Tvůj profil a archetyp\n• Stávající matche a konverzace\n• 5 lajků a 5 zpráv denně\n\nCo ztratíš:\n• Detail kompatibility (Soulmate Wheel)\n• Pohled na to, kdo si tě lajknul\n• Neomezené lajky a zprávy\n• Filtry vzdálenosti a záměru\n• Prioritní zobrazení\n\nPředplatit: https://cosmatch.cz/premium\n\nNebo nedělej nic — z trialu se přesuneš na free. Kartu jsme nikdy nepožadovali.\n\ncosmatch.cz`
+    const text = `${headingPrefix}dnes Ti končí zkušební verze Cosmatch+ zdarma.\n\nDnes večer ztratíš přístup k výhodám v premium členství Cosmatch+.\n\nCo ti zůstane:\n• Tvůj profil, fotky, kvíz, archetyp\n• Stávající matche a všechny konverzace\n• 5 lajků a 5 zpráv denně\n• Tvůj numerologický archetyp\n\nCo už nebude viditelné:\n• Detail kompatibility (Soulmate Wheel)\n• Neuvidíš, kdo Tě lajknul\n• Odpadne možnost neomezených lajků a zpráv\n• Filtry vzdálenosti a záměru\n• Prioritní zobrazení ve feedu\n\nPředplatit: https://cosmatch.cz/premium\n\nPokud nebudeš dělat nic, tak se přesuneš do free členství a appku můžeš používat dál. Peníze se Ti žádné nestrhnou, protože kartu jsme od Tebe zatím nepožadovali.\n\ncosmatch.cz`
 
-    const result = await sendEmail({ to: email, subject: 'Dnes ti končí trial. Co dál?', html, text })
+    const result = await sendEmail({ to: email, subject: 'Dnes ti končí trial zdarma. Co dál?', html, text })
     if (!result.ok) return new Response(JSON.stringify({ error: result.error }), { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } })
 
     return new Response(JSON.stringify({ ok: true, id: result.id }), { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } })
