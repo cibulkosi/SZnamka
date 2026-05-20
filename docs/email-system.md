@@ -29,7 +29,7 @@ DNS routing pro inbound (ahoj@, gdpr@) jde přes Cloudflare Email Routing → Si
 ## Shared modules
 
 - `supabase/functions/_shared/resend.ts` — sendEmail() přes Resend API
-- `supabase/functions/_shared/email-layout.ts` — branded HTML layout (cream bg, Georgia, pink ✦ rotated 45° to differentiate from Gemini)
+- `supabase/functions/_shared/email-layout.ts` — branded HTML layout (cream bg, Georgia, Saturn inline SVG)
 - `supabase/functions/_shared/czech.ts` — vocative, instrumental, sSe, past (gender-aware verb forms)
 
 ## Czech declension

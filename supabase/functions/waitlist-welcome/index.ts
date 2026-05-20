@@ -18,7 +18,7 @@ Deno.serve(async (req) => {
       : ''
 
     const html = emailLayout({
-      heading: 'Vítej v Cosmatch ✦',
+      heading: 'Vítej v Cosmatch',
       body: `
         <p style="margin: 0 0 16px;">${greeting}</p>
         <p style="margin: 0 0 16px;">díky, že ses přidal/a na waitlist seznamky Cosmatch, která páruje lidi podle data narození.</p>
@@ -34,7 +34,7 @@ Deno.serve(async (req) => {
 
     const text = `${greeting}\n\nDíky, že ses přidal/a na waitlist seznamky Cosmatch.\n\n${archetype ? `Tvůj archetyp: ${archetype}${life_path ? ` (životní číslo ${life_path})` : ''}\n\n` : ''}Tady je Tvůj voucher na tříměsíční členství zdarma na platformě Cosmatch+:\n\n${voucher_code}\n\nVoucher uplatníš při registraci v den, kdy Cosmatch spustíme.\n\nProtože jsi mezi prvními 1 000 členy, můžeš zároveň získat navíc odznak zakládajícího člena.\n\ncosmatch.cz`
 
-    const result = await sendEmail({ to: email, subject: 'Jsi na seznamu a tady je tvůj voucher na 3 měsíce do platformy Cosmatch+ ✦', html, text })
+    const result = await sendEmail({ to: email, subject: 'Jsi na seznamu a tady je tvůj voucher na 3 měsíce do platformy Cosmatch+', html, text })
     if (!result.ok) return new Response(JSON.stringify({ error: result.error }), { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } })
 
     try {

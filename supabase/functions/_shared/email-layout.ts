@@ -1,6 +1,7 @@
 // Cosmatch branded HTML email layout
 // Hinge + The Pattern editorial — cream #FAF6F0, Georgia heading, system-ui body
-// ✦ rotated 45° to differentiate from Gemini logo (User request 19. 5. 2026)
+// Saturn brandmark (růžová planeta + světle růžový prstenec, -18° tilt)
+// Replaced ✦ glyph to differentiate from Gemini logo (User request 19/20. 5. 2026)
 
 export function emailLayout(opts: { heading: string; body: string; ctaUrl?: string; ctaLabel?: string }) {
   const cta = opts.ctaUrl

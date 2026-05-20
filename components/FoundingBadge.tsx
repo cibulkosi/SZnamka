@@ -1,6 +1,6 @@
 // components/FoundingBadge.tsx
 // Reusable founding member badge — used in /profile, /discover, /matches.
-// Style: Hinge + The Pattern editorial — cream bg, pink ✦ rotated 45° (anti-Gemini),
+// Style: Hinge + The Pattern editorial — cream bg, Saturn brandmark (anti-Gemini),
 // Georgia serif label.
 
 import React from 'react'
