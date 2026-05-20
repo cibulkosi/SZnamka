@@ -40,14 +40,14 @@ export const metadata: Metadata = {
 
 const NUMBERS = [
   ['1', 'Průkopník', '3, 5, 6', '4, 8'],
-  ['2', 'Smiřitel', '4, 6, 8', '5, 9'],
+  ['2', 'Diplomat', '4, 6, 8', '5, 9'],
   ['3', 'Tvůrce', '1, 5, 9', '4, 7'],
   ['4', 'Stavitel', '2, 6, 8', '3, 5'],
   ['5', 'Dobrodruh', '1, 3, 7', '2, 4'],
   ['6', 'Pečovatel', '2, 4, 9', '1, 7'],
   ['7', 'Hledač', '5, 9, 11', '3, 6'],
-  ['8', 'Vladař', '2, 4, 6', '1, 9'],
-  ['9', 'Humanista', '3, 6, 9', '2, 8'],
+  ['8', 'Vůdce', '2, 4, 6', '1, 9'],
+  ['9', 'Idealista', '3, 6, 9', '2, 8'],
 ] as const
 
 const FAQ = [
@@ -198,9 +198,9 @@ export default function KompatibilitaPage() {
             čísel (1–9) a tři master čísla (11, 22, 33).
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
-            Každé číslo odpovídá určitému archetypu osobnosti — Průkopník, Smiřitel, Tvůrce, Stavitel,
-            Dobrodruh, Pečovatel, Hledač, Vladař, Humanista. Master čísla jsou Osvětitel (11),
-            Stavitel snů (22) a Léčitel (33).
+            Každé číslo odpovídá určitému archetypu osobnosti — Průkopník, Diplomat, Tvůrce, Stavitel,
+            Dobrodruh, Pečovatel, Hledač, Vůdce, Idealista. Master čísla jsou Vizionář (11),
+            Architekt (22) a Léčitel (33).
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
             Kompatibilita v seznamce se počítá z kombinace dvou životních čísel spolu se záměrem vztahu,
