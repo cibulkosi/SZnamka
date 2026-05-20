@@ -17,13 +17,23 @@ interface Props {
 export default function FoundingBadge({ isFoundingMember, visible, compact = false }: Props) {
   if (!isFoundingMember || !visible) return null
 
-  const Sparkle = () => (
-    <span
+  const Saturn = () => (
+    <svg
       aria-hidden
-      style={{ display: 'inline-block', transform: 'rotate(45deg)', lineHeight: 1 }}
+      width="22"
+      height="16"
+      viewBox="-50 -38 100 76"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ display: 'inline-block', verticalAlign: 'middle' }}
     >
-      ✦
-    </span>
+      <g transform="rotate(-18)">
+        <ellipse cx="0" cy="0" rx="40" ry="7" fill="none" stroke="#f9a8d4" strokeWidth="3.5"/>
+      </g>
+      <circle cx="0" cy="0" r="18" fill="#ec4899"/>
+      <g transform="rotate(-18)">
+        <path d="M -40 0 A 40 7 0 0 0 40 0" fill="none" stroke="#f9a8d4" strokeWidth="3.5"/>
+      </g>
+    </svg>
   )
 
   if (compact) {
@@ -40,7 +50,7 @@ export default function FoundingBadge({ isFoundingMember, visible, compact = fal
         }}
         title="Zakládající člen — jeden z prvních 1 000 na Cosmatch"
       >
-        <Sparkle />
+        <Saturn />
         <span>Zakládající</span>
       </span>
     )
@@ -62,7 +72,7 @@ export default function FoundingBadge({ isFoundingMember, visible, compact = fal
       title="Zakládající člen — jeden z prvních 1 000 na Cosmatch"
     >
       <span style={{ fontSize: '15px' }}>
-        <Sparkle />
+        <Saturn />
       </span>
       <span>Zakládající člen</span>
     </div>
