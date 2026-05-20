@@ -62,8 +62,6 @@ export default function LoginPage() {
           <p className="text-xs text-gray-400 leading-relaxed text-center mt-8">
             Přihlášením souhlasíš s našimi
             {' '}<Link href="/manifest-duvery" className="underline hover:text-gray-700">podmínkami důvěry</Link>.
-            <br/>
-            Heslo u nás neexistuje — nemůžeme ti ho ztratit.
           </p>
 
           <hr className="rule my-10" />
