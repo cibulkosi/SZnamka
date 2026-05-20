@@ -358,7 +358,12 @@ export default function RegisterPage() {
 
             <p className="text-xs text-gray-400 leading-relaxed text-center">
               Pokračováním souhlasíš s{' '}
-              <Link href="/manifest-duvery" className="underline hover:text-gray-700">Manifestem důvěry</Link>.
+              <Link href="/obchodni-podminky" className="underline hover:text-gray-700">Obchodními podmínkami</Link>
+              {' '}a{' '}
+              <Link href="/zasady-ochrany-osobnich-udaju" className="underline hover:text-gray-700">Zásadami ochrany osobních údajů</Link>.
+              <br />
+              Náš závazek vůči tobě →{' '}
+              <Link href="/manifest-duvery" className="underline hover:text-gray-700">Manifest důvěry</Link>
             </p>
 
             <hr className="rule my-10" />
