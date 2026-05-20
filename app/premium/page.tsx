@@ -5,8 +5,6 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase, loadCurrentProfile } from '@/lib/supabase'
 
-const PADDLE_CLIENT_TOKEN = 'live_7067eb7e1dbaf8568cf7ce6600b'
-
 type Tier = {
   id: 'free' | 'plus' | 'serious'
   priceId: string | null
@@ -41,7 +39,7 @@ const TIERS: Tier[] = [
   },
   {
     id: 'plus',
-    priceId: 'pri_01krneagtvx17vy1yebscmr0a5',
+    priceId: null,
     name: 'Cosmatch+',
     pricePerMonth: '249 Kč',
     priceTagline: 'měsíčně · 597 Kč / 3 měsíce · 2 088 Kč / rok',
@@ -62,13 +60,6 @@ const TIERS: Tier[] = [
   // Cosmatch Serious tier — bude přidán po dosažení 1 000+ platících (single-tier launch)
   // ID verifikace + green badge přijde s ním
 ]
-
-declare global {
-  interface Window {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    Paddle: any
-  }
-}
 
 function BottomNav({ active }: { active: string }) {
   const items = [
@@ -96,9 +87,6 @@ function BottomNav({ active }: { active: string }) {
 export default function PremiumPage() {
   const router = useRouter()
   const [user, setUser] = useState<{ id: string; email: string; name: string; premium: boolean; premium_until?: string | null; premium_source?: string | null } | null>(null)
-  const [paddleReady, setPaddleReady] = useState(false)
-  const [loading, setLoading] = useState<string | null>(null)
-  const [legalConsent, setLegalConsent] = useState(false)
 
   useEffect(() => {
     (async () => {
@@ -109,51 +97,12 @@ export default function PremiumPage() {
     })()
   }, [router])
 
-  useEffect(() => {
-    const existing = document.getElementById('paddle-js')
-    if (existing) { setPaddleReady(true); return }
-    const script = document.createElement('script')
-    script.id = 'paddle-js'
-    script.src = 'https://cdn.paddle.com/paddle/v2/paddle.js'
-    script.onload = () => {
-      if (window.Paddle) {
-        window.Paddle.Initialize({ token: PADDLE_CLIENT_TOKEN })
-        setPaddleReady(true)
-      }
-    }
-    document.head.appendChild(script)
-  }, [])
 
-  const handleCheckout = async (priceId: string | null, tierId: string) => {
-    if (!priceId) return
-    if (!paddleReady || !window.Paddle) {
-      alert('Platební brána se načítá, zkus to za chvíli.')
-      return
-    }
-    if (!user) return
-    if (!legalConsent) {
-      alert('Než pokračuješ, potvrď prosím souhlas se zahájením služby ihned.')
-      return
-    }
-    setLoading(tierId)
-    try {
-      // Záznam právního souhlasu dle § 1837 písm. l) OZ — okamžik kliknutí na "Předplatit"
-      await supabase
-        .from('profiles')
-        .update({ legal_consent_immediate_service_at: new Date().toISOString() })
-        .eq('id', user.id)
-      window.Paddle.Checkout.open({
-        items: [{ priceId, quantity: 1 }],
-        customer: { email: user.email },
-        customData: { userId: user.id, plan: tierId },
-        successUrl: `${window.location.origin}/premium/success`,
-        settings: { displayMode: 'overlay', theme: 'light', locale: 'cs' },
-      })
-    } catch (err) {
-      console.error('Paddle checkout error:', err)
-      alert('Chyba při otevírání platební brány. Zkus to prosím znovu.')
-    } finally { setLoading(null) }
-  }
+
+  // Předplatné Cosmatch+ se kupuje výhradně v mobilní aplikaci pro iOS / Android.
+  // Web na cosmatch.cz prozatím slouží jen pro registraci a prohlížení; platby
+  // probíhají přes Apple App Store / Google Play (in-app purchase).
+  // Mobilní aplikace se připravuje — viz roadmap.
 
   if (!user) return null
 
@@ -241,24 +190,7 @@ export default function PremiumPage() {
         </section>
 
         {/* Tiers */}
-        {/* Právní souhlas dle § 1837 písm. l) OZ — okamžitý začátek plnění digitální služby */}
-        <section className="mb-8 bg-gray-50 border border-gray-200 rounded-2xl p-6">
-          <label className="flex items-start gap-3 cursor-pointer">
-            <input
-              type="checkbox"
-              checked={legalConsent}
-              onChange={e => setLegalConsent(e.target.checked)}
-              className="mt-1 w-4 h-4 accent-pink-500 flex-shrink-0"
-            />
-            <span className="text-sm text-gray-700 leading-relaxed">
-              Souhlasím, aby Cosmatch+ začal být poskytován okamžitě po zaplacení,
-              a beru na vědomí, že tímto ztrácím právo na odstoupení od smlouvy
-              ve 14denní lhůtě dle § 1829 občanského zákoníku.
-            </span>
-          </label>
-        </section>
-
-        <section className="space-y-6 mb-20">
+<section className="space-y-6 mb-20">
           {TIERS.map(tier => {
             const isCurrent = (tier.id === 'free' && !user.premium) || (tier.id !== 'free' && user.premium)
             return (
@@ -305,18 +237,24 @@ export default function PremiumPage() {
                     className="w-full bg-gray-100 text-gray-500 py-5 rounded-full text-base font-medium cursor-default">
                     {isCurrent ? 'Tvůj aktuální plán' : 'Free plán'}
                   </button>
-                ) : (
-                  <button
-                    onClick={() => handleCheckout(tier.priceId, tier.id)}
-                    disabled={!!loading || isCurrent}
-                    className={`w-full py-5 rounded-full text-base font-medium transition-all active:scale-[0.99] disabled:cursor-not-allowed ${
-                      tier.highlight
-                        ? 'bg-gray-900 text-white hover:bg-gray-800'
-                        : 'bg-white border border-gray-300 hover:border-gray-900 text-gray-900'
-                    } ${(loading || isCurrent) ? 'opacity-60' : ''}`}
-                  >
-                    {loading === tier.id ? 'Otevírám platbu…' : isCurrent ? 'Aktivní' : tier.ctaLabel}
+                ) : isCurrent ? (
+                  <button disabled
+                    className="w-full bg-gray-100 text-gray-500 py-5 rounded-full text-base font-medium cursor-default">
+                    Aktivní
                   </button>
+                ) : (
+                  <div className="space-y-3">
+                    <div className="w-full py-5 px-6 rounded-3xl bg-pink-50 border border-pink-200 text-center">
+                      <p className="text-sm font-medium text-pink-900 mb-1">Brzy v App Store a Google Play</p>
+                      <p className="text-xs text-pink-700 leading-relaxed">
+                        Cosmatch+ koupíš výhradně v mobilní aplikaci. Připravujeme ji.
+                      </p>
+                    </div>
+                    <Link href="/waitlist"
+                      className="block w-full text-center py-4 rounded-full text-base font-medium bg-gray-900 text-white hover:bg-gray-800 transition">
+                      Být první v aplikaci
+                    </Link>
+                  </div>
                 )}
               </div>
             )
@@ -357,7 +295,7 @@ export default function PremiumPage() {
           <div className="space-y-8">
             {[
               ['Mohu předplatné kdykoli zrušit?','Ano. Zrušení je v profilu jedním klikem. Zbývající dny ti zůstanou aktivní.'],
-              ['Jak se platí?','Platbu zpracovává Paddle — přijímá karty Visa, Mastercard, Apple Pay i Google Pay. EU faktura s DPH automaticky.'],
+              ['Jak se platí?','Cosmatch+ se kupuje v mobilní aplikaci pro iOS (Apple App Store) nebo Android (Google Play). Platí Apple, respektive Google — Visa, Mastercard, Apple Pay, Google Pay. DPH ve tvojí zemi se vybere a odvede automaticky.'],
               ['Vrátíte mi peníze, když to nebude fungovat?','Do 14 dnů ano, bez vysvětlení. Po 14 dnech vyhodnocujeme případ od případu.'],
               ['Můžu platit ročně nebo kvartálně?','Ano — Cosmatch+ má tři plány: měsíčně 249 Kč, kvartálně 597 Kč (sleva 20 %), ročně 2 088 Kč (sleva 30 %). Pokud najdeš někoho dřív, zbývající dny ti zůstanou aktivní nebo můžeš požádat o vrácení alikvotní části.'],
             ].map(([q, a]) => (
@@ -374,7 +312,7 @@ export default function PremiumPage() {
         {/* Footer trust */}
         <footer className="border-t border-gray-200 pt-12">
           <p className="text-sm text-gray-500 leading-relaxed mb-6">
-            Cosmatch je financován výhradně předplatným uživatelů. Platí Paddle, EU s DPH automaticky.
+            Cosmatch je financován výhradně předplatným uživatelů přes mobilní aplikaci. Platby zpracovává Apple App Store / Google Play, DPH ve tvojí zemi se vybere a odvede automaticky.
             Tvoje datum narození používáme jen k výpočtu kompatibility — nikdy ho neprodáme.
           </p>
           <div className="flex flex-wrap gap-6 text-sm">

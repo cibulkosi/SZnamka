@@ -89,16 +89,13 @@ export default function ObchodniPodminkyPage() {
                 <p className="font-medium text-gray-900">Cosmatch+ — 249 Kč/měsíc · kvartálně 597 Kč (sleva 20 %) · ročně 2 088 Kč (sleva 30 %)</p>
                 <p className="text-gray-700 text-[0.95rem]">Neomezené lajky, hloubková analýza podle data narození, zobrazení kdo Tě lajknul, prioritní zobrazení profilu.</p>
               </div>
-              <div>
-                <p className="font-medium text-gray-900">Cosmatch Serious — připravuje se (bude k dispozici později)</p>
-                <p className="text-gray-700 text-[0.95rem]">Vše z Cosmatch+ plus povinná ID verifikace, štítek „Ověřeno", prémiové filtry, prioritní matchmaking.</p>
-              </div>
+              
             </div>
             <p className="mb-3">
               <strong className="text-gray-900 font-medium">3.2</strong> Ceny jsou uvedeny včetně DPH. Platí se měsíčně, automaticky se obnovují.
             </p>
             <p className="mb-3">
-              <strong className="text-gray-900 font-medium">3.3</strong> Platby zpracovává společnost <strong className="text-gray-900 font-medium">GoPay s.r.o.</strong> (Česká republika, IČO 26046768), platební instituce regulovaná Českou národní bankou. Faktura je vystavena automaticky a zaslána na e-mail.
+              <strong className="text-gray-900 font-medium">3.3</strong> Předplatné Cosmatch+ je dostupné výhradně v mobilní aplikaci Cosmatch pro iOS a Android. Platbu zpracovává a fakturu vystavuje <strong className="text-gray-900 font-medium">Apple Distribution International Ltd.</strong> (Irsko) pro iOS, respektive <strong className="text-gray-900 font-medium">Google Commerce Limited</strong> (Irsko) pro Android. Cosmatch nemá přístup k údajům o platební kartě Uživatele. Detail viz <a href="/opakovane-platby" className="text-pink-500 underline">Předplatné a platby</a>.
             </p>
             <p>
               <strong className="text-gray-900 font-medium">3.4</strong> Cosmatch může ceny upravit s minimálně 30denním předstihem. O změně je Uživatel informován e-mailem. Uživatel má právo do účinnosti změny předplatné zrušit.

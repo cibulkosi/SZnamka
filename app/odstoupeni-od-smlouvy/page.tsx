@@ -91,7 +91,7 @@ Podpis:   ____________________
             <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">Co se stane po odstoupení</h2>
             <ul className="list-disc pl-6 space-y-2">
               <li>Předplatné okamžitě deaktivujeme.</li>
-              <li>Uhrazené peníze ti vrátíme stejným způsobem, kterým jsi je zaplatil/a (typicky GoPay vrátí na kartu) do 14 dnů.</li>
+              <li>Pokud platba proběhla v Apple App Store nebo Google Play, vrácení peněz zpracovává Apple, respektive Google podle svých pravidel. Cosmatch ti pomůže s komunikací směrem k Apple / Google. Peníze se vrací na původní platební prostředek do 5–10 pracovních dní od schválení refundu.</li>
               <li>Tvůj profil zůstává aktivní jako Free tier — můžeš ho dál používat nebo smazat.</li>
             </ul>
           </section>

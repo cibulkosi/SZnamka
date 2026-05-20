@@ -97,9 +97,9 @@ export default function CookiesPage() {
           </section>
 
           <section>
-            <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">Cookies z platby (GoPay)</h2>
+            <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">Platby a cookies</h2>
             <p>
-              Pokud platíš Cosmatch+, GoPay s.r.o. (česká platební instituce regulovaná ČNB) si v rámci checkout flow uloží své vlastní cookies pro zpracování platby. Cosmatch k těmto cookies nemá přístup. Více: <a href="https://www.gopay.com/cs/ochrana-osobnich-udaju" target="_blank" rel="noopener" className="text-pink-500 underline">gopay.com/cs/ochrana-osobnich-udaju</a>.
+              Předplatné Cosmatch+ se kupuje výhradně v mobilní aplikaci pro iOS (Apple App Store) nebo Android (Google Play) — ne na webu cosmatch.cz. Tyto platformy mají vlastní mechanismy ukládání dat ve své aplikaci, ne v tvém prohlížeči. Detail viz <a href="https://www.apple.com/legal/privacy/cz/cookies/" target="_blank" rel="noopener" className="text-pink-500 underline">Apple cookies</a> a <a href="https://policies.google.com/technologies/cookies?hl=cs" target="_blank" rel="noopener" className="text-pink-500 underline">Google cookies</a>.
             </p>
           </section>
 

@@ -103,9 +103,11 @@ export default function GdprPage() {
             </p>
 
 
-            <h3 className="serif text-xl text-gray-900 font-medium mb-2 mt-6">2.5 Platební údaje (Cosmatch+ a Serious)</h3>
+            <h3 className="serif text-xl text-gray-900 font-medium mb-2 mt-6">2.5 Platební údaje (Cosmatch+)</h3>
             <ul className="list-disc pl-6 space-y-1 mb-4">
-              <li>Platby zpracovává <strong className="text-gray-900 font-medium">GoPay s.r.o.</strong> (samostatný správce, IČO 26046768). Cosmatch dostává jen informaci o stavu předplatného, ne čísla karet.</li>
+              <li>Předplatné Cosmatch+ je dostupné výhradně v mobilní aplikaci pro iOS a Android. Platby zpracovává <strong className="text-gray-900 font-medium">Apple Distribution International Ltd.</strong> (Irsko) pro iOS uživatele, respektive <strong className="text-gray-900 font-medium">Google Commerce Limited</strong> (Irsko) pro Android uživatele. Oba subjekty jsou samostatní správci osobních údajů.</li>
+              <li>Cosmatch dostává od Apple / Google pouze identifikátor předplatného a stav (aktivní / neaktivní) — nikdy ne čísla platebních karet ani biometrické údaje použité k autorizaci platby.</li>
+              <li>Pro detail zpracování dat ze strany Apple viz <a href="https://www.apple.com/legal/privacy/cz/" target="_blank" rel="noopener" className="text-pink-500 underline">Zásady ochrany soukromí Apple</a>. Pro Google viz <a href="https://policies.google.com/privacy?hl=cs" target="_blank" rel="noopener" className="text-pink-500 underline">Zásady ochrany soukromí Google</a>.</li>
             </ul>
             </section>
 
@@ -129,7 +131,8 @@ export default function GdprPage() {
             <ul className="list-disc pl-6 space-y-2">
               <li><strong className="text-gray-900 font-medium">Supabase (USA, EU servery)</strong> — databáze a autentizace. Servery ve Frankfurtu (EU). <a href="https://supabase.com/privacy" target="_blank" rel="noopener" className="text-pink-500 underline">Zásady Supabase</a></li>
               <li><strong className="text-gray-900 font-medium">Cloudflare (USA, globální)</strong> — hosting webu, DDoS ochrana, CDN. <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener" className="text-pink-500 underline">Zásady Cloudflare</a></li>
-              <li><strong className="text-gray-900 font-medium">GoPay s.r.o. (Česká republika)</strong> — zpracování plateb, regulovaná ČNB. <a href="https://www.gopay.com/cs/ochrana-osobnich-udaju" target="_blank" rel="noopener" className="text-pink-500 underline">Zásady GoPay</a></li>
+              <li><strong className="text-gray-900 font-medium">Apple Distribution International Ltd. (Irsko)</strong> — zpracování plateb pro iOS uživatele přes Apple App Store. <a href="https://www.apple.com/legal/privacy/cz/" target="_blank" rel="noopener" className="text-pink-500 underline">Zásady Apple</a></li>
+              <li><strong className="text-gray-900 font-medium">Google Commerce Limited (Irsko)</strong> — zpracování plateb pro Android uživatele přes Google Play. <a href="https://policies.google.com/privacy?hl=cs" target="_blank" rel="noopener" className="text-pink-500 underline">Zásady Google</a></li>
               <li><strong className="text-gray-900 font-medium">Google (Irsko)</strong> — Google OAuth pro přihlášení.</li>
               <li><strong className="text-gray-900 font-medium">Meta (Irsko)</strong> — Facebook OAuth pro přihlášení.</li>
               <li><strong className="text-gray-900 font-medium">Resend (USA)</strong> — odesílání transakčních e-mailů (potvrzení registrace, voucher).</li>
