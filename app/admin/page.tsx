@@ -309,9 +309,13 @@ export default function AdminPage() {
             <section>
               <p className="eyebrow text-pink-500 mb-4">Rychlé akce</p>
               <div className="flex flex-wrap gap-3">
-                <a href={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/project/default/editor`} target="_blank" rel="noopener noreferrer"
+                <a href="https://supabase.com/dashboard/project/xdotpadgbchhecwitbpe/sql/new" target="_blank" rel="noopener noreferrer"
                   className="px-5 py-2.5 rounded-full bg-white border border-gray-300 hover:border-gray-900 text-sm text-gray-700 hover:text-gray-900 transition">
                   Supabase SQL Editor
+                </a>
+                <a href="https://supabase.com/dashboard/project/xdotpadgbchhecwitbpe/editor" target="_blank" rel="noopener noreferrer"
+                  className="px-5 py-2.5 rounded-full bg-white border border-gray-300 hover:border-gray-900 text-sm text-gray-700 hover:text-gray-900 transition">
+                  Supabase Table Editor
                 </a>
                 <Link href="/waitlist" className="px-5 py-2.5 rounded-full bg-white border border-gray-300 hover:border-gray-900 text-sm text-gray-700 hover:text-gray-900 transition">Waitlist</Link>
                 <Link href="/ambasadorky" className="px-5 py-2.5 rounded-full bg-white border border-gray-300 hover:border-gray-900 text-sm text-gray-700 hover:text-gray-900 transition">Ambasadorky</Link>
