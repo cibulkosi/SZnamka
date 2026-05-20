@@ -36,7 +36,7 @@ export default function LandingPage() {
             <p className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-10 max-w-xl">
               96 % českých žen ve věku 18–29 let považuje nalezení správného partnera za velmi obtížné.
               Cosmatch se snaží tuto dynamiku měnit a spočítá kompatibilitu mezi tvým a partnerovým
-              datem narození z 366 unikátních archetypů. Místo bezduchého swipování ti dává důvod,
+              datem narození podle 12 archetypů a 366 denních profilů kompatibility. Místo bezduchého swipování ti dává důvod,
               proč se s někým opravdu potkat.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">

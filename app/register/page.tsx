@@ -709,7 +709,7 @@ export default function RegisterPage() {
                     Pokračovat v registraci
                   </button>
                   <p className="text-xs text-gray-400 text-center mt-4 leading-relaxed">
-                    Tento výklad je interpretační rámec, ne predikce. Cosmatch staví na 366 archetypech podle dne narození pro skutečné matchování.
+                    Tento výklad je interpretační rámec, ne predikce. Cosmatch staví na 366 denních profilech kompatibility podle dne narození pro skutečné matchování.
                   </p>
                 </>
               )}

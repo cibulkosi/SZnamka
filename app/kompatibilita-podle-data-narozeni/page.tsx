@@ -3,7 +3,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 const TITLE = 'Kompatibilita podle data narození — Numerologie a vztahy | Cosmatch'
-const DESCRIPTION = 'Jak data narození ovlivňují kompatibilitu ve vztazích? Zjisti svůj numerologický profil a najdi lidi, kteří ti opravdu odpovídají. Životní číslo, master čísla a 46 949 párů kompatibility.'
+const DESCRIPTION = 'Jak data narození ovlivňují kompatibilitu ve vztazích? Zjisti svůj numerologický profil a najdi lidi, kteří ti opravdu odpovídají. Životní číslo, master čísla a desítky tisíc unikátních kombinací kompatibility.'
 const URL = 'https://cosmatch.cz/kompatibilita-podle-data-narozeni'
 
 export const metadata: Metadata = {
@@ -68,7 +68,7 @@ const FAQ = [
   },
   {
     q: 'Čím se Cosmatch liší od horoskopu?',
-    a: 'Horoskopy mohou být příliš obecné, protože poskytují jeden text pro dvanáctinu populace. Cosmatch počítá kompatibilitu pro 46 949 konkrétních kombinací dat narození. Numerologie tu ale ovlivňuje pouze část vzájemné kompatibility, z velké části je kompatibilita ovlivňována také záměrem vztahu, některými povahovými rysy a společnými zájmy, nejde tedy jen o datum.',
+    a: 'Horoskopy mohou být příliš obecné, protože poskytují jeden text pro dvanáctinu populace. Cosmatch počítá kompatibilitu pro desítky tisíc konkrétních kombinací dat narození. Numerologie tu ale ovlivňuje pouze část vzájemné kompatibility, z velké části je kompatibilita ovlivňována také záměrem vztahu, některými povahovými rysy a společnými zájmy, nejde tedy jen o datum.',
   },
   {
     q: 'Mohu najít svého partnera díky numerologii?',

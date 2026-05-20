@@ -178,7 +178,7 @@ export default function WaitlistPage() {
               <hr className="rule w-12 border-gray-900 mb-8" />
               <p className="text-lg text-gray-700 leading-relaxed mb-4 max-w-xl">
                 Cosmatch počítá kompatibilitu mezi Tvým datem narození a datem narození
-                potenciálního partnera, a to na základě 366 unikátních archetypů.
+                potenciálního partnera, a to na základě 12 archetypů a 366 denních profilů kompatibility.
                 Místo bezduchého swipování ti dává reálný důvod, zda se s danou osobou potkat nebo ne.
               </p>
               <p className="text-gray-500 leading-relaxed max-w-xl">

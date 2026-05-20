@@ -59,7 +59,7 @@ export default function NumerologiePillarPage() {
           <hr className="rule w-12 border-gray-900 mb-8" />
           <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
             Numerologie je systém interpretace čísel s tisíciletou tradicí. V Cosmatch ji používáme
-            k výpočtu kompatibility mezi dvěma daty narození — z 366 unikátních archetypů.
+            k výpočtu kompatibility mezi dvěma daty narození — podle 12 archetypů a 366 denních profilů.
           </p>
         </header>
 
