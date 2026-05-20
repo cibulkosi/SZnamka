@@ -56,7 +56,7 @@ const NUMBERS = [
 const FAQ = [
   {
     q: 'Jak se počítá životní číslo z data narození?',
-    a: 'Životní číslo (číslo cesty) získáš součtem všech číslic svého data narození, redukovaným na jednociferné číslo nebo master číslo 11, 22, 33. Příklad: 23. 7. 1992 → 2+3+7+1+9+9+2 = 33. Takový člověk má master číslo 33.',
+    a: 'Životní číslo získáš součtem všech číslic svého data narození, redukovaným na jednociferné číslo nebo master číslo 11, 22, 33. Příklad: 23. 7. 1992 → 2+3+7+1+9+9+2 = 33. Takový člověk má master číslo 33.',
   },
   {
     q: 'Jaká čísla jsou nejkompatibilnější?',
@@ -64,7 +64,7 @@ const FAQ = [
   },
   {
     q: 'Je numerologie vědecky prokázána?',
-    a: 'Numerologie není empirická věda — je to systém interpretace čísel s tisíciletou tradicí. Cosmatch ji používá jako strukturovaný framework pro sebepoznání a matchmaking, ne jako absolutní pravdu.',
+    a: 'Numerologie není empirická věda, je to systém interpretace čísel s tisíciletou tradicí. Cosmatch ji používá jako strukturovaný framework pro sebepoznání a matchmaking, ne jako absolutní pravdu.',
   },
   {
     q: 'Čím se Cosmatch liší od horoskopu?',
@@ -100,7 +100,7 @@ const RELATED = [
     href: '/manifest-duvery',
     eyebrow: 'Manifest',
     title: 'Sedm závazků Cosmatch',
-    desc: 'Co Cosmatch nedělá a co naopak slibuje — žádné swipy pro swipy, žádné reklamy, žádné prodávání dat.',
+    desc: 'Co Cosmatch nedělá? Žádné bezduché swipování, žádné reklamy, žádné prodávání dat.',
   },
 ] as const
 
@@ -287,7 +287,7 @@ export default function KompatibilitaPage() {
         <section id="faq" className="mb-16 scroll-mt-8">
           <p className="eyebrow text-gray-500 mb-4">Časté otázky</p>
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-10">
-            Co se nejčastěji ptáte.
+            Na co se nejčastěji ptáte.
           </h2>
 
           <div className="space-y-10">
@@ -339,7 +339,7 @@ export default function KompatibilitaPage() {
         <footer className="mt-20 pt-12 border-t border-gray-200">
           <p className="text-xs text-gray-400 leading-relaxed">
             Mgr. Ing. Simona Cibulková · Cosmatch · IČO 08419531 · Praha 2026.
-            Numerologie není empirická věda — výsledky používejte jako podporu rozhodování,
+            Numerologie není empirická věda, výsledky používejte jako podporu rozhodování,
             ne jako absolutní pravdu.
           </p>
         </footer>
