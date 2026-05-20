@@ -85,6 +85,12 @@ export type Profile = {
   is_founding_member?: boolean
   founding_badge_visible?: boolean
 
+  // ── Premium lifecycle (přidáno 20. 5. 2026) ───────
+  premium_until?: string | null      // ISO timestamptz, kdy končí premium
+  premium_source?: 'founding' | 'trial' | 'paid' | null
+  trial_started_at?: string | null
+  legal_consent_immediate_service_at?: string | null
+
 }
 
 export const EDUCATION_OPTIONS = [

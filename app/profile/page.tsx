@@ -5,6 +5,7 @@ import { BODY_TYPES } from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase, loadCurrentProfile, signOutCompletely, type Profile, getZodiac } from '@/lib/supabase'
+import { TrialBanner } from '@/components/PremiumGate'
 import FoundingBadge from '@/components/FoundingBadge'
 
 const RELATIONSHIP_GOAL_LABELS: Record<string, string> = {
@@ -97,6 +98,7 @@ export default function ProfilePage() {
       </div>
 
       <div className="max-w-xl mx-auto px-6 pt-12">
+        <TrialBanner profile={user} />
 
         {/* Hero — photo + name + meta */}
         <header className="mb-12">

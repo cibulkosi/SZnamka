@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase, loadCurrentProfile, type Profile, type Compatibility, getZodiac } from '@/lib/supabase'
+import { TrialBanner } from '@/components/PremiumGate'
 import { CompatBadges, ScoreRing } from '@/components/CompatBadges'
 import { ProfileQuestion, PROFILE_QUESTIONS, type Question } from '@/components/ProfileQuestion'
 import { ARCHETYPES, lifePathNumber } from '@/lib/archetypes'
@@ -687,7 +688,10 @@ export default function DiscoverPage() {
        >{opt.label}</button>
      ))}
    </div>
- </nav> {/* Denní swipe limit lišta */}
+ </nav>
+ {/* Trial countdown banner */}
+ <div className="flex-shrink-0 px-5 max-w-lg mx-auto w-full"><TrialBanner profile={user} /></div>
+ {/* Denní swipe limit lišta */}
  {!user?.premium && (
  <div className="flex-shrink-0 px-5 pb-2 max-w-lg mx-auto w-full"> <div className="flex items-center justify-between px-1 mb-1"> <span className="text-xs text-gray-400 font-medium">Dnešní swipy</span> <span className="text-xs font-bold text-gray-500"> {Math.min(dailySwipes, DAILY_FREE_LIMIT)} / {DAILY_FREE_LIMIT}
  {user?.premium && <span className="ml-2 text-amber-500"> PREMIUM</span>}

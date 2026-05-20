@@ -16,12 +16,30 @@ const ADMIN_EMAILS = [
   'cibulkovasimona@gmail.com',
 ]
 
+interface PremiumSummaryRow {
+  premium_source: string
+  users: number
+  active: number
+  expired: number
+  expiring_soon: number
+}
+
+interface TrialUserRow {
+  id: string
+  name: string | null
+  email: string | null
+  premium_until: string
+  premium_source: string
+}
+
 interface Stats {
   totalUsers: number; maleCount: number; femaleCount: number; otherCount: number
   premiumCount: number; waitlistCount: number; ambassadorCount: number
   activeToday: number; activeWeek: number
   likesTotal: number; matchesTotal: number
   newToday: number; newWeek: number
+  premiumSummary: PremiumSummaryRow[]
+  trialList: TrialUserRow[]
 }
 
 type AuthState =
@@ -78,6 +96,18 @@ export default function AdminPage() {
         supabase.from('profiles').select('*', { count: 'exact', head: true }).gte('created_at', today),
         supabase.from('profiles').select('*', { count: 'exact', head: true }).gte('created_at', weekAgo),
       ])
+      // Fetch premium summary view (founding / trial / paid breakdown)
+      const { data: premiumSummary } = await supabase
+        .from('admin_premium_summary')
+        .select('*')
+      // Fetch list of users in trial state, ordered by closest expiry
+      const { data: trialList } = await supabase
+        .from('profiles')
+        .select('id, name, email, premium_until, premium_source')
+        .eq('premium_source', 'trial')
+        .eq('premium', true)
+        .order('premium_until', { ascending: true })
+        .limit(50)
       setStats({
         totalUsers: totalUsers || 0, maleCount: maleCount || 0, femaleCount: femaleCount || 0,
         otherCount: otherCount || 0, premiumCount: premiumCount || 0, waitlistCount: waitlistCount || 0,
@@ -85,6 +115,8 @@ export default function AdminPage() {
         activeToday: activeToday || 0, activeWeek: activeWeek || 0,
         likesTotal: likesTotal || 0, matchesTotal: matchesTotal || 0,
         newToday: newToday || 0, newWeek: newWeek || 0,
+        premiumSummary: (premiumSummary || []) as PremiumSummaryRow[],
+        trialList: (trialList || []) as TrialUserRow[],
       })
       setLastRefresh(new Date())
     } finally { setLoading(false) }
@@ -305,6 +337,92 @@ export default function AdminPage() {
                 </div>
               </div>
             </section>
+
+            <hr className="rule mb-16" />
+
+            {/* ── Předplatné — founding, trial, paid breakdown ── */}
+            <section className="mb-20">
+              <p className="eyebrow text-pink-500 mb-4">Předplatné</p>
+              <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-10">
+                Kdo platí, kdo zkouší, komu končí trial.
+              </h2>
+
+              {stats.premiumSummary.length === 0 ? (
+                <p className="text-gray-400 text-sm">Zatím žádné premium aktivity.</p>
+              ) : (
+                <div className="bg-white rounded-3xl border border-gray-100 overflow-hidden mb-8">
+                  <table className="w-full text-sm">
+                    <thead className="bg-gray-50 border-b border-gray-100">
+                      <tr className="text-left text-xs uppercase tracking-wider text-gray-500">
+                        <th className="px-6 py-4 font-medium">Zdroj</th>
+                        <th className="px-6 py-4 font-medium tabular-nums text-right">Celkem</th>
+                        <th className="px-6 py-4 font-medium tabular-nums text-right">Aktivní</th>
+                        <th className="px-6 py-4 font-medium tabular-nums text-right">Vyprší ≤ 3 dny</th>
+                        <th className="px-6 py-4 font-medium tabular-nums text-right">Expirované</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100">
+                      {stats.premiumSummary.map(row => (
+                        <tr key={row.premium_source}>
+                          <td className="px-6 py-4">
+                            <span className="font-medium text-gray-900">
+                              {row.premium_source === 'founding' ? 'Founding (3 měs)' :
+                               row.premium_source === 'trial' ? 'Trial (7 dní)' :
+                               row.premium_source === 'paid' ? 'Placené' : row.premium_source}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 tabular-nums text-right text-gray-700">{fmt(row.users)}</td>
+                          <td className="px-6 py-4 tabular-nums text-right text-emerald-700 font-medium">{fmt(row.active)}</td>
+                          <td className="px-6 py-4 tabular-nums text-right text-amber-700">{fmt(row.expiring_soon)}</td>
+                          <td className="px-6 py-4 tabular-nums text-right text-gray-400">{fmt(row.expired)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+
+              {stats.trialList.length > 0 && (
+                <>
+                  <p className="eyebrow text-gray-500 mb-3">Aktivní trialy — řazeno podle nejbližšího vypršení</p>
+                  <div className="bg-white rounded-3xl border border-gray-100 overflow-hidden">
+                    <table className="w-full text-sm">
+                      <thead className="bg-gray-50 border-b border-gray-100">
+                        <tr className="text-left text-xs uppercase tracking-wider text-gray-500">
+                          <th className="px-6 py-4 font-medium">Uživatel</th>
+                          <th className="px-6 py-4 font-medium">E-mail</th>
+                          <th className="px-6 py-4 font-medium text-right">Vyprší</th>
+                          <th className="px-6 py-4 font-medium text-right">Za</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-gray-100">
+                        {stats.trialList.map(u => {
+                          const expiresAt = new Date(u.premium_until)
+                          const ms = expiresAt.getTime() - Date.now()
+                          const days = Math.floor(ms / (1000 * 60 * 60 * 24))
+                          const hours = Math.floor((ms % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+                          const urgent = days <= 1
+                          return (
+                            <tr key={u.id}>
+                              <td className="px-6 py-4 text-gray-900">{u.name || '—'}</td>
+                              <td className="px-6 py-4 text-gray-500 text-xs">{u.email || '—'}</td>
+                              <td className="px-6 py-4 text-right text-gray-500 text-xs tabular-nums">
+                                {expiresAt.toLocaleString('cs-CZ', { day: 'numeric', month: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                              </td>
+                              <td className={`px-6 py-4 text-right tabular-nums font-medium ${urgent ? 'text-amber-700' : 'text-gray-700'}`}>
+                                {ms < 0 ? 'expired' : days > 0 ? `${days} d ${hours} h` : `${hours} h`}
+                              </td>
+                            </tr>
+                          )
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </>
+              )}
+            </section>
+
+            <hr className="rule mb-16" />
 
             <section>
               <p className="eyebrow text-pink-500 mb-4">Rychlé akce</p>

@@ -95,9 +95,10 @@ function BottomNav({ active }: { active: string }) {
 
 export default function PremiumPage() {
   const router = useRouter()
-  const [user, setUser] = useState<{ id: string; email: string; name: string; premium: boolean } | null>(null)
+  const [user, setUser] = useState<{ id: string; email: string; name: string; premium: boolean; premium_until?: string | null; premium_source?: string | null } | null>(null)
   const [paddleReady, setPaddleReady] = useState(false)
   const [loading, setLoading] = useState<string | null>(null)
+  const [legalConsent, setLegalConsent] = useState(false)
 
   useEffect(() => {
     (async () => {
@@ -130,8 +131,17 @@ export default function PremiumPage() {
       return
     }
     if (!user) return
+    if (!legalConsent) {
+      alert('Než pokračuješ, potvrď prosím souhlas se zahájením služby ihned.')
+      return
+    }
     setLoading(tierId)
     try {
+      // Záznam právního souhlasu dle § 1837 písm. l) OZ — okamžik kliknutí na "Předplatit"
+      await supabase
+        .from('profiles')
+        .update({ legal_consent_immediate_service_at: new Date().toISOString() })
+        .eq('id', user.id)
       window.Paddle.Checkout.open({
         items: [{ priceId, quantity: 1 }],
         customer: { email: user.email },
@@ -231,6 +241,23 @@ export default function PremiumPage() {
         </section>
 
         {/* Tiers */}
+        {/* Právní souhlas dle § 1837 písm. l) OZ — okamžitý začátek plnění digitální služby */}
+        <section className="mb-8 bg-gray-50 border border-gray-200 rounded-2xl p-6">
+          <label className="flex items-start gap-3 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={legalConsent}
+              onChange={e => setLegalConsent(e.target.checked)}
+              className="mt-1 w-4 h-4 accent-pink-500 flex-shrink-0"
+            />
+            <span className="text-sm text-gray-700 leading-relaxed">
+              Souhlasím, aby Cosmatch+ začal být poskytován okamžitě po zaplacení,
+              a beru na vědomí, že tímto ztrácím právo na odstoupení od smlouvy
+              ve 14denní lhůtě dle § 1829 občanského zákoníku.
+            </span>
+          </label>
+        </section>
+
         <section className="space-y-6 mb-20">
           {TIERS.map(tier => {
             const isCurrent = (tier.id === 'free' && !user.premium) || (tier.id !== 'free' && user.premium)

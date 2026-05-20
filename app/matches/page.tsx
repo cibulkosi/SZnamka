@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase, loadCurrentProfile, type Profile, type Compatibility } from '@/lib/supabase'
+import { TrialBanner } from '@/components/PremiumGate'
 
 type Tab = 'mutual' | 'liked' | 'matches'
 
@@ -131,6 +132,7 @@ export default function MatchesPage() {
       </div>
 
       <div className="max-w-xl mx-auto px-6 pt-12">
+        <TrialBanner profile={user} />
 
         <header className="mb-12">
           <p className="eyebrow text-pink-500 mb-6">Tvoje shody</p>
