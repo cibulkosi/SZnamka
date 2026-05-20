@@ -331,7 +331,6 @@ export default function RegisterPage() {
         {/* STEP 0 — SSO */}
         {step === 0 && (
           <>
-            <p className="eyebrow text-pink-500 mb-6">Krok 1 z 5 · Účet</p>
             <h1 className="serif-display text-5xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-6">
               Vítej u <em className="italic text-pink-500">Cosmatch</em>.
             </h1>
@@ -362,7 +361,7 @@ export default function RegisterPage() {
               {' '}a{' '}
               <Link href="/zasady-ochrany-osobnich-udaju" className="underline hover:text-gray-700">Zásadami ochrany osobních údajů</Link>.
               <br />
-              Náš závazek vůči tobě →{' '}
+              Náš závazek vůči tobě je{' '}
               <Link href="/manifest-duvery" className="underline hover:text-gray-700">Manifest důvěry</Link>
             </p>
 
@@ -377,7 +376,6 @@ export default function RegisterPage() {
         {/* STEP 1 — BIRTHDAY */}
         {step === 1 && (
           <>
-            <p className="eyebrow text-pink-500 mb-6">Krok 2 z 5 · Otisk osudu</p>
             <h1 className="serif-display text-5xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-6">
               Kdy ses<br/><em className="italic text-pink-500">narodil/a</em>?
             </h1>
@@ -429,7 +427,6 @@ export default function RegisterPage() {
         {/* STEP 2 — PHOTOS */}
         {step === 2 && (
           <>
-            <p className="eyebrow text-pink-500 mb-6">Krok 3 z 5 · Fotky</p>
             <h1 className="serif-display text-5xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-6">
               Ukaž se,<br/><em className="italic text-pink-500">jak vypadáš</em>.
             </h1>
@@ -470,7 +467,6 @@ export default function RegisterPage() {
         {/* STEP 3 — ABOUT */}
         {step === 3 && (
           <>
-            <p className="eyebrow text-pink-500 mb-6">Krok 4 z 5 · O tobě</p>
             <h1 className="serif-display text-5xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-6">
               Kdo jsi<br/>a <em className="italic text-pink-500">koho hledáš</em>?
             </h1>
@@ -541,7 +537,6 @@ export default function RegisterPage() {
         {/* STEP 4 — PROFILE */}
         {step === 4 && (
           <>
-            <p className="eyebrow text-pink-500 mb-6">Krok 5 z 5 · Profil</p>
             <h1 className="serif-display text-5xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-6">
               Pár detailů,<br/>aby <em className="italic text-pink-500">tě poznali</em>.
             </h1>
