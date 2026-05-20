@@ -268,23 +268,13 @@ export default function KompatibilitaPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-[auto,1fr] gap-6 sm:gap-8 pb-8 border-b border-gray-200">
+            <div className="grid grid-cols-[auto,1fr] gap-6 sm:gap-8">
               <div className="serif-display text-4xl text-pink-500 font-medium tabular-nums">43 %</div>
               <div>
                 <p className="text-gray-800 leading-[1.75] text-[1.0625rem] font-medium mb-1">
                   Čechů věří v osud. 44 % v existenci duše. Třetina v karmu.
                 </p>
                 <p className="text-xs text-gray-400">Pew Research Center, CEE 2017</p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-[auto,1fr] gap-6 sm:gap-8">
-              <div className="serif-display text-4xl text-pink-500 font-medium tabular-nums">66 %</div>
-              <div>
-                <p className="text-gray-800 leading-[1.75] text-[1.0625rem] font-medium mb-1">
-                  Čechů ve věku 27–35 let už někdy použilo seznamovací aplikaci.
-                </p>
-                <p className="text-xs text-gray-400">Visa &times; Instant Research, únor 2026</p>
               </div>
             </div>
           </div>
