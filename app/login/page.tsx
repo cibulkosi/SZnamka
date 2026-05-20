@@ -59,11 +59,6 @@ export default function LoginPage() {
             </button>
           </div>
 
-          <p className="text-xs text-gray-400 leading-relaxed text-center mt-8">
-            Přihlášením souhlasíš s našimi
-            {' '}<Link href="/manifest-duvery" className="underline hover:text-gray-700">podmínkami důvěry</Link>.
-          </p>
-
           <hr className="rule my-10" />
 
           <p className="text-center text-sm text-gray-500">
