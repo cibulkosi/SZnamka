@@ -57,7 +57,7 @@ const TIERS: Tier[] = [
     highlight: true,
     badge: 'Nejoblíbenější',
   },
-  // Cosmatch Serious tier — bude přidán po dosažení 1 000+ platících (single-tier launch)
+  // Druhá placená úroveň (s ID verifikací) — bude přidána po dosažení 1 000+ platících
   // ID verifikace + green badge přijde s ním
 ]
 

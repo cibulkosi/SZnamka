@@ -22,8 +22,8 @@ export default function VerifikacePage() {
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": [
-          { "@type": "Question", "name": 'Jak Cosmatch ověřuje uživatele?', "acceptedAnswer": { "@type": "Answer", "text": 'Dvě vrstvy: bot-shield při registraci (Cloudflare Turnstile, neviditelný anti-bot test) a SSO bez hesla (Google/Facebook s reálným telefonem). ID verifikace s občanským průkazem se připravuje pro budoucí Serious tier.' } },
-          { "@type": "Question", "name": 'Je ID verifikace povinná?', "acceptedAnswer": { "@type": "Answer", "text": 'Ne. V současné single-tier launch fázi Cosmatch nepoužívá ID verifikaci s občanským průkazem. Ochrana stojí na Cloudflare Turnstile + SSO. ID verifikace s green badge přijde v budoucím Serious tieru.' } },
+          { "@type": "Question", "name": 'Jak Cosmatch ověřuje uživatele?', "acceptedAnswer": { "@type": "Answer", "text": 'Dvě vrstvy: bot-shield při registraci (Cloudflare Turnstile, neviditelný anti-bot test) a SSO bez hesla (Google/Facebook s reálným telefonem). ID verifikace s občanským průkazem se připravuje a bude k dispozici později.' } },
+          { "@type": "Question", "name": 'Je ID verifikace povinná?', "acceptedAnswer": { "@type": "Answer", "text": 'Ne. Cosmatch v současné fázi nepoužívá ID verifikaci s občanským průkazem. Ochrana stojí na Cloudflare Turnstile + SSO bez hesla. ID verifikace s ověřeným štítkem se připravuje a bude k dispozici později.' } },
           { "@type": "Question", "name": 'Co se stane když nahlásím podezřelý profil?', "acceptedAnswer": { "@type": "Answer", "text": 'V řádech minut profil dočasně skryjeme z feedu. Pokud potvrdíme scam, trvale ho mažeme a zapisujeme do interní blacklist databáze, aby se nemohl znovu zaregistrovat.' } },
           { "@type": "Question", "name": 'Kde najdu měsíční reporty bezpečnosti?', "acceptedAnswer": { "@type": "Answer", "text": 'Na této stránce. Aktualizujeme statistiky reportů, zablokovaných profilů a ověřených uživatelů každý měsíc po ostrém spuštění.' } }
         ]
