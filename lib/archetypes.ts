@@ -124,7 +124,7 @@ export const ARCHETYPES: Record<number, Archetype> = {
     accent: '#C2410C',
   },
   2: {
-    name: 'Smiřitel',
+    name: 'Diplomat',
     tagline: 'Empatický, intuitivní, partnerský.',
     description: 'Jsi empatický, intuitivní a orientovaný na vztahy. Cítíš ostatní hlouběji než oni sami sebe. V lásce hledáš skutečnou duševní spřízněnost.',
     traits: ['Empatický', 'Intuitivní', 'Laskavý', 'Harmonický'],
@@ -220,7 +220,7 @@ export const ARCHETYPES: Record<number, Archetype> = {
     accent: '#1E40AF',
   },
   8: {
-    name: 'Vladař',
+    name: 'Vůdce',
     tagline: 'Strategický, autoritativní, výkonný.',
     description: 'Jsi strategický, autoritativní a výkonný. Vytváříš svět kolem sebe, ne v něm. V lásce potřebuješ partnera, který sdílí tvé ambice, ale není jimi pohlcen.',
     traits: ['Strategický', 'Autoritativní', 'Velkorysý', 'Disciplinovaný'],
@@ -236,7 +236,7 @@ export const ARCHETYPES: Record<number, Archetype> = {
     accent: '#92400E',
   },
   9: {
-    name: 'Humanista',
+    name: 'Idealista',
     tagline: 'Soucitný, vizionářský, moudrý.',
     description: 'Jsi soucitný, vizionářský a moudrý. Nesete v sobě všechny předchozí čísla — máš v sobě kus každého archetypu. V lásce hledáš někoho, s kým budeš sdílet větší smysl.',
     traits: ['Soucitný', 'Idealistický', 'Moudrý', 'Velkorysý'],
@@ -252,7 +252,7 @@ export const ARCHETYPES: Record<number, Archetype> = {
     accent: '#7C3AED',
   },
   11: {
-    name: 'Osvětitel',
+    name: 'Vizionář',
     tagline: 'Intuitivní vizionář, spirituální posel.',
     description: 'Jsi intuitivní vizionář s neobyčejnou citlivostí. Cítíš věci, které ostatním unikají. V lásce hledáš partnera, který dokáže nést tvou intenzitu a zároveň ti pomáhá zůstat ukotvený/á.',
     traits: ['Intuitivní', 'Inspirativní', 'Citlivý', 'Spirituální'],
@@ -268,7 +268,7 @@ export const ARCHETYPES: Record<number, Archetype> = {
     accent: '#9333EA',
   },
   22: {
-    name: 'Stavitel snů',
+    name: 'Architekt',
     tagline: 'Vizionář, který buduje skutečné věci.',
     description: 'Jsi master builder — vizionář s pevnýma nohama. Dokážeš proměnit sny v instituce, hnutí, nebo trvalá díla. V lásce hledáš někoho, kdo s tebou bude sdílet tvou schopnost realizovat velké vize.',
     traits: ['Vizionářský', 'Praktický', 'Disciplinovaný', 'Inspirativní'],
