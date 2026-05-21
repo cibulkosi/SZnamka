@@ -226,7 +226,7 @@ export default function WaitlistPage() {
                   <p className="serif-display text-5xl text-pink-500 font-medium tracking-tight tabular-nums">
                     {remaining.toLocaleString('cs-CZ')}
                   </p>
-                  <p className="text-xs text-gray-400 mt-1">do „Zakládajících 1{' '}000"</p>
+                  <p className="text-xs text-gray-400 mt-1">do „Zakládajících 1{' '}000“</p>
                 </div>
               </div>
             </section>
@@ -347,7 +347,7 @@ export default function WaitlistPage() {
               <div className="space-y-10">
                 {[
                   ['I','Voucher na 3 měsíce do Cosmatch+','Prvních 1{\ }000 lidí dostane prémium členství zdarma a tím si otevřou neomezené shody, otevírání profilů bez čekání, a hlubší analýzy.'],
-                  ['II','Odznak Zakládajícího člena','Můžeš si dát na Tvůj profil odznak „Zakládající člen" a získáš tak podpis u příběhu, který pomáháš psát od první stránky.'],
+                  ['II','Odznak Zakládajícího člena','Můžeš si dát na Tvůj profil odznak „Zakládající člen“ a získáš tak podpis u příběhu, který pomáháš psát od první stránky.'],
                   ['III','Early access k novinkám','Prvních 1{\ }000 členů zkouší nové funkce dřív než ostatní a jejich zpětná vazba má vyšší váhu.'],
                 ].map(([num, title, body]) => (
                   <div key={num} className="grid grid-cols-[auto,1fr] gap-x-8">

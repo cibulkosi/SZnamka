@@ -46,13 +46,13 @@ export default function MasterCislaPage() {
         <section className="mb-16">
           <p className="eyebrow text-gray-500 mb-4">Co to znamená</p>
           <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-6">
-            Proč jsou „master".
+            Proč jsou „master“.
           </h2>
           <p className="text-gray-800 leading-[1.75] text-[1.0625rem] dropcap mb-4">
-            V tradiční numerologii redukujeme každý součet číslic data narození na jednu cifru (1–9). Jediné výjimky jsou 11, 22 a 33 — ta zůstávají nezredukovaná, protože nesou specifickou „mistrovskou" vibraci.
+            V tradiční numerologii redukujeme každý součet číslic data narození na jednu cifru (1–9). Jediné výjimky jsou 11, 22 a 33 — ta zůstávají nezredukovaná, protože nesou specifickou „mistrovskou“ vibraci.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
-            Pokud máš 11, 22 nebo 33, nemusíš nutně být „lepší" — ale tvoje životní zkušenost bude pravděpodobně intenzivnější. Hlubší vrcholy, hlubší dna, vyšší citlivost.
+            Pokud máš 11, 22 nebo 33, nemusíš nutně být „lepší“ — ale tvoje životní zkušenost bude pravděpodobně intenzivnější. Hlubší vrcholy, hlubší dna, vyšší citlivost.
           </p>
         </section>
 

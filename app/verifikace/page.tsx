@@ -91,7 +91,7 @@ export default function VerifikacePage() {
           </h2>
           <div className="space-y-6 text-gray-700 leading-[1.75] text-[1.0625rem]">
             <p>
-              Když nahlásíš podezřelý profil tlačítkem „Nahlásit", spustí se okamžitě tři kroky:
+              Když nahlásíš podezřelý profil tlačítkem „Nahlásit“, spustí se okamžitě tři kroky:
             </p>
             <ol className="space-y-3 list-none ml-0">
               <li className="grid grid-cols-[auto,1fr] gap-4">

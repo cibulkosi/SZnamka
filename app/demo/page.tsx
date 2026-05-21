@@ -95,7 +95,7 @@ export default function DemoPage() {
               </div>
 
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6 italic serif">
-                „{p.bio}"
+                „{p.bio}“
               </p>
 
               <div className="flex flex-wrap gap-2 mb-5">

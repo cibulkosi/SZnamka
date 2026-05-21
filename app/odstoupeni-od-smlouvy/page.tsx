@@ -41,7 +41,7 @@ export default function OdstoupeniPage() {
           <section>
             <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">Jak postupovat</h2>
             <p className="mb-3">
-              <strong className="text-gray-900 font-medium">Možnost 1 — jednoduchý e-mail:</strong> Pošli e-mail na <a href="mailto:ahoj@cosmatch.cz" className="text-pink-500 underline">ahoj@cosmatch.cz</a> s textem „Tímto odstupuji od smlouvy o předplatném [tarif] uzavřené [datum]." a uveď svůj e-mail registrovaný v Cosmatch.
+              <strong className="text-gray-900 font-medium">Možnost 1 — jednoduchý e-mail:</strong> Pošli e-mail na <a href="mailto:ahoj@cosmatch.cz" className="text-pink-500 underline">ahoj@cosmatch.cz</a> s textem „Tímto odstupuji od smlouvy o předplatném [tarif] uzavřené [datum].“ a uveď svůj e-mail registrovaný v Cosmatch.
             </p>
             <p className="mb-3">
               <strong className="text-gray-900 font-medium">Možnost 2 — strukturovaný formulář:</strong> Použij vzor níže. Stačí ho zkopírovat do e-mailu a vyplnit.

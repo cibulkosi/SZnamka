@@ -34,7 +34,7 @@ Deno.serve(async (req) => {
 
       const html = emailLayout({
         heading: 'Máš novou shodu!',
-        body: `<p style="margin:0 0 16px;">Ahoj ${vocative(u.name)},</p><p style="margin:0 0 16px;">Máte vzájemný kosmický match ${sSe(partner.name)}! A to znamená, že vám Cosmatch otevřel chat.</p><p style="margin:0 0 16px;">Statistika ze seznamovacích aplikací říká, že čím dřív druhé osobě napíšeš první zprávu, tím je vyšší šance na reálné setkání.</p><p style="margin:0 0 16px;color:#6b7280;font-style:italic;">„První zpráva ti nemusí zabrat víc než minutu. Stačí jedna otázka, která ukáže, že jsi profil dané osoby opravdu ${readVerb}."</p>`,
+        body: `<p style="margin:0 0 16px;">Ahoj ${vocative(u.name)},</p><p style="margin:0 0 16px;">Máte vzájemný kosmický match ${sSe(partner.name)}! A to znamená, že vám Cosmatch otevřel chat.</p><p style="margin:0 0 16px;">Statistika ze seznamovacích aplikací říká, že čím dřív druhé osobě napíšeš první zprávu, tím je vyšší šance na reálné setkání.</p><p style="margin:0 0 16px;color:#6b7280;font-style:italic;">„První zpráva ti nemusí zabrat víc než minutu. Stačí jedna otázka, která ukáže, že jsi profil dané osoby opravdu ${readVerb}.“</p>`,
         ctaUrl: 'https://cosmatch.cz/matches',
         ctaLabel: 'Otevřít chat',
       })

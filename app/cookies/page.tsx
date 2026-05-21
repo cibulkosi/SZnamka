@@ -64,21 +64,21 @@ export default function CookiesPage() {
 
               <div className="border border-gray-200 rounded-2xl p-6">
                 <p className="eyebrow text-gray-500 mb-2">Funkční</p>
-                <h3 className="serif text-xl text-gray-900 font-medium mb-2">localStorage „cosmatch_user"</h3>
+                <h3 className="serif text-xl text-gray-900 font-medium mb-2">localStorage „cosmatch_user“</h3>
                 <p className="text-gray-700 text-[0.95rem] mb-2">Cache tvého profilu pro rychlejší načítání. Přepisováno při každém přihlášení.</p>
                 <p className="text-xs text-gray-500">Doba: do odhlášení · Doména: cosmatch.cz · Lze odmítnout? Ano — odhlas se, pak smaž browser data</p>
               </div>
 
               <div className="border border-gray-200 rounded-2xl p-6">
                 <p className="eyebrow text-gray-500 mb-2">Funkční</p>
-                <h3 className="serif text-xl text-gray-900 font-medium mb-2">localStorage „cosmatch_daily_swipes"</h3>
+                <h3 className="serif text-xl text-gray-900 font-medium mb-2">localStorage „cosmatch_daily_swipes“</h3>
                 <p className="text-gray-700 text-[0.95rem] mb-2">Počítadlo denních lajků pro Free tier (limit 5/den).</p>
                 <p className="text-xs text-gray-500">Doba: 1 den · Doména: cosmatch.cz · Lze odmítnout? Ano (počitadlo se neuloží)</p>
               </div>
 
               <div className="border border-gray-200 rounded-2xl p-6">
                 <p className="eyebrow text-gray-500 mb-2">Funkční</p>
-                <h3 className="serif text-xl text-gray-900 font-medium mb-2">localStorage „cosmatch_magic_seen"</h3>
+                <h3 className="serif text-xl text-gray-900 font-medium mb-2">localStorage „cosmatch_magic_seen“</h3>
                 <p className="text-gray-700 text-[0.95rem] mb-2">Pamatuje si, že už jsi viděl/a magic moment uvítací zprávu (zobrazuje se jednou).</p>
                 <p className="text-xs text-gray-500">Doba: trvale (do reset browser data) · Doména: cosmatch.cz · Lze odmítnout? Ano</p>
               </div>

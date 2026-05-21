@@ -93,7 +93,7 @@ export default function GdprPage() {
               Datum narození používá Cosmatch nejen pro ověření plnoletosti (18+), ale také jako vstup do algoritmu kompatibility podle data narození. Tento výpočet vychází z numerologické tradice a může být interpretován jako zpracování údajů, které mohou nepřímo vypovídat o filozofickém přesvědčení uživatele ve smyslu <strong className="text-gray-900 font-medium">čl. 9 odst. 1 GDPR</strong> (zvláštní kategorie osobních údajů).
             </p>
             <p className="mb-3">
-              Z opatrnosti proto Cosmatch zpracovává datum narození pro účely kompatibility na základě <strong className="text-gray-900 font-medium">výslovného souhlasu</strong> uživatele dle čl. 9 odst. 2 písm. a) GDPR. Tento souhlas uživatel uděluje aktivně při registraci samostatným zaškrtnutím („Souhlasím se zpracováním data narození pro výpočet kompatibility podle data narození").
+              Z opatrnosti proto Cosmatch zpracovává datum narození pro účely kompatibility na základě <strong className="text-gray-900 font-medium">výslovného souhlasu</strong> uživatele dle čl. 9 odst. 2 písm. a) GDPR. Tento souhlas uživatel uděluje aktivně při registraci samostatným zaškrtnutím („Souhlasím se zpracováním data narození pro výpočet kompatibility podle data narození“).
             </p>
             <p className="mb-3">
               Souhlas lze kdykoli odvolat — buď e‑mailem na <a href="mailto:ahoj@cosmatch.cz" className="text-pink-500 underline">ahoj@cosmatch.cz</a>, nebo smazáním účtu v profilu. Odvolání souhlasu nemá zpětnou účinnost na zpracování provedené před odvoláním. Odvoláním souhlasu skončí funkce kompatibility a profil se vrátí na základní režim (případně bude smazán dle volby uživatele).
@@ -161,7 +161,7 @@ export default function GdprPage() {
             <ul className="list-disc pl-6 space-y-2">
               <li><strong className="text-gray-900 font-medium">Právo na přístup</strong> — můžeš si vyžádat kopii všech tvých dat (do 30 dnů).</li>
               <li><strong className="text-gray-900 font-medium">Právo na opravu</strong> — pokud máš v profilu chybu, oprav ji (kromě data narození, které je z technických důvodů uzamčené po registraci).</li>
-              <li><strong className="text-gray-900 font-medium">Právo na výmaz („právo být zapomenut")</strong> — smazat účet a všechna data můžeš v profilu jedním klikem. Realizace do 30 dnů.</li>
+              <li><strong className="text-gray-900 font-medium">Právo na výmaz („právo být zapomenut“)</strong> — smazat účet a všechna data můžeš v profilu jedním klikem. Realizace do 30 dnů.</li>
               <li><strong className="text-gray-900 font-medium">Právo na omezení zpracování</strong> — můžeš požádat o pozastavení zpracování (např. během řešení sporu).</li>
               <li><strong className="text-gray-900 font-medium">Právo na přenositelnost dat</strong> — pošleme ti tvoje data ve strojově čitelném formátu (JSON).</li>
               <li><strong className="text-gray-900 font-medium">Právo vznést námitku</strong> — proti zpracování na základě oprávněného zájmu.</li>
@@ -179,8 +179,8 @@ export default function GdprPage() {
             <ul className="list-disc pl-6 space-y-2">
               <li><strong className="text-gray-900 font-medium">Supabase auth cookie</strong> — pro tvoji přihlášenou session (povinné).</li>
               <li><strong className="text-gray-900 font-medium">Cloudflare cf-clearance</strong> — anti-bot ochrana (povinné).</li>
-              <li><strong className="text-gray-900 font-medium">localStorage „cosmatch_user"</strong> — cache tvého profilu pro rychlejší načítání.</li>
-              <li><strong className="text-gray-900 font-medium">localStorage „cosmatch_daily_swipes"</strong> — počítadlo denních lajků (pro Free tier).</li>
+              <li><strong className="text-gray-900 font-medium">localStorage „cosmatch_user“</strong> — cache tvého profilu pro rychlejší načítání.</li>
+              <li><strong className="text-gray-900 font-medium">localStorage „cosmatch_daily_swipes“</strong> — počítadlo denních lajků (pro Free tier).</li>
             </ul>
             <p className="mt-3">
               <strong className="text-gray-900 font-medium">Cosmatch nepoužívá</strong> Google Analytics, Facebook Pixel, Hotjar ani jiné sledovací nástroje třetích stran. Žádné reklamní cookies. Žádné cross-site tracking.

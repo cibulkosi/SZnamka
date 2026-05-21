@@ -160,7 +160,7 @@ export default function ProfilePage() {
           <section className="mb-12">
             <p className="eyebrow text-pink-500 mb-3">Tvůj otisk osudu</p>
             <p className="text-gray-800 leading-[1.75] text-[1.0625rem] italic serif">
-              „{personologyText}"
+              „{personologyText}“
             </p>
           </section>
         )}
@@ -371,7 +371,7 @@ export default function ProfilePage() {
           <div className="bg-white border border-gray-200 rounded-2xl p-5 mb-3">
             <label className="block">
               <span className="text-sm font-medium text-gray-900 mb-2 block">Preferovaná postava partnera</span>
-              <p className="text-xs text-gray-500 mb-3">Vyber typy, které tě zajímají. Nezaškrtnuté znamená „kdokoli".</p>
+              <p className="text-xs text-gray-500 mb-3">Vyber typy, které tě zajímají. Nezaškrtnuté znamená „kdokoli“.</p>
               <div className="flex flex-wrap gap-2">
                 {BODY_TYPES.map(bt => {
                   const isSelected = (user.pref_body_types ?? []).includes(bt.value)

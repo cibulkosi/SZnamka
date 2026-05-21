@@ -204,7 +204,7 @@ export default function TestPage() {
 
   async function shareResult() {
     const url = `${window.location.origin}/test?ref=${referralCode || ''}`
-    const text = `Jsem „${archetype?.name}" (číslo ${lifePath}) — zjisti i své na Cosmatch.`
+    const text = `Jsem „${archetype?.name}“ (číslo ${lifePath}) — zjisti i své na Cosmatch.`
 
     // Try Web Share API with PNG file (supported on iOS Safari, Chrome Android)
     if (navigator.share && archetype) {

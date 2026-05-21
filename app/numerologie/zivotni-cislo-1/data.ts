@@ -63,7 +63,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
       "Náchylný k pocitům odmítnutí"
     ],
     "love": "Diplomat potřebuje stabilního, milujícího partnera, který oceňuje tvou citlivost. Nejlépe si rozumíš s 4 (Stavitel), 6 (Pečovatel), 8 (Vůdce) — kombinace stability a hloubky.",
-    "shadow": "Tendence potlačovat vlastní potřeby pro mír v partě. Naučit se říkat „ne\" je tvou lekcí.",
+    "shadow": "Tendence potlačovat vlastní potřeby pro mír v partě. Naučit se říkat „ne\“ je tvou lekcí.",
     "career": "Psycholog, terapeut, mediátor, učitel, zdravotník, diplomat.",
     "celebrities": [
       "Václav Havel (5.10.1936)",

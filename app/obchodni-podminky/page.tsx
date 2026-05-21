@@ -38,13 +38,13 @@ export default function ObchodniPodminkyPage() {
           <section>
             <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">1. Úvodní ustanovení</h2>
             <p className="mb-3">
-              <strong className="text-gray-900 font-medium">1.1</strong> Tyto obchodní podmínky (dále jen „<strong>Podmínky</strong>") upravují vztah mezi:
+              <strong className="text-gray-900 font-medium">1.1</strong> Tyto obchodní podmínky (dále jen „<strong>Podmínky</strong>“) upravují vztah mezi:
             </p>
             <p className="mb-3 pl-4">
-              <strong className="text-gray-900 font-medium">Mgr. Ing. Simonou Cibulkovou</strong>, IČO 08419531, se sídlem Praha, Česká republika, datová schránka tttkfnk, provozovatelkou webu cosmatch.cz a stejnojmenné webové aplikace (dále jen „<strong>Provozovatel</strong>" nebo „<strong>Cosmatch</strong>")
+              <strong className="text-gray-900 font-medium">Mgr. Ing. Simonou Cibulkovou</strong>, IČO 08419531, se sídlem Praha, Česká republika, datová schránka tttkfnk, provozovatelkou webu cosmatch.cz a stejnojmenné webové aplikace (dále jen „<strong>Provozovatel</strong>“ nebo „<strong>Cosmatch</strong>“)
             </p>
             <p className="mb-3 pl-4">
-              a osobou, která se zaregistruje a používá Cosmatch (dále jen „<strong>Uživatel</strong>").
+              a osobou, která se zaregistruje a používá Cosmatch (dále jen „<strong>Uživatel</strong>“).
             </p>
             <p className="mb-3">
               <strong className="text-gray-900 font-medium">1.2</strong> Cosmatch je online seznamovací služba postavená na principu numerologické kompatibility data narození.

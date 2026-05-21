@@ -66,8 +66,8 @@ export default function LandingPage() {
             <div className="bg-white rounded-3xl p-10 border border-gray-100 shadow-sm">
               <p className="eyebrow text-gray-400 mb-6">Z Manifestu důvěry</p>
               <p className="serif text-2xl text-gray-900 leading-[1.45] mb-8 italic">
-                "Většina stránek včetně seznamek vydělává na tom, jak dlouho na nich zůstanete.
-                My ale chceme, abyste si našli vhodný protějšek a opustili nás."
+                „Většina stránek včetně seznamek vydělává na tom, jak dlouho na nich zůstanete.
+                My ale chceme, abyste si našli vhodný protějšek a opustili nás.“
               </p>
               <Link href="/manifest-duvery" className="text-sm text-pink-500 hover:text-pink-600 transition">
                 Přečíst všech sedm závazků →

@@ -43,7 +43,7 @@ const SECTIONS = [
     num: 'I',
     title: 'Proč se přitahujeme k určitým lidem?',
     paras: [
-      'Psychologové hovoří o „familiarity effect" — tendenci preferovat lidi, kteří nám připomínají vzorce z dětství. Numerologie přidává jiný pohled: každé životní číslo nese specifické energetické kvality, které přirozeně rezonují s některými čísly a tvoří třecí plochy s jinými.',
+      'Psychologové hovoří o „familiarity effect“ — tendenci preferovat lidi, kteří nám připomínají vzorce z dětství. Numerologie přidává jiný pohled: každé životní číslo nese specifické energetické kvality, které přirozeně rezonují s některými čísly a tvoří třecí plochy s jinými.',
       'To neznamená determinismus. Znamená to, že pochopením svého čísla lépe pochopíš, co od partnera přirozeně očekáváš — a kde mohou nastat konflikty dříve, než eskalují.',
     ],
   },

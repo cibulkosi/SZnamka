@@ -136,7 +136,7 @@ export default function JakFungujeCosmatchPage() {
             <li><em className="italic">Žádná kategorie</em> — neutrální default, 50 bodů</li>
           </ul>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
-            Tyto kategorie už v sobě <em className="italic">obsahují</em> astrologickou logiku (trigon, sextil, opozice, čtverec, kvintil) i numerologickou harmonii — Goldschneider je všechny zohlednil při sestavování knihy. Cosmatch tu jejich práci jen vyhledává, ne znovu počítá. Proto se v algoritmu nepřidává samostatná vrstva pro „elementy" nebo „astrologické aspekty" — to by bylo trojí započítání toho samého.
+            Tyto kategorie už v sobě <em className="italic">obsahují</em> astrologickou logiku (trigon, sextil, opozice, čtverec, kvintil) i numerologickou harmonii — Goldschneider je všechny zohlednil při sestavování knihy. Cosmatch tu jejich práci jen vyhledává, ne znovu počítá. Proto se v algoritmu nepřidává samostatná vrstva pro „elementy“ nebo „astrologické aspekty“ — to by bylo trojí započítání toho samého.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
             Vyhledání je <strong className="text-gray-900 font-medium">vzájemné</strong>: hledáme, do jaké kategorie patří B v A's profilu, a obráceně. Výsledek je průměr obou směrů. Když oba mají v sobě navzájem pozitivní kategorii, dostávají bonus 5 %.
@@ -187,10 +187,10 @@ export default function JakFungujeCosmatchPage() {
             Cosmatch používá numerologické a astrologické vzorce k odhadu strukturálního souznění mezi dvěma lidmi. <strong className="text-gray-900 font-medium">Numerologie a astrologie nejsou vědecky validované jako spolehlivé prediktory vztahových výsledků.</strong>
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-            Část pocitu „tohle sedí přesně!" je dokumentovaný psychologický jev zvaný <strong className="text-gray-900 font-medium">Barnumův/Forerův efekt</strong>. V roce 1949 psycholog Bertram Forer dal 39 studentům identický popis osobnosti a oni ho ohodnotili průměrnou známkou <strong className="text-gray-900 font-medium">4.26 z 5.0</strong> jako „přesně mě". To samé funguje s numerologií a astrologií — popisy jsou obecné natolik, aby v nich každý našel kus sebe.
+            Část pocitu „tohle sedí přesně!“ je dokumentovaný psychologický jev zvaný <strong className="text-gray-900 font-medium">Barnumův/Forerův efekt</strong>. V roce 1949 psycholog Bertram Forer dal 39 studentům identický popis osobnosti a oni ho ohodnotili průměrnou známkou <strong className="text-gray-900 font-medium">4.26 z 5.0</strong> jako „přesně mě“. To samé funguje s numerologií a astrologií — popisy jsou obecné natolik, aby v nich každý našel kus sebe.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-            <strong className="text-gray-900 font-medium">Proč to nevadí?</strong> Protože hodnota nástroje není v jeho prediktivní přesnosti — je v tom, k jakému rozhovoru ti otevírá dveře. Numerologický archetyp je <strong className="text-gray-900 font-medium">zrcadlo</strong>, ne diagnóza. „Tohle jsem já?" je první otázka. „Jak s tím nakládám?" je druhá. „Jak komunikuju partnerovi, co potřebuju?" je třetí. Cosmatch ti dává jazyk pro tyto rozhovory.
+            <strong className="text-gray-900 font-medium">Proč to nevadí?</strong> Protože hodnota nástroje není v jeho prediktivní přesnosti — je v tom, k jakému rozhovoru ti otevírá dveře. Numerologický archetyp je <strong className="text-gray-900 font-medium">zrcadlo</strong>, ne diagnóza. „Tohle jsem já?“ je první otázka. „Jak s tím nakládám?“ je druhá. „Jak komunikuju partnerovi, co potřebuju?“ je třetí. Cosmatch ti dává jazyk pro tyto rozhovory.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
             Cosmatch shoda je interpretační nástroj, ne predikce. Žádná aplikace nedokáže garantovat úspěch vztahu — záleží na vás, jak ho dokážete vybudovat.

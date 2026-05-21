@@ -659,7 +659,7 @@ export default function DiscoverPage() {
        {user?.name}, <em className="italic text-pink-500">vesmír tě zná</em>.
      </h2>
      <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-8 whitespace-pre-wrap serif italic">
-       „{magicText}"
+       „{magicText}“
      </p>
      <button
        className="w-full bg-gray-900 text-white py-5 rounded-full text-base font-medium hover:bg-gray-800 transition"

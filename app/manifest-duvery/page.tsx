@@ -162,7 +162,7 @@ export default function ManifestDuvery() {
               <div>
                 <p className="serif text-lg text-gray-900 font-medium mb-1">Vícevrstvá ochrana před scammery</p>
                   <p className="text-gray-600 text-sm leading-relaxed">Cloudflare Turnstile anti-bot, SSO bez hesla a transparentní reportování. Detaily na stránce <a href="/verifikace" className="text-pink-500 hover:underline">Bezpečnost</a>.</p>
-                <p className="serif text-lg text-gray-900 font-medium mb-1">Nabízíme filtr „jen ověřené"</p>
+                <p className="serif text-lg text-gray-900 font-medium mb-1">Nabízíme filtr „jen ověřené“</p>
                 <p className="text-gray-700 leading-relaxed text-[0.95rem]">
                   V nastavení si zapneš, aby ti aplikace zobrazovala jen profily se zeleným štítkem,
                   což jsou ověřené profily, tedy reální lidé. Neděláme žádné kompromisy.
