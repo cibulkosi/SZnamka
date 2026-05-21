@@ -35,8 +35,8 @@ export default function LandingPage() {
             <hr className="rule w-16 border-gray-900 mb-8" />
             <div className="mb-10 max-w-xl space-y-5">
               <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
-                Cosmatch spočítá tvoji kompatibilitu podle data narození —
-                podle 12 archetypů a 366 denních profilů.
+                Cosmatch spočítá kompatibilitu mezi Tvým datem narození a datem narození
+                potenciálního partnera podle 12 archetypů a 366 denních profilů.
               </p>
               <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
                 Místo nekonečného swipování ti dává důvod, proč se s někým opravdu potkat.
@@ -47,7 +47,7 @@ export default function LandingPage() {
                 href="/test"
                 className="inline-flex items-center justify-center bg-gray-900 text-white px-8 py-5 rounded-full text-base font-medium hover:bg-gray-800 active:scale-[0.99] transition-all"
               >
-                Spustit kvíz
+                Zjisti svůj archetyp
               </Link>
               <Link
                 href="/waitlist"
@@ -131,12 +131,12 @@ export default function LandingPage() {
               {
                 num: 'II',
                 title: 'Na seznamce uvidíš profily, ne jen karty',
-                body: 'Místo nekonečného swipování dostaneš zdarma pět profilů denně seřazených podle skutečné kompatibility. Každý profil ti řekne, proč právě tato osoba k tobě podle data narození sedí.'
+                body: 'Místo nekonečného swipování se můžeš kouknout zdarma na pět profilů denně seřazených podle skutečné kompatibility. Každý profil ti řekne, proč právě tato osoba k tobě podle data narození sedí.'
               },
               {
                 num: 'III',
                 title: 'Potkáš se v reálném světě',
-                body: 'Match → zpráva → káva. Konverzace pro to, abys věděl/a co, schůzka pro to ostatní.'
+                body: 'Match → zpráva → káva. Odpoj se co nejrychleji a vrať se zpátky do skutečného života.'
               },
             ].map((s) => (
               <div key={s.num} className="grid grid-cols-[auto,1fr] gap-x-8 sm:gap-x-12">
