@@ -240,36 +240,49 @@ export default function LandingPage() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-gray-200 py-12 px-6">
+      <footer className="border-t border-gray-200 py-16 px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-8">
-            <div>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12">
+            {/* Brand & legal block */}
+            <div className="md:col-span-6">
               <p className="serif-display text-xl font-medium text-gray-900 mb-1">Cosmatch</p>
               <p className="text-sm text-gray-500">© 2026 · Mgr. Ing. Simona Cibulková · IČO 08419531 · Pnětluky</p>
-              <p className="text-xs text-gray-500 mt-2">
+              <p className="text-xs text-gray-500 mt-3">
                 <span className="inline-block bg-gray-900 text-white px-2 py-0.5 rounded-full text-[10px] font-medium tracking-wider mr-2">18+</span>
                 Seznamovací služba určená výhradně osobám starším 18 let.
               </p>
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-gray-500 mt-2">
                 Cosmatch+ od 249 Kč/měs (597 Kč/3 měs · 2 088 Kč/rok, sleva 30 %). Předplatné lze kdykoli zrušit v profilu bez sankce.
               </p>
               <p className="text-xs text-gray-400 mt-2 max-w-md leading-relaxed">
                 Cosmatch používá numerologické a astrologické vzorce. Tyto nejsou vědecky validované jako prediktory vztahů — jde o interpretační nástroj, ne predikci. <a href="/jak-funguje-cosmatch" className="underline hover:text-gray-700">Detail</a>.
               </p>
             </div>
-          <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-            <Link href="/test" className="text-gray-500 hover:text-gray-900 transition">Kvíz</Link>
-            <Link href="/waitlist" className="text-gray-500 hover:text-gray-900 transition">Waitlist</Link>
-            <Link href="/manifest-duvery" className="text-gray-500 hover:text-gray-900 transition">Manifest důvěry</Link>
-            <Link href="/kontakt" className="text-gray-500 hover:text-gray-900 transition">Kontakt</Link>
-            <Link href="/zasady-ochrany-osobnich-udaju" className="text-gray-500 hover:text-gray-900 transition">GDPR</Link>
-            <Link href="/obchodni-podminky" className="text-gray-500 hover:text-gray-900 transition">Obchodní podmínky</Link>
-            <Link href="/opakovane-platby" className="text-gray-500 hover:text-gray-900 transition">Opakované platby</Link>
-            <Link href="/reklamacni-rad" className="text-gray-500 hover:text-gray-900 transition">Reklamace</Link>
-            <Link href="/odstoupeni-od-smlouvy" className="text-gray-500 hover:text-gray-900 transition">Odstoupení</Link>
-            <Link href="/cookies" className="text-gray-500 hover:text-gray-900 transition">Cookies</Link>
-            <Link href="/verifikace" className="text-gray-500 hover:text-gray-900 transition">Bezpečnost</Link>
-            <Link href="/login" className="text-gray-500 hover:text-gray-900 transition">Přihlásit</Link>
+
+            {/* Cosmatch links */}
+            <div className="md:col-span-3">
+              <p className="eyebrow text-gray-400 mb-4">Cosmatch</p>
+              <ul className="space-y-3 text-sm">
+                <li><Link href="/test" className="text-gray-600 hover:text-gray-900 transition">Kvíz</Link></li>
+                <li><Link href="/waitlist" className="text-gray-600 hover:text-gray-900 transition">Waitlist</Link></li>
+                <li><Link href="/manifest-duvery" className="text-gray-600 hover:text-gray-900 transition">Manifest důvěry</Link></li>
+                <li><Link href="/verifikace" className="text-gray-600 hover:text-gray-900 transition">Bezpečnost</Link></li>
+                <li><Link href="/kontakt" className="text-gray-600 hover:text-gray-900 transition">Kontakt</Link></li>
+                <li><Link href="/login" className="text-gray-600 hover:text-gray-900 transition">Přihlásit</Link></li>
+              </ul>
+            </div>
+
+            {/* Legal links */}
+            <div className="md:col-span-3">
+              <p className="eyebrow text-gray-400 mb-4">Právní</p>
+              <ul className="space-y-3 text-sm">
+                <li><Link href="/zasady-ochrany-osobnich-udaju" className="text-gray-600 hover:text-gray-900 transition">GDPR</Link></li>
+                <li><Link href="/obchodni-podminky" className="text-gray-600 hover:text-gray-900 transition">Obchodní podmínky</Link></li>
+                <li><Link href="/opakovane-platby" className="text-gray-600 hover:text-gray-900 transition">Opakované platby</Link></li>
+                <li><Link href="/reklamacni-rad" className="text-gray-600 hover:text-gray-900 transition">Reklamace</Link></li>
+                <li><Link href="/odstoupeni-od-smlouvy" className="text-gray-600 hover:text-gray-900 transition">Odstoupení</Link></li>
+                <li><Link href="/cookies" className="text-gray-600 hover:text-gray-900 transition">Cookies</Link></li>
+              </ul>
             </div>
           </div>
         </div>
