@@ -73,7 +73,7 @@ export default function JakFungujeCosmatchPage() {
 
         <hr className="rule mb-16" />
 
-        {/* 5 vrstev algoritmu */}
+        {/* 7 vrstev algoritmu */}
         <section className="mb-16">
           <p className="eyebrow text-gray-500 mb-4">Algoritmus — top-level</p>
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-10">
