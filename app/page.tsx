@@ -33,12 +33,18 @@ export default function LandingPage() {
               Najdi člověka,<br/>se kterým<br/><em className="italic text-pink-500">dává život smysl</em>.
             </h1>
             <hr className="rule w-16 border-gray-900 mb-8" />
-            <p className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-10 max-w-xl">
-              96 % českých žen ve věku 18–29 let považuje nalezení správného partnera za velmi obtížné.
-              Cosmatch se snaží tuto dynamiku měnit a spočítá kompatibilitu mezi tvým a partnerovým
-              datem narození podle 12 archetypů a 366 denních profilů kompatibility. Místo bezduchého swipování ti dává důvod,
-              proč se s někým opravdu potkat.
-            </p>
+            <div className="mb-10 max-w-xl space-y-5">
+              <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
+                96 % českých žen ve věku 18–29 let považuje nalezení správného partnera za velmi obtížné.
+              </p>
+              <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
+                Cosmatch se snaží tuto dynamiku měnit a spočítá kompatibilitu mezi tvým a partnerovým
+                datem narození podle 12 archetypů a 366 denních profilů kompatibility.
+              </p>
+              <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
+                Místo bezduchého swipování ti dává důvod, proč se s někým opravdu potkat.
+              </p>
+            </div>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/test"
