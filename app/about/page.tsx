@@ -37,7 +37,7 @@ const jsonLd = {
       headline: TITLE, description: DESC,
       author: { '@type': 'Person', name: 'Simona Cibulková', jobTitle: 'Founder of Cosmatch' },
       publisher: { '@type': 'Organization', name: 'Cosmatch', logo: { '@type': 'ImageObject', url: 'https://cosmatch.cz/icon-512.png' } },
-      datePublished: '2026-05-17', dateModified: '2026-05-17',
+      datePublished: '2026-05-17', dateModified: '2026-05-21',
       inLanguage: 'en-US',
     },
     {
@@ -51,7 +51,7 @@ const jsonLd = {
         {
           '@type': 'Question',
           name: 'How does Cosmatch work?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Cosmatch calculates each user\'s life path number from their birth date and matches them with compatible numbers using 366 personology profiles from the book The Power of Birthdays. Three additional layers refine the match: intent (35%), activity (20%), and shared interests (5%). Distance is used as a filter in user preferences, not as a score component.' },
+          acceptedAnswer: { '@type': 'Answer', text: 'Cosmatch calculates a numerology life path number from each user\'s birth date and references 366 personology profiles from The Power of Birthdays (Goldschneider & Elffers). A seven-layer compatibility score combines birth-date compatibility (35%), shared values & intent (20%), personality fit (15%), intimacy alignment (10%), lifestyle habits (10%), shared interests (5%) and recent activity (5%). Distance, age, and family plans are user-configurable filters, not score components.' },
         },
         {
           '@type': 'Question',
@@ -61,7 +61,7 @@ const jsonLd = {
         {
           '@type': 'Question',
           name: 'How is Cosmatch different from Tinder or Hinge?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Cosmatch shows users five profiles per day, sorted by actual compatibility — not endless swipes. Match scoring uses date-of-birth compatibility (40%), shared intent (35%), activity (20%), and shared interests (5%). Distance is a user-configurable filter, not part of the compatibility score. No paid algorithmic positions, no ads, no data selling.' },
+          acceptedAnswer: { '@type': 'Answer', text: 'Cosmatch shows users five profiles per day, sorted by actual compatibility — not endless swipes. The compatibility score combines birth-date compatibility (35%), values & intent (20%), personality (15%), intimacy (10%), lifestyle (10%), shared interests (5%) and activity (5%). Distance, age, and family plans are user-configurable filters, not score components. No paid algorithmic positions, no ads, no data selling.' },
         },
         {
           '@type': 'Question',
@@ -105,7 +105,7 @@ export default function AboutPage() {
             Definition.
           </h2>
           <p className="text-gray-800 leading-[1.75] text-[1.0625rem] dropcap mb-4">
-            <strong className="font-medium text-gray-900">Cosmatch is a Czech online dating application that pairs users based on numerological compatibility computed from their dates of birth.</strong> The app draws on 366 personology profiles from the book <em className="italic">The Power of Birthdays, Stars &amp; Numbers</em> (Goldschneider &amp; Elffers, 1994) and applies a five-layer compatibility algorithm.
+            <strong className="font-medium text-gray-900">Cosmatch is a Czech online dating application that pairs users based on numerological compatibility computed from their dates of birth.</strong> The app draws on 366 personology profiles from the book <em className="italic">The Power of Birthdays, Stars &amp; Numbers</em> (Goldschneider &amp; Elffers, 1994) and applies a seven-layer compatibility algorithm.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
             Founded by Mgr. Ing. Simona Cibulková in 2026, Cosmatch operates from Prague, Czech Republic. The web application is built on Next.js, hosted on Cloudflare Pages, with Supabase (PostgreSQL) backing user data in Frankfurt EU data centers.
@@ -121,19 +121,21 @@ export default function AboutPage() {
         <section className="mb-16">
           <p className="eyebrow text-gray-500 mb-4">How it works</p>
           <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-8">
-            Five-layer compatibility.
+            Seven-layer compatibility.
           </h2>
 
           <div className="space-y-6">
             {[
-              ['Layer I — Numerological compatibility (35%)', 'Calculates each user\'s life path number from birth date, references a 366×366 compatibility matrix from The Power of Birthdays. Returns base score plus relationship category: Soul Mate, Love & Friendship, Fatal Attraction, Beneficial, or Challenging.'],
-              ['Layer II — Intent multiplier (30%)', 'Same relationship goal (serious/casual/etc.) multiplies score by 1.2. Opposite intent (serious vs casual) multiplies by 0.5. Prevents mismatched expectations.'],
-              ['Layer III — Distance decay (15%)', 'Non-linear curve: 0–5 km = full bonus, 5–15 km = 66%, 15–30 km = 33%. Beyond user-set limit = profile excluded entirely.'],
-              ['Layer IV — Activity boost (15%)', '+15 points for users active within 24h. ELO tiebreak: more popular profiles surface first for new users, ensuring strong first impression.'],
-              ['Layer V — Shared interests + tension (5%)', 'Hobbies overlap plus tension factor for asymmetric matches (one sees fatal attraction, other sees challenge → "Magnetic Tension" label).'],
+              ['Layer I — Birth-date compatibility (35%)', 'Looks up each user pair in a 366×366 compatibility matrix derived from The Power of Birthdays (Goldschneider & Elffers). Returns one of five relationship categories: Soul Mates, Love & Friendship, Beneficial, Fatal Attraction, or Challenging (labelled "Magnetic Tension" in the app).'],
+              ['Layer II — Values & intent (20%)', 'Family plans (children yes/no), relationship goal (serious / casual / friendship), religion, financial outlook. Shared long-term values predict relationship durability better than early-stage chemistry.'],
+              ['Layer III — Personality & teamwork (15%)', 'Visionary vs realiser, introvert vs extrovert, lark vs owl, conflict style. Complementary patterns work; two identical profiles converge into boredom.'],
+              ['Layer IV — Intimacy alignment (10%)', 'Libido frequency match (1–5). In long-term relationships, intimacy alignment functions as insurance against silent frustration.'],
+              ['Layer V — Lifestyle (10%)', 'Smoking, alcohol, diet, exercise. Smoking can be a hard dealbreaker. Day-to-day cohabitation friction lives here.'],
+              ['Layer VI — Shared interests (5%)', 'Hobby tag overlap (3–8 tags from 45 options). Common ground for the first date, not the main factor for long-term fit.'],
+              ['Layer VII — Recent activity (5%)', 'Online within 24h = 100 pts, week = 75, month = 50, older = 30. Even a perfect match goes nowhere if the other person has stopped using the app.'],
             ].map(([title, body], i) => (
               <div key={i} className="grid grid-cols-[auto,1fr] gap-x-6 pb-6 border-b border-gray-200 last:border-b-0">
-                <div className="roman text-2xl text-pink-500 leading-none pt-1">{['I','II','III','IV','V'][i]}</div>
+                <div className="roman text-2xl text-pink-500 leading-none pt-1">{['I','II','III','IV','V','VI','VII'][i]}</div>
                 <div>
                   <h3 className="serif text-lg text-gray-900 font-medium mb-2 leading-tight">{title}</h3>
                   <p className="text-gray-700 leading-[1.7] text-[0.95rem]">{body}</p>
@@ -141,6 +143,11 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
+          <p className="mt-6 text-sm text-gray-500 leading-relaxed">
+            <strong className="text-gray-700 font-medium">Filters (not score):</strong> distance,
+            age range, height, body type, family plans, smoking dealbreaker. These exclude profiles
+            from the user\'s feed but never penalise the compatibility score itself.
+          </p>
         </section>
 
         <hr className="rule mb-16" />
