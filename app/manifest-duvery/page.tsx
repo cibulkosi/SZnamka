@@ -6,7 +6,15 @@ export const metadata: Metadata = {
   description: 'Sedm věcí, ke kterým se Cosmatch zavazuje vůči uživatelům. Žádné falešné zprávy, žádné reklamy, žádné prodávání dat.',
 }
 
-const principles = [
+type Sublet = { title: string; body: string }
+type Principle = {
+  numeral: string
+  title: string
+  body: string
+  sublets?: Sublet[]
+}
+
+const principles: Principle[] = [
   {
     numeral: 'I',
     title: 'Žádné bezduché swipy',
@@ -19,18 +27,22 @@ const principles = [
   },
   {
     numeral: 'III',
-    title: 'Žádné falešné zprávy',
-    body: 'Neposíláme falešné notifikace. Když ti přijde zpráva, znamená to, že Ti někdo opravdu napsal.',
-  },
-  {
-    numeral: 'III-B',
-    title: 'Nulové fake profily',
-    body: 'Cosmatch nikdy nepoužívá AI generované profily, seed profily ani „demo postavičky“, aby aplikace vypadala plnější. Každý profil v Cosmatch je skutečný člověk, který se sám/sama zaregistroval/a a souhlasil/a s podmínkami. Na seznamce možná sice najdeš méně lidí než jinde, ale zato jsou reální.',
-  },
-  {
-    numeral: 'III-C',
-    title: 'Fyzickou přitažlivost hodnotíš jen ty',
-    body: 'Cosmatch nepoužívá fotku, výšku, postavu ani fyzické rysy ve výpočtu kompatibility. Algoritmus zohledňuje pouze datum narození, hodnoty a životní styl. Fyzické preference jsou filtry, které si nastavíš jen ty sám/sama, nikoho nepenalizují ve skóre.',
+    title: 'Žádné falše',
+    body: 'Tři způsoby, kterými Cosmatch nehraje na pověru ani na fasádu:',
+    sublets: [
+      {
+        title: 'Žádné falešné notifikace',
+        body: 'Neposíláme falešné zprávy ani upozornění typu „někdo Ti právě napsal“. Když Ti zacinká notifikace, znamená to, že Ti někdo opravdu napsal.',
+      },
+      {
+        title: 'Nulové fake profily',
+        body: 'Cosmatch nikdy nepoužívá AI generované profily, seed profily ani „demo postavičky“, aby aplikace vypadala plnější. Každý profil v Cosmatch je skutečný člověk, který se sám/sama zaregistroval/a a souhlasil/a s podmínkami. Na seznamce možná najdeš méně lidí než jinde, ale zato jsou reální.',
+      },
+      {
+        title: 'Fyzickou přitažlivost hodnotíš jen ty',
+        body: 'Cosmatch nepoužívá fotku, výšku, postavu ani fyzické rysy ve výpočtu kompatibility. Algoritmus zohledňuje pouze datum narození, hodnoty a životní styl. Fyzické preference jsou filtry, které si nastavíš jen ty sám/sama, nikoho nepenalizují ve skóre.',
+      },
+    ],
   },
   {
     numeral: 'IV',
@@ -49,11 +61,6 @@ const principles = [
   },
   {
     numeral: 'VII',
-    title: 'Záruky, ne sliby',
-    body: 'Pokud nejsi spokojen s předplatným, do 14 dnů Ti vrátíme peníze bez vysvětlení. Pokud se potřebuješ na něco zeptat, napiš na ahoj@cosmatch.cz a odpovíme Ti do týdne. Většinou dříve.',
-  },
-  {
-    numeral: 'VIII',
     title: 'Transparentní reportování',
     body: 'Každý měsíc zveřejníme, kolik podezřelých profilů jsme zablokovali a kolik účtů jsme verifikovali. Žádné skrývání. Pokud Cosmatch v něčem selže, dozvíš se o tom první.',
   },
@@ -66,11 +73,11 @@ export default function ManifestDuvery() {
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": [
-          { "@type": "Question", "name": 'Co znamená Manifest důvěry Cosmatch?', "acceptedAnswer": { "@type": "Answer", "text": 'Manifest důvěry je veřejný závazek Cosmatch vůči uživatelům. Obsahuje 8 principů, kterými se Cosmatch zavazuje vést — od žádného swipování pro swipování, přes zákaz reklamy a prodeje dat, až po transparentní reportování bezpečnostních incidentů.' } },
+          { "@type": "Question", "name": 'Co znamená Manifest důvěry Cosmatch?', "acceptedAnswer": { "@type": "Answer", "text": 'Manifest důvěry je veřejný závazek Cosmatch vůči uživatelům. Obsahuje 7 principů, kterými se Cosmatch zavazuje vést — od žádného swipování pro swipování, přes zákaz reklamy a prodeje dat, až po transparentní reportování bezpečnostních incidentů.' } },
           { "@type": "Question", "name": 'Prodává Cosmatch moje data?', "acceptedAnswer": { "@type": "Answer", "text": 'Ne. Cosmatch je financován výhradně předplatným uživatelů. Tvoje datum narození používáme jen k výpočtu kompatibility. Nikdy ho neprodáváme, nepředáváme reklamním sítím ani datovým brokerem.' } },
           { "@type": "Question", "name": 'Jak Cosmatch chrání proti scammerům?', "acceptedAnswer": { "@type": "Answer", "text": 'Tři pilíře: (1) Cloudflare Turnstile proti botům, (2) SSO bez hesla (Google/Facebook), (3) nulové fake profily — Cosmatch nikdy nepoužívá AI generované ani seed profily. Detailně popsáno na stránce Jak chráníme uživatele. ID verifikace s ověřeným štítkem se připravuje a bude k dispozici později.' } },
           { "@type": "Question", "name": 'Jsou u Cosmatch reklamy?', "acceptedAnswer": { "@type": "Answer", "text": 'Ne, a nikdy nebudou. Cosmatch financují uživatelé skrz předplatné Cosmatch+ (od 249 Kč/měs, ročně 2 088 Kč). Tvoje pozornost není zboží.' } },
-          { "@type": "Question", "name": 'Co když Cosmatch v něčem selže?', "acceptedAnswer": { "@type": "Answer", "text": 'Měsíčně zveřejníme statistiky reportů a zablokovaných profilů. Pokud Cosmatch v něčem zhorší, dozvíš se to první. Refundace předplatného do 14 dnů bez vysvětlení.' } }
+          { "@type": "Question", "name": 'Co když Cosmatch v něčem selže?', "acceptedAnswer": { "@type": "Answer", "text": 'Měsíčně zveřejníme statistiky reportů a zablokovaných profilů. Pokud Cosmatch v něčem zhorší, dozvíš se to první.' } }
         ]
       }) }} />
       {/* Top nav */}
@@ -110,6 +117,20 @@ export default function ManifestDuvery() {
                 <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
                   {p.body}
                 </p>
+                {p.sublets && (
+                  <ul className="mt-8 space-y-6 pl-6 border-l-2 border-pink-200">
+                    {p.sublets.map((s, i) => (
+                      <li key={i}>
+                        <p className="serif text-lg sm:text-xl text-gray-900 font-medium mb-2 leading-snug">
+                          {s.title}
+                        </p>
+                        <p className="text-gray-700 leading-[1.7] text-[1rem]">
+                          {s.body}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
               {idx < principles.length - 1 && (
                 <div className="col-span-2 pt-16">
@@ -183,7 +204,7 @@ export default function ManifestDuvery() {
             Zakladatelka Cosmatch — Praha, květen 2026
           </p>
           <p className="text-xs text-gray-400 mt-8 leading-relaxed">
-            Mgr. Ing. Simona Cibulková · IČO 08419531 · ahoj@cosmatch.cz<br />
+            Mgr. Ing. Simona Cibulková · IČO 08419531 · ahoj@cosmatch.cz<br />
             Algoritmus se volně inspiruje numerologickou teorií Goldschneidera &amp; Elffers
             a Kadlecové. Výsledky slouží jako podpora rozhodování, ne jako absolutní pravda.
           </p>
