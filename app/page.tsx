@@ -246,7 +246,7 @@ export default function LandingPage() {
             {/* Brand & legal block */}
             <div className="md:col-span-6">
               <p className="serif-display text-xl font-medium text-gray-900 mb-1">Cosmatch</p>
-              <p className="text-sm text-gray-500">© 2026 · Mgr. Ing. Simona Cibulková · IČO 08419531 · Pnětluky</p>
+              <p className="text-sm text-gray-500">© 2026 · Mgr. Ing. Simona Cibulková · IČO 08419531 · Praha</p>
               <p className="text-xs text-gray-500 mt-3">
                 Cosmatch+ od 249 Kč/měs (597 Kč/3 měs · 2 088 Kč/rok, sleva 30 %). Předplatné lze kdykoli zrušit v profilu bez sankce.
               </p>

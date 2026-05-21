@@ -162,7 +162,7 @@ export default function AboutPage() {
             Mgr. Ing. Simona Cibulková is the founder and sole operator of Cosmatch. Educated in business (Ing.) and humanities (Mgr.), she spent several years studying personology, relationship dynamics, and numerology before building Cosmatch.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-            Cosmatch.cz is operated as a sole proprietorship under IČO 08419531, registered in Pnětluky, Czech Republic.
+            Cosmatch.cz is operated as a sole proprietorship under IČO 08419531, registered in Prague, Czech Republic.
           </p>
           <p className="text-sm text-gray-500 italic">
             Contact: <a href="mailto:ahoj@cosmatch.cz" className="text-pink-500 underline">ahoj@cosmatch.cz</a>

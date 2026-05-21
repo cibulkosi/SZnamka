@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 const TITLE = 'Kontakt | Cosmatch'
-const DESC = 'Kontaktní údaje provozovatele Cosmatch.cz — Mgr. Ing. Simona Cibulková, IČO 08419531, sídlo Pnětluky, datová schránka tttkfnk, e-mail ahoj@cosmatch.cz.'
+const DESC = 'Kontaktní údaje provozovatele Cosmatch.cz — Mgr. Ing. Simona Cibulková, IČO 08419531, sídlo Praha, datová schránka tttkfnk, e-mail ahoj@cosmatch.cz.'
 const URL = 'https://cosmatch.cz/kontakt'
 
 export const metadata: Metadata = {
@@ -39,7 +39,7 @@ export default function KontaktPage() {
             <div className="space-y-3">
               <p><strong className="text-gray-900 font-medium">Mgr. Ing. Simona Cibulková</strong></p>
               <p><span className="text-gray-500">IČO:</span> 08419531</p>
-              <p><span className="text-gray-500">Sídlo:</span> Pnětluky, Česká republika</p>
+              <p><span className="text-gray-500">Sídlo:</span> Praha, Česká republika</p>
               <p><span className="text-gray-500">Datová schránka:</span> <span className="font-mono">tttkfnk</span></p>
               <p className="text-sm text-gray-500 pt-2">
                 Fyzická osoba podnikající dle živnostenského zákona. Zapsána v živnostenském rejstříku.
@@ -101,7 +101,7 @@ export default function KontaktPage() {
           <section>
             <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-6">Orgány dozoru</h2>
             <ul className="space-y-2">
-              <li><strong className="text-gray-900 font-medium">Živnostenský úřad:</strong> Městský úřad Louny (dle sídla)</li>
+              <li><strong className="text-gray-900 font-medium">Živnostenský úřad:</strong> Úřad městské části dle sídla provozovatele (Praha)</li>
               <li><strong className="text-gray-900 font-medium">Ochrana osobních údajů:</strong> Úřad pro ochranu osobních údajů, Pplk. Sochora 27, 170 00 Praha 7, <a href="https://www.uoou.cz" className="text-pink-500 hover:underline" rel="noopener">uoou.cz</a></li>
               <li><strong className="text-gray-900 font-medium">Ochrana spotřebitele:</strong> Česká obchodní inspekce, <a href="https://www.coi.cz" className="text-pink-500 hover:underline" rel="noopener">coi.cz</a></li>
             </ul>

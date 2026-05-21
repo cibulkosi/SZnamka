@@ -41,7 +41,7 @@ export default function ObchodniPodminkyPage() {
               <strong className="text-gray-900 font-medium">1.1</strong> Tyto obchodní podmínky (dále jen „<strong>Podmínky</strong>") upravují vztah mezi:
             </p>
             <p className="mb-3 pl-4">
-              <strong className="text-gray-900 font-medium">Mgr. Ing. Simonou Cibulkovou</strong>, IČO 08419531, se sídlem Pnětluky, Česká republika, datová schránka tttkfnk, provozovatelkou webu cosmatch.cz a stejnojmenné webové aplikace (dále jen „<strong>Provozovatel</strong>" nebo „<strong>Cosmatch</strong>")
+              <strong className="text-gray-900 font-medium">Mgr. Ing. Simonou Cibulkovou</strong>, IČO 08419531, se sídlem Praha, Česká republika, datová schránka tttkfnk, provozovatelkou webu cosmatch.cz a stejnojmenné webové aplikace (dále jen „<strong>Provozovatel</strong>" nebo „<strong>Cosmatch</strong>")
             </p>
             <p className="mb-3 pl-4">
               a osobou, která se zaregistruje a používá Cosmatch (dále jen „<strong>Uživatel</strong>").
@@ -225,7 +225,7 @@ export default function ObchodniPodminkyPage() {
 
         <footer className="mt-16 pt-12 border-t border-gray-200">
           <p className="text-xs text-gray-400 leading-relaxed">
-            Mgr. Ing. Simona Cibulková · IČO 08419531 · Pnětluky, Česká republika · Datová schránka: tttkfnk · <a href="mailto:ahoj@cosmatch.cz" className="text-pink-500 underline">ahoj@cosmatch.cz</a>
+            Mgr. Ing. Simona Cibulková · IČO 08419531 · Praha, Česká republika · Datová schránka: tttkfnk · <a href="mailto:ahoj@cosmatch.cz" className="text-pink-500 underline">ahoj@cosmatch.cz</a>
             <br /><br />
             <strong>Doporučujeme:</strong> Před spuštěním Cosmatch pro veřejnost doporučujeme nechat tyto Podmínky zkontrolovat advokátem se specializací na e-commerce a ochranu spotřebitele. Tato verze byla vytvořena na základě českého práva a GDPR best practices, ale není individuálním právním poradenstvím.
           </p>
