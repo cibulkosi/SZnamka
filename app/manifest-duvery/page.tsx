@@ -47,7 +47,7 @@ const principles: Principle[] = [
   {
     numeral: 'IV',
     title: 'Algoritmus, který umíme vysvětlit',
-    body: 'Součástí algoritmu je třeba kompatibilita podle data narození 35 %, hodnoty a záměry 35 %, aktivita 20 %, společné zájmy 5 %. Vzdálenost, věk a vztah k dětem je filtr v preferencích, ne součást skóre. Žádné pozice nejsou placené. Nepoužíváme žádné skryté penalizace.',
+    body: 'Cosmatch počítá kompatibilitu transparentně. Datum narození 35 %, životní hodnoty a záměry 20 %, osobnost 15 %, intimní soulad 10 %, životní styl 10 %, společné zájmy 5 %, aktivita 5 %. Vzdálenost, věk a vztah k dětem je filtr v preferencích, ne součást skóre. Žádné pozice nejsou placené. Nepoužíváme žádné skryté penalizace.',
   },
   {
     numeral: 'V',
