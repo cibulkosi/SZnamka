@@ -166,26 +166,26 @@ export default function PremiumPage() {
           </p>
         </section>
 
-        {/* Akce pro zakládajících 2 000 ověřených uživatelů */}
+        {/* Spouštěcí akce — sjednoceno s redeem_voucher RPC + /waitlist tier system */}
         <section className="mb-12 bg-pink-50 border border-pink-200 rounded-3xl p-8">
-          <p className="eyebrow text-pink-600 mb-3">Spouštěcí akce · pro všechny zakládající</p>
+          <p className="eyebrow text-pink-600 mb-3">Spouštěcí akce · pro waitlist</p>
           <h2 className="serif-display text-2xl text-gray-900 font-medium leading-tight tracking-tight mb-4">
-            Zakládající členové dostávají Cosmatch+ <em className="italic text-pink-500">zdarma</em>.
+            Prvních 2 000 z waitlistu dostává Cosmatch+ <em className="italic text-pink-500">zdarma</em>.
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div className="border border-pink-200 bg-white rounded-2xl p-5">
-              <p className="text-xs text-pink-600 uppercase tracking-wider mb-1">Prvních 500 ověřených</p>
-              <p className="serif-display text-3xl text-gray-900 font-medium">6 měsíců zdarma</p>
-              <p className="text-xs text-gray-500 mt-2">Po ověření profilu (jméno, fotka, e‑mail).</p>
+              <p className="text-xs text-pink-600 uppercase tracking-wider mb-1">Pozice 1–1 000</p>
+              <p className="serif-display text-3xl text-gray-900 font-medium">3 měsíce zdarma</p>
+              <p className="text-xs text-gray-500 mt-2">Zakládající členové — odznak <em className="italic">Zakládající</em> trvale na profilu.</p>
             </div>
             <div className="border border-pink-200 bg-white rounded-2xl p-5">
-              <p className="text-xs text-pink-600 uppercase tracking-wider mb-1">Dalších 1 500 ověřených</p>
-              <p className="serif-display text-3xl text-gray-900 font-medium">3 měsíce zdarma</p>
-              <p className="text-xs text-gray-500 mt-2">Po ověření profilu (jméno, fotka, e‑mail).</p>
+              <p className="text-xs text-pink-600 uppercase tracking-wider mb-1">Pozice 1 001–2 000</p>
+              <p className="serif-display text-3xl text-gray-900 font-medium">7denní trial</p>
+              <p className="text-xs text-gray-500 mt-2">Vyzkoušej Cosmatch+ na týden. Po expiraci pokračuješ na Free, jinak si můžeš předplatit.</p>
             </div>
           </div>
           <p className="text-xs text-gray-500 leading-relaxed">
-            Akce platí pro všechny ověřené uživatele bez ohledu na pohlaví, věk nebo jiné charakteristiky. Po vyčerpání 2 000 pozic se akce automaticky zavře. Kdokoli může získat voucher bez ohledu na pohlaví.
+            Voucher je vázán na pozici v <a href="/waitlist" className="text-pink-500 underline">waitlistu</a>, ne na pohlaví, věk ani fyzické charakteristiky. Voucher aplikuješ při registraci v posledním kroku. Po vyčerpání 2 000 pozic se akce automaticky zavře.
           </p>
         </section>
 
