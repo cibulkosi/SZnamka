@@ -248,8 +248,7 @@ export default function LandingPage() {
               <p className="serif-display text-xl font-medium text-gray-900 mb-1">Cosmatch</p>
               <p className="text-sm text-gray-500">© 2026 · Mgr. Ing. Simona Cibulková · IČO 08419531 · Pnětluky</p>
               <p className="text-xs text-gray-500 mt-3">
-                <span className="inline-block bg-gray-900 text-white px-2 py-0.5 rounded-full text-[10px] font-medium tracking-wider mr-2">18+</span>
-                Seznamovací služba určená výhradně osobám starším 18 let.
+                Cosmatch je určen pouze osobám od 18 let. Při registraci ověřujeme datum narození.
               </p>
               <p className="text-xs text-gray-500 mt-2">
                 Cosmatch+ od 249 Kč/měs (597 Kč/3 měs · 2 088 Kč/rok, sleva 30 %). Předplatné lze kdykoli zrušit v profilu bez sankce.
