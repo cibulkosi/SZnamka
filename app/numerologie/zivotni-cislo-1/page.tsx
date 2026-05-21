@@ -260,7 +260,7 @@ export default function LifePathPage() {
         {/* Footer */}
         <footer className="mt-20 pt-12 border-t border-gray-200">
           <p className="text-xs text-gray-400 leading-relaxed">
-            Cosmatch · Mgr. Ing. Simona Cibulková · IČO 08419531 · Praha 2026.
+            Cosmatch · Mgr. Ing. Simona Cibulková · IČO 08419531 · Praha 5, 2026.
             Numerologie není empirická věda — výsledky používejte jako podporu rozhodování, ne jako absolutní pravdu.
           </p>
         </footer>

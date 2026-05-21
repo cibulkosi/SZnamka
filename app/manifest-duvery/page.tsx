@@ -201,7 +201,7 @@ export default function ManifestDuvery() {
           <p className="eyebrow text-gray-400 mb-4">Podepsáno</p>
           <p className="serif text-2xl text-gray-900 italic mb-1">Simona Cibulková</p>
           <p className="text-sm text-gray-500">
-            Zakladatelka Cosmatch — Praha, květen 2026
+            Zakladatelka Cosmatch — Praha 5, květen 2026
           </p>
           <p className="text-xs text-gray-400 mt-8 leading-relaxed">
             Mgr. Ing. Simona Cibulková · IČO 08419531 · ahoj@cosmatch.cz<br />

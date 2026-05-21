@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 const TITLE = 'Kontakt | Cosmatch'
-const DESC = 'Kontaktní údaje provozovatele Cosmatch.cz — Mgr. Ing. Simona Cibulková, IČO 08419531, sídlo Praha, datová schránka tttkfnk, e-mail ahoj@cosmatch.cz.'
+const DESC = 'Kontaktní údaje provozovatele Cosmatch.cz — Mgr. Ing. Simona Cibulková, IČO 08419531, sídlo Kurzova 2222/16, 155 00 Praha 5 - Stodůlky, datová schránka tttkfnk, e-mail ahoj@cosmatch.cz.'
 const URL = 'https://cosmatch.cz/kontakt'
 
 export const metadata: Metadata = {
@@ -39,7 +39,7 @@ export default function KontaktPage() {
             <div className="space-y-3">
               <p><strong className="text-gray-900 font-medium">Mgr. Ing. Simona Cibulková</strong></p>
               <p><span className="text-gray-500">IČO:</span> 08419531</p>
-              <p><span className="text-gray-500">Sídlo:</span> Praha, Česká republika</p>
+              <p><span className="text-gray-500">Sídlo:</span> Kurzova 2222/16, 155 00 Praha 5 - Stodůlky, Česká republika</p>
               <p><span className="text-gray-500">Datová schránka:</span> <span className="font-mono">tttkfnk</span></p>
               <p className="text-sm text-gray-500 pt-2">
                 Fyzická osoba podnikající dle živnostenského zákona. Zapsána v živnostenském rejstříku.

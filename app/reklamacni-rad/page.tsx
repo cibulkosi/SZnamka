@@ -110,7 +110,7 @@ export default function ReklamacniRadPage() {
             <p>
               Reklamace, dotazy, stížnosti: <a href="mailto:ahoj@cosmatch.cz" className="text-pink-500 underline">ahoj@cosmatch.cz</a>
               <br/>
-              Provozovatel: Mgr. Ing. Simona Cibulková, IČO 08419531, datová schránka tttkfnk, Praha, Česká republika.
+              Provozovatel: Mgr. Ing. Simona Cibulková, IČO 08419531, datová schránka tttkfnk, Kurzova 2222/16, 155 00 Praha 5 - Stodůlky, Česká republika.
             </p>
           </section>
         </div>

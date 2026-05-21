@@ -55,7 +55,7 @@ export default function OdstoupeniPage() {
 {`Adresát:
 Mgr. Ing. Simona Cibulková
 IČO: 08419531
-Sídlo: Praha, Česká republika
+Sídlo: Kurzova 2222/16, 155 00 Praha 5 - Stodůlky, Česká republika
 Datová schránka: tttkfnk
 ahoj@cosmatch.cz
 

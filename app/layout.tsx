@@ -87,6 +87,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 "@type": "Place",
                 "name": "Praha, Česká republika",
               },
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Kurzova 2222/16",
+                "addressLocality": "Praha 5 - Stodůlky",
+                "postalCode": "155 00",
+                "addressCountry": "CZ",
+              },
               "knowsAbout": [
                 "numerologie",
                 "seznamka",

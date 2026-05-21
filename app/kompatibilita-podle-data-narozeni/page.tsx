@@ -338,7 +338,7 @@ export default function KompatibilitaPage() {
 
         <footer className="mt-20 pt-12 border-t border-gray-200">
           <p className="text-xs text-gray-400 leading-relaxed">
-            Mgr. Ing. Simona Cibulková · Cosmatch · IČO 08419531 · Praha 2026.
+            Mgr. Ing. Simona Cibulková · Cosmatch · IČO 08419531 · Praha 5, 2026.
             Numerologie není empirická věda, výsledky používejte jako podporu rozhodování,
             ne jako absolutní pravdu.
           </p>
