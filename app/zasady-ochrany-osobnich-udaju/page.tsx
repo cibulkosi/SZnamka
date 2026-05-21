@@ -103,7 +103,7 @@ export default function GdprPage() {
             </p>
 
 
-            <h3 className="serif text-xl text-gray-900 font-medium mb-2 mt-6">2.5 Platební údaje (Cosmatch+)</h3>
+            <h3 className="serif text-xl text-gray-900 font-medium mb-2 mt-6">2.6 Platební údaje (Cosmatch+)</h3>
             <ul className="list-disc pl-6 space-y-1 mb-4">
               <li>Předplatné Cosmatch+ je dostupné výhradně v mobilní aplikaci pro iOS a Android. Platby zpracovává <strong className="text-gray-900 font-medium">Apple Distribution International Ltd.</strong> (Irsko) pro iOS uživatele, respektive <strong className="text-gray-900 font-medium">Google Commerce Limited</strong> (Irsko) pro Android uživatele. Oba subjekty jsou samostatní správci osobních údajů.</li>
               <li>Cosmatch dostává od Apple / Google pouze identifikátor předplatného a stav (aktivní / neaktivní) — nikdy ne čísla platebních karet ani biometrické údaje použité k autorizaci platby.</li>
