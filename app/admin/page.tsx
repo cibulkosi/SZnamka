@@ -32,6 +32,19 @@ interface TrialUserRow {
   premium_source: string
 }
 
+interface VoucherGenderStats {
+  voucher_gender_cap: number | null
+  cap_active: boolean
+  female_count: number
+  male_count: number
+  other_count: number
+  total_redempce: number
+  female_pct: number | null
+  male_pct: number | null
+  female_cap_reached: boolean
+  male_cap_reached: boolean
+}
+
 interface Stats {
   totalUsers: number; maleCount: number; femaleCount: number; otherCount: number
   premiumCount: number; waitlistCount: number; ambassadorCount: number
@@ -40,6 +53,7 @@ interface Stats {
   newToday: number; newWeek: number
   premiumSummary: PremiumSummaryRow[]
   trialList: TrialUserRow[]
+  voucherGender: VoucherGenderStats | null
 }
 
 type AuthState =
@@ -108,6 +122,8 @@ export default function AdminPage() {
         .eq('premium', true)
         .order('premium_until', { ascending: true })
         .limit(50)
+      // Voucher gender stats (admin-only RPC)
+      const { data: voucherGenderData } = await supabase.rpc('admin_voucher_gender_stats')
       setStats({
         totalUsers: totalUsers || 0, maleCount: maleCount || 0, femaleCount: femaleCount || 0,
         otherCount: otherCount || 0, premiumCount: premiumCount || 0, waitlistCount: waitlistCount || 0,
@@ -117,6 +133,7 @@ export default function AdminPage() {
         newToday: newToday || 0, newWeek: newWeek || 0,
         premiumSummary: (premiumSummary || []) as PremiumSummaryRow[],
         trialList: (trialList || []) as TrialUserRow[],
+        voucherGender: (voucherGenderData as unknown as VoucherGenderStats) || null,
       })
       setLastRefresh(new Date())
     } finally { setLoading(false) }
@@ -291,10 +308,103 @@ export default function AdminPage() {
                 </div>
                 <div className={`mt-6 pt-6 border-t border-gray-100 text-sm leading-relaxed ${maleRatio > 65 ? 'text-red-600' : 'text-emerald-700'}`}>
                   {maleRatio > 65
-                    ? 'Cap aktivní — nové registrace mužů jsou přesměrovány na waitlist.'
+                    ? 'Imbalance > 65 % — zvaž aktivaci voucher gender capu v sekci níže.'
                     : 'V pořádku — registrace otevřeny pro všechny.'}
                 </div>
               </div>
+            </section>
+
+            <hr className="rule mb-16" />
+
+            {/* Voucher gender cap mechanism */}
+            <section className="mb-20">
+              <p className="eyebrow text-pink-500 mb-4">Voucher gender balance</p>
+              <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-2">
+                Voucher cap.
+              </h2>
+              <p className="text-sm text-gray-500 mb-8 max-w-xl leading-relaxed">
+                Když dosáhne počet voucher-redempcí jednoho pohlaví limitu, RPC odmítne další redempce
+                téhož pohlaví. Defaultně vypnuté — zapni manuálně při imbalance &gt; 65/35.
+              </p>
+              {stats.voucherGender ? (
+                <div className="bg-white rounded-3xl p-8 border border-gray-100">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div>
+                      <p className="eyebrow text-gray-500 mb-1">Ženy</p>
+                      <p className="serif text-3xl text-pink-500 font-medium tabular-nums">
+                        {fmt(stats.voucherGender.female_count)}
+                        {stats.voucherGender.cap_active && stats.voucherGender.voucher_gender_cap !== null && (
+                          <span className="text-base text-gray-400"> / {fmt(stats.voucherGender.voucher_gender_cap)}</span>
+                        )}
+                      </p>
+                      <p className="text-xs text-gray-400 mt-1">
+                        {stats.voucherGender.female_pct !== null ? `${stats.voucherGender.female_pct} %` : '—'}
+                        {stats.voucherGender.female_cap_reached && <span className="text-red-500 ml-2">cap vyčerpán</span>}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="eyebrow text-gray-500 mb-1">Muži</p>
+                      <p className="serif text-3xl text-gray-900 font-medium tabular-nums">
+                        {fmt(stats.voucherGender.male_count)}
+                        {stats.voucherGender.cap_active && stats.voucherGender.voucher_gender_cap !== null && (
+                          <span className="text-base text-gray-400"> / {fmt(stats.voucherGender.voucher_gender_cap)}</span>
+                        )}
+                      </p>
+                      <p className="text-xs text-gray-400 mt-1">
+                        {stats.voucherGender.male_pct !== null ? `${stats.voucherGender.male_pct} %` : '—'}
+                        {stats.voucherGender.male_cap_reached && <span className="text-red-500 ml-2">cap vyčerpán</span>}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="eyebrow text-gray-500 mb-1">Total</p>
+                      <p className="serif text-3xl text-gray-900 font-medium tabular-nums">
+                        {fmt(stats.voucherGender.total_redempce)}
+                      </p>
+                      <p className="text-xs text-gray-400 mt-1">redempcí celkem</p>
+                    </div>
+                  </div>
+
+                  <div className="border-t border-gray-100 pt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div className="text-sm">
+                      <p className="text-gray-900 font-medium">
+                        Cap: {stats.voucherGender.cap_active ? `Aktivní (1 000 per gender)` : 'Vypnutý'}
+                      </p>
+                      <p className="text-gray-500 mt-1 leading-relaxed">
+                        {(() => {
+                          const f = stats.voucherGender.female_pct
+                          if (stats.voucherGender.total_redempce < 100) return 'Méně než 100 redempcí — počkej na statisticky validní data.'
+                          if (f === null) return ''
+                          if (f >= 35) return 'Ratio je zdravé, cap nepotřeba.'
+                          if (f >= 25) return 'Warning: ženy 25–35 %, zvaž aktivaci capu nebo přidej ženský marketing.'
+                          return 'Doporučujeme aktivovat cap — ženy < 25 %.'
+                        })()}
+                      </p>
+                    </div>
+                    <button
+                      onClick={async () => {
+                        const isActive = stats.voucherGender?.cap_active
+                        const newCap = isActive ? null : 1000
+                        const confirm = isActive
+                          ? window.confirm('Vypnout gender cap? Všichni budou moci redeemovat voucher.')
+                          : window.confirm('Aktivovat gender cap (1 000 voucherů per gender)?')
+                        if (!confirm) return
+                        const { error } = await supabase.rpc('admin_set_voucher_gender_cap', { p_cap: newCap })
+                        if (error) { alert('Chyba: ' + error.message); return }
+                        await loadStats()
+                      }}
+                      className={`px-6 py-3 rounded-full text-sm font-medium transition ${
+                        stats.voucherGender.cap_active
+                          ? 'bg-red-600 text-white hover:bg-red-700'
+                          : 'bg-gray-900 text-white hover:bg-gray-800'
+                      }`}
+                    >
+                      {stats.voucherGender.cap_active ? 'Vypnout cap' : 'Aktivovat cap 1 000/1 000'}
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <p className="text-sm text-gray-500 italic">Načítám voucher gender stats...</p>
+              )}
             </section>
 
             <hr className="rule mb-16" />

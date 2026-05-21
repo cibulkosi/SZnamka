@@ -290,6 +290,7 @@ export default function RegisterPage() {
       if (dbErr) throw dbErr
 
       // Voucher redemption (optional — silently no-op if voucher_code empty or invalid)
+      let voucherCapMessage: string | null = null
       if (form.voucher_code && form.voucher_code.trim()) {
         try {
           const { data: redeemResult } = await supabase.rpc('redeem_voucher', {
@@ -301,8 +302,17 @@ export default function RegisterPage() {
             console.info('Founding member badge granted, position:', redeemResult.position)
           } else if (!redeemResult?.ok) {
             console.warn('Voucher redemption failed:', redeemResult?.error)
+            if (redeemResult?.error === 'voucher_gender_cap_reached') {
+              voucherCapMessage = 'Voucher pro tvé pohlaví je dočasně mimo aktivní pool kvůli vyrovnání zastoupení. Účet máš vytvořený. Voucher si ulož — uplatníš ho později, jakmile poměr vyrovnáme.'
+            }
           }
         } catch (e) { console.warn('Voucher RPC error:', e) }
+      }
+
+      if (voucherCapMessage) {
+        if (typeof window !== 'undefined') {
+          window.alert(voucherCapMessage)
+        }
       }
 
       const { data: profile } = await supabase.from('profiles').select('*').eq('id', userId).single()
