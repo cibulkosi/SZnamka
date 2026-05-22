@@ -55,11 +55,11 @@ export const DEMO_PROFILES: DemoProfile[] = [
     archetype: { number: 1, name: 'Průkopnice' },
     archetypeGenitive: 'Průkopnice',
     photos: [
-      u('photo-1494790108377-be9c29b29330'),
-      u('photo-1599447421416-3414500d18a5'),
-      u('photo-1500835556837-99ac94a94552'),
-      u('photo-1495474472287-4d71bcdd2085'),
-      u('photo-1551218808-94e220e084d2'),
+      u('photo-1494790108377-be9c29b29330'),  // hero: smiling female portrait
+      u('photo-1545389336-cf090694435e'),  // yoga mat from above (no face)
+      u('photo-1500835556837-99ac94a94552'),  // passport on map (travel)
+      u('photo-1495474472287-4d71bcdd2085'),  // latte art coffee (top-down)
+      u('photo-1556909114-f6e7ad7d3136'),  // cooking ingredients flat lay
     ],
     prompts: [
       { question: 'Co mě baví o víkendu', answer: 'Spontánní výlety do hor a dobrá káva s knížkou' },
@@ -86,11 +86,11 @@ export const DEMO_PROFILES: DemoProfile[] = [
     archetype: { number: 7, name: 'Hledač' },
     archetypeGenitive: 'Hledače',
     photos: [
-      u('photo-1488161628813-04466f872be2'),
-      u('photo-1497366216548-37526070297c'),
-      u('photo-1505740420928-5e560c06d30e'),
-      u('photo-1571019613454-1cb2f99b2d8b'),
-      u('photo-1469854523086-cc02fe5d8800'),
+      u('photo-1633332755192-727a05c4013d'),  // hero: blond male portrait (light hair)
+      u('photo-1497366216548-37526070297c'),  // laptop on desk (no face)
+      u('photo-1505740420928-5e560c06d30e'),  // headphones (no face)
+      u('photo-1534438327276-14e5300c3a48'),  // dumbells gym (no face)
+      u('photo-1469854523086-cc02fe5d8800'),  // mountain landscape
     ],
     prompts: [
       { question: 'Letos opravdu chci', answer: 'Najít víno, které mě překvapí, a film, který mě donutí přemýšlet 3 dny' },
@@ -117,11 +117,11 @@ export const DEMO_PROFILES: DemoProfile[] = [
     archetype: { number: 6, name: 'Pečovatelka' },
     archetypeGenitive: 'Pečovatelky',
     photos: [
-      u('photo-1438761681033-6461ffad8d80'),
-      u('photo-1513475382585-d06e58bcb0e0'),
-      u('photo-1481627834876-b7833e8f5570'),
-      u('photo-1441974231531-c6227db76b6e'),
-      u('photo-1547036967-23d11aacaee0'),
+      u('photo-1438761681033-6461ffad8d80'),  // hero: dreamy female portrait
+      u('photo-1513475382585-d06e58bcb0e0'),  // paint brushes & palette (no face)
+      u('photo-1481627834876-b7833e8f5570'),  // open books (no face)
+      u('photo-1441974231531-c6227db76b6e'),  // forest path (nature)
+      u('photo-1545389336-cf090694435e'),  // meditation/yoga (replaced — original was a face)
     ],
     prompts: [
       { question: 'Co kdybych ti řekl/a, že', answer: 'maluju každý den 20 minut, i když nic z toho nikomu neukážu' },
@@ -148,11 +148,11 @@ export const DEMO_PROFILES: DemoProfile[] = [
     archetype: { number: 4, name: 'Stavitel' },
     archetypeGenitive: 'Stavitele',
     photos: [
-      u('photo-1542596594-649edbc13630'),
-      u('photo-1556909114-f6e7ad7d3136'),
-      u('photo-1545558014-8692077e9b5c'),
-      u('photo-1504280390367-361c6d9f38f4'),
-      u('photo-1546519638-68e109498ffc'),
+      u('photo-1535713875002-d1d0cf377fde'),  // hero: blond MALE portrait (clear masc)
+      u('photo-1556909114-f6e7ad7d3136'),  // cooking ingredients (no face)
+      u('photo-1518791841217-8f162f1e1131'),  // dog on grass (nature)
+      u('photo-1504280390367-361c6d9f38f4'),  // camping tent
+      u('photo-1517649763962-0c623066013b'),  // running shoes (sport, no face)
     ],
     prompts: [
       { question: 'Typická neděle', answer: 'Vaříme se psem, oba dva. Já vařím, on dohlíží.' },
@@ -179,11 +179,11 @@ export const DEMO_PROFILES: DemoProfile[] = [
     archetype: { number: 3, name: 'Tvůrkyně' },
     archetypeGenitive: 'Tvůrkyně',
     photos: [
-      u('photo-1531746020798-e6953c6e8e04'),
-      u('photo-1547153760-18fc86324498'),
-      u('photo-1532187863486-abf9dbad1b69'),
-      u('photo-1518611012118-696072aa579a'),
-      u('photo-1488646953014-85cb44e25828'),
+      u('photo-1531746020798-e6953c6e8e04'),  // hero: female portrait
+      u('photo-1547153760-18fc86324498'),  // dance motion (low face visibility)
+      u('photo-1532187863486-abf9dbad1b69'),  // lab equipment (no face)
+      u('photo-1517649763962-0c623066013b'),  // running shoes (sport, no face)
+      u('photo-1488646953014-85cb44e25828'),  // travel scenery
     ],
     prompts: [
       { question: 'V partě jsem ten/ta, kdo', answer: 'domluví letenku, ubytování a vyhledá nejlepší restaurace. Pak ale nejsem schopná se rozhodnout, kam vlastně půjdeme.' },
@@ -210,11 +210,11 @@ export const DEMO_PROFILES: DemoProfile[] = [
     archetype: { number: 9, name: 'Idealista' },
     archetypeGenitive: 'Idealisty',
     photos: [
-      u('photo-1542178243-bc20204b769f'),
-      u('photo-1510915361894-db8b60106cb1'),
-      u('photo-1485579149621-3123dd979885'),
-      u('photo-1485846234645-a62644f84728'),
-      u('photo-1524995997946-a1c2e315a42f'),
+      u('photo-1542178243-bc20204b769f'),  // hero: male portrait
+      u('photo-1510915361894-db8b60106cb1'),  // acoustic guitar (no face)
+      u('photo-1485579149621-3123dd979885'),  // concert lights (no face)
+      u('photo-1485846234645-a62644f84728'),  // cinema/film (no face)
+      u('photo-1524995997946-a1c2e315a42f'),  // books stack (no face)
     ],
     prompts: [
       { question: 'Píseň, která mě vždy dostane', answer: 'Norah Jones — Come Away With Me.' },
