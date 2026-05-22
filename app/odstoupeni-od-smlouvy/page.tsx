@@ -77,9 +77,6 @@ export default function OdstoupeniPage() {
             <p>
               Pokud jsi při platbě <strong className="text-gray-900 font-medium">výslovně souhlasil/a se započetím poskytování služby okamžitě</strong> (typicky tlačítkem „Začít používat ihned") a potvrdil/a, že tím <strong className="text-gray-900 font-medium">ztrácíš právo odstoupit do 14 dnů</strong>, právo na odstoupení dle § 1837 písm. l) občanského zákoníku zaniká. Apple App Store i Google Play tento souhlas typicky vyžadují při koupi předplatného.
             </p>
-            <p className="mt-3 text-sm text-gray-600">
-              I v takovém případě ti můžeme nabídnout vstřícné řešení — <Link href="/kontakt" className="text-pink-500 underline">napiš nám</Link>.
-            </p>
           </section>
 
           {/* Co po odstoupení */}
