@@ -134,7 +134,7 @@ export default function VerifikacePage() {
               </div>
             </div>
             <p className="text-sm text-gray-600 leading-relaxed italic">
-              Cosmatch ještě nezačal naostro, tato čísla aktualizujeme každý měsíc od ostrého spuštění.
+              Čísla aktualizujeme každý měsíc od ostrého spuštění.
             </p>
           </div>
         </section>
