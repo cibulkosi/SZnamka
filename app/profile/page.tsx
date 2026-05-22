@@ -464,7 +464,7 @@ export default function ProfilePage() {
             </p>
             <p className="text-sm text-gray-600 leading-relaxed mb-6">
               Tvá data se trvale smažou za 30 dní. Do té doby můžeš poslat e-mail
-              na <span className="font-medium">ahoj@cosmatch.cz</span> a účet obnovíme.
+              přes <Link href="/kontakt" className="font-medium text-pink-600 hover:underline">kontaktní formulář</Link> a účet obnovíme.
               Po 30 dnech je smazání nevratné.
             </p>
             <div className="flex gap-3">

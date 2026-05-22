@@ -204,7 +204,7 @@ export default function ManifestDuvery() {
             Zakladatelka Cosmatch — Praha 5, květen 2026
           </p>
           <p className="text-xs text-gray-400 mt-8 leading-relaxed">
-            Mgr. Ing. Simona Cibulková · IČO 08419531 · ahoj@cosmatch.cz<br />
+            Mgr. Ing. Simona Cibulková · IČO 08419531 · <Link href="/kontakt" className="text-pink-500 hover:underline">kontakt</Link><br />
             Algoritmus se volně inspiruje numerologickou teorií Goldschneidera &amp; Elffers
             a Kadlecové. Výsledky slouží jako podpora rozhodování, ne jako absolutní pravda.
           </p>

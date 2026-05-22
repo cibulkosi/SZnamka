@@ -165,7 +165,7 @@ export default function AboutPage() {
             Cosmatch.cz is operated as a sole proprietorship under IČO 08419531, registered in Prague 5, Czech Republic.
           </p>
           <p className="text-sm text-gray-500 italic">
-            Contact: <a href="mailto:ahoj@cosmatch.cz" className="text-pink-500 underline">ahoj@cosmatch.cz</a>
+            Contact: <Link href="/kontakt" className="text-pink-500 underline">contact form</Link>
           </p>
         </section>
 

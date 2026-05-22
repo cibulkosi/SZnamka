@@ -67,7 +67,7 @@ export default function JakFungujeCosmatchPage() {
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
             Cosmatch nevyvíjím proto, abych ti slibovala partnera. Vyvíjím ho proto, že jsem byla unavená
-            z aplikací, které kradou pozornost a neposkytují důvod k setkání. Chceš mi něco napsat? <a href="mailto:ahoj@cosmatch.cz" className="text-pink-500 underline">ahoj@cosmatch.cz</a>.
+            z aplikací, které kradou pozornost a neposkytují důvod k setkání. Chceš mi něco napsat? <Link href="/kontakt" className="text-pink-500 underline">Napiš mi přes formulář</Link>.
           </p>
         </section>
 
