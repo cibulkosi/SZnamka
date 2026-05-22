@@ -15,6 +15,7 @@ export type DemoProfile = {
   zodiac: string
   occupation: string
   genitive: string  // 2. pád koho/čeho (Terezy, Jakuba, Kláry, Martina, Anežky, Ondřeje)
+  archetypeGenitive: string  // 2. pád archetypu (Průkopnice, Hledače, Pečovatelky, Stavitele, Tvůrkyně, Idealisty)
   bio: string
   hobbies: string[]
   // Compatibility
@@ -52,6 +53,7 @@ export const DEMO_PROFILES: DemoProfile[] = [
     score: 94,
     verified: true,
     archetype: { number: 1, name: 'Průkopnice' },
+    archetypeGenitive: 'Průkopnice',
     photos: [
       u('photo-1494790108377-be9c29b29330'),
       u('photo-1599447421416-3414500d18a5'),
@@ -82,6 +84,7 @@ export const DEMO_PROFILES: DemoProfile[] = [
     score: 81,
     verified: false,
     archetype: { number: 7, name: 'Hledač' },
+    archetypeGenitive: 'Hledače',
     photos: [
       u('photo-1500648767791-00dcc994a43e'),
       u('photo-1497366216548-37526070297c'),
@@ -112,6 +115,7 @@ export const DEMO_PROFILES: DemoProfile[] = [
     score: 73,
     verified: true,
     archetype: { number: 6, name: 'Pečovatelka' },
+    archetypeGenitive: 'Pečovatelky',
     photos: [
       u('photo-1438761681033-6461ffad8d80'),
       u('photo-1513475382585-d06e58bcb0e0'),
@@ -142,6 +146,7 @@ export const DEMO_PROFILES: DemoProfile[] = [
     score: 62,
     verified: false,
     archetype: { number: 4, name: 'Stavitel' },
+    archetypeGenitive: 'Stavitele',
     photos: [
       u('photo-1542596594-649edbc13630'),
       u('photo-1556909114-f6e7ad7d3136'),
@@ -172,6 +177,7 @@ export const DEMO_PROFILES: DemoProfile[] = [
     score: 78,
     verified: true,
     archetype: { number: 3, name: 'Tvůrkyně' },
+    archetypeGenitive: 'Tvůrkyně',
     photos: [
       u('photo-1531746020798-e6953c6e8e04'),
       u('photo-1547153760-18fc86324498'),
@@ -202,6 +208,7 @@ export const DEMO_PROFILES: DemoProfile[] = [
     score: 88,
     verified: false,
     archetype: { number: 9, name: 'Idealista' },
+    archetypeGenitive: 'Idealisty',
     photos: [
       u('photo-1542178243-bc20204b769f'),
       u('photo-1510915361894-db8b60106cb1'),
@@ -211,7 +218,7 @@ export const DEMO_PROFILES: DemoProfile[] = [
     ],
     prompts: [
       { question: 'Píseň, která mě vždy dostane', answer: 'Norah Jones — Come Away With Me.' },
-      { question: 'Krátký film o mém životě by se jmenoval', answer: 'Čekání na inspiraci v 3 ráno' },
+      { question: 'Krátký film o mém životě by se jmenoval', answer: 'Čekání na inspiraci ve 3 ráno.' },
       { question: 'Hledám někoho, kdo', answer: 'rozumí, že ticho mezi notami je často důležitější než tóny samy' },
     ],
     voicePrompt: { question: 'Krátký verš o tobě, i když jsem Tě ještě nikdy neviděl', duration: '0:34' },

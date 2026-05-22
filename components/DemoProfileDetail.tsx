@@ -188,7 +188,7 @@ export default function DemoProfileDetail({ profile }: { profile: DemoProfile })
             Životní číslo {profile.genitive} je {profile.archetype.number}. Společně tvoříte vzor kompatibility <span className="font-medium text-pink-600">{profile.matchCategory}</span> — detail v <Link href="/jak-funguje-cosmatch" className="underline">algoritmu</Link>.
           </p>
           <Link href={`/numerologie/zivotni-cislo-${profile.archetype.number}`} className="inline-flex items-center text-sm text-pink-600 hover:text-pink-700 font-medium transition">
-            Více o archetypu {profile.archetype.name} →
+            Více o archetypu {profile.archetypeGenitive} →
           </Link>
         </div>
 
