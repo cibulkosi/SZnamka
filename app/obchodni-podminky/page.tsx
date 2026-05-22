@@ -109,13 +109,13 @@ export default function ObchodniPodminkyPage() {
               <strong className="text-gray-900 font-medium">4.1</strong> Uživatel-spotřebitel má dle § 1829 občanského zákoníku právo odstoupit od smlouvy o předplatném do <strong className="text-gray-900 font-medium">14 dnů</strong> od jejího uzavření bez udání důvodu.
             </p>
             <p className="mb-3">
-              <strong className="text-gray-900 font-medium">4.2</strong> Pro odstoupení stačí napsat na <a href="mailto:ahoj@cosmatch.cz" className="text-pink-500 underline">ahoj@cosmatch.cz</a>. Cosmatch refund provede do 14 dnů na stejný platební prostředek.
+              <strong className="text-gray-900 font-medium">4.2</strong> Předplatné Cosmatch+ se kupuje výhradně v Apple App Store nebo Google Play. Refundace vyřizuje přímo Apple, respektive Google podle svých pravidel — postup je popsán na stránce <Link href="/odstoupeni-od-smlouvy" className="text-pink-500 underline">Odstoupení od smlouvy</Link>. Cosmatch ti pomůže s komunikací s Apple / Google v případě potřeby.
             </p>
             <p className="mb-3">
-              <strong className="text-gray-900 font-medium">4.3</strong> Po uplynutí 14 dnů vyhodnocujeme refundace případ od případu. Pokud aplikace prokazatelně nefungovala (technický výpadek), refundujeme alikvotní část.
+              <strong className="text-gray-900 font-medium">4.3</strong> Po uplynutí lhůty pro odstoupení vyhodnocujeme případné nároky podle <Link href="/reklamacni-rad" className="text-pink-500 underline">Reklamačního řádu</Link>. Pokud aplikace prokazatelně nefungovala (technický výpadek), pomůžeme s žádostí o refundaci u Apple / Google.
             </p>
             <p>
-              <strong className="text-gray-900 font-medium">4.4</strong> Předplatné lze kdykoli zrušit přes profil. Zbývající dny aktivního období zůstanou Uživateli k dispozici.
+              <strong className="text-gray-900 font-medium">4.4</strong> Předplatné lze kdykoli zrušit v nastavení Apple ID (iOS) nebo Google účtu (Android). Zbývající dny aktivního období zůstanou Uživateli k dispozici, automatická obnova už neproběhne.
             </p>
           </section>
 

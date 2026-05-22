@@ -123,7 +123,7 @@ export default function OpakovanePlatbyPage() {
               Otevři <a href="https://play.google.com/store/account/orderhistory" target="_blank" rel="noopener" className="text-pink-500 hover:underline">play.google.com/store/account/orderhistory</a> → najdi platbu Cosmatch+ → Požádat o vrácení peněz.
             </p>
             <p>
-              Pokud Apple / Google refund schválí, peníze ti vrátí na původní platební prostředek do 5–10 pracovních dní a Cosmatch+ se deaktivuje. V odůvodněných případech (technická porucha aplikace) napiš na <a href="mailto:ahoj@cosmatch.cz" className="text-pink-500 hover:underline">ahoj@cosmatch.cz</a> — pomůžeme ti při komunikaci s Apple / Google. Detail: <Link href="/reklamacni-rad" className="text-pink-500 hover:underline">Reklamační řád</Link> a <Link href="/odstoupeni-od-smlouvy" className="text-pink-500 hover:underline">Odstoupení od smlouvy</Link>.
+              Pokud Apple / Google refund schválí, peníze ti vrátí na původní platební prostředek do 5–10 pracovních dní a Cosmatch+ se deaktivuje. V odůvodněných případech (technická porucha aplikace) využij <Link href="/kontakt" className="text-pink-500 hover:underline">kontaktní formulář</Link> — pomůžeme ti při komunikaci s Apple / Google. Detail: <Link href="/reklamacni-rad" className="text-pink-500 hover:underline">Reklamační řád</Link> a <Link href="/odstoupeni-od-smlouvy" className="text-pink-500 hover:underline">Odstoupení od smlouvy</Link>.
             </p>
           </section>
 
@@ -140,7 +140,7 @@ export default function OpakovanePlatbyPage() {
           <section>
             <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">Otázky?</h2>
             <p>
-              Napiš nám na <a href="mailto:ahoj@cosmatch.cz" className="text-pink-500 hover:underline">ahoj@cosmatch.cz</a> — obvykle odpovídáme do 24 hodin. Více kontaktních cest najdeš na stránce <Link href="/kontakt" className="text-pink-500 hover:underline">Kontakt</Link>. Pro otázky týkající se Apple ID / Google účtu kontaktuj prosím podporu Apple, respektive Google.
+              Napiš nám přes <Link href="/kontakt" className="text-pink-500 hover:underline">kontaktní formulář</Link> — obvykle odpovídáme do 24 hodin. Více kontaktních cest najdeš na stránce <Link href="/kontakt" className="text-pink-500 hover:underline">Kontakt</Link>. Pro otázky týkající se Apple ID / Google účtu kontaktuj prosím podporu Apple, respektive Google.
             </p>
           </section>
 

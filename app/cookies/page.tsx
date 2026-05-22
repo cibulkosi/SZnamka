@@ -99,7 +99,7 @@ export default function CookiesPage() {
           <section>
             <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">Platby a cookies</h2>
             <p>
-              Předplatné Cosmatch+ bude možné koupit v mobilní aplikaci (Apple App Store, Google Play) nebo přímo na webu cosmatch.cz. Pokud uskutečníš platbu přes mobilní aplikaci, platforma Apple či Google používá vlastní mechanismy ukládání dat ve své aplikaci — detail viz <a href="https://www.apple.com/legal/privacy/cz/cookies/" target="_blank" rel="noopener" className="text-pink-500 underline">Apple cookies</a> a <a href="https://policies.google.com/technologies/cookies?hl=cs" target="_blank" rel="noopener" className="text-pink-500 underline">Google cookies</a>. Pro webové platby používáme platební bránu, která pro zpracování transakce ukládá své vlastní cookies (jen po dobu nutnou k dokončení platby).
+              Předplatné Cosmatch+ se kupuje výhradně v mobilní aplikaci pro iOS (Apple App Store) nebo Android (Google Play) — ne na webu cosmatch.cz. Tyto platformy mají vlastní mechanismy ukládání dat ve své aplikaci, ne v tvém prohlížeči. Detail viz <a href="https://www.apple.com/legal/privacy/cz/cookies/" target="_blank" rel="noopener" className="text-pink-500 underline">Apple cookies</a> a <a href="https://policies.google.com/technologies/cookies?hl=cs" target="_blank" rel="noopener" className="text-pink-500 underline">Google cookies</a>.
             </p>
           </section>
 
