@@ -1,5 +1,7 @@
 'use client'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import type { DemoProfile } from '@/lib/demoProfiles'
 
 // Unicode symboly pro 12 znamení zvěrokruhu
@@ -56,6 +58,22 @@ const VoiceWaveform = () => {
 }
 
 export default function DemoProfileDetail({ profile }: { profile: DemoProfile }) {
+  const router = useRouter()
+  const [toast, setToast] = useState<string | null>(null)
+
+  function showToast(msg: string, duration = 2000) {
+    setToast(msg)
+    setTimeout(() => setToast(null), duration)
+  }
+
+  function handleSkip() {
+    router.push('/demo')
+  }
+
+  function handleLike() {
+    showToast('Lajk odeslán · v aplikaci by se otevřel chat, pokud by jej potvrdil/a')
+  }
+
   const cat = categoryColors[profile.matchCategory] || categoryColors['Spřízněné duše']
 
   return (
@@ -239,6 +257,30 @@ export default function DemoProfileDetail({ profile }: { profile: DemoProfile })
           </div>
         )}
 
+        {/* Hinge-style action bar — Skip + Like */}
+        <div className="flex items-center justify-center gap-8 py-4">
+          <button
+            onClick={handleSkip}
+            aria-label="Odmítnout profil"
+            className="w-16 h-16 rounded-full bg-white border-2 border-gray-200 hover:border-gray-900 hover:scale-105 active:scale-95 transition-all flex items-center justify-center shadow-md"
+          >
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6b7280" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="6" y1="6" x2="18" y2="18" />
+              <line x1="18" y1="6" x2="6" y2="18" />
+            </svg>
+          </button>
+          <button
+            onClick={handleLike}
+            aria-label="Lajknout profil"
+            className="w-20 h-20 rounded-full bg-pink-500 hover:bg-pink-600 hover:scale-105 active:scale-95 transition-all flex items-center justify-center"
+            style={{ boxShadow: '0 10px 30px -8px rgba(236, 72, 153, 0.5)' }}
+          >
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="white" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
+          </button>
+        </div>
+
         {/* Disclaimer + back */}
         <div className="bg-gray-100 rounded-3xl p-5 mt-6">
           <p className="text-xs text-gray-500 leading-relaxed mb-3">
@@ -255,6 +297,15 @@ export default function DemoProfileDetail({ profile }: { profile: DemoProfile })
           </div>
         </div>
       </article>
+      {toast && (
+        <div
+          className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-gray-900 text-white text-sm px-5 py-3 rounded-full shadow-xl max-w-sm text-center"
+          role="status"
+          aria-live="polite"
+        >
+          {toast}
+        </div>
+      )}
     </main>
   )
 }
