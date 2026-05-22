@@ -118,6 +118,15 @@ export default function LifePathPage() {
           </p>
         </header>
 
+        {/* Energetická vazba — Master 22/4 */}
+        <section className="bg-pink-50 border border-pink-200 rounded-3xl p-6 mb-12">
+          <p className="eyebrow text-pink-700 mb-2">Vyšší oktáva čísla 4</p>
+          <h2 className="serif text-xl text-gray-900 font-medium mb-3">Architekt (22/4) sdílí jádro s <Link href="/numerologie/zivotni-cislo-4" className="text-pink-600 hover:underline">Stavitelem (4)</Link>.</h2>
+          <p className="text-gray-700 leading-relaxed text-[0.95rem]">
+            Master číslo 22 je vyšší oktáva základního čísla 4. Pokud architekt master vibraci „nezapne", chová se jako stavitel — sdílí stejné jádrové vlastnosti: disciplína, struktura, schopnost realizovat velké projekty. Master vrstva přidává intenzivnější vibraci, vyšší citlivost a hlubší životní zkušenost.
+          </p>
+        </section>
+
         {/* Vlastnosti */}
         <section className="mb-16">
           <p className="eyebrow text-pink-500 mb-4">Vlastnosti</p>

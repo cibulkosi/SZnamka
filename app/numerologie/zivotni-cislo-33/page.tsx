@@ -118,6 +118,15 @@ export default function LifePathPage() {
           </p>
         </header>
 
+        {/* Energetická vazba — Master 33/6 */}
+        <section className="bg-pink-50 border border-pink-200 rounded-3xl p-6 mb-12">
+          <p className="eyebrow text-pink-700 mb-2">Vyšší oktáva čísla 6</p>
+          <h2 className="serif text-xl text-gray-900 font-medium mb-3">Léčitel (33/6) sdílí jádro s <Link href="/numerologie/zivotni-cislo-6" className="text-pink-600 hover:underline">Pečovatelem (6)</Link>.</h2>
+          <p className="text-gray-700 leading-relaxed text-[0.95rem]">
+            Master číslo 33 je vyšší oktáva základního čísla 6. Pokud léčitel master vibraci „nezapne", chová se jako pečovatel — sdílí stejné jádrové vlastnosti: péče o druhé, soucit, harmonie, smysl pro rodinu. Master vrstva přidává intenzivnější vibraci, vyšší citlivost a hlubší životní zkušenost.
+          </p>
+        </section>
+
         {/* Vlastnosti */}
         <section className="mb-16">
           <p className="eyebrow text-pink-500 mb-4">Vlastnosti</p>

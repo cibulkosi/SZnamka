@@ -118,6 +118,15 @@ export default function LifePathPage() {
           </p>
         </header>
 
+        {/* Energetická vazba — Master 11/2 */}
+        <section className="bg-pink-50 border border-pink-200 rounded-3xl p-6 mb-12">
+          <p className="eyebrow text-pink-700 mb-2">Vyšší oktáva čísla 2</p>
+          <h2 className="serif text-xl text-gray-900 font-medium mb-3">Vizionář (11/2) sdílí jádro s <Link href="/numerologie/zivotni-cislo-2" className="text-pink-600 hover:underline">Diplomatem (2)</Link>.</h2>
+          <p className="text-gray-700 leading-relaxed text-[0.95rem]">
+            Master číslo 11 je vyšší oktáva základního čísla 2. Pokud vizionář master vibraci „nezapne", chová se jako diplomat — sdílí stejné jádrové vlastnosti: citlivost, intuice, vztahy, mírotvůrcovství. Master vrstva přidává intenzivnější vibraci, vyšší citlivost a hlubší životní zkušenost.
+          </p>
+        </section>
+
         {/* Vlastnosti */}
         <section className="mb-16">
           <p className="eyebrow text-pink-500 mb-4">Vlastnosti</p>

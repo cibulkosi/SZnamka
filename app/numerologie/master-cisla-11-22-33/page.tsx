@@ -58,6 +58,51 @@ export default function MasterCislaPage() {
 
         <hr className="rule mb-12" />
 
+        {/* Energetická vazba */}
+        <section className="mb-12">
+          <p className="eyebrow text-pink-500 mb-4">Vyšší oktáva</p>
+          <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-6">
+            Energetická vazba k základnímu číslu.
+          </h2>
+          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
+            Každé master číslo má svůj „mateřský“ základ — číslo, na které by se zredukovalo, kdybys master vibraci nepoužila. Master 11 = vyšší oktáva 2. Master 22 = vyšší oktáva 4. Master 33 = vyšší oktáva 6. V McCantsově zápisu se to píše „11/2“, „22/4“, „33/6“ — lomítko vyjadřuje právě tento vztah.
+          </p>
+          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
+            V praxi to znamená, že lidé s master číslem sdílí jádrové vlastnosti se svým mateřským číslem — a navíc nesou intenzivnější vibraci, vyšší citlivost a vyšší potenciál. Pokud máš 11 a čteš si popis 2, najdeš se v něm — protože ho v sobě nosíš.
+          </p>
+
+          <div className="bg-white border border-gray-200 rounded-3xl overflow-hidden">
+            <table className="w-full text-sm">
+              <thead className="bg-gray-50 border-b border-gray-100">
+                <tr className="text-left text-xs uppercase tracking-wider text-gray-500">
+                  <th className="px-5 py-3 font-medium">Master</th>
+                  <th className="px-5 py-3 font-medium">Mateřské</th>
+                  <th className="px-5 py-3 font-medium">Sdílené jádro</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                <tr>
+                  <td className="px-5 py-4 text-gray-900 font-medium">11/2 — Vizionář</td>
+                  <td className="px-5 py-4 text-gray-700"><Link href="/numerologie/zivotni-cislo-2" className="text-pink-500 hover:underline">2 — Diplomat</Link></td>
+                  <td className="px-5 py-4 text-gray-600">citlivost, intuice, vztahy, mírotvůrcovství</td>
+                </tr>
+                <tr>
+                  <td className="px-5 py-4 text-gray-900 font-medium">22/4 — Architekt</td>
+                  <td className="px-5 py-4 text-gray-700"><Link href="/numerologie/zivotni-cislo-4" className="text-pink-500 hover:underline">4 — Stavitel</Link></td>
+                  <td className="px-5 py-4 text-gray-600">disciplína, struktura, schopnost realizovat</td>
+                </tr>
+                <tr>
+                  <td className="px-5 py-4 text-gray-900 font-medium">33/6 — Léčitel</td>
+                  <td className="px-5 py-4 text-gray-700"><Link href="/numerologie/zivotni-cislo-6" className="text-pink-500 hover:underline">6 — Pečovatel</Link></td>
+                  <td className="px-5 py-4 text-gray-600">péče o druhé, soucit, harmonie, rodina</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <hr className="rule mb-12" />
+
         {/* 11 */}
         <section className="mb-12">
           <Link href="/numerologie/zivotni-cislo-11" className="block hover:opacity-80 transition">
