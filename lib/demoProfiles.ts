@@ -210,11 +210,11 @@ export const DEMO_PROFILES: DemoProfile[] = [
       u('photo-1524995997946-a1c2e315a42f'),
     ],
     prompts: [
-      { question: 'Píseň, která mě vždy rozplyne', answer: 'Norah Jones — Come Away With Me. Pokaždé se ztratí čas.' },
+      { question: 'Píseň, která mě vždy dostane', answer: 'Norah Jones — Come Away With Me.' },
       { question: 'Krátký film o mém životě by se jmenoval', answer: 'Čekání na inspiraci v 3 ráno' },
       { question: 'Hledám někoho, kdo', answer: 'rozumí, že ticho mezi notami je často důležitější než tóny samy' },
     ],
-    voicePrompt: { question: 'Krátký verš o tobě, kterou jsem nikdy neviděl', duration: '0:34' },
+    voicePrompt: { question: 'Krátký verš o tobě, i když jsem Tě ještě nikdy neviděl', duration: '0:34' },
     accent: '#ec4899',
   },
 ]
