@@ -14,6 +14,7 @@ export type DemoProfile = {
   city: string
   zodiac: string
   occupation: string
+  genitive: string  // 2. pád koho/čeho (Terezy, Jakuba, Kláry, Martina, Anežky, Ondřeje)
   bio: string
   hobbies: string[]
   // Compatibility
@@ -43,6 +44,7 @@ export const DEMO_PROFILES: DemoProfile[] = [
     city: 'Praha',
     zodiac: 'Beran',
     occupation: 'Grafická designérka',
+    genitive: 'Terezy',
     bio: 'Miluji cestování, dobrou kávu a spontánní výlety do hor. Hledám někoho, kdo bude sdílet podobné životné hodnoty.',
     hobbies: ['Cestování', 'Jóga', 'Fotografování', 'Vaření'],
     matchCategory: 'Spřízněné duše',
@@ -72,6 +74,7 @@ export const DEMO_PROFILES: DemoProfile[] = [
     city: 'Brno',
     zodiac: 'Rak',
     occupation: 'Software engineer',
+    genitive: 'Jakuba',
     bio: 'Softwarový inženýr, nadšenec do vína a filmů. Hledám trvalý vztah, ne jen povrchní zábavu.',
     hobbies: ['Filmy', 'Hudba', 'Fitness', 'Cestování'],
     matchCategory: 'Láska a přátelství',
@@ -101,6 +104,7 @@ export const DEMO_PROFILES: DemoProfile[] = [
     city: 'Praha',
     zodiac: 'Štír',
     occupation: 'Psycholožka',
+    genitive: 'Kláry',
     bio: 'Léčitelka duší, kterou baví hluboké rozhovory a lidé s příběhem. Ve volném čase maluju.',
     hobbies: ['Umění', 'Čtení', 'Příroda', 'Meditace'],
     matchCategory: 'Osudová přitažlivost',
@@ -130,6 +134,7 @@ export const DEMO_PROFILES: DemoProfile[] = [
     city: 'Praha',
     zodiac: 'Býk',
     occupation: 'Produktový manažer',
+    genitive: 'Martina',
     bio: 'Šéfkuchař amatér. Miluji vaření, přírodu a psy. Hledám někoho, kdo se nebojí života.',
     hobbies: ['Vaření', 'Příroda', 'Zahradničení', 'Sport'],
     matchCategory: 'Magnetická tenze',
@@ -159,6 +164,7 @@ export const DEMO_PROFILES: DemoProfile[] = [
     city: 'Ostrava',
     zodiac: 'Panna',
     occupation: 'Vědkyně',
+    genitive: 'Anežky',
     bio: 'Pracuji v laboratoři a ráda tančím salsu. Zatancuješ si se mnou?',
     hobbies: ['Tanec', 'Věda', 'Fitness', 'Cestování'],
     matchCategory: 'Prospěšný vztah',
@@ -168,15 +174,15 @@ export const DEMO_PROFILES: DemoProfile[] = [
     archetype: { number: 3, name: 'Tvůrkyně' },
     photos: [
       u('photo-1531746020798-e6953c6e8e04'),
-      u('photo-1535525153412-5a092d46b734'),
+      u('photo-1547153760-18fc86324498'),
       u('photo-1532187863486-abf9dbad1b69'),
       u('photo-1518611012118-696072aa579a'),
       u('photo-1488646953014-85cb44e25828'),
     ],
     prompts: [
-      { question: 'V partě jsem ten/ta, kdo', answer: 'domluví letenku, ubytování a vyhledá nejlepší restauraci. Pak ale není schopná rozhodnout, kam jdeme.' },
+      { question: 'V partě jsem ten/ta, kdo', answer: 'domluví letenku, ubytování a vyhledá nejlepší restaurace. Pak ale nejsem schopná se rozhodnout, kam vlastně půjdeme.' },
       { question: 'Můj životní cíl', answer: 'Vědecky doložit, že tanec snižuje stres víc než káva. A tančit při tom.' },
-      { question: 'Tajný talent', answer: 'Vím nazpaměť 47 různých variací Bachaty Suelty' },
+      { question: 'Tajný talent', answer: 'Znám nazpaměť 17 různých variací Bachaty Suelty' },
     ],
     voicePrompt: { question: 'Kam mě vezmeš tančit', duration: '0:22' },
     accent: '#ec4899',
@@ -188,6 +194,7 @@ export const DEMO_PROFILES: DemoProfile[] = [
     city: 'Praha',
     zodiac: 'Kozoroh',
     occupation: 'Hudebník',
+    genitive: 'Ondřeje',
     bio: 'Muzikant a věčný snílek. Píšu texty písní a hledám múzu. Jsem milovník ticha i hlasitých koncertů.',
     hobbies: ['Hudba', 'Umění', 'Filmy', 'Čtení'],
     matchCategory: 'Spřízněné duše',

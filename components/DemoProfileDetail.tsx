@@ -185,7 +185,7 @@ export default function DemoProfileDetail({ profile }: { profile: DemoProfile })
           </div>
           <h3 className="serif-display text-2xl text-gray-900 font-medium mb-2">{profile.archetype.name}</h3>
           <p className="text-sm text-gray-600 leading-relaxed mb-4">
-            Datum narození {profile.name} se redukuje na životní číslo {profile.archetype.number}. Společně tvoříte vzor kompatibility <span className="font-medium text-pink-600">{profile.matchCategory}</span> — detail v <Link href="/jak-funguje-cosmatch" className="underline">algoritmu</Link>.
+            Životní číslo {profile.genitive} je {profile.archetype.number}. Společně tvoříte vzor kompatibility <span className="font-medium text-pink-600">{profile.matchCategory}</span> — detail v <Link href="/jak-funguje-cosmatch" className="underline">algoritmu</Link>.
           </p>
           <Link href={`/numerologie/zivotni-cislo-${profile.archetype.number}`} className="inline-flex items-center text-sm text-pink-600 hover:text-pink-700 font-medium transition">
             Více o archetypu {profile.archetype.name} →
