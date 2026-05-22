@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { ARCHETYPE_SOURCES, BARNUM_DISCLOSURE } from '@/lib/archetypes'
 
 const TITLE = 'Zdroje numerologie | Cosmatch'
-const DESC = 'Cosmatch staví na 13 klíčových zdrojích numerologie a personology — od Pythagora přes Cheira, Florence Campbell, Juno Jordan a Matthewa Goodwina, k současným autorům jako Hans Decoz, Glynis McCants nebo Michelle Buchanan. Z české tradice cituje Jitku Kadlecovou a Helmuta Kritzingera.'
+const DESC = 'Cosmatch staví na 14 klíčových zdrojích numerologie a personology — od Pythagora přes Cheira, Florence Campbell, Juno Jordan a Matthewa Goodwina, k současným autorům jako Hans Decoz, Glynis McCants nebo Michelle Buchanan. Z české tradice cituje Jitku Kadlecovou a Helmuta Kritzingera.'
 const URL = 'https://cosmatch.cz/zdroje-numerologie'
 
 export const metadata: Metadata = {
@@ -30,7 +30,7 @@ export default function ZdrojeNumerologie() {
           </h1>
           <hr className="rule w-12 border-gray-900 mb-8" />
           <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
-            Cosmatch nevymýšlí numerologii. Staví na 13 klíčových zdrojích moderní západní (pythagorovské) i české numerologické tradice — od antiky po současné autory.
+            Cosmatch nevymýšlí numerologii. Staví na 14 klíčových zdrojích moderní západní (pythagorovské) i české numerologické tradice — od antiky po současné autory.
             Tady je seznam knih a autorů, ze kterých čerpá metodologie i copywriting.
           </p>
         </header>
@@ -39,7 +39,7 @@ export default function ZdrojeNumerologie() {
           {ARCHETYPE_SOURCES.map((src, i) => (
             <div key={i} className="grid grid-cols-[auto,1fr] gap-x-6">
               <div className="text-right">
-                <div className="roman text-2xl text-pink-500 leading-none">{['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII'][i]}</div>
+                <div className="roman text-2xl text-pink-500 leading-none">{['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV'][i]}</div>
               </div>
               <div>
                 <h3 className="serif text-xl text-gray-900 font-medium leading-tight mb-1">{src.author}</h3>
@@ -75,7 +75,7 @@ export default function ZdrojeNumerologie() {
         <section className="mb-16">
           <p className="eyebrow text-pink-500 mb-4">Tři metodické školy</p>
           <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-6">
-            Proč existuje 13 zdrojů.
+            Proč existuje 14 zdrojů.
           </h2>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
             Numerologie není jednotný systém — pro stejné datum narození dají různé školy různá životní čísla. 13 autorů, ze kterých Cosmatch čerpá, se dělí do tří metodických rodin.

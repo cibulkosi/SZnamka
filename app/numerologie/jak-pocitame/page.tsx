@@ -342,7 +342,58 @@ export default function JakPocitamePage() {
 
         <hr className="rule mb-16" />
 
-        {/* VII. Honest disclaimer */}
+        {/* VII. Co říká věda */}
+        <section className="mb-16">
+          <div className="grid grid-cols-[auto,1fr] gap-x-8 sm:gap-x-12">
+            <div className="roman text-3xl sm:text-4xl text-pink-500 leading-none pt-2 select-none">VII</div>
+            <div>
+              <h2 className="serif text-2xl sm:text-3xl text-gray-900 font-medium mb-5 leading-tight">Co o tom říká věda</h2>
+              <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
+                Numerologie není peer-reviewed věda. Žádná z popsaných metod nebyla validována kontrolovanou studií. Ale existuje jeden adjacent psychology výzkum, který stojí za zmínku, protože se k tématu přibližuje.
+              </p>
+
+              <div className="bg-white border border-gray-200 rounded-3xl p-6 mb-6">
+                <p className="eyebrow text-gray-500 mb-2">Peer-reviewed studie</p>
+                <h3 className="serif text-lg text-gray-900 font-medium mb-2">Jones, Pelham, Carvallo &amp; Mirenberg (2004) — Implicit egotism</h3>
+                <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-3">
+                  Studie publikovaná v <em className="italic">Journal of Personality and Social Psychology</em> 87(5), 665–683 (PMID 15535778), provedla 7 studií zkoumajících „implicit egotism" — tendenci preferovat věci, které se nám podobají.
+                </p>
+                <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-3">
+                  <strong className="text-gray-900 font-medium">Co studie skutečně ukazuje:</strong> Studies 1–4 (archivní záznamy o sňatcích): lidé jsou disproporčně pravděpodobně manželé těch, jejichž <em className="italic">jméno</em> se podobá jejich vlastnímu. Studies 5–7 (experiment): mírná tendence k atraktivitě podle podobných číselných kódů.
+                </p>
+                <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-3">
+                  <strong className="text-gray-900 font-medium">Co to NENÍ:</strong> Není to validace numerologické kompatibility. Marriage-records evidence se týká <em className="italic">podobnosti jmen</em>, ne kompatibility podle data narození. Birthday-digit attraction byla v experimentu s arbitrárními kódy, ne v reálných manželstvích.
+                </p>
+                <p className="text-sm text-gray-500 italic">
+                  Cosmatch tuto studii cituje pro férové „peer-reviewed psychology footing", ale netvrdí, že validuje numerologii. Validuje pouze obecný princip „lidé se přitahují k tomu, co je jim podobné" — což je intuitivní.
+                </p>
+              </div>
+
+              <div className="bg-white border border-gray-200 rounded-3xl p-6 mb-6">
+                <p className="eyebrow text-gray-500 mb-2">Skeptická literatura</p>
+                <h3 className="serif text-lg text-gray-900 font-medium mb-2">Numerologie jako „paranormal belief"</h3>
+                <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-3">
+                  Lindeman &amp; Aarnio (2007) v <em className="italic">Journal of Research in Personality</em> 41(4) klasifikují numerologii a astrologii jako kategorie paranormal-belief. Robert T. Carroll v <em className="italic">The Skeptic's Dictionary</em> (Wiley, 2003) charakterizuje numerologii jako pseudovědu, protože její tvrzení „nelze testovat — jsou tak vágní a tvárné, že cokoli relevantního lze vejít do té teorie."
+                </p>
+                <p className="text-gray-700 text-[0.95rem] leading-relaxed">
+                  Cosmatch tyto kritiky neignoruje — souhlasíme, že popisy archetypů jsou natolik obecné, aby v nich každý našel kus sebe (Barnumův efekt). Hodnota není v predikci, ale v tom, k jakému rozhovoru ti tradice otevírá dveře.
+                </p>
+              </div>
+
+              <div className="bg-white border border-gray-200 rounded-3xl p-6">
+                <p className="eyebrow text-gray-500 mb-2">Historický corrective</p>
+                <h3 className="serif text-lg text-gray-900 font-medium mb-2">Pythagoras vs. „pythagorovská numerologie"</h3>
+                <p className="text-gray-700 text-[0.95rem] leading-relaxed">
+                  Walter Burkert v <em className="italic">Lore and Science in Ancient Pythagoreanism</em> (Harvard University Press, 1972) — standardní akademický text k tématu — ukazuje, že <strong className="text-gray-900 font-medium">historický Pythagoras a jeho škola byli matematičtí filozofové, ne numerologičtí věštci</strong>. „Pythagorovská numerologie" používaná dnes je rekonstrukce 19.–20. století (Theosophie, Balliett, Cheiro), ne přímá linie z antiky. Cosmatch toto otevřeně přiznává — Pythagoras je historický inspirační bod, ne přímý zdroj výpočetní metody.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <hr className="rule mb-16" />
+
+        {/* VIII. Honest disclaimer */}
         <section className="bg-white border border-gray-200 rounded-3xl p-8 mb-16">
           <p className="eyebrow text-pink-500 mb-3">Co je v textu důležité přiznat</p>
           <h2 className="serif text-xl text-gray-900 font-medium mb-3">Není jedna „pravá" numerologie.</h2>

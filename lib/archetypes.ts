@@ -385,6 +385,11 @@ export const ARCHETYPE_SOURCES = [
     role: 'Současný mainstream love-by-the-numbers standard. Tři tiery vztahové kompatibility (Natural Match / Compatible / Toxic) — Cosmatch je adaptoval do českých kategorií Spřízněné duše, Prospěšný vztah a Magnetická tenze.',
   },
   {
+    author: 'Ester Davidová',
+    work: 'Partnerská osudová čísla — Jak na vztahy? (self-published, 2020)',
+    role: 'Současný český autorský hlas v partnerské numerologii. Definuje 9 „partnerských osudových čísel" jako součet životních čísel obou partnerů — model blízký Cosmatch kategoriím kompatibility.',
+  },
+  {
     author: 'Michelle Buchanan',
     work: 'The Numerology Guidebook (Hay House, 2013)',
     role: 'Současný mainstream. Explicitní kapitoly o výběru partnera, timingu vztahů a master číslech 11/22/33.',
