@@ -101,11 +101,13 @@ export default function DemoProfileDetail({ profile }: { profile: DemoProfile })
 
         {/* Compatibility */}
         <div className={`rounded-3xl p-6 shadow-sm border ${cat.bg} ${cat.border}`}>
-          <div className="flex items-start justify-between">
+          <div className="flex items-start justify-between gap-4">
             <div>
-              <p className={`eyebrow ${cat.text} mb-1`}>Tvoje kompatibilita</p>
-              <h2 className={`serif text-xl ${cat.text} font-medium leading-tight`}>{profile.matchCategory}</h2>
-              <p className="text-xs text-gray-600 mt-1">{profile.matchLabel}</p>
+              <p className={`eyebrow ${cat.text} mb-2`}>Tvoje kompatibilita</p>
+              <h2 className={`serif-display text-2xl ${cat.text} font-medium leading-tight`}>{profile.matchCategory}</h2>
+              {profile.matchLabel && (
+                <p className="text-xs text-gray-600 mt-1.5">{profile.matchLabel}</p>
+              )}
             </div>
             <div className="text-right flex-shrink-0">
               <p className="serif-display text-5xl text-gray-900 font-medium tabular-nums leading-none">{profile.score}</p>
