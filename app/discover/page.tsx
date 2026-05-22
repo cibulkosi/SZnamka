@@ -360,20 +360,24 @@ export default function DiscoverPage() {
  const u = r.profile
  setUser(u)
 
- // Načti denní počet swipů z localStorage
- const today = new Date().toISOString().slice(0, 10)
- const swipeData = localStorage.getItem('cosmatch_daily_swipes')
- if (swipeData) {
- const { date, count } = JSON.parse(swipeData)
- if (date === today) {
- setDailySwipes(count)
- if (!u.premium && count >= DAILY_FREE_LIMIT) setSwipeLimitReached(true)
- } else {
- localStorage.setItem('cosmatch_daily_swipes', JSON.stringify({ date: today, count: 0 }))
+ // Načti denní počet swipů ze serveru (RPC) — autoritativní, ne localStorage
+ try {
+ const { data: rpcData } = await supabase.rpc('my_daily_swipes_remaining')
+ if (rpcData && typeof rpcData === 'object') {
+ if (rpcData.unlimited === true) {
+ setDailySwipes(0)
+ setSwipeLimitReached(false)
+ } else if (typeof rpcData.used === 'number') {
+ setDailySwipes(rpcData.used)
+ setSwipeLimitReached(Boolean(rpcData.limit_reached))
  }
- } else {
- localStorage.setItem('cosmatch_daily_swipes', JSON.stringify({ date: today, count: 0 }))
  }
+ } catch (e) {
+ console.warn('daily swipes RPC failed:', e)
+ // Failsafe: bez serverové info nechej dailySwipes=0, ale server-side RLS chytí abusery
+ }
+ // Cleanup staré localStorage data — server je teď truthový zdroj
+ try { localStorage.removeItem('cosmatch_daily_swipes') } catch {}
 
  // Předvyplň zodpovězené otázky
  const answered = new Set(
@@ -537,16 +541,32 @@ export default function DiscoverPage() {
  setIdx(i => i + 1)
  }, 300)
 
- // Zvyšuj denní počítadlo
+ // Optimistic increment local counter (jen UX hint)
  const newCount = dailySwipes + 1
  setDailySwipes(newCount)
- const today = new Date().toISOString().slice(0, 10)
- localStorage.setItem('cosmatch_daily_swipes', JSON.stringify({ date: today, count: newCount }))
  if (!user.premium && newCount >= DAILY_FREE_LIMIT) setSwipeLimitReached(true)
 
- await supabase.from('likes').upsert({
+ // INSERT do likes — server-side RLS check daily_swipe_limit_ok
+ const { error: insertError } = await supabase.from('likes').upsert({
  from_user: user.id, to_user: target.id, liked
  })
+ if (insertError) {
+ // Pravděpodobně překročen denní limit (RLS policy violation)
+ // Postgres error code 42501 = insufficient_privilege; PostgREST: PGRST116
+ const isLimitError = insertError.code === '42501' || insertError.code === 'PGRST116'
+   || /policy|row-level security|daily_swipe_limit_ok/i.test(insertError.message || '')
+ if (isLimitError && !user.premium) {
+ setSwipeLimitReached(true)
+ // Re-sync ze serveru — pokud user už limit překročil, ukáže pravdivý count
+ try {
+ const { data: rpcData } = await supabase.rpc('my_daily_swipes_remaining')
+ if (rpcData && typeof rpcData.used === 'number') setDailySwipes(rpcData.used)
+ } catch {}
+ return
+ }
+ console.error('like upsert failed:', insertError)
+ return
+ }
 
  if (liked) {
  const { data: theyLikedMe } = await supabase
