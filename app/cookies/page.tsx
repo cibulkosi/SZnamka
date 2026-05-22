@@ -70,10 +70,10 @@ export default function CookiesPage() {
               </div>
 
               <div className="border border-gray-200 rounded-2xl p-6">
-                <p className="eyebrow text-gray-500 mb-2">Funkční</p>
+                <p className="eyebrow text-emerald-600 mb-2">Nezbytné</p>
                 <h3 className="serif text-xl text-gray-900 font-medium mb-2">localStorage „cosmatch_daily_swipes“</h3>
-                <p className="text-gray-700 text-[0.95rem] mb-2">Počítadlo denních lajků pro Free tier (limit 5/den).</p>
-                <p className="text-xs text-gray-500">Doba: 1 den · Doména: cosmatch.cz · Lze odmítnout? Ano (počitadlo se neuloží)</p>
+                <p className="text-gray-700 text-[0.95rem] mb-2">Počítadlo denních lajků pro Free tier (limit 5/den). Slouží k vynucení smluvního limitu Free členství vůči placenému Cosmatch+ a jako anti-abuse opatření.</p>
+                <p className="text-xs text-gray-500">Doba: 1 den · Doména: cosmatch.cz · Lze odmítnout? Ne (jde o vynucení podmínek Free tieru a prevenci zneužití)</p>
               </div>
 
               <div className="border border-gray-200 rounded-2xl p-6">
