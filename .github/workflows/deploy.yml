@@ -29,7 +29,10 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy out --project-name=cosmatch
+          # NOTE: --commit-message override is needed because Cloudflare API rejects
+          # commit messages with certain non-ASCII chars (em-dash, Czech apostrophes).
+          # We use the commit SHA + branch as a safe ASCII identifier instead.
+          command: pages deploy out --project-name=cosmatch --commit-message="Deploy ${{ github.sha }} from ${{ github.ref_name }}" --commit-hash=${{ github.sha }} --branch=main
 
       # ── IndexNow: notify Bing + SeznamBot about new/updated pages ──
       # Pings the changed URLs from the latest commit so search engines re-crawl them within minutes

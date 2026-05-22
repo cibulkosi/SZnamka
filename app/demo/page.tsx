@@ -96,9 +96,8 @@ export default function DemoPage() {
 
         {/* CTA */}
         <section className="bg-white rounded-3xl border border-gray-100 p-10 mb-12 text-center">
-          <p className="eyebrow text-pink-500 mb-4">Tvoji shodu uvidíš přímo</p>
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-6">
-            <em className="italic text-pink-500">Cosmatch</em> spočítá tvoji shodu.
+            <em className="italic text-pink-500">Cosmatch</em> spočítá tvojí shodu.
           </h2>
           <p className="text-gray-600 leading-relaxed mb-8 max-w-md mx-auto">
             Zjisti svůj numerologický archetyp za 30 sekund, přidej se na waitlist a získej voucher na 3 měsíce zdarma.
