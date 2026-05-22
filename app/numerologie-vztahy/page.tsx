@@ -41,10 +41,10 @@ const SECTIONS = [
   {
     id: 'pritahovani',
     num: 'I',
-    title: 'Proč se přitahujeme k určitým lidem?',
+    title: 'Proč přitahujeme určité lidi?',
     paras: [
-      'Psychologové hovoří o „familiarity effect“ — tendenci preferovat lidi, kteří nám připomínají vzorce z dětství. Numerologie přidává jiný pohled: každé životní číslo nese specifické energetické kvality, které přirozeně rezonují s některými čísly a tvoří třecí plochy s jinými.',
-      'To neznamená determinismus. Znamená to, že pochopením svého čísla lépe pochopíš, co od partnera přirozeně očekáváš — a kde mohou nastat konflikty dříve, než eskalují.',
+      'Psychologové hovoří o „familiarity effect“, tendenci preferovat lidi, kteří nám připomínají vzorce z dětství. Numerologie přidává další pohled, podle něhož každé životní číslo nese specifické energetické kvality, které s některými čísly přirozeně rezonují a s některými naopak ne.',
+      'Znamená to, že pochopením svého čísla můžeš lépe pochopit, co od partnera přirozeně očekáváš, a kde mohou nastat potenciální konflikty dříve, než eskalují.',
     ],
   },
   {
@@ -52,7 +52,7 @@ const SECTIONS = [
     num: 'II',
     title: 'Tři typy vztahových čísel',
     paras: [
-      'Numerologie rozlišuje tři hlavní kategorie kompatibility: přirozenou rezonanci (čísla, která rozumí tvé energii), komplementární shodu (čísla, která doplňují to, co ti chybí) a karmická spojení (čísla, která přinášejí lekce — ne vždy pohodlné).',
+      'Numerologie rozlišuje tři hlavní kategorie kompatibility, a to přirozenou rezonanci (čísla, která si energeticky vyhovují), komplementární shodu (čísla, která doplňují to, co ti chybí) a karmická spojení (čísla, která přinášejí lekce, ne vždy pohodlné).',
       'Cosmatch tyto kategorie označuje jako Oboustrannou shodu, Spřízněné duše a Karmickou zkoušku. Žádná z nich není špatná — karmická spojení mohou být nejhlubší lekce v životě.',
     ],
   },
@@ -62,7 +62,7 @@ const SECTIONS = [
     title: 'Čísla v praxi: co funguje a co ne',
     paras: [
       'Číslo 4 (Stavitel) a 6 (Pečovatel) sdílejí hodnoty stability a věrnosti — přirozeně si rozumí. Číslo 5 (Dobrodruh) a 4 (Stavitel) mívají napjatou dynamiku: jeden chce změnu, druhý jistotu.',
-      'Klíčové je vědomí. Pár pětky a čtyřky, který tuto dynamiku chápe, může vytvořit rovnováhu, o které jiné páry jen sní. Numerologie je nástroj sebepoznání, ne osud.',
+      'Klíčové je si tyto hodnoty uvědomovat. Pár pětky a čtyřky, který tuto dynamiku chápe, může vytvořit rovnováhu, o které jiné páry jen sní. Numerologie je nástroj sebepoznání, ne osud.',
     ],
   },
   {
@@ -70,8 +70,8 @@ const SECTIONS = [
     num: 'IV',
     title: 'V čem je Česko jiné',
     paras: [
-      'Numerologie a esoterika nejsou v Česku okrajová záležitost. Pew Research Center (CEE 2017) ukazuje, že 43 % Čechů věří v osud a 44 % v existenci duše — a to navzdory tomu, že 72 % se nehlásí k žádné církvi. Nielsen Admosphere přidává, že horoskopům věří 43 % online Čechů; mezi ženami je to dokonce 56 %.',
-      'Cosmatch z těchto čísel staví pozici, kterou si americké aplikace nemohou dovolit: jsme jediná česká seznamka, která hraje s tímhle hluboce zakořeněným systémem víry, ne proti němu. Pro 56 % českých žen je vaše datum narození smysluplný signál, ne pověra.',
+      'Numerologie a esoterika jsou v Česku poměrně oblíbenou záležitostí. Pew Research Center (CEE 2017) ukazuje, že 43 % Čechů věří v osud a 44 % v existenci duše — a to navzdory tomu, že se 72 % obyvatel naší země nehlásí k žádné církvi. Nielsen Admosphere přidává, že horoskopům věří 43 % online Čechů; mezi ženami je to dokonce 56 %.',
+      'Cosmatch je jediná česká seznamka, která bere datum narození v úvahu. Protože po 56 % českých žen je datum narození smysluplný signál, ne pověra.',
     ],
   },
   {
@@ -80,7 +80,7 @@ const SECTIONS = [
     title: 'Master čísla ve vztazích',
     paras: [
       'Lidé s master číslem (11, 22, 33) bývají ve vztazích intenzivnější — v dobrém i špatném. Vizionář (11) potřebuje partnera, který zvládne jeho emocionální hloubku. Architekt (22) může být workoholik, který podceňuje vztahovou péči. Mistr lásky (33) dává tak moc, že riskuje vyhoření.',
-      'Všechna tři master čísla hledají intenzitu a smysl — a snadno se nudia povrchními vztahy.',
+      'Všechna tři master čísla hledají intenzitu a smysl a snadno je přestávají bavit povrchní vztahy.',
     ],
   },
 ] as const
@@ -94,7 +94,7 @@ const RELATED = [
   },
   {
     href: '/test',
-    eyebrow: 'Nástroj',
+    eyebrow: 'Interaktivní',
     title: 'Numerologický kvíz',
     desc: 'Zadej datum narození a za 30 sekund zjistíš svůj archetyp.',
   },
@@ -161,14 +161,13 @@ export default function NumerologieVztahyPage() {
 
         {/* Masthead */}
         <header className="mb-12">
-          <p className="eyebrow text-pink-500 mb-6">Esej · {READING_TIME_MIN} min čtení</p>
+          <p className="eyebrow text-pink-500 mb-6">Článek · {READING_TIME_MIN} min čtení</p>
           <h1 className="serif-display text-5xl sm:text-6xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-8">
             Numerologie<br/>a <em className="italic text-pink-500">vztahy</em>.
           </h1>
           <hr className="rule w-12 border-gray-900 mb-8" />
           <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
-            Jak životní číslo ovlivňuje partnerský výběr, komunikaci a to,
-            proč se pořád přitahuješ k určitému typu lidí.
+            Jak životní číslo ovlivňuje výběr partnera a proč pořád přitahuješ určitý typ lidí?
           </p>
           <p className="text-sm text-gray-500 mt-6">
             Autorka <span className="text-gray-900 italic serif">Simona Cibulková</span>
@@ -250,7 +249,7 @@ export default function NumerologieVztahyPage() {
 
         <footer className="mt-20 pt-12 border-t border-gray-200">
           <p className="text-xs text-gray-400 leading-relaxed">
-            Mgr. Ing. Simona Cibulková · Cosmatch · IČO 08419531 · Praha 5, 2026.
+            Mgr. Ing. Simona Cibulková · Cosmatch · IČO 08419531 · Praha 2026.
             Numerologie není empirická věda — výsledky používejte jako podporu rozhodování,
             ne jako absolutní pravdu.
           </p>
