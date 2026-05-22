@@ -67,6 +67,7 @@ export default function AdminPage() {
   const [stats, setStats] = useState<Stats | null>(null)
   const [loading, setLoading] = useState(false)
   const [lastRefresh, setLastRefresh] = useState<Date | null>(null)
+  const [newMessagesCount, setNewMessagesCount] = useState<number>(0)
 
   // Watch auth state — handles both initial load and OAuth callback redirect
   useEffect(() => {
@@ -124,6 +125,9 @@ export default function AdminPage() {
         .limit(50)
       // Voucher gender stats (admin-only RPC)
       const { data: voucherGenderData } = await supabase.rpc('admin_voucher_gender_stats')
+      // Contact messages — count nových
+      const { data: msgCountData } = await supabase.rpc('admin_contact_messages_count', { p_status: 'new' })
+      setNewMessagesCount(typeof msgCountData === 'number' ? msgCountData : 0)
       setStats({
         totalUsers: totalUsers || 0, maleCount: maleCount || 0, femaleCount: femaleCount || 0,
         otherCount: otherCount || 0, premiumCount: premiumCount || 0, waitlistCount: waitlistCount || 0,
@@ -547,6 +551,10 @@ export default function AdminPage() {
                 </a>
                 <Link href="/waitlist" className="px-5 py-2.5 rounded-full bg-white border border-gray-300 hover:border-gray-900 text-sm text-gray-700 hover:text-gray-900 transition">Waitlist</Link>
                 <Link href="/ambasadorky" className="px-5 py-2.5 rounded-full bg-white border border-gray-300 hover:border-gray-900 text-sm text-gray-700 hover:text-gray-900 transition">Ambasadorky</Link>
+                <Link href="/admin/messages" className="px-5 py-2.5 rounded-full bg-white border border-pink-300 hover:border-pink-500 text-sm text-pink-700 hover:text-pink-900 transition inline-flex items-center gap-2">
+                  Zprávy z formuláře
+                  {newMessagesCount > 0 && <span className="inline-flex items-center justify-center min-w-[1.25rem] h-5 px-1.5 rounded-full bg-pink-500 text-white text-xs tabular-nums">{newMessagesCount}</span>}
+                </Link>
                 <Link href="/admin/gdpr-requests" className="px-5 py-2.5 rounded-full bg-white border border-pink-300 hover:border-pink-500 text-sm text-pink-700 hover:text-pink-900 transition">GDPR žádosti</Link>
                 <Link href="/discover" className="px-5 py-2.5 rounded-full bg-white border border-gray-300 hover:border-gray-900 text-sm text-gray-700 hover:text-gray-900 transition">Discover</Link>
               </div>
