@@ -29,7 +29,7 @@ export default function KontaktPage() {
           </h1>
           <hr className="rule w-12 border-gray-900 mb-6" />
           <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
-            Otázka, reklamace, GDPR žádost nebo nahlášení podezřelého profilu. Obvykle odpovídáme do 48 hodin.
+            Chceš nahlásit podezřelý profil, máš nějakou otázku, GDPR žádost nebo reklamaci? Napiš nám, obvykle odpovídáme do 48 hodin.
           </p>
         </header>
 
