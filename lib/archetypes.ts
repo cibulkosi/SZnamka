@@ -327,42 +327,67 @@ export const ARCHETYPE_SOURCES = [
   {
     author: 'Pythagoras',
     era: '~500 př. n. l.',
-    role: 'Původce západní (Pythagorovské) numerologie. Základní princip: čísla jako vyjádření kosmického řádu.',
+    role: 'Původce západní (pythagorovské) numerologie. Základní princip: čísla jako vyjádření kosmického řádu. (Současná „pythagorovská" numerologie je rekonstrukce 19.–20. století; viz Burkert, Lore and Science in Ancient Pythagoreanism, Harvard 1972.)',
+  },
+  {
+    author: 'Cheiro (William J. Warner)',
+    work: 'Cheiro\'s Book of Numbers (Herbert Jenkins, 1926)',
+    role: 'Definoval chaldejský systém přiřazení čísel písmenům a první pravidla shody/neshody mezi čísly — historický kořen kompatibilní numerologie.',
+  },
+  {
+    author: 'Florence Campbell',
+    work: 'Your Days Are Numbered (1931, reedice DeVorss)',
+    role: 'První moderní textbook západní numerologie. Žačka L. Dow Balliett, propojila New Thought s číselným systémem 20. století.',
   },
   {
     author: 'Juno Jordan',
-    work: 'Numerology: The Romance in Your Name (1965)',
-    role: 'Historický základ moderní západní numerologie. Definovala 9 základních archetypů.',
+    work: 'Numerology: The Romance in Your Name (DeVorss, 1965)',
+    role: 'Historická klasika numerologie aplikované specificky na vztahy a romantiku. Dcera Julie Seton, žačka L. Dow Balliett — přímý lineage od raného 20. století.',
   },
   {
     author: 'Matthew Oliver Goodwin',
-    work: 'Numerology: The Complete Guide (1981)',
-    role: 'Klasická akademická reference. Tradiční systém (master 11 a 22), striktní Decoz Three-Cycle pro 33.',
-  },
-  {
-    author: 'Hans Decoz',
-    work: 'World Numerology, Numerology: Key to Your Inner Self',
-    role: 'Moderní západní standard. Cosmatch používá jeho Three-Cycle calculation method s zachováním master čísel.',
+    work: 'Numerology: The Complete Guide, Vol. 1 + 2 (Newcastle, 1981)',
+    role: 'Nejrigoróznější textbook americké numerologie poloviny století. Tradiční systém (master 11 a 22), striktní Three-Cycle pro 33.',
   },
   {
     author: 'Dan Millman',
-    work: 'The Life You Were Born to Live',
-    role: 'Life-purpose framing. Cosmatch ho zmiňuje jako související framework, ale používá Decoz/Buchanan systém.',
-  },
-  {
-    author: 'Michelle Buchanan',
-    work: 'The Numerology Guidebook (Hay House)',
-    role: 'Současný mainstream. Definuje archetypy včetně master 33.',
+    work: 'The Life You Were Born to Live (HJ Kramer, 1993; CZ: Čísla života, Eminent 2003)',
+    role: 'Life-purpose framing. Definuje populární „životní číslo" framework se sekcemi o skryté dynamice vztahů pro každou cestu.',
   },
   {
     author: 'Gary Goldschneider + Joost Elffers',
-    work: 'The Power of Birthdays, Stars & Numbers (1994)',
-    role: 'Hlavní zdroj kompatibility podle dne a měsíce narození. 366 unikátních profilů — Cosmatch core matching algorithm.',
+    work: 'The Secret Language of Birthdays (Penguin Studio, 1994)',
+    role: 'Pop-culture „personology" framework založený na pozorování 14 000 osob — 366 denních profilů kombinujících astrologii, numerologii a tarot. Inspirace pro pojetí denního profilu v Cosmatch.',
+  },
+  {
+    author: 'Saffi Crawford + Geraldine Sullivan',
+    work: 'The Power of Birthdays, Stars & Numbers (Ballantine, 1998)',
+    role: 'Encyklopedický 366-denní referenční průvodce kombinující astrologii, fixní hvězdy a numerologii. Jedna z klíčových amerických referenčních prací pro osobnostní profil podle dne narození.',
+  },
+  {
+    author: 'Helmut-Whitey Kritzinger',
+    work: 'Partnerství a numerologie (Pragma, 1999)',
+    role: 'Jediná česká kniha přímo věnovaná partnerské numerologii — „numeroskop" založený na datech narození obou partnerů. Důležitý český precedent pro Cosmatch.',
+  },
+  {
+    author: 'Hans Decoz',
+    work: 'Numerology: Key to Your Inner Self (Perigee/Tarcher, 2001)',
+    role: 'Moderní západní standard. Cosmatch používá jeho Three-Cycle Method pro výpočet životního čísla — redukujeme měsíc, den, rok zvlášť, master čísla 11/22/33 zachováváme v mezikroku.',
   },
   {
     author: 'Jitka Kadlecová',
     work: 'Datum narození a jeho vliv na náš charakter (Eminent, 2006)',
-    role: 'Česká numerologická tradice. Inspirace pro lokalizaci archetypů.',
+    role: 'Hlavní česká numerologická tradice 21. století. Inspirace pro lokalizaci archetypů do české kultury a jazyka.',
+  },
+  {
+    author: 'Glynis McCants',
+    work: 'Love by the Numbers (Sourcebooks Casablanca, 2010)',
+    role: 'Současný mainstream love-by-the-numbers standard. Tři tiery vztahové kompatibility (Natural Match / Compatible / Toxic) — Cosmatch je adaptoval do českých kategorií Spřízněné duše, Prospěšný vztah a Magnetická tenze.',
+  },
+  {
+    author: 'Michelle Buchanan',
+    work: 'The Numerology Guidebook (Hay House, 2013)',
+    role: 'Současný mainstream. Explicitní kapitoly o výběru partnera, timingu vztahů a master číslech 11/22/33.',
   },
 ]
 

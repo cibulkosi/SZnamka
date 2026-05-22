@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 const TITLE = 'Jak funguje Cosmatch — Algoritmus, zdroje, metodologie | Cosmatch'
-const DESC = 'Cosmatch počítá shodu transparentně — 35 % kompatibilita podle data narození (kniha Power of Birthdays), 20 % životní hodnoty, 15 % osobnost, 10 % intimní soulad, 10 % životní styl, 5 % zájmy, 5 % aktivita. Bez magie, bez skrytých vzorců.'
+const DESC = 'Cosmatch počítá shodu transparentně — 35 % kompatibilita podle data narození (vychází z 13 zdrojů personology a numerologie), 20 % životní hodnoty, 15 % osobnost, 10 % intimní soulad, 10 % životní styl, 5 % zájmy, 5 % aktivita. Bez magie, bez skrytých vzorců.'
 const URL = 'https://cosmatch.cz/jak-funguje-cosmatch'
 
 export const metadata: Metadata = {
@@ -50,7 +50,7 @@ export default function JakFungujeCosmatchPage() {
           </h1>
           <hr className="rule w-12 border-gray-900 mb-8" />
           <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
-            Sedm vrstev výpočtu, hlavní zdroj kniha The Power of Birthdays. Životní číslo zde NENÍ — používáme ho jen pro sebepoznání v kvízu a Magic Moment, ne pro párování.
+            Sedm vrstev výpočtu, kompatibilita podle data narození vychází z více klíčových zdrojů personology a numerologie. Životní číslo zde NENÍ — používáme ho jen pro sebepoznání v kvízu a Magic Moment, ne pro párování.
             Tady je přesný popis, jak Cosmatch dochází k procentu kompatibility.
           </p>
         </header>
@@ -63,7 +63,7 @@ export default function JakFungujeCosmatchPage() {
           </h2>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
             Zakladatelka a jediná osoba za Cosmatch. Před Cosmatch jsem strávila roky studiem
-            vztahové dynamiky, numerologie a kompatibility podle data narození. Cosmatch staví na knize <em className="italic">The Power of Birthdays, Stars &amp; Numbers</em> od Garyho Goldschneidera a české numerologické tradici Jitky Kadlecové.
+            vztahové dynamiky, numerologie a kompatibility podle data narození. Cosmatch staví na <Link href="/zdroje-numerologie" className="text-pink-500 underline">13 klíčových zdrojích</Link> moderní západní (pythagorovské) i české numerologické tradice — od antiky po současné autory jako Hans Decoz, Glynis McCants nebo Michelle Buchanan, doplněné o českou linii Jitky Kadlecové a Helmuta Kritzingera.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
             Cosmatch nevyvíjím proto, abych ti slibovala partnera. Vyvíjím ho proto, že jsem byla unavená
@@ -158,10 +158,22 @@ export default function JakFungujeCosmatchPage() {
           </h2>
           <ul className="space-y-4">
             <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
-              <strong className="text-gray-900 font-medium">The Power of Birthdays, Stars &amp; Numbers</strong> (Goldschneider &amp; Elffers, 1994) — 832 stran profilů pro každý den v roce, plus kompletní matice kompatibility.
+              <strong className="text-gray-900 font-medium">The Secret Language of Birthdays</strong> (Gary Goldschneider &amp; Joost Elffers, Penguin Studio, 1994) — pop-culture personology framework založený na pozorování 14 000 osob, 366 denních profilů.
             </li>
             <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
-              <strong className="text-gray-900 font-medium">Datum narození a jeho vliv na náš charakter</strong> (Jitka Kadlecová, Eminent, 2006) — česká tradice numerologie podle data narození.
+              <strong className="text-gray-900 font-medium">The Power of Birthdays, Stars &amp; Numbers</strong> (Saffi Crawford &amp; Geraldine Sullivan, Ballantine, 1998) — encyklopedický 366-denní referenční průvodce kombinující astrologii, fixní hvězdy a numerologii.
+            </li>
+            <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
+              <strong className="text-gray-900 font-medium">Love by the Numbers</strong> (Glynis McCants, Sourcebooks, 2010) — současný mainstream love-by-the-numbers standard, tři tiery kompatibility.
+            </li>
+            <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
+              <strong className="text-gray-900 font-medium">Numerology: Key to Your Inner Self</strong> (Hans Decoz, Perigee/Tarcher, 2001) — moderní standardní textbook. Cosmatch používá jeho Three-Cycle Method pro výpočet životního čísla.
+            </li>
+            <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
+              <strong className="text-gray-900 font-medium">Partnerství a numerologie</strong> (Helmut-Whitey Kritzinger, Pragma, 1999) — jediná česká kniha věnovaná přímo partnerské numerologii. Český precedent pro Cosmatch.
+            </li>
+            <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
+              <strong className="text-gray-900 font-medium">Datum narození a jeho vliv na náš charakter</strong> (Jitka Kadlecová, Eminent, 2006) — česká numerologická tradice 21. století.
             </li>
             <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
               <strong className="text-gray-900 font-medium">Pew Research CEE 2017</strong> — 43 % Čechů věří v osud, 44 % v existenci duše.
@@ -184,7 +196,7 @@ export default function JakFungujeCosmatchPage() {
             Numerologie není věda. A to nevadí.
           </h2>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-            Cosmatch používá numerologické a astrologické vzorce k odhadu strukturálního souznění mezi dvěma lidmi. <strong className="text-gray-900 font-medium">Numerologie a astrologie nejsou vědecky validované jako spolehlivé prediktory vztahových výsledků.</strong>
+            Cosmatch používá numerologické a astrologické vzorce k odhadu strukturálního souznění mezi dvěma lidmi. <strong className="text-gray-900 font-medium">Numerologie a astrologie nejsou vědecky validované jako spolehlivé prediktory vztahových výsledků</strong> — bereme je jako <strong className="text-gray-900 font-medium">tradici sebepoznání a mapování osobnosti</strong> s kořeny v pythagorejské a chaldejské filozofii čísel, ne jako empirickou predikci.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
             Část pocitu „tohle sedí přesně!“ je dokumentovaný psychologický jev zvaný <strong className="text-gray-900 font-medium">Barnumův/Forerův efekt</strong>. V roce 1949 psycholog Bertram Forer dal 39 studentům identický popis osobnosti a oni ho ohodnotili průměrnou známkou <strong className="text-gray-900 font-medium">4.26 z 5.0</strong> jako „přesně mě“. To samé funguje s numerologií a astrologií — popisy jsou obecné natolik, aby v nich každý našel kus sebe.
