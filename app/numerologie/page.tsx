@@ -80,7 +80,7 @@ export default function NumerologiePillarPage() {
             ve vztazích.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
-            <strong className="text-gray-900 font-medium">43 % online Čechů</strong> věří horoskopům, mezi ženami je to <strong className="text-gray-900 font-medium">56 %</strong> (Nielsen Admosphere).
+            <strong className="text-gray-900 font-medium">43 % uživatelů internetu v Česku</strong> věří horoskopům, mezi ženami-uživatelkami internetu je to <strong className="text-gray-900 font-medium">56 %</strong> (Nielsen Admosphere).
             Numerologie je v Česku silný kulturní rámec — Cosmatch je první aplikace, která ho propojí s reálnou seznamkou.
           </p>
         </section>

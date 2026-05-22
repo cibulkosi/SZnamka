@@ -70,8 +70,8 @@ const SECTIONS = [
     num: 'IV',
     title: 'V čem je Česko jiné',
     paras: [
-      'Numerologie a esoterika jsou v Česku poměrně oblíbenou záležitostí. Pew Research Center (CEE 2017) ukazuje, že 43 % Čechů věří v osud a 44 % v existenci duše — a to navzdory tomu, že se 72 % obyvatel naší země nehlásí k žádné církvi. Nielsen Admosphere přidává, že horoskopům věří 43 % online Čechů; mezi ženami je to dokonce 56 %.',
-      'Cosmatch je jediná česká seznamka, která bere datum narození v úvahu. Protože po 56 % českých žen je datum narození smysluplný signál, ne pověra.',
+      'Numerologie a esoterika jsou v Česku poměrně oblíbenou záležitostí. Pew Research Center (CEE 2017) ukazuje, že 43 % Čechů věří v osud a 44 % v existenci duše — a to navzdory tomu, že se 72 % obyvatel naší země nehlásí k žádné církvi. Nielsen Admosphere přidává, že horoskopům věří 43 % uživatelů internetu v Česku; mezi ženami-uživatelkami internetu je to dokonce 56 %.',
+      'Cosmatch je jediná česká seznamka, která bere datum narození v úvahu. Pro značnou část českých žen je datum narození smysluplný signál, ne pověra.',
     ],
   },
   {

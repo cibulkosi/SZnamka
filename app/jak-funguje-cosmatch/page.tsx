@@ -179,7 +179,7 @@ export default function JakFungujeCosmatchPage() {
               <strong className="text-gray-900 font-medium">Pew Research CEE 2017</strong> — 43 % Čechů věří v osud, 44 % v existenci duše.
             </li>
             <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
-              <strong className="text-gray-900 font-medium">Nielsen Admosphere 2017</strong> — 43 % online Čechů věří horoskopům (56 % u žen).
+              <strong className="text-gray-900 font-medium">Nielsen Admosphere 2017</strong> — 43 % uživatelů internetu v Česku věří horoskopům (56 % u žen-uživatelek internetu).
             </li>
             <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
               <strong className="text-gray-900 font-medium">STEM/MARK 2025</strong> — 96 % českých žen 18–29 let považuje hledání partnera za obtížné.

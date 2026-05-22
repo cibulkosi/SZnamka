@@ -92,7 +92,7 @@ export default function LandingPage() {
             <div>
               <div className="serif-display text-3xl sm:text-5xl text-gray-900 font-medium tracking-tight mb-2 tabular-nums">43 %</div>
               <p className="text-sm text-gray-700 leading-relaxed">
-                online Čechů věří horoskopům.<br/>Mezi ženami <em className="italic text-pink-500">56 %</em>.
+                uživatelů internetu v Česku věří horoskopům.<br/>Mezi ženami-uživatelkami internetu <em className="italic text-pink-500">56 %</em>.
               </p>
               <p className="text-xs text-gray-400 mt-2">Nielsen Admosphere</p>
             </div>
