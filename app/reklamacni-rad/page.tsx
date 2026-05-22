@@ -100,7 +100,6 @@ export default function ReklamacniRadPage() {
             </p>
             <ul className="list-disc pl-6 space-y-2">
               <li><strong className="text-gray-900 font-medium">Českou obchodní inspekci</strong> jako orgán mimosoudního řešení spotřebitelských sporů. Web: <a href="https://www.coi.cz" target="_blank" rel="noopener" className="text-pink-500 underline">coi.cz</a></li>
-              <li><strong className="text-gray-900 font-medium">EU platformu ODR</strong> pro online spory: <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener" className="text-pink-500 underline">ec.europa.eu/consumers/odr</a></li>
               <li>Obecný soud v místě tvého bydliště.</li>
             </ul>
           </section>

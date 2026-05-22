@@ -69,13 +69,6 @@ export default function KontaktPage() {
             </p>
           </div>
 
-          <div>
-            <p className="eyebrow text-gray-400 mb-2">Mimosoudní řešení sporů a dozor</p>
-            <p>
-              K mimosoudnímu řešení spotřebitelských sporů je příslušná <a href="https://www.coi.cz" className="text-pink-500 hover:underline" rel="noopener">Česká obchodní inspekce</a>; alternativně lze využít <a href="https://ec.europa.eu/consumers/odr" className="text-pink-500 hover:underline" rel="noopener">EU platformu pro online řešení sporů</a>. Dozor nad ochranou osobních údajů vykonává <a href="https://www.uoou.cz" className="text-pink-500 hover:underline" rel="noopener">ÚOOÚ</a>.
-            </p>
-          </div>
-
         </section>
 
         <footer className="mt-16 pt-8 border-t border-gray-200">

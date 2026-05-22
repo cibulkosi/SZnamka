@@ -201,7 +201,7 @@ export default function ObchodniPodminkyPage() {
               <strong className="text-gray-900 font-medium">9.1</strong> V případě sporu se Uživatel může obrátit na Cosmatch e-mailem na <a href="mailto:ahoj@cosmatch.cz" className="text-pink-500 underline">ahoj@cosmatch.cz</a>. Cosmatch se zavazuje k pokusu o mimosoudní řešení.
             </p>
             <p className="mb-3">
-              <strong className="text-gray-900 font-medium">9.2</strong> K mimosoudnímu řešení spotřebitelských sporů je příslušná <strong className="text-gray-900 font-medium">Česká obchodní inspekce</strong> (<a href="https://www.coi.cz" target="_blank" rel="noopener" className="text-pink-500 underline">coi.cz</a>). Pro online spory lze využít platformu <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener" className="text-pink-500 underline">ec.europa.eu/consumers/odr</a>.
+              <strong className="text-gray-900 font-medium">9.2</strong> K mimosoudnímu řešení spotřebitelských sporů je příslušná <strong className="text-gray-900 font-medium">Česká obchodní inspekce</strong> (<a href="https://www.coi.cz" target="_blank" rel="noopener" className="text-pink-500 underline">coi.cz</a>).
             </p>
             <p>
               <strong className="text-gray-900 font-medium">9.3</strong> Pokud spor nelze vyřešit mimosoudně, je příslušný obecný soud podle bydliště Uživatele-spotřebitele.
