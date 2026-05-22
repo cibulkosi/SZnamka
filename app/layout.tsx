@@ -69,7 +69,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@type": "Organization",
               "@id": "https://cosmatch.cz/#organization",
               "identifier": [
-                { "@type": "PropertyValue", "propertyID": "Wikidata", "value": "Q139824006" },
                 { "@type": "PropertyValue", "propertyID": "IČO", "value": "08419531" },
               ],
               "name": "Cosmatch",
@@ -103,7 +102,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 "kompatibilita podle data narození",
               ],
               "sameAs": [
-                "https://www.wikidata.org/wiki/Q139824006",
                 "https://www.linkedin.com/company/122134659",
                 "https://x.com/cosmatch_cz",
                 "https://www.facebook.com/profile.php?id=61590109883991",
@@ -143,7 +141,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               ],
               "publisher": { "@id": "https://cosmatch.cz/#organization" },
               "sameAs": [
-                "https://www.wikidata.org/wiki/Q139824006",
                 "https://www.linkedin.com/company/122134659",
                 "https://www.crunchbase.com/organization/cosmatch",
                 "https://x.com/cosmatch_cz",
