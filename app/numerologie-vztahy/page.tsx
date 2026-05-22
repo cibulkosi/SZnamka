@@ -233,7 +233,7 @@ export default function NumerologieVztahyPage() {
         <section className="mt-20">
           <p className="eyebrow text-pink-500 mb-4">Pokračuj ve čtení</p>
           <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-10">
-            Související.
+            Související
           </h2>
           <div className="space-y-6">
             {RELATED.map(r => (
