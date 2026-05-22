@@ -107,32 +107,20 @@ export default function DemoProfileDetail({ profile }: { profile: DemoProfile })
           </div>
         </div>
 
-        {/* Info bar */}
-        <div className="bg-white rounded-3xl p-5 shadow-sm space-y-3">
-          <div className="grid grid-cols-3 gap-3 pb-3 border-b border-gray-100">
-            <div className="text-center">
-              <p className="text-xs text-gray-400 mb-0.5">Věk</p>
-              <p className="text-sm text-gray-900 font-medium">{profile.age}</p>
+        {/* Info bar — Hinge-style vertical rows */}
+        <div className="bg-white rounded-3xl py-2 shadow-sm">
+          {[
+            { icon: <svg className="w-5 h-5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M12 2v4M8 6c0-2 1-4 4-4s4 2 4 4M4 10h16v10H4z" strokeLinecap="round" strokeLinejoin="round"/></svg>, label: String(profile.age) },
+            { icon: <svg className="w-5 h-5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>, label: profile.zodiac },
+            { icon: <SaturnIcon size={20} />, label: <span><span className="font-medium text-pink-600">{profile.archetype.number}</span> · {profile.archetype.name}</span>, accent: true },
+            { icon: <svg className="w-5 h-5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>, label: profile.occupation },
+            { icon: <svg className="w-5 h-5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M12 21s-7-7.5-7-12a7 7 0 0 1 14 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>, label: profile.city },
+          ].map((row, i, arr) => (
+            <div key={i} className={\`flex items-center gap-4 px-5 py-3.5 \${i < arr.length - 1 ? 'border-b border-gray-100' : ''}\`}>
+              <span className="flex-shrink-0">{row.icon}</span>
+              <span className={\`text-[0.95rem] \${row.accent ? 'text-gray-900' : 'text-gray-800'}\`}>{row.label}</span>
             </div>
-            <div className="text-center">
-              <p className="text-xs text-gray-400 mb-0.5">Znamení</p>
-              <p className="text-sm text-gray-900 font-medium">{profile.zodiac}</p>
-            </div>
-            <div className="text-center">
-              <p className="text-xs text-gray-400 mb-0.5">Archetyp</p>
-              <p className="text-sm text-pink-600 font-medium">{profile.archetype.number} · {profile.archetype.name}</p>
-            </div>
-          </div>
-          <div className="space-y-2 text-sm">
-            <div className="flex items-center gap-3">
-              <svg className="w-4 h-4 text-gray-400" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-4V4l-2-2h-4L8 4v2H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6 0h-4V4h4v2z" /></svg>
-              <span className="text-gray-700">{profile.occupation}</span>
-            </div>
-            <div className="flex items-center gap-3">
-              <svg className="w-4 h-4 text-gray-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z" /></svg>
-              <span className="text-gray-700">{profile.city}</span>
-            </div>
-          </div>
+          ))}
         </div>
 
         {/* Photo 2 */}

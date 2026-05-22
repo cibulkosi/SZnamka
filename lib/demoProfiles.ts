@@ -82,14 +82,14 @@ export const DEMO_PROFILES: DemoProfile[] = [
     photos: [
       u('photo-1500648767791-00dcc994a43e'),
       u('photo-1497366216548-37526070297c'),
-      u('photo-1510630934-c8edd1baad55'),
+      u('photo-1505740420928-5e560c06d30e'),
       u('photo-1571019613454-1cb2f99b2d8b'),
       u('photo-1469854523086-cc02fe5d8800'),
     ],
     prompts: [
       { question: 'Letos opravdu chci', answer: 'Najít víno, které mě překvapí, a film, který mě donutí přemýšlet 3 dny' },
       { question: 'Moje největší přednost', answer: 'Umím slyšet co lidé ve skutečnosti říkají, ne jen co říkají nahlas' },
-      { question: 'V partě jsem ten/ta, kdo', answer: 'vždycky pošle playlist o půlnoci a omlouvá se za to ráno' },
+      { question: 'V partě jsem ten/ta, kdo', answer: 'vždycky posílá zprávy o půlnoci a ráno se za to omlouvá' },
     ],
     voicePrompt: { question: 'O čem teď nejvíc přemýšlím', duration: '0:31' },
     accent: '#ec4899',
