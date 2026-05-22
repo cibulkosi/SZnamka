@@ -38,59 +38,44 @@ export default function KontaktPage() {
           <KontaktForm />
         </section>
 
-        <hr className="rule mb-16" />
+        <hr className="rule mb-12" />
 
-        {/* Provozovatel */}
-        <section className="mb-12">
-          <p className="eyebrow text-gray-500 mb-4">Provozovatel</p>
-          <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-6">Údaje o provozovateli.</h2>
-          <div className="space-y-3 text-gray-800 leading-[1.75] text-[1.0625rem]">
-            <p><strong className="text-gray-900 font-medium">Mgr. Ing. Simona Cibulková</strong></p>
-            <p><span className="text-gray-500">IČO:</span> 08419531</p>
-            <p><span className="text-gray-500">Sídlo:</span> Kurzova 2222/16, 155 00 Praha 5 - Stodůlky, Česká republika</p>
-            <p><span className="text-gray-500">Datová schránka:</span> <span className="font-mono">tttkfnk</span></p>
-            <p className="text-sm text-gray-500 pt-2">
-              Fyzická osoba podnikající dle živnostenského zákona. Zapsána v živnostenském rejstříku.
+        {/* Legal footer — kompaktní, drobný font, vše povinné info zachované */}
+        <section className="text-sm text-gray-600 leading-[1.75] space-y-5">
+
+          <div>
+            <p className="eyebrow text-gray-400 mb-2">Provozovatel</p>
+            <address className="not-italic">
+              <strong className="text-gray-900 font-medium">Mgr. Ing. Simona Cibulková</strong> · IČO 08419531 · Kurzova 2222/16, 155 00 Praha 5 - Stodůlky · Datová schránka <span className="font-mono text-gray-700">tttkfnk</span>
+            </address>
+          </div>
+
+          <div>
+            <p className="eyebrow text-gray-400 mb-2">Právní dokumenty</p>
+            <p>
+              <Link href="/obchodni-podminky" className="text-pink-500 hover:underline">Obchodní podmínky</Link>
+              <span className="text-gray-300"> · </span>
+              <Link href="/zasady-ochrany-osobnich-udaju" className="text-pink-500 hover:underline">GDPR</Link>
+              <span className="text-gray-300"> · </span>
+              <Link href="/reklamacni-rad" className="text-pink-500 hover:underline">Reklamační řád</Link>
+              <span className="text-gray-300"> · </span>
+              <Link href="/odstoupeni-od-smlouvy" className="text-pink-500 hover:underline">Odstoupení od smlouvy</Link>
+              <span className="text-gray-300"> · </span>
+              <Link href="/opakovane-platby" className="text-pink-500 hover:underline">Opakované platby</Link>
+              <span className="text-gray-300"> · </span>
+              <Link href="/cookies" className="text-pink-500 hover:underline">Cookies</Link>
+              <span className="text-gray-300"> · </span>
+              <Link href="/manifest-duvery" className="text-pink-500 hover:underline">Manifest důvěry</Link>
             </p>
           </div>
-        </section>
 
-        {/* Právní dokumenty */}
-        <section className="mb-12">
-          <p className="eyebrow text-gray-500 mb-4">Právní dokumenty</p>
-          <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-6">Smluvní a regulatorní informace.</h2>
-          <ul className="space-y-2 text-[1.0625rem]">
-            <li><Link href="/obchodni-podminky" className="text-pink-500 hover:underline">Obchodní podmínky</Link></li>
-            <li><Link href="/opakovane-platby" className="text-pink-500 hover:underline">Opakované platby</Link></li>
-            <li><Link href="/zasady-ochrany-osobnich-udaju" className="text-pink-500 hover:underline">Zásady ochrany osobních údajů (GDPR)</Link></li>
-            <li><Link href="/reklamacni-rad" className="text-pink-500 hover:underline">Reklamační řád</Link></li>
-            <li><Link href="/odstoupeni-od-smlouvy" className="text-pink-500 hover:underline">Odstoupení od smlouvy</Link></li>
-            <li><Link href="/cookies" className="text-pink-500 hover:underline">Zásady používání cookies</Link></li>
-            <li><Link href="/manifest-duvery" className="text-pink-500 hover:underline">Manifest důvěry</Link></li>
-          </ul>
-        </section>
+          <div>
+            <p className="eyebrow text-gray-400 mb-2">Mimosoudní řešení sporů a dozor</p>
+            <p>
+              K mimosoudnímu řešení spotřebitelských sporů je příslušná <a href="https://www.coi.cz" className="text-pink-500 hover:underline" rel="noopener">Česká obchodní inspekce</a>; alternativně lze využít <a href="https://ec.europa.eu/consumers/odr" className="text-pink-500 hover:underline" rel="noopener">EU platformu pro online řešení sporů</a>. Dozor nad ochranou osobních údajů vykonává <a href="https://www.uoou.cz" className="text-pink-500 hover:underline" rel="noopener">ÚOOÚ</a>.
+            </p>
+          </div>
 
-        {/* Mimosoudní řešení */}
-        <section className="mb-12 text-[1.0625rem] leading-[1.75] text-gray-800">
-          <p className="eyebrow text-gray-500 mb-4">Mimosoudní řešení sporů</p>
-          <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-6">Pokud nedojde k dohodě.</h2>
-          <p className="mb-3">
-            K mimosoudnímu řešení spotřebitelských sporů je příslušná <strong className="text-gray-900 font-medium">Česká obchodní inspekce</strong> (Štěpánská 567/15, 120 00 Praha 2, <a href="https://www.coi.cz" className="text-pink-500 hover:underline" rel="noopener">coi.cz</a>).
-          </p>
-          <p>
-            Spotřebitel může také využít platformu pro <strong className="text-gray-900 font-medium">řešení sporů online</strong> Evropské komise: <a href="https://ec.europa.eu/consumers/odr" className="text-pink-500 hover:underline" rel="noopener">ec.europa.eu/consumers/odr</a>.
-          </p>
-        </section>
-
-        {/* Orgány dozoru */}
-        <section className="mb-12 text-[1.0625rem] leading-[1.75] text-gray-800">
-          <p className="eyebrow text-gray-500 mb-4">Orgány dozoru</p>
-          <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-6">Kdo na nás dohlíží.</h2>
-          <ul className="space-y-2">
-            <li><strong className="text-gray-900 font-medium">Živnostenský úřad:</strong> Úřad městské části dle sídla provozovatele (Praha)</li>
-            <li><strong className="text-gray-900 font-medium">Ochrana osobních údajů:</strong> Úřad pro ochranu osobních údajů, Pplk. Sochora 27, 170 00 Praha 7, <a href="https://www.uoou.cz" className="text-pink-500 hover:underline" rel="noopener">uoou.cz</a></li>
-            <li><strong className="text-gray-900 font-medium">Ochrana spotřebitele:</strong> Česká obchodní inspekce, <a href="https://www.coi.cz" className="text-pink-500 hover:underline" rel="noopener">coi.cz</a></li>
-          </ul>
         </section>
 
         <footer className="mt-16 pt-8 border-t border-gray-200">
