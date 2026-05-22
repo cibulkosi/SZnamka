@@ -71,6 +71,54 @@ export default function ZdrojeNumerologie() {
 
         <hr className="rule mb-16" />
 
+        {/* Tři metodické školy */}
+        <section className="mb-16">
+          <p className="eyebrow text-pink-500 mb-4">Tři metodické školy</p>
+          <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-6">
+            Proč existuje 13 zdrojů.
+          </h2>
+          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
+            Numerologie není jednotný systém — pro stejné datum narození dají různé školy různá životní čísla. 13 autorů, ze kterých Cosmatch čerpá, se dělí do tří metodických rodin.
+          </p>
+
+          <div className="space-y-4 mb-6">
+            <div className="bg-white border border-gray-200 rounded-2xl p-6">
+              <p className="eyebrow text-gray-500 mb-2">Škola A — Chaldejská</p>
+              <h3 className="serif text-lg text-gray-900 font-medium mb-2">Cheiro (1926)</h3>
+              <p className="text-gray-700 text-[0.95rem] leading-relaxed">
+                Pouze den narození („birth number") + jméno podle Chaldean abecedy 1–8. Žádná master čísla. Kompozitní čísla 10–52 mají vlastní význam.
+              </p>
+            </div>
+            <div className="bg-white border border-gray-200 rounded-2xl p-6">
+              <p className="eyebrow text-gray-500 mb-2">Škola B — Pythagorejská single-sum</p>
+              <h3 className="serif text-lg text-gray-900 font-medium mb-2">Phillips, Crawford & Sullivan, většina českých příruček</h3>
+              <p className="text-gray-700 text-[0.95rem] leading-relaxed">
+                Sečte všech 8 číslic data najednou, výsledek redukuje. Master čísla zachovává nebo redukuje podle autora.
+              </p>
+            </div>
+            <div className="bg-pink-50 border border-pink-200 rounded-2xl p-6">
+              <p className="eyebrow text-pink-700 mb-2">Škola C — Pythagorejská three-cycle <span className="ml-2 inline-block bg-pink-500 text-white px-2 py-0.5 rounded-full text-[10px]">Cosmatch</span></p>
+              <h3 className="serif text-lg text-gray-900 font-medium mb-2">Balliett (1908) → Campbell → Jordan → Goodwin → Decoz → McCants → Buchanan</h3>
+              <p className="text-gray-700 text-[0.95rem] leading-relaxed">
+                Redukuje měsíc, den a rok zvlášť, master čísla 11/22/33 zachovává v mezikroku. Jediná metoda, která umí rozlišit „skutečné" master číslo od náhodného součtu. <strong className="text-gray-900 font-medium">Moderní standard západní numerologie.</strong>
+              </p>
+            </div>
+            <div className="bg-white border border-gray-200 rounded-2xl p-6">
+              <p className="eyebrow text-gray-500 mb-2">Škola D — Dvou-cifrový kód</p>
+              <h3 className="serif text-lg text-gray-900 font-medium mb-2">Dan Millman (1993)</h3>
+              <p className="text-gray-700 text-[0.95rem] leading-relaxed">
+                Radikální zlom — žádná redukce. 45 unikátních cest zapsaných jako dvojčíslí (např. 33/6, 25/7). Cosmatch tuto metodu neimplementuje, ale Millmana cituje jako důležitý alternativní pohled.
+              </p>
+            </div>
+          </div>
+
+          <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
+            Detailní postup výpočtu, srovnání všech metod a krok-za-krokem příklad najdeš na stránce <Link href="/numerologie/jak-pocitame" className="text-pink-500 hover:underline">Jak se počítá životní číslo</Link>.
+          </p>
+        </section>
+
+        <hr className="rule mb-16" />
+
         <section className="bg-white border border-gray-200 rounded-3xl p-8 mb-16">
           <p className="eyebrow text-pink-500 mb-3">Honest disclaimer</p>
           <h2 className="serif text-xl text-gray-900 font-medium mb-3">Numerologie není věda.</h2>

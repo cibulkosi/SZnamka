@@ -18,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/waitlist/`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
     // ── Pillar SEO pages ──
     { url: `${BASE}/numerologie/`, lastModified: now, changeFrequency: 'monthly', priority: 0.95 },
+    { url: `${BASE}/numerologie/jak-pocitame/`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/numerologie/master-cisla-11-22-33/`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/numerologie/numerologicka-mrizka/`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/jak-funguje-cosmatch/`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },

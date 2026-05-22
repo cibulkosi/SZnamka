@@ -123,6 +123,7 @@ export default function NumerologiePillarPage() {
           </h2>
           <div className="space-y-4">
             {[
+              ['/numerologie/jak-pocitame', 'Jak se počítá životní číslo', 'Decoz three-cycle metoda, historie od Balliett (1908), srovnání tří numerologických škol a krok-za-krokem výpočet.'],
               ['/numerologie/master-cisla-11-22-33', 'Master čísla 11, 22, 33', 'Mistrovská čísla, která tvoří jen ~4 % populace. Intenzivnější vibrace, hlubší lekce.'],
               ['/numerologie/numerologicka-mrizka', 'Numerologická mřížka', 'Co znamenají chybějící čísla v tvém datu narození a jak je doplnit.'],
               ['/kompatibilita-podle-data-narozeni', 'Kompatibilita podle data narození', 'Jak se počítá vztahová kompatibilita ze dvou dat narození.'],
