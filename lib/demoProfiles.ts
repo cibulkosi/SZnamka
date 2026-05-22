@@ -46,7 +46,7 @@ export const DEMO_PROFILES: DemoProfile[] = [
     zodiac: 'Beran',
     occupation: 'Grafická designérka',
     genitive: 'Terezy',
-    bio: 'Miluji cestování, dobrou kávu a spontánní výlety do hor. Hledám někoho, kdo bude sdílet podobné životné hodnoty.',
+    bio: 'Miluji cestování, dobrou kávu a spontánní výlety do hor. Hledám někoho, kdo bude sdílet podobné životní hodnoty.',
     hobbies: ['Cestování', 'Jóga', 'Fotografování', 'Vaření'],
     matchCategory: 'Spřízněné duše',
     matchLabel: 'Oboustranná shoda',
