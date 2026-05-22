@@ -33,8 +33,9 @@ export default function DemoPage() {
           </h1>
           <hr className="rule w-16 border-gray-900 mb-8" />
           <p className="text-lg text-gray-600 leading-relaxed max-w-xl">
-            Toto jsou ukázkové profily Cosmatch. Klikni na kterýkoli z nich a uvidíš, jak vypadá detail —
-            fotky, hlášky, hlasová zpráva i tvoje shoda. Skutečné profily přibývají s otevřením betas v Praze.
+            Toto jsou ukázkové profily na platformě Cosmatch. Klikni na kterýkoli z nich a uvidíš,
+            jak vypadá jejich detail včetně fotek, hlášek, hlasových zpráv i detailů tvé shody.
+            Skutečné profily přibývají s otevřením seznamky v jednotlivých městech.
           </p>
         </header>
 
