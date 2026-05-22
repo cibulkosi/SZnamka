@@ -86,7 +86,7 @@ const TOC = [
 const RELATED = [
   {
     href: '/numerologie-vztahy',
-    eyebrow: 'Esej',
+    eyebrow: 'Článek',
     title: 'Numerologie a vztahy — Jak čísla ovlivňují lásku',
     desc: 'Praktický průvodce tím, jak životní číslo ovlivňuje partnerský výběr, komunikaci a dlouhodobou kompatibilitu.',
   },
@@ -322,7 +322,7 @@ export default function KompatibilitaPage() {
         <section className="mt-20">
           <p className="eyebrow text-pink-500 mb-4">Pokračuj ve čtení</p>
           <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-10">
-            Co se k tomu váže.
+            Související.
           </h2>
           <div className="space-y-6">
             {RELATED.map(r => (

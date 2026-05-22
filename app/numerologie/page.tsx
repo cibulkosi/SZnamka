@@ -126,7 +126,7 @@ export default function NumerologiePillarPage() {
               ['/numerologie/master-cisla-11-22-33', 'Master čísla 11, 22, 33', 'Mistrovská čísla, která tvoří jen ~4 % populace. Intenzivnější vibrace, hlubší lekce.'],
               ['/numerologie/numerologicka-mrizka', 'Numerologická mřížka', 'Co znamenají chybějící čísla v tvém datu narození a jak je doplnit.'],
               ['/kompatibilita-podle-data-narozeni', 'Kompatibilita podle data narození', 'Jak se počítá vztahová kompatibilita ze dvou dat narození.'],
-              ['/numerologie-vztahy', 'Numerologie a vztahy', 'Esej o tom, proč se přitahuješ ke stejnému typu lidí.'],
+              ['/numerologie-vztahy', 'Numerologie a vztahy', 'Článek o tom, proč se přitahuješ ke stejnému typu lidí.'],
               ['/jak-funguje-cosmatch', 'Jak funguje Cosmatch', 'Algoritmus, zdroje, metodologie.'],
             ].map(([href, title, desc]) => (
               <Link key={href} href={href}

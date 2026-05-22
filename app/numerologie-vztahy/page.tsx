@@ -41,7 +41,7 @@ const SECTIONS = [
   {
     id: 'pritahovani',
     num: 'I',
-    title: 'Proč přitahujeme určité lidi?',
+    title: 'Proč přitahujeme určité typy lidí?',
     paras: [
       'Psychologové hovoří o „familiarity effect“, tendenci preferovat lidi, kteří nám připomínají vzorce z dětství. Numerologie přidává další pohled, podle něhož každé životní číslo nese specifické energetické kvality, které s některými čísly přirozeně rezonují a s některými naopak ne.',
       'Znamená to, že pochopením svého čísla můžeš lépe pochopit, co od partnera přirozeně očekáváš, a kde mohou nastat potenciální konflikty dříve, než eskalují.',
@@ -233,7 +233,7 @@ export default function NumerologieVztahyPage() {
         <section className="mt-20">
           <p className="eyebrow text-pink-500 mb-4">Pokračuj ve čtení</p>
           <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-10">
-            Co se k tomu váže.
+            Související.
           </h2>
           <div className="space-y-6">
             {RELATED.map(r => (
