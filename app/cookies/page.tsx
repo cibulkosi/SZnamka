@@ -22,7 +22,7 @@ export default function CookiesPage() {
         <header className="mb-12">
           <p className="eyebrow text-pink-500 mb-6">Soukromí</p>
           <h1 className="serif-display text-5xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-6">
-            Cookies.<br/><em className="italic text-pink-500">Méně, než si myslíš</em>.
+            Cookies sbíráme<br/><em className="italic text-pink-500">jen ty opravdu nutné</em>.
           </h1>
           <hr className="rule w-12 border-gray-900 mb-6" />
           <p className="text-sm text-gray-500">Účinné od 17. května 2026 · Verze 1.0</p>
