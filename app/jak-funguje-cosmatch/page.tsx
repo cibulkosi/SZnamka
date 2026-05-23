@@ -227,19 +227,10 @@ export default function JakFungujeCosmatchPage() {
               <strong className="text-gray-900 font-medium">Numerology: Key to Your Inner Self</strong> (Hans Decoz, Perigee/Tarcher, 2001) — moderní standardní textbook. Cosmatch používá jeho Three-Cycle Method pro výpočet životního čísla.
             </li>
             <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
-              <strong className="text-gray-900 font-medium">Partnerství a numerologie</strong> (Helmut-Whitey Kritzinger, Pragma, 1999) — jediná česká kniha věnovaná přímo partnerské numerologii. Český precedent pro Cosmatch.
+              <strong className="text-gray-900 font-medium">Partnerství a numerologie</strong> (Helmut-Whitey Kritzinger, Pragma, 1999) — kniha věnovaná partnerské numerologii.
             </li>
             <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
               <strong className="text-gray-900 font-medium">Datum narození a jeho vliv na náš charakter</strong> (Jitka Kadlecová, Eminent, 2006) — česká numerologická tradice 21. století.
-            </li>
-            <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
-              <strong className="text-gray-900 font-medium">Pew Research CEE 2017</strong> — 43 % Čechů věří v osud, 44 % v existenci duše.
-            </li>
-            <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
-              <strong className="text-gray-900 font-medium">Nielsen Admosphere 2017</strong> — 43 % uživatelů internetu v Česku věří horoskopům (56 % u žen-uživatelek internetu).
-            </li>
-            <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
-              <strong className="text-gray-900 font-medium">STEM/MARK 2025</strong> — 96 % českých žen 18–29 let považuje hledání partnera za obtížné.
             </li>
           </ul>
         </section>
