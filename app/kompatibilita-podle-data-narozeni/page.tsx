@@ -237,7 +237,7 @@ export default function KompatibilitaPage() {
             ))}
           </div>
           <p className="text-xs text-gray-400 mt-6 leading-relaxed">
-            Toto je zjednodušený přehled podle syntézy více numerologických tradic. Jednotliví autoři některé dvojice hodnotí odlišně. Cosmatch nepoužívá tuto tabulku přímo na párování — počítá vícevrstvý skór pro každou konkrétní kombinaci dat narození podle personology tradice.
+            Toto je zjednodušený přehled podle syntézy více numerologických tradic. Jednotliví autoři některé dvojice hodnotí odlišně. Cosmatch ale počítá vícevrstvé skóre pro každou konkrétní kombinaci dat narození, která zahrnuje nejen numerologii, ale také další oblasti astrologie a osobních vlastností.
           </p>
         </section>
 
