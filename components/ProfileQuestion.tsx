@@ -92,6 +92,16 @@ export const PROFILE_QUESTIONS: Question[] = [
     ],
   },
   {
+    id: 'marijuana',
+    emoji: '🌿',
+    text: 'Marihuana v tvém životě?',
+    options: [
+      { value: 'never',     label: 'Vůbec',            emoji: '🚫' },
+      { value: 'sometimes', label: 'Příležitostně',    emoji: '🌿' },
+      { value: 'often',     label: 'Pravidelně',       emoji: '💚' },
+    ],
+  },
+  {
     id: 'religion',
     emoji: '🌟',
     text: 'Víra a spiritualita ve tvém životě?',

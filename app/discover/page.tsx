@@ -7,7 +7,7 @@ import { TrialBanner } from '@/components/PremiumGate'
 import { CompatBadges, ScoreRing } from '@/components/CompatBadges'
 import { ProfileQuestion, PROFILE_QUESTIONS, type Question } from '@/components/ProfileQuestion'
 import { ARCHETYPES, lifePathNumber } from '@/lib/archetypes'
-import { computeCompatibility, profileCompleteness, isOutsideDistanceLimit, isOutsidePhysicalPrefs, isChildrenIncompatible, isSmokingIncompatible, tierFallbackBoost } from '@/lib/compat'
+import { computeCompatibility, profileCompleteness, isOutsideDistanceLimit, isOutsidePhysicalPrefs, isChildrenIncompatible, isSmokingIncompatible, isAlcoholIncompatible, isMarijuanaIncompatible, tierFallbackBoost } from '@/lib/compat'
 
 // Pastelové gradienty jako avatar fallback (bez fotky)
 const AVATAR_GRADIENTS = [
@@ -444,6 +444,8 @@ export default function DiscoverPage() {
         if (isOutsidePhysicalPrefs(u, p)) return false
         if (isChildrenIncompatible(u, p)) return false
         if (isSmokingIncompatible(u, p)) return false
+        if (isAlcoholIncompatible(u, p)) return false
+        if (isMarijuanaIncompatible(u, p)) return false
 
         // Premium filtry: aktivní jen pro Cosmatch+ uživatele
         if (u.premium) {

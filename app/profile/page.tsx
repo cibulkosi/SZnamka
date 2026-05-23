@@ -321,6 +321,54 @@ export default function ProfilePage() {
             </div>
           )}
 
+          {/* Alcohol dealbreaker */}
+          {user.alcohol === 'never' && (
+            <div className="bg-white border border-gray-200 rounded-2xl p-5 mb-3">
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={!!(user as typeof user & { alcohol_dealbreaker?: boolean }).alcohol_dealbreaker}
+                  onChange={async (e) => {
+                    const newVal = e.target.checked
+                    await import('@/lib/supabase').then(({ supabase }) =>
+                      supabase.from('profiles').update({ alcohol_dealbreaker: newVal }).eq('id', user.id)
+                    )
+                    setUser({ ...user, alcohol_dealbreaker: newVal } as typeof user)
+                  }}
+                  className="mt-1 w-4 h-4 rounded border-gray-300"
+                />
+                <div>
+                  <span className="text-sm font-medium text-gray-900 block">Alkohol je deal-breaker</span>
+                  <p className="text-xs text-gray-500 mt-1">Lidé pijící pravidelně se ti nezobrazí. (Příležitostně ano.)</p>
+                </div>
+              </label>
+            </div>
+          )}
+
+          {/* Marijuana dealbreaker */}
+          {(user as typeof user & { marijuana?: string }).marijuana === 'never' && (
+            <div className="bg-white border border-gray-200 rounded-2xl p-5 mb-3">
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={!!(user as typeof user & { marijuana_dealbreaker?: boolean }).marijuana_dealbreaker}
+                  onChange={async (e) => {
+                    const newVal = e.target.checked
+                    await import('@/lib/supabase').then(({ supabase }) =>
+                      supabase.from('profiles').update({ marijuana_dealbreaker: newVal }).eq('id', user.id)
+                    )
+                    setUser({ ...user, marijuana_dealbreaker: newVal } as typeof user)
+                  }}
+                  className="mt-1 w-4 h-4 rounded border-gray-300"
+                />
+                <div>
+                  <span className="text-sm font-medium text-gray-900 block">Marihuana je deal-breaker</span>
+                  <p className="text-xs text-gray-500 mt-1">Lidé užívající pravidelně se ti nezobrazí. (Příležitostně ano.)</p>
+                </div>
+              </label>
+            </div>
+          )}
+
           {/* Výška */}
           <div className="bg-white border border-gray-200 rounded-2xl p-5 mb-3">
             <label className="block">

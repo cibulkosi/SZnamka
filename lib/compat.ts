@@ -19,6 +19,8 @@
  *   - height/body_type outside pref_*
  *   - children incompatible (want_kids × no_kids = vždy hard)
  *   - smoking incompatible (jen pokud user označí smoking_dealbreaker)
+ *   - alcohol incompatible (jen pokud user označí alcohol_dealbreaker)
+ *   - marijuana incompatible (jen pokud user označí marijuana_dealbreaker)
  *   - CCS < min_compatibility
  */
 
@@ -37,6 +39,7 @@ export type PersonSocial   = 'introvert' | 'extrovert' | 'ambivert'
 export type PersonConflict = 'talk' | 'cool_down' | 'avoid'
 export type Smoking        = 'never' | 'sometimes' | 'often'
 export type Alcohol        = 'never' | 'socially' | 'regularly'
+export type Marijuana      = 'never' | 'sometimes' | 'often'
 export type Diet           = 'omnivore' | 'vegetarian' | 'vegan' | 'other'
 export type Exercise       = 'never' | 'sometimes' | 'regularly'
 
@@ -99,6 +102,32 @@ export function isSmokingIncompatible(me: Profile, other: Profile): boolean {
   if (!me.smoking || !other.smoking) return false
   // Pokud user je 'never' a partner 'often', → hard incompatible
   if (me.smoking === 'never' && other.smoking === 'often') return true
+  return false
+}
+
+/**
+ * Vrací true pokud uživatel označil alkohol jako deal-breaker A je neshoda.
+ * Opt-in — pokud user nemá alcohol_dealbreaker=true, vrací false.
+ */
+export function isAlcoholIncompatible(me: Profile, other: Profile): boolean {
+  if (!(me as Profile & { alcohol_dealbreaker?: boolean }).alcohol_dealbreaker) return false
+  if (!me.alcohol || !other.alcohol) return false
+  // Pokud user je 'never' a partner 'regularly', → hard incompatible
+  if (me.alcohol === 'never' && other.alcohol === 'regularly') return true
+  return false
+}
+
+/**
+ * Vrací true pokud uživatel označil marihuanu jako deal-breaker A je neshoda.
+ * Opt-in — pokud user nemá marijuana_dealbreaker=true, vrací false.
+ */
+export function isMarijuanaIncompatible(me: Profile, other: Profile): boolean {
+  const meM = (me as Profile & { marijuana?: string; marijuana_dealbreaker?: boolean })
+  const otherM = (other as Profile & { marijuana?: string })
+  if (!meM.marijuana_dealbreaker) return false
+  if (!meM.marijuana || !otherM.marijuana) return false
+  // Pokud user je 'never' a partner 'often', → hard incompatible
+  if (meM.marijuana === 'never' && otherM.marijuana === 'often') return true
   return false
 }
 
