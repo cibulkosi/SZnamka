@@ -378,9 +378,9 @@ export const ARCHETYPES: Record<string, Archetype> = {
     ]
   },
   "33": {
-    "name": "Mistr lásky",
+    "name": "Léčitel",
     "tagline": "Mistrovské číslo — léčitel, který soucítí.",
-    "short": "Master číslo 33 je Mistr lásky — ztělesnění soucitu a bezpodmínečné lásky. Má ho jen 0,3 % populace.",
+    "short": "Master číslo 33 je Léčitel — ztělesnění soucitu a bezpodmínečné lásky. Má ho jen 0,3 % populace.",
     "traits_pos": [
       "Bezpodmínečná láska",
       "Léčivá přítomnost",
@@ -392,7 +392,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
       "Tendence k vyhoření",
       "Bere problémy světa na sebe"
     ],
-    "love": "Mistr lásky potřebuje partnera, který je schopen přijmout hloubku jeho lásky a opětovat ji. Ideální: 6 (Pečovatel), 9 (Idealista), 11 (Vizionář).",
+    "love": "Léčitel potřebuje partnera, který je schopen přijmout hloubku jeho lásky a opětovat ji. Ideální: 6 (Pečovatel), 9 (Idealista), 11 (Vizionář).",
     "shadow": "Dávání bez hranic vede k úplnému vyčerpání. Životní lekcí je, že naučit se pečovat o sebe je také akt lásky.",
     "career": "Léčitel, terapeut, kněz, učitel, sociální pracovník, humanitární pracovník.",
     "celebrities": [

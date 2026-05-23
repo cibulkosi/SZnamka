@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 const TITLE = 'Master čísla 11, 22, 33 — Mistrovská čísla v numerologii | Cosmatch'
-const DESC = 'Master čísla 11 (Vizionář), 22 (Architekt) a 33 (Mistr lásky) jsou nejintenzivnější vibrace v numerologii. Tvoří jen 4 % populace. Vlastnosti, kompatibilita, lekce.'
+const DESC = 'Master čísla 11 (Vizionář), 22 (Architekt) a 33 (Léčitel) jsou nejintenzivnější vibrace v numerologii. Tvoří jen 4 % populace. Vlastnosti, kompatibilita, lekce.'
 const URL = 'https://cosmatch.cz/numerologie/master-cisla-11-22-33'
 
 export const metadata: Metadata = {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: URL, languages: { 'cs-CZ': URL, 'x-default': URL } },
   openGraph: { title: TITLE, description: DESC, url: URL, type: 'article', siteName: 'Cosmatch', locale: 'cs_CZ' },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESC },
-  keywords: ['master čísla', 'mistrovská čísla', 'číslo 11 numerologie', 'číslo 22 numerologie', 'číslo 33 numerologie', 'vizionář', 'architekt', 'mistr lásky'],
+  keywords: ['master čísla', 'mistrovská čísla', 'číslo 11 numerologie', 'číslo 22 numerologie', 'číslo 33 numerologie', 'vizionář', 'architekt', 'léčitel'],
 }
 
 export default function MasterCislaPage() {
@@ -144,8 +144,8 @@ export default function MasterCislaPage() {
         {/* 33 */}
         <section className="mb-12">
           <Link href="/numerologie/zivotni-cislo-33" className="block hover:opacity-80 transition">
-            <p className="eyebrow text-rose-600 mb-3">33 · Mistr lásky</p>
-            <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-3">Mistr lásky.</h2>
+            <p className="eyebrow text-rose-600 mb-3">33 · Léčitel</p>
+            <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-3">Léčitel.</h2>
             <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-3">
               Číslo 33 je nejvzácnější, má ho jen 0,3 % populace. Poskytují bezpodmínečnou lásku a soucit,
               léčí svou přítomností. Dávání bez hranic ale může vést k vyhoření.

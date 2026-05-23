@@ -52,7 +52,7 @@ const HUB_TAGLINES: Record<string, { name: string; tagline: string }> = {
   '9':  { name: 'Idealista',   tagline: 'Velkorysý, soucitný, globálně orientovaný.' },
   '11': { name: 'Vizionář',    tagline: 'Mistrovské číslo — intuice a inspirace.' },
   '22': { name: 'Architekt',   tagline: 'Mistrovské číslo — stavitel světů.' },
-  '33': { name: 'Mistr lásky', tagline: 'Mistrovské číslo — léčitel, který soucítí.' },
+  '33': { name: 'Léčitel', tagline: 'Mistrovské číslo — léčitel, který soucítí.' },
 }
 
 export default function NumerologiePillarPage() {
