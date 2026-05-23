@@ -53,19 +53,19 @@ const ZODIAC = [
 ] as const
 
 const ROYAL_STARS = [
-  ['Aldebaran',  '10° Blíženců',    'Strážce východu (jarní rovnodennost)',  'integrita, odvaha, vůdcovství. Test cti — úspěch jen pokud nepodlehne pomstě.'],
-  ['Regulus',    '0° Panny (od 28. 11. 2011)', 'Strážce severu (letní slunovrat)', 'sláva, autorita, úspěch. Test pomsty — pokud podlehne, dramatický pád. Pro narozené před 11/2011 stojí na 29° Lva.'],
-  ['Antares',    '10° Střelce', 'Strážce západu (podzimní rovnodennost)',  'transformace skrz konflikt, intenzita. Test posedlosti — kontrolovaná vášeň vede ke slávě.'],
-  ['Fomalhaut',  '4° Ryb',     'Strážce jihu (zimní slunovrat)',  'duchovní hledání, magie, umění. Test idealismu — věrnost ideálům přináší magii, jejich zrada zničení.'],
+  ['Aldebaran',  '9°–10° Blíženců',    'Strážce východu (jarní rovnodennost)',  'integrita, odvaha, vůdcovství. Test cti — úspěch jen pokud nepodlehne pomstě.'],
+  ['Regulus',    '29° Lva / 0° Panny', 'Strážce severu (letní slunovrat)', 'sláva, autorita, úspěch. Test pomsty — pokud podlehne, dramatický pád. Skok 28. 11. 2011 (precese).'],
+  ['Antares',    '9°–10° Střelce', 'Strážce západu (podzimní rovnodennost)',  'transformace skrz konflikt, intenzita. Test posedlosti — kontrolovaná vášeň vede ke slávě.'],
+  ['Fomalhaut',  '3°–4° Ryb',     'Strážce jihu (zimní slunovrat)',  'duchovní hledání, magie, umění. Test idealismu — věrnost ideálům přináší magii, jejich zrada zničení.'],
 ] as const
 
 const OTHER_STARS = [
-  ['Algol',     '26° Býka',    'intenzivní drama, schopnost vidět skryté. Arabsky „hlava démona"'],
-  ['Sirius',    '14° Raka',    'úspěch, ambice, „psí hvězda" antiky'],
-  ['Spica',     '24° Vah',     'talent, ochrana, umělecké dary'],
-  ['Vega',      '15° Kozoroha','umění, charisma, magnetismus'],
-  ['Capella',   '22° Blíženců','zvídavost, učení, mentalita objevitele'],
-  ['Procyon',   '26° Raka',    'rychlost, dynamika, rychlý vzestup ale stejně rychlý pád'],
+  ['Algol',     '26° Býka',         'intenzivní drama, schopnost vidět skryté. Arabsky „hlava démona"'],
+  ['Sirius',    '14°–15° Raka',     'úspěch, ambice, „psí hvězda" antiky. Skok ~1993 (precese)'],
+  ['Spica',     '24° Vah',          'talent, ochrana, umělecké dary'],
+  ['Vega',      '15° Kozoroha',     'umění, charisma, magnetismus'],
+  ['Capella',   '22° Blíženců',     'zvídavost, učení, mentalita objevitele'],
+  ['Procyon',   '26° Raka',         'rychlost, dynamika, rychlý vzestup ale stejně rychlý pád'],
 ] as const
 
 const DIGNITIES = [
@@ -304,7 +304,7 @@ export default function AstrologiePage() {
                 Fixní hvězdy jsou stálé hvězdy v souhvězdích — na rozdíl od planet, které se ve zvěrokruhu pohybují. Klasická astrologie pracuje s cca <strong className="text-gray-900 font-medium">60 hlavními fixními hvězdami</strong>. Pokud denní stupeň narození padne do ±1° od fixní hvězdy, ta hvězda <strong className="text-gray-900 font-medium">ovlivňuje denní profil</strong> přidanou archetypální vibrací.
               </p>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-                Pozice fixních hvězd se v tropickém zodiaku posouvá <strong className="text-gray-900 font-medium">~1° za 72 let</strong> kvůli precesi ekvinokcií. Pozice níže jsou pro epochu 2026; pro starší lidi je pozice o ~0,5° nižší. Mnoho jmen hvězd pochází z arabštiny (Algol = „hlava démona", Fomalhaut = „ústa ryby", Aldebaran = „následovník").
+                Pozice fixních hvězd se v tropickém zodiaku posouvá <strong className="text-gray-900 font-medium">~1° za 72 let</strong> kvůli precesi ekvinokcií. Aldebaran byl v roce 1900 na 8°23′ Blíženců, v roce 2000 na 9°47′ Blíženců, v roce 2026 zhruba na 10°07′ Blíženců. Pro <strong className="text-gray-900 font-medium">narozené v letech 1950–2026 jsou pozice níže prakticky stejné</strong> — pohybují se v rozmezí 0,5°–1°, což stále spadá do orbu konjunkce. Jediné dvě výjimky se skokem znamení jsou <strong className="text-gray-900 font-medium">Regulus</strong> (přesun z Lva do Panny 28. 11. 2011) a <strong className="text-gray-900 font-medium">Sirius</strong> (přesun z 14° na 15° Raka kolem roku 1993). Mnoho jmen hvězd pochází z arabštiny (Algol = „hlava démona", Fomalhaut = „ústa ryby", Aldebaran = „následovník").
               </p>
 
               <h3 className="serif text-lg text-gray-900 font-medium mb-3 mt-6">Royal Stars — 4 strážci nebes</h3>
@@ -317,7 +317,7 @@ export default function AstrologiePage() {
                   <thead className="bg-gray-50 border-b border-gray-100">
                     <tr className="text-left text-xs uppercase tracking-wider text-gray-500">
                       <th className="px-4 py-3 font-medium">Hvězda</th>
-                      <th className="px-4 py-3 font-medium">Pozice (2026)</th>
+                      <th className="px-4 py-3 font-medium">Pozice (1950–2026)</th>
                       <th className="px-4 py-3 font-medium">Strážce</th>
                       <th className="px-4 py-3 font-medium">Význam &amp; test</th>
                     </tr>
@@ -336,7 +336,7 @@ export default function AstrologiePage() {
               </div>
 
               <p className="text-xs text-gray-500 italic mb-6">
-                Pozn.: <strong className="text-gray-700 font-medium not-italic">Regulus</strong> se 28. 11. 2011 posunul z 29° Lva na 0° Panny (precese). Pro narozené před tímto datem stojí na 29° Lva; pro narozené po něm na 0° Panny.
+                Jak číst rozsahy: hvězdy se kvůli precesi posouvají vůči tropickému zodiaku ~1° za 72 let. Pro narozené 1950–1980 vyhledávej spodní hranici rozsahu, pro narozené po roce 2000 horní hranici. <strong className="text-gray-700 font-medium not-italic">Regulus</strong> je unikátní v tom, že 28. 11. 2011 přešel ze Lva do Panny — pro narozené před tímto datem stojí na 29° Lva, pro narozené po něm na 0° Panny.
               </p>
 
               <h3 className="serif text-lg text-gray-900 font-medium mb-3 mt-6">Další významné fixní hvězdy</h3>
@@ -345,7 +345,7 @@ export default function AstrologiePage() {
                   <thead className="bg-gray-50 border-b border-gray-100">
                     <tr className="text-left text-xs uppercase tracking-wider text-gray-500">
                       <th className="px-4 py-3 font-medium">Hvězda</th>
-                      <th className="px-4 py-3 font-medium">Pozice (2026)</th>
+                      <th className="px-4 py-3 font-medium">Pozice (1950–2026)</th>
                       <th className="px-4 py-3 font-medium">Význam</th>
                     </tr>
                   </thead>
