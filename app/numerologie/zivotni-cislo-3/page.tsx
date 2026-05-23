@@ -139,7 +139,7 @@ export default function LifePathPage() {
           </div>
         </section>
 
-        <hr className="rule mb-16" />
+        <hr className="rule mb-20" />
 
         {/* V lásce */}
         <section className="mb-16">
@@ -175,7 +175,7 @@ export default function LifePathPage() {
           </div>
         </section>
 
-        <hr className="rule mb-16" />
+        <hr className="rule mb-20" />
 
         {/* Stín */}
         <section className="mb-16">
@@ -186,7 +186,7 @@ export default function LifePathPage() {
           <p className="text-gray-800 leading-[1.75] text-[1.0625rem]">{a.shadow}</p>
         </section>
 
-        <hr className="rule mb-16" />
+        <hr className="rule mb-20" />
 
         {/* Kariéra */}
         <section className="mb-16">
@@ -197,7 +197,7 @@ export default function LifePathPage() {
           <p className="text-gray-800 leading-[1.75] text-[1.0625rem]">{a.career}</p>
         </section>
 
-        <hr className="rule mb-16" />
+        <hr className="rule mb-20" />
 
         {/* Slavné osobnosti */}
         <section className="mb-16">
@@ -245,7 +245,7 @@ export default function LifePathPage() {
               <Link key={n} href={`/numerologie/zivotni-cislo-${n}`}
                 className="aspect-square flex flex-col items-center justify-center bg-white border border-gray-200 hover:border-gray-900 rounded-2xl transition group">
                 <span className="serif-display text-2xl text-gray-700 group-hover:text-pink-500 transition font-medium tabular-nums">{n}</span>
-                <span className="text-[10px] text-gray-400 mt-1 tracking-wider uppercase">{ARCHETYPES[n].name.slice(0, 8)}</span>
+                <span className="text-[10px] text-gray-400 mt-1 tracking-wider uppercase">{ARCHETYPES[n].name}</span>
               </Link>
             ))}
           </div>
