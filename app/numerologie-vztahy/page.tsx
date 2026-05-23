@@ -61,7 +61,7 @@ const SECTIONS = [
     num: 'III',
     title: 'Čísla v praxi: co funguje a co ne',
     paras: [
-      'Číslo 4 (Stavitel) a 6 (Pečovatel) sdílejí hodnoty stability a věrnosti — přirozeně si rozumí. Číslo 5 (Dobrodruh) a 4 (Stavitel) mívají napjatou dynamiku: jeden chce změnu, druhý jistotu.',
+      'Číslo 2 (Diplomat) a 6 (Pečovatel) patří mezi nejmilovavější dvojici v numerologii — oba dávají lásku bez výhrad. Číslo 5 (Dobrodruh) a 4 (Stavitel) mívají napjatou dynamiku: jeden chce změnu, druhý jistotu.',
       'Klíčové je si tyto hodnoty uvědomovat. Pár pětky a čtyřky, který tuto dynamiku chápe, může vytvořit rovnováhu, o které jiné páry jen sní. Numerologie je nástroj sebepoznání, ne osud.',
     ],
   },
