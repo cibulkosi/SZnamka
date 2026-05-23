@@ -340,12 +340,12 @@ export default function AstrologiePage() {
               </p>
 
               <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 mb-6">
-                <p className="eyebrow text-amber-700 mb-2">Pro koho kniha platí</p>
+                <p className="eyebrow text-amber-700 mb-2">Co to znamená pro různé generace</p>
                 <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-3">
-                  Kniha <em className="italic">The Power of Birthdays</em> (1998) uvádí pozice fixních hvězd platné <strong className="text-gray-900 font-medium">„between 1930 and 2000"</strong>. Pro tuto generaci (Boomers, Gen X, starší Millennials) platí kniha přímo. <strong className="text-gray-900 font-medium">Pro mladší Millennials a Gen Z (2000–2025)</strong> kniha stále platí z ~95 % — 4 z 5 astrologických komponent (znamení, dekanát, stupeň, planetární vládce) se s časem nemění, hvězdy se posunuly jen o 0,3°–0,8°, což zůstává v orbu konjunkce ±1°. Jediné dva skoky znamení v relevantním období jsou <strong className="text-gray-900 font-medium">Regulus</strong> (Lev → Panna, 28. 11. 2011) a <strong className="text-gray-900 font-medium">Sirius</strong> (14° → 15° Raka, ~1993).
+                  Klasická astrologická literatura zpravidla uvádí pozice fixních hvězd pro epochu <strong className="text-gray-900 font-medium">1930–2000</strong>. Pro tuto generaci (Boomers, Gen X, starší Millennials) platí klasické pozice přímo. <strong className="text-gray-900 font-medium">Pro mladší Millennials a Gen Z (2000–2025)</strong> jsou pozice posunuté jen o 0,3°–0,8°, což zůstává v orbu konjunkce ±1° — 4 z 5 astrologických komponent (znamení, dekanát, stupeň, planetární vládce) se s časem vůbec nemění. Jediné dva skoky znamení v posledních desetiletích jsou <strong className="text-gray-900 font-medium">Regulus</strong> (Lev → Panna, 28. 11. 2011) a <strong className="text-gray-900 font-medium">Sirius</strong> (14° → 15° Raka, ~1993).
                 </p>
                 <p className="text-gray-700 text-[0.95rem] leading-relaxed">
-                  Pro Cosmatch kompatibilitu to znamená: <strong className="text-gray-900 font-medium">žádná zásadní změna pro celou cílovku 1960–2008</strong>. Knižní orby a interpretace fungují konzistentně napříč generacemi. Hlubší přepočet bude potřeba až kolem roku 2070, kdy se hvězdy posunou o celý stupeň.
+                  Pro Cosmatch kompatibilitu to znamená: <strong className="text-gray-900 font-medium">žádná zásadní změna pro celou cílovku 1960–2008</strong>. Orby a interpretace fungují konzistentně napříč generacemi. Hlubší přepočet pozic bude potřeba až kolem roku 2070, kdy se hvězdy posunou o celý stupeň.
                 </p>
               </div>
 
