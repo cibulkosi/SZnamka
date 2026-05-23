@@ -176,7 +176,7 @@ export default function AstrologiePage() {
                 </p>
               </div>
               <p className="text-sm text-gray-500 italic">
-                Lidé, kteří jsou v tropickém systému Lvi, mohou být v siderálním Raci. Cosmatch volí tropický — odpovídá moderní západní literatuře, Sabian symbolům i 366 denním profilům Crawford &amp; Sullivan.
+                Lidé, kteří jsou v tropickém systému Lvi, mohou být v siderálním Raci. Cosmatch volí tropický — odpovídá moderní západní astrologické tradici i Sabian symbolům.
               </p>
             </div>
           </div>
