@@ -228,7 +228,7 @@ export default function LifePathPage() {
         <section className="bg-white rounded-3xl border border-gray-100 p-10 mt-12">
           <p className="eyebrow text-pink-500 mb-4">Najdi svou shodu</p>
           <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">
-            Číslo {number} hledá své {a.compatible[0]}, {a.compatible[1]} nebo {a.compatible[2]}.
+            Číslo {number} hledá svou {a.compatible[0]}, {a.compatible[1]} nebo {a.compatible[2]}.
           </h2>
           <p className="text-gray-600 leading-relaxed mb-8 text-[1.0625rem]">
             Cosmatch je první česká seznamka, která tě s nimi propojí podle skutečné kompatibility.
@@ -247,7 +247,7 @@ export default function LifePathPage() {
         <section className="mt-20">
           <p className="eyebrow text-pink-500 mb-4">Další životní čísla</p>
           <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-8">
-            Prozkoumej zbylých 11.
+            Prozkoumej zbylých 11 čísel.
           </h2>
           <div className="grid grid-cols-4 sm:grid-cols-6 gap-3">
             {LIFE_PATH_NUMBERS.filter(n => n !== number).map(n => (
