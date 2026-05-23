@@ -227,9 +227,6 @@ export default function LifePathPage() {
               </li>
             ))}
           </ul>
-          <p className="text-gray-600 leading-relaxed mt-8 text-[1.0625rem] italic">
-            Cosmatch je první česká seznamka, která tě s nimi propojí podle skutečné kompatibility.
-          </p>
         </section>
 
         {/* CTA */}
@@ -239,12 +236,11 @@ export default function LifePathPage() {
             Číslo {number} hledá své {a.compatible[0]}, {a.compatible[1]} nebo {a.compatible[2]}.
           </h2>
           <p className="text-gray-600 leading-relaxed mb-8 text-[1.0625rem]">
-            Cosmatch je první česká seznamka, která tě s nimi propojí — podle skutečné kompatibility,
-            ne podle algoritmu.
+            Cosmatch je první česká seznamka, která tě s nimi propojí podle skutečné kompatibility.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <Link href="/test" className="inline-flex items-center justify-center bg-gray-900 text-white px-8 py-4 rounded-full text-base font-medium hover:bg-gray-800 transition">
-              Vypočítat svoje číslo
+              Chci vypočítat mé životní číslo
             </Link>
             <Link href="/waitlist" className="inline-flex items-center justify-center text-gray-900 border border-gray-300 hover:border-gray-900 px-8 py-4 rounded-full text-base font-medium transition">
               Přidat se na waitlist
