@@ -179,7 +179,7 @@ export default function WaitlistPage() {
               <p className="text-lg text-gray-700 leading-relaxed mb-4 max-w-xl">
                 Cosmatch počítá kompatibilitu mezi Tvým datem narození a datem narození
                 potenciálního partnera, a to na základě 12 archetypů a 366 denních profilů kompatibility.
-                Místo bezduchého swipování ti dává reálný důvod, zda se s danou osobou potkat nebo ne.
+                Místo nekonečného swipování ti dává reálný důvod, zda se s danou osobou potkat nebo ne.
               </p>
               <p className="text-gray-500 leading-relaxed max-w-xl">
                 Seznamku spouštíme nejdříve ve větších městech jako je Praha, Brno, Plzeň, Ostrava a Olomouc, prostě tam, kde vás bude nejvíc. Bratislava přijde jako samostatný slovenský launch později.
