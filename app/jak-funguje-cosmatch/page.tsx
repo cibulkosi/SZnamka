@@ -82,7 +82,7 @@ export default function JakFungujeCosmatchPage() {
               ['IV', 'Intimní soulad', '10 %', 'Nesmí chybět ani velikost libida. Soulad v sexu v dlouhodobém vztahu je důležitý pro vyhnutí se tiché frustraci.'],
               ['V', 'Životní styl a návyky', '10 %', 'Kouření, alkohol, strava nebo pohyb každodenní soužití také ovlivňují. Ve filtrech si můžeš zvolit např. kouření jako tvrdý deal-breaker, a poté se Ti kuřáci neukáží.'],
               ['VI', 'Společné zájmy', '5 %', 'Procentní překryv tagů (záliby je možné vybírat z 45 možností). Mohou sloužit jako společná řeč pro první rande, ale ne jako hlavní faktor dlouhodobé kompatibility.'],
-              ['VII', 'Aktivita', '5 %', 'Být online v posledních 24 h přináší členům 100 bodů, v posledním týdnu 75 b., za poslední měsíc 50 b., déle než jeden měsíc 30 b. Sebelepší shoda totiž nepovede nikam, pokud druhý člověk aplikaci nepoužívá.'],
+              ['VII', 'Aktivita', '5 %', 'Být online v posledních 24 h přináší členům 100 bodů, v posledním týdnu 75 b., za poslední měsíc 50 b., déle než jeden měsíc 30 b. Sebelepší shoda totiž nepovede nikam, pokud druhý člověk aplikaci vůbec nepoužívá.'],
             ].map(([num, title, weight, body]) => (
               <div key={num} className="grid grid-cols-[auto,1fr] gap-x-8">
                 <div className="text-right">
@@ -138,7 +138,7 @@ export default function JakFungujeCosmatchPage() {
           {/* Co jsou jednotlivé astrologické komponenty */}
           <h3 className="serif text-2xl text-gray-900 font-medium leading-tight mb-3">Co znamenají ty jednotlivé komponenty.</h3>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
-            Profil každého ze 366 dnů kombinuje pět vrstev astrologického a numerologického popisu. Vysvětlení každé z nich najdeš na <Link href="/astrologie" className="text-pink-500 underline">Astrologie</Link>.
+            Profil každého ze 366 dnů kombinuje pět vrstev numerologického a astrologického popisu. Vysvětlení každé z nich najdeš na <Link href="/kompatibilita-podle-data-narozeni" className="text-pink-500 underline">Numerologie</Link> a <Link href="/astrologie" className="text-pink-500 underline">Astrologie</Link>.
           </p>
 
           <Link
