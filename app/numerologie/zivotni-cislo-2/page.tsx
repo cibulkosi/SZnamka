@@ -1,6 +1,7 @@
 
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import KarmicDebtCard from '@/components/KarmicDebtCard'
 import { notFound } from 'next/navigation'
 import { ARCHETYPES, type Archetype } from '../zivotni-cislo-1/data'
 
@@ -112,6 +113,8 @@ export default function LifePathPage() {
             {a.short}
           </p>
         </header>
+
+        <KarmicDebtCard />
 
         {/* Vlastnosti */}
         <section className="mb-16">
