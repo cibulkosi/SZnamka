@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 const TITLE = 'Jak se počítá životní číslo — Decoz three-cycle metoda | Cosmatch'
-const DESC = 'Kompletní průvodce výpočtem životního čísla podle moderního standardu (Decoz three-cycle). Historie metody od Pythagora po současnost, srovnání tří numerologických škol, master čísla 11/22/33, krok-za-krokem výpočet s příkladem.'
+const DESC = 'Kompletní průvodce výpočtem životního čísla podle moderního standardu (Decoz three-cycle). Historie metody od Pythagora po současnost, srovnání čtyř numerologických škol, master čísla 11/22/33, karmické dluhy a krok-za-krokem výpočet s příkladem.'
 const URL = 'https://cosmatch.cz/numerologie/jak-pocitame'
 
 export const metadata: Metadata = {
@@ -40,7 +40,7 @@ const jsonLd = {
       author: { '@type': 'Person', name: 'Simona Cibulková', jobTitle: 'Zakladatelka Cosmatch' },
       publisher: { '@type': 'Organization', name: 'Cosmatch', logo: { '@type': 'ImageObject', url: 'https://cosmatch.cz/icon-512.png' } },
       datePublished: '2026-05-22',
-      dateModified: '2026-05-22',
+      dateModified: '2026-05-23',
       mainEntityOfPage: { '@type': 'WebPage', '@id': URL },
       inLanguage: 'cs-CZ',
     },
@@ -102,22 +102,22 @@ export default function JakPocitamePage() {
             <div>
               <h2 className="serif text-2xl sm:text-3xl text-gray-900 font-medium mb-5 leading-tight">Stručná historie metody</h2>
               <p className="dropcap text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-                Numerologie přiřazení čísel k osobnosti má kořeny v <strong className="text-gray-900 font-medium">pythagorejské filozofii čísel</strong> (cca 500 př. n. l.), ale to, co dnes nazýváme „životní číslo", je výsledek 120 let moderní rekonstrukce — ne přímá linie od Pythagora.
+                Numerologie, tedy přiřazování čísel k osobnosti, má kořeny v <strong className="text-gray-900 font-medium">pythagorejské filozofii čísel</strong> (cca 500 př. n. l.). To, co dnes nazýváme „životní číslo", je ale výsledek 120-ti letého vývoje.
               </p>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-                Modernu západní numerologii zakládá <strong className="text-gray-900 font-medium">L. Dow Balliett</strong> svojí knihou <em className="italic">The Philosophy of Numbers: Their Tone and Colors</em> (1908). Balliett zavedla doktrínu <strong className="text-gray-900 font-medium">master čísel 11 a 22</strong> — vibrací, které se při výpočtu nemají redukovat.
+                Moderní západní numerologii zakládá <strong className="text-gray-900 font-medium">L. Dow Balliett</strong> svojí knihou <em className="italic">The Philosophy of Numbers: Their Tone and Colors</em> (1908). Balliett zavedla doktrínu <strong className="text-gray-900 font-medium">master čísel 11 a 22</strong> — vibrací, které se při výpočtu nemají redukovat.
               </p>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-                <strong className="text-gray-900 font-medium">Florence Campbell</strong> v knize <em className="italic">Your Days Are Numbered</em> (1931) jako první systematizovala Balliettovu metodu do učebnice — Life Path, Soul Urge, Personal Year, Pinnacles, Challenges.
+                <strong className="text-gray-900 font-medium">Florence Campbell</strong> v knize <em className="italic">Your Days Are Numbered</em> (1931) jako první systematizovala Balliettové metodu do učebnice (Life Path, Soul Urge, Personal Year, Pinnacles, Challenges).
               </p>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
                 <strong className="text-gray-900 font-medium">Juno Jordan</strong> v <em className="italic">Numerology: The Romance in Your Name</em> (1965) přidala aplikaci na vztahy.
               </p>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-                <strong className="text-gray-900 font-medium">Matthew O. Goodwin</strong> v dvoudílné <em className="italic">Numerology: The Complete Guide</em> (1981) přidal nejakademičtěji ze všech autorů třetí master číslo — <strong className="text-gray-900 font-medium">33</strong>.
+                <strong className="text-gray-900 font-medium">Matthew O. Goodwin</strong> v dvoudílné <em className="italic">Numerology: The Complete Guide</em> (1981) přidal třetí master číslo <strong className="text-gray-900 font-medium">33</strong>.
               </p>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-                <strong className="text-gray-900 font-medium">Hans Decoz</strong> v <em className="italic">Numerology: Key to Your Inner Self</em> (Perigee/Tarcher, 2001) standardizoval celou metodu. Decoz pravidlo pro master 33 je dnes consensus: 33 zachováváme jen pokud je v jedné z komponent výpočtu (měsíc, den, rok). Ne automaticky z finálního součtu. Software DecozChart prodal přes 3 miliony reportů.
+                <strong className="text-gray-900 font-medium">Hans Decoz</strong> v <em className="italic">Numerology: Key to Your Inner Self</em> (Perigee/Tarcher, 2001) standardizoval celou metodu. Decoz pravidlo pro master 33 je dnes consensus: 33 zachováváme jen pokud je v jedné z komponent výpočtu (měsíc, den, rok). Ne z finálního součtu. Za zmínku stojí, že software DecozChart prodal přes 3 miliony reportů.
               </p>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
                 <strong className="text-gray-900 font-medium">Glynis McCants</strong> v <em className="italic">Love by the Numbers</em> (Sourcebooks, 2010) a <strong className="text-gray-900 font-medium">Michelle Buchanan</strong> v <em className="italic">The Numerology Guidebook</em> (Hay House, 2013) potvrdily Decozovu metodu jako moderní standard mainstreamové numerologie.
@@ -135,7 +135,7 @@ export default function JakPocitamePage() {
             <div>
               <h2 className="serif text-2xl sm:text-3xl text-gray-900 font-medium mb-5 leading-tight">Tři neslučitelné metody</h2>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
-                Pro stejné datum <em className="italic">23. 7. 1992</em> dají různé numerologické školy jiné výsledky. Není jeden „správný" — záleží na tom, kterou tradici autor následuje.
+                Pro stejné datum <em className="italic">23. 7. 1992</em> dají různé numerologické školy jiné výsledky. Není jeden „správný", a záleží na tom, kterou tradici autor následuje.
               </p>
 
               {/* Method A — Chaldean */}
@@ -143,19 +143,19 @@ export default function JakPocitamePage() {
                 <p className="eyebrow text-gray-500 mb-2">Škola A — Chaldejská</p>
                 <h3 className="serif text-xl text-gray-900 font-medium mb-2">Cheiro (1926)</h3>
                 <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-3">
-                  Bere pouze <strong className="text-gray-900 font-medium">den narození</strong> jako „birth number". Jméno se počítá samostatně podle Chaldean abecedy (1–8, číslice 9 je vynechaná jako „posvátná"). Žádná master čísla.
+                  Bere pouze <strong className="text-gray-900 font-medium">den narození</strong>. Jméno se počítá samostatně podle Chaldean abecedy (1–8, číslice 9 je vynechaná jako „posvátná"). Žádná master čísla tu nejsou.
                 </p>
-                <p className="text-sm text-gray-500"><strong className="text-gray-900 font-medium">Pro 23. 7. 1992:</strong> birth number 5 (23 → 2+3).</p>
+                <p className="text-sm text-gray-500"><strong className="text-gray-900 font-medium">Pro 23. 7. 1992:</strong> životní číslo 5 (23 → 2+3).</p>
               </div>
 
               {/* Method B — Single-sum */}
               <div className="bg-white border border-gray-200 rounded-3xl p-6 mb-4">
-                <p className="eyebrow text-gray-500 mb-2">Škola B — Pythagorejská single-sum</p>
-                <h3 className="serif text-xl text-gray-900 font-medium mb-2">David A. Phillips, Crawford & Sullivan, většina českých příruček</h3>
+                <p className="eyebrow text-gray-500 mb-2">Škola B — Pythagorejský součet všeho dohromady</p>
+                <h3 className="serif text-xl text-gray-900 font-medium mb-2">David A. Phillips, Crawford &amp; Sullivan, většina českých příruček</h3>
                 <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-3">
                   Sečte se <strong className="text-gray-900 font-medium">všech 8 číslic data</strong> najednou, výsledek se redukuje.
                 </p>
-                <p className="text-sm text-gray-500"><strong className="text-gray-900 font-medium">Pro 23. 7. 1992:</strong> 2+3+0+7+1+9+9+2 = 33 → 6 (nebo 33 pokud se zachovávají master čísla).</p>
+                <p className="text-sm text-gray-500"><strong className="text-gray-900 font-medium">Pro 23. 7. 1992:</strong> 2+3+0+7+1+9+9+2 = 33 → 6.</p>
               </div>
 
               {/* Method C — Three-cycle */}
@@ -163,17 +163,17 @@ export default function JakPocitamePage() {
                 <p className="eyebrow text-pink-700 mb-2">Škola C — Pythagorejská three-cycle <span className="ml-2 inline-block bg-pink-500 text-white px-2 py-0.5 rounded-full text-[10px]">Cosmatch</span></p>
                 <h3 className="serif text-xl text-gray-900 font-medium mb-2">Decoz, McCants, Buchanan — moderní standard</h3>
                 <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-3">
-                  Měsíc, den a rok se redukují <strong className="text-gray-900 font-medium">odděleně</strong>. Master čísla 11/22/33 se v mezikroku zachovají. Pak se tři komponenty sečtou a finálně zredukují. Jen tato metoda umí rozlišit „skutečné" master číslo od náhodného součtu.
+                  Měsíc, den a rok se redukují <strong className="text-gray-900 font-medium">odděleně</strong>. Master čísla 11/22/33 se v mezikroku zachovají. Pak se tři komponenty sečtou a finálně zredukují. Jen tato metoda umí rozlišit master číslo od náhodného součtu.
                 </p>
                 <p className="text-sm text-gray-500"><strong className="text-gray-900 font-medium">Pro 23. 7. 1992:</strong> 7 + 5 + 3 = 15 → 6.</p>
               </div>
 
               {/* Method D — Millman */}
               <div className="bg-white border border-gray-200 rounded-3xl p-6">
-                <p className="eyebrow text-gray-500 mb-2">Škola D — Dvou-cifrový kód</p>
+                <p className="eyebrow text-gray-500 mb-2">Škola D — Dvou-ciferný kód</p>
                 <h3 className="serif text-xl text-gray-900 font-medium mb-2">Dan Millman (1993)</h3>
                 <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-3">
-                  Radikální zlom — <strong className="text-gray-900 font-medium">žádná redukce</strong>. Místo 9 životních čísel má Millman <strong className="text-gray-900 font-medium">45 unikátních cest</strong> zapsaných jako dvojčíslí (např. 25/7, 34/7, 33/6 — všechna končí stejnou cifrou, ale liší se cestou).
+                  Tady nastal radikální zlom, není tu žádná redukce. Místo 9 životních čísel má Millman <strong className="text-gray-900 font-medium">45 unikátních cest</strong> zapsaných jako dvojčíslí (např. 25/7, 34/7, 33/6 — všechna končí stejnou cifrou, ale liší se cestou).
                 </p>
                 <p className="text-sm text-gray-500"><strong className="text-gray-900 font-medium">Pro 23. 7. 1992:</strong> 33/6.</p>
               </div>
@@ -223,7 +223,7 @@ export default function JakPocitamePage() {
               </div>
 
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
-                Kdyby byla jakákoli z komponent (7, 5, 3) sama o sobě 11, 22 nebo 33, zachovali bychom ji jako master číslo v mezikroku. To je rozdíl mezi „skutečným" master 33 (např. narozen 29. listopadu — den 29→11, měsíc 11, rok zredukován) a 33, které jen náhodou vznikne sečtením.
+                Kdyby byla jakákoli z komponent (7, 5, 3) sama o sobě 11, 22 nebo 33, zachovali bychom ji jako master číslo v mezikroku. To je rozdíl mezi „skutečným" master 33 (např. narozen 29. listopadu — den 29→11, měsíc 11, rok zredukován) a 33, které jen náhodou vznikne sečtením. Tomu se říká „Decoz strict rule" a Cosmatch ho dodržuje. Mírnější autoři (Buchanan, McCants) zachovávají 33 i z finálního součtu — proto se s nimi může výsledek lišit.
               </p>
             </div>
           </div>
@@ -265,14 +265,7 @@ export default function JakPocitamePage() {
                 </div>
               </div>
 
-              <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-3">
-                <strong className="text-gray-900 font-medium">Důležité — Decoz pravidlo pro 33:</strong> Master 33 zachováváme jen pokud se objevuje v jedné z komponent výpočtu (např. den 33×× = nemožné, ale rok 1992 by mohl, kdyby šel zredukovat na 33 — což nejde). V praxi je „skutečné" master 33 z data narození velmi vzácné. Jinak se 33 v součtu redukuje na 6.
-              </p>
-              <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
-                Tomu se říká „Decoz strict rule" a Cosmatch ho dodržuje. Mírnější autoři (Buchanan, McCants) zachovávají 33 i z finálního součtu — proto se s nimi může výsledek lišit.
-              </p>
-
-              <p className="text-sm text-gray-500 mt-6">
+              <p className="text-sm text-gray-500">
                 Detailní rozbor master čísel je na samostatné stránce <Link href="/numerologie/master-cisla-11-22-33" className="text-pink-500 hover:underline">Master čísla 11, 22, 33</Link>.
               </p>
             </div>
@@ -288,7 +281,7 @@ export default function JakPocitamePage() {
             <div>
               <h2 className="serif text-2xl sm:text-3xl text-gray-900 font-medium mb-5 leading-tight">Kolik master čísel vlastně existuje?</h2>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
-                Tady je největší trhlina v numerologickém světě. Záleží, koho se zeptáš:
+                Tady je největší rozpor ve světě numerologie. Záleží, koho se zeptáš:
               </p>
 
               <div className="bg-white border border-gray-200 rounded-3xl overflow-hidden mb-6">
@@ -303,9 +296,9 @@ export default function JakPocitamePage() {
                   <tbody className="divide-y divide-gray-100">
                     <tr><td className="px-5 py-3 text-gray-900">Cheiro (1926)</td><td className="px-5 py-3 text-center font-medium">0</td><td className="px-5 py-3 text-gray-600">žádná — kompozitní čísla 10–52 mají vlastní význam</td></tr>
                     <tr><td className="px-5 py-3 text-gray-900">Balliett, Campbell, Jordan</td><td className="px-5 py-3 text-center font-medium">2</td><td className="px-5 py-3 text-gray-600">11, 22</td></tr>
-                    <tr><td className="px-5 py-3 text-gray-900 font-medium bg-pink-50">Decoz, Cosmatch</td><td className="px-5 py-3 text-center font-medium bg-pink-50">3 (33 conditional)</td><td className="px-5 py-3 text-gray-600 bg-pink-50">11, 22, 33</td></tr>
+                    <tr><td className="px-5 py-3 text-gray-900 font-medium bg-pink-50">Decoz, Cosmatch</td><td className="px-5 py-3 text-center font-medium bg-pink-50">3 (33 pokud ne finální součet)</td><td className="px-5 py-3 text-gray-600 bg-pink-50">11, 22, 33</td></tr>
                     <tr><td className="px-5 py-3 text-gray-900">Buchanan (2013)</td><td className="px-5 py-3 text-center font-medium">3</td><td className="px-5 py-3 text-gray-600">11, 22, 33 (vždy)</td></tr>
-                    <tr><td className="px-5 py-3 text-gray-900">Javane & Bunker (1979)</td><td className="px-5 py-3 text-center font-medium">4</td><td className="px-5 py-3 text-gray-600">11, 22, 33, 44</td></tr>
+                    <tr><td className="px-5 py-3 text-gray-900">Javane &amp; Bunker (1979)</td><td className="px-5 py-3 text-center font-medium">4</td><td className="px-5 py-3 text-gray-600">11, 22, 33, 44</td></tr>
                     <tr><td className="px-5 py-3 text-gray-900">Goodwin (1981)</td><td className="px-5 py-3 text-center font-medium">5+</td><td className="px-5 py-3 text-gray-600">11, 22, 33, 44, 55, 66 (doubled numbers)</td></tr>
                     <tr><td className="px-5 py-3 text-gray-900">Millman (1993)</td><td className="px-5 py-3 text-center font-medium">n/a</td><td className="px-5 py-3 text-gray-600">žádná — 45 dvouciferných cest</td></tr>
                   </tbody>
@@ -313,7 +306,7 @@ export default function JakPocitamePage() {
               </div>
 
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
-                Cosmatch zvolil <strong className="text-gray-900 font-medium">Decoz pozici</strong> — 3 master čísla s conditional 33. Je to dominantní moderní standard a kompatibilní s tím, co najdeš na worldnumerology.com, v Hay House knihách a ve většině numerologického softwaru.
+                Cosmatch zvolil <strong className="text-gray-900 font-medium">Decoz pozici se 3 master čísly</strong>. Je to dominantní moderní standard a kompatibilní s tím, co najdeš na worldnumerology.com, v Hay House knihách a ve většině numerologického softwaru.
               </p>
             </div>
           </div>
@@ -328,13 +321,10 @@ export default function JakPocitamePage() {
             <div>
               <h2 className="serif text-2xl sm:text-3xl text-gray-900 font-medium mb-5 leading-tight">Proč jsme zvolili Decoz</h2>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-                <strong className="text-gray-900 font-medium">Konzistence s tím, co lidé najdou jinde.</strong> Pokud si uživatel vyhledá „jaké je moje životní číslo" na jiné stránce, dostane Decozův výsledek v 80 % případů. Cosmatch musí dát stejné číslo, jinak vznikne nedůvěra.
-              </p>
-              <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-                <strong className="text-gray-900 font-medium">Three-cycle je matematicky rigoróznější.</strong> Jako jediná metoda umí rozlišit „skutečné" master číslo od čísla, které jen náhodou vznikne sečtením.
+                <strong className="text-gray-900 font-medium">Konzistence s tím, co lidé najdou jinde.</strong> Pokud si uživatel vyhledá „jaké je moje životní číslo" na jiné stránce, dostane v 80 % případů Decozův výsledek.
               </p>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
-                <strong className="text-gray-900 font-medium">Decoz pravidlo pro 33 je konzervativní.</strong> Buchanan zachovává 33 vždy, čímž označí master vibrace lidi, kteří podle Decoze master číslo nemají. Decozův přístup snižuje riziko „falešného master číslování" a sedí etice transparentního produktu.
+                <strong className="text-gray-900 font-medium">Sčítání každého čísla zvlášť</strong> jako jediná metoda umí rozlišit „skutečné" master číslo od čísla, které jen náhodou vznikne sečtením.
               </p>
             </div>
           </div>
@@ -342,14 +332,14 @@ export default function JakPocitamePage() {
 
         <hr className="rule mb-16" />
 
-        {/* VI.5 Karmické dluhy */}
+        {/* VII Karmické dluhy */}
         <section className="mb-16">
           <div className="grid grid-cols-[auto,1fr] gap-x-8 sm:gap-x-12">
             <div className="roman text-3xl sm:text-4xl text-pink-500 leading-none pt-2 select-none">VII</div>
             <div>
               <h2 className="serif text-2xl sm:text-3xl text-gray-900 font-medium mb-5 leading-tight">Karmické dluhy</h2>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-                <strong className="text-gray-900 font-medium">Karmické dluhy</strong> jsou specifické pre-reduction hodnoty (13, 14, 16, 19), které se mohou objevit při výpočtu životního čísla. Reprezentují „lekce z minulých životů", které vrhají stín na finální archetyp.
+                <strong className="text-gray-900 font-medium">Karmické dluhy</strong> jsou specifické hodnoty před sčítáním (13, 14, 16, 19), které se mohou objevit při výpočtu životního čísla. Reprezentují „lekce z minulých životů", které vrhají stín na finální archetyp.
               </p>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
                 Goodwin (1981), Decoz i Numerology.com je dokumentují jako důležitý modifikátor osobnosti. Přibližně <strong className="text-gray-900 font-medium">20–30 % populace</strong> má alespoň jeden karmický dluh v některé z core čísel.
@@ -389,8 +379,8 @@ export default function JakPocitamePage() {
                 </table>
               </div>
 
-              <p className="text-sm text-gray-500 italic">
-                Cosmatch detekuje karmické dluhy automaticky z tvého data narození. Pokud máš dluh, zobrazí se na profilové stránce tvého životního čísla jako další vrstva sebepoznání.
+              <p className="text-sm text-gray-500">
+                Cosmatch detekuje karmické dluhy z tvého data narození. Pokud máš dluh, zobrazí se na profilové stránce tvého životního čísla jako další vrstva sebepoznání.
               </p>
             </div>
           </div>
@@ -405,23 +395,20 @@ export default function JakPocitamePage() {
             <div>
               <h2 className="serif text-2xl sm:text-3xl text-gray-900 font-medium mb-5 leading-tight">Co o tom říká věda</h2>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-                Numerologie není peer-reviewed věda. Žádná z popsaných metod nebyla validována kontrolovanou studií. Ale existuje jeden adjacent psychology výzkum, který stojí za zmínku, protože se k tématu přibližuje.
+                Žádná z popsaných metod nebyla validována kontrolovanou studií. Ale existuje jeden výzkum z oblasti psychologie, který stojí za zmínku, protože se váže k tématu.
               </p>
 
               <div className="bg-white border border-gray-200 rounded-3xl p-6 mb-6">
                 <p className="eyebrow text-gray-500 mb-2">Peer-reviewed studie</p>
                 <h3 className="serif text-lg text-gray-900 font-medium mb-2">Jones, Pelham, Carvallo &amp; Mirenberg (2004) — Implicit egotism</h3>
                 <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-3">
-                  Studie publikovaná v <em className="italic">Journal of Personality and Social Psychology</em> 87(5), 665–683 (PMID 15535778), provedla 7 studií zkoumajících „implicit egotism" — tendenci preferovat věci, které se nám podobají.
+                  Studie publikovaná v <em className="italic">Journal of Personality and Social Psychology</em> 87(5), 665–683 (PMID 15535778), provedla 7 studií zkoumajících tendenci preferovat osoby, které se nám podobají.
                 </p>
                 <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-3">
-                  <strong className="text-gray-900 font-medium">Co studie skutečně ukazuje:</strong> Studies 1–4 (archivní záznamy o sňatcích): lidé jsou disproporčně pravděpodobně manželé těch, jejichž <em className="italic">jméno</em> se podobá jejich vlastnímu. Studies 5–7 (experiment): mírná tendence k atraktivitě podle podobných číselných kódů.
-                </p>
-                <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-3">
-                  <strong className="text-gray-900 font-medium">Co to NENÍ:</strong> Není to validace numerologické kompatibility. Marriage-records evidence se týká <em className="italic">podobnosti jmen</em>, ne kompatibility podle data narození. Birthday-digit attraction byla v experimentu s arbitrárními kódy, ne v reálných manželstvích.
+                  Studie ukázala, že lidé mají větší pravděpodobnost být manželé těch, jejichž jméno se podobá jejich vlastnímu. A existuje mírná tendence k atraktivitě podle podobných číselných kódů.
                 </p>
                 <p className="text-sm text-gray-500 italic">
-                  Cosmatch tuto studii cituje pro férové „peer-reviewed psychology footing", ale netvrdí, že validuje numerologii. Validuje pouze obecný princip „lidé se přitahují k tomu, co je jim podobné" — což je intuitivní.
+                  Není to sice validace numerologické kompatibility, protože se týká podobnosti jmen, ne kompatibility podle data narození. Ale validuje jakýsi obecný princip, že „lidi přitahují osoby, které jsou jim podobné".
                 </p>
               </div>
 
@@ -429,7 +416,7 @@ export default function JakPocitamePage() {
                 <p className="eyebrow text-gray-500 mb-2">Skeptická literatura</p>
                 <h3 className="serif text-lg text-gray-900 font-medium mb-2">Numerologie jako „paranormal belief"</h3>
                 <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-3">
-                  Lindeman &amp; Aarnio (2007) v <em className="italic">Journal of Research in Personality</em> 41(4) klasifikují numerologii a astrologii jako kategorie paranormal-belief. Robert T. Carroll v <em className="italic">The Skeptic's Dictionary</em> (Wiley, 2003) charakterizuje numerologii jako pseudovědu, protože její tvrzení „nelze testovat — jsou tak vágní a tvárné, že cokoli relevantního lze vejít do té teorie."
+                  Lindeman &amp; Aarnio (2007) v <em className="italic">Journal of Research in Personality</em> 41(4) klasifikují numerologii a astrologii jako kategorie paranormálních přesvědčení. Robert T. Carroll v <em className="italic">The Skeptic's Dictionary</em> (Wiley, 2003) charakterizuje numerologii jako pseudovědu, protože její tvrzení „nelze testovat — jsou tak vágní a tvárné, že cokoli relevantního lze do této teorie nacpat."
                 </p>
                 <p className="text-gray-700 text-[0.95rem] leading-relaxed">
                   Cosmatch tyto kritiky neignoruje — souhlasíme, že popisy archetypů jsou natolik obecné, aby v nich každý našel kus sebe (Barnumův efekt). Hodnota není v predikci, ale v tom, k jakému rozhovoru ti tradice otevírá dveře.
@@ -440,28 +427,11 @@ export default function JakPocitamePage() {
                 <p className="eyebrow text-gray-500 mb-2">Historický corrective</p>
                 <h3 className="serif text-lg text-gray-900 font-medium mb-2">Pythagoras vs. „pythagorovská numerologie"</h3>
                 <p className="text-gray-700 text-[0.95rem] leading-relaxed">
-                  Walter Burkert v <em className="italic">Lore and Science in Ancient Pythagoreanism</em> (Harvard University Press, 1972) — standardní akademický text k tématu — ukazuje, že <strong className="text-gray-900 font-medium">historický Pythagoras a jeho škola byli matematičtí filozofové, ne numerologičtí věštci</strong>. „Pythagorovská numerologie" používaná dnes je rekonstrukce 19.–20. století (Theosophie, Balliett, Cheiro), ne přímá linie z antiky. Cosmatch toto otevřeně přiznává — Pythagoras je historický inspirační bod, ne přímý zdroj výpočetní metody.
+                  Walter Burkert v <em className="italic">Lore and Science in Ancient Pythagoreanism</em> (Harvard University Press, 1972), což je standardní akademický text k tématu, ukazuje, že Pythagoras a jeho škola byli matematičtí filozofové, ne numerologičtí věštci. „Pythagorovská numerologie" používaná dnes je ale rekonstrukce z 19.–20. století (Theosophie, Balliett, Cheiro), ne přímá linie z antiky. Pythagoras je historický inspirační bod, ne přímý zdroj výpočetní metody.
                 </p>
               </div>
             </div>
           </div>
-        </section>
-
-        <hr className="rule mb-16" />
-
-        {/* IX. Honest disclaimer */}
-        <section className="bg-white border border-gray-200 rounded-3xl p-8 mb-16">
-          <p className="eyebrow text-pink-500 mb-3">Co je v textu důležité přiznat</p>
-          <h2 className="serif text-xl text-gray-900 font-medium mb-3">Není jedna „pravá" numerologie.</h2>
-          <p className="text-gray-700 leading-[1.75] text-[0.95rem] mb-3">
-            Numerologie je <strong className="text-gray-900 font-medium">nefalsifikovatelná interpretační tradice</strong>, ne věda. Žádná z popsaných metod nebyla validována kontrolovanými studiemi. Cosmatch ji bere jako <em className="italic">nástroj sebepoznání a začátku rozhovoru</em>, ne jako predikci.
-          </p>
-          <p className="text-gray-700 leading-[1.75] text-[0.95rem] mb-3">
-            Stejné datum narození dá v různých systémech různá čísla. Pro 23. 7. 1992: Cheiro říká 5, Decoz (Cosmatch) říká 6, Millman říká 33/6, Phillipsova mřížka by četla úplně jinak. Žádný výsledek není „správnější" než ostatní — všechny jsou jeden způsob, jak strukturovat sebereflexi.
-          </p>
-          <p className="text-gray-700 leading-[1.75] text-[0.95rem]">
-            Část pocitu „tohle sedí přesně!" je dokumentovaný psychologický jev zvaný <strong className="text-gray-900 font-medium">Barnumův/Forerův efekt</strong> (Forer 1949 — 39 studentů ohodnotilo identický popis osobnosti známkou 4,26 z 5,0 jako „přesně mě"). To neznamená, že numerologie nemá hodnotu — má, ale jako jazyk pro sebereflexi a rozhovor s partnerem, ne jako věštba.
-          </p>
         </section>
 
         {/* CTA */}
@@ -471,7 +441,7 @@ export default function JakPocitamePage() {
             Zjisti své životní číslo.
           </h2>
           <p className="text-gray-600 leading-relaxed mb-8 text-[1.0625rem]">
-            Zadej datum narození a Cosmatch ti za 30 sekund spočítá životní číslo přesně podle Decoz three-cycle metody — i s archetypem a nejlepšími shodami.
+            Zadej datum narození a Cosmatch ti spočítá životní číslo přesně podle Decoz three-cycle metody, i s archetypem a nejlepšími shodami.
           </p>
           <Link href="/test" className="inline-flex items-center justify-center bg-gray-900 text-white px-8 py-4 rounded-full text-base font-medium hover:bg-gray-800 transition">
             Spustit kvíz
@@ -492,7 +462,7 @@ export default function JakPocitamePage() {
             </Link>
             <Link href="/zdroje-numerologie" className="block bg-white border border-gray-200 hover:border-gray-900 rounded-2xl p-6 transition group">
               <p className="eyebrow text-gray-400 mb-2">Zdroje</p>
-              <h3 className="serif text-xl text-gray-900 font-medium mb-1 group-hover:text-pink-500 transition">13 zdrojů numerologie →</h3>
+              <h3 className="serif text-xl text-gray-900 font-medium mb-1 group-hover:text-pink-500 transition">14 zdrojů numerologie →</h3>
               <p className="text-gray-600 text-[0.95rem] leading-relaxed">Kompletní seznam autorů, na kterých Cosmatch staví — od Pythagora po Hay House.</p>
             </Link>
             <Link href="/jak-funguje-cosmatch" className="block bg-white border border-gray-200 hover:border-gray-900 rounded-2xl p-6 transition group">
