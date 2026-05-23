@@ -281,7 +281,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
   "9": {
     "name": "Idealista",
     "tagline": "Velkorysý, soucitný, globálně orientovaný.",
-    "short": "Číslo 9 je Idealista — velkorysý vizionář, který cítí utrpení světa a chce ho měnit. Soucitný, moudrý.",
+    "short": "Číslo 9 je Idealista — velkorysý vizionář, který cítí utrpení světa a chce ho měnit. Je soucitný a moudrý.",
     "traits_pos": [
       "Hluboká empatie",
       "Globální vidění",
@@ -293,7 +293,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
       "Tendence k zklamání z reálných lidí",
       "Občas se cítí osamělý"
     ],
-    "love": "Idealista potřebuje partnera, který sdílí tvé hodnoty. Ideální shoda: 1 (Průkopník), 2 (Diplomat), 3 (Tvůrce) — souznění hodnot a vzájemný respekt.",
+    "love": "Idealista potřebuje partnera, který sdílí stejné hodnoty. Ideální shoda: 1 (Průkopník), 2 (Diplomat), 3 (Tvůrce), u kterých najde souznění hodnot a vzájemný respekt.",
     "shadow": "Přílišný idealismus vede ke zklamání z reálných partnerů, kteří nejsou dokonalí.",
     "career": "Aktivista, charitativní pracovník, učitel, doktor, umělec, spisovatel, kněz.",
     "celebrities": [
@@ -314,7 +314,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
   "11": {
     "name": "Vizionář",
     "tagline": "Mistrovské číslo — intuice a inspirace.",
-    "short": "Master číslo 11 je Vizionář — mimořádně intuitivní, citlivý a inspirativní. Vidí věci, které ostatní přehlédnou.",
+    "short": "Master číslo 11 je Vizionář, který je mimořádně intuitivní, citlivý a inspirativní. Vidí věci, které ostatní přehlédnou.",
     "traits_pos": [
       "Vysoce vyvinutá intuice",
       "Inspiruje k duchovnímu růstu",
@@ -326,8 +326,8 @@ export const ARCHETYPES: Record<string, Archetype> = {
       "Náchylný k úzkosti",
       "Občas oddělen od reality"
     ],
-    "love": "Vizionář potřebuje hluboké duševní a duchovní spojení. Povrchní vztahy tě vyčerpávají. Ideální: 2 (Diplomat), 6 (Pečovatel), 9 (Idealista).",
-    "shadow": "Příliš vysoká citlivost způsobuje přetížení a ústup ze vztahů.",
+    "love": "Vizionář potřebuje hluboké duchovní spojení. Povrchní vztahy ho vyčerpávají. Ideální jsou pro něj: 2 (Diplomat), 6 (Pečovatel), 9 (Idealista).",
+    "shadow": "Příliš vysoká citlivost způsobuje přetížení a zklamání ve vztazích.",
     "career": "Léčitel, terapeut, umělec, učitel, kněz, mystik, psycholog.",
     "celebrities": [
       "Tomáš Baťa (3. 4. 1876)",
@@ -347,7 +347,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
   "22": {
     "name": "Architekt",
     "tagline": "Mistrovské číslo — stavitel světů.",
-    "short": "Master číslo 22 je Architekt — mistrovský stavitel lidí, systémů a světů. Vize plus praktičnost.",
+    "short": "Master číslo 22 je Architekt — mistrovský stavitel systémů a světů. Má velké vize a je praktický.",
     "traits_pos": [
       "Vize plus exekuce",
       "Schopen stavět ze snů reality",
@@ -359,8 +359,8 @@ export const ARCHETYPES: Record<string, Archetype> = {
       "Workoholismus",
       "Podceňuje partnera, protože je tak schopný sám"
     ],
-    "love": "Architekt potřebuje partnera, který stojí pevně na zemi, ale dokáže snít s tebou. Ideální: 4 (Stavitel), 8 (Vůdce), 6 (Pečovatel).",
-    "shadow": "Obsese s dokonalostí zanechává osobní vztahy v ústraní. Lekce: dovolit nedokonalost.",
+    "love": "Architekt potřebuje partnera, který stojí pevně na zemi, ale dokáže snít s ním. Ideální jsou pro něj: 4 (Stavitel), 8 (Vůdce), 6 (Pečovatel).",
+    "shadow": "Obsese s dokonalostí zanechává osobní vztahy v ústraní. Lekce: dovol sobě i ostatním být nedokonalí.",
     "career": "Architekt, inženýr, CEO, vědec, podnikatel, finančník.",
     "celebrities": [
       "Antonín Dvořák (8. 9. 1841)",
@@ -379,8 +379,8 @@ export const ARCHETYPES: Record<string, Archetype> = {
   },
   "33": {
     "name": "Mistr lásky",
-    "tagline": "Mistrovské číslo — léčitel a soucit.",
-    "short": "Master číslo 33 je Mistr lásky — ztělesnění soucitu a bezpodmínečné lásky. Jen 0,3 % populace.",
+    "tagline": "Mistrovské číslo — léčitel, který soucítí.",
+    "short": "Master číslo 33 je Mistr lásky — ztělesnění soucitu a bezpodmínečné lásky. Má ho jen 0,3 % populace.",
     "traits_pos": [
       "Bezpodmínečná láska",
       "Léčivá přítomnost",
@@ -392,9 +392,9 @@ export const ARCHETYPES: Record<string, Archetype> = {
       "Tendence k vyhoření",
       "Bere problémy světa na sebe"
     ],
-    "love": "Mistr lásky potřebuje partnera, který je schopen přijmout hloubku tvé lásky a opětovat ji. Ideální: 6 (Pečovatel), 9 (Idealista), 11 (Vizionář).",
-    "shadow": "Dávání bez hranic vede k úplnému vyčerpání. Lekce: péče o sebe je akt lásky.",
-    "career": "Léčitel, terapeut, kněz, učitel, sociální pracovník, humanitarian.",
+    "love": "Mistr lásky potřebuje partnera, který je schopen přijmout hloubku jeho lásky a opětovat ji. Ideální: 6 (Pečovatel), 9 (Idealista), 11 (Vizionář).",
+    "shadow": "Dávání bez hranic vede k úplnému vyčerpání. Životní lekcí je, že naučit se pečovat o sebe je také akt lásky.",
+    "career": "Léčitel, terapeut, kněz, učitel, sociální pracovník, humanitární pracovník.",
     "celebrities": [
       "Lucie Bílá (7. 4. 1966)",
       "Meryl Streep (22. 6. 1949)"
