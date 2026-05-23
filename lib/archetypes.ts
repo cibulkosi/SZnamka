@@ -357,7 +357,7 @@ export const ARCHETYPE_SOURCES = [
   {
     author: 'Gary Goldschneider + Joost Elffers',
     work: 'The Secret Language of Birthdays (Penguin Studio, 1994)',
-    role: 'Pop-culture „personology" framework založený na pozorování 14 000 osob — 366 denních profilů kombinujících astrologii, numerologii a tarot. Inspirace pro pojetí denního profilu v Cosmatch.',
+    role: 'Pop-culture „personology" framework založený na pozorování 14 000 osob. Inspirace pro celkové pojetí archetypu v Cosmatch.',
   },
   {
     author: 'Saffi Crawford + Geraldine Sullivan',
