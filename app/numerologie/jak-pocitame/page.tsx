@@ -342,10 +342,66 @@ export default function JakPocitamePage() {
 
         <hr className="rule mb-16" />
 
-        {/* VII. Co říká věda */}
+        {/* VI.5 Karmické dluhy */}
         <section className="mb-16">
           <div className="grid grid-cols-[auto,1fr] gap-x-8 sm:gap-x-12">
             <div className="roman text-3xl sm:text-4xl text-pink-500 leading-none pt-2 select-none">VII</div>
+            <div>
+              <h2 className="serif text-2xl sm:text-3xl text-gray-900 font-medium mb-5 leading-tight">Karmické dluhy</h2>
+              <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
+                <strong className="text-gray-900 font-medium">Karmické dluhy</strong> jsou specifické pre-reduction hodnoty (13, 14, 16, 19), které se mohou objevit při výpočtu životního čísla. Reprezentují „lekce z minulých životů", které vrhají stín na finální archetyp.
+              </p>
+              <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
+                Goodwin (1981), Decoz i Numerology.com je dokumentují jako důležitý modifikátor osobnosti. Přibližně <strong className="text-gray-900 font-medium">20–30 % populace</strong> má alespoň jeden karmický dluh v některé z core čísel.
+              </p>
+
+              <div className="bg-white border border-gray-200 rounded-3xl overflow-hidden mb-4">
+                <table className="w-full text-sm">
+                  <thead className="bg-gray-50 border-b border-gray-100">
+                    <tr className="text-left text-xs uppercase tracking-wider text-gray-500">
+                      <th className="px-4 py-3 font-medium">Dluh</th>
+                      <th className="px-4 py-3 font-medium">Redukce</th>
+                      <th className="px-4 py-3 font-medium">Lekce</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100">
+                    <tr>
+                      <td className="px-4 py-3 text-gray-900 font-medium">13</td>
+                      <td className="px-4 py-3 text-gray-600 text-xs">→ 4 (Stavitel)</td>
+                      <td className="px-4 py-3 text-gray-600 text-xs">Lekce o lenosti, vyhýbání se práci, povrchnosti</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-3 text-gray-900 font-medium">14</td>
+                      <td className="px-4 py-3 text-gray-600 text-xs">→ 5 (Dobrodruh)</td>
+                      <td className="px-4 py-3 text-gray-600 text-xs">Lekce o nadměrné svobodě, excesech, neukotvenosti</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-3 text-gray-900 font-medium">16</td>
+                      <td className="px-4 py-3 text-gray-600 text-xs">→ 7 (Hledač)</td>
+                      <td className="px-4 py-3 text-gray-600 text-xs">Lekce o egu, pýše, zneužití intimity</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-3 text-gray-900 font-medium">19</td>
+                      <td className="px-4 py-3 text-gray-600 text-xs">→ 1 (Průkopník)</td>
+                      <td className="px-4 py-3 text-gray-600 text-xs">Lekce o zneužití moci, manipulaci</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <p className="text-sm text-gray-500 italic">
+                Cosmatch detekuje karmické dluhy automaticky z tvého data narození. Pokud máš dluh, zobrazí se na profilové stránce tvého životního čísla jako další vrstva sebepoznání.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <hr className="rule mb-16" />
+
+        {/* VIII. Co říká věda */}
+        <section className="mb-16">
+          <div className="grid grid-cols-[auto,1fr] gap-x-8 sm:gap-x-12">
+            <div className="roman text-3xl sm:text-4xl text-pink-500 leading-none pt-2 select-none">VIII</div>
             <div>
               <h2 className="serif text-2xl sm:text-3xl text-gray-900 font-medium mb-5 leading-tight">Co o tom říká věda</h2>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
@@ -393,7 +449,7 @@ export default function JakPocitamePage() {
 
         <hr className="rule mb-16" />
 
-        {/* VIII. Honest disclaimer */}
+        {/* IX. Honest disclaimer */}
         <section className="bg-white border border-gray-200 rounded-3xl p-8 mb-16">
           <p className="eyebrow text-pink-500 mb-3">Co je v textu důležité přiznat</p>
           <h2 className="serif text-xl text-gray-900 font-medium mb-3">Není jedna „pravá" numerologie.</h2>
