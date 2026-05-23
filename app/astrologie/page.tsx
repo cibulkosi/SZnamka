@@ -335,9 +335,19 @@ export default function AstrologiePage() {
                 </table>
               </div>
 
-              <p className="text-xs text-gray-500 italic mb-6">
+              <p className="text-xs text-gray-500 italic mb-4">
                 Jak číst rozsahy: hvězdy se kvůli precesi posouvají vůči tropickému zodiaku ~1° za 72 let. Pro narozené 1950–1980 vyhledávej spodní hranici rozsahu, pro narozené po roce 2000 horní hranici. <strong className="text-gray-700 font-medium not-italic">Regulus</strong> je unikátní v tom, že 28. 11. 2011 přešel ze Lva do Panny — pro narozené před tímto datem stojí na 29° Lva, pro narozené po něm na 0° Panny.
               </p>
+
+              <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 mb-6">
+                <p className="eyebrow text-amber-700 mb-2">Pro koho kniha platí</p>
+                <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-3">
+                  Kniha <em className="italic">The Power of Birthdays</em> (1998) uvádí pozice fixních hvězd platné <strong className="text-gray-900 font-medium">„between 1930 and 2000"</strong>. Pro tuto generaci (Boomers, Gen X, starší Millennials) platí kniha přímo. <strong className="text-gray-900 font-medium">Pro mladší Millennials a Gen Z (2000–2025)</strong> kniha stále platí z ~95 % — 4 z 5 astrologických komponent (znamení, dekanát, stupeň, planetární vládce) se s časem nemění, hvězdy se posunuly jen o 0,3°–0,8°, což zůstává v orbu konjunkce ±1°. Jediné dva skoky znamení v relevantním období jsou <strong className="text-gray-900 font-medium">Regulus</strong> (Lev → Panna, 28. 11. 2011) a <strong className="text-gray-900 font-medium">Sirius</strong> (14° → 15° Raka, ~1993).
+                </p>
+                <p className="text-gray-700 text-[0.95rem] leading-relaxed">
+                  Pro Cosmatch kompatibilitu to znamená: <strong className="text-gray-900 font-medium">žádná zásadní změna pro celou cílovku 1960–2008</strong>. Knižní orby a interpretace fungují konzistentně napříč generacemi. Hlubší přepočet bude potřeba až kolem roku 2070, kdy se hvězdy posunou o celý stupeň.
+                </p>
+              </div>
 
               <h3 className="serif text-lg text-gray-900 font-medium mb-3 mt-6">Další významné fixní hvězdy</h3>
               <div className="bg-white border border-gray-200 rounded-3xl overflow-hidden mb-4">
