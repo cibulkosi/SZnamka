@@ -62,7 +62,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
       "Vyhýbá se konfliktům",
       "Náchylný k pocitům odmítnutí"
     ],
-    "love": "Diplomat potřebuje stabilního, milujícího partnera, který oceňuje jeho citlivost. Nejlépe si rozumí se 4 (Stavitel), 6 (Pečovatel), 8 (Vůdce) díky kombinaci stability a hloubky.",
+    "love": "Diplomat potřebuje stabilního, milujícího partnera, který oceňuje jeho citlivost. Nejlépe si rozumí se 4 (Stavitel), 6 (Pečovatel), 9 (Idealista) díky kombinaci stability a hloubky.",
     "shadow": "Máš tendenci potlačovat své vlastní potřeby pro blaho ostatních. Tvou lekcí je naučit se říkat „ne\".",
     "career": "Psycholog, terapeut, mediátor, učitel, zdravotník, diplomat.",
     "celebrities": [
@@ -95,7 +95,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
       "Občas povrchní",
       "Vyhýbá se těžkým rozhovorům"
     ],
-    "love": "Tvůrce potřebuje partnera, který oceňuje jeho energii a dává mu prostor zářit. Nejlépe se páruje s 1 (Průkopník), 5 (Dobrodruh), 9 (Idealista), s nimiž vytváří energetická souznění.",
+    "love": "Tvůrce potřebuje partnera, který oceňuje jeho energii a dává mu prostor zářit. Nejlépe se páruje s 1 (Průkopník), 5 (Dobrodruh), 7 (Mudrc), s nimiž vytváří energetická souznění.",
     "shadow": "Tendence vyhýbat se hlubší zodpovědnosti komplikuje dlouhodobé vztahy. Tvojí lekcí je naučit se dělat věci více do hloubky a méně povrchně.",
     "career": "Umělec, spisovatel, herec, copywriter, marketér, designér, učitel.",
     "celebrities": [
@@ -194,7 +194,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
       "Občas přílišný kontrolér",
       "Bere si problémy druhých na sebe"
     ],
-    "love": "Pečovatel potřebuje partnera, který umí přijímat lásku stejně hluboce, jako ji dává. Ideální shoda: 2 (Diplomat), 4 (Stavitel), 9 (Idealista).",
+    "love": "Pečovatel potřebuje partnera, který umí přijímat lásku stejně hluboce, jako ji dává. Ideální shoda: 1 (Průkopník), 2 (Diplomat), 9 (Idealista) — kombinace lásky, sdíleného soucitu a porozumění.",
     "shadow": "Přílišné pečování vede k sebeobětování a tiché zatrpklosti. Lekce: pečuj nejdřív o sebe.",
     "career": "Zdravotník, učitel, sociální pracovník, terapeut, designér interiéru, kuchař.",
     "celebrities": [
@@ -227,7 +227,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
       "Občas chladný v emocích",
       "Přílišná sebeanalýza"
     ],
-    "love": "Mudrc potřebuje partnera, který respektuje tvou potřebu ticha a dokáže vést smysluplné rozhovory. Ideální: 5 (Dobrodruh), 9 (Idealista), 11 (Vizionář).",
+    "love": "Mudrc potřebuje partnera, který respektuje tvou potřebu ticha a dokáže vést smysluplné rozhovory. Ideální: 3 (Tvůrce), 5 (Dobrodruh), 11 (Vizionář).",
     "shadow": "Izolace a přílišná sebeanalýza brání skutečné emocionální blízkosti. Lekce: dovolit někomu vstoupit.",
     "career": "Vědec, filozof, psycholog, programátor, výzkumník, kněz, spisovatel.",
     "celebrities": [
@@ -293,7 +293,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
       "Tendence k zklamání z reálných lidí",
       "Občas se cítí osamělý"
     ],
-    "love": "Idealista potřebuje partnera, který sdílí tvé hodnoty. Ideální shoda: 3 (Tvůrce), 6 (Pečovatel), 9 (Idealista) — souznění hodnot.",
+    "love": "Idealista potřebuje partnera, který sdílí tvé hodnoty. Ideální shoda: 1 (Průkopník), 2 (Diplomat), 3 (Tvůrce) — souznění hodnot a vzájemný respekt.",
     "shadow": "Přílišný idealismus vede ke zklamání z reálných partnerů, kteří nejsou dokonalí.",
     "career": "Aktivista, charitativní pracovník, učitel, doktor, umělec, spisovatel, kněz.",
     "celebrities": [
@@ -326,7 +326,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
       "Náchylný k úzkosti",
       "Občas oddělen od reality"
     ],
-    "love": "Vizionář potřebuje hluboké duševní a duchovní spojení. Povrchní vztahy tě vyčerpávají. Ideální: 2 (Diplomat), 6 (Pečovatel), 7 (Mudrc).",
+    "love": "Vizionář potřebuje hluboké duševní a duchovní spojení. Povrchní vztahy tě vyčerpávají. Ideální: 2 (Diplomat), 6 (Pečovatel), 9 (Idealista).",
     "shadow": "Příliš vysoká citlivost způsobuje přetížení a ústup ze vztahů.",
     "career": "Léčitel, terapeut, umělec, učitel, kněz, mystik, psycholog.",
     "celebrities": [
@@ -392,7 +392,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
       "Tendence k vyhoření",
       "Bere problémy světa na sebe"
     ],
-    "love": "Mistr lásky potřebuje partnera, který je schopen přijmout hloubku tvé lásky a opětovat ji. Ideální: 6 (Pečovatel), 9 (Idealista), 3 (Tvůrce).",
+    "love": "Mistr lásky potřebuje partnera, který je schopen přijmout hloubku tvé lásky a opětovat ji. Ideální: 6 (Pečovatel), 9 (Idealista), 11 (Vizionář).",
     "shadow": "Dávání bez hranic vede k úplnému vyčerpání. Lekce: péče o sebe je akt lásky.",
     "career": "Léčitel, terapeut, kněz, učitel, sociální pracovník, humanitarian.",
     "celebrities": [
