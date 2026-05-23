@@ -73,7 +73,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
     "compatible": [
       4,
       6,
-      8
+      9
     ],
     "challenging": [
       5,
@@ -106,7 +106,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
     "compatible": [
       1,
       5,
-      9
+      7
     ],
     "challenging": [
       4,
@@ -203,8 +203,8 @@ export const ARCHETYPES: Record<string, Archetype> = {
       "Albert Einstein (14. 3. 1879)"
     ],
     "compatible": [
+      1,
       2,
-      4,
       9
     ],
     "challenging": [
@@ -236,8 +236,8 @@ export const ARCHETYPES: Record<string, Archetype> = {
       "Olga Havlová (11. 7. 1933)"
     ],
     "compatible": [
+      3,
       5,
-      9,
       11
     ],
     "challenging": [
@@ -302,9 +302,9 @@ export const ARCHETYPES: Record<string, Archetype> = {
       "Karolina Plíšková (21. 3. 1992)"
     ],
     "compatible": [
-      3,
-      6,
-      9
+      1,
+      2,
+      3
     ],
     "challenging": [
       2,
@@ -337,7 +337,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
     "compatible": [
       2,
       6,
-      7
+      9
     ],
     "challenging": [
       4,
@@ -369,8 +369,8 @@ export const ARCHETYPES: Record<string, Archetype> = {
     ],
     "compatible": [
       4,
-      8,
-      6
+      6,
+      8
     ],
     "challenging": [
       3,
@@ -402,7 +402,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
     "compatible": [
       6,
       9,
-      3
+      11
     ],
     "challenging": [
       1,
