@@ -1,7 +1,6 @@
-
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ARCHETYPES, LIFE_PATH_NUMBERS } from './zivotni-cislo-1/data'
+import { LIFE_PATH_NUMBERS } from './zivotni-cislo-1/data'
 
 const TITLE = 'Numerologie — Životní čísla, kompatibilita a master čísla | Cosmatch'
 const DESC = 'Kompletní průvodce numerologií v češtině. 12 životních čísel, kompatibilita partnerů, master čísla, numerologická mřížka. Postaveno na knize The Power of Birthdays a české tradici Jitky Kadlecové.'
@@ -26,7 +25,7 @@ const jsonLd = {
       description: DESC,
       author: { '@type': 'Person', name: 'Simona Cibulková' },
       publisher: { '@type': 'Organization', name: 'Cosmatch', logo: { '@type': 'ImageObject', url: 'https://cosmatch.cz/icon-512.png' } },
-      datePublished: '2026-05-16', dateModified: '2026-05-16',
+      datePublished: '2026-05-16', dateModified: '2026-05-23',
       mainEntityOfPage: { '@type': 'WebPage', '@id': URL },
       inLanguage: 'cs-CZ',
     },
@@ -38,6 +37,22 @@ const jsonLd = {
       ],
     },
   ],
+}
+
+// Per-page custom taglines (override ARCHETYPES.tagline pro hub view)
+const HUB_TAGLINES: Record<string, { name: string; tagline: string }> = {
+  '1':  { name: 'Průkopník',   tagline: 'Nezávislý, ambiciózní, leader.' },
+  '2':  { name: 'Diplomat',    tagline: 'Empatický, intuitivní, vyhledávající harmonii.' },
+  '3':  { name: 'Tvůrce',      tagline: 'Charismatický a expresivní člověk, který je plný energie.' },
+  '4':  { name: 'Stavitel',    tagline: 'Spolehlivý, systematický, věrný.' },
+  '5':  { name: 'Dobrodruh',   tagline: 'Svobodný duch, milovník změny.' },
+  '6':  { name: 'Pečovatel',   tagline: 'Láskyplný, zodpovědný, orientovaný na rodinu.' },
+  '7':  { name: 'Hledač',      tagline: 'Analytický, hloubavý, spirituální.' },
+  '8':  { name: 'Vůdce',       tagline: 'Ambiciózní, mocný, orientovaný na výsledky.' },
+  '9':  { name: 'Idealista',   tagline: 'Velkorysý, soucitný, globálně orientovaný.' },
+  '11': { name: 'Vizionář',    tagline: 'Mistrovské číslo — intuice a inspirace.' },
+  '22': { name: 'Architekt',   tagline: 'Mistrovské číslo — stavitel světů.' },
+  '33': { name: 'Mistr lásky', tagline: 'Mistrovské číslo — léčitel, který soucítí.' },
 }
 
 export default function NumerologiePillarPage() {
@@ -54,12 +69,12 @@ export default function NumerologiePillarPage() {
         <header className="mb-16">
           <p className="eyebrow text-pink-500 mb-6">Průvodce · 8 min čtení</p>
           <h1 className="serif-display text-5xl sm:text-6xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-8">
-            Numerologie<br/>v <em className="italic text-pink-500">jednom průvodci</em>.
+            Průvodce<br/><em className="italic text-pink-500">numerologie</em>.
           </h1>
           <hr className="rule w-12 border-gray-900 mb-8" />
           <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
             Numerologie je systém interpretace čísel s tisíciletou tradicí. V Cosmatch ji používáme
-            k výpočtu kompatibility mezi dvěma daty narození — podle 12 archetypů a 366 denních profilů.
+            jako součást výpočtu kompatibility mezi dvěma daty narození.
           </p>
         </header>
 
@@ -70,18 +85,17 @@ export default function NumerologiePillarPage() {
             Co je numerologie?
           </h2>
           <p className="text-gray-800 leading-[1.75] text-[1.0625rem] dropcap mb-4">
-            Numerologie je studium symbolického významu čísel — a jejich vlivu na osobnost,
+            Numerologie je studium symbolického významu čísel a jejich vlivu na osobnost,
             vztahy a životní cestu. Její moderní podoba se připisuje Pythagorovi (6. století př. n. l.),
             který tvrdil, že vesmír funguje podle matematických principů.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-            Cosmatch numerologii neprezentuje jako vědu — ale jako framework pro sebepoznání.
-            Funguje stejně jako MBTI nebo Enneagram: dává Ti strukturu, jak lépe rozumět vlastním vzorcům
-            ve vztazích.
+            Cosmatch numerologii neprezentuje jako vědu, ale jako framework pro sebepoznání.
+            Dává Ti strukturu, jak lépe rozumět vlastním vzorcům ve vztazích.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
-            <strong className="text-gray-900 font-medium">43 % uživatelů internetu v Česku</strong> věří horoskopům, mezi ženami-uživatelkami internetu je to <strong className="text-gray-900 font-medium">56 %</strong> (Nielsen Admosphere).
-            Numerologie je v Česku silný kulturní rámec — Cosmatch je první aplikace, která ho propojí s reálnou seznamkou.
+            <strong className="text-gray-900 font-medium">43 % uživatelů internetu v Česku</strong> věří horoskopům, mezi uživatelkami internetu je to <strong className="text-gray-900 font-medium">56 %</strong> (Nielsen Admosphere).
+            Numerologie má v Česku silný kulturní rámec a Cosmatch je první aplikace, která ho propojí s reálnou seznamkou.
           </p>
         </section>
 
@@ -94,13 +108,13 @@ export default function NumerologiePillarPage() {
             Životní čísla.
           </h2>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-8">
-            Tvoje životní číslo získáš součtem všech číslic data narození, redukovaným na jedno (nebo
-            master číslo 11, 22, 33). Příklad: 23. 7. 1992 → 2+3+7+1+9+9+2 = 33.
+            Tvoje životní číslo získáš součtem všech číslic data narození, redukovaným na jedno číslo
+            (nebo master číslo 11, 22, 33). Příklad: 23. 7. 1992 → 2+3+7+1+9+9+2 = 33.
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {LIFE_PATH_NUMBERS.map(n => {
-              const a = ARCHETYPES[n]
+              const a = HUB_TAGLINES[n]
               return (
                 <Link key={n} href={`/numerologie/zivotni-cislo-${n}`}
                   className="bg-white border border-gray-200 hover:border-gray-900 rounded-2xl p-5 transition group">
@@ -119,13 +133,13 @@ export default function NumerologiePillarPage() {
         <section className="mb-16">
           <p className="eyebrow text-gray-500 mb-4">Hlubší témata</p>
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-8">
-            Pokračuj v hloubce.
+            Zajímá Tě to? Čti dále…
           </h2>
           <div className="space-y-4">
             {[
-              ['/numerologie/jak-pocitame', 'Jak se počítá životní číslo', 'Decoz three-cycle metoda, historie od Balliett (1908), srovnání tří numerologických škol a krok-za-krokem výpočet.'],
-              ['/numerologie/master-cisla-11-22-33', 'Master čísla 11, 22, 33', 'Mistrovská čísla, která tvoří jen ~4 % populace. Intenzivnější vibrace, hlubší lekce.'],
-              ['/numerologie/numerologicka-mrizka', 'Numerologická mřížka', 'Co znamenají chybějící čísla v tvém datu narození a jak je doplnit.'],
+              ['/numerologie/jak-pocitame', 'Jak se počítá životní číslo', 'Decoz metoda, historie od Balliett (1908), srovnání tří numerologických škol a výpočet krok za krokem.'],
+              ['/numerologie/master-cisla-11-22-33', 'Master čísla 11, 22, 33', 'Mistrovská čísla, která mají jen ~4 % populace. Intenzivnější vibrace, hlubší lekce.'],
+              ['/numerologie/numerologicka-mrizka', 'Numerologická mřížka', 'Co znamenají chybějící čísla v Tvém datu narození a jak je doplnit.'],
               ['/kompatibilita-podle-data-narozeni', 'Kompatibilita podle data narození', 'Jak se počítá vztahová kompatibilita ze dvou dat narození.'],
               ['/numerologie-vztahy', 'Numerologie a vztahy', 'Článek o tom, proč se přitahuješ ke stejnému typu lidí.'],
               ['/jak-funguje-cosmatch', 'Jak funguje Cosmatch', 'Algoritmus, zdroje, metodologie.'],
@@ -143,10 +157,10 @@ export default function NumerologiePillarPage() {
         <section className="bg-white rounded-3xl border border-gray-100 p-10">
           <p className="eyebrow text-pink-500 mb-4">Začni u sebe</p>
           <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">
-            Zjisti své životní číslo za 30 sekund.
+            Zjisti své životní číslo za pár sekund.
           </h2>
           <p className="text-gray-600 leading-relaxed mb-8 text-[1.0625rem]">
-            Zadej datum narození a okamžitě uvidíš svůj numerologický archetyp.
+            Zadej datum narození a dozvíš se svůj numerologický archetyp.
           </p>
           <Link href="/test" className="inline-flex items-center justify-center bg-gray-900 text-white px-8 py-4 rounded-full text-base font-medium hover:bg-gray-800 transition">
             Spustit kvíz

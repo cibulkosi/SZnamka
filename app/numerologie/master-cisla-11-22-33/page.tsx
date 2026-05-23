@@ -1,4 +1,3 @@
-
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
@@ -22,7 +21,7 @@ export default function MasterCislaPage() {
         headline: TITLE, description: DESC,
         author: { '@type': 'Person', name: 'Simona Cibulková' },
         publisher: { '@type': 'Organization', name: 'Cosmatch', logo: { '@type': 'ImageObject', url: 'https://cosmatch.cz/icon-512.png' } },
-        datePublished: '2026-05-16', dateModified: '2026-05-16',
+        datePublished: '2026-05-16', dateModified: '2026-05-23',
         inLanguage: 'cs-CZ',
       })}} />
 
@@ -38,8 +37,8 @@ export default function MasterCislaPage() {
           </h1>
           <hr className="rule w-12 border-gray-900 mb-8" />
           <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
-            Master čísla — neboli mistrovská — jsou v numerologii nejintenzivnější vibrace.
-            Lidé s nimi tvoří jen ~4 % populace. Cítí víc, vědí víc, žijí intenzivněji.
+            Tato mistrovská čísla mají v numerologii nejintenzivnější vibrace. Má je jen ~4 % populace.
+            Podle numerologie cítí víc, vědí víc, žijí intenzivněji.
           </p>
         </header>
 
@@ -49,10 +48,12 @@ export default function MasterCislaPage() {
             Proč jsou „master“.
           </h2>
           <p className="text-gray-800 leading-[1.75] text-[1.0625rem] dropcap mb-4">
-            V tradiční numerologii redukujeme každý součet číslic data narození na jednu cifru (1–9). Jediné výjimky jsou 11, 22 a 33 — ta zůstávají nezredukovaná, protože nesou specifickou „mistrovskou“ vibraci.
+            V tradiční numerologii redukujeme každý součet číslic data narození na jednu cifru (1–9).
+            Jediné výjimky jsou 11, 22 a 33, ta zůstávají nezredukovaná, protože nesou specifickou „mistrovskou“ vibraci.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
-            Pokud máš 11, 22 nebo 33, nemusíš nutně být „lepší“ — ale Tvoje životní zkušenost bude pravděpodobně intenzivnější. Hlubší vrcholy, hlubší dna, vyšší citlivost.
+            Pokud máš 11, 22 nebo 33, nemusíš nutně být „lepší“, jen Tvoje životní zkušenosti budou
+            pravděpodobně intenzivnější. Můžeš zažívat vyšší vrcholy, hlubší pád a vyšší citlivost.
           </p>
         </section>
 
@@ -65,19 +66,24 @@ export default function MasterCislaPage() {
             Energetická vazba k základnímu číslu.
           </h2>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
-            Každé master číslo má svůj „mateřský“ základ — číslo, na které by se zredukovalo, kdybys master vibraci nepoužila. Master 11 = vyšší oktáva 2. Master 22 = vyšší oktáva 4. Master 33 = vyšší oktáva 6. V McCantsově zápisu se to píše „11/2“, „22/4“, „33/6“ — lomítko vyjadřuje právě tento vztah.
+            Každé master číslo má svůj „mateřský“ základ — číslo, na které by se zredukovalo, kdybys
+            master vibraci nepoužila. Master 11 je vyšší oktáva 2, Master 22 pak zase vyšší oktáva 4
+            a Master 33 vyšší oktáva 6. V McCantsově zápisu se to píše „11/2“, „22/4“, „33/6“ —
+            lomítko vyjadřuje právě tento vztah.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
-            V praxi to znamená, že lidé s master číslem sdílí jádrové vlastnosti se svým mateřským číslem — a navíc nesou intenzivnější vibraci, vyšší citlivost a vyšší potenciál. Pokud máš 11 a čteš si popis 2, najdeš se v něm — protože ho v sobě nosíš.
+            V praxi to znamená, že lidé s master číslem sdílí vlastnosti se svým mateřským číslem,
+            a k tomu nesou intenzivnější vibraci, vyšší citlivost a vyšší potenciál. Pokud máš 11
+            a čteš si popis 2, najdeš se v něm, protože ho v sobě nosíš.
           </p>
 
           <div className="bg-white border border-gray-200 rounded-3xl overflow-hidden">
             <table className="w-full text-sm">
               <thead className="bg-gray-50 border-b border-gray-100">
                 <tr className="text-left text-xs uppercase tracking-wider text-gray-500">
-                  <th className="px-5 py-3 font-medium">Master</th>
-                  <th className="px-5 py-3 font-medium">Mateřské</th>
-                  <th className="px-5 py-3 font-medium">Sdílené jádro</th>
+                  <th className="px-5 py-3 font-medium">Master číslo</th>
+                  <th className="px-5 py-3 font-medium">Mateřské číslo</th>
+                  <th className="px-5 py-3 font-medium">Sdílené vlastnosti</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
@@ -89,7 +95,7 @@ export default function MasterCislaPage() {
                 <tr>
                   <td className="px-5 py-4 text-gray-900 font-medium">22/4 — Architekt</td>
                   <td className="px-5 py-4 text-gray-700"><Link href="/numerologie/zivotni-cislo-4" className="text-pink-500 hover:underline">4 — Stavitel</Link></td>
-                  <td className="px-5 py-4 text-gray-600">disciplína, struktura, schopnost realizovat</td>
+                  <td className="px-5 py-4 text-gray-600">disciplína, schopnost realizovat</td>
                 </tr>
                 <tr>
                   <td className="px-5 py-4 text-gray-900 font-medium">33/6 — Léčitel</td>
@@ -109,7 +115,9 @@ export default function MasterCislaPage() {
             <p className="eyebrow text-purple-600 mb-3">11 · Vizionář</p>
             <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-3">Vizionář.</h2>
             <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-3">
-              Číslo 11 je intuitivní portál. Lidé s 11 vidí věci, které ostatní přehlédnou. Telepatie, prorocké sny, mimořádná emoční citlivost. Jejich úkolem je inspirovat k duchovnímu růstu.
+              Číslo 11 je intuitivní portál. Lidé s 11 vidí věci, které ostatní přehlédnou. Jsou to telepaté,
+              mívají prorocké sny nebo mimořádnou emoční citlivost. Jejich úkolem je inspirovat ostatní
+              k duchovnímu růstu.
             </p>
             <p className="text-sm text-pink-500 font-medium">Číst více o čísle 11 →</p>
           </Link>
@@ -123,7 +131,9 @@ export default function MasterCislaPage() {
             <p className="eyebrow text-amber-600 mb-3">22 · Architekt</p>
             <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-3">Architekt.</h2>
             <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-3">
-              Číslo 22 je vize plus exekuce. Lidé s 22 dokáží stavět ze snů reality — školy, firmy, světy. Workoholismus je jejich největším rizikem. Vlivné osobnosti často mají 22.
+              Číslo 22 je vize a její následné vyhotovení. Lidé s 22 dokáží stavět ze snů reality —
+              školy, firmy, světy. Workoholismus je jejich největší sílou i slabostí. Vlivné osobnosti
+              často mívají číslo 22.
             </p>
             <p className="text-sm text-pink-500 font-medium">Číst více o čísle 22 →</p>
           </Link>
@@ -137,7 +147,8 @@ export default function MasterCislaPage() {
             <p className="eyebrow text-rose-600 mb-3">33 · Mistr lásky</p>
             <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-3">Mistr lásky.</h2>
             <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-3">
-              Číslo 33 je nejvzácnější — jen 0,3 % populace. Bezpodmínečná láska a soucit. Léčí svou přítomností. Riziko: dávání bez hranic vede k vyhoření.
+              Číslo 33 je nejvzácnější, má ho jen 0,3 % populace. Poskytují bezpodmínečnou lásku a soucit,
+              léčí svou přítomností. Dávání bez hranic ale může vést k vyhoření.
             </p>
             <p className="text-sm text-pink-500 font-medium">Číst více o čísle 33 →</p>
           </Link>
@@ -151,10 +162,12 @@ export default function MasterCislaPage() {
             Master čísla ve vztazích.
           </h2>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-            Master čísla potřebují partnera, který zvládne jejich hloubku a intenzitu. Nejlepší shody jsou typicky další master čísla nebo silná 2 (Diplomat), 6 (Pečovatel) a 9 (Idealista).
+            Master čísla potřebují partnera, který zvládne jejich intenzitu. Nejlepší shody jsou typicky
+            další master čísla nebo silná 2 (Diplomat), 6 (Pečovatel) a 9 (Idealista).
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
-            Povrchní vztahy je vyčerpávají. Hledají transcendentní spojení — což může znít esotericky, ale prakticky znamená partnera, který dokáže být přítomný a otevřený.
+            Povrchní vztahy je vyčerpávají. Hledají transcendentní spojení, tedy partnera, který dokáže
+            být přítomný a otevřený.
           </p>
         </section>
 
@@ -164,7 +177,8 @@ export default function MasterCislaPage() {
             Jsi master číslo?
           </h2>
           <p className="text-gray-600 leading-relaxed mb-8 text-[1.0625rem]">
-            Zadej datum narození — Cosmatch Ti spočítá životní číslo + ukáže, jestli patříš mezi 4 % master.
+            Zadej datum narození a Cosmatch ti spočítá životní číslo a ukáže, jestli patříš mezi 4 %
+            lidí s master číslem.
           </p>
           <Link href="/test" className="inline-flex items-center justify-center bg-gray-900 text-white px-8 py-4 rounded-full text-base font-medium hover:bg-gray-800 transition">
             Spustit kvíz

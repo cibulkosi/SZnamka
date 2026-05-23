@@ -263,7 +263,7 @@ export default function TestPage() {
             <hr className="rule w-12 border-gray-900 mb-8" />
             <p className="text-lg text-gray-700 leading-relaxed mb-4">
               Tvoje datum narození zná odpověď. Cosmatch Ti za 30 sekund spočítá Tvůj
-              numerologický archetyp a ukáže Ti, jaký partner Ti skutečně sedí.
+              numerologický archetyp a ukáže Ti, jaký partner se k Tobě skutečně hodí.
             </p>
             <p className="text-gray-500 leading-relaxed mb-12">
               Zdarma. Bez registrace. Nemusíš se přihlašovat, pokud nechceš.
@@ -277,7 +277,7 @@ export default function TestPage() {
             </button>
 
             <p className="text-xs text-gray-400 text-center mt-6">
-              Cosmatch je první česká seznamka, která Tě páruje podle data narození.
+              Cosmatch je první česká seznamka, která páruje lidi podle data narození.
             </p>
           </div>
         )}

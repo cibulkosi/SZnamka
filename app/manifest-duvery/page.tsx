@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: 'Sedm věcí, ke kterým se Cosmatch zavazuje vůči uživatelům. Žádné falešné zprávy, žádné reklamy, žádné prodávání dat.',
 }
 
-type Sublet = { title: string; body: string }
+type Sublet = { title: string; body: string; icon?: 'verified' }
 type Principle = {
   numeral: string
   title: string
@@ -27,20 +27,20 @@ const principles: Principle[] = [
   },
   {
     numeral: 'III',
-    title: 'Žádné falše',
+    title: 'Žádné falešné notifikace a profily',
     body: 'Tři způsoby, kterými Cosmatch nehraje na pověru ani na fasádu:',
     sublets: [
       {
         title: 'Žádné falešné notifikace',
-        body: 'Neposíláme falešné zprávy ani upozornění typu „někdo Ti právě napsal“. Když Ti zacinká notifikace, znamená to, že Ti někdo opravdu napsal.',
+        body: 'Neposíláme falešné zprávy ani upozornění typu „někdo Ti právě napsal“.',
       },
       {
         title: 'Nulové fake profily',
-        body: 'Cosmatch nikdy nepoužívá AI generované profily, seed profily ani „demo postavičky“, aby aplikace vypadala plnější. Každý profil v Cosmatch je skutečný člověk, který se sám/sama zaregistroval/a a souhlasil/a s podmínkami. Na seznamce možná najdeš méně lidí než jinde, ale zato jsou reální.',
+        body: 'Cosmatch nikdy nepoužívá AI generované profily nebo seed profily, aby aplikace vypadala plnější. Každý profil v Cosmatch je skutečný člověk, který se sám/sama zaregistroval/a a souhlasil/a s podmínkami. Na seznamce možná najdeš méně lidí než jinde, ale zato jsou reální.',
       },
       {
         title: 'Fyzickou přitažlivost hodnotíš jen ty',
-        body: 'Cosmatch nepoužívá fotku, výšku, postavu ani fyzické rysy ve výpočtu kompatibility. Algoritmus zohledňuje pouze datum narození, hodnoty a životní styl. Fyzické preference jsou filtry, které si nastavíš jen Ty sám/sama, nikoho nepenalizují ve skóre.',
+        body: 'Cosmatch nepoužívá fotku, výšku, postavu ani fyzické rysy ve výpočtu kompatibility. Algoritmus zohledňuje pouze datum narození, hodnoty a životní styl. Fyzické preference jsou filtry, které si nastavíš jen ty sám/sama, nikoho nepenalizují ve skóre.',
       },
     ],
   },
@@ -121,8 +121,14 @@ export default function ManifestDuvery() {
                   <ul className="mt-8 space-y-6 pl-6 border-l-2 border-pink-200">
                     {p.sublets.map((s, i) => (
                       <li key={i}>
-                        <p className="serif text-lg sm:text-xl text-gray-900 font-medium mb-2 leading-snug">
-                          {s.title}
+                        <p className="serif text-lg sm:text-xl text-gray-900 font-medium mb-2 leading-snug flex items-start gap-2">
+                          {s.icon === 'verified' && (
+                            <svg className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                              <path d="M9 12l2 2 4-4" />
+                              <circle cx="12" cy="12" r="10" />
+                            </svg>
+                          )}
+                          <span>{s.title}</span>
                         </p>
                         <p className="text-gray-700 leading-[1.7] text-[1rem]">
                           {s.body}
@@ -161,7 +167,17 @@ export default function ManifestDuvery() {
               </span>
               <div>
                 <p className="serif text-lg text-gray-900 font-medium mb-1">Vícevrstvá ochrana před scammery</p>
-                  <p className="text-gray-600 text-sm leading-relaxed">Cloudflare Turnstile anti-bot, SSO bez hesla a transparentní reportování. Detaily na stránce <a href="/verifikace" className="text-pink-500 hover:underline">Bezpečnost</a>.</p>
+                <p className="text-gray-700 leading-relaxed text-[0.95rem]">
+                  Cloudflare Turnstile anti-bot, SSO bez hesla a transparentní reportování. Detaily na stránce <a href="/verifikace" className="text-pink-500 hover:underline">Bezpečnost</a>.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-[auto,1fr] gap-4">
+              <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-emerald-500 text-white flex-shrink-0 mt-1">
+                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              </span>
+              <div>
                 <p className="serif text-lg text-gray-900 font-medium mb-1">Nabízíme filtr „jen ověřené“</p>
                 <p className="text-gray-700 leading-relaxed text-[0.95rem]">
                   V nastavení si zapneš, aby Ti aplikace zobrazovala jen profily se zeleným štítkem,
