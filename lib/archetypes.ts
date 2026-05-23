@@ -361,7 +361,7 @@ export const ARCHETYPE_SOURCES = [
   },
   {
     author: 'Saffi Crawford + Geraldine Sullivan',
-    work: 'The Power of Birthdays, Stars & Numbers (Ballantine, 1998)',
+    work: 'The Power of Birthdays, Stars & Numbers (Ballantine, 1998; CZ: Magická hra čísel a hvězd, Ikar 2002)',
     role: 'Encyklopedický 366-denní referenční průvodce kombinující astrologii, fixní hvězdy a numerologii. Jedna z klíčových amerických referenčních prací pro osobnostní profil podle dne narození.',
   },
   {

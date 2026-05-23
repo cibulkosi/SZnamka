@@ -69,20 +69,20 @@ export default function JakFungujeCosmatchPage() {
 
         {/* 7 vrstev algoritmu */}
         <section className="mb-16">
-          <p className="eyebrow text-gray-500 mb-4">Algoritmus — top-level</p>
+          <p className="eyebrow text-pink-500 mb-4">Propracovaný algoritmus</p>
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-10">
-            Sedm vrstev výpočtu.
+            V algoritmu je zapracováno sedm vrstev výpočtu.
           </h2>
 
           <div className="space-y-12">
             {[
-              ['I', 'Kompatibilita podle data narození', '35 %', 'Hlavní vrstva. Vyhledá v knize Power of Birthdays (Goldschneider) jak se k sobě hodí konkrétní den a měsíc dvou lidí. 5 kategorií: Spřízněné duše, Láska & přátelství, Prospěšné, Osudové přitažlivosti, Náročné. Kniha už syntetizuje astrologii + numerologii + fixní hvězdy do těch kategorií, takže Cosmatch tu jejich práci jen vyhledává, ne znovu počítá.'],
-              ['II', 'Životní hodnoty a vize', '20 %', 'Rodinné plány (chcete děti?), typ vztahu (vážný/casual/přátelství), náboženství a finanční přístup. Sdílené hodnoty drží dlouhodobě vztah víc než vášeň prvních týdnů.'],
-              ['III', 'Osobnost a týmovost', '15 %', 'Vizionář nebo realizátor? Introvert nebo extrovert? Skřivan nebo sova? Jak řešíš konflikty? Komplementární vzorce fungují, dva totožní lidé se začnou nudit.'],
-              ['IV', 'Intimní soulad', '10 %', 'Libido frekvence (1–5). Sex je v dlouhodobém vztahu pojistka, ne zábava — soulad v této oblasti chrání před tichou frustrací.'],
-              ['V', 'Životní styl a návyky', '10 %', 'Kouření, alkohol, strava, pohyb. Každodenní soužití. Můžeš si zvolit kouření jako tvrdý deal-breaker — pak se ti kuřáci neukáží.'],
-              ['VI', 'Společné zájmy', '5 %', 'Procentní překryv tagů (záliby z 45 možností). Společná řeč pro první rande, ne hlavní faktor dlouhodobé kompatibility.'],
-              ['VII', 'Aktivita', '5 %', 'Online v posledních 24 h = 100 b., týden = 75 b., měsíc = 50 b., starší = 30 b. Sebelepší shoda nepovede nikam, pokud druhý aplikaci nepoužívá.'],
+              ['I', 'Kompatibilita podle data narození', '35 %', 'Hlavní vrstva se odvíjí od toho, jak se k sobě hodí konkrétní den a měsíc dvou lidí. Datumy jsou syntetizovány do několika kategorií, mezi něž patří spřízněné duše, láska, přátelství, prospěšné vztahy, magnetické přitažlivosti nebo náročné vztahy. V této vrstvě je syntetizována astrologie, numerologie a fixní hvězdy.'],
+              ['II', 'Životní hodnoty a vize', '20 %', 'Rodinné plány (typu chcete děti?), typ vztahu (vážný/casual/přátelství), náboženství nebo přístup k financím. Sdílené hodnoty udržují dlouhodobě vztah víc než vášeň prvních týdnů.'],
+              ['III', 'Osobnost a týmovost', '15 %', 'Vizionář nebo realizátor? Introvert nebo extrovert? Skřivan nebo sova? Jak řešíš konflikty? V čem se doplňujete a v čem jste naopak rozdílní?'],
+              ['IV', 'Intimní soulad', '10 %', 'Nesmí chybět ani velikost libida. Soulad v sexu v dlouhodobém vztahu je důležitý pro vyhnutí se tiché frustraci.'],
+              ['V', 'Životní styl a návyky', '10 %', 'Kouření, alkohol, strava nebo pohyb každodenní soužití také trochu ovlivňují. Ve filtrech si můžeš zvolit např. kouření jako tvrdý deal-breaker, a poté se Ti kuřáci neukáží.'],
+              ['VI', 'Společné zájmy', '5 %', 'Procentní překryv tagů (záliby je možné vybírat z 45 možností). Mohou sloužit jako společná řeč pro první rande, ale ne hlavní faktor dlouhodobé kompatibility.'],
+              ['VII', 'Aktivita', '5 %', 'Online v posledních 24 h přináší členům 100 b., týden = 75 b., měsíc = 50 b., starší = 30 b. Sebelepší shoda totiž nepovede nikam, pokud druhý člověk aplikaci nepoužívá.'],
             ].map(([num, title, weight, body]) => (
               <div key={num} className="grid grid-cols-[auto,1fr] gap-x-8">
                 <div className="text-right">
@@ -99,13 +99,13 @@ export default function JakFungujeCosmatchPage() {
 
           <div className="mt-8 bg-white border border-gray-200 rounded-2xl p-6 space-y-3">
             <p className="text-sm text-gray-700 leading-relaxed">
-              <strong className="text-gray-900 font-medium">A co vzdálenost, věk a fyzické preference?</strong> Tyto věci NEJSOU součástí kompatibility skóre. Jsou to <strong className="text-gray-900 font-medium">filtry</strong>, které si nastavíš sám/sama. V profilu si určíš maximální vzdálenost (např. do 30 km), věkový rozsah, případně výšku nebo postavu — profily mimo tvoje preference se ti vůbec neukážou. Algoritmus tak nikoho nepenalizuje za výšku ani věk; jen ti pomáhá filtrovat.
+              <strong className="text-gray-900 font-medium">A co vzdálenost, věk a fyzické preference?</strong> Tyto věci NEJSOU součástí kompatibility skóre. Jsou to <strong className="text-gray-900 font-medium">filtry</strong>, které si nastavíš sám/sama. V profilu si určíš maximální vzdálenost (např. do 30 km), věkový rozsah, případně výšku a profily mimo tvoje preference se ti vůbec neukážou. Algoritmus tak nikoho nepenalizuje za výšku ani věk; jen Ti pomáhá filtrovat.
             </p>
             <p className="text-sm text-gray-700 leading-relaxed">
-              <strong className="text-gray-900 font-medium">Deal-breakers:</strong> Pokud máš jeden chcete děti a druhý nechce, profil se ti neukáže (vždy). Kouření můžeš označit jako deal-breaker — pak ti zmizí pravidelní kuřáci.
+              <strong className="text-gray-900 font-medium">Deal-breakers:</strong> Pokud jeden z vás chce děti a druhý ne, profil se ti neukáže (vždy). Kouření můžeš také označit jako deal-breaker a pak ti zmizí i náruživí kuřáci a holdující alkoholu nebo lehkým drogám.
             </p>
             <p className="text-sm text-gray-700 leading-relaxed">
-              <strong className="text-gray-900 font-medium">Minimální kompatibilita:</strong> V nastavení můžeš zvolit, že chceš vidět jen profily nad 25 / 50 / 75 % shody. Default je 0 % (vidíš všechny).
+              <strong className="text-gray-900 font-medium">Minimální kompatibilita:</strong> V nastavení si můžeš zvolit, že chceš vidět jen profily nad 25 / 50 / 75 % shody. Defaultně je nastaveno na 0 %, kdy vidíš všechny.
             </p>
           </div>
         </section>
