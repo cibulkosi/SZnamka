@@ -114,8 +114,6 @@ export default function LifePathPage() {
           </p>
         </header>
 
-        <KarmicDebtCard />
-
         {/* Energetická vazba — Master 33/6 */}
         <section className="bg-pink-50 border border-pink-200 rounded-3xl p-6 mb-12">
           <p className="eyebrow text-pink-700 mb-2">Vyšší oktáva čísla 6</p>
@@ -226,6 +224,8 @@ export default function LifePathPage() {
             ))}
           </ul>
         </section>
+
+        <KarmicDebtCard />
 
         {/* CTA */}
         <section className="bg-white rounded-3xl border border-gray-100 p-10 mt-12">
