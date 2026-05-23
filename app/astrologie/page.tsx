@@ -166,7 +166,7 @@ export default function AstrologiePage() {
               <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-4">
                 <p className="eyebrow text-gray-500 mb-2">Tropický (západní)</p>
                 <p className="text-gray-700 text-[0.95rem] leading-relaxed">
-                  0° Berana je ukotvené k <strong className="text-gray-900 font-medium">jarní rovnodennosti</strong> (cca 20. 3.). Sezónně zakotvený systém — nikdy se neposouvá vůči ročnímu cyklu. Používá ho moderní západní astrologie, Cosmatch i kniha The Power of Birthdays.
+                  0° Berana je ukotvené k <strong className="text-gray-900 font-medium">jarní rovnodennosti</strong> (cca 20. 3.). Sezónně zakotvený systém — nikdy se neposouvá vůči ročnímu cyklu. Používá ho moderní západní astrologie a Cosmatch.
                 </p>
               </div>
               <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-4">
