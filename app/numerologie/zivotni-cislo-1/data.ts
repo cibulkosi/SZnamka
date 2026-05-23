@@ -33,9 +33,9 @@ export const ARCHETYPES: Record<string, Archetype> = {
     "shadow": "Tendence k přílišné nezávislosti může bránit hluboké blízkosti. Naučit se přijímat pomoc je tvou klíčovou lekcí.",
     "career": "Podnikatel, ředitel, vědec, inovátor, sportovec — všude, kde můžeš být první.",
     "celebrities": [
-      "Tomáš Garrigue Masaryk (7.3.1850)",
-      "Vladimír Komárek (4.10.1928)",
-      "Andrej Babiš (2.9.1954)"
+      "Alfons Mucha (24. 7. 1860)",
+      "Steve Jobs (24. 2. 1955)",
+      "Walt Disney (5. 12. 1901)"
     ],
     "compatible": [
       3,
@@ -66,9 +66,9 @@ export const ARCHETYPES: Record<string, Archetype> = {
     "shadow": "Tendence potlačovat vlastní potřeby pro mír v partě. Naučit se říkat „ne\“ je tvou lekcí.",
     "career": "Psycholog, terapeut, mediátor, učitel, zdravotník, diplomat.",
     "celebrities": [
-      "Václav Havel (5.10.1936)",
-      "Petr Pavel (1.11.1961)",
-      "Karel Gott (14.7.1939)"
+      "Petr Pavel (1. 11. 1961)",
+      "Barack Obama (4. 8. 1961)",
+      "Madonna (16. 8. 1958)"
     ],
     "compatible": [
       4,
@@ -99,9 +99,9 @@ export const ARCHETYPES: Record<string, Archetype> = {
     "shadow": "Tendence vyhýbat se hlubší zodpovědnosti komplikuje dlouhodobé vztahy. Hloubka je tvojí lekcí.",
     "career": "Umělec, spisovatel, herec, copywriter, marketér, designér, učitel.",
     "celebrities": [
-      "Karel Čapek (9.1.1890)",
-      "Bohumil Hrabal (28.3.1914)",
-      "Lucie Bílá (7.4.1966)"
+      "Karel IV. (14. 5. 1316)",
+      "Petra Kvitová (8. 3. 1990)",
+      "David Bowie (8. 1. 1947)"
     ],
     "compatible": [
       1,
@@ -132,9 +132,9 @@ export const ARCHETYPES: Record<string, Archetype> = {
     "shadow": "Rigidita brání spontaneitě a novým zkušenostem. Naučit se flexibilitu je tvojí lekcí.",
     "career": "Architekt, inženýr, manažer, účetní, právník, programátor.",
     "celebrities": [
-      "Tomáš Baťa (3.4.1876)",
-      "Karel IV. (14.5.1316)",
-      "Antonín Dvořák (8.9.1841)"
+      "Madeleine Albright (15. 5. 1937)",
+      "Bill Gates (28. 10. 1955)",
+      "Oprah Winfrey (29. 1. 1954)"
     ],
     "compatible": [
       2,
@@ -165,9 +165,9 @@ export const ARCHETYPES: Record<string, Archetype> = {
     "shadow": "Strach ze závazku tě nutí opouštět lidi dříve, než vztah dostane šanci na hloubku.",
     "career": "Novinář, fotograf, cestovatel, podnikatel, sales, marketér, herec.",
     "celebrities": [
-      "Jaromír Jágr (15.2.1972)",
-      "Daniel Landa (5.11.1968)",
-      "Iva Pazderková (24.4.1980)"
+      "Jan Werich (6. 2. 1905)",
+      "Karel Roden (18. 5. 1962)",
+      "Vlasta Burian (9. 4. 1891)"
     ],
     "compatible": [
       1,
@@ -198,9 +198,9 @@ export const ARCHETYPES: Record<string, Archetype> = {
     "shadow": "Přílišné pečování vede k sebeobětování a tiché zatrpklosti. Lekce: pečuj nejdřív o sebe.",
     "career": "Zdravotník, učitel, sociální pracovník, terapeut, designér interiéru, kuchař.",
     "celebrities": [
-      "Marta Kubišová (1.11.1942)",
-      "Tereza Maxová (28.4.1971)",
-      "Jan Werich (6.2.1905)"
+      "Tomáš Garrigue Masaryk (7. 3. 1850)",
+      "Karel Schwarzenberg (10. 12. 1937)",
+      "Albert Einstein (14. 3. 1879)"
     ],
     "compatible": [
       2,
@@ -231,9 +231,9 @@ export const ARCHETYPES: Record<string, Archetype> = {
     "shadow": "Izolace a přílišná sebeanalýza brání skutečné emocionální blízkosti. Lekce: dovolit někomu vstoupit.",
     "career": "Vědec, filozof, psycholog, programátor, výzkumník, kněz, spisovatel.",
     "celebrities": [
-      "Albert Einstein (14.3.1879)",
-      "Karel Capek (žiž v 3)",
-      "Jan Saudek (13.5.1935)"
+      "Václav Havel (5. 10. 1936)",
+      "Karel Gott (14. 7. 1939)",
+      "Olga Havlová (11. 7. 1933)"
     ],
     "compatible": [
       5,
@@ -264,9 +264,9 @@ export const ARCHETYPES: Record<string, Archetype> = {
     "shadow": "Workoholismus a potřeba kontroly odsouvají vztahy na druhou kolej. Lekce: balance mezi prací a láskou.",
     "career": "CEO, finančník, právník, investor, podnikatel, ředitel.",
     "celebrities": [
-      "Petr Kellner (20.5.1964)",
-      "Daniel Křetínský (9.7.1975)",
-      "Jan Hus (1369)"
+      "Milan Kundera (1. 4. 1929)",
+      "Marek Eben (10. 12. 1957)",
+      "Pablo Picasso (25. 10. 1881)"
     ],
     "compatible": [
       2,
@@ -297,9 +297,9 @@ export const ARCHETYPES: Record<string, Archetype> = {
     "shadow": "Přílišný idealismus vede ke zklamání z reálných partnerů, kteří nejsou dokonalí.",
     "career": "Aktivista, charitativní pracovník, učitel, doktor, umělec, spisovatel, kněz.",
     "celebrities": [
-      "Mahátma Gándhí (2.10.1869)",
-      "Václav Havel (žiž v 2)",
-      "Olga Havlová (11.7.1933)"
+      "Mahátma Gándhí (2. 10. 1869)",
+      "Jaromír Jágr (15. 2. 1972)",
+      "Karolina Plíšková (21. 3. 1992)"
     ],
     "compatible": [
       3,
@@ -330,9 +330,9 @@ export const ARCHETYPES: Record<string, Archetype> = {
     "shadow": "Příliš vysoká citlivost způsobuje přetížení a ústup ze vztahů.",
     "career": "Léčitel, terapeut, umělec, učitel, kněz, mystik, psycholog.",
     "celebrities": [
-      "Barack Obama (4.8.1961)",
-      "Edgar Cayce (18.3.1877)",
-      "Madonna (16.8.1958)"
+      "Tomáš Baťa (3. 4. 1876)",
+      "Daniel Křetínský (9. 7. 1975)",
+      "Magda Vašáryová (26. 8. 1948)"
     ],
     "compatible": [
       2,
@@ -363,9 +363,9 @@ export const ARCHETYPES: Record<string, Archetype> = {
     "shadow": "Obsese s dokonalostí zanechává osobní vztahy v ústraní. Lekce: dovolit nedokonalost.",
     "career": "Architekt, inženýr, CEO, vědec, podnikatel, finančník.",
     "celebrities": [
-      "Bill Gates (28.10.1955)",
-      "Oprah Winfrey (29.1.1954)",
-      "Paul McCartney (18.6.1942)"
+      "Antonín Dvořák (8. 9. 1841)",
+      "Daniel Landa (5. 11. 1968)",
+      "Paul McCartney (18. 6. 1942)"
     ],
     "compatible": [
       4,
@@ -396,9 +396,8 @@ export const ARCHETYPES: Record<string, Archetype> = {
     "shadow": "Dávání bez hranic vede k úplnému vyčerpání. Lekce: péče o sebe je akt lásky.",
     "career": "Léčitel, terapeut, kněz, učitel, sociální pracovník, humanitarian.",
     "celebrities": [
-      "Albert Einstein (14.3.1879 — 33 také)",
-      "John Lennon (9.10.1940)",
-      "Meryl Streep (22.6.1949)"
+      "Lucie Bílá (7. 4. 1966)",
+      "Meryl Streep (22. 6. 1949)"
     ],
     "compatible": [
       6,
