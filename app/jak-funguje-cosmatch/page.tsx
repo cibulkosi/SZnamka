@@ -141,63 +141,54 @@ export default function JakFungujeCosmatchPage() {
             Profil každého ze 366 dnů kombinuje pět vrstev astrologického a numerologického popisu. Tady je krátké vysvětlení každé z nich, aby bylo jasné, co Cosmatch ze své zdrojové knihy vyhledává.
           </p>
 
-          <div className="space-y-8">
-
+          <div className="space-y-4">
             <div className="bg-white border border-gray-200 rounded-2xl p-6">
-              <p className="eyebrow text-pink-500 mb-2">Sluneční znamení</p>
-              <h4 className="serif text-lg text-gray-900 font-medium mb-2">12 zodiakálních znamení (Beran až Ryby).</h4>
-              <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-2">
-                Určeno polohou Slunce v zodiaku v okamžiku narození. Každé znamení trvá cca 30 dní (např. Beran 21. 3. – 19. 4., Lev 23. 7. – 22. 8.). Co říká: základní temperament, identita, ego, instinktivní reakce.
-              </p>
-              <p className="text-sm text-gray-500 italic">
-                Příklad — narozen/a 23. 7. 1992 → Lev. Cosmatch toto čte z dne narození a měsíce, ne z přesné hodiny narození (Cosmatch nepoužívá kompletní natální horoskop).
+              <p className="eyebrow text-pink-500 mb-2">1 · Sluneční znamení (12)</p>
+              <p className="text-gray-700 text-[0.95rem] leading-relaxed">
+                Základní temperament a ego identita podle polohy Slunce v okamžiku narození. Dělí se podle živlu (oheň/země/vzduch/voda) a modality.
               </p>
             </div>
 
             <div className="bg-white border border-gray-200 rounded-2xl p-6">
-              <p className="eyebrow text-pink-500 mb-2">Dekanát</p>
-              <h4 className="serif text-lg text-gray-900 font-medium mb-2">Každé znamení rozděleno na 3 dekány po 10°.</h4>
-              <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-2">
-                Zodiak (360°) má tedy celkem 36 dekanátů. První dekán znamení pokrývá první 10° (cca prvních 10 dní), druhý 10–20°, třetí 20–30°. Každý dekan má vlastního <em className="italic">sub-vládce</em>, který přidává nuance k základnímu znamení. Co říká: zjemnění základního archetypu — Lev v 1. dekanu se chová jinak než Lev v 3. dekanu, i když oba spadají pod stejné znamení.
-              </p>
-              <p className="text-sm text-gray-500 italic">
-                Příklad — 23. 7. 1992 = 0–1° Lva = 1. dekan Lva (sub-vládce Slunce). Třešnička je v tom, že 1. dekan Lva je „nejčistší Lev" — energie znamení a sub-vládce souzní.
+              <p className="eyebrow text-pink-500 mb-2">2 · Dekanát (36)</p>
+              <p className="text-gray-700 text-[0.95rem] leading-relaxed">
+                Každé znamení má 3 dekanáty po 10°. Sub-vládce dekanátu přidává druhou vrstvu motivace nad rámec hlavního vládce znamení.
               </p>
             </div>
 
             <div className="bg-white border border-gray-200 rounded-2xl p-6">
-              <p className="eyebrow text-pink-500 mb-2">Stupeň</p>
-              <h4 className="serif text-lg text-gray-900 font-medium mb-2">Přesná poloha v rámci znamení (0° – 29°).</h4>
-              <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-2">
-                V Crawford &amp; Sullivan systému má každý ze 366 dní svůj specifický stupeň. Dva lidé narození v sousedních dnech (např. 22. 7. a 23. 7.) mají sousední stupně — drobně odlišné profily, ale velmi blízké. Cosmatch tak rozlišuje i mezi „skoro stejnými dny" — kompatibilita 22. 7. × 24. 7. není identická jako 23. 7. × 24. 7.
-              </p>
-              <p className="text-sm text-gray-500 italic">
-                Tradičně se stupně dělí ještě na <em className="italic">Sabian symboly</em> (1° = 1 symbolický obraz, celkem 360). Cosmatch tuto úroveň nezachází, ale denní profil knihy ji implicitně používá.
+              <p className="eyebrow text-pink-500 mb-2">3 · Stupeň + Sabian symbol</p>
+              <p className="text-gray-700 text-[0.95rem] leading-relaxed">
+                Přesná poloha Slunce v rámci znamení (0°–29°). Každý z 360 stupňů má vlastní Sabian symbol (Marc Edmund Jones, 1925) popisující jeho energii.
               </p>
             </div>
 
             <div className="bg-white border border-gray-200 rounded-2xl p-6">
-              <p className="eyebrow text-pink-500 mb-2">Fixní hvězdy</p>
-              <h4 className="serif text-lg text-gray-900 font-medium mb-2">Stálé hvězdy v aspektu k dnu narození.</h4>
-              <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-2">
-                Klasická astrologie pracuje s ~60 hlavními fixními hvězdami (např. Aldebaran v Býku, Regulus ve Lvu, Antares ve Štíru, Fomalhaut v Rybách — tzv. <em className="italic">Royal Stars</em> Persie). Pokud denní stupeň narození padá do ±1° od fixní hvězdy, ta hvězda ovlivňuje denní profil. Co říká: dodatečná archetypální vibrace nad rámec znamení — Regulus = vůdcovství a sláva, Aldebaran = integrita a odvaha, Antares = transformace skrz konflikt.
-              </p>
-              <p className="text-sm text-gray-500 italic">
-                Crawford &amp; Sullivan v denních profilech tyto hvězdy explicitně uvádí. Cosmatch je vyhledává z knihy, nepočítá je sám.
+              <p className="eyebrow text-pink-500 mb-2">4 · Fixní hvězdy</p>
+              <p className="text-gray-700 text-[0.95rem] leading-relaxed">
+                4 Royal Stars (Aldebaran, Regulus, Antares, Fomalhaut) + cca 60 dalších hvězd. Pokud denní stupeň padne do ±1° od fixní hvězdy, ovlivňuje denní profil.
               </p>
             </div>
 
             <div className="bg-white border border-gray-200 rounded-2xl p-6">
-              <p className="eyebrow text-pink-500 mb-2">Dominantní planeta</p>
-              <h4 className="serif text-lg text-gray-900 font-medium mb-2">Vládnoucí planeta znamení + sub-vládce dekanátu.</h4>
-              <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-2">
-                Každé znamení má vlastní vládnoucí planetu — Beran/Mars, Býk/Venuše, Blíženci/Merkur, Rak/Měsíc, Lev/Slunce, Panna/Merkur, Váhy/Venuše, Štír/Pluto (klasicky Mars), Střelec/Jupiter, Kozoroh/Saturn, Vodnář/Uran (klasicky Saturn), Ryby/Neptun (klasicky Jupiter). Plus dekanát má vlastního sub-vládce, který přidává druhou vrstvu motivace.
-              </p>
-              <p className="text-sm text-gray-500 italic">
-                Příklad — 23. 7. 1992 = Lev 1. dekan = Slunce (vládce) + Slunce (sub-vládce). Lidé s touto kombinací bývají charakterizováni silnou potřebou být viděn a tvořit. Cosmatch tuto kombinaci čte z knihy a započítává ji do denního profilu, ne do separátní vrstvy.
+              <p className="eyebrow text-pink-500 mb-2">5 · Dominantní planeta</p>
+              <p className="text-gray-700 text-[0.95rem] leading-relaxed">
+                Vládnoucí planeta znamení (Mars/Venuše/Merkur/…) plus sub-vládce dekanátu. Klasická vs. moderní astrologie přiřazuje různé planety.
               </p>
             </div>
 
+            <Link
+              href="/astrologie"
+              className="block bg-pink-50 border border-pink-200 hover:border-pink-500 rounded-2xl p-6 transition group"
+            >
+              <p className="eyebrow text-pink-500 mb-2">Pokračovat ve čtení · 12 min</p>
+              <h3 className="serif text-lg text-gray-900 font-medium group-hover:text-pink-500 transition">
+                Detail viz Astrologie →
+              </h3>
+              <p className="text-gray-600 text-[0.95rem] leading-relaxed mt-1">
+                Tabulky 12 znamení, 36 dekanátů, 4 Royal Stars, 10 dalších fixních hvězd, srovnání klasické vs. moderní vládce.
+              </p>
+            </Link>
           </div>
 
           <p className="text-sm text-gray-500 leading-relaxed italic mt-8">
