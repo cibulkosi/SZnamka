@@ -43,12 +43,12 @@ export default function JakFungujeCosmatchPage() {
 
       <article className="max-w-2xl mx-auto px-6 pt-16 pb-24">
 
-        <header className="mb-16">
+        <header className="mb-8">
           <p className="eyebrow text-pink-500 mb-6">Metodika</p>
-          <h1 className="serif-display text-5xl sm:text-6xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-8">
+          <h1 className="serif-display text-5xl sm:text-6xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-6">
             Jak Cosmatch<br/><em className="italic text-pink-500">opravdu funguje a kdo za ním stojí</em>?
           </h1>
-          <hr className="rule w-12 border-gray-900 mb-8" />
+          <hr className="rule w-12 border-gray-900" />
         </header>
 
         {/* Bio Simona — E-E-A-T trust signal */}
