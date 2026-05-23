@@ -100,8 +100,8 @@ export const ARCHETYPES: Record<string, Archetype> = {
     "career": "Umělec, spisovatel, herec, copywriter, marketér, designér, učitel.",
     "celebrities": [
       "Karel IV. (14. 5. 1316)",
-      "Petra Kvitová (8. 3. 1990)",
-      "David Bowie (8. 1. 1947)"
+      "David Bowie (8. 1. 1947)",
+      "Frida Kahlo (6. 7. 1907)"
     ],
     "compatible": [
       1,
@@ -167,7 +167,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
     "celebrities": [
       "Jan Werich (6. 2. 1905)",
       "Karel Roden (18. 5. 1962)",
-      "Vlasta Burian (9. 4. 1891)"
+      "Mick Jagger (26. 7. 1943)"
     ],
     "compatible": [
       1,
@@ -199,7 +199,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
     "career": "Zdravotník, učitel, sociální pracovník, terapeut, designér interiéru, kuchař.",
     "celebrities": [
       "Tomáš Garrigue Masaryk (7. 3. 1850)",
-      "Karel Schwarzenberg (10. 12. 1937)",
+      "John Lennon (9. 10. 1940)",
       "Albert Einstein (14. 3. 1879)"
     ],
     "compatible": [
@@ -232,8 +232,8 @@ export const ARCHETYPES: Record<string, Archetype> = {
     "career": "Vědec, filozof, psycholog, programátor, výzkumník, kněz, spisovatel.",
     "celebrities": [
       "Václav Havel (5. 10. 1936)",
-      "Karel Gott (14. 7. 1939)",
-      "Olga Havlová (11. 7. 1933)"
+      "Stephen Hawking (8. 1. 1942)",
+      "Princess Diana (1. 7. 1961)"
     ],
     "compatible": [
       3,
@@ -264,9 +264,9 @@ export const ARCHETYPES: Record<string, Archetype> = {
     "shadow": "Workoholismus a potřeba kontroly odsouvají vztahy na druhou kolej. Životní lekcí je naučit se balancovat mezi prací a láskou.",
     "career": "CEO, finančník, právník, investor, podnikatel, ředitel.",
     "celebrities": [
-      "Milan Kundera (1. 4. 1929)",
       "Marek Eben (10. 12. 1957)",
-      "Pablo Picasso (25. 10. 1881)"
+      "Pablo Picasso (25. 10. 1881)",
+      "Nelson Mandela (18. 7. 1918)"
     ],
     "compatible": [
       2,
@@ -298,8 +298,8 @@ export const ARCHETYPES: Record<string, Archetype> = {
     "career": "Aktivista, charitativní pracovník, učitel, doktor, umělec, spisovatel, kněz.",
     "celebrities": [
       "Mahátma Gándhí (2. 10. 1869)",
-      "Jaromír Jágr (15. 2. 1972)",
-      "Karolina Plíšková (21. 3. 1992)"
+      "Mother Teresa (26. 8. 1910)",
+      "Carl Jung (26. 7. 1875)"
     ],
     "compatible": [
       1,
@@ -364,8 +364,8 @@ export const ARCHETYPES: Record<string, Archetype> = {
     "career": "Architekt, inženýr, CEO, vědec, podnikatel, finančník.",
     "celebrities": [
       "Antonín Dvořák (8. 9. 1841)",
-      "Daniel Landa (5. 11. 1968)",
-      "Paul McCartney (18. 6. 1942)"
+      "Paul McCartney (18. 6. 1942)",
+      "Dalai Lama (6. 7. 1935)"
     ],
     "compatible": [
       4,
