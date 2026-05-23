@@ -83,7 +83,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
   "3": {
     "name": "Tvůrce",
     "tagline": "Charismatický, expresivní, plný energie.",
-    "short": "Číslo 3 je Tvůrce — kreativní vypravěč, který přitahuje pozornost. Charismatický, expresivní, optimistický.",
+    "short": "Číslo 3 je Tvůrce — kreativní vypravěč, který přitahuje pozornost. Je to charismatický, expresivní a optimistický člověk.",
     "traits_pos": [
       "Kreativní mysl",
       "Skvělý komunikátor",
@@ -95,8 +95,8 @@ export const ARCHETYPES: Record<string, Archetype> = {
       "Občas povrchní",
       "Vyhýbá se těžkým rozhovorům"
     ],
-    "love": "Tvůrce potřebuje partnera, který oceňuje tvou energii a dává ti prostor zářit. Nejlépe se párujete s 1 (Průkopník), 5 (Dobrodruh), 9 (Idealista) — energetická souznění.",
-    "shadow": "Tendence vyhýbat se hlubší zodpovědnosti komplikuje dlouhodobé vztahy. Hloubka je tvojí lekcí.",
+    "love": "Tvůrce potřebuje partnera, který oceňuje jeho energii a dává mu prostor zářit. Nejlépe se páruje s 1 (Průkopník), 5 (Dobrodruh), 9 (Idealista), s nimiž vytváří energetická souznění.",
+    "shadow": "Tendence vyhýbat se hlubší zodpovědnosti komplikuje dlouhodobé vztahy. Tvojí lekcí je naučit se dělat věci více do hloubky a méně povrchně.",
     "career": "Umělec, spisovatel, herec, copywriter, marketér, designér, učitel.",
     "celebrities": [
       "Karel IV. (14. 5. 1316)",
