@@ -17,7 +17,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
   "1": {
     "name": "Průkopník",
     "tagline": "Nezávislý, ambiciózní, leader.",
-    "short": "Číslo 1 je archetyp Průkopníka — vůdce, který razí vlastní cestu. Nezávislost, kreativita a ambice tvoří jeho jádro.",
+    "short": "Číslo 1 je archetyp Průkopníka, vůdce, který si razí svou vlastní cestu. Charakterizují ho nezávislost, kreativita a ambice.",
     "traits_pos": [
       "Sebejistý a rozhodný",
       "Přirozený leader",
