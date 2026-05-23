@@ -48,19 +48,19 @@ const NUMBERS = [
   ['7', 'Hledač', '5, 9, 11', '3, 6'],
   ['8', 'Vůdce', '2, 4, 6', '1, 9'],
   ['9', 'Idealista', '3, 6, 9', '2, 8'],
-  ['11', 'Vizionář', '2, 6, 9', '1, 5'],
-  ['22', 'Architekt', '4, 6, 8', '3, 5'],
-  ['33', 'Léčitel', '6, 9, 11', '1, 8'],
+  ['11/2', 'Vizionář (vyšší oktáva 2)', '2, 6, 9', '1, 5'],
+  ['22/4', 'Architekt (vyšší oktáva 4)', '4, 6, 8', '3, 5'],
+  ['33/6', 'Léčitel (vyšší oktáva 6)', '6, 9, 11', '1, 8'],
 ] as const
 
 const FAQ = [
   {
     q: 'Jak se počítá životní číslo z data narození?',
-    a: 'Životní číslo získáš součtem všech číslic svého data narození, redukovaným na jednociferné číslo nebo master číslo 11, 22, 33. Příklad: 23. 7. 1992 → 2+3+7+1+9+9+2 = 33. Takový člověk má master číslo 33.',
+    a: 'Cosmatch používá tzv. Decoz three-cycle metodu: redukuješ měsíc, den a rok zvlášť, pak součet finálně redukuješ. Příklad: 23. 7. 1992 → měsíc 7 + den (2+3=5) + rok (1+9+9+2=21→3) = 15 → 1+5 = 6. Životní číslo je 6 (Pečovatel). Master čísla 11, 22 a 33 se zachovají, jen pokud se objeví v některé z mezikalkulací — pak je můžeš číst současně i jako jejich plnou redukci (11/2, 22/4, 33/6).',
   },
   {
     q: 'Jaká čísla jsou nejkompatibilnější?',
-    a: 'Záleží na konkrétní kombinaci. Obecně: 1 ladí s 3, 5 a 6; 2 s 4, 6 a 8; 4 s 2, 6 a 8. Master čísla 11, 22, 33 mají nejsilnější spojení s 2, 6 a 9. Cosmatch toto počítá pro všechny možné kombinace párů.',
+    a: 'Záleží na konkrétní kombinaci. Obecně: 1 ladí s 3, 5 a 6; 2 s 4, 6 a 8; 4 s 2, 6 a 8. Master čísla 11/2, 22/4 a 33/6 mají nejsilnější spojení s 2, 6 a 9 — a zároveň dědí kompatibilitu svého základního čísla (11 jako 2, 22 jako 4, 33 jako 6). Cosmatch toto počítá pro všechny možné kombinace párů.',
   },
   {
     q: 'Je numerologie vědecky prokázána?',
@@ -202,8 +202,9 @@ export default function KompatibilitaPage() {
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
             Každé číslo odpovídá určitému archetypu osobnosti — Průkopník, Diplomat, Tvůrce, Stavitel,
-            Dobrodruh, Pečovatel, Hledač, Vůdce, Idealista. Master čísla jsou Vizionář (11),
-            Architekt (22) a Léčitel (33).
+            Dobrodruh, Pečovatel, Hledač, Vůdce, Idealista. Master čísla jsou Vizionář (11/2),
+            Architekt (22/4) a Léčitel (33/6) — zápis se zlomkem ukazuje, že master číslo je „vyšší
+            oktávou" svého základu: 11 nese kvality 2, 22 nese kvality 4, 33 nese kvality 6.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
             Kompatibilita v seznamce se počítá z kombinace dvou životních čísel spolu se záměrem vztahu,
