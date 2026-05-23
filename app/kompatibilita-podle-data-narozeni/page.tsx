@@ -40,14 +40,14 @@ export const metadata: Metadata = {
 
 const NUMBERS = [
   ['1', 'Průkopník', '3, 5, 6', '4, 8'],
-  ['2', 'Diplomat', '4, 6, 8', '5, 9'],
-  ['3', 'Tvůrce', '1, 5, 9', '4, 7'],
+  ['2', 'Diplomat', '4, 6, 8, 9', '5'],
+  ['3', 'Tvůrce', '1, 5, 7, 9', '4'],
   ['4', 'Stavitel', '2, 6, 8', '3, 5'],
   ['5', 'Dobrodruh', '1, 3, 7', '2, 4'],
-  ['6', 'Pečovatel', '2, 4, 9', '1, 7'],
-  ['7', 'Hledač', '1, 5, 11', '3, 6'],
+  ['6', 'Pečovatel', '1, 2, 4, 9', '7'],
+  ['7', 'Hledač', '3, 5, 11', '6'],
   ['8', 'Vůdce', '2, 4, 6', '1, 9'],
-  ['9', 'Idealista', '3, 6, 9', '2, 8'],
+  ['9', 'Idealista', '2, 3, 6', '8'],
   ['11/2', 'Vizionář (vyšší oktáva 2)', '2, 6, 9', '1, 5'],
   ['22/4', 'Architekt (vyšší oktáva 4)', '4, 6, 8', '3, 5'],
   ['33/6', 'Léčitel (vyšší oktáva 6)', '6, 9, 11', '1, 8'],
@@ -60,7 +60,7 @@ const FAQ = [
   },
   {
     q: 'Jaká čísla jsou nejkompatibilnější?',
-    a: 'Záleží na konkrétní kombinaci. Obecně: 1 ladí s 3, 5 a 6; 2 s 4, 6 a 8; 4 s 2, 6 a 8. Master čísla mají vlastní silné shody — 11/2 s 2, 6 a 9; 22/4 s 4, 6 a 8; 33/6 s 6, 9 a 11. Zároveň dědí část kompatibility svého základního čísla (11 nese kvality 2, 22 kvality 4, 33 kvality 6). Cosmatch toto počítá pro všechny možné kombinace párů.',
+    a: 'Záleží na konkrétní kombinaci. Obecně: 1 ladí s 3, 5 a 6; 2 s 4, 6, 8 a 9; 4 s 2, 6 a 8. Master čísla mají vlastní silné shody — 11/2 s 2, 6 a 9; 22/4 s 4, 6 a 8; 33/6 s 6, 9 a 11. Zároveň dědí část kompatibility svého základního čísla (11 nese kvality 2, 22 kvality 4, 33 kvality 6). Cosmatch toto počítá pro všechny možné kombinace párů.',
   },
   {
     q: 'Je numerologie vědecky prokázána?',
