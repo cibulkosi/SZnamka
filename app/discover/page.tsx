@@ -227,8 +227,8 @@ function HingeProfile({
  {profile.family_plans === 'no_kids' && (
  <span className="text-xs text-gray-500 bg-gray-50 border border-gray-100 px-3 py-1 rounded-full"> Nechce děti
  </span> )}
- </div> </div> {/* Personologický panel — vždy dole */}
- <div className="px-5 py-5"> <div className="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-100 rounded-3xl p-5"> <p className="text-xs font-bold text-purple-400 uppercase tracking-wide mb-2"> Personologická shoda</p>
+ </div> </div> {/* Numerologický panel — vždy dole */}
+ <div className="px-5 py-5"> <div className="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-100 rounded-3xl p-5"> <p className="text-xs font-bold text-purple-400 uppercase tracking-wide mb-2"> Numerologická shoda</p>
  {compat ? (
  <div className="space-y-2">
  {compatLabel === 'absolute_resonance' && (
@@ -293,7 +293,7 @@ function HingeProfile({
  )}
  </div>
  ) : (
- <p className="text-purple-500 text-sm">Personologická data pro toto datum nejsou k dispozici.</p>
+ <p className="text-purple-500 text-sm">Numerologická data pro toto datum nejsou k dispozici.</p>
  )}
  </div> </div> {/* Hint pro scrollování */}
  <p className="text-center text-gray-300 text-xs pb-4"> ↑ Scrolluj nahoru zpět na fotku

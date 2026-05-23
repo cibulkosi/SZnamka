@@ -142,7 +142,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "applicationCategory": "DatingApplication",
               "operatingSystem": "Web, iOS, Android (PWA)",
               "url": "https://cosmatch.cz",
-              "description": "Česká seznamka, která tě páruje podle data narození. Vychází z 12 archetypů a personology tradice kompatibility.",
+              "description": "Česká seznamka, která tě páruje podle data narození. Vychází z 12 archetypů a numerologické tradice kompatibility.",
               "offers": [
                 { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "CZK" },
                 { "@type": "Offer", "name": "Cosmatch+ měsíčně", "price": "249", "priceCurrency": "CZK", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" } },
