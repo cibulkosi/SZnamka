@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 const TITLE = 'Jak funguje Cosmatch — Algoritmus, zdroje, metodologie | Cosmatch'
-const DESC = 'Cosmatch počítá shodu transparentně — 35 % kompatibilita podle data narození (vychází z 14 zdrojů personology a numerologie), 20 % životní hodnoty, 15 % osobnost, 10 % intimní soulad, 10 % životní styl, 5 % zájmy, 5 % aktivita. Bez magie, bez skrytých vzorců.'
+const DESC = 'Cosmatch počítá shodu transparentně — 35 % kompatibilita podle data narození (vychází ze 17 zdrojů numerologie, astrologie a české tradice), 20 % životní hodnoty, 15 % osobnost, 10 % intimní soulad, 10 % životní styl, 5 % zájmy, 5 % aktivita. Bez magie, bez skrytých vzorců.'
 const URL = 'https://cosmatch.cz/jak-funguje-cosmatch'
 
 export const metadata: Metadata = {
@@ -58,7 +58,7 @@ export default function JakFungujeCosmatchPage() {
             Simona Cibulková, zakladatelka Cosmatch
           </h2>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-            Před Cosmatch jsem strávila roky studiem vztahové dynamiky, numerologie a kompatibility podle data narození. Cosmatch staví na <Link href="/zdroje-numerologie" className="text-pink-500 underline">14 klíčových zdrojích</Link> pythagorovské numerologické tradice — od antiky po současné autory jako Hans Decoz, Glynis McCants, Helmuta Kritzingera nebo Michelle Buchanan, doplněné o českou linii Jitky Kadlecové.
+            Před Cosmatch jsem strávila roky studiem vztahové dynamiky, numerologie a kompatibility podle data narození. Cosmatch staví na <Link href="/zdroje-numerologie" className="text-pink-500 underline">17 klíčových zdrojích</Link> pythagorovské numerologické tradice — od antiky po současné autory jako Hans Decoz, Glynis McCants, Helmuta Kritzingera nebo Michelle Buchanan, doplněné o českou linii Jitky Kadlecové.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
             Cosmatch jsem vyvinula proto, že jsem byla nespokojená s aplikacemi, které okrádají o pozornost čas a ve výsledku lidem nedají důvod k setkání.

@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
-const TITLE = 'Zdroje numerologie — 14 knih a autorů, na kterých Cosmatch staví | Cosmatch'
-const DESC = 'Cosmatch v numerologii čerpá ze 14 klíčových zdrojů moderní západní i české tradice — od Pythagora po současné autory (Goodwin, Decoz, McCants, Buchanan, Kadlecová, Davidová). Knihy, autoři, metodologie.'
+const TITLE = 'Zdroje numerologie a astrologie — 17 knih a autorů, na kterých Cosmatch staví | Cosmatch'
+const DESC = 'Cosmatch čerpá ze 17 klíčových zdrojů moderní západní i české tradice — od Pythagora po současné autory (Goodwin, Decoz, McCants, Buchanan, Kadlecová, Davidová) a klasiků astrologie fixních hvězd (Robson, Brady). Knihy, autoři, metodologie.'
 const URL = 'https://cosmatch.cz/zdroje-numerologie'
 
 export const metadata: Metadata = {
@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     'numerologie zdroje', 'numerologie knihy', 'Decoz', 'McCants', 'Goodwin',
     'Kadlecová', 'Davidová', 'Buchanan', 'Cheiro', 'Pythagoras', 'numerologie čeština',
     'three-cycle method', 'chaldejská numerologie', 'pythagorejská numerologie',
+    'fixní hvězdy', 'Robson', 'Brady', 'Burkert', 'Royal Stars',
   ],
   authors: [{ name: 'Simona Cibulková' }],
 }
@@ -121,6 +122,24 @@ const SOURCES = [
     work: 'The Numerology Guidebook (Hay House, 2013)',
     role: 'Současný mainstream s kapitolami o výběru partnera, načasování vztahů a master číslech 11/22/33.',
   },
+  {
+    roman: 'XV',
+    author: 'Vivian E. Robson',
+    work: 'The Fixed Stars and Constellations in Astrology (Cecil Palmer, 1923)',
+    role: 'Moderní klasika fixních hvězd. Syntéza ~2 000 let astrologické tradice se zhruba 110 pojmenovanými hvězdami. Cosmatch z této tradice čerpá při interpretaci konjunkcí Slunce s fixními hvězdami v denním profilu.',
+  },
+  {
+    roman: 'XVI',
+    author: 'Bernadette Brady',
+    work: 'Brady\'s Book of Fixed Stars (Weiser, 1998)',
+    role: 'Současná autoritativní práce o fixních hvězdách. Definuje koncept čtyř Royal Stars (Aldebaran, Regulus, Antares, Fomalhaut) jako čtyř strážců s vlastními „testy" — model, který Cosmatch používá na stránce o astrologii.',
+  },
+  {
+    roman: 'XVII',
+    author: 'Walter Burkert',
+    work: 'Lore and Science in Ancient Pythagoreanism (Harvard University Press, 1972)',
+    role: 'Akademická historická korekce. Skutečný historický Pythagoras a jeho škola byli číselní filozofové, nikoli numerologičtí věštci — moderní „pythagorejská numerologie" je rekonstrukce 19.–20. století, primárně přes Theosofii a L. Dow Balliett. Cosmatch tuto pravdu vědomě přiznává.',
+  },
 ] as const
 
 export default function ZdrojeNumerologiePage() {
@@ -142,11 +161,11 @@ export default function ZdrojeNumerologiePage() {
           </h1>
           <hr className="rule w-12 border-gray-900 mb-8" />
           <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
-            V numerologii Cosmatch staví na 14 klíčových zdrojích moderní západní i české numerologické tradice — od antiky po současné autory. Níže je seznam knih a autorů, ze kterých čerpá metodologie.
+            V numerologii Cosmatch staví na 17 klíčových zdrojích moderní západní i české numerologické a astrologické tradice — od antiky po současné autory. Níže je seznam knih a autorů, ze kterých čerpá metodologie.
           </p>
         </header>
 
-        {/* 14 zdrojů */}
+        {/* 17 zdrojů */}
         <section className="mb-20">
           <div className="space-y-10">
             {SOURCES.map((src) => (
@@ -187,10 +206,10 @@ export default function ZdrojeNumerologiePage() {
         <section className="mb-20">
           <p className="eyebrow text-pink-500 mb-4">Tři metodické školy</p>
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-8">
-            Proč existuje 14 zdrojů.
+            Proč existuje 17 zdrojů.
           </h2>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
-            Numerologie není jednotný systém — pro stejné datum narození vám dají různé školy různá životní čísla. 14 autorů, ze kterých Cosmatch čerpá, se dělí do tří metodických rodin (plus jedna alternativní).
+            Numerologie není jednotný systém — pro stejné datum narození vám dají různé školy různá životní čísla. 17 autorů, ze kterých Cosmatch čerpá, se dělí do tří metodických rodin (numerologie) a samostatné větve astrologie fixních hvězd (plus jedna alternativní).
           </p>
 
           <div className="space-y-5">

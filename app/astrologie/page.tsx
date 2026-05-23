@@ -172,7 +172,7 @@ export default function AstrologiePage() {
               <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-4">
                 <p className="eyebrow text-gray-500 mb-2">Siderální (védský / jyotish)</p>
                 <p className="text-gray-700 text-[0.95rem] leading-relaxed">
-                  0° Berana je ukotveno ke <strong className="text-gray-900 font-medium">skutečnému počátku souhvězdí Berana</strong>. Účtuje s precesí ekvinokcií ~1° každých 72 let. Používá ho indická astrologie. Rozdíl k roku 2026 je podle Lahiri ayanamsa: <strong className="text-gray-900 font-medium">~24°08′</strong>.
+                  0° Berana je ukotveno ke <strong className="text-gray-900 font-medium">skutečnému počátku souhvězdí Berana</strong>. Účtuje s precesí ekvinokcií ~1° každých 72 let. Používá ho indická astrologie. Rozdíl k roku 2026 je podle Lahiri ayanamsa: <strong className="text-gray-900 font-medium">24°07′47″</strong> (k 1. lednu 2026).
                 </p>
               </div>
               <p className="text-sm text-gray-500 italic">
@@ -256,7 +256,7 @@ export default function AstrologiePage() {
             <div>
               <h2 className="serif text-2xl sm:text-3xl text-gray-900 font-medium mb-5 leading-tight">Stupeň a Sabian symboly</h2>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-                Sluneční stupeň je <strong className="text-gray-900 font-medium">přesná poloha Slunce v rámci znamení</strong>: 0° až 29°. Slunce postupuje ~1° za den, takže každý den v roce má specifický stupeň. Dva lidé narození v sousedních dnech (např. 22. 7. a 23. 7.) mají sousední stupně — drobně odlišné profily.
+                Sluneční stupeň je <strong className="text-gray-900 font-medium">přesná poloha Slunce v rámci znamení</strong>: 0° až 29°. Slunce postupuje přibližně 0°59′ za den, takže každý den v roce má specifický stupeň. Dva lidé narození v sousedních dnech (např. 22. 7. a 23. 7.) mají sousední stupně — drobně odlišné profily.
               </p>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
                 <strong className="text-gray-900 font-medium">Sabian symboly:</strong> Pro každý ze 360 stupňů zodiaku existuje konkrétní obraz, který popisuje jeho energii. Sabian symboly byly přijaty v roce 1925, propagovala je <em className="italic">Elsie Wheeler</em> ve spolupráci s astrologem <em className="italic">Marc Edmund Jonesem</em>.
@@ -492,7 +492,7 @@ export default function AstrologiePage() {
             </Link>
             <Link href="/zdroje-numerologie" className="block bg-white border border-gray-200 hover:border-gray-900 rounded-2xl p-6 transition group">
               <p className="eyebrow text-gray-400 mb-2">Zdroje</p>
-              <h3 className="serif text-xl text-gray-900 font-medium mb-1 group-hover:text-pink-500 transition">14 klíčových zdrojů →</h3>
+              <h3 className="serif text-xl text-gray-900 font-medium mb-1 group-hover:text-pink-500 transition">17 klíčových zdrojů →</h3>
               <p className="text-gray-600 text-[0.95rem] leading-relaxed">Knihy a autoři, na kterých Cosmatch staví — od Pythagora po Hay House.</p>
             </Link>
           </div>
