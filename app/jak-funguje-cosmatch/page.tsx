@@ -151,7 +151,7 @@ export default function JakFungujeCosmatchPage() {
                 Detail viz Kompatibilita podle data narození →
               </h3>
               <p className="text-gray-600 text-[0.95rem] leading-relaxed mt-1">
-                12 archetypů (Průkopník až Idealista + master 11/2, 22/4, 33/6), jak se počítá životní číslo, tabulka shod, kompletní FAQ.
+                12 archetypů, jak se počítá životní číslo, tabulka shod.
               </p>
             </Link>
 
