@@ -51,7 +51,7 @@ const jsonLd = {
         {
           '@type': 'Question',
           name: 'How does Cosmatch work?',
-          acceptedAnswer: { '@type': 'Answer', text: 'Cosmatch calculates a numerology life path number from each user\'s birth date and references 366 personology profiles from The Power of Birthdays (Goldschneider & Elffers). A seven-layer compatibility score combines birth-date compatibility (35%), shared values & intent (20%), personality fit (15%), intimacy alignment (10%), lifestyle habits (10%), shared interests (5%) and recent activity (5%). Distance, age, and family plans are user-configurable filters, not score components.' },
+          acceptedAnswer: { '@type': 'Answer', text: 'Cosmatch calculates a numerology life path number from each user\'s birth date and applies a personology-tradition framework. A seven-layer compatibility score combines birth-date compatibility (35%), shared values & intent (20%), personality fit (15%), intimacy alignment (10%), lifestyle habits (10%), shared interests (5%) and recent activity (5%). Distance, age, and family plans are user-configurable filters, not score components.' },
         },
         {
           '@type': 'Question',
@@ -105,7 +105,7 @@ export default function AboutPage() {
             Definition.
           </h2>
           <p className="text-gray-800 leading-[1.75] text-[1.0625rem] dropcap mb-4">
-            <strong className="font-medium text-gray-900">Cosmatch is a Czech online dating application that pairs users based on numerological compatibility computed from their dates of birth.</strong> The app draws on 366 personology profiles from the book <em className="italic">The Power of Birthdays, Stars &amp; Numbers</em> (Goldschneider &amp; Elffers, 1994) and applies a seven-layer compatibility algorithm.
+            <strong className="font-medium text-gray-900">Cosmatch is a Czech online dating application that pairs users based on numerological compatibility computed from their dates of birth.</strong> The app draws on the personology tradition (Pythagorean numerology synthesised with astrological birth-date interpretation) and applies a seven-layer compatibility algorithm.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
             Founded by Mgr. Ing. Simona Cibulková in 2026, Cosmatch operates from Prague, Czech Republic. The web application is built on Next.js, hosted on Cloudflare Pages, with Supabase (PostgreSQL) backing user data in Frankfurt EU data centers.
@@ -126,7 +126,7 @@ export default function AboutPage() {
 
           <div className="space-y-6">
             {[
-              ['Layer I — Birth-date compatibility (35%)', 'Looks up each user pair in a 366×366 compatibility matrix derived from The Power of Birthdays (Goldschneider & Elffers). Returns one of five relationship categories: Soul Mates, Love & Friendship, Beneficial, Fatal Attraction, or Challenging (labelled "Magnetic Tension" in the app).'],
+              ['Layer I — Birth-date compatibility (35%)', 'Looks up each user pair via a personology compatibility framework. Returns one of five relationship categories: Soul Mates, Love & Friendship, Beneficial, Fatal Attraction, or Challenging (labelled "Magnetic Tension" in the app).'],
               ['Layer II — Values & intent (20%)', 'Family plans (children yes/no), relationship goal (serious / casual / friendship), religion, financial outlook. Shared long-term values predict relationship durability better than early-stage chemistry.'],
               ['Layer III — Personality & teamwork (15%)', 'Visionary vs realiser, introvert vs extrovert, lark vs owl, conflict style. Complementary patterns work; two identical profiles converge into boredom.'],
               ['Layer IV — Intimacy alignment (10%)', 'Libido frequency match (1–5). In long-term relationships, intimacy alignment functions as insurance against silent frustration.'],
@@ -179,7 +179,7 @@ export default function AboutPage() {
           </h2>
           <ul className="space-y-4">
             <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
-              <strong className="text-gray-900 font-medium">The Power of Birthdays, Stars &amp; Numbers</strong> by Goldschneider &amp; Elffers (Crown, 1994) — 832-page reference of personology profiles for each day of the year, with complete compatibility matrix.
+              <strong className="text-gray-900 font-medium">Personology tradition</strong> — Pythagorean numerology synthesised with astrological interpretation of birth dates, developed across the 20th-century reference literature.
             </li>
             <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
               <strong className="text-gray-900 font-medium">Datum narození a jeho vliv na náš charakter</strong> by Jitka Kadlecová (Eminent, 2006) — Czech personology tradition.
