@@ -116,30 +116,22 @@ export default function JakFungujeCosmatchPage() {
         <section className="mb-16">
           <p className="eyebrow text-gray-500 mb-4">Detail vrstvy I — 35 %</p>
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-6">
-            Kompatibilita podle data narození — pod kapotou.
+            Kompatibilita podle data narození.
           </h2>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
-            Pro každý ze 366 dnů v roce má kniha The Power of Birthdays vlastní profil — sluneční znamení, dekanát, stupeň, fixní hvězdy, dominantní planeta, klíčové numerologické rezonance. Na konci každého profilu autoři uvádí seznam <strong className="text-gray-900 font-medium">5 vztahových kategorií</strong>:
+            Každý ze 366 dnů v roce má své numerologické rezonance, sluneční znamení, dekanát, stupeň, fixní hvězdy a dominantní planetu. Každý den má také určité dny, které se k němu hodí, a to v různých kategoriích:
           </p>
           <ul className="space-y-2 text-[0.95rem] text-gray-700 leading-relaxed mb-6">
-            <li><strong className="text-gray-900 font-medium">Spřízněné duše</strong> (Soul Mates) — nejhlubší karmické vazby, 100 bodů</li>
-            <li><strong className="text-gray-900 font-medium">Láska a přátelství</strong> (Love & Friendship) — přirozená harmonie, 85 bodů</li>
-            <li><strong className="text-gray-900 font-medium">Prospěšný vztah</strong> (Beneficial) — vzájemná podpora, mentoring, 70 bodů</li>
-            <li><strong className="text-gray-900 font-medium">Osudová přitažlivost</strong> (Fatal Attractions) — intenzivní magnetismus, 60 bodů</li>
-            <li><strong className="text-gray-900 font-medium">Náročný vztah</strong> (Challenging) — růst přes konflikt, 45 bodů</li>
+            <li><strong className="text-gray-900 font-medium">Spřízněné duše</strong> — nejhlubší karmické vazby, 100 bodů</li>
+            <li><strong className="text-gray-900 font-medium">Láska a přátelství</strong> — přirozená harmonie, 85 bodů</li>
+            <li><strong className="text-gray-900 font-medium">Prospěšný vztah</strong> — vzájemná podpora, mentoring, 70 bodů</li>
+            <li><strong className="text-gray-900 font-medium">Osudová přitažlivost</strong> — intenzivní magnetismus, 60 bodů</li>
+            <li><strong className="text-gray-900 font-medium">Náročný vztah</strong> — růst přes konflikt, 45 bodů</li>
             <li><em className="italic">Žádná kategorie</em> — neutrální default, 50 bodů</li>
           </ul>
-          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
-            Tyto kategorie už v sobě <em className="italic">obsahují</em> astrologickou logiku (trigon, sextil, opozice, čtverec, kvintil) i numerologickou harmonii — Goldschneider je všechny zohlednil při sestavování knihy. Cosmatch tu jejich práci jen vyhledává, ne znovu počítá. Proto se v algoritmu nepřidává samostatná vrstva pro „elementy“ nebo „astrologické aspekty“ — to by bylo trojí započítání toho samého.
+          <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
+            Algoritmus vyhledá, jaký vztah má osoba A vzhledem k osobě B, a obráceně. Výsledek je průměr obou směrů. Když mají v sobě oba navzájem pozitivní kategorii, dostávají bonus 5 %.
           </p>
-          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
-            Vyhledání je <strong className="text-gray-900 font-medium">vzájemné</strong>: hledáme, do jaké kategorie patří B v A's profilu, a obráceně. Výsledek je průměr obou směrů. Když oba mají v sobě navzájem pozitivní kategorii, dostávají bonus 5 %.
-          </p>
-          <div className="mt-8 bg-white border border-gray-200 rounded-2xl p-6">
-            <p className="text-sm text-gray-700 leading-relaxed">
-              <strong className="text-gray-900 font-medium">A co životní číslo?</strong> Životní číslo (součet celého data narození) Cosmatch používá <strong className="text-gray-900 font-medium">jen pro sebepoznání</strong> — v numerologickém kvízu a v Magic Moment po registraci. <strong className="text-gray-900 font-medium">Není součástí matchingu</strong>, protože by to bylo zdvojené započítání toho, co už kniha pokrývá detailněji (366 unikátních profilů vs. 12 archetypů). Pro samotnou kompatibilitu používáme jen book lookup, který je přesnější.
-            </p>
-          </div>
         </section>
 
         <hr className="rule mb-16" />
