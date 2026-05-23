@@ -39,18 +39,18 @@ export const metadata: Metadata = {
 }
 
 const NUMBERS = [
-  ['1', 'Průkopník', '3, 5, 6', '4, 8'],
-  ['2', 'Diplomat', '4, 6, 8, 9', '5'],
-  ['3', 'Tvůrce', '1, 5, 7, 9', '4'],
-  ['4', 'Stavitel', '2, 6, 8', '3, 5'],
-  ['5', 'Dobrodruh', '1, 3, 7', '2, 4'],
-  ['6', 'Pečovatel', '1, 2, 4, 9', '7'],
-  ['7', 'Hledač', '3, 5, 11', '6'],
-  ['8', 'Vůdce', '2, 4, 6', '1, 9'],
-  ['9', 'Idealista', '1, 2, 3, 6', '8'],
-  ['11/2', 'Vizionář (vyšší oktáva 2)', '2, 6, 9', '1, 5'],
-  ['22/4', 'Architekt (vyšší oktáva 4)', '4, 6, 8', '3, 5'],
-  ['33/6', 'Léčitel (vyšší oktáva 6)', '6, 9, 11', '1, 8'],
+  ['1', 'Průkopník', '3, 5', '4, 6, 9', '8'],
+  ['2', 'Diplomat', '4, 6, 8, 9', '1, 3', '5, 7'],
+  ['3', 'Tvůrce', '1, 5, 7, 9', '6, 8', '4'],
+  ['4', 'Stavitel', '2, 6, 8', '1, 7', '3, 5'],
+  ['5', 'Dobrodruh', '1, 3, 7', '6, 9', '2, 4'],
+  ['6', 'Pečovatel', '1, 2, 9', '3, 4, 8', '7'],
+  ['7', 'Hledač', '3, 5, 11', '1, 4, 9', '6'],
+  ['8', 'Vůdce', '2, 4, 6', '3, 7', '1, 9'],
+  ['9', 'Idealista', '1, 2, 3, 6', '5, 9', '8'],
+  ['11/2', 'Vizionář', '2, 6, 9', '4, 8', '1, 5'],
+  ['22/4', 'Architekt', '4, 6, 8', '1, 2', '3, 5'],
+  ['33/6', 'Léčitel', '6, 9, 11', '2, 22', '1, 8'],
 ] as const
 
 const FAQ = [
@@ -222,13 +222,15 @@ export default function KompatibilitaPage() {
           </h2>
 
           <div className="space-y-5">
-            {NUMBERS.map(([n, name, good, hard]) => (
+            {NUMBERS.map(([n, name, good, compat, hard]) => (
               <div key={n} className="grid grid-cols-[auto,1fr] gap-6 sm:gap-8 pb-5 border-b border-gray-200 last:border-b-0">
                 <div className="serif-display text-4xl text-pink-500 font-medium leading-none tabular-nums">{n}</div>
                 <div>
                   <h3 className="serif text-xl text-gray-900 font-medium mb-2">{name}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">
                     <span className="text-gray-900 font-medium">Silná shoda:</span> {good}
+                    <span className="text-gray-300 mx-2">·</span>
+                    <span className="text-pink-500">Kompatibilní:</span> {compat}
                     <span className="text-gray-300 mx-2">·</span>
                     <span className="text-gray-500">Náročná: {hard}</span>
                   </p>
