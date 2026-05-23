@@ -207,7 +207,7 @@ export default function KompatibilitaPage() {
             oktávou" svého základu: 11 nese kvality 2, 22 nese kvality 4, 33 nese kvality 6.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
-            Kompatibilita v seznamce se počítá z kombinace dvou životních čísel spolu se záměrem vztahu,
+            Kompatibilita se v seznamce počítá z kombinace dvou životních čísel spolu se záměrem vztahu,
             povahovými vlastnostmi a společnými zájmy.
           </p>
         </section>
