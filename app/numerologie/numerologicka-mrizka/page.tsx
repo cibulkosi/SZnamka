@@ -8,6 +8,7 @@ const URL = 'https://cosmatch.cz/numerologie/numerologicka-mrizka'
 export const metadata: Metadata = {
   title: TITLE,
   description: DESC,
+  robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
   alternates: { canonical: URL, languages: { 'cs-CZ': URL, 'x-default': URL } },
   openGraph: { title: TITLE, description: DESC, url: URL, type: 'article', siteName: 'Cosmatch', locale: 'cs_CZ', images: [{ url: 'https://cosmatch.cz/og-image.png', width: 1200, height: 630 }] },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESC, images: ['https://cosmatch.cz/og-image.png'] },
