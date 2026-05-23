@@ -114,8 +114,6 @@ export default function LifePathPage() {
           </p>
         </header>
 
-        <KarmicDebtCard />
-
         {/* Vlastnosti */}
         <section className="mb-16">
           <p className="eyebrow text-pink-500 mb-4">Vlastnosti</p>
@@ -217,6 +215,8 @@ export default function LifePathPage() {
             ))}
           </ul>
         </section>
+
+        <KarmicDebtCard />
 
         {/* CTA */}
         <section className="bg-white rounded-3xl border border-gray-100 p-10 mt-12">
