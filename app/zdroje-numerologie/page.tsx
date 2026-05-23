@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { ARCHETYPE_SOURCES, BARNUM_DISCLOSURE } from '@/lib/archetypes'
 
 const TITLE = 'Zdroje numerologie | Cosmatch'
-const DESC = 'Cosmatch staví na 14 klíčových zdrojích numerologie a personology — od Pythagora přes Cheira, Florence Campbell, Juno Jordan a Matthewa Goodwina, k současným autorům jako Hans Decoz, Glynis McCants nebo Michelle Buchanan. Z české tradice cituje Jitku Kadlecovou; německou tradici zastupuje Helmut Kritzinger (česky vydaný v Pragma).'
+const DESC = 'Cosmatch staví na 14 klíčových zdrojích numerologie a personology — od Pythagora přes Cheira, Florence Campbell, Juno Jordan a Matthewa Goodwina, k současným autorům jako Hans Decoz, Glynis McCants nebo Michelle Buchanan. Z české tradice cituje Jitku Kadlecovou a Ester Davidovou. Z mezinárodních autorů jsou česky dostupní Dan Millman (Čísla života, Eminent 2003) a Helmut Kritzinger (Partnerství a numerologie, Pragma 1999, originál v němčině).'
 const URL = 'https://cosmatch.cz/zdroje-numerologie'
 
 export const metadata: Metadata = {

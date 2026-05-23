@@ -351,7 +351,7 @@ export const ARCHETYPE_SOURCES = [
   },
   {
     author: 'Dan Millman',
-    work: 'The Life You Were Born to Live (HJ Kramer, 1993; CZ: Čísla života, Eminent 2003)',
+    work: 'The Life You Were Born to Live (HJ Kramer, 1993; CZ: Čísla života, Eminent 2003, reissue Martinus 2017)',
     role: 'Life-purpose framing. Definuje populární „životní číslo" framework se sekcemi o skryté dynamice vztahů pro každou cestu.',
   },
   {
