@@ -241,22 +241,22 @@ export default function JakFungujeCosmatchPage() {
         <section className="mb-16">
           <p className="eyebrow text-pink-500 mb-4">Čestnost</p>
           <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-6">
-            Numerologie není věda. A to nevadí.
+            Numerologie není věda. A nevadí to.
           </h2>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
             Cosmatch používá numerologické a astrologické vzorce k odhadu strukturálního souznění mezi dvěma lidmi. <strong className="text-gray-900 font-medium">Numerologie a astrologie nejsou vědecky validované jako spolehlivé prediktory vztahových výsledků</strong> — bereme je jako <strong className="text-gray-900 font-medium">tradici sebepoznání a mapování osobnosti</strong> s kořeny v pythagorejské a chaldejské filozofii čísel, ne jako empirickou predikci.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-            Část pocitu „tohle sedí přesně!“ je dokumentovaný psychologický jev zvaný <strong className="text-gray-900 font-medium">Barnumův/Forerův efekt</strong>. V roce 1949 psycholog Bertram Forer dal 39 studentům identický popis osobnosti a oni ho ohodnotili průměrnou známkou <strong className="text-gray-900 font-medium">4.26 z 5.0</strong> jako „přesně mě“. To samé funguje s numerologií a astrologií — popisy jsou obecné natolik, aby v nich každý našel kus sebe.
+            Část pocitu „tohle sedí přesně!“ je dokumentovaný psychologický jev zvaný <strong className="text-gray-900 font-medium">Barnumův/Forerův efekt</strong>. V roce 1949 dal psycholog Bertram Forer 39 studentům identický popis osobnosti a oni ho ohodnotili průměrnou známkou <strong className="text-gray-900 font-medium">4,26 z 5,0</strong> jako „to jsem přesně já“. To samé může fungovat s numerologií a astrologií — popisy mohou být obecné natolik, že v nich každý najde kus sebe.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-            <strong className="text-gray-900 font-medium">Proč to nevadí?</strong> Protože hodnota nástroje není v jeho prediktivní přesnosti — je v tom, k jakému rozhovoru ti otevírá dveře. Numerologický archetyp je <strong className="text-gray-900 font-medium">zrcadlo</strong>, ne diagnóza. „Tohle jsem já?“ je první otázka. „Jak s tím nakládám?“ je druhá. „Jak komunikuju partnerovi, co potřebuju?“ je třetí. Cosmatch ti dává jazyk pro tyto rozhovory.
+            <strong className="text-gray-900 font-medium">Proč to nevadí?</strong> Protože hodnota nástroje není v jeho prediktivní přesnosti — je v tom, k jakému rozhovoru ti otevírá dveře. Numerologický archetyp je <strong className="text-gray-900 font-medium">zrcadlo</strong>, ne diagnóza. „Tohle jsem já?“ je první otázka. „Jak s tím naložím?“ je druhá. „Jak říkám partnerovi, co potřebuju?“ je třetí. Cosmatch ti dává podněty k přemýšlení o vztahu a jeho aspektech a o tom, kde může být třeba na něm zapracovat.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-            Cosmatch shoda je interpretační nástroj, ne predikce. Žádná aplikace nedokáže garantovat úspěch vztahu — záleží na vás, jak ho dokážete vybudovat.
+            Cosmatch shoda je interpretační nástroj, ne predikce. Žádná aplikace nedokáže garantovat úspěch vztahu — záleží jen na vás, jak ho dokážete vybudovat.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
-            Tvoje srdce má vždy poslední slovo. Cosmatch je tu, aby ti dal lepší startovací podmínky — ne diagnózu.
+            Tvoje srdce má vždy poslední slovo. Cosmatch je tu, aby ti dal lepší startovací podmínky, ne diagnózu.
           </p>
         </section>
 
@@ -267,7 +267,7 @@ export default function JakFungujeCosmatchPage() {
             Spusť kvíz.
           </h2>
           <p className="text-gray-600 leading-relaxed mb-8 text-[1.0625rem]">
-            Zadej datum narození — uvidíš výsledek za 30 sekund. Žádná registrace.
+            Zadej datum narození a uvidíš výsledek za 30 sekund. Žádná registrace.
           </p>
           <Link href="/test" className="inline-flex items-center justify-center bg-gray-900 text-white px-8 py-4 rounded-full text-base font-medium hover:bg-gray-800 transition">
             Spustit kvíz
