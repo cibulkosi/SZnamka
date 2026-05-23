@@ -111,11 +111,6 @@ export default function LifePathPage() {
           <p className="text-lg text-gray-800 leading-relaxed serif italic dropcap">
             {a.short}
           </p>
-          <p className="text-sm text-gray-500 mt-6">
-            Autorka <span className="italic serif text-gray-900">Simona Cibulková</span>
-            <span className="text-gray-300 mx-2">·</span>
-            <span>Praha · květen 2026</span>
-          </p>
         </header>
 
         {/* Energetická vazba — Master 11/2 */}
