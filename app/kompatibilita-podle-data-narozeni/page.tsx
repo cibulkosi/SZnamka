@@ -56,7 +56,7 @@ const NUMBERS = [
 const FAQ = [
   {
     q: 'Jak se počítá životní číslo z data narození?',
-    a: 'Cosmatch používá tzv. Decoz three-cycle metodu: redukuješ měsíc, den a rok zvlášť, pak součet finálně redukuješ. Příklad: 23. 7. 1992 → měsíc 7 + den (2+3=5) + rok (1+9+9+2=21→3) = 15 → 1+5 = 6. Životní číslo je 6 (Pečovatel). Master čísla 11, 22 a 33 se zachovají, jen pokud se objeví v některé z mezikalkulací — pak je můžeš číst současně i jako jejich plnou redukci (11/2, 22/4, 33/6).',
+    a: 'Cosmatch používá tzv. Decoz three-cycle metodu kdy se redukuje měsíc, den a rok zvlášť, a poté se finálně redukuje i součet. Příklad: 23. 7. 1992 → den (2+3=5) + měsíc 7 + rok (1+9+9+2=21→3) = 5+7+3 = 15 → 6. Životní číslo je 6 (Pečovatel). Master čísla 11, 22 a 33 se zachovají, jen pokud se objeví v některé z mezikalkulací — pak je můžeš číst současně jako master číslo i jako jejich plnou redukci (11/2, 22/4, 33/6).',
   },
   {
     q: 'Jaká čísla jsou nejkompatibilnější?',
