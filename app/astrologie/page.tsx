@@ -86,7 +86,7 @@ export default function AstrologiePage() {
           </h1>
           <hr className="rule w-12 border-gray-900 mb-8" />
           <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
-            Cosmatch matching algoritmus vychází z personology — syntézy astrologie, numerologie a fixních hvězd v knize <em className="italic">The Power of Birthdays, Stars &amp; Numbers</em> (česky <em className="italic">Magická hra čísel a hvězd</em>). Tady je detail pěti astrologických komponent, které denní profil tvoří.
+            Cosmatch matching algoritmus vychází z <strong className="text-gray-900 font-medium">personology tradice</strong> — syntézy astrologie, numerologie a fixních hvězd. Tady je detail pěti astrologických komponent, které tvoří denní profil v této tradici.
           </p>
           <p className="text-sm text-gray-500 mt-6">
             Autorka <span className="text-gray-900 italic serif">Simona Cibulková</span>
@@ -99,7 +99,7 @@ export default function AstrologiePage() {
         <section className="bg-emerald-50 border border-emerald-200 rounded-3xl p-8 mb-16">
           <p className="eyebrow text-emerald-600 mb-3">Ve zkratce</p>
           <p className="text-gray-800 leading-relaxed text-[1.0625rem]">
-            Každý ze 366 dnů má v personology systému 5 astrologických komponent: <strong className="text-gray-900 font-medium">sluneční znamení</strong> (kterých je 12), <strong className="text-gray-900 font-medium">dekanát</strong> (36 v zodiaku, po 10°), <strong className="text-gray-900 font-medium">stupeň</strong> (0°–29° v rámci znamení), <strong className="text-gray-900 font-medium">fixní hvězdy</strong> v aspektu, a <strong className="text-gray-900 font-medium">dominantní planetu</strong> (vládce znamení + sub-vládce dekanátu). Cosmatch tyto komponenty nepočítá sám — vyhledává je z hotových denních profilů knihy.
+            Každý ze 366 dnů má v personology systému 5 astrologických komponent: <strong className="text-gray-900 font-medium">sluneční znamení</strong> (kterých je 12), <strong className="text-gray-900 font-medium">dekanát</strong> (36 v zodiaku, po 10°), <strong className="text-gray-900 font-medium">stupeň</strong> (0°–29° v rámci znamení), <strong className="text-gray-900 font-medium">fixní hvězdy</strong> v aspektu, a <strong className="text-gray-900 font-medium">dominantní planetu</strong> (vládce znamení + sub-vládce dekanátu). Cosmatch tyto komponenty interpretuje podle personology tradice — kombinace astrologie, numerologie a fixních hvězd.
           </p>
         </section>
 
@@ -176,7 +176,7 @@ export default function AstrologiePage() {
                   <li>2. dekan = vládce následujícího ohnivého znamení v pořadí</li>
                   <li>3. dekan = vládce třetího ohnivého znamení</li>
                 </ul>
-                <p className="text-xs text-gray-500 mt-3 italic">Crawford &amp; Sullivan používá tento systém.</p>
+                <p className="text-xs text-gray-500 mt-3 italic">Personology tradice tento systém přiřazování dekanátů preferuje.</p>
               </div>
 
               <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-6">
@@ -292,7 +292,7 @@ export default function AstrologiePage() {
               </div>
 
               <p className="text-sm text-gray-500 italic">
-                Crawford &amp; Sullivan explicitně uvádí fixní hvězdy v každém z 366 denních profilů. Cosmatch tyto údaje čte ze své zdrojové DB tabulky, sám astrofyzické výpočty neprovádí.
+                Personology tradice fixní hvězdy explicitně eviduje pro každý den v roce. Cosmatch tyto údaje interpretuje, sám astrofyzické výpočty neprovádí.
               </p>
             </div>
           </div>
