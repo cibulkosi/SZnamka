@@ -17,12 +17,12 @@ export const PROMPTS: Prompt[] = [
   { id: 'co-me-rozesmeje', question: 'Co mě nejvíc rozesměje', category: 'about' },
   { id: 'co-me-uklidni', question: 'Co mě uklidní', category: 'about' },
   { id: 'tajny-talent', question: 'Tajný talent', category: 'about' },
-  { id: 'co-kdybych', question: 'Co kdybych ti řekl/a, že', category: 'about' },
+  { id: 'co-kdybych', question: 'Co kdybych Ti řekl/a, že', category: 'about' },
 
   // Love & relationships
   { id: 'hledam-nekoho', question: 'Hledám někoho, kdo', category: 'love' },
-  { id: 'zamilovala', question: 'Zamilovala/a bych se do tebe, kdybys', category: 'love' },
-  { id: 'jen-prosim', question: 'Jen tě prosím, abys', category: 'love' },
+  { id: 'zamilovala', question: 'Zamilovala/a bych se do Tebe, kdybys', category: 'love' },
+  { id: 'jen-prosim', question: 'Jen Tě prosím, abys', category: 'love' },
   { id: 'pokud-pozna', question: 'Pokud bys mě měl/a poznat', category: 'love' },
   { id: 'cervena-vlajka', question: 'Můj červený flag', category: 'love' },
   { id: 'zelena-vlajka', question: 'Můj zelený flag', category: 'love' },

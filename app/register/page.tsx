@@ -303,7 +303,7 @@ export default function RegisterPage() {
           } else if (!redeemResult?.ok) {
             console.warn('Voucher redemption failed:', redeemResult?.error)
             if (redeemResult?.error === 'voucher_gender_cap_reached') {
-              voucherCapMessage = 'Voucher pro tvé pohlaví je dočasně mimo aktivní pool kvůli vyrovnání zastoupení. Účet máš vytvořený. Voucher si ulož — uplatníš ho později, jakmile poměr vyrovnáme.'
+              voucherCapMessage = 'Voucher pro Tvé pohlaví je dočasně mimo aktivní pool kvůli vyrovnání zastoupení. Účet máš vytvořený. Voucher si ulož — uplatníš ho později, jakmile poměr vyrovnáme.'
             }
           }
         } catch (e) { console.warn('Voucher RPC error:', e) }
@@ -346,7 +346,7 @@ export default function RegisterPage() {
             </h1>
             <hr className="rule w-12 border-gray-900 mb-8" />
             <p className="text-gray-700 leading-relaxed text-[1.0625rem] mb-10">
-              Přihlásíme tě bezpečně přes Google nebo Facebook.
+              Přihlásíme Tě bezpečně přes Google nebo Facebook.
             </p>
 
             <div className="space-y-3 mb-10">
@@ -371,7 +371,7 @@ export default function RegisterPage() {
               {' '}a{' '}
               <Link href="/zasady-ochrany-osobnich-udaju" className="underline hover:text-gray-700">Zásadami ochrany osobních údajů</Link>.
               <br />
-              Náš závazek vůči tobě je{' '}
+              Náš závazek vůči Tobě je{' '}
               <Link href="/manifest-duvery" className="underline hover:text-gray-700">Manifest důvěry</Link>
             </p>
 
@@ -548,13 +548,13 @@ export default function RegisterPage() {
         {step === 4 && (
           <>
             <h1 className="serif-display text-5xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-6">
-              Pár detailů,<br/>aby <em className="italic text-pink-500">tě poznali</em>.
+              Pár detailů,<br/>aby <em className="italic text-pink-500">Tě poznali</em>.
             </h1>
             <hr className="rule w-12 border-gray-900 mb-10" />
 
             <div className="space-y-10 mb-10">
               <div>
-                <Eyebrow>Jak ti říkat</Eyebrow>
+                <Eyebrow>Jak Ti říkat</Eyebrow>
                 <Underline value={form.name} onChange={e => set('name', e.target.value)} placeholder="Tvoje jméno" />
               </div>
               <div>
@@ -616,7 +616,7 @@ export default function RegisterPage() {
                   placeholder="např. K7XP9M2A"
                 />
                 <p className="text-xs text-gray-400 mt-2 leading-relaxed">
-                  Pokud jsi dostal/a kód z e-mailu po waitlist signup, vlož ho sem. Odemkne ti 3 měsíce Cosmatch+ zdarma až ho spustíme.
+                  Pokud jsi dostal/a kód z e-mailu po waitlist signup, vlož ho sem. Odemkne Ti 3 měsíce Cosmatch+ zdarma až ho spustíme.
                 </p>
               </div>
 
@@ -664,7 +664,7 @@ export default function RegisterPage() {
             </div>
 
             <PrimaryBtn onClick={handleSubmit} disabled={loading}>
-              {loading ? 'Vytvářím tvůj profil…' : 'Hotovo'}
+              {loading ? 'Vytvářím Tvůj profil…' : 'Hotovo'}
             </PrimaryBtn>
             <button onClick={() => setStep(3)} className="block mx-auto mt-6 text-sm text-gray-400 hover:text-gray-700 transition">← Zpět</button>
           </>
@@ -688,7 +688,7 @@ export default function RegisterPage() {
                   </h3>
                   <p className="text-gray-600 leading-relaxed text-[1.0625rem] mb-8">
                     Datum narození <strong className="font-medium text-gray-900">nelze po registraci změnit</strong> —
-                    je trvale svázané s tvým numerologickým profilem.
+                    je trvale svázané s Tvým numerologickým profilem.
                   </p>
                   <div className="flex gap-3">
                     <button onClick={() => { setShowBirthdayModal(false); setBirthdayStage('confirm') }}

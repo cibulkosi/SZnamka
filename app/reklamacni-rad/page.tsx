@@ -48,7 +48,7 @@ export default function ReklamacniRadPage() {
             <ul className="list-disc pl-6 space-y-2">
               <li><strong className="text-gray-900 font-medium">Vadné poskytnutí placené služby</strong> — např. nefunkční prémiová funkce Cosmatch+, ke které máš zaplacený přístup.</li>
               <li><strong className="text-gray-900 font-medium">Neoprávněné zúčtování</strong> — opakovaná platba, chybná částka, dvojitá platba.</li>
-              <li><strong className="text-gray-900 font-medium">Nedoručení voucheru</strong> — pokud ses přidal/a na waitlist a slíbený voucher na 3 měsíce Cosmatch+ ti nedorazil.</li>
+              <li><strong className="text-gray-900 font-medium">Nedoručení voucheru</strong> — pokud ses přidal/a na waitlist a slíbený voucher na 3 měsíce Cosmatch+ Ti nedorazil.</li>
               <li><strong className="text-gray-900 font-medium">Dlouhodobý výpadek aplikace</strong> — pokud Cosmatch nefunguje déle než 24 hodin v měsíci po dobu placeného předplatného.</li>
             </ul>
           </section>
@@ -62,7 +62,7 @@ export default function ReklamacniRadPage() {
               <strong className="text-gray-900 font-medium">3.2</strong> V reklamaci uveď:
             </p>
             <ul className="list-disc pl-6 space-y-1 mb-3">
-              <li>tvoje jméno a e-mail registrovaný v Cosmatch,</li>
+              <li>Tvoje jméno a e-mail registrovaný v Cosmatch,</li>
               <li>datum vzniku problému,</li>
               <li>popis vady (co nefunguje, co očekáváš),</li>
               <li>screenshot pokud relevantní,</li>
@@ -78,7 +78,7 @@ export default function ReklamacniRadPage() {
             <ul className="list-disc pl-6 space-y-2">
               <li><strong className="text-gray-900 font-medium">Maximálně 30 dnů</strong> od přijetí reklamace ze zákona.</li>
               <li><strong className="text-gray-900 font-medium">Cosmatch cíl: 7 dnů</strong> — snažíme se vyřídit většinu reklamací do týdne.</li>
-              <li>Pokud je reklamace složitější (vyžaduje technickou analýzu), informujeme tě o prodloužení do 30 dnů od přijetí.</li>
+              <li>Pokud je reklamace složitější (vyžaduje technickou analýzu), informujeme Tě o prodloužení do 30 dnů od přijetí.</li>
             </ul>
           </section>
 
@@ -100,7 +100,7 @@ export default function ReklamacniRadPage() {
             </p>
             <ul className="list-disc pl-6 space-y-2">
               <li><strong className="text-gray-900 font-medium">Českou obchodní inspekci</strong> jako orgán mimosoudního řešení spotřebitelských sporů. Web: <a href="https://www.coi.cz" target="_blank" rel="noopener" className="text-pink-500 underline">coi.cz</a></li>
-              <li>Obecný soud v místě tvého bydliště.</li>
+              <li>Obecný soud v místě Tvého bydliště.</li>
             </ul>
           </section>
 

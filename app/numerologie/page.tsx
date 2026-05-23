@@ -76,7 +76,7 @@ export default function NumerologiePillarPage() {
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
             Cosmatch numerologii neprezentuje jako vědu — ale jako framework pro sebepoznání.
-            Funguje stejně jako MBTI nebo Enneagram: dává ti strukturu, jak lépe rozumět vlastním vzorcům
+            Funguje stejně jako MBTI nebo Enneagram: dává Ti strukturu, jak lépe rozumět vlastním vzorcům
             ve vztazích.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">

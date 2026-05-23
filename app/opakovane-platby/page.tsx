@@ -50,9 +50,9 @@ export default function OpakovanePlatbyPage() {
           <section>
             <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">Co se stane při nákupu</h2>
             <p className="mb-3"><strong className="text-gray-900 font-medium">1.</strong> V mobilní aplikaci Cosmatch otevřeš sekci <em>Cosmatch+</em> a vybereš plán (měsíční / kvartální / roční).</p>
-            <p className="mb-3"><strong className="text-gray-900 font-medium">2.</strong> Zobrazí se ti standardní platební dialog Apple App Store (iOS) nebo Google Play (Android). Platbu potvrdíš biometrií (Face ID, Touch ID, otisk prstu) nebo heslem ke svému Apple ID / Google účtu.</p>
-            <p className="mb-3"><strong className="text-gray-900 font-medium">3.</strong> Platbu zúčtuje Apple, respektive Google. Cosmatch dostane pouze informaci o úspěšné transakci — žádné údaje o tvé kartě.</p>
-            <p className="mb-3"><strong className="text-gray-900 font-medium">4.</strong> Fakturu / doklad o platbě ti vystaví Apple nebo Google ve své standardní podobě (zaslaná e-mailem na adresu tvého Apple ID / Google účtu).</p>
+            <p className="mb-3"><strong className="text-gray-900 font-medium">2.</strong> Zobrazí se Ti standardní platební dialog Apple App Store (iOS) nebo Google Play (Android). Platbu potvrdíš biometrií (Face ID, Touch ID, otisk prstu) nebo heslem ke svému Apple ID / Google účtu.</p>
+            <p className="mb-3"><strong className="text-gray-900 font-medium">3.</strong> Platbu zúčtuje Apple, respektive Google. Cosmatch dostane pouze informaci o úspěšné transakci — žádné údaje o Tvé kartě.</p>
+            <p className="mb-3"><strong className="text-gray-900 font-medium">4.</strong> Fakturu / doklad o platbě Ti vystaví Apple nebo Google ve své standardní podobě (zaslaná e-mailem na adresu Tvého Apple ID / Google účtu).</p>
             <p><strong className="text-gray-900 font-medium">5.</strong> Cosmatch+ se v aplikaci aktivuje okamžitě.</p>
           </section>
 
@@ -77,32 +77,32 @@ export default function OpakovanePlatbyPage() {
           <section>
             <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">Jak zrušit předplatné</h2>
             <p className="mb-3">
-              Předplatné můžeš <strong className="text-gray-900 font-medium">kdykoli zrušit</strong>, a to bez udání důvodu, bez sankce a bez výpovědní lhůty. Zrušení se provádí v nastavení tvého Apple ID, respektive Google účtu — ne v aplikaci Cosmatch.
+              Předplatné můžeš <strong className="text-gray-900 font-medium">kdykoli zrušit</strong>, a to bez udání důvodu, bez sankce a bez výpovědní lhůty. Zrušení se provádí v nastavení Tvého Apple ID, respektive Google účtu — ne v aplikaci Cosmatch.
             </p>
             <p className="mb-3"><strong className="text-gray-900 font-medium">iPhone / iPad (iOS)</strong></p>
             <p className="mb-3 pl-4">
-              Nastavení → tvoje jméno (Apple ID) → Předplatné → Cosmatch+ → Zrušit předplatné. Nebo přes <a href="https://apps.apple.com/account/subscriptions" target="_blank" rel="noopener" className="text-pink-500 hover:underline">apps.apple.com/account/subscriptions</a>.
+              Nastavení → Tvoje jméno (Apple ID) → Předplatné → Cosmatch+ → Zrušit předplatné. Nebo přes <a href="https://apps.apple.com/account/subscriptions" target="_blank" rel="noopener" className="text-pink-500 hover:underline">apps.apple.com/account/subscriptions</a>.
             </p>
             <p className="mb-3"><strong className="text-gray-900 font-medium">Android (Google Play)</strong></p>
             <p className="mb-3 pl-4">
-              Aplikace Google Play → tvoje ikona → Platby a předplatné → Předplatné → Cosmatch+ → Zrušit. Nebo přes <a href="https://play.google.com/store/account/subscriptions" target="_blank" rel="noopener" className="text-pink-500 hover:underline">play.google.com/store/account/subscriptions</a>.
+              Aplikace Google Play → Tvoje ikona → Platby a předplatné → Předplatné → Cosmatch+ → Zrušit. Nebo přes <a href="https://play.google.com/store/account/subscriptions" target="_blank" rel="noopener" className="text-pink-500 hover:underline">play.google.com/store/account/subscriptions</a>.
             </p>
             <p>
-              <strong className="text-gray-900 font-medium">Co se stane po zrušení:</strong> Cosmatch+ ti zůstane aktivní až do konce již zaplaceného období, poté se profil vrátí na bezplatný režim. Žádná další platba už nebude stržena.
+              <strong className="text-gray-900 font-medium">Co se stane po zrušení:</strong> Cosmatch+ Ti zůstane aktivní až do konce již zaplaceného období, poté se profil vrátí na bezplatný režim. Žádná další platba už nebude stržena.
             </p>
           </section>
 
           <section>
             <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">Změna ceny</h2>
             <p>
-              Pokud Cosmatch rozhodne o změně ceny, oznámí to e-mailem <strong className="text-gray-900 font-medium">minimálně 30 dní</strong> před účinností nové ceny. Apple / Google ti navíc ze své strany pošlou samostatné oznámení o změně předplatného. Do účinnosti nové ceny máš právo předplatné zrušit bez sankce.
+              Pokud Cosmatch rozhodne o změně ceny, oznámí to e-mailem <strong className="text-gray-900 font-medium">minimálně 30 dní</strong> před účinností nové ceny. Apple / Google Ti navíc ze své strany pošlou samostatné oznámení o změně předplatného. Do účinnosti nové ceny máš právo předplatné zrušit bez sankce.
             </p>
           </section>
 
           <section>
             <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">Neúspěšná platba</h2>
             <p className="mb-3">
-              Pokud se automatické stržení nepodaří (např. expirovaná karta, nedostatek prostředků), Apple / Google se pokusí platbu zopakovat dle vlastních pravidel (obvykle 3× během 16 dní u Apple, podobně u Google) a budou tě o tom informovat.
+              Pokud se automatické stržení nepodaří (např. expirovaná karta, nedostatek prostředků), Apple / Google se pokusí platbu zopakovat dle vlastních pravidel (obvykle 3× během 16 dní u Apple, podobně u Google) a budou Tě o tom informovat.
             </p>
             <p>
               Pokud ani opakované pokusy neprojdou, Cosmatch+ se automaticky deaktivuje a profil se vrátí na bezplatný režim. Předplatné můžeš znovu aktivovat s aktuální platební metodou v Apple App Store / Google Play.
@@ -123,7 +123,7 @@ export default function OpakovanePlatbyPage() {
               Otevři <a href="https://play.google.com/store/account/orderhistory" target="_blank" rel="noopener" className="text-pink-500 hover:underline">play.google.com/store/account/orderhistory</a> → najdi platbu Cosmatch+ → Požádat o vrácení peněz.
             </p>
             <p>
-              Pokud Apple / Google refund schválí, peníze ti vrátí na původní platební prostředek do 5–10 pracovních dní a Cosmatch+ se deaktivuje. V odůvodněných případech (technická porucha aplikace) využij <Link href="/kontakt" className="text-pink-500 hover:underline">kontaktní formulář</Link> — pomůžeme ti při komunikaci s Apple / Google. Detail: <Link href="/reklamacni-rad" className="text-pink-500 hover:underline">Reklamační řád</Link> a <Link href="/odstoupeni-od-smlouvy" className="text-pink-500 hover:underline">Odstoupení od smlouvy</Link>.
+              Pokud Apple / Google refund schválí, peníze Ti vrátí na původní platební prostředek do 5–10 pracovních dní a Cosmatch+ se deaktivuje. V odůvodněných případech (technická porucha aplikace) využij <Link href="/kontakt" className="text-pink-500 hover:underline">kontaktní formulář</Link> — pomůžeme Ti při komunikaci s Apple / Google. Detail: <Link href="/reklamacni-rad" className="text-pink-500 hover:underline">Reklamační řád</Link> a <Link href="/odstoupeni-od-smlouvy" className="text-pink-500 hover:underline">Odstoupení od smlouvy</Link>.
             </p>
           </section>
 

@@ -124,7 +124,7 @@ export const DEMO_PROFILES: DemoProfile[] = [
       u('photo-1545389336-cf090694435e'),  // meditation/yoga (replaced — original was a face)
     ],
     prompts: [
-      { question: 'Co kdybych ti řekl/a, že', answer: 'maluju každý den 20 minut, i když nic z toho nikomu neukážu' },
+      { question: 'Co kdybych Ti řekl/a, že', answer: 'maluju každý den 20 minut, i když nic z toho nikomu neukážu' },
       { question: 'Co mě uklidní', answer: 'Dlouhé procházky lesem, kde nepotkáš nikoho známého' },
       { question: 'Nejcennější vzpomínka', answer: 'Hlavní postava knížky, co mi máma četla když mi bylo 7. Neustále si beru její moudrosti k srdci.' },
     ],
@@ -159,7 +159,7 @@ export const DEMO_PROFILES: DemoProfile[] = [
       { question: 'Pokud bys mě měl/a poznat', answer: 'Začni u jídla. Tam mě opravdu dostaneš.' },
       { question: 'Hledám někoho, kdo', answer: 'se nebojí zašpinit ruce, miluju zahradničení a kempování!' },
     ],
-    voicePrompt: { question: 'Recept, který tě naučím první', duration: '0:27' },
+    voicePrompt: { question: 'Recept, který Tě naučím první', duration: '0:27' },
     accent: '#ec4899',
   },
   {
@@ -221,7 +221,7 @@ export const DEMO_PROFILES: DemoProfile[] = [
       { question: 'Krátký film o mém životě by se jmenoval', answer: 'Čekání na inspiraci ve 3 ráno.' },
       { question: 'Hledám někoho, kdo', answer: 'rozumí, že ticho mezi notami je často důležitější než tóny samy' },
     ],
-    voicePrompt: { question: 'Krátký verš o tobě, i když jsem Tě ještě nikdy neviděl', duration: '0:34' },
+    voicePrompt: { question: 'Krátký verš o Tobě, i když jsem Tě ještě nikdy neviděl', duration: '0:34' },
     accent: '#ec4899',
   },
 ]

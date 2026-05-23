@@ -39,7 +39,7 @@ export default function LandingPage() {
                 potenciálního partnera podle 12 archetypů a denního profilu kompatibility.
               </p>
               <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
-                Místo nekonečného swipování ti dává důvod, proč se s někým opravdu potkat.
+                Místo nekonečného swipování Ti dává důvod, proč se s někým opravdu potkat.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -126,12 +126,12 @@ export default function LandingPage() {
               {
                 num: 'I',
                 title: 'Zadej datum narození',
-                body: 'Cosmatch z něj spočítá tvůj numerologický archetyp — jeden z dvanácti. Vidíš jméno svého archetypu, jeho vlastnosti, nebo to, jak miluješ.'
+                body: 'Cosmatch z něj spočítá Tvůj numerologický archetyp — jeden z dvanácti. Vidíš jméno svého archetypu, jeho vlastnosti, nebo to, jak miluješ.'
               },
               {
                 num: 'II',
                 title: 'Na seznamce uvidíš profily, ne jen karty',
-                body: 'Místo nekonečného swipování se můžeš kouknout zdarma na pět profilů denně seřazených podle skutečné kompatibility. Každý profil ti řekne, proč právě tato osoba k tobě podle data narození sedí.'
+                body: 'Místo nekonečného swipování se můžeš kouknout zdarma na pět profilů denně seřazených podle skutečné kompatibility. Každý profil Ti řekne, proč právě tato osoba k Tobě podle data narození sedí.'
               },
               {
                 num: 'III',
@@ -159,7 +159,7 @@ export default function LandingPage() {
             Každý člověk s tebou<br/><em className="italic text-pink-400">vytváří jiný příběh</em>.
           </h2>
           <p className="text-white/70 text-lg leading-[1.8] mb-16 max-w-xl">
-            Cosmatch ti spočítá, jak by mohl váš vztah vypadat, ještě předtím,
+            Cosmatch Ti spočítá, jak by mohl váš vztah vypadat, ještě předtím,
             než si napíšete první zprávu.
           </p>
 
@@ -169,7 +169,7 @@ export default function LandingPage() {
               { name: 'Láska a přátelství', body: 'Vzájemná podpora, sdílené hodnoty, pohoda. Velmi příznivá kombinace pro dlouhodobý vztah.' },
               { name: 'Osudová přitažlivost', body: 'Intenzivní magnetická přitažlivost. Vášeň, kterou nelze ovládat. Může být jak okouzlující, tak destruktivní.' },
               { name: 'Prospěšný vztah', body: 'Komplementární partnerství — druhý Ti přináší něco, co Ti chybí. Podporuje růst.' },
-              { name: 'Náročný vztah', body: 'Vztah plný napětí a transformace. Učí tě věci, které by ses jinde nenaučil/a.' },
+              { name: 'Náročný vztah', body: 'Vztah plný napětí a transformace. Učí Tě věci, které by ses jinde nenaučil/a.' },
             ].map((c, i) => (
               <div key={c.name} className="grid grid-cols-[auto,1fr] gap-x-8 border-b border-white/10 pb-8 last:border-b-0">
                 <div className="serif text-xl text-pink-400 leading-none pt-1 tabular-nums">{String(i+1).padStart(2,'0')}</div>
@@ -202,9 +202,9 @@ export default function LandingPage() {
 
           <div className="space-y-12">
             {[
-              ['Konec bezduchému swipování.', 'Dostaneš pět profilů denně, s nejlepší shodou přesně pro tebe.'],
-              ['Žádné falešné notifikace.', 'Když ti přijde zpráva, někdo ti opravdu napsal.'],
-              ['Žádné placené pozice v algoritmu.', 'Placené předplatné mění tvé možnosti, ne tvoji viditelnost.'],
+              ['Konec bezduchému swipování.', 'Dostaneš pět profilů denně, s nejlepší shodou přesně pro Tebe.'],
+              ['Žádné falešné notifikace.', 'Když Ti přijde zpráva, někdo Ti opravdu napsal.'],
+              ['Žádné placené pozice v algoritmu.', 'Placené předplatné mění Tvé možnosti, ne Tvoji viditelnost.'],
               ['Žádné reklamy. Nikdy.', 'Cosmatch financují uživatelé, ne inzerenti.'],
             ].map(([t, b]) => (
               <div key={t} className="border-b border-gray-200 pb-12 last:border-b-0">

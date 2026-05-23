@@ -29,15 +29,15 @@ const jsonLd = {
 }
 
 const NUMBER_MEANINGS: Record<number, { title: string; missing: string }> = {
-  1: { title: 'Iniciativa, vůdcovství, nezávislost', missing: 'Chybí ti iniciativa a vlastní směr. Lekce: naučit se rozhodovat a vést sám sebe.' },
-  2: { title: 'Citlivost, partnerství, harmonie', missing: 'Chybí ti citlivost k druhým a schopnost spolupráce. Lekce: naučit se naslouchat a kompromis.' },
-  3: { title: 'Tvořivost, sebevyjádření, optimismus', missing: 'Chybí ti kreativní vyjádření a hravost. Lekce: nauč se mluvit, psát, tvořit.' },
-  4: { title: 'Disciplína, struktura, vytrvalost', missing: 'Chybí ti disciplína a pracovní vytrvalost. Lekce: vybudovat řád a dlouhodobé návyky.' },
-  5: { title: 'Svoboda, změna, dobrodružství', missing: 'Chybí ti otevřenost ke změně a adaptace. Lekce: dovolit si experimentovat a měnit směr.' },
-  6: { title: 'Péče, zodpovědnost, rodina', missing: 'Chybí ti starost o druhé a smysl pro povinnost. Lekce: naučit se přijímat zodpovědnost za blízké.' },
-  7: { title: 'Hloubka, analýza, spiritualita', missing: 'Chybí ti vnitřní reflexe a duchovní hledání. Lekce: nauč se zpomalit a jít do hloubky.' },
-  8: { title: 'Moc, materiální mistrovství, leadership', missing: 'Chybí ti vztah k moci, penězům, autoritě. Lekce: nauč se zacházet s materiálním světem.' },
-  9: { title: 'Soucit, humanita, dokončení', missing: 'Chybí ti nadhled a globální vidění. Lekce: naučit se cítit s celkem, ne jen se sebou.' },
+  1: { title: 'Iniciativa, vůdcovství, nezávislost', missing: 'Chybí Ti iniciativa a vlastní směr. Lekce: naučit se rozhodovat a vést sám sebe.' },
+  2: { title: 'Citlivost, partnerství, harmonie', missing: 'Chybí Ti citlivost k druhým a schopnost spolupráce. Lekce: naučit se naslouchat a kompromis.' },
+  3: { title: 'Tvořivost, sebevyjádření, optimismus', missing: 'Chybí Ti kreativní vyjádření a hravost. Lekce: nauč se mluvit, psát, tvořit.' },
+  4: { title: 'Disciplína, struktura, vytrvalost', missing: 'Chybí Ti disciplína a pracovní vytrvalost. Lekce: vybudovat řád a dlouhodobé návyky.' },
+  5: { title: 'Svoboda, změna, dobrodružství', missing: 'Chybí Ti otevřenost ke změně a adaptace. Lekce: dovolit si experimentovat a měnit směr.' },
+  6: { title: 'Péče, zodpovědnost, rodina', missing: 'Chybí Ti starost o druhé a smysl pro povinnost. Lekce: naučit se přijímat zodpovědnost za blízké.' },
+  7: { title: 'Hloubka, analýza, spiritualita', missing: 'Chybí Ti vnitřní reflexe a duchovní hledání. Lekce: nauč se zpomalit a jít do hloubky.' },
+  8: { title: 'Moc, materiální mistrovství, leadership', missing: 'Chybí Ti vztah k moci, penězům, autoritě. Lekce: nauč se zacházet s materiálním světem.' },
+  9: { title: 'Soucit, humanita, dokončení', missing: 'Chybí Ti nadhled a globální vidění. Lekce: naučit se cítit s celkem, ne jen se sebou.' },
 }
 
 const TRINITIES = [
@@ -65,7 +65,7 @@ export default function CosmatchKarmickaMapaPage() {
           </h1>
           <hr className="rule w-12 border-gray-900 mb-8" />
           <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
-            Mapa odhalí, která čísla ti v datu narození chybí — a tím i charakterové rysy, které musíš v životě vědomě budovat.
+            Mapa odhalí, která čísla Ti v datu narození chybí — a tím i charakterové rysy, které musíš v životě vědomě budovat.
           </p>
         </header>
 
@@ -73,7 +73,7 @@ export default function CosmatchKarmickaMapaPage() {
         <section className="bg-emerald-50 border border-emerald-200 rounded-3xl p-8 mb-16">
           <p className="eyebrow text-emerald-600 mb-3">Ve zkratce</p>
           <p className="text-gray-800 leading-relaxed text-[1.0625rem]">
-            Cosmatch karmická mapa stojí na dvou pilířích moderní numerologie: <strong className="text-gray-900 font-medium">Karmic Lessons</strong> konceptu Hanse Decoze (chybějící čísla = karmické lekce) a <strong className="text-gray-900 font-medium">trojicovém modelu</strong> Glynis McCants (Independence 1-5-7 / Stability 2-4-8 / Creative 3-6-9). Místo abstraktního 3×3 čtverce ti ukáže, které <em className="italic">energetické trojice</em> v tobě převažují a kterých ti chybí.
+            Cosmatch karmická mapa stojí na dvou pilířích moderní numerologie: <strong className="text-gray-900 font-medium">Karmic Lessons</strong> konceptu Hanse Decoze (chybějící čísla = karmické lekce) a <strong className="text-gray-900 font-medium">trojicovém modelu</strong> Glynis McCants (Independence 1-5-7 / Stability 2-4-8 / Creative 3-6-9). Místo abstraktního 3×3 čtverce Ti ukáže, které <em className="italic">energetické trojice</em> v Tobě převažují a kterých Ti chybí.
           </p>
         </section>
 
@@ -120,7 +120,7 @@ export default function CosmatchKarmickaMapaPage() {
           </div>
 
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
-            Když si do trojic zapíšeš všechny číslice ze svého data narození, uvidíš, která trojice u tebe <strong className="text-gray-900 font-medium">vibruje silně</strong> (= přirozená energie) a která <strong className="text-gray-900 font-medium">chybí</strong> (= karmická lekce).
+            Když si do trojic zapíšeš všechny číslice ze svého data narození, uvidíš, která trojice u Tebe <strong className="text-gray-900 font-medium">vibruje silně</strong> (= přirozená energie) a která <strong className="text-gray-900 font-medium">chybí</strong> (= karmická lekce).
           </p>
         </section>
 
@@ -174,7 +174,7 @@ export default function CosmatchKarmickaMapaPage() {
         <section className="mb-16">
           <p className="eyebrow text-gray-500 mb-4">Význam čísel</p>
           <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-8">
-            Co znamená, když ti chybí.
+            Co znamená, když Ti chybí.
           </h2>
           <div className="space-y-5">
             {Object.entries(NUMBER_MEANINGS).map(([n, info]) => (

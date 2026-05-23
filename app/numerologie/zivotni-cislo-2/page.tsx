@@ -146,7 +146,7 @@ export default function LifePathPage() {
         <section className="mb-16">
           <p className="eyebrow text-pink-500 mb-4">V lásce</p>
           <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-8">
-            S kým ti to bude fungovat.
+            S kým Ti to bude fungovat.
           </h2>
           <p className="text-gray-800 leading-[1.75] text-[1.0625rem] mb-8">{a.love}</p>
 
@@ -193,7 +193,7 @@ export default function LifePathPage() {
         <section className="mb-16">
           <p className="eyebrow text-pink-500 mb-4">Kariéra</p>
           <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">
-            V čem ti to půjde.
+            V čem Ti to půjde.
           </h2>
           <p className="text-gray-800 leading-[1.75] text-[1.0625rem]">{a.career}</p>
         </section>
@@ -225,7 +225,7 @@ export default function LifePathPage() {
             Číslo {number} hledá svou {a.compatible[0]}, {a.compatible[1]} nebo {a.compatible[2]}.
           </h2>
           <p className="text-gray-600 leading-relaxed mb-8 text-[1.0625rem]">
-            Cosmatch je první česká seznamka, která tě s nimi propojí podle skutečné kompatibility.
+            Cosmatch je první česká seznamka, která Tě s nimi propojí podle skutečné kompatibility.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <Link href="/test" className="inline-flex items-center justify-center bg-gray-900 text-white px-8 py-4 rounded-full text-base font-medium hover:bg-gray-800 transition">

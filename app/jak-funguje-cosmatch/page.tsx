@@ -99,10 +99,10 @@ export default function JakFungujeCosmatchPage() {
 
           <div className="mt-8 bg-white border border-gray-200 rounded-2xl p-6 space-y-3">
             <p className="text-sm text-gray-700 leading-relaxed">
-              <strong className="text-gray-900 font-medium">A co vzdálenost, věk a fyzické preference?</strong> Tyto věci NEJSOU součástí kompatibility skóre. Jsou to <strong className="text-gray-900 font-medium">filtry</strong>, které si nastavíš sám/sama. V profilu si určíš maximální vzdálenost (např. do 30 km), věkový rozsah, případně výšku a profily mimo tvoje preference se ti vůbec neukážou. Algoritmus tak nikoho nepenalizuje za výšku ani věk; ale můžeš si požadované vlastnosti vyfiltrovat, pokud chceš.
+              <strong className="text-gray-900 font-medium">A co vzdálenost, věk a fyzické preference?</strong> Tyto věci NEJSOU součástí kompatibility skóre. Jsou to <strong className="text-gray-900 font-medium">filtry</strong>, které si nastavíš sám/sama. V profilu si určíš maximální vzdálenost (např. do 30 km), věkový rozsah, případně výšku a profily mimo Tvoje preference se Ti vůbec neukážou. Algoritmus tak nikoho nepenalizuje za výšku ani věk; ale můžeš si požadované vlastnosti vyfiltrovat, pokud chceš.
             </p>
             <p className="text-sm text-gray-700 leading-relaxed">
-              <strong className="text-gray-900 font-medium">Deal-breakers:</strong> Pokud jeden z vás chce děti a druhý ne, profil se ti neukáže (vždy). Kouření můžeš také označit jako deal-breaker a pak ti zmizí i náruživí kuřáci a lidé holdující alkoholu nebo marihuaně.
+              <strong className="text-gray-900 font-medium">Deal-breakers:</strong> Pokud jeden z vás chce děti a druhý ne, profil se Ti neukáže (vždy). Kouření můžeš také označit jako deal-breaker a pak Ti zmizí i náruživí kuřáci a lidé holdující alkoholu nebo marihuaně.
             </p>
             <p className="text-sm text-gray-700 leading-relaxed">
               <strong className="text-gray-900 font-medium">Minimální kompatibilita:</strong> V nastavení si můžeš zvolit, že chceš vidět jen profily nad 25 / 50 / 75 % shody. Defaultně je nastaveno na 0 %, kdy vidíš všechny.
@@ -136,7 +136,7 @@ export default function JakFungujeCosmatchPage() {
           <hr className="rule mb-10" />
 
           {/* Co jsou jednotlivé astrologické komponenty */}
-          <h3 className="serif text-2xl text-gray-900 font-medium leading-tight mb-3">Co znamenají ty jednotlivé komponenty.</h3>
+          <h3 className="serif text-2xl text-gray-900 font-medium leading-tight mb-3">Co znamenají Ty jednotlivé komponenty.</h3>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
             Profil každého ze 366 dnů kombinuje pět vrstev numerologického a astrologického popisu. Vysvětlení každé z nich najdeš na <Link href="/kompatibilita-podle-data-narozeni" className="text-pink-500 underline">Numerologie</Link> a <Link href="/astrologie" className="text-pink-500 underline">Astrologie</Link>.
           </p>
@@ -229,13 +229,13 @@ export default function JakFungujeCosmatchPage() {
             Část pocitu „tohle sedí přesně!“ je dokumentovaný psychologický jev zvaný <strong className="text-gray-900 font-medium">Barnumův/Forerův efekt</strong>. V roce 1949 dal psycholog Bertram Forer 39 studentům identický popis osobnosti a oni ho ohodnotili průměrnou známkou <strong className="text-gray-900 font-medium">4,26 z 5,0</strong> jako „to jsem přesně já“. To samé může fungovat s numerologií a astrologií — popisy mohou být obecné natolik, že v nich každý najde kus sebe.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-            <strong className="text-gray-900 font-medium">Proč to nevadí?</strong> Protože hodnota nástroje není v jeho prediktivní přesnosti — je v tom, k jakému rozhovoru ti otevírá dveře. Numerologický archetyp je <strong className="text-gray-900 font-medium">zrcadlo</strong>, ne diagnóza. „Tohle jsem já?“ je první otázka. „Jak s tím naložím?“ je druhá. „Jak říkám partnerovi, co potřebuju?“ je třetí. Cosmatch ti dává podněty k přemýšlení o vztahu a jeho aspektech a o tom, kde může být třeba na něm zapracovat.
+            <strong className="text-gray-900 font-medium">Proč to nevadí?</strong> Protože hodnota nástroje není v jeho prediktivní přesnosti — je v tom, k jakému rozhovoru Ti otevírá dveře. Numerologický archetyp je <strong className="text-gray-900 font-medium">zrcadlo</strong>, ne diagnóza. „Tohle jsem já?“ je první otázka. „Jak s tím naložím?“ je druhá. „Jak říkám partnerovi, co potřebuju?“ je třetí. Cosmatch Ti dává podněty k přemýšlení o vztahu a jeho aspektech a o tom, kde může být třeba na něm zapracovat.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
             Cosmatch shoda je interpretační nástroj, ne predikce. Žádná aplikace nedokáže garantovat úspěch vztahu — záleží jen na vás, jak ho dokážete vybudovat.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
-            Tvoje srdce má vždy poslední slovo. Cosmatch je tu, aby ti dal lepší startovací podmínky, ne diagnózu.
+            Tvoje srdce má vždy poslední slovo. Cosmatch je tu, aby Ti dal lepší startovací podmínky, ne diagnózu.
           </p>
         </section>
 

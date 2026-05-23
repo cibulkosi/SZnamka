@@ -44,7 +44,7 @@ export default function KarmicDebtCard() {
         })}
       </div>
       <p className="text-xs text-gray-500 italic mt-4">
-        Karmické dluhy jsou specifické pre-reduction hodnoty (13, 14, 16, 19) z tvého data narození. Reprezentují „lekce z minulých životů" podle moderní pythagorejské tradice (Goodwin 1981, Decoz). Cca 20–30 % lidí má alespoň jeden.
+        Karmické dluhy jsou specifické pre-reduction hodnoty (13, 14, 16, 19) z Tvého data narození. Reprezentují „lekce z minulých životů" podle moderní pythagorejské tradice (Goodwin 1981, Decoz). Cca 20–30 % lidí má alespoň jeden.
       </p>
     </section>
   )

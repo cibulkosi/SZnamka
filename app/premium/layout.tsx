@@ -11,11 +11,11 @@ const FAQS = [
   },
   {
     q: 'Mohu předplatné kdykoli zrušit?',
-    a: 'Ano, zrušení je v profilu jedním klikem. Zbývající dny ti zůstanou aktivní.',
+    a: 'Ano, zrušení je v profilu jedním klikem. Zbývající dny Ti zůstanou aktivní.',
   },
   {
     q: 'Jak se platí Cosmatch+?',
-    a: 'Platbu zpracovává zabezpečená platební brána. Přijímá Visa, Mastercard, Apple Pay i Google Pay. Faktura ti přijde automaticky e-mailem.',
+    a: 'Platbu zpracovává zabezpečená platební brána. Přijímá Visa, Mastercard, Apple Pay i Google Pay. Faktura Ti přijde automaticky e-mailem.',
   },
   {
     q: 'Vrátíte peníze pokud nebudu spokojen?',
@@ -41,7 +41,7 @@ const OFFER_JSONLD = {
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: 'Cosmatch+',
-  description: 'Předplatné numerologické seznamky Cosmatch — neomezené lajky, hloubková analýza podle data narození, vidíš kdo tě lajknul, prioritní zobrazení ve feedu.',
+  description: 'Předplatné numerologické seznamky Cosmatch — neomezené lajky, hloubková analýza podle data narození, vidíš kdo Tě lajknul, prioritní zobrazení ve feedu.',
   brand: { '@type': 'Brand', name: 'Cosmatch' },
   offers: [
     { '@type': 'Offer', name: 'Cosmatch+ měsíčně', price: '249', priceCurrency: 'CZK', availability: 'https://schema.org/InStock', url: URL, priceSpecification: { '@type': 'UnitPriceSpecification', billingDuration: 'P1M', price: '249', priceCurrency: 'CZK' } },

@@ -678,7 +678,7 @@ export default function DiscoverPage() {
    <div className="bg-[#FAF6F0] rounded-3xl p-10 max-w-md w-full shadow-2xl">
      <p className="eyebrow text-pink-500 mb-4">Magický moment</p>
      <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-6">
-       {user?.name}, <em className="italic text-pink-500">vesmír tě zná</em>.
+       {user?.name}, <em className="italic text-pink-500">vesmír Tě zná</em>.
      </h2>
      <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-8 whitespace-pre-wrap serif italic">
        „{magicText}“

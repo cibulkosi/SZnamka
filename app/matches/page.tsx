@@ -137,7 +137,7 @@ export default function MatchesPage() {
         <header className="mb-12">
           <p className="eyebrow text-pink-500 mb-6">Tvoje shody</p>
           <h1 className="serif-display text-5xl text-gray-900 font-medium leading-[1.05] tracking-tight">
-            Kdo na tebe<br/><em className="italic text-pink-500">čeká</em>.
+            Kdo na Tebe<br/><em className="italic text-pink-500">čeká</em>.
           </h1>
         </header>
 
@@ -165,7 +165,7 @@ export default function MatchesPage() {
             <p className="eyebrow text-pink-500 mb-2">Kosmické shody</p>
             <p className="text-sm text-gray-700 leading-relaxed">
               Tito uživatelé mají s tebou oboustrannou kompatibilitu podle data narození —
-              podle data narození. Líbí se ti? Najdi je v Discover.
+              podle data narození. Líbí se Ti? Najdi je v Discover.
             </p>
           </div>
         )}
@@ -175,11 +175,11 @@ export default function MatchesPage() {
             <p className="serif text-2xl text-gray-700 italic mb-3">
               {tab === 'matches' ? 'Zatím žádné shody.'
                 : tab === 'mutual' ? 'Žádné kosmické shody.'
-                : 'Nikdo tě ještě nelajknul.'}
+                : 'Nikdo Tě ještě nelajknul.'}
             </p>
             <p className="text-gray-500 text-[1.0625rem] leading-relaxed mb-8 max-w-sm mx-auto">
               {tab === 'matches' ? 'Pokračuj v objevování — každý den dostáváš nové profily.'
-                : tab === 'mutual' ? 'Ještě nikdo s tvou oboustrannou kompatibilitou není registrovaný.'
+                : tab === 'mutual' ? 'Ještě nikdo s Tvou oboustrannou kompatibilitou není registrovaný.'
                 : 'Trpělivost — Cosmatch se právě rozjíždí.'}
             </p>
             <Link href="/discover" className="inline-flex items-center justify-center bg-gray-900 text-white px-8 py-4 rounded-full text-base font-medium hover:bg-gray-800 transition">
@@ -194,7 +194,7 @@ export default function MatchesPage() {
                 <div className="bg-white border border-pink-200 rounded-3xl p-8 max-w-sm text-center shadow-xl pointer-events-auto">
                   <p className="eyebrow text-pink-500 mb-3">Cosmatch+</p>
                   <h3 className="serif text-2xl text-gray-900 font-medium mb-3">
-                    {displayList.length} {displayList.length === 1 ? 'člověk' : displayList.length < 5 ? 'lidé' : 'lidí'} tě lajkne.
+                    {displayList.length} {displayList.length === 1 ? 'člověk' : displayList.length < 5 ? 'lidé' : 'lidí'} Tě lajkne.
                   </h3>
                   <p className="text-gray-600 text-sm leading-relaxed mb-6">
                     V Cosmatch+ uvidíš, kdo přesně to je — a můžeš mu/jí napsat jako první.

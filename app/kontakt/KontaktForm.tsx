@@ -149,7 +149,7 @@ export default function KontaktForm() {
       {/* E-mail */}
       <div>
         <label htmlFor="email" className="block text-sm text-gray-700 mb-2">
-          E-mail (kam ti odpovíme)
+          E-mail (kam Ti odpovíme)
         </label>
         <input
           id="email"
@@ -198,7 +198,7 @@ export default function KontaktForm() {
           maxLength={5000}
           rows={6}
           className="w-full bg-white border border-gray-300 rounded-2xl focus:border-gray-900 outline-none p-4 text-gray-900 placeholder-gray-400 transition resize-y"
-          placeholder="Stručně popiš, s čím ti můžeme pomoct…"
+          placeholder="Stručně popiš, s čím Ti můžeme pomoct…"
         />
         <p className="text-xs text-gray-400 mt-1 text-right tabular-nums">
           {charCount} / 5 000
@@ -247,7 +247,7 @@ export default function KontaktForm() {
       </button>
 
       <p className="text-xs text-gray-500 text-center leading-relaxed">
-        Odesláním souhlasíš s tím, že tvůj e-mail a zprávu zpracujeme pro účely odpovědi.
+        Odesláním souhlasíš s tím, že Tvůj e-mail a zprávu zpracujeme pro účely odpovědi.
         Detail v <a href="/zasady-ochrany-osobnich-udaju" className="underline hover:text-gray-900">Zásadách ochrany osobních údajů</a>.
       </p>
     </form>

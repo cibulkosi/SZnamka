@@ -380,7 +380,7 @@ export default function JakPocitamePage() {
               </div>
 
               <p className="text-sm text-gray-500">
-                Cosmatch detekuje karmické dluhy z tvého data narození. Pokud máš dluh, zobrazí se na profilové stránce tvého životního čísla jako další vrstva sebepoznání.
+                Cosmatch detekuje karmické dluhy z Tvého data narození. Pokud máš dluh, zobrazí se na profilové stránce Tvého životního čísla jako další vrstva sebepoznání.
               </p>
             </div>
           </div>
@@ -419,7 +419,7 @@ export default function JakPocitamePage() {
                   Lindeman &amp; Aarnio (2007) v <em className="italic">Journal of Research in Personality</em> 41(4) klasifikují numerologii a astrologii jako kategorie paranormálních přesvědčení. Robert T. Carroll v <em className="italic">The Skeptic's Dictionary</em> (Wiley, 2003) charakterizuje numerologii jako pseudovědu, protože její tvrzení „nelze testovat — jsou tak vágní a tvárné, že cokoli relevantního lze do této teorie nacpat."
                 </p>
                 <p className="text-gray-700 text-[0.95rem] leading-relaxed">
-                  Cosmatch tyto kritiky neignoruje — souhlasíme, že popisy archetypů jsou natolik obecné, aby v nich každý našel kus sebe (Barnumův efekt). Hodnota není v predikci, ale v tom, k jakému rozhovoru ti tradice otevírá dveře.
+                  Cosmatch tyto kritiky neignoruje — souhlasíme, že popisy archetypů jsou natolik obecné, aby v nich každý našel kus sebe (Barnumův efekt). Hodnota není v predikci, ale v tom, k jakému rozhovoru Ti tradice otevírá dveře.
                 </p>
               </div>
 
@@ -441,7 +441,7 @@ export default function JakPocitamePage() {
             Zjisti své životní číslo.
           </h2>
           <p className="text-gray-600 leading-relaxed mb-8 text-[1.0625rem]">
-            Zadej datum narození a Cosmatch ti spočítá životní číslo přesně podle Decoz three-cycle metody, i s archetypem a nejlepšími shodami.
+            Zadej datum narození a Cosmatch Ti spočítá životní číslo přesně podle Decoz three-cycle metody, i s archetypem a nejlepšími shodami.
           </p>
           <Link href="/test" className="inline-flex items-center justify-center bg-gray-900 text-white px-8 py-4 rounded-full text-base font-medium hover:bg-gray-800 transition">
             Spustit kvíz

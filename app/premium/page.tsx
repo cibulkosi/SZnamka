@@ -43,12 +43,12 @@ const TIERS: Tier[] = [
     name: 'Cosmatch+',
     pricePerMonth: '249 Kč',
     priceTagline: 'měsíčně · 597 Kč / 3 měsíce · 2 088 Kč / rok',
-    audience: 'Pro ty, co Cosmatch reálně používají',
+    audience: 'Pro Ty, co Cosmatch reálně používají',
     description: 'Dostupný standard za 249 Kč měsíčně. Vidíš všechno, ale o 36 % levněji než Tinder Gold. Roční plán 2 088 Kč — sleva 30 %.',
     features: [
       'Neomezené lajky a zprávy',
       'Hloubková analýza podle data narození',
-      'Vidíš, kdo tě lajknul, dřív než ty je',
+      'Vidíš, kdo Tě lajknul, dřív než ty je',
       'Prioritní zobrazení profilu ve feedu ostatních',
       'Pět filtrů včetně záměru a vzdálenosti',
       'Možnost vrátit poslední pass',
@@ -132,7 +132,7 @@ export default function PremiumPage() {
           <hr className="rule w-12 border-gray-900 mb-8" />
           <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
             Cosmatch nefinancuje žádný inzerent. Žije z toho, že ho používáš.
-            Free verze je plně použitelná. Placené tarify ti dají rychlejší cestu
+            Free verze je plně použitelná. Placené tarify Ti dají rychlejší cestu
             ke kvalitnímu vztahu — ne lepší pozici v algoritmu.
           </p>
         </header>
@@ -269,7 +269,7 @@ export default function PremiumPage() {
 
           <div className="space-y-8">
             {[
-              ['Placené pozice v algoritmu','Vzorec si můžeš přepočítat. Placené předplatné mění tvé možnosti, ne tvoji viditelnost ostatním.'],
+              ['Placené pozice v algoritmu','Vzorec si můžeš přepočítat. Placené předplatné mění Tvé možnosti, ne Tvoji viditelnost ostatním.'],
               ['Skryté předplatné','Zrušíš jedním klikem v profilu. Žádný telefonát, žádné formuláře.'],
               ['Reklamy','Cosmatch financují uživatelé, ne inzerenti. Tvoje pozornost není zboží.'],
               ['Prodej dat','Tvoje datum narození nikdo neuvidí mimo Cosmatch. Žádné reklamní sítě, žádní brokeri.'],
@@ -294,10 +294,10 @@ export default function PremiumPage() {
 
           <div className="space-y-8">
             {[
-              ['Mohu předplatné kdykoli zrušit?','Ano. Zrušení je v profilu jedním klikem. Zbývající dny ti zůstanou aktivní.'],
-              ['Jak se platí?','Cosmatch+ se kupuje v mobilní aplikaci pro iOS (Apple App Store) nebo Android (Google Play). Platí Apple, respektive Google — Visa, Mastercard, Apple Pay, Google Pay. DPH ve tvojí zemi se vybere a odvede automaticky.'],
+              ['Mohu předplatné kdykoli zrušit?','Ano. Zrušení je v profilu jedním klikem. Zbývající dny Ti zůstanou aktivní.'],
+              ['Jak se platí?','Cosmatch+ se kupuje v mobilní aplikaci pro iOS (Apple App Store) nebo Android (Google Play). Platí Apple, respektive Google — Visa, Mastercard, Apple Pay, Google Pay. DPH ve Tvojí zemi se vybere a odvede automaticky.'],
               ['Vrátíte mi peníze, když to nebude fungovat?','Do 14 dnů ano, bez vysvětlení. Po 14 dnech vyhodnocujeme případ od případu.'],
-              ['Můžu platit ročně nebo kvartálně?','Ano — Cosmatch+ má tři plány: měsíčně 249 Kč, kvartálně 597 Kč (sleva 20 %), ročně 2 088 Kč (sleva 30 %). Pokud najdeš někoho dřív, zbývající dny ti zůstanou aktivní nebo můžeš požádat o vrácení alikvotní části.'],
+              ['Můžu platit ročně nebo kvartálně?','Ano — Cosmatch+ má tři plány: měsíčně 249 Kč, kvartálně 597 Kč (sleva 20 %), ročně 2 088 Kč (sleva 30 %). Pokud najdeš někoho dřív, zbývající dny Ti zůstanou aktivní nebo můžeš požádat o vrácení alikvotní části.'],
             ].map(([q, a]) => (
               <details key={q as string} className="border-b border-gray-200 pb-8 last:border-b-0 group" open>
                 <summary className="serif text-xl text-gray-900 font-medium leading-tight mb-3 cursor-pointer list-none">
@@ -312,7 +312,7 @@ export default function PremiumPage() {
         {/* Footer trust */}
         <footer className="border-t border-gray-200 pt-12">
           <p className="text-sm text-gray-500 leading-relaxed mb-6">
-            Cosmatch je financován výhradně předplatným uživatelů přes mobilní aplikaci. Platby zpracovává Apple App Store / Google Play, DPH ve tvojí zemi se vybere a odvede automaticky.
+            Cosmatch je financován výhradně předplatným uživatelů přes mobilní aplikaci. Platby zpracovává Apple App Store / Google Play, DPH ve Tvojí zemi se vybere a odvede automaticky.
             Tvoje datum narození používáme jen k výpočtu kompatibility — nikdy ho neprodáme.
           </p>
           <div className="flex flex-wrap gap-6 text-sm">

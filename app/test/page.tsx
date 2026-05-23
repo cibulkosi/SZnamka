@@ -262,8 +262,8 @@ export default function TestPage() {
             </h1>
             <hr className="rule w-12 border-gray-900 mb-8" />
             <p className="text-lg text-gray-700 leading-relaxed mb-4">
-              Tvoje datum narození zná odpověď. Cosmatch ti za 30 sekund spočítá tvůj
-              numerologický archetyp a ukáže ti, jaký partner ti skutečně sedí.
+              Tvoje datum narození zná odpověď. Cosmatch Ti za 30 sekund spočítá Tvůj
+              numerologický archetyp a ukáže Ti, jaký partner Ti skutečně sedí.
             </p>
             <p className="text-gray-500 leading-relaxed mb-12">
               Zdarma. Bez registrace. Nemusíš se přihlašovat, pokud nechceš.
@@ -277,7 +277,7 @@ export default function TestPage() {
             </button>
 
             <p className="text-xs text-gray-400 text-center mt-6">
-              Cosmatch je první česká seznamka, která tě páruje podle data narození.
+              Cosmatch je první česká seznamka, která Tě páruje podle data narození.
             </p>
           </div>
         )}
@@ -390,7 +390,7 @@ export default function TestPage() {
               </section>
 
               <section>
-                <p className="eyebrow text-gray-500 mb-3">Nejlépe ti sedí čísla</p>
+                <p className="eyebrow text-gray-500 mb-3">Nejlépe Ti sedí čísla</p>
                 <div className="flex gap-3">
                   {archetype.compatible.map(n => (
                     <div
@@ -407,7 +407,7 @@ export default function TestPage() {
             <hr className="rule my-12" />
 
             <div className="bg-white rounded-3xl p-8 border border-gray-100">
-              <p className="eyebrow text-pink-500 mb-3">Co tě čeká v aplikaci</p>
+              <p className="eyebrow text-pink-500 mb-3">Co Tě čeká v aplikaci</p>
               <h3 className="serif-display text-3xl text-gray-900 font-medium leading-tight mb-3">
                 Tohle je jen úvod.
               </h3>
@@ -448,7 +448,7 @@ export default function TestPage() {
               Buď u toho<br/>jako <em className="italic text-pink-500">{archetype.name}</em>.
             </h2>
             <p className="text-gray-600 leading-relaxed mb-10 text-[1.0625rem]">
-              Pošleme ti e-mail, jakmile Cosmatch spustíme v Praze. Plus voucher na 3 měsíce
+              Pošleme Ti e-mail, jakmile Cosmatch spustíme v Praze. Plus voucher na 3 měsíce
               Cosmatch+ zdarma — pokud jsi mezi prvními tisíci.
             </p>
 
@@ -480,7 +480,7 @@ export default function TestPage() {
                 disabled={!email || submitting}
                 className="w-full bg-gray-900 text-white py-5 rounded-full text-base font-medium hover:bg-gray-800 active:scale-[0.99] transition-all disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed"
               >
-                {submitting ? 'Přidávám tě…' : 'Přidat mě na waitlist'}
+                {submitting ? 'Přidávám Tě…' : 'Přidat mě na waitlist'}
               </button>
             </form>
 
@@ -508,13 +508,13 @@ export default function TestPage() {
             >
               {waitlistPos}
             </div>
-            <p className="text-gray-500 mb-10">tvoje pozice ve waitlistu</p>
+            <p className="text-gray-500 mb-10">Tvoje pozice ve waitlistu</p>
 
             <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-4">
               Vítej, <em className="italic text-pink-500">{archetype.name}</em>.
             </h2>
             <p className="text-gray-700 leading-relaxed mb-12 max-w-md mx-auto">
-              Pošleme ti e-mail s voucherem, jakmile Cosmatch spustíme. Mezitím — chceš postoupit?
+              Pošleme Ti e-mail s voucherem, jakmile Cosmatch spustíme. Mezitím — chceš postoupit?
             </p>
 
             <hr className="rule mb-12" />
@@ -573,7 +573,7 @@ export default function TestPage() {
                     Tři měsíce Cosmatch+ zdarma.
                   </h3>
                   <p className="text-gray-600 leading-relaxed mb-6 text-[1.0625rem]">
-                    Tento kód si ulož. Připíšeme ho i k tobě do e-mailu — uplatníš ho
+                    Tento kód si ulož. Připíšeme ho i k Tobě do e-mailu — uplatníš ho
                     při spuštění aplikace.
                   </p>
                   <div className="bg-white border-2 border-dashed border-pink-300 rounded-2xl p-5 flex items-center gap-3 mb-2">
@@ -592,7 +592,7 @@ export default function TestPage() {
                     </button>
                   </div>
                   <p className="text-xs text-gray-400 text-center">
-                    Voucher je vázán na tvůj e-mail. Pošleme ti ho i v potvrzovacím mailu.
+                    Voucher je vázán na Tvůj e-mail. Pošleme Ti ho i v potvrzovacím mailu.
                   </p>
                 </div>
               </>

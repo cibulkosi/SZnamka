@@ -109,7 +109,7 @@ export default function ObchodniPodminkyPage() {
               <strong className="text-gray-900 font-medium">4.1</strong> Uživatel-spotřebitel má dle § 1829 občanského zákoníku právo odstoupit od smlouvy o předplatném do <strong className="text-gray-900 font-medium">14 dnů</strong> od jejího uzavření bez udání důvodu.
             </p>
             <p className="mb-3">
-              <strong className="text-gray-900 font-medium">4.2</strong> Předplatné Cosmatch+ se kupuje výhradně v Apple App Store nebo Google Play. Refundace vyřizuje přímo Apple, respektive Google podle svých pravidel — postup je popsán na stránce <Link href="/odstoupeni-od-smlouvy" className="text-pink-500 underline">Odstoupení od smlouvy</Link>. Cosmatch ti pomůže s komunikací s Apple / Google v případě potřeby.
+              <strong className="text-gray-900 font-medium">4.2</strong> Předplatné Cosmatch+ se kupuje výhradně v Apple App Store nebo Google Play. Refundace vyřizuje přímo Apple, respektive Google podle svých pravidel — postup je popsán na stránce <Link href="/odstoupeni-od-smlouvy" className="text-pink-500 underline">Odstoupení od smlouvy</Link>. Cosmatch Ti pomůže s komunikací s Apple / Google v případě potřeby.
             </p>
             <p className="mb-3">
               <strong className="text-gray-900 font-medium">4.3</strong> Po uplynutí lhůty pro odstoupení vyhodnocujeme případné nároky podle <Link href="/reklamacni-rad" className="text-pink-500 underline">Reklamačního řádu</Link>. Pokud aplikace prokazatelně nefungovala (technický výpadek), pomůžeme s žádostí o refundaci u Apple / Google.
@@ -130,7 +130,7 @@ export default function ObchodniPodminkyPage() {
               <li>uvádět pravdivé údaje o sobě (jméno, věk, datum narození, fotky),</li>
               <li>respektovat ostatní Uživatele — žádné obtěžování, šikana, nenávist, nebo sexuálně explicitní obsah bez souhlasu,</li>
               <li>nepoužívat aplikaci pro komerční účely (prodej zboží, prostituce, propagace produktů),</li>
-              <li>neporušovat práva duševního vlastnictví třetích osob (fotky musí být tvoje vlastní nebo s licencí),</li>
+              <li>neporušovat práva duševního vlastnictví třetích osob (fotky musí být Tvoje vlastní nebo s licencí),</li>
               <li>chránit své přihlašovací údaje (Google/Facebook účet) před zneužitím.</li>
             </ul>
             <p>

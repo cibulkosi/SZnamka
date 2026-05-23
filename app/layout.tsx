@@ -18,7 +18,7 @@ const fraunces = Fraunces({
 
 export const metadata: Metadata = {
   title: 'Cosmatch — Kompatibilita podle data narození',
-  description: 'Česká seznamka, která tě páruje podle data narození. Najdi svou skutečnou shodu — věda, ne náhoda.',
+  description: 'Česká seznamka, která Tě páruje podle data narození. Najdi svou skutečnou shodu — věda, ne náhoda.',
   keywords: 'numerologie, kompatibilita, datum narození, numerologický profil, datování, seznamka',
   openGraph: {
     title: 'Cosmatch — Kompatibilita podle data narození',
@@ -85,7 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "alternateName": "Cosmatch.cz",
               "url": "https://cosmatch.cz",
               "logo": "https://cosmatch.cz/icon-512.png",
-              "description": "První česká seznamka, která tě páruje podle data narození.",
+              "description": "První česká seznamka, která Tě páruje podle data narození.",
               "founder": {
                 "@type": "Person",
                 "name": "Simona Cibulková",
@@ -142,7 +142,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "applicationCategory": "DatingApplication",
               "operatingSystem": "Web, iOS, Android (PWA)",
               "url": "https://cosmatch.cz",
-              "description": "Česká seznamka, která tě páruje podle data narození. Vychází z 12 archetypů a numerologické tradice kompatibility.",
+              "description": "Česká seznamka, která Tě páruje podle data narození. Vychází z 12 archetypů a numerologické tradice kompatibility.",
               "offers": [
                 { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "CZK" },
                 { "@type": "Offer", "name": "Cosmatch+ měsíčně", "price": "249", "priceCurrency": "CZK", "priceSpecification": { "@type": "UnitPriceSpecification", "billingDuration": "P1M" } },

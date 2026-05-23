@@ -222,14 +222,14 @@ export default function ProfilePage() {
         <section className="mb-12">
           <p className="eyebrow text-gray-500 mb-3">Filtry pro Discover</p>
           <h2 className="serif text-xl text-gray-900 font-medium leading-tight mb-4">
-            Co ti budeme ukazovat
+            Co Ti budeme ukazovat
           </h2>
 
           {/* Minimální kompatibilita */}
           <div className="bg-white border border-gray-200 rounded-2xl p-5 mb-3">
             <label className="block">
               <span className="text-sm font-medium text-gray-900 mb-2 block">Minimální kompatibilita</span>
-              <p className="text-xs text-gray-500 mb-3">Profily pod tuto hranici se ti nezobrazí v Discover.</p>
+              <p className="text-xs text-gray-500 mb-3">Profily pod tuto hranici se Ti nezobrazí v Discover.</p>
               <div className="grid grid-cols-4 gap-2">
                 {[0, 25, 50, 75].map(pct => (
                   <button
@@ -273,7 +273,7 @@ export default function ProfilePage() {
                 />
                 <div>
                   <span className="text-sm font-medium text-gray-900 block">Jen Spřízněné duše</span>
-                  <p className="text-xs text-gray-500 mt-1">Zobrazí se ti pouze profily ze Soul Mates kategorie podle data narození.</p>
+                  <p className="text-xs text-gray-500 mt-1">Zobrazí se Ti pouze profily ze Soul Mates kategorie podle data narození.</p>
                 </div>
               </label>
               <label className="flex items-start gap-3 cursor-pointer">
@@ -291,7 +291,7 @@ export default function ProfilePage() {
                 />
                 <div>
                   <span className="text-sm font-medium text-gray-900 block">Jen oboustranná kompatibilita ↔</span>
-                  <p className="text-xs text-gray-500 mt-1">Zobrazí se ti pouze profily, kde jste si vzájemně kompatibilní (mutual mark v knize).</p>
+                  <p className="text-xs text-gray-500 mt-1">Zobrazí se Ti pouze profily, kde jste si vzájemně kompatibilní (mutual mark v knize).</p>
                 </div>
               </label>
             </div>
@@ -315,7 +315,7 @@ export default function ProfilePage() {
                 />
                 <div>
                   <span className="text-sm font-medium text-gray-900 block">Kouření je deal-breaker</span>
-                  <p className="text-xs text-gray-500 mt-1">Pravidelní kuřáci se ti nezobrazí. (Občasní ano.)</p>
+                  <p className="text-xs text-gray-500 mt-1">Pravidelní kuřáci se Ti nezobrazí. (Občasní ano.)</p>
                 </div>
               </label>
             </div>
@@ -339,7 +339,7 @@ export default function ProfilePage() {
                 />
                 <div>
                   <span className="text-sm font-medium text-gray-900 block">Alkohol je deal-breaker</span>
-                  <p className="text-xs text-gray-500 mt-1">Lidé pijící pravidelně se ti nezobrazí. (Příležitostně ano.)</p>
+                  <p className="text-xs text-gray-500 mt-1">Lidé pijící pravidelně se Ti nezobrazí. (Příležitostně ano.)</p>
                 </div>
               </label>
             </div>
@@ -363,7 +363,7 @@ export default function ProfilePage() {
                 />
                 <div>
                   <span className="text-sm font-medium text-gray-900 block">Marihuana je deal-breaker</span>
-                  <p className="text-xs text-gray-500 mt-1">Lidé užívající pravidelně se ti nezobrazí. (Příležitostně ano.)</p>
+                  <p className="text-xs text-gray-500 mt-1">Lidé užívající pravidelně se Ti nezobrazí. (Příležitostně ano.)</p>
                 </div>
               </label>
             </div>
@@ -373,7 +373,7 @@ export default function ProfilePage() {
           <div className="bg-white border border-gray-200 rounded-2xl p-5 mb-3">
             <label className="block">
               <span className="text-sm font-medium text-gray-900 mb-2 block">Preferovaná výška partnera</span>
-              <p className="text-xs text-gray-500 mb-3">Profily mimo rozsah se ti nezobrazí. Necháš-li prázdné, neomezuje se.</p>
+              <p className="text-xs text-gray-500 mb-3">Profily mimo rozsah se Ti nezobrazí. Necháš-li prázdné, neomezuje se.</p>
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <p className="text-xs text-gray-500 mb-1">od (cm)</p>
@@ -419,7 +419,7 @@ export default function ProfilePage() {
           <div className="bg-white border border-gray-200 rounded-2xl p-5 mb-3">
             <label className="block">
               <span className="text-sm font-medium text-gray-900 mb-2 block">Preferovaná postava partnera</span>
-              <p className="text-xs text-gray-500 mb-3">Vyber typy, které tě zajímají. Nezaškrtnuté znamená „kdokoli“.</p>
+              <p className="text-xs text-gray-500 mb-3">Vyber typy, které Tě zajímají. Nezaškrtnuté znamená „kdokoli“.</p>
               <div className="flex flex-wrap gap-2">
                 {BODY_TYPES.map(bt => {
                   const isSelected = (user.pref_body_types ?? []).includes(bt.value)
@@ -450,7 +450,7 @@ export default function ProfilePage() {
           </div>
 
           <p className="text-xs text-gray-500 leading-relaxed mt-4 italic">
-            Veškeré preference jsou pouze filtry — skrývají profily mimo tvoje preference, ale nikoho nepenalizují v skóre. Cosmatch nikdy nehodnotí přitažlivost. <a href="/manifest-duvery" className="text-pink-500 underline">Manifest důvěry</a>.
+            Veškeré preference jsou pouze filtry — skrývají profily mimo Tvoje preference, ale nikoho nepenalizují v skóre. Cosmatch nikdy nehodnotí přitažlivost. <a href="/manifest-duvery" className="text-pink-500 underline">Manifest důvěry</a>.
           </p>
         </section>
 

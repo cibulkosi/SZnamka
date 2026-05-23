@@ -40,7 +40,7 @@ export default function CookiesPage() {
           <section>
             <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">Co je cookie?</h2>
             <p>
-              Cookie je malý textový soubor, který web uloží do tvého prohlížeče. Slouží k zapamatování informací mezi návštěvami stránek — například že jsi přihlášený.
+              Cookie je malý textový soubor, který web uloží do Tvého prohlížeče. Slouží k zapamatování informací mezi návštěvami stránek — například že jsi přihlášený.
             </p>
           </section>
 
@@ -51,7 +51,7 @@ export default function CookiesPage() {
               <div className="border border-gray-200 rounded-2xl p-6">
                 <p className="eyebrow text-emerald-600 mb-2">Nezbytné</p>
                 <h3 className="serif text-xl text-gray-900 font-medium mb-2">Supabase auth cookie</h3>
-                <p className="text-gray-700 text-[0.95rem] mb-2">Uchovává tvoji přihlášenou session, abys nemusel/a být přihlášován/a při každém kliku.</p>
+                <p className="text-gray-700 text-[0.95rem] mb-2">Uchovává Tvoji přihlášenou session, abys nemusel/a být přihlášován/a při každém kliku.</p>
                 <p className="text-xs text-gray-500">Doba: 1 rok · Doména: cosmatch.cz · Lze odmítnout? Ne (jinak se nepřihlásíš)</p>
               </div>
 
@@ -65,7 +65,7 @@ export default function CookiesPage() {
               <div className="border border-gray-200 rounded-2xl p-6">
                 <p className="eyebrow text-gray-500 mb-2">Funkční</p>
                 <h3 className="serif text-xl text-gray-900 font-medium mb-2">localStorage „cosmatch_user“</h3>
-                <p className="text-gray-700 text-[0.95rem] mb-2">Cache tvého profilu pro rychlejší načítání. Přepisováno při každém přihlášení.</p>
+                <p className="text-gray-700 text-[0.95rem] mb-2">Cache Tvého profilu pro rychlejší načítání. Přepisováno při každém přihlášení.</p>
                 <p className="text-xs text-gray-500">Doba: do odhlášení · Doména: cosmatch.cz · Lze odmítnout? Ano — odhlas se, pak smaž browser data</p>
               </div>
 
@@ -115,7 +115,7 @@ export default function CookiesPage() {
               <li><strong className="text-gray-900 font-medium">Edge:</strong> Nastavení → Soukromí, vyhledávání a služby → Vymazat data prohlížení</li>
             </ul>
             <p className="mt-3 text-sm text-gray-500 italic">
-              Pozor: smazání auth cookie tě odhlásí z Cosmatch. Smazání ostatních cookies neovlivní fungování.
+              Pozor: smazání auth cookie Tě odhlásí z Cosmatch. Smazání ostatních cookies neovlivní fungování.
             </p>
           </section>
 

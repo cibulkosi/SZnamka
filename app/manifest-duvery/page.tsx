@@ -18,12 +18,12 @@ const principles: Principle[] = [
   {
     numeral: 'I',
     title: 'Žádné bezduché swipy',
-    body: 'Většina stránek včetně seznamek vydělává na tom, jak dlouho na nich zůstaneš. My ale chceme, aby sis našel/našla vhodný protějšek a opustil/a nás. Cosmatch je navržen tak, abys mohl/a svůj profil jednoduše odstranit sám/sama ve chvíli, kdy najdeš člověka, se kterým ti život dává smysl.',
+    body: 'Většina stránek včetně seznamek vydělává na tom, jak dlouho na nich zůstaneš. My ale chceme, aby sis našel/našla vhodný protějšek a opustil/a nás. Cosmatch je navržen tak, abys mohl/a svůj profil jednoduše odstranit sám/sama ve chvíli, kdy najdeš člověka, se kterým Ti život dává smysl.',
   },
   {
     numeral: 'II',
     title: 'Datum narození zůstává utajeno',
-    body: 'Tvoje datum používáme jen k jediné věci, a to k výpočtu kompatibility. Neprodáváme ho. Nikomu ho nepředáváme. Neprofilujeme tě podle něj mimo aplikaci. Je to klíč k tvému profilu, ne komodita.',
+    body: 'Tvoje datum používáme jen k jediné věci, a to k výpočtu kompatibility. Neprodáváme ho. Nikomu ho nepředáváme. Neprofilujeme Tě podle něj mimo aplikaci. Je to klíč k Tvému profilu, ne komodita.',
   },
   {
     numeral: 'III',
@@ -40,7 +40,7 @@ const principles: Principle[] = [
       },
       {
         title: 'Fyzickou přitažlivost hodnotíš jen ty',
-        body: 'Cosmatch nepoužívá fotku, výšku, postavu ani fyzické rysy ve výpočtu kompatibility. Algoritmus zohledňuje pouze datum narození, hodnoty a životní styl. Fyzické preference jsou filtry, které si nastavíš jen ty sám/sama, nikoho nepenalizují ve skóre.',
+        body: 'Cosmatch nepoužívá fotku, výšku, postavu ani fyzické rysy ve výpočtu kompatibility. Algoritmus zohledňuje pouze datum narození, hodnoty a životní styl. Fyzické preference jsou filtry, které si nastavíš jen Ty sám/sama, nikoho nepenalizují ve skóre.',
       },
     ],
   },
@@ -164,7 +164,7 @@ export default function ManifestDuvery() {
                   <p className="text-gray-600 text-sm leading-relaxed">Cloudflare Turnstile anti-bot, SSO bez hesla a transparentní reportování. Detaily na stránce <a href="/verifikace" className="text-pink-500 hover:underline">Bezpečnost</a>.</p>
                 <p className="serif text-lg text-gray-900 font-medium mb-1">Nabízíme filtr „jen ověřené“</p>
                 <p className="text-gray-700 leading-relaxed text-[0.95rem]">
-                  V nastavení si zapneš, aby ti aplikace zobrazovala jen profily se zeleným štítkem,
+                  V nastavení si zapneš, aby Ti aplikace zobrazovala jen profily se zeleným štítkem,
                   což jsou ověřené profily, tedy reální lidé. Neděláme žádné kompromisy.
                 </p>
               </div>

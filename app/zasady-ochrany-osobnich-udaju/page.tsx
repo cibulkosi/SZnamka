@@ -38,13 +38,13 @@ export default function GdprPage() {
           <section className="bg-pink-50 border border-pink-200 rounded-3xl p-8">
             <p className="eyebrow text-pink-500 mb-3">Ve zkratce</p>
             <p>
-              Sbíráme jen to, co potřebujeme — e-mail, datum narození, fotky, preference. Nikdy neprodáváme tvoje data. Můžeš si je kdykoli stáhnout nebo požádat o jejich smazání. Provozujeme servery v EU (Frankfurt). Pokud máš otázku, napiš na <a href="mailto:ahoj@cosmatch.cz" className="text-pink-500 underline">ahoj@cosmatch.cz</a>.
+              Sbíráme jen to, co potřebujeme — e-mail, datum narození, fotky, preference. Nikdy neprodáváme Tvoje data. Můžeš si je kdykoli stáhnout nebo požádat o jejich smazání. Provozujeme servery v EU (Frankfurt). Pokud máš otázku, napiš na <a href="mailto:ahoj@cosmatch.cz" className="text-pink-500 underline">ahoj@cosmatch.cz</a>.
             </p>
           </section>
 
           {/* 1. Správce */}
           <section>
-            <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">1. Kdo zpracovává tvoje data</h2>
+            <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">1. Kdo zpracovává Tvoje data</h2>
             <p className="mb-3">
               <strong className="text-gray-900 font-medium">Správcem osobních údajů</strong> ve smyslu Nařízení EU 2016/679 (GDPR) je:
             </p>
@@ -66,7 +66,7 @@ export default function GdprPage() {
 
             <h3 className="serif text-xl text-gray-900 font-medium mb-2 mt-6">2.1 Identifikační údaje</h3>
             <ul className="list-disc pl-6 space-y-1 mb-4">
-              <li><strong className="text-gray-900 font-medium">E-mail</strong> — pro přihlášení a komunikaci. Získáváme z tvého Google nebo Facebook účtu (OAuth) nebo přímo od tebe.</li>
+              <li><strong className="text-gray-900 font-medium">E-mail</strong> — pro přihlášení a komunikaci. Získáváme z Tvého Google nebo Facebook účtu (OAuth) nebo přímo od Tebe.</li>
               <li><strong className="text-gray-900 font-medium">Jméno</strong> — jak chceš být oslovován/a.</li>
               <li><strong className="text-gray-900 font-medium">Datum narození</strong> — pro výpočet kompatibility podle data narození (klíčová funkce aplikace).</li>
             </ul>
@@ -115,7 +115,7 @@ export default function GdprPage() {
           <section>
             <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">3. Právní základ zpracování</h2>
             <ul className="list-disc pl-6 space-y-2">
-              <li><strong className="text-gray-900 font-medium">Plnění smlouvy</strong> (čl. 6 odst. 1 písm. b GDPR) — vytvoření a správa tvého profilu, párování, zprávy, platby.</li>
+              <li><strong className="text-gray-900 font-medium">Plnění smlouvy</strong> (čl. 6 odst. 1 písm. b GDPR) — vytvoření a správa Tvého profilu, párování, zprávy, platby.</li>
               <li><strong className="text-gray-900 font-medium">Souhlas</strong> (čl. 6 odst. 1 písm. a GDPR) — geolokace, marketingové e-maily.</li>
               <li><strong className="text-gray-900 font-medium">Oprávněný zájem</strong> (čl. 6 odst. 1 písm. f GDPR) — bezpečnostní logy (anti-bot, anti-scam), prevence podvodů.</li>
               <li><strong className="text-gray-900 font-medium">Právní povinnost</strong> (čl. 6 odst. 1 písm. c GDPR) — uchování fakturačních dokladů (zákon 235/2004 Sb. o DPH — 10 let).</li>
@@ -126,7 +126,7 @@ export default function GdprPage() {
           <section>
             <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">4. Komu data předáváme</h2>
             <p className="mb-4">
-              <strong className="text-gray-900 font-medium">Cosmatch nikdy neprodává tvoje data třetím stranám.</strong> Předáváme je výhradně zpracovatelům, kteří potřebují plnit konkrétní funkci:
+              <strong className="text-gray-900 font-medium">Cosmatch nikdy neprodává Tvoje data třetím stranám.</strong> Předáváme je výhradně zpracovatelům, kteří potřebují plnit konkrétní funkci:
             </p>
             <ul className="list-disc pl-6 space-y-2">
               <li><strong className="text-gray-900 font-medium">Supabase (USA, EU servery)</strong> — databáze a autentizace. Servery ve Frankfurtu (EU). <a href="https://supabase.com/privacy" target="_blank" rel="noopener" className="text-pink-500 underline">Zásady Supabase</a></li>
@@ -146,7 +146,7 @@ export default function GdprPage() {
           <section>
             <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">5. Jak dlouho data uchováváme</h2>
             <ul className="list-disc pl-6 space-y-2">
-              <li><strong className="text-gray-900 font-medium">Profilové údaje</strong> — po dobu existence tvého účtu. Po smazání účtu jsou data nevratně smazána do 30 dnů.</li>
+              <li><strong className="text-gray-900 font-medium">Profilové údaje</strong> — po dobu existence Tvého účtu. Po smazání účtu jsou data nevratně smazána do 30 dnů.</li>
               <li><strong className="text-gray-900 font-medium">Zprávy</strong> — uchováváme po dobu trvání shody. Po smazání shody jsou zprávy obou stran smazány.</li>
               <li><strong className="text-gray-900 font-medium">Bezpečnostní logy</strong> — 90 dnů (nutné pro detekci podvodů).</li>
               <li><strong className="text-gray-900 font-medium">Fakturační údaje</strong> — 10 let (zákonná povinnost).</li>
@@ -159,11 +159,11 @@ export default function GdprPage() {
             <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">6. Tvoje práva podle GDPR</h2>
             <p className="mb-4">Můžeš kdykoli uplatnit tato práva tím, že napíšeš na <a href="mailto:ahoj@cosmatch.cz" className="text-pink-500 underline">ahoj@cosmatch.cz</a>:</p>
             <ul className="list-disc pl-6 space-y-2">
-              <li><strong className="text-gray-900 font-medium">Právo na přístup</strong> — můžeš si vyžádat kopii všech tvých dat (do 30 dnů).</li>
+              <li><strong className="text-gray-900 font-medium">Právo na přístup</strong> — můžeš si vyžádat kopii všech Tvých dat (do 30 dnů).</li>
               <li><strong className="text-gray-900 font-medium">Právo na opravu</strong> — pokud máš v profilu chybu, oprav ji (kromě data narození, které je z technických důvodů uzamčené po registraci).</li>
               <li><strong className="text-gray-900 font-medium">Právo na výmaz („právo být zapomenut“)</strong> — smazat účet a všechna data můžeš v profilu jedním klikem. Realizace do 30 dnů.</li>
               <li><strong className="text-gray-900 font-medium">Právo na omezení zpracování</strong> — můžeš požádat o pozastavení zpracování (např. během řešení sporu).</li>
-              <li><strong className="text-gray-900 font-medium">Právo na přenositelnost dat</strong> — pošleme ti tvoje data ve strojově čitelném formátu (JSON).</li>
+              <li><strong className="text-gray-900 font-medium">Právo na přenositelnost dat</strong> — pošleme Ti Tvoje data ve strojově čitelném formátu (JSON).</li>
               <li><strong className="text-gray-900 font-medium">Právo vznést námitku</strong> — proti zpracování na základě oprávněného zájmu.</li>
               <li><strong className="text-gray-900 font-medium">Právo odvolat souhlas</strong> — kdykoli pro geolokaci a marketing.</li>
               <li><strong className="text-gray-900 font-medium">Právo podat stížnost</strong> — u <a href="https://www.uoou.cz" target="_blank" rel="noopener" className="text-pink-500 underline">Úřadu pro ochranu osobních údajů</a> (Pplk. Sochora 27, 170 00 Praha 7).</li>
@@ -174,12 +174,12 @@ export default function GdprPage() {
           <section>
             <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">7. Cookies a sledovací technologie</h2>
             <p className="mb-3">
-              Cosmatch používá minimální cookies — jen ty technicky nezbytné pro fungování aplikace:
+              Cosmatch používá minimální cookies — jen Ty technicky nezbytné pro fungování aplikace:
             </p>
             <ul className="list-disc pl-6 space-y-2">
-              <li><strong className="text-gray-900 font-medium">Supabase auth cookie</strong> — pro tvoji přihlášenou session (povinné).</li>
+              <li><strong className="text-gray-900 font-medium">Supabase auth cookie</strong> — pro Tvoji přihlášenou session (povinné).</li>
               <li><strong className="text-gray-900 font-medium">Cloudflare cf-clearance</strong> — anti-bot ochrana (povinné).</li>
-              <li><strong className="text-gray-900 font-medium">localStorage „cosmatch_user“</strong> — cache tvého profilu pro rychlejší načítání.</li>
+              <li><strong className="text-gray-900 font-medium">localStorage „cosmatch_user“</strong> — cache Tvého profilu pro rychlejší načítání.</li>
               <li><strong className="text-gray-900 font-medium">localStorage „cosmatch_daily_swipes“</strong> — počítadlo denních lajků (pro Free tier).</li>
             </ul>
             <p className="mt-3">
@@ -203,7 +203,7 @@ export default function GdprPage() {
               <li>Veškerá komunikace je šifrována přes HTTPS (TLS 1.3).</li>
               <li>Hesla u nás <strong className="text-gray-900 font-medium">neexistují</strong> — používáme jen Google/Facebook SSO, takže nemůžeme heslo ztratit.</li>
               <li>Row Level Security na úrovni databáze — nikdo nevidí cizí zprávy, lajky, ani profily mimo dating feed.</li>
-              <li>V případě porušení zabezpečení (data breach) tě informujeme do 72 hodin podle čl. 33 GDPR.</li>
+              <li>V případě porušení zabezpečení (data breach) Tě informujeme do 72 hodin podle čl. 33 GDPR.</li>
             </ul>
           </section>
 

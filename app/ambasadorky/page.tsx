@@ -10,7 +10,7 @@ const supabase = createClient(
 
 const BENEFITS = [
   ['Doživotní Cosmatch+', 'Premium účet zdarma, navždy. Bez podmínek.'],
-  ['Ambasadorský odznak', 'Vidí ho každý, kdo si tě otevře. Status, který si nikdo nekoupí.'],
+  ['Ambasadorský odznak', 'Vidí ho každý, kdo si Tě otevře. Status, který si nikdo nekoupí.'],
   ['Vlastní referral kód', 'Sleduj, kolik lidí jsi přivedla a komu Cosmatch pomohl.'],
   ['Uzavřená komunita', 'Privátní skupina s ostatními ambasadorkami a zakladatelkou.'],
   ['Vliv na vývoj', 'Zpětná vazba, beta verze, přímý kontakt. Cosmatch se utváří i tebou.'],
@@ -99,7 +99,7 @@ export default function AmbasadorkyPage() {
 
             {/* Requirements */}
             <section className="mb-16">
-              <p className="eyebrow text-pink-500 mb-4">Co od tebe potřebujeme</p>
+              <p className="eyebrow text-pink-500 mb-4">Co od Tebe potřebujeme</p>
               <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-8">
                 Pět věcí, které musíš splňovat.
               </h2>
@@ -163,7 +163,7 @@ export default function AmbasadorkyPage() {
                 <div>
                   <label className="eyebrow text-gray-500 mb-3 block">Proč chceš být ambasadorka</label>
                   <textarea required value={form.motivation} onChange={e => set('motivation', e.target.value)} rows={4}
-                    placeholder="Pár vět o tom, proč ti dává Cosmatch smysl…"
+                    placeholder="Pár vět o tom, proč Ti dává Cosmatch smysl…"
                     className="w-full bg-transparent border-0 border-b-2 border-gray-300 focus:border-pink-500 px-0 py-3 text-lg text-gray-900 focus:outline-none transition-colors resize-none" />
                 </div>
 

@@ -28,7 +28,7 @@ function makeVoucher(): string {
 
 const CITY_TAGLINE: Record<Exclude<CityKey, '' | 'Jiné'>, string> = {
   Praha: 'Praha jde první. Spouštíme jakmile překročíme 1 000 lidí.',
-  Brno: 'Brno otevřeme po Praze — sbíráme tě, abychom věděli, odkud začít.',
+  Brno: 'Brno otevřeme po Praze — sbíráme Tě, abychom věděli, odkud začít.',
   Plzeň: 'Plzeň otevřeme po Praze a Brně — pasivní waitlist.',
   'České Budějovice': 'České Budějovice otevřeme po Praze a Brně — pasivní waitlist.',
   Ostrava: 'Ostravu otevřeme po Praze a Brně — pasivní waitlist.',
@@ -138,7 +138,7 @@ export default function WaitlistPage() {
     if (navigator.share) {
       navigator.share({
         title: 'Cosmatch — Numerologická seznamka',
-        text: 'První česká seznamka, která tě páruje podle data narození. Přidej se ke mně.',
+        text: 'První česká seznamka, která Tě páruje podle data narození. Přidej se ke mně.',
         url,
       })
     } else { copyLink() }
@@ -163,7 +163,7 @@ export default function WaitlistPage() {
             <p className="eyebrow text-pink-500 mb-2">Krátká pauza</p>
             <p className="text-gray-700 leading-relaxed text-[1.0625rem]">
               Právě teď přijímáme primárně ženy, abychom udrželi vyvážený poměr.
-              Přidej se na waitlist — dáme ti vědět, jakmile budeš na řadě.
+              Přidej se na waitlist — dáme Ti vědět, jakmile budeš na řadě.
             </p>
           </div>
         )}
@@ -179,7 +179,7 @@ export default function WaitlistPage() {
               <p className="text-lg text-gray-700 leading-relaxed mb-4 max-w-xl">
                 Cosmatch počítá kompatibilitu mezi Tvým datem narození a datem narození
                 potenciálního partnera, a to na základě 12 archetypů a 366 denních profilů kompatibility.
-                Místo nekonečného swipování ti dává reálný důvod, zda se s danou osobou potkat nebo ne.
+                Místo nekonečného swipování Ti dává reálný důvod, zda se s danou osobou potkat nebo ne.
               </p>
               <p className="text-gray-500 leading-relaxed max-w-xl">
                 Seznamku spouštíme nejdříve ve větších městech jako je Praha, Brno, Plzeň, Ostrava a Olomouc, prostě tam, kde vás bude nejvíc. Bratislava přijde jako samostatný slovenský launch později.
@@ -261,7 +261,7 @@ export default function WaitlistPage() {
                   </label>
                   <input
                     type="text" value={name} onChange={e => setName(e.target.value)}
-                    placeholder="Jak ti říkat"
+                    placeholder="Jak Ti říkat"
                     className="w-full bg-transparent border-0 border-b-2 border-gray-300 focus:border-pink-500 px-0 py-3 text-lg text-gray-900 focus:outline-none transition-colors"
                   />
                 </div>
@@ -313,7 +313,7 @@ export default function WaitlistPage() {
                     type="submit" disabled={!email || submitting}
                     className="w-full bg-gray-900 text-white py-5 rounded-full text-base font-medium hover:bg-gray-800 active:scale-[0.99] transition-all disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed"
                   >
-                    {submitting ? 'Přidávám tě…' : 'Rezervovat místo'}
+                    {submitting ? 'Přidávám Tě…' : 'Rezervovat místo'}
                   </button>
                   <p className="text-xs text-gray-400 text-center mt-4">
                     Neposíláme žádný spam. Pouze e-mail, když seznamku spustíme ve tvém městě.
@@ -331,7 +331,7 @@ export default function WaitlistPage() {
                   Vyber město.
                 </h2>
                 <p className="text-gray-600 leading-relaxed text-[1.0625rem]">
-                  Když zvolíš jako svoje nejbližší město Prahu, Brno, Plzeň, České Budějovice, Ostravu, Olomouc nebo Bratislavu, ukážeme ti živou hustotu waitlistu. Pomáhá nám to rozhodnout, kde otevřít první.
+                  Když zvolíš jako svoje nejbližší město Prahu, Brno, Plzeň, České Budějovice, Ostravu, Olomouc nebo Bratislavu, ukážeme Ti živou hustotu waitlistu. Pomáhá nám to rozhodnout, kde otevřít první.
                 </p>
               </section>
             )}
@@ -380,14 +380,14 @@ export default function WaitlistPage() {
             <div className="serif-display text-[7rem] sm:text-[9rem] text-pink-500 font-medium leading-none tracking-tight mb-3 tabular-nums">
               {position}
             </div>
-            <p className="text-gray-500 mb-12 text-lg">tvoje pozice ve waitlistu</p>
+            <p className="text-gray-500 mb-12 text-lg">Tvoje pozice ve waitlistu</p>
 
             <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-6">
               Děkujeme.<br/>Buď u toho.
             </h2>
             <p className="text-gray-700 leading-relaxed text-[1.0625rem] mb-12 max-w-xl">
-              Pošleme ti e-mail jakmile spustíme — s voucherem na 3 měsíce Cosmatch+ zdarma.
-              Mezitím ti dáváme nástroj, jak postoupit.
+              Pošleme Ti e-mail jakmile spustíme — s voucherem na 3 měsíce Cosmatch+ zdarma.
+              Mezitím Ti dáváme nástroj, jak postoupit.
             </p>
 
             <hr className="rule mb-12" />
@@ -399,7 +399,7 @@ export default function WaitlistPage() {
                   Tři měsíce Cosmatch+ zdarma.
                 </h3>
                 <p className="text-gray-600 leading-relaxed mb-6 text-[1.0625rem]">
-                  Ulož si ho. Připíšeme ho i k tobě do e-mailu — uplatníš ho při spuštění.
+                  Ulož si ho. Připíšeme ho i k Tobě do e-mailu — uplatníš ho při spuštění.
                 </p>
                 <div className="bg-white border-2 border-dashed border-pink-300 rounded-2xl p-5 flex items-center gap-3">
                   <code className="flex-1 bg-transparent text-pink-600 text-base font-bold font-mono truncate text-center">

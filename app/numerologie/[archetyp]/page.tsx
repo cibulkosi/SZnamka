@@ -93,7 +93,7 @@ export default async function ArchetypePage({ params }: Props) {
             Tvoje slepá místa.
           </h2>
           <p className="text-sm text-gray-500 italic mb-6">
-            Honest pohled na výzvy, pasti a slepá místa. Cosmatch nepředstírá, že tvoje energie je jen pozitivní — všichni máme stín.
+            Honest pohled na výzvy, pasti a slepá místa. Cosmatch nepředstírá, že Tvoje energie je jen pozitivní — všichni máme stín.
           </p>
           <div className="prose prose-gray max-w-none">
             {(a.shadowExtended || a.shadow).split('\n\n').map((para: string, i: number) => (

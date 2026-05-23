@@ -52,7 +52,7 @@ export default function MasterCislaPage() {
             V tradiční numerologii redukujeme každý součet číslic data narození na jednu cifru (1–9). Jediné výjimky jsou 11, 22 a 33 — ta zůstávají nezredukovaná, protože nesou specifickou „mistrovskou“ vibraci.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
-            Pokud máš 11, 22 nebo 33, nemusíš nutně být „lepší“ — ale tvoje životní zkušenost bude pravděpodobně intenzivnější. Hlubší vrcholy, hlubší dna, vyšší citlivost.
+            Pokud máš 11, 22 nebo 33, nemusíš nutně být „lepší“ — ale Tvoje životní zkušenost bude pravděpodobně intenzivnější. Hlubší vrcholy, hlubší dna, vyšší citlivost.
           </p>
         </section>
 
@@ -164,7 +164,7 @@ export default function MasterCislaPage() {
             Jsi master číslo?
           </h2>
           <p className="text-gray-600 leading-relaxed mb-8 text-[1.0625rem]">
-            Zadej datum narození — Cosmatch ti spočítá životní číslo + ukáže, jestli patříš mezi 4 % master.
+            Zadej datum narození — Cosmatch Ti spočítá životní číslo + ukáže, jestli patříš mezi 4 % master.
           </p>
           <Link href="/test" className="inline-flex items-center justify-center bg-gray-900 text-white px-8 py-4 rounded-full text-base font-medium hover:bg-gray-800 transition">
             Spustit kvíz

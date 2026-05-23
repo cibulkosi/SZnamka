@@ -10,8 +10,8 @@ export const translations = {
     register: 'Registrovat',
     logout: 'Odhlásit',
     // Landing
-    tagline: 'Vesmír zná tvůj match',
-    subtitle: 'Seznamka postavená na vědě o datech narození. Objev, kdo se k tobě opravdu hodí.',
+    tagline: 'Vesmír zná Tvůj match',
+    subtitle: 'Seznamka postavená na vědě o datech narození. Objev, kdo se k Tobě opravdu hodí.',
     cta_start: 'Začít zdarma',
     cta_learn: 'Jak to funguje',
     // Categories

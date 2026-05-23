@@ -206,7 +206,7 @@ export function ProfileQuestion({ question, user, onAnswer, onSkip, questionNumb
       <div className="flex items-center justify-between mb-5">
         <div className="flex items-center gap-2">
           <span className="text-xs font-bold text-pink-400 uppercase tracking-widest">
-            Nauč nás víc o tobě
+            Nauč nás víc o Tobě
           </span>
         </div>
         <button
@@ -266,7 +266,7 @@ export function ProfileQuestion({ question, user, onAnswer, onSkip, questionNumb
       </div>
 
       <p className="text-center text-xs text-gray-300 mt-4">
-        Odpovědi zlepšují přesnost tvého skóre kompatibility
+        Odpovědi zlepšují přesnost Tvého skóre kompatibility
       </p>
     </div>
   )

@@ -72,7 +72,7 @@ const FAQ = [
   },
   {
     q: 'Mohu najít svého partnera díky numerologii?',
-    a: 'Numerologie pomáhá pochopit, s jakými typy lidí přirozeně rezonuješ, a s jakými ne. Cosmatch tohle propojuje s reálnými profily skutečných lidí ve tvém okolí. Finální slovo má ale vždy tvé srdce.',
+    a: 'Numerologie pomáhá pochopit, s jakými typy lidí přirozeně rezonuješ, a s jakými ne. Cosmatch tohle propojuje s reálnými profily skutečných lidí ve tvém okolí. Finální slovo má ale vždy Tvé srdce.',
   },
 ]
 

@@ -124,7 +124,7 @@ export default function AstrologiePage() {
                 Sluneční znamení je určeno polohou Slunce v zodiaku v okamžiku narození. Zodiakální pás (360°) je rozdělený na 12 stejných úseků po 30°, každý úsek je jedno znamení. Slunce projde celým zodiakem za jeden rok, tedy v každém znamení stráví zhruba 30 dní.
               </p>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-                Co sluneční znamení říká: <strong className="text-gray-900 font-medium">základní temperament a ego identitu</strong>. Jak instinktivně reaguješ na svět, co tě motivuje, jaké jsou tvé instinktivní silné a slabé stránky.
+                Co sluneční znamení říká: <strong className="text-gray-900 font-medium">základní temperament a ego identitu</strong>. Jak instinktivně reaguješ na svět, co Tě motivuje, jaké jsou Tvé instinktivní silné a slabé stránky.
               </p>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
                 Znamení se dělí podle <strong className="text-gray-900 font-medium">živlu</strong> (oheň/země/vzduch/voda — kvalita energie) a <strong className="text-gray-900 font-medium">modality</strong> (kardinální, fixní, proměnlivé — způsob projevu).
@@ -476,7 +476,7 @@ export default function AstrologiePage() {
             Najdi svou astrologickou shodu.
           </h2>
           <p className="text-gray-600 leading-relaxed mb-8 text-[1.0625rem]">
-            Zadej datum narození a Cosmatch ti za 30 sekund spočítá kompatibilitu z 5 astrologických komponent + numerologického životního čísla.
+            Zadej datum narození a Cosmatch Ti za 30 sekund spočítá kompatibilitu z 5 astrologických komponent + numerologického životního čísla.
           </p>
           <Link href="/test" className="inline-flex items-center justify-center bg-gray-900 text-white px-8 py-4 rounded-full text-base font-medium hover:bg-gray-800 transition">
             Spustit kvíz

@@ -34,7 +34,7 @@ export default function DemoPage() {
           <hr className="rule w-16 border-gray-900 mb-8" />
           <p className="text-lg text-gray-600 leading-relaxed max-w-xl">
             Toto jsou ukázkové profily na platformě Cosmatch. Klikni na kterýkoli z nich a uvidíš,
-            jak vypadá jejich detail včetně fotek, hlášek, hlasových zpráv i detailů tvé shody.
+            jak vypadá jejich detail včetně fotek, hlášek, hlasových zpráv i detailů Tvé shody.
             Skutečné profily přibývají s otevřením nových lokalit.
           </p>
         </header>
@@ -98,7 +98,7 @@ export default function DemoPage() {
         {/* CTA */}
         <section className="bg-white rounded-3xl border border-gray-100 p-10 mb-12 text-center">
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-6">
-            <em className="italic text-pink-500">Cosmatch</em> spočítá tvojí shodu.
+            <em className="italic text-pink-500">Cosmatch</em> spočítá Tvojí shodu.
           </h2>
           <p className="text-gray-600 leading-relaxed mb-8 max-w-md mx-auto">
             Zjisti svůj numerologický archetyp za 30 sekund, přidej se na waitlist a získej voucher na 3 měsíce zdarma.

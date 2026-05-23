@@ -33,7 +33,7 @@ export default function PremiumSuccessPage() {
         <hr className="rule w-12 border-gray-900 mx-auto mb-8" />
         <p className="text-gray-700 leading-relaxed text-[1.0625rem] mb-12">
           Platba proběhla úspěšně. Tvůj prémiový přístup je aktivní během pár sekund.
-          Fakturu pošle Apple nebo Google na e-mail tvého účtu.
+          Fakturu pošle Apple nebo Google na e-mail Tvého účtu.
         </p>
         <Link href="/discover"
           className="inline-flex items-center justify-center bg-gray-900 text-white px-10 py-5 rounded-full text-base font-medium hover:bg-gray-800 transition">
