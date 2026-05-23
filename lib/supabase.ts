@@ -63,7 +63,10 @@ export type Profile = {
   filter_mutual_only?: boolean       // jen profily s mutual ↔ kompatibilitou
 
   // ── Opt-in deal-breakers ──────────
-  smoking_dealbreaker?: boolean   // pokud true: 'never' uživatel × 'often' partner → HARD FILTER
+  smoking_dealbreaker?: boolean   // pokud true: 'never' uživatel × 'regularly' partner → HARD FILTER
+  alcohol_dealbreaker?: boolean   // pokud true: 'never' uživatel × 'regularly' partner → HARD FILTER
+  marijuana?: string              // 'never' | 'rarely' | 'sometimes' | 'regularly'
+  marijuana_dealbreaker?: boolean // pokud true: 'never' uživatel × 'regularly' partner → HARD FILTER
 
   // ── F) Fyzické preference (jen filtry, NIKDY skóre) ──────────
   height_cm?: number              // vlastní výška v cm (volitelné)
