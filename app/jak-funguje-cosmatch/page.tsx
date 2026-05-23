@@ -62,12 +62,10 @@ export default function JakFungujeCosmatchPage() {
             Simona Cibulková, zakladatelka Cosmatch
           </h2>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-            Zakladatelka a jediná osoba za Cosmatch. Před Cosmatch jsem strávila roky studiem
-            vztahové dynamiky, numerologie a kompatibility podle data narození. Cosmatch staví na <Link href="/zdroje-numerologie" className="text-pink-500 underline">14 klíčových zdrojích</Link> moderní západní (pythagorovské) i české numerologické tradice — od antiky po současné autory jako Hans Decoz, Glynis McCants nebo Michelle Buchanan, doplněné o českou linii Jitky Kadlecové a Helmuta Kritzingera.
+            Před Cosmatch jsem strávila roky studiem vztahové dynamiky, numerologie a kompatibility podle data narození. Cosmatch staví na <Link href="/zdroje-numerologie" className="text-pink-500 underline">14 klíčových zdrojích</Link> pythagorovské numerologické tradice — od antiky po současné autory jako Hans Decoz, Glynis McCants, Helmuta Kritzingera nebo Michelle Buchanan, doplněné o českou linii Jitky Kadlecové.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
-            Cosmatch nevyvíjím proto, abych ti slibovala partnera. Vyvíjím ho proto, že jsem byla unavená
-            z aplikací, které kradou pozornost a neposkytují důvod k setkání. Chceš mi něco napsat? <Link href="/kontakt" className="text-pink-500 underline">Napiš mi přes formulář</Link>.
+            Cosmatch jsem vyvinula proto, že jsem byla nespokojená s aplikacemi, které okrádají o pozornost čas a ve výsledku lidem nedají důvod k setkání. Chceš mi něco napsat? <Link href="/kontakt" className="text-pink-500 underline">Napiš mi přes formulář</Link>.
           </p>
         </section>
 

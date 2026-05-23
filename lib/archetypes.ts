@@ -366,8 +366,8 @@ export const ARCHETYPE_SOURCES = [
   },
   {
     author: 'Helmut-Whitey Kritzinger',
-    work: 'Partnerství a numerologie (Pragma, 1999)',
-    role: 'Jediná česká kniha přímo věnovaná partnerské numerologii — „numeroskop" založený na datech narození obou partnerů. Důležitý český precedent pro Cosmatch.',
+    work: 'Partnerství a numerologie (Pragma, 1999, český překlad)',
+    role: 'Německy psaná kniha hermetické numerologie, vydaná v Pragma jako jeden z hlavních česky dostupných titulů o partnerské numerologii. „Numeroskop" založený na datech narození obou partnerů.',
   },
   {
     author: 'Hans Decoz',
