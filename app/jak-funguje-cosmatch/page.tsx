@@ -136,7 +136,7 @@ export default function JakFungujeCosmatchPage() {
           <hr className="rule mb-10" />
 
           {/* Co jsou jednotlivé astrologické komponenty */}
-          <h3 className="serif text-2xl text-gray-900 font-medium leading-tight mb-3">Co znamenají Ty jednotlivé komponenty.</h3>
+          <h3 className="serif text-2xl text-gray-900 font-medium leading-tight mb-3">Co znamenají ty jednotlivé komponenty.</h3>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
             Profil každého ze 366 dnů kombinuje pět vrstev numerologického a astrologického popisu. Vysvětlení každé z nich najdeš na <Link href="/kompatibilita-podle-data-narozeni" className="text-pink-500 underline">Numerologie</Link> a <Link href="/astrologie" className="text-pink-500 underline">Astrologie</Link>.
           </p>

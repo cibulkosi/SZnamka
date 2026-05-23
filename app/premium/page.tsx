@@ -43,7 +43,7 @@ const TIERS: Tier[] = [
     name: 'Cosmatch+',
     pricePerMonth: '249 Kč',
     priceTagline: 'měsíčně · 597 Kč / 3 měsíce · 2 088 Kč / rok',
-    audience: 'Pro Ty, co Cosmatch reálně používají',
+    audience: 'Pro ty, co Cosmatch reálně používají',
     description: 'Dostupný standard za 249 Kč měsíčně. Vidíš všechno, ale o 36 % levněji než Tinder Gold. Roční plán 2 088 Kč — sleva 30 %.',
     features: [
       'Neomezené lajky a zprávy',

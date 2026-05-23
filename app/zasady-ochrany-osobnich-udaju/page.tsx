@@ -174,7 +174,7 @@ export default function GdprPage() {
           <section>
             <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">7. Cookies a sledovací technologie</h2>
             <p className="mb-3">
-              Cosmatch používá minimální cookies — jen Ty technicky nezbytné pro fungování aplikace:
+              Cosmatch používá minimální cookies — jen ty technicky nezbytné pro fungování aplikace:
             </p>
             <ul className="list-disc pl-6 space-y-2">
               <li><strong className="text-gray-900 font-medium">Supabase auth cookie</strong> — pro Tvoji přihlášenou session (povinné).</li>
