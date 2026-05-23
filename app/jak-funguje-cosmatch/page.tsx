@@ -141,18 +141,46 @@ export default function JakFungujeCosmatchPage() {
             Profil každého ze 366 dnů kombinuje pět vrstev numerologického a astrologického popisu. Vysvětlení každé z nich najdeš na <Link href="/kompatibilita-podle-data-narozeni" className="text-pink-500 underline">Numerologie</Link> a <Link href="/astrologie" className="text-pink-500 underline">Astrologie</Link>.
           </p>
 
-          <Link
-            href="/astrologie"
-            className="block bg-pink-50 border border-pink-200 hover:border-pink-500 rounded-2xl p-6 transition group"
-          >
-            <p className="eyebrow text-pink-500 mb-2">Pokračovat ve čtení · 12 min</p>
-            <h3 className="serif text-lg text-gray-900 font-medium group-hover:text-pink-500 transition">
-              Detail viz Astrologie →
-            </h3>
-            <p className="text-gray-600 text-[0.95rem] leading-relaxed mt-1">
-              Tabulky 12 znamení, 36 dekanátů, 4 Royal Stars, 10 dalších fixních hvězd, srovnání klasické vs. moderní vládce.
-            </p>
-          </Link>
+          <div className="space-y-3">
+            <Link
+              href="/kompatibilita-podle-data-narozeni"
+              className="block bg-pink-50 border border-pink-200 hover:border-pink-500 rounded-2xl p-6 transition group"
+            >
+              <p className="eyebrow text-pink-500 mb-2">Pokračovat ve čtení · numerologie</p>
+              <h3 className="serif text-lg text-gray-900 font-medium group-hover:text-pink-500 transition">
+                Detail viz Kompatibilita podle data narození →
+              </h3>
+              <p className="text-gray-600 text-[0.95rem] leading-relaxed mt-1">
+                12 archetypů (Průkopník až Idealista + master 11/2, 22/4, 33/6), jak se počítá životní číslo, tabulka shod, kompletní FAQ.
+              </p>
+            </Link>
+
+            <Link
+              href="/numerologie-vztahy"
+              className="block bg-pink-50 border border-pink-200 hover:border-pink-500 rounded-2xl p-6 transition group"
+            >
+              <p className="eyebrow text-pink-500 mb-2">Pokračovat ve čtení · numerologie ve vztazích</p>
+              <h3 className="serif text-lg text-gray-900 font-medium group-hover:text-pink-500 transition">
+                Detail viz Numerologie ve vztazích →
+              </h3>
+              <p className="text-gray-600 text-[0.95rem] leading-relaxed mt-1">
+                Jak životní číslo ovlivňuje partnerský výběr, komunikaci a dlouhodobou kompatibilitu. Master čísla, karmická spojení, přirozená rezonance.
+              </p>
+            </Link>
+
+            <Link
+              href="/astrologie"
+              className="block bg-pink-50 border border-pink-200 hover:border-pink-500 rounded-2xl p-6 transition group"
+            >
+              <p className="eyebrow text-pink-500 mb-2">Pokračovat ve čtení · astrologie · 12 min</p>
+              <h3 className="serif text-lg text-gray-900 font-medium group-hover:text-pink-500 transition">
+                Detail viz Astrologie →
+              </h3>
+              <p className="text-gray-600 text-[0.95rem] leading-relaxed mt-1">
+                Tabulky 12 znamení, 36 dekanátů, 4 Royal Stars, 10 dalších fixních hvězd, srovnání klasické vs. moderní vládce.
+              </p>
+            </Link>
+          </div>
 
         </section>
 
