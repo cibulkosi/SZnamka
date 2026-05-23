@@ -220,8 +220,8 @@ export default function NumerologieVztahyPage() {
             Zjisti své číslo.
           </h2>
           <p className="text-gray-600 leading-relaxed mb-8 text-[1.0625rem]">
-            Zadej datum narození a okamžitě zjistíš svůj archetyp a nejlepší shody.
-            Bez registrace, zdarma.
+            Zadej datum narození a zjisti svůj archetyp a nejlepší shody.
+            Bez registrace a zdarma.
           </p>
           <Link href="/test"
             className="inline-flex items-center justify-center bg-gray-900 text-white px-8 py-4 rounded-full text-base font-medium hover:bg-gray-800 transition-all">
