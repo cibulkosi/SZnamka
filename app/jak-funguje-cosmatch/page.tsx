@@ -166,7 +166,7 @@ export default function JakFungujeCosmatchPage() {
           </h2>
           <ul className="space-y-4">
             <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
-              <strong className="text-gray-900 font-medium">The Secret Language of Birthdays</strong> (Gary Goldschneider &amp; Joost Elffers, Penguin Studio, 1994) — pop-culture personology framework založený na pozorování 14 000 osob, 366 denních profilů.
+              <strong className="text-gray-900 font-medium">The Secret Language of Birthdays</strong> (Gary Goldschneider &amp; Joost Elffers, Penguin Studio, 1994) — pop-culture personology framework založený na pozorování 14 000 osob.
             </li>
             <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
               <strong className="text-gray-900 font-medium">The Power of Birthdays, Stars &amp; Numbers</strong> (Saffi Crawford &amp; Geraldine Sullivan, Ballantine, 1998) — encyklopedický 366-denní referenční průvodce kombinující astrologii, fixní hvězdy a numerologii.
