@@ -29,7 +29,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
       "Občas příliš nezávislý — bojí se závazku",
       "Netrpělivost s pomalejšími"
     ],
-    "love": "Jako Průkopník potřebuješ partnera, který respektuje tvou nezávislost a má vlastní svět. Závislí lidé tě dusí. Ideální shoda: čísla 3 (Tvůrce), 5 (Dobrodruh), 6 (Pečovatel) — kombinace energie a podpory.",
+    "love": "Jako Průkopník potřebuješ partnera, který respektuje tvou nezávislost a dokáže být také nezávislý. Závislí lidé tě totiž dusí. Ideální shoda: čísla 3 (Tvůrce), 5 (Dobrodruh), 6 (Pečovatel) díky kombinaci energie a podpory.",
     "shadow": "Tendence k přílišné nezávislosti může bránit hluboké blízkosti. Naučit se přijímat pomoc je tvou klíčovou lekcí.",
     "career": "Podnikatel, ředitel, vědec, inovátor, sportovec — všude, kde můžeš být první.",
     "celebrities": [
