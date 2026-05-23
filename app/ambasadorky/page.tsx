@@ -12,16 +12,15 @@ const BENEFITS = [
   ['Doživotní Cosmatch+', 'Premium účet zdarma, navždy. Bez podmínek.'],
   ['Ambasadorský odznak', 'Vidí ho každý, kdo si Tě otevře. Status, který si nikdo nekoupí.'],
   ['Vlastní referral kód', 'Sleduj, kolik lidí jsi přivedla a komu Cosmatch pomohl.'],
-  ['Uzavřená komunita', 'Privátní skupina s ostatními ambasadorkami a zakladatelkou.'],
-  ['Vliv na vývoj', 'Zpětná vazba, beta verze, přímý kontakt. Cosmatch se utváří i tebou.'],
+  ['Vliv na vývoj', 'Zpětná vazba, beta verze, přímý kontakt. Cosmatch se utváří i díky Tobě.'],
 ]
 
 const REQUIREMENTS = [
-  'Alespoň 500 sledujících na Instagramu, TikToku nebo YouTube.',
+  'Alespoň 2000 sledujících na Instagramu, TikToku nebo YouTube.',
   'Autentický zájem o numerologii, kompatibilitu nebo vztahy.',
-  'Ochota vytvořit minimálně dva příspěvky / reels o Cosmatch měsíčně.',
+  'Ochota vytvořit minimálně dva příspěvky / reels o Cosmatch během jednoho měsíce.',
   'Aktivní vlastní profil na Cosmatch.',
-  'Bydliště Praha, Brno nebo Bratislava.',
+  'Bydliště v ČR, na Slovensku nebo v Polsku.',
 ]
 
 export default function AmbasadorkyPage() {
@@ -67,12 +66,13 @@ export default function AmbasadorkyPage() {
             <header className="mb-16">
               <p className="eyebrow text-pink-500 mb-6">Program ambasadorek</p>
               <h1 className="serif-display text-5xl sm:text-6xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-8">
-                Buď tváří<br/><em className="italic text-pink-500">revoluce</em> v datování.
+                Buď tváří<br/><em className="italic text-pink-500">revoluce</em> v randění.
               </h1>
               <hr className="rule w-12 border-gray-900 mb-8" />
               <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
                 Hledáme dvacet žen v Praze, Brně a Bratislavě, které věří, že správné
-                spojení není otázka algoritmů, ale dat. A chtějí to říct světu.
+                spojení lidí nevzniká díky nekonečnému swipování, ale díky pomalejšímu rozhodování
+                na základě algoritmu, který Ti vybere co nejkompatibilnější osoby, a chtějí to říct světu.
               </p>
             </header>
 
@@ -80,7 +80,7 @@ export default function AmbasadorkyPage() {
             <section className="mb-16">
               <p className="eyebrow text-pink-500 mb-4">Co od nás dostaneš</p>
               <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-10">
-                Pět věcí, které nikdo jiný nedostane.
+                Čtyři věci, které nikdo jiný nedostane.
               </h2>
               <div className="space-y-10">
                 {BENEFITS.map(([t, d], i) => (
@@ -141,6 +141,7 @@ export default function AmbasadorkyPage() {
                     <option value="Praha">Praha</option>
                     <option value="Brno">Brno</option>
                     <option value="Bratislava">Bratislava</option>
+                    <option value="Jiné">Jiné</option>
                   </select>
                 </div>
                 <div className="grid grid-cols-2 gap-6">

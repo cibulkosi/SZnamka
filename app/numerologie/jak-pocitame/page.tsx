@@ -78,7 +78,7 @@ export default function JakPocitamePage() {
           </h1>
           <hr className="rule w-12 border-gray-900 mb-8" />
           <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
-            Cosmatch používá Decoz three-cycle metodu — moderní standard západní numerologie s lineage od Balliett (1908) po Hay House (2013). Tady je celý postup, historický kontext a srovnání se třemi dalšími metodickými školami.
+            Cosmatch používá Decoz metodu, moderní standard západní numerologie, používaný v pracích od Balliett (1908) po Hay House (2013). Tady je celý postup, historický kontext a srovnání se třemi dalšími metodickými školami.
           </p>
           <p className="text-sm text-gray-500 mt-6">
             Autorka <span className="text-gray-900 italic serif">Simona Cibulková</span>
