@@ -82,8 +82,8 @@ export const ARCHETYPES: Record<string, Archetype> = {
   },
   "3": {
     "name": "Tvůrce",
-    "tagline": "Charismatický, expresivní, plný energie.",
-    "short": "Číslo 3 je Tvůrce — kreativní vypravěč, který přitahuje pozornost. Je to charismatický, expresivní a optimistický člověk.",
+    "tagline": "Charismatický a expresivní člověk, který je plný energie.",
+    "short": "Číslo 3 je Tvůrce, kreativní vypravěč, který přitahuje pozornost. Je to charismatický, expresivní a optimistický člověk.",
     "traits_pos": [
       "Kreativní mysl",
       "Skvělý komunikátor",
@@ -95,7 +95,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
       "Občas povrchní",
       "Vyhýbá se těžkým rozhovorům"
     ],
-    "love": "Tvůrce potřebuje partnera, který oceňuje jeho energii a dává mu prostor zářit. Nejlépe se páruje s 1 (Průkopník), 5 (Dobrodruh), 7 (Mudrc), s nimiž vytváří energetická souznění.",
+    "love": "Tvůrce potřebuje partnera, který oceňuje jeho energii a dává mu prostor zářit. Nejlépe se páruje s 1 (Průkopník), 5 (Dobrodruh), 7 (Hledač), s nimiž vytváří energetická souznění.",
     "shadow": "Tendence vyhýbat se hlubší zodpovědnosti komplikuje dlouhodobé vztahy. Tvojí lekcí je naučit se dělat věci více do hloubky a méně povrchně.",
     "career": "Umělec, spisovatel, herec, copywriter, marketér, designér, učitel.",
     "celebrities": [
@@ -116,7 +116,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
   "4": {
     "name": "Stavitel",
     "tagline": "Spolehlivý, systematický, věrný.",
-    "short": "Číslo 4 je Stavitel — pragmatický stratég, který staví věci, jež trvají. Spolehlivý, věrný, milovník stability.",
+    "short": "Číslo 4 je Stavitel — pragmatický stratég, který staví trvalé věci. Je to spolehlivý a věrný milovník stability.",
     "traits_pos": [
       "Disciplinovaný a vytrvalý",
       "Vysoce loajální",
@@ -128,8 +128,8 @@ export const ARCHETYPES: Record<string, Archetype> = {
       "Pomalu se přizpůsobuje změnám",
       "Neflexibilní v emocích"
     ],
-    "love": "Stavitel potřebuje bezpečí a předvídatelnost. Nejlépe se párujete s 2 (Diplomat), 6 (Pečovatel), 8 (Vůdce) — sdílené hodnoty stability.",
-    "shadow": "Rigidita brání spontaneitě a novým zkušenostem. Naučit se flexibilitu je tvojí lekcí.",
+    "love": "Stavitel potřebuje bezpečí a předvídatelnost. Nejlépe se párujete s 2 (Diplomat), 6 (Pečovatel), 8 (Vůdce) s nimiž sdílí hodnoty stability.",
+    "shadow": "Rigidita brání spontaneitě a novým zkušenostem. Tvojí lekcí je naučit se být flexibilní.",
     "career": "Architekt, inženýr, manažer, účetní, právník, programátor.",
     "celebrities": [
       "Madeleine Albright (15. 5. 1937)",
@@ -161,7 +161,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
       "Tendence opouštět věci, když přestanou bavit",
       "Občas nezodpovědný"
     ],
-    "love": "Dobrodruh potřebuje prostor a dobrodružství. Ideální shoda: 1 (Průkopník), 3 (Tvůrce), 7 (Mudrc) — partneři s vlastním světem.",
+    "love": "Dobrodruh potřebuje prostor a dobrodružství. Ideální shoda: 1 (Průkopník), 3 (Tvůrce), 7 (Hledač) — partneři s vlastním světem.",
     "shadow": "Strach ze závazku tě nutí opouštět lidi dříve, než vztah dostane šanci na hloubku.",
     "career": "Novinář, fotograf, cestovatel, podnikatel, sales, marketér, herec.",
     "celebrities": [
@@ -213,9 +213,9 @@ export const ARCHETYPES: Record<string, Archetype> = {
     ]
   },
   "7": {
-    "name": "Mudrc",
+    "name": "Hledač",
     "tagline": "Analytický, hloubavý, spirituální.",
-    "short": "Číslo 7 je Mudrc — introspektivní hledač pravdy. Analytický, intuitivní, vidí pod povrch věcí.",
+    "short": "Číslo 7 je Hledač — introspektivní hledač pravdy. Analytický, intuitivní, vidí pod povrch věcí.",
     "traits_pos": [
       "Hluboká analytická mysl",
       "Spirituální vhled",
@@ -227,7 +227,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
       "Občas chladný v emocích",
       "Přílišná sebeanalýza"
     ],
-    "love": "Mudrc potřebuje partnera, který respektuje tvou potřebu ticha a dokáže vést smysluplné rozhovory. Ideální: 3 (Tvůrce), 5 (Dobrodruh), 11 (Vizionář).",
+    "love": "Hledač potřebuje partnera, který respektuje tvou potřebu ticha a dokáže vést smysluplné rozhovory. Ideální: 3 (Tvůrce), 5 (Dobrodruh), 11 (Vizionář).",
     "shadow": "Izolace a přílišná sebeanalýza brání skutečné emocionální blízkosti. Lekce: dovolit někomu vstoupit.",
     "career": "Vědec, filozof, psycholog, programátor, výzkumník, kněz, spisovatel.",
     "celebrities": [
