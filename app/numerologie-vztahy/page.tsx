@@ -79,7 +79,7 @@ const SECTIONS = [
     num: 'V',
     title: 'Master čísla ve vztazích',
     paras: [
-      'Lidé s master číslem (11, 22, 33) bývají ve vztazích intenzivnější — v dobrém i špatném. Vizionář (11) potřebuje partnera, který zvládne jeho emocionální hloubku. Architekt (22) může být workoholik, který podceňuje vztahovou péči. Mistr lásky (33) dává tak moc, že riskuje vyhoření.',
+      'Lidé s master číslem (11/2, 22/4, 33/6) bývají ve vztazích intenzivnější — v dobrém i špatném. Vizionář (11/2) potřebuje partnera, který zvládne jeho emocionální hloubku. Architekt (22/4) může být workoholik, který podceňuje vztahovou péči. Léčitel (33/6) dává tak moc, že riskuje vyhoření.',
       'Všechna tři master čísla hledají intenzitu a smysl a snadno je přestávají bavit povrchní vztahy.',
     ],
   },
@@ -147,9 +147,9 @@ export default function NumerologieVztahyPage() {
         "@type": "FAQPage",
         "mainEntity": [
           { "@type": "Question", "name": 'Co je numerologie a jak souvisí se vztahy?', "acceptedAnswer": { "@type": "Answer", "text": 'Numerologie je systém interpretace čísel s tisíciletou tradicí. Vychází z předpokladu, že datum tvého narození nese specifické energetické kvality, které ovlivňují tvou osobnost a kompatibilitu s ostatními lidmi. Ve vztazích pomáhá pochopit, proč přitahuješ konkrétní typy partnerů.' } },
-          { "@type": "Question", "name": 'Jak si vypočítám životní číslo?', "acceptedAnswer": { "@type": "Answer", "text": 'Sečti všechny číslice svého data narození. Příklad: 23. 7. 1992 → 2+3+7+1+9+9+2 = 33. Pokud výsledek je vyšší než 9, redukuj dál, pokud to není master číslo 11, 22 nebo 33. Cosmatch tě tímto procesem provede v kvízu zdarma.' } },
+          { "@type": "Question", "name": 'Jak si vypočítám životní číslo?', "acceptedAnswer": { "@type": "Answer", "text": 'Cosmatch používá Decoz three-cycle metodu: redukuj měsíc, den a rok zvlášť, pak součet finálně redukuj. Příklad: 23. 7. 1992 → měsíc 7 + den (2+3=5) + rok (1+9+9+2=21→3) = 15 → 1+5 = 6 (Pečovatel). Master čísla 11, 22, 33 se zachovají, jen když se objeví v některé z mezikalkulací — pak je můžeš číst i jako jejich plnou redukci 11/2, 22/4, 33/6. Cosmatch tě tímto procesem provede v kvízu zdarma.' } },
           { "@type": "Question", "name": 'Funguje numerologie ve vztazích vědecky?', "acceptedAnswer": { "@type": "Answer", "text": 'Numerologie není empirická věda. Je to interpretační framework s tisíciletou tradicí, který pomáhá strukturovat sebepoznání. Cosmatch ji používá jako jeden z faktorů při výpočtu kompatibility — spolu se záměrem vztahu, společnými zájmy a aktivitou.' } },
-          { "@type": "Question", "name": 'Co jsou master čísla 11, 22 a 33?', "acceptedAnswer": { "@type": "Answer", "text": 'Master čísla jsou mistrovská čísla v numerologii — nejintenzivnější vibrace. Číslo 11 je Vizionář (intuice, citlivost), 22 je Architekt (vize plus praktičnost) a 33 je Mistr lásky (soucit a léčení). Lidé s master čísly tvoří jen ~4 % populace a ve vztazích jsou intenzivnější.' } },
+          { "@type": "Question", "name": 'Co jsou master čísla 11, 22 a 33?', "acceptedAnswer": { "@type": "Answer", "text": 'Master čísla jsou mistrovská čísla v numerologii — nejintenzivnější vibrace. Píšou se zápisem 11/2, 22/4, 33/6, kde druhé číslo je základ — kvality, které master číslo nese ve své vyšší oktávě. Číslo 11/2 je Vizionář (intuice, citlivost na úrovni 2 Diplomata), 22/4 je Architekt (vize plus praktická sila 4 Stavitele) a 33/6 je Léčitel (soucit a léčení 6 Pečovatele). Lidé s master čísly tvoří jen ~4 % populace a ve vztazích jsou intenzivnější.' } },
           { "@type": "Question", "name": 'Mohu najít partnera díky numerologii?', "acceptedAnswer": { "@type": "Answer", "text": 'Numerologie pomáhá pochopit, s jakými typy lidí přirozeně rezonuješ. Cosmatch propojuje tyto poznatky s reálnými profily lidí ve tvém okolí — vidíš tedy nejen kompatibilní čísla, ale skutečné lidi. Finální rozhodnutí je vždy na tvém srdci.' } }
         ]
       }) }} />
