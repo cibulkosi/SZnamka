@@ -26,11 +26,21 @@ export const metadata: Metadata = {
     type: 'website',
     siteName: 'Cosmatch',
     locale: 'cs_CZ',
+    url: 'https://cosmatch.cz',
+    images: [
+      {
+        url: 'https://cosmatch.cz/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Cosmatch — Seznamka podle data narození',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Cosmatch — Kompatibilita podle data narození',
     description: 'Najdi svou skutečnou shodu díky numerologii a datům narození.',
+    images: ['https://cosmatch.cz/og-image.png'],
   },
   manifest: '/manifest.json',
   appleWebApp: {
