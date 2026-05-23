@@ -182,7 +182,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
   "6": {
     "name": "Pečovatel",
     "tagline": "Láskyplný, zodpovědný, orientovaný na rodinu.",
-    "short": "Číslo 6 je Pečovatel — láskyplný protektor rodiny a přátel. Zodpovědný, věrný, dává více než bere.",
+    "short": "Číslo 6 je Pečovatel — láskyplný ochránce rodiny a svých přátel. Je zodpovědný, věrný a dává více než bere.",
     "traits_pos": [
       "Vysoce empatický",
       "Zodpovědný za druhé",
@@ -191,11 +191,11 @@ export const ARCHETYPES: Record<string, Archetype> = {
     ],
     "traits_neg": [
       "Tendence k sebeobětování",
-      "Občas přílišný kontrolér",
+      "Občas přílišný kontrolor",
       "Bere si problémy druhých na sebe"
     ],
-    "love": "Pečovatel potřebuje partnera, který umí přijímat lásku stejně hluboce, jako ji dává. Ideální shoda: 1 (Průkopník), 2 (Diplomat), 9 (Idealista) — kombinace lásky, sdíleného soucitu a porozumění.",
-    "shadow": "Přílišné pečování vede k sebeobětování a tiché zatrpklosti. Lekce: pečuj nejdřív o sebe.",
+    "love": "Pečovatel potřebuje partnera, který umí přijímat lásku stejně hluboce, jako ji dává. Ideální shoda: 1 (Průkopník), 2 (Diplomat), 9 (Idealista), kde najde kombinaci lásky, sdíleného soucitu a porozumění.",
+    "shadow": "Přílišné pečování vede k sebeobětování a tiché zatrpklosti. Lekce: nauč se pečovat nejdřív o sebe.",
     "career": "Zdravotník, učitel, sociální pracovník, terapeut, designér interiéru, kuchař.",
     "celebrities": [
       "Tomáš Garrigue Masaryk (7. 3. 1850)",
@@ -215,7 +215,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
   "7": {
     "name": "Hledač",
     "tagline": "Analytický, hloubavý, spirituální.",
-    "short": "Číslo 7 je Hledač — introspektivní hledač pravdy. Analytický, intuitivní, vidí pod povrch věcí.",
+    "short": "Číslo 7 je Hledač, někdy nazývaný Mudrc — introspektivní hledač pravdy. Je analytický, intuitivní a vidí pod povrch věcí.",
     "traits_pos": [
       "Hluboká analytická mysl",
       "Spirituální vhled",
@@ -227,8 +227,8 @@ export const ARCHETYPES: Record<string, Archetype> = {
       "Občas chladný v emocích",
       "Přílišná sebeanalýza"
     ],
-    "love": "Hledač potřebuje partnera, který respektuje tvou potřebu ticha a dokáže vést smysluplné rozhovory. Ideální: 3 (Tvůrce), 5 (Dobrodruh), 11 (Vizionář).",
-    "shadow": "Izolace a přílišná sebeanalýza brání skutečné emocionální blízkosti. Lekce: dovolit někomu vstoupit.",
+    "love": "Hledač potřebuje partnera, který respektuje jeho potřebu ticha a dokáže vést smysluplné rozhovory. Ideální: 3 (Tvůrce), 5 (Dobrodruh), 11 (Vizionář).",
+    "shadow": "Izolace a přílišná sebeanalýza brání skutečné emocionální blízkosti. Životní lekcí je naučit se pouštět si lidi blíž k sobě.",
     "career": "Vědec, filozof, psycholog, programátor, výzkumník, kněz, spisovatel.",
     "celebrities": [
       "Václav Havel (5. 10. 1936)",
@@ -248,7 +248,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
   "8": {
     "name": "Vůdce",
     "tagline": "Ambiciózní, mocný, orientovaný na výsledky.",
-    "short": "Číslo 8 je Vůdce — ambiciózní stratég, který umí přeměnit vizi ve skutečnost. Mocný, sebevědomý, výsledkově orientovaný.",
+    "short": "Číslo 8 je Vůdce — ambiciózní stratég, který umí přeměnit vizi ve skutečnost. Je mocný, sebevědomý a orientovaný na výsledky.",
     "traits_pos": [
       "Silný leader",
       "Strategický myslitel",
@@ -261,7 +261,7 @@ export const ARCHETYPES: Record<string, Archetype> = {
       "Občas chladný ve vztazích"
     ],
     "love": "Vůdce potřebuje rovnocenného partnera, ne obdivovatele. Ideální shoda: 2 (Diplomat), 4 (Stavitel), 6 (Pečovatel).",
-    "shadow": "Workoholismus a potřeba kontroly odsouvají vztahy na druhou kolej. Lekce: balance mezi prací a láskou.",
+    "shadow": "Workoholismus a potřeba kontroly odsouvají vztahy na druhou kolej. Životní lekcí je naučit se balancovat mezi prací a láskou.",
     "career": "CEO, finančník, právník, investor, podnikatel, ředitel.",
     "celebrities": [
       "Milan Kundera (1. 4. 1929)",
