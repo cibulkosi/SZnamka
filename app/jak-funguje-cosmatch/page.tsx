@@ -46,13 +46,9 @@ export default function JakFungujeCosmatchPage() {
         <header className="mb-16">
           <p className="eyebrow text-pink-500 mb-6">Metodika</p>
           <h1 className="serif-display text-5xl sm:text-6xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-8">
-            Jak Cosmatch opravdu funguje<br/><em className="italic text-pink-500">a kdo za ním stojí</em>?
+            Jak Cosmatch<br/><em className="italic text-pink-500">opravdu funguje a kdo za ním stojí</em>?
           </h1>
           <hr className="rule w-12 border-gray-900 mb-8" />
-          <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
-            Sedm vrstev výpočtu, kompatibilita podle data narození vychází z více klíčových zdrojů personology a numerologie. Životní číslo zde NENÍ — používáme ho jen pro sebepoznání v kvízu a Magic Moment, ne pro párování.
-            Tady je přesný popis, jak Cosmatch dochází k procentu kompatibility.
-          </p>
         </header>
 
         {/* Bio Simona — E-E-A-T trust signal */}
