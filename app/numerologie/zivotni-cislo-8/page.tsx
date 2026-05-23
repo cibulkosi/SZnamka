@@ -218,6 +218,9 @@ export default function LifePathPage() {
               </li>
             ))}
           </ul>
+          <p className="text-gray-600 leading-relaxed mt-8 text-[1.0625rem] italic">
+            Cosmatch je první česká seznamka, která tě s nimi propojí podle skutečné kompatibility.
+          </p>
         </section>
 
         {/* CTA */}
