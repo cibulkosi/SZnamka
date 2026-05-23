@@ -158,7 +158,7 @@ export default function KarmickeLekcePage() {
           <p className="eyebrow text-pink-500 mb-3">Zdroj konceptu</p>
           <h2 className="serif text-xl text-gray-900 font-medium mb-4">Hans Decoz</h2>
           <p className="text-gray-700 leading-[1.75] text-[0.95rem] mb-3">
-            <em className="italic">Numerology: Key to Your Inner Self</em> (Perigee / Tarcher, 2001) — moderní západní standard. Decoz je nejcitovanější autor v současné numerologii, jeho metoda Three-Cycle Method a koncept Karmic Lessons jsou základem Hay House lineage (McCants, Buchanan, Bender). Cosmatch používá Decozovo pojetí Karmic Lessons aplikované přímo na číslice data narození.
+            <em className="italic">Numerology: Key to Your Inner Self</em> (Perigee / Tarcher, 2001) — moderní západní standard. Decoz je nejcitovanější autor v současné numerologii a jeho koncept Karmic Lessons je základem moderní pythagorejské tradice. Cosmatch používá Decozovo pojetí Karmic Lessons aplikované přímo na číslice data narození.
           </p>
           <p className="text-xs text-gray-500 italic">
             Karmické lekce <strong className="text-gray-700 font-medium not-italic">nejsou</strong> Pythagorova mřížka (David Phillips, Hay House 2005) ani čínská Lo Shu Grid (J. C. Chaudhry) — ty jsou samostatné systémy s vlastním 3×3 rozložením a odlišnou interpretací.
