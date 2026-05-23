@@ -46,7 +46,7 @@ export default function JakFungujeCosmatchPage() {
         <header className="mb-16">
           <p className="eyebrow text-pink-500 mb-6">Metodika</p>
           <h1 className="serif-display text-5xl sm:text-6xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-8">
-            Jak Cosmatch<br/><em className="italic text-pink-500">opravdu funguje</em>.
+            Jak Cosmatch opravdu funguje<br/><em className="italic text-pink-500">a kdo za ním stojí</em>?
           </h1>
           <hr className="rule w-12 border-gray-900 mb-8" />
           <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
@@ -57,9 +57,9 @@ export default function JakFungujeCosmatchPage() {
 
         {/* Bio Simona — E-E-A-T trust signal */}
         <section className="mb-16 bg-white border border-gray-100 rounded-3xl p-10">
-          <p className="eyebrow text-pink-500 mb-4">Kdo Cosmatch postavil</p>
+          <p className="eyebrow text-pink-500 mb-4">Kdo vybudoval Cosmatch?</p>
           <h2 className="serif text-2xl text-gray-900 font-medium leading-tight mb-3">
-            Simona Cibulková
+            Simona Cibulková, zakladatelka Cosmatch
           </h2>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
             Zakladatelka a jediná osoba za Cosmatch. Před Cosmatch jsem strávila roky studiem
