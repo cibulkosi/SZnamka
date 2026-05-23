@@ -60,7 +60,7 @@ const FAQ = [
   },
   {
     q: 'Jaká čísla jsou nejkompatibilnější?',
-    a: 'Záleží na konkrétní kombinaci. Obecně: 1 ladí s 3, 5 a 6; 2 s 4, 6 a 8; 4 s 2, 6 a 8. Master čísla 11/2, 22/4 a 33/6 mají nejsilnější spojení s 2, 6 a 9 — a zároveň dědí kompatibilitu svého základního čísla (11 jako 2, 22 jako 4, 33 jako 6). Cosmatch toto počítá pro všechny možné kombinace párů.',
+    a: 'Záleží na konkrétní kombinaci. Obecně: 1 ladí s 3, 5 a 6; 2 s 4, 6 a 8; 4 s 2, 6 a 8. Master čísla mají vlastní silné shody — 11/2 s 2, 6 a 9; 22/4 s 4, 6 a 8; 33/6 s 6, 9 a 11. Zároveň dědí část kompatibility svého základního čísla (11 nese kvality 2, 22 kvality 4, 33 kvality 6). Cosmatch toto počítá pro všechny možné kombinace párů.',
   },
   {
     q: 'Je numerologie vědecky prokázána?',
@@ -310,7 +310,7 @@ export default function KompatibilitaPage() {
             Zjisti svůj archetyp za 30 sekund.
           </h2>
           <p className="text-gray-600 leading-relaxed mb-8 text-[1.0625rem]">
-            Zadej datum narození a okamžitě uvidíš svůj numerologický profil a nejlepší shody.
+            Zadej datum narození a ukáže se Ti Tvůj numerologický profil a nejlepší shody.
             Bez registrace, zdarma.
           </p>
           <Link href="/test"
