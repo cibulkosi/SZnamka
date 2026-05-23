@@ -77,6 +77,67 @@ export function lifePathNumber(dateStr: string): number {
   return finalLP
 }
 
+/**
+ * Karmické dluhy — pre-reduction hodnoty 13, 14, 16, 19, které vrhají stín na finální životní číslo.
+ * Goodwin (1981), Decoz, Numerology.com. Detekují se z jednotlivých komponent (month, day, year před redukcí)
+ * a z mezisoučtu před finální redukcí.
+ *
+ * Vrací array karmických dluhů přítomných v datu narození (může být 0–4).
+ */
+export function detectKarmicDebts(dateStr: string): number[] {
+  const parts = dateStr.split('-').map(Number)
+  if (parts.length !== 3 || parts.some(isNaN)) return []
+  const [year, month, day] = parts
+  const KARMIC = [13, 14, 16, 19]
+  const debts: number[] = []
+
+  // Check day (most common source — day 13, 14, 16, 19, 28 reduce to KARMIC)
+  if (KARMIC.includes(day)) debts.push(day)
+
+  // Check month + day intermediate (less common)
+  const yearSum = digitSum(year)
+  if (KARMIC.includes(yearSum)) debts.push(yearSum)
+
+  // Check final pre-reduction total
+  const monthLP = reduceWithMasters(month)
+  const dayLP = reduceWithMasters(day)
+  const yearLP = reduceWithMasters(yearSum)
+  const totalBeforeReduce = monthLP + dayLP + yearLP
+  if (KARMIC.includes(totalBeforeReduce)) debts.push(totalBeforeReduce)
+
+  return Array.from(new Set(debts))  // dedupe
+}
+
+/**
+ * Texty karmických dluhů (Goodwin/Decoz interpretace).
+ */
+export const KARMIC_DEBT_MEANINGS: Record<number, { title: string; redukce: number; meaning: string; lesson: string }> = {
+  13: {
+    title: 'Karmický dluh 13',
+    redukce: 4,
+    meaning: 'Lekce o lenosti a vyhýbání se práci. V minulém životě jsi pravděpodobně očekával výsledky bez úsilí.',
+    lesson: 'Tvou cestou je naučit se trpělivosti, disciplíně a pracovat s lehkostí, ne s odporem. Pokud něco nezvládáš, není to selhání — je to test vytrvalosti.',
+  },
+  14: {
+    title: 'Karmický dluh 14',
+    redukce: 5,
+    meaning: 'Lekce o nadměrné svobodě, excesech a impulzivitě. V minulosti jsi zneužil dar volnosti k závislostem nebo neukotvenosti.',
+    lesson: 'Tvou cestou je naučit se umírněnosti, sebeovládání a najít smysl ve struktuře — bez ztráty radosti z objevování.',
+  },
+  16: {
+    title: 'Karmický dluh 16',
+    redukce: 7,
+    meaning: 'Lekce o egu, pýše a zneužití intimity či autority. V minulosti jsi pravděpodobně manipuloval druhými skrze osobní šarm nebo intelekt.',
+    lesson: 'Tvou cestou je rozpustit pýchu, otevřít se zranitelnosti a vést srdcem, ne jen rozumem.',
+  },
+  19: {
+    title: 'Karmický dluh 19',
+    redukce: 1,
+    meaning: 'Lekce o zneužití moci a kontrole druhých. V minulosti jsi pravděpodobně sloužil sobě na úkor druhých.',
+    lesson: 'Tvou cestou je naučit se vést s pokorou, dělit se o úspěch a používat moc ve službě většího celku.',
+  },
+}
+
 // ──────────────────────────────────────────────
 // Typ Archetype (zachová zpětnou kompatibilitu s /test starým UI)
 // + nová pole pro 3-vrstvý content (Mirror + Shadow + InLove)
