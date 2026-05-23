@@ -49,8 +49,8 @@ export const ARCHETYPES: Record<string, Archetype> = {
   },
   "2": {
     "name": "Diplomat",
-    "tagline": "Empatický, intuitivní, vyhledávač harmonie.",
-    "short": "Číslo 2 je Diplomat — citlivý mediátor, který vnímá lidi hlouběji než většina. Empatický, intuitivní, orientovaný na vztahy.",
+    "tagline": "Empatický, intuitivní, vyhledávající harmonii.",
+    "short": "Číslo 2 je Diplomat — citlivý mediátor, který vnímá lidi více do hloubky než ostatní. Je empatický, intuitivní a orientovaný na vztahy.",
     "traits_pos": [
       "Vysoká emoční inteligence",
       "Skvělý posluchač",
@@ -62,8 +62,8 @@ export const ARCHETYPES: Record<string, Archetype> = {
       "Vyhýbá se konfliktům",
       "Náchylný k pocitům odmítnutí"
     ],
-    "love": "Diplomat potřebuje stabilního, milujícího partnera, který oceňuje tvou citlivost. Nejlépe si rozumíš s 4 (Stavitel), 6 (Pečovatel), 8 (Vůdce) — kombinace stability a hloubky.",
-    "shadow": "Tendence potlačovat vlastní potřeby pro mír v partě. Naučit se říkat „ne\“ je tvou lekcí.",
+    "love": "Diplomat potřebuje stabilního, milujícího partnera, který oceňuje jeho citlivost. Nejlépe si rozumí se 4 (Stavitel), 6 (Pečovatel), 8 (Vůdce) díky kombinaci stability a hloubky.",
+    "shadow": "Máš tendenci potlačovat své vlastní potřeby pro blaho ostatních. Tvou lekcí je naučit se říkat „ne\".",
     "career": "Psycholog, terapeut, mediátor, učitel, zdravotník, diplomat.",
     "celebrities": [
       "Petr Pavel (1. 11. 1961)",
