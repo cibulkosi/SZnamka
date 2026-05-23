@@ -129,8 +129,79 @@ export default function JakFungujeCosmatchPage() {
             <li><strong className="text-gray-900 font-medium">Náročný vztah</strong> — růst přes konflikt, 45 bodů</li>
             <li><em className="italic">Žádná kategorie</em> — neutrální default, 50 bodů</li>
           </ul>
-          <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
+          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-12">
             Algoritmus vyhledá, jaký vztah má osoba A vzhledem k osobě B, a obráceně. Výsledek je průměr obou směrů. Když mají v sobě oba navzájem pozitivní kategorii, dostávají bonus 5 %.
+          </p>
+
+          <hr className="rule mb-10" />
+
+          {/* Co jsou jednotlivé astrologické komponenty */}
+          <h3 className="serif text-2xl text-gray-900 font-medium leading-tight mb-3">Co znamenají ty jednotlivé komponenty.</h3>
+          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-8">
+            Profil každého ze 366 dnů kombinuje pět vrstev astrologického a numerologického popisu. Tady je krátké vysvětlení každé z nich, aby bylo jasné, co Cosmatch ze své zdrojové knihy vyhledává.
+          </p>
+
+          <div className="space-y-8">
+
+            <div className="bg-white border border-gray-200 rounded-2xl p-6">
+              <p className="eyebrow text-pink-500 mb-2">Sluneční znamení</p>
+              <h4 className="serif text-lg text-gray-900 font-medium mb-2">12 zodiakálních znamení (Beran až Ryby).</h4>
+              <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-2">
+                Určeno polohou Slunce v zodiaku v okamžiku narození. Každé znamení trvá cca 30 dní (např. Beran 21. 3. – 19. 4., Lev 23. 7. – 22. 8.). Co říká: základní temperament, identita, ego, instinktivní reakce.
+              </p>
+              <p className="text-sm text-gray-500 italic">
+                Příklad — narozen/a 23. 7. 1992 → Lev. Cosmatch toto čte z dne narození a měsíce, ne z přesné hodiny narození (Cosmatch nepoužívá kompletní natální horoskop).
+              </p>
+            </div>
+
+            <div className="bg-white border border-gray-200 rounded-2xl p-6">
+              <p className="eyebrow text-pink-500 mb-2">Dekanát</p>
+              <h4 className="serif text-lg text-gray-900 font-medium mb-2">Každé znamení rozděleno na 3 dekány po 10°.</h4>
+              <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-2">
+                Zodiak (360°) má tedy celkem 36 dekanátů. První dekán znamení pokrývá první 10° (cca prvních 10 dní), druhý 10–20°, třetí 20–30°. Každý dekan má vlastního <em className="italic">sub-vládce</em>, který přidává nuance k základnímu znamení. Co říká: zjemnění základního archetypu — Lev v 1. dekanu se chová jinak než Lev v 3. dekanu, i když oba spadají pod stejné znamení.
+              </p>
+              <p className="text-sm text-gray-500 italic">
+                Příklad — 23. 7. 1992 = 0–1° Lva = 1. dekan Lva (sub-vládce Slunce). Třešnička je v tom, že 1. dekan Lva je „nejčistší Lev" — energie znamení a sub-vládce souzní.
+              </p>
+            </div>
+
+            <div className="bg-white border border-gray-200 rounded-2xl p-6">
+              <p className="eyebrow text-pink-500 mb-2">Stupeň</p>
+              <h4 className="serif text-lg text-gray-900 font-medium mb-2">Přesná poloha v rámci znamení (0° – 29°).</h4>
+              <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-2">
+                V Crawford &amp; Sullivan systému má každý ze 366 dní svůj specifický stupeň. Dva lidé narození v sousedních dnech (např. 22. 7. a 23. 7.) mají sousední stupně — drobně odlišné profily, ale velmi blízké. Cosmatch tak rozlišuje i mezi „skoro stejnými dny" — kompatibilita 22. 7. × 24. 7. není identická jako 23. 7. × 24. 7.
+              </p>
+              <p className="text-sm text-gray-500 italic">
+                Tradičně se stupně dělí ještě na <em className="italic">Sabian symboly</em> (1° = 1 symbolický obraz, celkem 360). Cosmatch tuto úroveň nezachází, ale denní profil knihy ji implicitně používá.
+              </p>
+            </div>
+
+            <div className="bg-white border border-gray-200 rounded-2xl p-6">
+              <p className="eyebrow text-pink-500 mb-2">Fixní hvězdy</p>
+              <h4 className="serif text-lg text-gray-900 font-medium mb-2">Stálé hvězdy v aspektu k dnu narození.</h4>
+              <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-2">
+                Klasická astrologie pracuje s ~60 hlavními fixními hvězdami (např. Aldebaran v Býku, Regulus ve Lvu, Antares ve Štíru, Fomalhaut v Rybách — tzv. <em className="italic">Royal Stars</em> Persie). Pokud denní stupeň narození padá do ±1° od fixní hvězdy, ta hvězda ovlivňuje denní profil. Co říká: dodatečná archetypální vibrace nad rámec znamení — Regulus = vůdcovství a sláva, Aldebaran = integrita a odvaha, Antares = transformace skrz konflikt.
+              </p>
+              <p className="text-sm text-gray-500 italic">
+                Crawford &amp; Sullivan v denních profilech tyto hvězdy explicitně uvádí. Cosmatch je vyhledává z knihy, nepočítá je sám.
+              </p>
+            </div>
+
+            <div className="bg-white border border-gray-200 rounded-2xl p-6">
+              <p className="eyebrow text-pink-500 mb-2">Dominantní planeta</p>
+              <h4 className="serif text-lg text-gray-900 font-medium mb-2">Vládnoucí planeta znamení + sub-vládce dekanátu.</h4>
+              <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-2">
+                Každé znamení má vlastní vládnoucí planetu — Beran/Mars, Býk/Venuše, Blíženci/Merkur, Rak/Měsíc, Lev/Slunce, Panna/Merkur, Váhy/Venuše, Štír/Pluto (klasicky Mars), Střelec/Jupiter, Kozoroh/Saturn, Vodnář/Uran (klasicky Saturn), Ryby/Neptun (klasicky Jupiter). Plus dekanát má vlastního sub-vládce, který přidává druhou vrstvu motivace.
+              </p>
+              <p className="text-sm text-gray-500 italic">
+                Příklad — 23. 7. 1992 = Lev 1. dekan = Slunce (vládce) + Slunce (sub-vládce). Lidé s touto kombinací bývají charakterizováni silnou potřebou být viděn a tvořit. Cosmatch tuto kombinaci čte z knihy a započítává ji do denního profilu, ne do separátní vrstvy.
+              </p>
+            </div>
+
+          </div>
+
+          <p className="text-sm text-gray-500 leading-relaxed italic mt-8">
+            Cosmatch tyto komponenty <strong className="text-gray-700 font-medium not-italic">nepočítá sám</strong> — autoři knihy <em>The Power of Birthdays, Stars &amp; Numbers</em> (Crawford &amp; Sullivan, 1998 / česky <em>Magická hra čísel a hvězd</em>, Ikar 2002) je všechny spočítali a syntetizovali do 366 hotových denních profilů. Cosmatch tu jejich práci jen vyhledává a porovnává — proto se v algoritmu nepřidává samostatná vrstva pro „elementy" nebo „aspekty". To by bylo trojí započítání toho samého.
           </p>
         </section>
 
