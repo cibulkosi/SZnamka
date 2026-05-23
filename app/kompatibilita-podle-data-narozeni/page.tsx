@@ -236,7 +236,7 @@ export default function KompatibilitaPage() {
             ))}
           </div>
           <p className="text-xs text-gray-400 mt-6 leading-relaxed">
-            Toto je zjednodušený přehled podle syntézy více numerologických tradic (Crawford &amp; Sullivan, Decoz, McCants). Jiní autoři některé dvojice hodnotí odlišně — např. McCantsova „trojice nezávislosti" 1-5-7 by 1+3 a 1+6 nezařadila jako silnou shodu. Cosmatch nepoužívá tuto tabulku přímo na párování — počítá vícevrstvý skór pro každou konkrétní kombinaci dat narození podle 366 denních profilů Crawford &amp; Sullivan.
+            Toto je zjednodušený přehled podle syntézy více numerologických tradic. Jednotliví autoři některé dvojice hodnotí odlišně. Cosmatch nepoužívá tuto tabulku přímo na párování — počítá vícevrstvý skór pro každou konkrétní kombinaci dat narození podle personology tradice.
           </p>
         </section>
 
