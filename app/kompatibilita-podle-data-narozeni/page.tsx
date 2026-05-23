@@ -47,7 +47,7 @@ const NUMBERS = [
   ['6', 'Pečovatel', '1, 2, 4, 9', '7'],
   ['7', 'Hledač', '3, 5, 11', '6'],
   ['8', 'Vůdce', '2, 4, 6', '1, 9'],
-  ['9', 'Idealista', '2, 3, 6', '8'],
+  ['9', 'Idealista', '1, 2, 3, 6', '8'],
   ['11/2', 'Vizionář (vyšší oktáva 2)', '2, 6, 9', '1, 5'],
   ['22/4', 'Architekt (vyšší oktáva 4)', '4, 6, 8', '3, 5'],
   ['33/6', 'Léčitel (vyšší oktáva 6)', '6, 9, 11', '1, 8'],
@@ -237,7 +237,7 @@ export default function KompatibilitaPage() {
             ))}
           </div>
           <p className="text-xs text-gray-400 mt-6 leading-relaxed">
-            Toto je zjednodušený přehled podle syntézy více numerologických tradic. Jednotliví autoři některé dvojice hodnotí odlišně. Cosmatch ale počítá vícevrstvé skóre pro každou konkrétní kombinaci dat narození, která zahrnuje nejen numerologii, ale také další oblasti astrologie a osobních vlastností.
+            Tabulka odpovídá moderní pythagorejské tradici podle <strong className="text-gray-600 font-medium">Hanse Decoze</strong> (worldnumerology.com) — nejcitovanějšího autora v moderní západní numerologii. Cosmatch matching algoritmus ale jde dál: počítá vícevrstvé skóre pro každou konkrétní kombinaci dat narození, které zahrnuje nejen numerologii, ale také astrologii a další osobnostní vlastnosti.
           </p>
         </section>
 
