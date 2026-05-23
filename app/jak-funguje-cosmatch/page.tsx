@@ -137,63 +137,23 @@ export default function JakFungujeCosmatchPage() {
 
           {/* Co jsou jednotlivé astrologické komponenty */}
           <h3 className="serif text-2xl text-gray-900 font-medium leading-tight mb-3">Co znamenají ty jednotlivé komponenty.</h3>
-          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-8">
-            Profil každého ze 366 dnů kombinuje pět vrstev astrologického a numerologického popisu. Tady je krátké vysvětlení každé z nich, aby bylo jasné, co Cosmatch ze své zdrojové knihy vyhledává.
+          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
+            Profil každého ze 366 dnů kombinuje pět vrstev astrologického a numerologického popisu. Vysvětlení každé z nich najdeš na <Link href="/astrologie" className="text-pink-500 underline">Astrologie</Link>.
           </p>
 
-          <div className="space-y-4">
-            <div className="bg-white border border-gray-200 rounded-2xl p-6">
-              <p className="eyebrow text-pink-500 mb-2">1 · Sluneční znamení (12)</p>
-              <p className="text-gray-700 text-[0.95rem] leading-relaxed">
-                Základní temperament a ego identita podle polohy Slunce v okamžiku narození. Dělí se podle živlu (oheň/země/vzduch/voda) a modality.
-              </p>
-            </div>
+          <Link
+            href="/astrologie"
+            className="block bg-pink-50 border border-pink-200 hover:border-pink-500 rounded-2xl p-6 transition group"
+          >
+            <p className="eyebrow text-pink-500 mb-2">Pokračovat ve čtení · 12 min</p>
+            <h3 className="serif text-lg text-gray-900 font-medium group-hover:text-pink-500 transition">
+              Detail viz Astrologie →
+            </h3>
+            <p className="text-gray-600 text-[0.95rem] leading-relaxed mt-1">
+              Tabulky 12 znamení, 36 dekanátů, 4 Royal Stars, 10 dalších fixních hvězd, srovnání klasické vs. moderní vládce.
+            </p>
+          </Link>
 
-            <div className="bg-white border border-gray-200 rounded-2xl p-6">
-              <p className="eyebrow text-pink-500 mb-2">2 · Dekanát (36)</p>
-              <p className="text-gray-700 text-[0.95rem] leading-relaxed">
-                Každé znamení má 3 dekanáty po 10°. Sub-vládce dekanátu přidává druhou vrstvu motivace nad rámec hlavního vládce znamení.
-              </p>
-            </div>
-
-            <div className="bg-white border border-gray-200 rounded-2xl p-6">
-              <p className="eyebrow text-pink-500 mb-2">3 · Stupeň + Sabian symbol</p>
-              <p className="text-gray-700 text-[0.95rem] leading-relaxed">
-                Přesná poloha Slunce v rámci znamení (0°–29°). Každý z 360 stupňů má vlastní Sabian symbol (Marc Edmund Jones, 1925) popisující jeho energii.
-              </p>
-            </div>
-
-            <div className="bg-white border border-gray-200 rounded-2xl p-6">
-              <p className="eyebrow text-pink-500 mb-2">4 · Fixní hvězdy</p>
-              <p className="text-gray-700 text-[0.95rem] leading-relaxed">
-                4 Royal Stars (Aldebaran, Regulus, Antares, Fomalhaut) + cca 60 dalších hvězd. Pokud denní stupeň padne do ±1° od fixní hvězdy, ovlivňuje denní profil.
-              </p>
-            </div>
-
-            <div className="bg-white border border-gray-200 rounded-2xl p-6">
-              <p className="eyebrow text-pink-500 mb-2">5 · Dominantní planeta</p>
-              <p className="text-gray-700 text-[0.95rem] leading-relaxed">
-                Vládnoucí planeta znamení (Mars/Venuše/Merkur/…) plus sub-vládce dekanátu. Klasická vs. moderní astrologie přiřazuje různé planety.
-              </p>
-            </div>
-
-            <Link
-              href="/astrologie"
-              className="block bg-pink-50 border border-pink-200 hover:border-pink-500 rounded-2xl p-6 transition group"
-            >
-              <p className="eyebrow text-pink-500 mb-2">Pokračovat ve čtení · 12 min</p>
-              <h3 className="serif text-lg text-gray-900 font-medium group-hover:text-pink-500 transition">
-                Detail viz Astrologie →
-              </h3>
-              <p className="text-gray-600 text-[0.95rem] leading-relaxed mt-1">
-                Tabulky 12 znamení, 36 dekanátů, 4 Royal Stars, 10 dalších fixních hvězd, srovnání klasické vs. moderní vládce.
-              </p>
-            </Link>
-          </div>
-
-          <p className="text-sm text-gray-500 leading-relaxed italic mt-8">
-            Cosmatch tyto komponenty <strong className="text-gray-700 font-medium not-italic">nepočítá sám</strong> — autoři knihy <em>The Power of Birthdays, Stars &amp; Numbers</em> (Crawford &amp; Sullivan, 1998 / česky <em>Magická hra čísel a hvězd</em>, Ikar 2002) je všechny spočítali a syntetizovali do 366 hotových denních profilů. Cosmatch tu jejich práci jen vyhledává a porovnává — proto se v algoritmu nepřidává samostatná vrstva pro „elementy" nebo „aspekty". To by bylo trojí započítání toho samého.
-          </p>
         </section>
 
         <hr className="rule mb-16" />
@@ -258,7 +218,7 @@ export default function JakFungujeCosmatchPage() {
             Spusť kvíz.
           </h2>
           <p className="text-gray-600 leading-relaxed mb-8 text-[1.0625rem]">
-            Zadej datum narození a uvidíš výsledek za 30 sekund. Žádná registrace.
+            Zadej datum narození a uvidíš výsledek za 30 sekund. Bez registrace.
           </p>
           <Link href="/test" className="inline-flex items-center justify-center bg-gray-900 text-white px-8 py-4 rounded-full text-base font-medium hover:bg-gray-800 transition">
             Spustit kvíz
