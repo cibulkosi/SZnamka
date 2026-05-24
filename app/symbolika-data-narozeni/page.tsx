@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
-const TITLE = 'Astrologie v Cosmatch — Sluneční znamení, dekanát, fixní hvězdy a planety | Cosmatch'
-const DESC = 'Kompletní průvodce astrologickými komponentami, které Cosmatch používá v algoritmu kompatibility: 12 slunečních znamení, 36 dekanátů, stupně a Sabian symboly, fixní hvězdy (včetně Royal Stars), 12 dominantních planet. Co znamenají, jak se počítají, jak se liší.'
-const URL = 'https://cosmatch.cz/astrologie'
+const TITLE = 'Symbolika data narození — Sluneční znamení, dekanát, fixní hvězdy a planety | Cosmatch'
+const DESC = 'Co o tobě říká poloha Slunce, dekanát a fixní hvězdy v den narození — bez horoskopu, jen jako mapa. 12 znamení, 36 dekanátů, Royal Stars, dominantní planety. Symbolika klasické západní tradice, kterou Cosmatch zohledňuje ve výpočtu kompatibility.'
+const URL = 'https://cosmatch.cz/symbolika-data-narozeni'
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -91,13 +91,13 @@ export default function AstrologiePage() {
 
         {/* Hero */}
         <header className="mb-12">
-          <p className="eyebrow text-pink-500 mb-6">Astrologie · 15 min čtení</p>
+          <p className="eyebrow text-pink-500 mb-6">Symbolika data narození · 15 min čtení</p>
           <h1 className="serif-display text-5xl sm:text-6xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-6">
-            Astrologie,<br/><em className="italic text-pink-500">v Cosmatch</em>.
+            Symbolika<br/><em className="italic text-pink-500">data narození</em>.
           </h1>
           <hr className="rule w-12 border-gray-900 mb-8" />
           <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
-            Algoritmus Cosmatch vychází ze syntézy astrologie, numerologie a fixních hvězd. Tady je detail pěti astrologických komponent, které jsou pro nás důležité.
+            Co o tobě říká poloha Slunce, dekanát a fixní hvězdy v den narození — bez horoskopu, jen jako mapa. Detail pěti komponent klasické západní tradice, které Cosmatch zohledňuje ve výpočtu kompatibility.
           </p>
           <p className="text-sm text-gray-500 mt-6">
             Autorka <span className="text-gray-900 italic serif">Simona Cibulková</span>

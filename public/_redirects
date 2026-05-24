@@ -1,0 +1,5 @@
+# 301 redirects for renamed pages
+
+# /astrologie/ → /symbolika-data-narozeni/ (renamed 2026-05-24)
+/astrologie/        /symbolika-data-narozeni/  301
+/astrologie         /symbolika-data-narozeni/  301

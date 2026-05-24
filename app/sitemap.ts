@@ -21,7 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/numerologie/jak-pocitame/`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/numerologie/master-cisla-11-22-33/`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/jak-funguje-cosmatch/`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
-    { url: `${BASE}/astrologie/`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${BASE}/symbolika-data-narozeni/`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/kompatibilita-podle-data-narozeni/`, lastModified: lastMonth, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/numerologie-vztahy/`, lastModified: lastMonth, changeFrequency: 'monthly', priority: 0.85 },
     // ── Trust pages ──
