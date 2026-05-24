@@ -78,9 +78,9 @@ export default function JakFungujeCosmatchPage() {
             {[
               ['I', 'Kompatibilita podle data narození', '30 %', 'Hlavní vrstva se odvíjí od toho, jak se k sobě hodí konkrétní den a měsíc dvou lidí. Cosmatch matching engine používá vlastní databázi 46 949 specifických kombinací dat narození, vyvinutou syntézou klasické západní tradice kompatibility — inspirovali jsme se více než 17 referenčními pracemi (Decoz, McCants, Goldschneider, Kadlecová a další; viz Zdroje). Datumy jsou syntetizovány do několika kategorií, mezi něž patří spřízněné duše, láska, přátelství, prospěšné vztahy, magnetické přitažlivosti nebo náročné vztahy.'],
               ['II', 'Životní hodnoty a vize', '15 %', 'Rodinné plány (typu chcete děti?), typ vztahu (vážný/casual/přátelství), náboženství nebo přístup k financím. Sdílené hodnoty udržují dlouhodobě vztah víc než vášeň prvních týdnů.'],
-              ['III', 'Psychologický profil', '30 %', '9 sub-faktorů, žádná jiná česká seznamka takovou hloubku nemá: kompletní MBTI 4 dimenze (E/I + N/S + T/F + J/P → 16 typů), Bowlbyho attachment style (secure/anxious/avoidant), Chapmanových 5 jazyků lásky (primární + sekundární), Big Five neuroticismus (emoční stabilita), chronobiologie (skřivan/sova) a Thomas-Kilmann konfliktní styl. Vidíš sebe i partnera hloubkově, ne jen na povrchu.'],
+              ['III', 'Psychologický profil', '30 %', 'Devět dimenzí osobnosti — žádná jiná česká seznamka nemá takovou hloubku. Kompletní typologie podle Myers-Briggs (MBTI; šestnáct typů z kombinací introvert/extrovert, vizionář/realizátor, logika/srdce, plánování/spontánnost), styl citové vazby (bezpečný, úzkostný nebo vyhýbavý — vychází z teorie attachmentu Johna Bowlbyho), pětice jazyků lásky (slova ujištění, skutky, dárky, společný čas, doteky — primární a sekundární podle modelu Garyho Chapmana), emoční stabilita (klidný versus reaktivní typ z modelu Velké pětky osobnostních rysů), chronobiologie (ranní ptáče nebo noční sova) a styl řešení konfliktů. Vidíš sebe i partnera hloubkově, ne jen na povrchu.'],
               ['IV', 'Intimní soulad', '10 %', 'Nesmí chybět ani velikost libida. Soulad v sexu v dlouhodobém vztahu je důležitý pro vyhnutí se tiché frustraci.'],
-              ['V', 'Životní styl a návyky', '5 %', 'Kouření, marihuana, alkohol, strava nebo pohyb každodenní soužití také ovlivňují. Ve filtrech si můžeš zvolit např. kouření jako tvrdý deal-breaker, a poté se Ti kuřáci neukáží — to dělá hlavní práci za škálu.'],
+              ['V', 'Životní styl a návyky', '5 %', 'Kouření, marihuana, alkohol, strava nebo pohyb každodenní soužití také ovlivňují. Ve filtrech si můžeš zvolit např. kouření jako vylučovací podmínku (anglicky deal-breaker, tedy něco, co nedokážeš tolerovat) — pak Ti kuřáci nezobrazí vůbec. Tuhle volbu dělá hlavní práci za jemné bodování.'],
               ['VI', 'Společné zájmy', '5 %', 'Procentní překryv tagů (záliby je možné vybírat z 45 možností). Mohou sloužit jako společná řeč pro první rande, ale ne jako hlavní faktor dlouhodobé kompatibility.'],
               ['VII', 'Aktivita', '5 %', 'Být online v posledních 24 h přináší členům 100 bodů, v posledním týdnu 75 b., za poslední měsíc 50 b., déle než jeden měsíc 30 b. Sebelepší shoda totiž nepovede nikam, pokud druhý člověk aplikaci vůbec nepoužívá.'],
             ].map(([num, title, weight, body]) => (
@@ -102,10 +102,13 @@ export default function JakFungujeCosmatchPage() {
               <strong className="text-gray-900 font-medium">A co vzdálenost, věk a fyzické preference?</strong> Tyto věci NEJSOU součástí kompatibility skóre. Jsou to <strong className="text-gray-900 font-medium">filtry</strong>, které si nastavíš sám/sama. V profilu si určíš maximální vzdálenost (např. do 30 km), věkový rozsah, případně výšku a profily mimo Tvoje preference se Ti vůbec neukážou. Algoritmus tak nikoho nepenalizuje za výšku ani věk; ale můžeš si požadované vlastnosti vyfiltrovat, pokud chceš.
             </p>
             <p className="text-sm text-gray-700 leading-relaxed">
-              <strong className="text-gray-900 font-medium">Deal-breakers:</strong> Pokud jeden z vás chce děti a druhý ne, profil se Ti neukáže (vždy). Kouření můžeš také označit jako deal-breaker a pak Ti zmizí i náruživí kuřáci a lidé holdující alkoholu nebo marihuaně.
+              <strong className="text-gray-900 font-medium">Vylučovací podmínky:</strong> Pokud jeden z vás chce děti a druhý ne, profil se Ti neukáže (vždy). Kouření, alkohol nebo marihuanu si můžeš také označit jako vylučovací podmínku — pak Ti zmizí i náruživí kuřáci a lidé holdující alkoholu nebo marihuaně.
             </p>
             <p className="text-sm text-gray-700 leading-relaxed">
               <strong className="text-gray-900 font-medium">Minimální kompatibilita:</strong> V nastavení si můžeš zvolit, že chceš vidět jen profily nad 25 / 50 / 75 % shody. Defaultně je nastaveno na 0 %, kdy vidíš všechny.
+            </p>
+            <p className="text-sm text-gray-700 leading-relaxed">
+              <strong className="text-gray-900 font-medium">Sladění záměru vztahu (finální násobič):</strong> Po součtu sedmi vrstev se výsledek ještě upraví podle toho, jestli oba hledáte to samé. Když oba chcete <em className="italic">vážný vztah</em> (nebo oba jen <em className="italic">nezávazné</em>), skóre se zvýší o 20 %. Když jeden chce vážný vztah a druhý jen nezávazné, skóre klesne na polovinu. Tato korekce odráží, že kompatibilita znamená i shodná očekávání — sebelepší shoda v hodnotách a osobnosti nepomůže, pokud chcete každý něco jiného.
             </p>
           </div>
         </section>
@@ -114,7 +117,7 @@ export default function JakFungujeCosmatchPage() {
 
         {/* Deep dive: birth_date_score */}
         <section className="mb-16">
-          <p className="eyebrow text-gray-500 mb-4">Detail vrstvy I — 35 %</p>
+          <p className="eyebrow text-gray-500 mb-4">Detail vrstvy I — 30 %</p>
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-6">
             Kompatibilita podle data narození.
           </h2>
