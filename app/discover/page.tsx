@@ -577,10 +577,30 @@ export default function DiscoverPage() {
  .eq('from_user', target.id).eq('to_user', user.id).eq('liked', true)
  .single()
  if (theyLikedMe) {
- await supabase.from('matches').upsert({
+ // Vytvoř match — vrať match_id, ať můžeme zapsat snapshot skóre do learning loopu
+ const { data: matchRow } = await supabase.from('matches').upsert({
  user_a: user.id < target.id ? user.id : target.id,
  user_b: user.id < target.id ? target.id : user.id,
- })
+ }, { onConflict: 'user_a,user_b' })
+   .select('id')
+   .maybeSingle()
+
+ // Learning loop: ulož match_score snapshot do match_events
+ // (trigger v DB už vytvořil match_events řádek s book_score, my doplníme match_score)
+ if (matchRow?.id) {
+   const matchScore = scores[target.id]
+   if (typeof matchScore === 'number') {
+     try {
+       await supabase.rpc('update_match_score', {
+         p_match_id: matchRow.id,
+         p_match_score: Math.round(matchScore),
+       })
+     } catch (e) {
+       // Non-blocking — learning loop selhání nezastaví match flow
+       console.warn('update_match_score RPC failed:', e)
+     }
+   }
+ }
  }
  }
 

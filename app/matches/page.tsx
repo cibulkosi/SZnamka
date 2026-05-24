@@ -47,6 +47,7 @@ export default function MatchesPage() {
   const [user, setUser] = useState<Profile | null>(null)
   const [tab, setTab] = useState<Tab>('matches')
   const [matches, setMatches] = useState<Profile[]>([])
+  const [matchMeta, setMatchMeta] = useState<Record<string, { matchId: string; metAt: string | null }>>({})
   const [likedMe, setLikedMe] = useState<Profile[]>([])
   const [mutualCompat, setMutualCompat] = useState<Profile[]>([])
   const [compats, setCompats] = useState<Record<string, Compatibility>>({})
@@ -66,9 +67,34 @@ export default function MatchesPage() {
   const loadAll = async (u: Profile) => {
     setLoading(true)
 
-    const { data: matchData } = await supabase.from('matches').select('*')
+    const { data: matchData } = await supabase.from('matches').select('id, user_a, user_b')
       .or(`user_a.eq.${u.id},user_b.eq.${u.id}`)
     const matchPartnerIds = matchData?.map(m => m.user_a === u.id ? m.user_b : m.user_a) ?? []
+
+    // Learning loop: načti met_irl_at z match_events pro každý match
+    const matchMetaMap: Record<string, { matchId: string; metAt: string | null }> = {}
+    if (matchData && matchData.length > 0) {
+      // user_a_id < user_b_id ordered pair lookup
+      const orderedPairs = matchData.map(m => {
+        const [a, b] = m.user_a < m.user_b ? [m.user_a, m.user_b] : [m.user_b, m.user_a]
+        return { a, b, matchId: m.id, partner: m.user_a === u.id ? m.user_b : m.user_a }
+      })
+      // Načti všechny match_events kde user_a_id = u.id NEBO user_b_id = u.id
+      const { data: eventsData } = await supabase.from('match_events')
+        .select('user_a_id, user_b_id, met_irl_at')
+        .or(`user_a_id.eq.${u.id},user_b_id.eq.${u.id}`)
+      const eventsMap: Record<string, string | null> = {}
+      eventsData?.forEach(e => {
+        eventsMap[`${e.user_a_id}|${e.user_b_id}`] = e.met_irl_at
+      })
+      orderedPairs.forEach(p => {
+        matchMetaMap[p.partner] = {
+          matchId: p.matchId,
+          metAt: eventsMap[`${p.a}|${p.b}`] ?? null,
+        }
+      })
+    }
+    setMatchMeta(matchMetaMap)
 
     const { data: likesMe } = await supabase.from('likes').select('from_user')
       .eq('to_user', u.id).eq('liked', true)
@@ -118,6 +144,28 @@ export default function MatchesPage() {
     { key: 'liked', label: 'Líbím se', count: likedMe.length },
   ]
   const displayList = tab === 'matches' ? matches : tab === 'mutual' ? mutualCompat : likedMe
+
+  const handleMetIrl = async (matchId: string, partnerId: string) => {
+    // Optimistic update
+    setMatchMeta(prev => ({
+      ...prev,
+      [partnerId]: { matchId, metAt: new Date().toISOString() },
+    }))
+    try {
+      const { data, error } = await supabase.rpc('record_irl_meeting', { p_match_id: matchId })
+      if (error || !data?.ok) {
+        // Rollback
+        setMatchMeta(prev => ({
+          ...prev,
+          [partnerId]: { matchId, metAt: null },
+        }))
+        console.warn('record_irl_meeting failed:', error || data)
+      }
+    } catch (e) {
+      setMatchMeta(prev => ({ ...prev, [partnerId]: { matchId, metAt: null } }))
+      console.warn('record_irl_meeting RPC threw:', e)
+    }
+  }
 
   if (loading) return (
     <main className="min-h-screen bg-[#FAF6F0] flex items-center justify-center">
@@ -237,6 +285,30 @@ export default function MatchesPage() {
                       </div>
                     )}
                   </div>
+
+                  {/* Učící smyčka: 'Už jsme se setkali' tlačítko jen v 'matches' tab */}
+                  {tab === 'matches' && matchMeta[p.id] && (
+                    <div className="mt-4 pt-4 border-t border-gray-100">
+                      {matchMeta[p.id].metAt ? (
+                        <p className="text-xs text-emerald-600 font-medium flex items-center gap-1.5">
+                          <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                          Setkali jste se naživo
+                        </p>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault()
+                            e.stopPropagation()
+                            handleMetIrl(matchMeta[p.id].matchId, p.id)
+                          }}
+                          className="text-xs text-gray-500 hover:text-gray-900 font-medium underline underline-offset-4 transition"
+                        >
+                          Už jsme se viděli naživo
+                        </button>
+                      )}
+                    </div>
+                  )}
                 </Link>
               )
             })}
