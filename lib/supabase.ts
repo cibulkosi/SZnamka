@@ -41,10 +41,12 @@ export type Profile = {
   relationship_type?: string  // 'serious' | 'casual' | 'open' | 'unsure'
 
   // C) Osobnost & týmovost
-  personality_role?: string     // 'visionary' | 'executor' | 'both'
-  personality_schedule?: string // 'morning' | 'night' | 'flexible'
-  personality_social?: string   // 'introvert' | 'extrovert' | 'ambivert'
-  personality_conflict?: string // 'talk' | 'cool_down' | 'avoid'
+  personality_role?: string     // 'visionary' | 'executor' | 'both'    — MBTI N/S
+  personality_social?: string   // 'introvert' | 'extrovert' | 'ambivert' — MBTI E/I
+  personality_decision?: string // 'logic' | 'heart' | 'balanced'         — MBTI T/F
+  personality_lifestyle?: string// 'planned' | 'spontaneous' | 'flexible' — MBTI J/P
+  personality_schedule?: string // 'morning' | 'night' | 'flexible'       — chronobiology
+  personality_conflict?: string // 'talk' | 'cool_down' | 'avoid'         — Thomas-Kilmann
 
   // D) Intimní kompatibilita
   libido?: number  // 1–5 (1=zřídka, 5=každý den)

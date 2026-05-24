@@ -4,7 +4,7 @@
  * CCS = (
  *    35 % × birth_date_score (book lookup ONLY — life path je teď jen v Magic Moment, ne v matchingu)
  *  + 20 % × life_vision_score (family/relationship_type/religion/finances)
- *  + 15 % × personality_score (role/social/schedule/conflict)
+ *  + 15 % × personality_score (MBTI: role N/S + social E/I + decision T/F + lifestyle J/P + chronobiology + conflict)
  *  + 10 % × intimate_score (libido 1–5)
  *  + 10 % × lifestyle_score (smoking/alcohol/diet/exercise)
  *  +  5 % × interests_score (záliby procentně, sharedCount/max × 100)
@@ -33,10 +33,12 @@ export type FamilyPlans    = 'want_kids' | 'have_kids_want_more' | 'no_kids' | '
 export type Religion       = 'none' | 'religious' | 'spiritual' | 'other'
 export type Finances       = 'saver' | 'spender' | 'balanced'
 export type RelType        = 'serious' | 'casual' | 'open' | 'unsure'
-export type PersonRole     = 'visionary' | 'executor' | 'both'
-export type PersonSchedule = 'morning' | 'night' | 'flexible'
-export type PersonSocial   = 'introvert' | 'extrovert' | 'ambivert'
-export type PersonConflict = 'talk' | 'cool_down' | 'avoid'
+export type PersonRole      = 'visionary' | 'executor' | 'both'         // MBTI N/S
+export type PersonSocial    = 'introvert' | 'extrovert' | 'ambivert'    // MBTI E/I
+export type PersonDecision  = 'logic' | 'heart' | 'balanced'            // MBTI T/F
+export type PersonLifestyle = 'planned' | 'spontaneous' | 'flexible'    // MBTI J/P
+export type PersonSchedule  = 'morning' | 'night' | 'flexible'
+export type PersonConflict  = 'talk' | 'cool_down' | 'avoid'
 export type Smoking        = 'never' | 'sometimes' | 'often'
 export type Alcohol        = 'never' | 'socially' | 'regularly'
 export type Marijuana      = 'never' | 'sometimes' | 'often'
@@ -331,32 +333,63 @@ function childrenMatch(a: FamilyPlans, b: FamilyPlans): number {
 // C) Osobnost & týmovost – 15 %
 // ──────────────────────────────────────────────
 function scorePersonality(a: Profile, b: Profile): number {
+  // 6 sub-faktorů, total max = 100 (re-balanced po přidání MBTI T/F + J/P)
+  //   role (N/S)        — 25 max — komplementarita lepší (visionary + executor = great team)
+  //   social (E/I)      — 22 max — stejné lepší
+  //   decision (T/F)    — 20 max — stejné lepší, kombinace fungují s pochopením
+  //   lifestyle (J/P)   — 15 max — komplementarita OK, ale extrémy táhnou se opačně
+  //   schedule (lark/owl) — 10 max — stejné lepší
+  //   conflict (TKI)    — 8 max — stejné lepší, avoid+avoid je problém
   let points = 0, max = 0
 
+  // MBTI N/S — komplementarita lepší (vizionář potřebuje executora)
   if (a.personality_role && b.personality_role) {
-    max += 35
+    max += 25
     if (a.personality_role !== b.personality_role &&
-        a.personality_role !== 'both' && b.personality_role !== 'both') points += 35
-    else if (a.personality_role === 'both' || b.personality_role === 'both') points += 25
-    else points += 15
+        a.personality_role !== 'both' && b.personality_role !== 'both') points += 25
+    else if (a.personality_role === 'both' || b.personality_role === 'both') points += 18
+    else points += 11
   }
+
+  // MBTI E/I — stejné lepší (introvert s introvertem, extrovert s extrovertem)
   if (a.personality_social && b.personality_social) {
-    max += 30
-    if (a.personality_social === b.personality_social) points += 30
-    else if (a.personality_social === 'ambivert' || b.personality_social === 'ambivert') points += 20
-    else points += 10
+    max += 22
+    if (a.personality_social === b.personality_social) points += 22
+    else if (a.personality_social === 'ambivert' || b.personality_social === 'ambivert') points += 15
+    else points += 7
   }
-  if (a.personality_schedule && b.personality_schedule) {
+
+  // MBTI T/F — stejné lepší (logik s logikem, srdcař se srdcařem), kombinace s 'balanced' OK
+  if (a.personality_decision && b.personality_decision) {
     max += 20
-    if (a.personality_schedule === b.personality_schedule) points += 20
-    else if (a.personality_schedule === 'flexible' || b.personality_schedule === 'flexible') points += 15
+    if (a.personality_decision === b.personality_decision) points += 20
+    else if (a.personality_decision === 'balanced' || b.personality_decision === 'balanced') points += 14
+    else points += 6  // logic + heart = klasický 'hlava vs srdce' rozpor
+  }
+
+  // MBTI J/P — komplementarita OK ale extrémy táhnou opačně
+  if (a.personality_lifestyle && b.personality_lifestyle) {
+    max += 15
+    if (a.personality_lifestyle === b.personality_lifestyle) points += 15
+    else if (a.personality_lifestyle === 'flexible' || b.personality_lifestyle === 'flexible') points += 11
+    else points += 5  // planned + spontaneous = pull opačnými směry
+  }
+
+  // Chronobiology — stejné lepší (skřivani + sovy mají málo společných hodin)
+  if (a.personality_schedule && b.personality_schedule) {
+    max += 10
+    if (a.personality_schedule === b.personality_schedule) points += 10
+    else if (a.personality_schedule === 'flexible' || b.personality_schedule === 'flexible') points += 7
     else points += 0
   }
+
+  // Conflict style (Thomas-Kilmann inspired)
   if (a.personality_conflict && b.personality_conflict) {
-    max += 15
-    if (a.personality_conflict === b.personality_conflict) points += 15
-    else if (a.personality_conflict === 'avoid') points += 5
-    else points += 8
+    max += 8
+    if (a.personality_conflict === b.personality_conflict && a.personality_conflict !== 'avoid') points += 8
+    else if (a.personality_conflict === b.personality_conflict && a.personality_conflict === 'avoid') points += 3  // avoid+avoid = problém
+    else if (a.personality_conflict === 'avoid' || b.personality_conflict === 'avoid') points += 3
+    else points += 5
   }
 
   if (max === 0) return 50

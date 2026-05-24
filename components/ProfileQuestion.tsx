@@ -72,6 +72,28 @@ export const PROFILE_QUESTIONS: Question[] = [
     ],
   },
   {
+    id: 'personality_decision',
+    emoji: '🧠',
+    text: 'Jak se hlavně rozhoduješ?',
+    subtext: 'Logikou nebo srdcem? Obojí má sílu',
+    options: [
+      { value: 'logic',     label: 'Logikou, hlavou',         emoji: '🧮' },
+      { value: 'heart',     label: 'Srdcem, intuicí',         emoji: '💗' },
+      { value: 'balanced',  label: 'Vyvážením obou',          emoji: '⚖️' },
+    ],
+  },
+  {
+    id: 'personality_lifestyle',
+    emoji: '📅',
+    text: 'Jaký máš životní styl?',
+    subtext: 'Plánovaný, spontánní nebo flexibilní?',
+    options: [
+      { value: 'planned',     label: 'Plánovaně, se strukturou', emoji: '📋' },
+      { value: 'spontaneous', label: 'Spontánně, otevřeno',      emoji: '🎲' },
+      { value: 'flexible',    label: 'Podle situace',            emoji: '🌀' },
+    ],
+  },
+  {
     id: 'smoking',
     emoji: '🚭',
     text: 'Kouříš?',
