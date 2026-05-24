@@ -35,8 +35,8 @@ export default function LandingPage() {
             <hr className="rule w-16 border-gray-900 mb-8" />
             <div className="mb-10 max-w-xl space-y-5">
               <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
-                Cosmatch spočítá kompatibilitu mezi Tvým datem narození a datem narození
-                potenciálního partnera podle 12 archetypů a denního profilu kompatibility.
+                První česká seznamka, která Tě páruje podle data narození.
+                <strong className="text-gray-900 font-medium">12 archetypů, 7 vrstev kompatibility, žádný horoskop.</strong>
               </p>
               <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
                 Místo nekonečného swipování Ti dává důvod, proč se s někým opravdu potkat.

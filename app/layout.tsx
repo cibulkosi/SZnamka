@@ -18,11 +18,11 @@ const fraunces = Fraunces({
 
 export const metadata: Metadata = {
   title: 'Cosmatch — Kompatibilita podle data narození',
-  description: 'Česká seznamka, která Tě páruje podle data narození. Najdi svou skutečnou shodu — věda, ne náhoda.',
+  description: 'Cosmatch — česká seznamka, která Tě páruje podle data narození. 12 archetypů, 7-vrstvý algoritmus kompatibility, žádný horoskop.',
   keywords: 'numerologie, kompatibilita, datum narození, numerologický profil, datování, seznamka',
   openGraph: {
     title: 'Cosmatch — Kompatibilita podle data narození',
-    description: 'Najdi svou skutečnou shodu díky numerologii a datům narození.',
+    description: 'Cosmatch — najdi svou skutečnou shodu podle data narození. 12 archetypů, 7-vrstvý algoritmus.',
     type: 'website',
     siteName: 'Cosmatch',
     locale: 'cs_CZ',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Cosmatch — Kompatibilita podle data narození',
-    description: 'Najdi svou skutečnou shodu díky numerologii a datům narození.',
+    description: 'Cosmatch — najdi svou skutečnou shodu podle data narození. 12 archetypů, 7-vrstvý algoritmus.',
     images: ['https://cosmatch.cz/og-image.png'],
   },
   manifest: '/manifest.json',
