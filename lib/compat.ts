@@ -1,14 +1,14 @@
 /**
- * Cosmatch – Compatibility Algorithm v3 (květen 2026)
+ * Cosmatch – Compatibility Algorithm v4 (květen 2026)
  * 
  * CCS = (
- *    35 % × birth_date_score (book lookup ONLY — life path je teď jen v Magic Moment, ne v matchingu)
- *  + 20 % × life_vision_score (family/relationship_type/religion/finances)
- *  + 15 % × personality_score (MBTI: role N/S + social E/I + decision T/F + lifestyle J/P + chronobiology + conflict)
- *  + 10 % × intimate_score (libido 1–5)
- *  + 10 % × lifestyle_score (smoking/alcohol/diet/exercise)
- *  +  5 % × interests_score (záliby procentně, sharedCount/max × 100)
- *  +  5 % × activity_score (0–100 podle last_seen, ne absolutní bonus)
+ *    30 % × birth_date_score    Vrstva I    (book lookup; LP jen v Magic Moment)
+ *  + 15 % × life_vision_score   Vrstva II   (family/relationship_type/religion/finances)
+ *  + 30 % × psychological_score Vrstva III  (MBTI 4 dim + Attachment + Love Langs + Emotional + chronobiology + conflict)
+ *  + 10 % × intimate_score      Vrstva IV   (libido 1–5)
+ *  +  5 % × lifestyle_score     Vrstva V    (smoking/alcohol/marijuana/diet/exercise — dealbreakers dělají hlavní práci)
+ *  +  5 % × interests_score     Vrstva VI   (záliby procentně)
+ *  +  5 % × activity_score      Vrstva VII  (0–100 podle last_seen)
  * ) × intent_multiplier (0.5 / 1.0 / 1.2)
  * 
  * Total: 100 % weighted + multiplier ±. Žádné absolutní bonusy.
@@ -37,8 +37,11 @@ export type PersonRole      = 'visionary' | 'executor' | 'both'         // MBTI 
 export type PersonSocial    = 'introvert' | 'extrovert' | 'ambivert'    // MBTI E/I
 export type PersonDecision  = 'logic' | 'heart' | 'balanced'            // MBTI T/F
 export type PersonLifestyle = 'planned' | 'spontaneous' | 'flexible'    // MBTI J/P
-export type PersonSchedule  = 'morning' | 'night' | 'flexible'
-export type PersonConflict  = 'talk' | 'cool_down' | 'avoid'
+export type PersonSchedule  = 'morning' | 'night' | 'flexible'          // chronobiology
+export type PersonConflict  = 'talk' | 'cool_down' | 'avoid'            // Thomas-Kilmann
+export type AttachmentStyle = 'secure' | 'anxious' | 'avoidant' | 'disorganized'  // Bowlby/Ainsworth
+export type LoveLanguage    = 'words' | 'acts' | 'gifts' | 'time' | 'touch'       // Chapman 5LL
+export type EmotionalStab   = 'stable' | 'reactive' | 'balanced'        // Big Five Neuroticism
 export type Smoking        = 'never' | 'sometimes' | 'often'
 export type Alcohol        = 'never' | 'socially' | 'regularly'
 export type Marijuana      = 'never' | 'sometimes' | 'often'
@@ -244,24 +247,21 @@ export function computeCompatibility(
   other: Profile,
   bookScore: number | null
 ): number {
-  // Vrstva A – Birth date score (35 %)
-  // ONLY book lookup as main signal — life path je jen pro Magic Moment, ne pro matching.
-  // 3-tier life-path fallback boost je aplikován v /discover (kde máme přístup k archetypes lib)
-  // takže sem už chodí buď reálné book score nebo tier-adjusted score.
+  // Vrstva I – Birth date score (30 %) — book lookup
   const bookRaw = bookScore ?? 50
-  const aScore  = bookRaw * 0.35
+  const aScore  = bookRaw * 0.30
 
-  // Vrstva B – Životní vize (20 %)
-  const bScore = scoreLifeVision(me, other) * 0.20
+  // Vrstva II – Životní vize (15 %)
+  const bScore = scoreLifeVision(me, other) * 0.15
 
-  // Vrstva C – Osobnost (15 %)
-  const cScore = scorePersonality(me, other) * 0.15
+  // Vrstva III – Psychologický profil (30 %) — MBTI 4 dim + Attachment + Love Lang + Emotional + chronobiology + conflict
+  const cScore = scorePsychological(me, other) * 0.30
 
-  // Vrstva D – Intimní (10 %) — libido
+  // Vrstva IV – Intimní (10 %) — libido
   const dScore = scoreIntimate(me, other) * 0.10
 
-  // Vrstva E – Lifestyle (10 %)
-  const eScore = scoreLifestyle(me, other) * 0.10
+  // Vrstva V – Lifestyle (5 %)
+  const eScore = scoreLifestyle(me, other) * 0.05
 
   // Vrstva F – Společné zájmy (5 %)
   const ah = me.hobbies ?? []
@@ -332,64 +332,117 @@ function childrenMatch(a: FamilyPlans, b: FamilyPlans): number {
 // ──────────────────────────────────────────────
 // C) Osobnost & týmovost – 15 %
 // ──────────────────────────────────────────────
-function scorePersonality(a: Profile, b: Profile): number {
-  // 6 sub-faktorů, total max = 100 (re-balanced po přidání MBTI T/F + J/P)
-  //   role (N/S)        — 25 max — komplementarita lepší (visionary + executor = great team)
-  //   social (E/I)      — 22 max — stejné lepší
-  //   decision (T/F)    — 20 max — stejné lepší, kombinace fungují s pochopením
-  //   lifestyle (J/P)   — 15 max — komplementarita OK, ale extrémy táhnou se opačně
-  //   schedule (lark/owl) — 10 max — stejné lepší
-  //   conflict (TKI)    — 8 max — stejné lepší, avoid+avoid je problém
+function scorePsychological(a: Profile, b: Profile): number {
+  // 9 sub-faktorů (Vrstva III nyní 30 % CCS):
+  //   MBTI role (N/S)         — 20 max — komplementarita lepší
+  //   MBTI social (E/I)       — 15 max — stejné lepší
+  //   MBTI decision (T/F)     — 15 max — stejné lepší
+  //   MBTI lifestyle (J/P)    — 10 max — stejné lepší
+  //   Attachment style        — 18 max — Bowlby; secure+secure ideal, anxious+avoidant destruktivní
+  //   Love Languages (1+2)    — 12 max — stejné jazyky = méně frustrace
+  //   Emotional stability     —  5 max — stable+stable klidnější, oba reactive = bouřlivé
+  //   Chronobiology           —  3 max
+  //   Conflict style (TKI)    —  2 max
+  //   ─────────────────────────────────
+  //   Total max               — 100
   let points = 0, max = 0
 
-  // MBTI N/S — komplementarita lepší (vizionář potřebuje executora)
+  let points = 0, max = 0
+
+  // MBTI N/S — komplementarita lepší
   if (a.personality_role && b.personality_role) {
-    max += 25
-    if (a.personality_role !== b.personality_role &&
-        a.personality_role !== 'both' && b.personality_role !== 'both') points += 25
-    else if (a.personality_role === 'both' || b.personality_role === 'both') points += 18
-    else points += 11
-  }
-
-  // MBTI E/I — stejné lepší (introvert s introvertem, extrovert s extrovertem)
-  if (a.personality_social && b.personality_social) {
-    max += 22
-    if (a.personality_social === b.personality_social) points += 22
-    else if (a.personality_social === 'ambivert' || b.personality_social === 'ambivert') points += 15
-    else points += 7
-  }
-
-  // MBTI T/F — stejné lepší (logik s logikem, srdcař se srdcařem), kombinace s 'balanced' OK
-  if (a.personality_decision && b.personality_decision) {
     max += 20
-    if (a.personality_decision === b.personality_decision) points += 20
-    else if (a.personality_decision === 'balanced' || b.personality_decision === 'balanced') points += 14
-    else points += 6  // logic + heart = klasický 'hlava vs srdce' rozpor
+    if (a.personality_role !== b.personality_role &&
+        a.personality_role !== 'both' && b.personality_role !== 'both') points += 20
+    else if (a.personality_role === 'both' || b.personality_role === 'both') points += 14
+    else points += 9
   }
 
-  // MBTI J/P — komplementarita OK ale extrémy táhnou opačně
-  if (a.personality_lifestyle && b.personality_lifestyle) {
+  // MBTI E/I — stejné lepší
+  if (a.personality_social && b.personality_social) {
     max += 15
-    if (a.personality_lifestyle === b.personality_lifestyle) points += 15
-    else if (a.personality_lifestyle === 'flexible' || b.personality_lifestyle === 'flexible') points += 11
-    else points += 5  // planned + spontaneous = pull opačnými směry
+    if (a.personality_social === b.personality_social) points += 15
+    else if (a.personality_social === 'ambivert' || b.personality_social === 'ambivert') points += 10
+    else points += 5
   }
 
-  // Chronobiology — stejné lepší (skřivani + sovy mají málo společných hodin)
-  if (a.personality_schedule && b.personality_schedule) {
+  // MBTI T/F — stejné lepší
+  if (a.personality_decision && b.personality_decision) {
+    max += 15
+    if (a.personality_decision === b.personality_decision) points += 15
+    else if (a.personality_decision === 'balanced' || b.personality_decision === 'balanced') points += 10
+    else points += 4
+  }
+
+  // MBTI J/P — stejné lepší
+  if (a.personality_lifestyle && b.personality_lifestyle) {
     max += 10
-    if (a.personality_schedule === b.personality_schedule) points += 10
-    else if (a.personality_schedule === 'flexible' || b.personality_schedule === 'flexible') points += 7
+    if (a.personality_lifestyle === b.personality_lifestyle) points += 10
+    else if (a.personality_lifestyle === 'flexible' || b.personality_lifestyle === 'flexible') points += 7
+    else points += 3
+  }
+
+  // Attachment Style (Bowlby) — secure+secure ideal, anxious+avoidant klasicky destruktivní
+  if (a.attachment_style && b.attachment_style) {
+    max += 18
+    const pair = [a.attachment_style, b.attachment_style].sort().join('+')
+    const attachScores: Record<string, number> = {
+      'secure+secure':       18,  // ideal
+      'anxious+secure':      15,  // secure pomáhá léčit
+      'avoidant+secure':     15,  // secure pomáhá léčit
+      'disorganized+secure': 12,  // secure stabilizuje
+      'anxious+anxious':      9,  // oba potřebují ujištění
+      'avoidant+avoidant':    7,  // oba potřebují prostor, málo blízkosti
+      'anxious+avoidant':     4,  // klasický 'chase-flee' cyklus
+      'anxious+disorganized': 5,
+      'avoidant+disorganized':5,
+      'disorganized+disorganized': 5,
+    }
+    points += attachScores[pair] ?? 8
+  }
+
+  // Love Languages — kombinace primary + secondary
+  if (a.love_language_primary && b.love_language_primary) {
+    max += 12
+    let llPoints = 0
+    // Primary match
+    if (a.love_language_primary === b.love_language_primary) llPoints += 7
+    else if (a.love_language_secondary === b.love_language_primary ||
+             b.love_language_secondary === a.love_language_primary) llPoints += 5
+    else llPoints += 2
+    // Secondary match
+    if (a.love_language_secondary && b.love_language_secondary) {
+      if (a.love_language_secondary === b.love_language_secondary) llPoints += 5
+      else llPoints += 2
+    }
+    points += Math.min(12, llPoints)
+  }
+
+  // Emotional Stability (Big Five Neuroticism inverse)
+  if (a.emotional_stability && b.emotional_stability) {
+    max += 5
+    if (a.emotional_stability === b.emotional_stability && a.emotional_stability === 'stable') points += 5
+    else if (a.emotional_stability === b.emotional_stability && a.emotional_stability === 'balanced') points += 4
+    else if (a.emotional_stability === b.emotional_stability && a.emotional_stability === 'reactive') points += 3 // bouřlivé ale upřímné
+    else if (a.emotional_stability === 'balanced' || b.emotional_stability === 'balanced') points += 4
+    else points += 2 // stable + reactive = pull
+  }
+
+  // Chronobiology
+  if (a.personality_schedule && b.personality_schedule) {
+    max += 3
+    if (a.personality_schedule === b.personality_schedule) points += 3
+    else if (a.personality_schedule === 'flexible' || b.personality_schedule === 'flexible') points += 2
     else points += 0
   }
 
-  // Conflict style (Thomas-Kilmann inspired)
+  // Conflict style (TKI)
   if (a.personality_conflict && b.personality_conflict) {
-    max += 8
-    if (a.personality_conflict === b.personality_conflict && a.personality_conflict !== 'avoid') points += 8
-    else if (a.personality_conflict === b.personality_conflict && a.personality_conflict === 'avoid') points += 3  // avoid+avoid = problém
-    else if (a.personality_conflict === 'avoid' || b.personality_conflict === 'avoid') points += 3
-    else points += 5
+    max += 2
+    if (a.personality_conflict === b.personality_conflict && a.personality_conflict !== 'avoid') points += 2
+    else if (a.personality_conflict === b.personality_conflict && a.personality_conflict === 'avoid') points += 1
+    else if (a.personality_conflict === 'avoid' || b.personality_conflict === 'avoid') points += 1
+    else points += 1
   }
 
   if (max === 0) return 50
@@ -418,6 +471,14 @@ function scoreLifestyle(a: Profile, b: Profile): number {
       often: { never: 5, sometimes: 60, often: 100 },
     }
     factors.push(sm[a.smoking]?.[b.smoking] ?? 50)
+  }
+  if (a.marijuana && b.marijuana) {
+    const mj: Record<string, Record<string, number>> = {
+      never: { never: 100, sometimes: 50, often: 5 },
+      sometimes: { never: 50, sometimes: 100, often: 60 },
+      often: { never: 5, sometimes: 60, often: 100 },
+    }
+    factors.push(mj[a.marijuana]?.[b.marijuana] ?? 50)
   }
   if (a.alcohol && b.alcohol) {
     if (a.alcohol === b.alcohol) factors.push(100)
