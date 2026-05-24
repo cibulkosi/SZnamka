@@ -39,15 +39,15 @@ export const metadata: Metadata = {
 }
 
 const NUMBERS = [
-  ['1', 'Průkopník', '3, 5', '4, 6, 9', '8'],
+  ['1', 'Průkopník', '3, 5, 6, 9', '2, 4, 7', '8'],
   ['2', 'Diplomat', '4, 6, 8, 9', '1, 3', '5, 7'],
-  ['3', 'Tvůrce', '1, 5, 7, 9', '6, 8', '4'],
+  ['3', 'Tvůrce', '1, 5, 7, 9', '2, 6, 8', '4'],
   ['4', 'Stavitel', '2, 6, 8', '1, 7', '3, 5'],
   ['5', 'Dobrodruh', '1, 3, 7', '6, 9', '2, 4'],
-  ['6', 'Pečovatel', '1, 2, 9', '3, 4, 8', '7'],
-  ['7', 'Hledač', '3, 5, 11', '1, 4, 9', '6'],
+  ['6', 'Pečovatel', '1, 2, 4, 8, 9', '3, 5', '7'],
+  ['7', 'Hledač', '3, 5, 11', '1, 4, 8, 9', '2, 6'],
   ['8', 'Vůdce', '2, 4, 6', '3, 7', '1, 9'],
-  ['9', 'Idealista', '1, 2, 3, 6', '5, 9', '8'],
+  ['9', 'Idealista', '1, 2, 3, 6', '5, 7, 9', '8'],
   ['11/2', 'Vizionář', '2, 6, 9', '4, 8', '1, 5'],
   ['22/4', 'Architekt', '4, 6, 8', '1, 2', '3, 5'],
   ['33/6', 'Léčitel', '6, 9, 11', '2, 22', '1, 8'],
@@ -238,9 +238,14 @@ export default function KompatibilitaPage() {
               </div>
             ))}
           </div>
-          <p className="text-xs text-gray-400 mt-6 leading-relaxed">
-            Tabulka odpovídá moderní pythagorejské tradici podle <strong className="text-gray-600 font-medium">Hanse Decoze</strong> (worldnumerology.com) — nejcitovanějšího autora v moderní západní numerologii. Cosmatch matching algoritmus ale jde dál: počítá vícevrstvé skóre pro každou konkrétní kombinaci dat narození, které zahrnuje nejen numerologii, ale také astrologii a další osobnostní vlastnosti.
-          </p>
+          <div className="mt-6 space-y-3">
+            <p className="text-xs text-gray-400 leading-relaxed">
+              <strong className="text-gray-600 font-medium">Jak jsme tabulku sestavili.</strong> Cosmatch tabulka kombinuje tři moderní západní zdroje: narativní párování <strong className="text-gray-600 font-medium">Hanse Decoze</strong> (worldnumerology.com, nejcitovanější moderní autor), trojicový model <strong className="text-gray-600 font-medium">Glynis McCants</strong> (1-5-7, 2-4-8, 3-6-9 z <em className="italic">Love by the Numbers</em>, Sourcebooks 2010) a mainstream konsensus <strong className="text-gray-600 font-medium">Numerology.com</strong>. Žádný z těchto zdrojů sám o sobě nepublikuje rigidní 9×9 matici — naše tabulka je syntéza.
+            </p>
+            <p className="text-xs text-gray-400 leading-relaxed">
+              <strong className="text-gray-600 font-medium">Tři tiery</strong> (Silná shoda / Kompatibilní / Náročná) jsme zavedli pro lepší UX nuance než dvojkový model „kompatibilní vs nekompatibilní". Kompatibilita je <strong className="text-gray-600 font-medium">symetrická</strong> — pár X+Y má vždy stejnou kategorii jako Y+X. Cosmatch matching algoritmus jde dál: počítá vícevrstvé skóre pro každou konkrétní kombinaci dat narození, které zahrnuje nejen numerologii, ale také astrologii a další osobnostní vlastnosti.
+            </p>
+          </div>
         </section>
 
         {/* Section 2b: Co o nás Češích říkají data */}
