@@ -463,10 +463,10 @@ export default function AstrologiePage() {
         <section className="bg-white rounded-3xl border border-gray-100 p-10 mb-16">
           <p className="eyebrow text-pink-500 mb-4">Vyzkoušej</p>
           <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-4">
-            Najdi svou astrologickou shodu.
+            Zjisti svůj numerologický archetyp.
           </h2>
           <p className="text-gray-600 leading-relaxed mb-8 text-[1.0625rem]">
-            Zadej datum narození a Cosmatch Ti spočítá kompatibilitu z 5 astrologických komponent + numerologického životního čísla.
+            Zadej datum narození a Cosmatch Ti za 30 sekund spočítá životní číslo a ukáže Tvůj archetyp. Plná astrologická kompatibilita podle pěti komponent (sluneční znamení, dekanát, fixní hvězdy, dominantní planeta, Sabian symboly) přijde až po registraci v aplikaci.
           </p>
           <Link href="/test" className="inline-flex items-center justify-center bg-gray-900 text-white px-8 py-4 rounded-full text-base font-medium hover:bg-gray-800 transition">
             Spustit kvíz
