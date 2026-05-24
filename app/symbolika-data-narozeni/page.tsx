@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
-const TITLE = 'Symbolika data narození — Sluneční znamení, dekanát, fixní hvězdy a planety | Cosmatch'
-const DESC = 'Co o tobě říká poloha Slunce, dekanát a fixní hvězdy v den narození — bez horoskopu, jen jako mapa. 12 znamení, 36 dekanátů, Royal Stars, dominantní planety. Symbolika klasické západní tradice, kterou Cosmatch zohledňuje ve výpočtu kompatibility.'
+const TITLE = 'Astrologie v Cosmatch — Sluneční znamení, dekanát, fixní hvězdy, planety | Cosmatch'
+const DESC = 'Algoritmus Cosmatch vychází ze syntézy astrologie, numerologie a fixních hvězd. 5 astrologických komponent — 12 sluníčních znamení, 36 dekanátů, stupeň Slunce, fixní hvězdy a Royal Stars, dominantní planety s esenciálními dignitami. Tropický zodiak, Sabian symboly, anaretický stupeň.'
 const URL = 'https://cosmatch.cz/symbolika-data-narozeni'
 
 export const metadata: Metadata = {
@@ -91,13 +91,13 @@ export default function AstrologiePage() {
 
         {/* Hero */}
         <header className="mb-12">
-          <p className="eyebrow text-pink-500 mb-6">Symbolika data narození · 15 min čtení</p>
+          <p className="eyebrow text-pink-500 mb-6">Astrologie · 15 min čtení</p>
           <h1 className="serif-display text-5xl sm:text-6xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-6">
-            Symbolika<br/><em className="italic text-pink-500">data narození</em>.
+            Astrologie,<br/><em className="italic text-pink-500">v Cosmatch</em>.
           </h1>
           <hr className="rule w-12 border-gray-900 mb-8" />
           <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
-            Co o tobě říká poloha Slunce, dekanát a fixní hvězdy v den narození — bez horoskopu, jen jako mapa. Detail pěti komponent klasické západní tradice, které Cosmatch zohledňuje ve výpočtu kompatibility.
+            Algoritmus Cosmatch vychází také ze syntézy astrologie, numerologie a fixních hvězd. Níže se dozvíte o astrologických komponentech, které jsou pro nás důležité.
           </p>
           <p className="text-sm text-gray-500 mt-6">
             Autorka <span className="text-gray-900 italic serif">Simona Cibulková</span>
@@ -110,7 +110,7 @@ export default function AstrologiePage() {
         <section className="bg-emerald-50 border border-emerald-200 rounded-3xl p-8 mb-16">
           <p className="eyebrow text-emerald-600 mb-3">Ve zkratce</p>
           <p className="text-gray-800 leading-relaxed text-[1.0625rem]">
-            Každý ze 366 dnů narození v sobě kombinuje 5 astrologických komponent: <strong className="text-gray-900 font-medium">sluneční znamení</strong> (12), <strong className="text-gray-900 font-medium">dekanát</strong> (36), <strong className="text-gray-900 font-medium">stupeň Slunce</strong> (0°–29°), <strong className="text-gray-900 font-medium">fixní hvězdy</strong> v aspektu a <strong className="text-gray-900 font-medium">dominantní planetu</strong> (vládce znamení + sub-vládce dekanátu). A Cosmatch tyto komponenty interpretuje prostřednictvím svého algoritmu.
+            Každý ze 366 dnů narození v sobě kombinuje 5 astrologických komponent: <strong className="text-gray-900 font-medium">sluneční znamení</strong> (12), <strong className="text-gray-900 font-medium">dekanát</strong> (36), <strong className="text-gray-900 font-medium">stupeň Slunce</strong> (0°–29°), <strong className="text-gray-900 font-medium">fixní hvězdy</strong> v aspektu a <strong className="text-gray-900 font-medium">dominantní planetu</strong> (vládce znamení + subvládce dekanátu). Cosmatch tyto komponenty interpretuje prostřednictvím svého algoritmu.
           </p>
         </section>
 
@@ -124,7 +124,7 @@ export default function AstrologiePage() {
                 Sluneční znamení je určeno polohou Slunce v zodiaku v okamžiku narození. Zodiakální pás (360°) je rozdělený na 12 stejných úseků po 30°, každý úsek je jedno znamení. Slunce projde celým zodiakem za jeden rok, tedy v každém znamení stráví zhruba 30 dní.
               </p>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-                Sluneční znamení ovlivňuje <strong className="text-gray-900 font-medium">základní temperament a identitu</strong>. Jak instinktivně reaguješ na svět, co Tě motivuje, jaké jsou Tvé silné a slabé stránky.
+                Sluneční znamení ovlivňuje <strong className="text-gray-900 font-medium">základní temperament a identitu</strong>. To, jak instinktivně reaguješ na svět, co Tě motivuje nebo jaké jsou Tvé silné a slabé stránky.
               </p>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
                 Znamení se dělí podle <strong className="text-gray-900 font-medium">živlu</strong> (oheň/země/vzduch/voda, které značí kvalitu energie) a <strong className="text-gray-900 font-medium">modality</strong> (kardinální, fixní, proměnlivé, které ovlivňují způsob projevu).
@@ -172,7 +172,7 @@ export default function AstrologiePage() {
               <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-4">
                 <p className="eyebrow text-gray-500 mb-2">Siderální (védský / jyotish)</p>
                 <p className="text-gray-700 text-[0.95rem] leading-relaxed">
-                  0° Berana je ukotveno ke <strong className="text-gray-900 font-medium">skutečnému počátku souhvězdí Berana</strong>. Účtuje s precesí ekvinokcií ~1° každých 72 let. Používá ho indická astrologie. Rozdíl k roku 2026 je podle Lahiri ayanamsa: <strong className="text-gray-900 font-medium">24°07′47″</strong> (k 1. lednu 2026).
+                  0° Berana je ukotveno ke <strong className="text-gray-900 font-medium">skutečnému počátku souhvězdí Berana</strong>. Používá ho indická astrologie.
                 </p>
               </div>
               <p className="text-sm text-gray-500 italic">
@@ -196,12 +196,12 @@ export default function AstrologiePage() {
 
               <h3 className="serif text-lg text-gray-900 font-medium mb-3 mt-6">Egyptský původ</h3>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-                Slovo „dekan" pochází z řeckého <em className="italic">dekanós</em> („desátek"). Systém vznikl ve <strong className="text-gray-900 font-medium">starověkém Egyptě</strong> přinejmenším od 10. dynastie (~2100 př. n. l.), kdy 36 hvězdných skupin sloužilo jako siderální hodiny, každá skupina vycházela ve 10-denním intervalu. Slavné zobrazení je na stropě hrobky <em className="italic">Senmuta</em> (~1470 př. n. l.) za vlády Hatšepsut. Helénistická astrologie pak v období 300–100 př. n. l. spojila egyptské dekany s babylonským zodiakem a přiřadila každému planetárního vládce.
+                Slovo „dekan" pochází z řeckého <em className="italic">dekanós</em> („desátek"). Systém vznikl ve <strong className="text-gray-900 font-medium">starověkém Egyptě</strong> někdy od 10. dynastie (~2100 př. n. l.), kdy 36 hvězdných skupin sloužilo jako siderální hodiny, každá skupina vycházela ve 10-denním intervalu. Slavné zobrazení je na stropě hrobky <em className="italic">Senmuta</em> (~1470 př. n. l.) za vlády Hatšepsut. Helénistická astrologie pak v období 300–100 př. n. l. spojila egyptské dekany s babylonským zodiakem a přiřadila každému planetárního vládce.
               </p>
 
-              <h3 className="serif text-lg text-gray-900 font-medium mb-3 mt-6">Dva systémy sub-vládců</h3>
+              <h3 className="serif text-lg text-gray-900 font-medium mb-3 mt-6">Dva systémy subvládců</h3>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-                Každý dekanát má vlastního <strong className="text-gray-900 font-medium">sub-vládce</strong>, který přidává druhou vrstvu motivace nad rámec hlavního vládce znamení. Existují dva systémy přiřazení:
+                Každý dekanát má vlastního <strong className="text-gray-900 font-medium">subvládce</strong>, který přidává druhou vrstvu motivace nad rámec hlavního vládce znamení. Existují dva systémy přiřazení:
               </p>
 
               <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-4">
@@ -214,34 +214,34 @@ export default function AstrologiePage() {
                   <li>2. dekan = vládce následujícího ohnivého znamení v pořadí</li>
                   <li>3. dekan = vládce třetího ohnivého znamení</li>
                 </ul>
-                <p className="text-xs text-gray-500 mt-3 italic">Tento systém přiřazování dekanátů my preferujeme.</p>
+                <p className="text-xs text-gray-500 mt-3 italic">Tento systém přiřazování dekanátů preferujeme.</p>
               </div>
 
               <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-6">
                 <p className="eyebrow text-gray-500 mb-2">Chaldejský systém</p>
                 <p className="text-gray-700 text-[0.95rem] leading-relaxed">
-                  Sekvence 7 klasických planet (Saturn → Jupiter → Mars → Slunce → Venuše → Merkur → Měsíc) prochází 36 dekanáty cyklicky. Je to jednodušší, ale méně tematicky čistý systém.
+                  Sekvence 7 klasických planet (Saturn → Jupiter → Mars → Slunce → Venuše → Merkur → Měsíc) prochází cyklicky 36 dekanáty. Je to jednodušší systém.
                 </p>
               </div>
 
               <h3 className="serif text-lg text-gray-900 font-medium mb-3 mt-6">Příklad — tři dekanáty Lva</h3>
               <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-4">
                 <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-3">
-                  <strong className="text-gray-900 font-medium">Lev I (0°–10°, sub-vládce Slunce)</strong> — „nejčistší Lev". Královská, sebevědomá, hrdá energie. Cca 23. 7. – 1. 8.
+                  <strong className="text-gray-900 font-medium">Lev I (0°–10°, subvládce Slunce)</strong> — „nejčistší Lev". Královská, sebevědomá, hrdá energie. Cca 23. 7. – 1. 8.
                 </p>
                 <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-3">
-                  <strong className="text-gray-900 font-medium">Lev II (10°–20°, sub-vládce Jupiter)</strong> — filozofičtější, svobodnější Lev, s touhou po dobrodružství a vyšším vzdělání. Cca 2. 8. – 12. 8.
+                  <strong className="text-gray-900 font-medium">Lev II (10°–20°, subvládce Jupiter)</strong> — filozofičtější, svobodnější Lev, s touhou po dobrodružství a vyšším vzdělání. Cca 2. 8. – 12. 8.
                 </p>
                 <p className="text-gray-700 text-[0.95rem] leading-relaxed">
-                  <strong className="text-gray-900 font-medium">Lev III (20°–30°, sub-vládce Mars)</strong> — nejambicióznější, nejprůbojnější Lev, „heart of gold" s rytířským étosem. Cca 13. 8. – 22. 8.
+                  <strong className="text-gray-900 font-medium">Lev III (20°–30°, subvládce Marsu)</strong> — nejambicióznější, nejprůbojnější Lev, „heart of gold" s rytířským étosem. Cca 13. 8. – 22. 8.
                 </p>
               </div>
 
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-3">
-                Praktický důsledek: <strong className="text-gray-900 font-medium">dva lidé ve stejném znamení, ale jiném dekanu, můžou mít odlišný temperament.</strong> Sub-vládce zachovává živel a modus, ale přidává specifický planetární odstín.
+                Praktický důsledek: <strong className="text-gray-900 font-medium">dva lidé ve stejném znamení, ale jiném dekanu, můžou mít odlišný temperament.</strong> Subvládce zachovává živel a modus, ale přidává specifický planetární odstín.
               </p>
               <p className="text-sm text-gray-500 italic">
-                Příklad — 23. 7. 1992 padá na 0°–1° Lva = 1. dekan = sub-vládce Slunce = energie znamení a sub-vládce se sčítají v „nejčistšího Lva".
+                Příklad — 23. 7. 1992 padá na 0°–1° Lva = 1. dekan = subvládce Slunce = energie znamení a sub-vládce se sčítají v „nejčistšího Lva".
               </p>
             </div>
           </div>
@@ -259,7 +259,7 @@ export default function AstrologiePage() {
                 Sluneční stupeň je <strong className="text-gray-900 font-medium">přesná poloha Slunce v rámci znamení</strong>: 0° až 29°. Slunce postupuje přibližně 0°59′ za den, takže každý den v roce má specifický stupeň. Dva lidé narození v sousedních dnech (např. 22. 7. a 23. 7.) mají sousední stupně — drobně odlišné profily.
               </p>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-                <strong className="text-gray-900 font-medium">Sabian symboly:</strong> Pro každý ze 360 stupňů zodiaku existuje konkrétní obraz, který popisuje jeho energii. Sabian symboly byly přijaty v roce 1925, propagovala je <em className="italic">Elsie Wheeler</em> ve spolupráci s astrologem <em className="italic">Marc Edmund Jonesem</em>.
+                <strong className="text-gray-900 font-medium">Sabian symboly:</strong> Pro každý ze 360 stupňů zodiaku existuje konkrétní obraz, který popisuje jeho energii. <a href="https://sabiansymbols.com/wp-content/uploads/2023/07/Revised-Birthday-Table.pdf" target="_blank" rel="noopener" className="text-pink-500 underline">Sabian symboly</a> byly přijaty v roce 1925, propagovala je <em className="italic">Elsie Wheeler</em> ve spolupráci s astrologem <em className="italic">Marc Edmund Jonesem</em>.
               </p>
 
               <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-4">
@@ -309,7 +309,7 @@ export default function AstrologiePage() {
 
               <h3 className="serif text-lg text-gray-900 font-medium mb-3 mt-6">Royal Stars — 4 strážci nebes</h3>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-3">
-                Persidská astrologie vyčlenila 3 000 př. n. l. čtyři nejdůležitější hvězdy, strážce čtyř světových stran. Každá zhruba odpovídá jedné rovnodennosti nebo slunovratu. Každá nese specifický „test" podle Bernadette Brady:
+                Persidská astrologie vyčlenila zhruba 3 000 př. n. l. čtyři nejdůležitější hvězdy, strážce čtyř světových stran. Každá zhruba odpovídá jedné rovnodennosti nebo slunovratu. Každá nese specifický „test" podle Bernadette Brady:
               </p>
 
               <div className="bg-white border border-gray-200 rounded-3xl overflow-hidden mb-6">
@@ -377,10 +377,10 @@ export default function AstrologiePage() {
             <div>
               <h2 className="serif text-2xl sm:text-3xl text-gray-900 font-medium mb-5 leading-tight">Dominantní planeta</h2>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-                Každé znamení má svou <strong className="text-gray-900 font-medium">vládnoucí planetu</strong>, archetypální energii, která definuje základní motivaci a styl. Plus se k ní přidává <strong className="text-gray-900 font-medium">sub-vládce dekanátu</strong> jako druhá vrstva.
+                Každé znamení má svou <strong className="text-gray-900 font-medium">vládnoucí planetu</strong>, archetypální energii, která definuje základní motivaci a styl. Plus se k ní přidává <strong className="text-gray-900 font-medium">subvládce dekanátu</strong> jako druhá vrstva.
               </p>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-                Tradiční (klasická) astrologie před objevem Urana (1781), Neptuna (1846) a Pluta (1930) přiřazovala jen 7 viditelných planet 12 znamením. Moderní astrologie přiřadila nově objevené planety třem znamením, jejichž energie jim nejvíc odpovídala. Cosmatch zmiňuje obě vrstvy.
+                Tradiční (klasická) astrologie před objevem Uranu (1781), Neptunu (1846) a Pluta (1930) přiřazovala jen 7 viditelných planet 12 znamením. Moderní astrologie přiřadila nově objevené planety třem znamením, jejichž energie jim nejvíc odpovídala. Cosmatch zmiňuje obě vrstvy.
               </p>
 
               <div className="bg-white border border-gray-200 rounded-3xl overflow-hidden mb-4">
@@ -439,7 +439,7 @@ export default function AstrologiePage() {
               </div>
 
               <p className="text-sm text-gray-500 italic">
-                Příklad: Mars v Beranu má Domicile (+5) — projevuje se nejsilněji. Mars ve Váhách má Detriment (−5) — chybí mu jeho přirozený kontext. Cosmatch tyto nuance bere v úvahu při hodnocení dominantní planety pro jednotlivé datumy narození.
+                Příklad: Mars v Beranu má Domicile (+5) — projevuje se nejsilněji. Mars ve Váhách má Detriment (−5) — chybí mu jeho přirozený kontext. Cosmatch tyto nuance bere v úvahu při hodnocení dominantní planety pro jednotlivá data narození.
               </p>
             </div>
           </div>
@@ -449,13 +449,13 @@ export default function AstrologiePage() {
 
         {/* Honest disclaimer */}
         <section className="bg-white border border-gray-200 rounded-3xl p-8 mb-16">
-          <p className="eyebrow text-pink-500 mb-3">Honest disclaimer</p>
+          <p className="eyebrow text-pink-500 mb-3">Mějte na paměti</p>
           <h2 className="serif text-xl text-gray-900 font-medium mb-3">Astrologie není věda.</h2>
           <p className="text-gray-700 leading-[1.75] text-[0.95rem] mb-3">
             Astrologie, stejně jako numerologie, je <strong className="text-gray-900 font-medium">interpretační tradice</strong>, ne empirická věda. Žádná z popsaných komponent — sluneční znamení, dekanát, fixní hvězdy, planetární vládci — nebyla validována kontrolovanou studií. Cosmatch ji bere jako <em className="italic">jazyk pro sebepoznání a rozhovor</em>, ne jako predikci.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[0.95rem]">
-            Část pocitu „tohle sedí přesně!" je dokumentovaný psychologický jev zvaný <strong className="text-gray-900 font-medium">Barnumův/Forerův efekt</strong> — popisy astrologických typů jsou obecné natolik, aby v nich většina lidí našla kus sebe. To neznamená, že tradice nemá hodnotu — má, ale jako nástroj reflexe a sebepoznání, ne jako věštba.
+            Část pocitu „tohle jsem přesně já!" je dokumentovaný psychologický jev zvaný <strong className="text-gray-900 font-medium">Barnumův/Forerův efekt</strong>. Popisy astrologických typů mohou být obecné natolik, aby v nich většina lidí našla kus sebe. To neznamená, že tradice nemá hodnotu — má, ale jako nástroj reflexe a sebepoznání, ne jako věštba.
           </p>
         </section>
 
