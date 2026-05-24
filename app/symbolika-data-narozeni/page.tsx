@@ -258,36 +258,7 @@ export default function AstrologiePage() {
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
                 Sluneční stupeň je <strong className="text-gray-900 font-medium">přesná poloha Slunce v rámci znamení</strong>: 0° až 29°. Slunce postupuje přibližně 0°59′ za den, takže každý den v roce má specifický stupeň. Dva lidé narození v sousedních dnech (např. 22. 7. a 23. 7.) mají sousední stupně — drobně odlišné profily.
               </p>
-              <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-                <strong className="text-gray-900 font-medium">Sabian symboly:</strong> Pro každý ze 360 stupňů zodiaku existuje konkrétní obraz, který popisuje jeho energii. <a href="https://sabiansymbols.com/wp-content/uploads/2023/07/Revised-Birthday-Table.pdf" target="_blank" rel="noopener" className="text-pink-500 underline">Sabian symboly</a> byly přijaty v roce 1925, propagovala je <em className="italic">Elsie Wheeler</em> ve spolupráci s astrologem <em className="italic">Marc Edmund Jonesem</em>.
-              </p>
 
-              <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-4">
-                <p className="eyebrow text-gray-500 mb-2">Příklad Sabian symbolu</p>
-                <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-2">
-                  <strong className="text-gray-900 font-medium">1° Berana:</strong> „Žena právě vystoupila z moře, tuleň ji objímá." Symbol vzniku, prvního výstupu z nevědomí.
-                </p>
-                <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-2">
-                  <strong className="text-gray-900 font-medium">15° Lva:</strong> „Slavnostní průvod prochází ulicí plnou jásajících lidí." Symbol veřejného uznání a triumfu.
-                </p>
-                <p className="text-gray-700 text-[0.95rem] leading-relaxed">
-                  <strong className="text-gray-900 font-medium">24° Štíra:</strong> „Po vyslechnutí inspirovaného člověka při Kázání na hoře se zástupy vracejí domů." Symbol transformace skrz duchovní impulz.
-                </p>
-                <p className="text-xs text-gray-500 mt-3 italic">
-                  Pravidlo zaokrouhlení: minuta nad 0° → další stupeň. Slunce na 14°02′ Lva = symbol pro Lva 15° (ne 14°).
-                </p>
-              </div>
-
-              <h3 className="serif text-lg text-gray-900 font-medium mb-3 mt-8">Anaretický stupeň 29°</h3>
-              <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-3">
-                Z řeckého <em className="italic">anareta</em> („ničitel"). Jakákoli planeta nebo bod v rozsahu <strong className="text-gray-900 font-medium">29°00′ – 29°59′</strong> v kterémkoli znamení je „anaretický" poslední stupeň před přechodem do dalšího znamení. Symbolicky nese <strong className="text-gray-900 font-medium">pocit naléhavosti, krize, dokončování karmického cyklu</strong> nebo „mistrovskou zkušenost" tohoto znamení.
-              </p>
-              <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-3">
-                Btw. <em className="italic">Margaret Thatcher</em> ohlásila rezignaci 22. 11. 1990, když její Slunce a Ascendent byly na 29° Štíra.
-              </p>
-              <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
-                <strong className="text-gray-900 font-medium">Avatar Degree má 15° pevných znamení</strong> (Býk, Lev, Štír, Vodnář): planeta zde dělá z jedince „go-to" osobnost se silnou manifestační schopností. Patnácté stupně pevných znamení jsou klasicky vnímány jako body koncentrované moci.
-              </p>
             </div>
           </div>
         </section>
@@ -305,38 +276,6 @@ export default function AstrologiePage() {
               </p>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
                 Pozice fixních hvězd se v tropickém zodiaku posouvá <strong className="text-gray-900 font-medium">~1° za 72 let</strong> kvůli precesi ekvinokcií. Aldebaran byl v roce 1900 na 8°23′ Blíženců, v roce 2000 na 9°47′ Blíženců, v roce 2026 zhruba na 10°07′ Blíženců. Pro <strong className="text-gray-900 font-medium">narozené v letech 1950–2026 jsou pozice níže prakticky stejné</strong> — pohybují se v rozmezí 0,5°–1°, což stále spadá do orbu konjunkce. Jediné dvě výjimky se skokem znamení jsou <strong className="text-gray-900 font-medium">Regulus</strong> (přesun z Lva do Panny 28. 11. 2011) a <strong className="text-gray-900 font-medium">Sirius</strong> (přesun z 14° na 15° Raka kolem roku 1993). Mnoho jmen hvězd pochází z arabštiny (Algol = „hlava démona", Fomalhaut = „ústa ryby", Aldebaran = „následovník").
-              </p>
-
-              <h3 className="serif text-lg text-gray-900 font-medium mb-3 mt-6">Royal Stars — 4 strážci nebes</h3>
-              <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-3">
-                Persidská astrologie vyčlenila zhruba 3 000 př. n. l. čtyři nejdůležitější hvězdy, strážce čtyř světových stran. Každá zhruba odpovídá jedné rovnodennosti nebo slunovratu. Každá nese specifický „test" podle Bernadette Brady:
-              </p>
-
-              <div className="bg-white border border-gray-200 rounded-3xl overflow-hidden mb-6">
-                <table className="w-full text-sm">
-                  <thead className="bg-gray-50 border-b border-gray-100">
-                    <tr className="text-left text-xs uppercase tracking-wider text-gray-500">
-                      <th className="px-4 py-3 font-medium">Hvězda</th>
-                      <th className="px-4 py-3 font-medium">Pozice (1950–2026)</th>
-                      <th className="px-4 py-3 font-medium">Strážce</th>
-                      <th className="px-4 py-3 font-medium">Význam &amp; test</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-100">
-                    {ROYAL_STARS.map(([name, pos, watcher, meaning]) => (
-                      <tr key={name}>
-                        <td className="px-4 py-3 text-gray-900 font-medium">{name}</td>
-                        <td className="px-4 py-3 text-gray-500 text-xs whitespace-nowrap">{pos}</td>
-                        <td className="px-4 py-3 text-gray-600 text-xs">{watcher}</td>
-                        <td className="px-4 py-3 text-gray-600 text-xs">{meaning}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-
-              <p className="text-xs text-gray-500 italic mb-4">
-                Jak číst rozsahy: hvězdy se kvůli precesi posouvají vůči tropickému zodiaku ~1° za 72 let. Pro narozené 1950–1980 vyhledávej spodní hranici rozsahu, pro narozené po roce 2000 horní hranici. <strong className="text-gray-700 font-medium not-italic">Regulus</strong> je unikátní v tom, že 28. 11. 2011 přešel ze Lva do Panny — pro narozené před tímto datem stojí na 29° Lva, pro narozené po něm na 0° Panny.
               </p>
 
 <h3 className="serif text-lg text-gray-900 font-medium mb-3 mt-6">Další významné fixní hvězdy</h3>
@@ -410,7 +349,89 @@ export default function AstrologiePage() {
                 Co planetární archetyp říká: <strong className="text-gray-900 font-medium">Mars</strong> = akce, vůle. <strong className="text-gray-900 font-medium">Venuše</strong> = vztahy, krása. <strong className="text-gray-900 font-medium">Merkur</strong> = komunikace, myšlení. <strong className="text-gray-900 font-medium">Měsíc</strong> = emoce, paměť. <strong className="text-gray-900 font-medium">Slunce</strong> = vědomí, ego. <strong className="text-gray-900 font-medium">Jupiter</strong> = expanze, smysl. <strong className="text-gray-900 font-medium">Saturn</strong> = disciplína, struktura. <strong className="text-gray-900 font-medium">Uran</strong> = revoluce, vize. <strong className="text-gray-900 font-medium">Neptun</strong> = mystika, fantazie. <strong className="text-gray-900 font-medium">Pluto</strong> = transformace, hloubka.
               </p>
 
-              <h3 className="serif text-lg text-gray-900 font-medium mb-3 mt-8">Esenciální dignity</h3>
+
+            </div>
+          </div>
+        </section>
+
+        <hr className="rule mb-16" />
+
+                {/* VI. Další aspekty ovlivňující člověka v den jeho narození */}
+        <section className="mb-16">
+          <div className="grid grid-cols-[auto,1fr] gap-x-8 sm:gap-x-12">
+            <div className="roman text-3xl sm:text-4xl text-pink-500 leading-none pt-2 select-none">VI</div>
+            <div>
+              <h2 className="serif text-2xl sm:text-3xl text-gray-900 font-medium mb-5 leading-tight">Další aspekty ovlivňující člověka v den jeho narození</h2>
+              <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-8">
+                Klasická astrologická tradice pracuje s ještě dalšími jemnějšími vrstvami nad rámec pěti hlavních komponent uvedených výše. Cosmatch je interpretuje jako kulturní a edukativní kontext, ale do výpočtu kompatibility přímo nevstupují.
+              </p>
+
+<p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
+                <strong className="text-gray-900 font-medium">Sabian symboly:</strong> Pro každý ze 360 stupňů zodiaku existuje konkrétní obraz, který popisuje jeho energii. <a href="https://sabiansymbols.com/wp-content/uploads/2023/07/Revised-Birthday-Table.pdf" target="_blank" rel="noopener" className="text-pink-500 underline">Sabian symboly</a> byly přijaty v roce 1925, propagovala je <em className="italic">Elsie Wheeler</em> ve spolupráci s astrologem <em className="italic">Marc Edmund Jonesem</em>.
+              </p>
+
+              <div className="bg-white border border-gray-200 rounded-2xl p-6 mb-4">
+                <p className="eyebrow text-gray-500 mb-2">Příklad Sabian symbolu</p>
+                <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-2">
+                  <strong className="text-gray-900 font-medium">1° Berana:</strong> „Žena právě vystoupila z moře, tuleň ji objímá." Symbol vzniku, prvního výstupu z nevědomí.
+                </p>
+                <p className="text-gray-700 text-[0.95rem] leading-relaxed mb-2">
+                  <strong className="text-gray-900 font-medium">15° Lva:</strong> „Slavnostní průvod prochází ulicí plnou jásajících lidí." Symbol veřejného uznání a triumfu.
+                </p>
+                <p className="text-gray-700 text-[0.95rem] leading-relaxed">
+                  <strong className="text-gray-900 font-medium">24° Štíra:</strong> „Po vyslechnutí inspirovaného člověka při Kázání na hoře se zástupy vracejí domů." Symbol transformace skrz duchovní impulz.
+                </p>
+                <p className="text-xs text-gray-500 mt-3 italic">
+                  Pravidlo zaokrouhlení: minuta nad 0° → další stupeň. Slunce na 14°02′ Lva = symbol pro Lva 15° (ne 14°).
+                </p>
+              </div>
+
+              <h3 className="serif text-lg text-gray-900 font-medium mb-3 mt-8">Anaretický stupeň 29°</h3>
+              <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-3">
+                Z řeckého <em className="italic">anareta</em> („ničitel"). Jakákoli planeta nebo bod v rozsahu <strong className="text-gray-900 font-medium">29°00′ – 29°59′</strong> v kterémkoli znamení je „anaretický" poslední stupeň před přechodem do dalšího znamení. Symbolicky nese <strong className="text-gray-900 font-medium">pocit naléhavosti, krize, dokončování karmického cyklu</strong> nebo „mistrovskou zkušenost" tohoto znamení.
+              </p>
+              <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-3">
+                Btw. <em className="italic">Margaret Thatcher</em> ohlásila rezignaci 22. 11. 1990, když její Slunce a Ascendent byly na 29° Štíra.
+              </p>
+              <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
+                <strong className="text-gray-900 font-medium">Avatar Degree má 15° pevných znamení</strong> (Býk, Lev, Štír, Vodnář): planeta zde dělá z jedince „go-to" osobnost se silnou manifestační schopností. Patnácté stupně pevných znamení jsou klasicky vnímány jako body koncentrované moci.
+              </p>
+
+<h3 className="serif text-lg text-gray-900 font-medium mb-3 mt-6">Royal Stars — 4 strážci nebes</h3>
+              <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-3">
+                Persidská astrologie vyčlenila zhruba 3 000 př. n. l. čtyři nejdůležitější hvězdy, strážce čtyř světových stran. Každá zhruba odpovídá jedné rovnodennosti nebo slunovratu. Každá nese specifický „test" podle Bernadette Brady:
+              </p>
+
+              <div className="bg-white border border-gray-200 rounded-3xl overflow-hidden mb-6">
+                <table className="w-full text-sm">
+                  <thead className="bg-gray-50 border-b border-gray-100">
+                    <tr className="text-left text-xs uppercase tracking-wider text-gray-500">
+                      <th className="px-4 py-3 font-medium">Hvězda</th>
+                      <th className="px-4 py-3 font-medium">Pozice (1950–2026)</th>
+                      <th className="px-4 py-3 font-medium">Strážce</th>
+                      <th className="px-4 py-3 font-medium">Význam &amp; test</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100">
+                    {ROYAL_STARS.map(([name, pos, watcher, meaning]) => (
+                      <tr key={name}>
+                        <td className="px-4 py-3 text-gray-900 font-medium">{name}</td>
+                        <td className="px-4 py-3 text-gray-500 text-xs whitespace-nowrap">{pos}</td>
+                        <td className="px-4 py-3 text-gray-600 text-xs">{watcher}</td>
+                        <td className="px-4 py-3 text-gray-600 text-xs">{meaning}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <p className="text-xs text-gray-500 italic mb-4">
+                Jak číst rozsahy: hvězdy se kvůli precesi posouvají vůči tropickému zodiaku ~1° za 72 let. Pro narozené 1950–1980 vyhledávej spodní hranici rozsahu, pro narozené po roce 2000 horní hranici. <strong className="text-gray-700 font-medium not-italic">Regulus</strong> je unikátní v tom, že 28. 11. 2011 přešel ze Lva do Panny — pro narozené před tímto datem stojí na 29° Lva, pro narozené po něm na 0° Panny.
+              </p>
+
+
+
+<h3 className="serif text-lg text-gray-900 font-medium mb-3 mt-8">Esenciální dignity</h3>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
                 Klasická astrologie hodnotí, jak silně se planeta projevuje v dané pozici. Pětistupňová stupnice „dignit" pochází z helénistické tradice (Ptolemaios, Vettius Valens) a byla kodifikována Williamem Lillym v <em className="italic">Christian Astrology</em> (1647).
               </p>
