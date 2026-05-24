@@ -158,6 +158,16 @@ export default function JakFungujeCosmatchPage() {
           <p className="text-gray-700 leading-[1.75] text-[0.95rem] italic text-gray-600">
             Příklad: Spřízněná duše × Prospěšný vztah = (100 + 65) / 2 = <strong className="not-italic text-gray-900 font-medium">82,5 b.</strong> Vysoké skóre, ale ne maximum — asymetrie ho stahuje. V profilu druhého člověka uvidíš obě perspektivy, abys věděl, kdo k tobě cítí silnější tah.
           </p>
+
+          <div className="mt-10 bg-pink-50 border border-pink-200 rounded-2xl p-6">
+            <p className="eyebrow text-pink-500 mb-3">Proč 30 %?</p>
+            <p className="text-gray-700 leading-[1.75] text-[0.95rem] mb-3">
+              Vrstva I není akademicky peer-review validovaná — Crawford &amp; Sullivan jsou expert-systém dvou praktikujících astroložek, ne psychometricky testovaný model. Cosmatch to <Link href="#nedela" className="text-pink-500 underline">v sekci „Co Cosmatch nedělá"</Link> přiznává.
+            </p>
+            <p className="text-gray-700 leading-[1.75] text-[0.95rem]">
+              Proč ji tedy držíme jako největší vrstvu? Podle <strong className="text-gray-900 font-medium">Harris Poll 2024 (N=2 069 US dospělých) věří v astrologii 83 % Millennials a 62 % Gen Z</strong>. Pro cílovou generaci Cosmatch (~25–38) je kompatibilita podle data narození jazyk, kterým o vztazích přirozeně přemýšlí. Není to o tom, jestli „funguje" v laboratorním smyslu — je to o tom, že rezonuje s tím, jak se uživatelé sami chápou.
+            </p>
+          </div>
         </section>
 
         <hr className="rule mb-16" />
@@ -181,6 +191,13 @@ export default function JakFungujeCosmatchPage() {
           <p className="text-gray-700 leading-[1.75] text-[0.95rem] italic">
             Bodování: shodná odpověď = plný počet bodů, kompatibilní (např. spirituální + věřící) = částečné, opačné (chce/nechce děti) = 0.
           </p>
+
+          <div className="mt-8 bg-white border border-gray-200 rounded-2xl p-6">
+            <p className="eyebrow text-pink-500 mb-2">Magic ratio 5:1</p>
+            <p className="text-gray-700 leading-[1.75] text-[0.95rem]">
+              Gottmanův výzkum přinesl jednu konkrétní memorable věc: <strong className="text-gray-900 font-medium">stabilní páry mají v komunikaci 5 pozitivních interakcí na 1 negativní</strong>. Cosmatch to neměří v algoritmu (algoritmus nemá přístup do Tvojí ložnice), ale je dobré to vědět — vztah, ve kterém chybí běžné drobnosti laskavosti, není v krizi proto, že padne velký hřebíček, ale proto, že chybí ten tichý poměr 5 k 1.
+            </p>
+          </div>
         </section>
 
         <hr className="rule mb-16" />
@@ -379,7 +396,7 @@ export default function JakFungujeCosmatchPage() {
         <hr className="rule mb-16" />
 
         {/* Co Cosmatch nedělá — transparency / Joel et al. 2017 disclaimer */}
-        <section className="mb-16 bg-white border border-gray-100 rounded-3xl p-10">
+        <section id="nedela" className="mb-16 bg-white border border-gray-100 rounded-3xl p-10 scroll-mt-8">
           <p className="eyebrow text-pink-500 mb-4">Co Cosmatch nedělá</p>
           <h2 className="serif-display text-2xl sm:text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-6">
             Žádný algoritmus nepředpoví chemii. Cosmatch <em className="italic">zvyšuje pravděpodobnost</em>, negarantuje vztah.
@@ -484,6 +501,29 @@ export default function JakFungujeCosmatchPage() {
               <strong className="text-gray-900 font-medium">Datum narození a jeho vliv na náš charakter</strong> (Jitka Kadlecová, Eminent, 2006) — česká numerologická tradice 21. století.
             </li>
           </ul>
+
+          <h3 className="serif text-2xl text-gray-900 font-medium leading-tight mb-3 mt-12">Akademické zdroje (peer-reviewed)</h3>
+          <p className="text-gray-700 leading-[1.75] text-[0.95rem] mb-6">
+            Vrstvy II–VI algoritmu stojí na recenzovaných psychologických studiích. Klíčové publikace, na které se Cosmatch odkazuje:
+          </p>
+          <ul className="space-y-4">
+            <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
+              <strong className="text-gray-900 font-medium">Bowlby, J. (1969).</strong> <em>Attachment.</em> Vol. 1 of <em>Attachment and Loss.</em> London: Hogarth Press — základní text teorie citové vazby, fundament Vrstvy III sub-modelu Attachment.
+            </li>
+            <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
+              <strong className="text-gray-900 font-medium">Hazan, C. &amp; Shaver, P. (1987).</strong> Romantic love conceptualized as an attachment process. <em>Journal of Personality and Social Psychology,</em> 52(3), 511–524 — přenos Bowlbyho teorie z dětství do dospělých romantických vztahů. Definuje tři adultní attachment styly (secure / anxious / avoidant) a jejich kompatibilitu.
+            </li>
+            <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
+              <strong className="text-gray-900 font-medium">Heller, D., Watson, D. &amp; Ilies, R. (2004).</strong> Meta-analýza osobnosti a vztahové spokojenosti, <em>Psychological Bulletin</em> — všech pět dimenzí Velké pětky má signifikantní korelaci, <strong className="text-gray-900 font-medium">Neuroticism je nejsilnější (r = −0,26)</strong>. Empirický základ Vrstvy III sub-modelu Big5 Neuroticism.
+            </li>
+            <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
+              <strong className="text-gray-900 font-medium">Aron, A., Norman, C. C., Aron, E. N., McKenna, C. &amp; Heyman, R. E. (2000).</strong> Couples&apos; shared participation in novel and arousing activities and experienced relationship quality. <em>Journal of Personality and Social Psychology,</em> 78(2), 273–284 — pět studií, n~250 párů. Klíčové zjištění pro Vrstvu VI: novelty + arousal &gt; similarity (sdílené koníčky samy o sobě nejsou prediktor; společně dělat nové a stimulující věci je).
+            </li>
+          </ul>
+
+          <p className="text-gray-600 leading-[1.75] text-[0.9rem] mt-8 italic">
+            Plný akademický aparát (Gottman, Roenneberg, Costa &amp; McCrae, Thomas-Kilmann, Chapman, Perel, Nagoski, Joel-Eastwick-Finkel, Pittenger, Bunt) je v interní dokumentaci.
+          </p>
         </section>
 
         {/* CTA */}
