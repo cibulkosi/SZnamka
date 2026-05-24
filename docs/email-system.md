@@ -66,7 +66,7 @@ Po nasazení migrace `20260519_voucher_redemption_founding_member.sql`:
 
 | Klíč | Hodnota |
 |------|---------|
-| `RESEND_API_KEY` | re_TqCBrtcH_... |
+| `RESEND_API_KEY` | *(viz Supabase Edge Function secrets — NIKDY do repa)* |
 | `RESEND_FROM` | Cosmatch <ahoj@cosmatch.cz> (default v kódu) |
 
 ## DNS (Cloudflare)

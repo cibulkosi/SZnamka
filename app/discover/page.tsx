@@ -7,7 +7,7 @@ import { TrialBanner } from '@/components/PremiumGate'
 import { CompatBadges, ScoreRing } from '@/components/CompatBadges'
 import { ProfileQuestion, PROFILE_QUESTIONS, type Question } from '@/components/ProfileQuestion'
 import { ARCHETYPES, lifePathNumber } from '@/lib/archetypes'
-import { computeCompatibility, profileCompleteness, isOutsideDistanceLimit, isOutsidePhysicalPrefs, isChildrenIncompatible, isSmokingIncompatible, isAlcoholIncompatible, isMarijuanaIncompatible, tierFallbackBoost } from '@/lib/compat'
+import { computeCompatibility, profileCompleteness, isOutsideDistanceLimit, isOutsidePhysicalPrefs, isChildrenIncompatible, isSmokingIncompatible, isAlcoholIncompatible, isMarijuanaIncompatible, tierFallbackBoost, crawfordBidirectional } from '@/lib/compat'
 
 // Pastelové gradienty jako avatar fallback (bez fotky)
 const AVATAR_GRADIENTS = [
@@ -463,23 +463,22 @@ export default function DiscoverPage() {
  // Vypočítej enhanced scores — s Tension Score (vážený průměr obou perspektiv)
  const scores: Record<string, number> = {}
  profsInRange.forEach(p => {
- let fwd = compatMap[p.birthday]?.score ?? null    // co vidí user o profilu
- let rev = reverseMap[p.birthday]?.score ?? null   // co vidí profil o userovi
- // 3-tier fallback: pokud book lookup chybí (žádný záznam v DB), použij life-path tier matrix
- if (fwd === null && u.birthday && p.birthday) {
+ // Crawford & Sullivan bidirectional lookup (atomic Layer I)
+ const fwdRow = compatMap[p.birthday] ?? null
+ const revRow = reverseMap[p.birthday] ?? null
+ let bookScore: number | null = null
+ if (fwdRow || revRow) {
+   const cwf = crawfordBidirectional(fwdRow, revRow)
+   bookScore = cwf.score
+ } else if (u.birthday && p.birthday) {
    const myLP = lifePathNumber(`${u.birth_year}-${u.birthday}`)
    const otherLP = lifePathNumber(`${p.birth_year}-${p.birthday}`)
-   fwd = tierFallbackBoost(myLP, otherLP, ARCHETYPES)
+   const fwdFall = tierFallbackBoost(myLP, otherLP, ARCHETYPES)
+   const revFall = tierFallbackBoost(otherLP, myLP, ARCHETYPES)
+   if (fwdFall !== null && revFall !== null) bookScore = (fwdFall + revFall) / 2
+   else if (fwdFall !== null) bookScore = fwdFall
+   else if (revFall !== null) bookScore = revFall
  }
- if (rev === null && u.birthday && p.birthday) {
-   const myLP = lifePathNumber(`${p.birth_year}-${p.birthday}`)
-   const otherLP = lifePathNumber(`${u.birth_year}-${u.birthday}`)
-   rev = tierFallbackBoost(myLP, otherLP, ARCHETYPES)
- }
- // Tension Score: 65 % perspektiva uživatele + 35 % perspektiva protistrany
- const bookScore = fwd !== null
- ? (rev !== null ? fwd * 0.65 + rev * 0.35 : fwd)
- : (rev !== null ? rev * 0.5 : null)
  scores[p.id] = computeCompatibility(u, p, bookScore)
  })
 
@@ -512,8 +511,10 @@ export default function DiscoverPage() {
  const recalculateScores = useCallback((updatedUser: Profile) => {
  const newScores: Record<string, number> = {}
  profiles.forEach(p => {
- const bookScore = compats[p.birthday]?.score ?? null
- newScores[p.id] = computeCompatibility(updatedUser, p, bookScore)
+ const fwdRow2 = compats[p.birthday] ?? null
+ const revRow2 = reverseCompats[p.birthday] ?? null
+ const bookScore2 = (fwdRow2 || revRow2) ? crawfordBidirectional(fwdRow2, revRow2).score : null
+ newScores[p.id] = computeCompatibility(updatedUser, p, bookScore2)
  })
  setEnhancedScores(newScores)
 

@@ -229,6 +229,15 @@ function activityScore(other: Profile): number {
 // ──────────────────────────────────────────────
 // Intent multiplier (Vrstva 3)
 // ──────────────────────────────────────────────
+/**
+ * Intent multiplier — sladění záměru vztahu.
+ *  ×1.2  = oba chtějí to samé (oba "vážný" nebo oba "casual") — bonus
+ *  ×1.0  = neutrální / kompatibilní (např. "nevím" + cokoli)
+ *  ×0.5  = hard konflikt ("serious" vs "casual") — penalizace na polovinu
+ *
+ * Hard veto (×0.0 = profil vůbec neviditelný) řešíme samostatně přes
+ * `isChildrenIncompatible` a dealbreaker filtry, NE přes intent multiplier.
+ */
 function intentMultiplier(a?: string, b?: string): number {
   if (!a || !b) return 1.0
   if (a === b) return 1.2
@@ -239,6 +248,81 @@ function intentMultiplier(a?: string, b?: string): number {
   return 1.0
 }
 
+
+// ──────────────────────────────────────────────
+// Crawford & Sullivan kategorizace — atomická vrstva I
+// ──────────────────────────────────────────────
+
+/** Compatibility row z DB má boolean flags pro 5 kategorií. */
+type CompatibilityRow = {
+  soul_mates?: boolean
+  love_friendship?: boolean
+  fatal_attraction?: boolean
+  beneficial?: boolean
+  challenging?: boolean
+}
+
+/**
+ * Mapuje Crawford kategorie na skóre 0-100.
+ *  Soul Mates ......... 100  (Spřízněné duše, harmonická vazba)
+ *  Love & Friendship ..  95  (Láska a přátelství, přirozená harmonie)
+ *  Magnetická tenze ...  85  (Fatal Attraction, ambivalentní karmický pár)
+ *  (default)               ..  50  (neutrální, kategorie chybí)
+ *  Beneficial .........  65  (mentor / praktická podpora)
+ *  Challenging ........  45  (růst přes konflikt)
+ */
+export function crawfordScore(c: CompatibilityRow | null | undefined): number {
+  if (!c) return 50
+  if (c.soul_mates) return 100
+  if (c.love_friendship) return 95
+  if (c.fatal_attraction) return 85
+  if (c.beneficial) return 65
+  if (c.challenging) return 45
+  return 50
+}
+
+/** Lidský label pro UI. */
+export function crawfordLabel(c: CompatibilityRow | null | undefined): string {
+  if (!c) return 'Neutrální'
+  if (c.soul_mates) return 'Spřízněné duše'
+  if (c.love_friendship) return 'Láska a přátelství'
+  if (c.fatal_attraction) return 'Magnetická tenze'
+  if (c.beneficial) return 'Prospěšný vztah'
+  if (c.challenging) return 'Náročný vztah'
+  return 'Neutrální'
+}
+
+/**
+ * Asymetrický Crawford lookup — vrátí skóre obou perspektiv + flag,
+ * jestli je rozdíl významný (>= 30 b mezi A→B a B→A).
+ *
+ * Pro main matching score používáme `mean` (vážený 50/50).
+ * Plus +5 % bonus pokud oba vidí druhého pozitivně (oba >= 70).
+ *
+ * UI v profilu může zobrazit asymetrii s Crawford & Sullivan vysvětlením,
+ * proč je vazba jednostranná.
+ */
+export function crawfordBidirectional(
+  forward: CompatibilityRow | null | undefined,
+  reverse: CompatibilityRow | null | undefined,
+): { score: number; forwardScore: number; reverseScore: number; forwardLabel: string; reverseLabel: string; asymmetric: boolean; mutualPositiveBonus: boolean } {
+  const fwd = crawfordScore(forward)
+  const rev = crawfordScore(reverse)
+  const mean = (fwd + rev) / 2
+  const mutualPositive = fwd >= 70 && rev >= 70
+  const score = mutualPositive ? Math.min(100, Math.round(mean * 1.05)) : Math.round(mean)
+  const asymmetric = Math.abs(fwd - rev) >= 30
+  return {
+    score,
+    forwardScore: fwd,
+    reverseScore: rev,
+    forwardLabel: crawfordLabel(forward),
+    reverseLabel: crawfordLabel(reverse),
+    asymmetric,
+    mutualPositiveBonus: mutualPositive,
+  }
+}
+
 // ──────────────────────────────────────────────
 // Hlavní funkce
 // ──────────────────────────────────────────────
@@ -247,23 +331,34 @@ export function computeCompatibility(
   other: Profile,
   bookScore: number | null
 ): number {
-  // Vrstva I – Birth date score (30 %) — book lookup
+  // ─────────────────────────────────────────────
+  //  Cosmatch algoritmus v5 (Variant D'') — 24. 5. 2026
+  //  Váhy seřazené podle síly evidence (Gottman, Hazan-Shaver,
+  //  Heller meta r=-0.26, Sprajcer 2022, Aron 2000) + tvoje
+  //  observace o Crawford & Sullivan tabulce.
+  // ─────────────────────────────────────────────
+
+  // Vrstva I – Crawford & Sullivan tabulka (30 %)
+  //   Atomický lookup → 5 kategorií → skóre 100/95/85/65/45 (default 50)
+  //   bookScore přichází z discover/page.tsx jako vážený průměr
+  //   forward/reverse perspektivy (zachycuje asymetrii)
   const bookRaw = bookScore ?? 50
   const aScore  = bookRaw * 0.30
 
-  // Vrstva II – Životní vize (15 %)
-  const bScore = scoreLifeVision(me, other) * 0.15
+  // Vrstva II – Hodnoty a vize (25 %) — Gottman Shared Meaning
+  const bScore = scoreLifeVision(me, other) * 0.25
 
-  // Vrstva III – Psychologický profil (30 %) — MBTI 4 dim + Attachment + Love Lang + Emotional + chronobiology + conflict
-  const cScore = scorePsychological(me, other) * 0.30
+  // Vrstva III – Psychologický profil (20 %)
+  //   Interní rebalance: Attachment 32 + Big5N 20 + MBTI 28 + Chrono 8 + LL 6 + TKI 6 = 100 b
+  const cScore = scorePsychological(me, other) * 0.20
 
-  // Vrstva IV – Intimní (10 %) — libido
+  // Vrstva IV – Intimní soulad (10 %) — libido + chronologie sexu
   const dScore = scoreIntimate(me, other) * 0.10
 
-  // Vrstva V – Lifestyle (5 %)
-  const eScore = scoreLifestyle(me, other) * 0.05
+  // Vrstva V – Životní styl (7 %) — Pew dealbreakers (hard veto řešeno filtry)
+  const eScore = scoreLifestyle(me, other) * 0.07
 
-  // Vrstva F – Společné zájmy (5 %)
+  // Vrstva VI – Společné zájmy (5 %) — Aron 2000 novelty > similarity
   const ah = me.hobbies ?? []
   const bh = other.hobbies ?? []
   const sharedCount = bh.filter(h => ah.includes(h)).length
@@ -271,10 +366,10 @@ export function computeCompatibility(
   const interestPercent = maxTags > 0 ? (sharedCount / maxTags) * 100 : 0
   const fScore = Math.min(100, interestPercent) * 0.05
 
-  // Vrstva G – Activity (5 %)
-  const gScore = activityScore(other) * 0.05
+  // Vrstva VII – Aktivita (3 %) — last_seen decay
+  const gScore = activityScore(other) * 0.03
 
-  // Total weighted: 100 % (clean math, žádné absolutní bonusy)
+  // Total: 30+25+20+10+7+5+3 = 100 % (clean math, žádné absolutní bonusy)
   const rawScore = aScore + bScore + cScore + dScore + eScore + fScore + gScore
 
   // Intent multiplier
@@ -330,119 +425,117 @@ function childrenMatch(a: FamilyPlans, b: FamilyPlans): number {
 }
 
 // ──────────────────────────────────────────────
-// C) Osobnost & týmovost – 15 %
+// C) Psychologický profil – 20 % (interní rebalance D'')
 // ──────────────────────────────────────────────
 function scorePsychological(a: Profile, b: Profile): number {
-  // 9 sub-faktorů (Vrstva III nyní 30 % CCS):
-  //   MBTI role (N/S)         — 20 max — komplementarita lepší
-  //   MBTI social (E/I)       — 15 max — stejné lepší
-  //   MBTI decision (T/F)     — 15 max — stejné lepší
-  //   MBTI lifestyle (J/P)    — 10 max — stejné lepší
-  //   Attachment style        — 18 max — Bowlby; secure+secure ideal, anxious+avoidant destruktivní
-  //   Love Languages (1+2)    — 12 max — stejné jazyky = méně frustrace
-  //   Emotional stability     —  5 max — stable+stable klidnější, oba reactive = bouřlivé
-  //   Chronobiology           —  3 max
-  //   Conflict style (TKI)    —  2 max
+  // 9 sub-faktorů, body podle síly evidence (Heller 2004, Hazan-Shaver,
+  // Sprajcer 2022, Bunt 2017 nefittuje 5 Love Lang):
+  //   Attachment style        — 32 max — Hazan-Shaver: nejsilnější psych prediktor
+  //   Big5 Neuroticism (ES)   — 20 max — Heller meta r=-0.26 (replikovaný)
+  //   MBTI E/I (social)       — 10 max — koreluje s Big5 Extraversion (Costa 1989)
+  //   Chronobiology           —  8 max — Sprajcer 2022 matched páry F=19.57 p<.001
+  //   MBTI N/S (role)         —  6 max — slabší dimenze (test-retest fail)
+  //   MBTI T/F (decision)     —  6 max — slabší dimenze
+  //   MBTI J/P (lifestyle)    —  6 max — slabší dimenze
+  //   Love Languages (1+2)    —  6 max — Bunt 2017 n=740 nefittuje 5-faktor
+  //   Conflict style (TKI)    —  6 max — test-retest 0.61-0.68 + Gottman Horsemen vazba
   //   ─────────────────────────────────
   //   Total max               — 100
-  let points = 0, max = 0
 
   let points = 0, max = 0
 
-  // MBTI N/S — komplementarita lepší
+  // MBTI N/S — komplementarita lepší (6 b)
   if (a.personality_role && b.personality_role) {
-    max += 20
+    max += 6
     if (a.personality_role !== b.personality_role &&
-        a.personality_role !== 'both' && b.personality_role !== 'both') points += 20
-    else if (a.personality_role === 'both' || b.personality_role === 'both') points += 14
-    else points += 9
-  }
-
-  // MBTI E/I — stejné lepší
-  if (a.personality_social && b.personality_social) {
-    max += 15
-    if (a.personality_social === b.personality_social) points += 15
-    else if (a.personality_social === 'ambivert' || b.personality_social === 'ambivert') points += 10
-    else points += 5
-  }
-
-  // MBTI T/F — stejné lepší
-  if (a.personality_decision && b.personality_decision) {
-    max += 15
-    if (a.personality_decision === b.personality_decision) points += 15
-    else if (a.personality_decision === 'balanced' || b.personality_decision === 'balanced') points += 10
-    else points += 4
-  }
-
-  // MBTI J/P — stejné lepší
-  if (a.personality_lifestyle && b.personality_lifestyle) {
-    max += 10
-    if (a.personality_lifestyle === b.personality_lifestyle) points += 10
-    else if (a.personality_lifestyle === 'flexible' || b.personality_lifestyle === 'flexible') points += 7
+        a.personality_role !== 'both' && b.personality_role !== 'both') points += 6
+    else if (a.personality_role === 'both' || b.personality_role === 'both') points += 4
     else points += 3
   }
 
-  // Attachment Style (Bowlby) — secure+secure ideal, anxious+avoidant klasicky destruktivní
+  // MBTI E/I — stejné lepší (10 b) — silnější dimenze (koreluje s Big5 Extraversion)
+  if (a.personality_social && b.personality_social) {
+    max += 10
+    if (a.personality_social === b.personality_social) points += 10
+    else if (a.personality_social === 'ambivert' || b.personality_social === 'ambivert') points += 7
+    else points += 3
+  }
+
+  // MBTI T/F — stejné lepší (6 b)
+  if (a.personality_decision && b.personality_decision) {
+    max += 6
+    if (a.personality_decision === b.personality_decision) points += 6
+    else if (a.personality_decision === 'balanced' || b.personality_decision === 'balanced') points += 4
+    else points += 2
+  }
+
+  // MBTI J/P — stejné lepší (6 b)
+  if (a.personality_lifestyle && b.personality_lifestyle) {
+    max += 6
+    if (a.personality_lifestyle === b.personality_lifestyle) points += 6
+    else if (a.personality_lifestyle === 'flexible' || b.personality_lifestyle === 'flexible') points += 4
+    else points += 2
+  }
+
+  // Attachment Style (Bowlby/Hazan-Shaver) — nejsilnější psych prediktor (32 b)
   if (a.attachment_style && b.attachment_style) {
-    max += 18
+    max += 32
     const pair = [a.attachment_style, b.attachment_style].sort().join('+')
     const attachScores: Record<string, number> = {
-      'secure+secure':       18,  // ideal
-      'anxious+secure':      15,  // secure pomáhá léčit
-      'avoidant+secure':     15,  // secure pomáhá léčit
-      'disorganized+secure': 12,  // secure stabilizuje
-      'anxious+anxious':      9,  // oba potřebují ujištění
-      'avoidant+avoidant':    7,  // oba potřebují prostor, málo blízkosti
-      'anxious+avoidant':     4,  // klasický 'chase-flee' cyklus
-      'anxious+disorganized': 5,
-      'avoidant+disorganized':5,
-      'disorganized+disorganized': 5,
+      'secure+secure':       32,  // ideal
+      'anxious+secure':      26,  // secure pomáhá léčit
+      'avoidant+secure':     26,  // secure pomáhá léčit
+      'disorganized+secure': 22,  // secure stabilizuje
+      'anxious+anxious':     16,  // oba potřebují ujištění
+      'avoidant+avoidant':   12,  // oba potřebují prostor, málo blízkosti
+      'anxious+avoidant':     6,  // klasický 'chase-flee' cyklus (Kirkpatrick & Davis 1994)
+      'anxious+disorganized': 8,
+      'avoidant+disorganized':8,
+      'disorganized+disorganized': 8,
     }
-    points += attachScores[pair] ?? 8
+    points += attachScores[pair] ?? 14
   }
 
-  // Love Languages — kombinace primary + secondary
+  // Love Languages — primary + secondary (6 b) — Bunt 2017 zpochybňuje 5-faktor
   if (a.love_language_primary && b.love_language_primary) {
-    max += 12
+    max += 6
     let llPoints = 0
-    // Primary match
-    if (a.love_language_primary === b.love_language_primary) llPoints += 7
+    if (a.love_language_primary === b.love_language_primary) llPoints += 4
     else if (a.love_language_secondary === b.love_language_primary ||
-             b.love_language_secondary === a.love_language_primary) llPoints += 5
-    else llPoints += 2
-    // Secondary match
+             b.love_language_secondary === a.love_language_primary) llPoints += 3
+    else llPoints += 1
     if (a.love_language_secondary && b.love_language_secondary) {
-      if (a.love_language_secondary === b.love_language_secondary) llPoints += 5
-      else llPoints += 2
+      if (a.love_language_secondary === b.love_language_secondary) llPoints += 2
+      else llPoints += 1
     }
-    points += Math.min(12, llPoints)
+    points += Math.min(6, llPoints)
   }
 
-  // Emotional Stability (Big Five Neuroticism inverse)
+  // Big5 Neuroticism / Emotional Stability (20 b) — Heller 2004 meta r=-0.26
   if (a.emotional_stability && b.emotional_stability) {
-    max += 5
-    if (a.emotional_stability === b.emotional_stability && a.emotional_stability === 'stable') points += 5
-    else if (a.emotional_stability === b.emotional_stability && a.emotional_stability === 'balanced') points += 4
-    else if (a.emotional_stability === b.emotional_stability && a.emotional_stability === 'reactive') points += 3 // bouřlivé ale upřímné
-    else if (a.emotional_stability === 'balanced' || b.emotional_stability === 'balanced') points += 4
-    else points += 2 // stable + reactive = pull
+    max += 20
+    if (a.emotional_stability === b.emotional_stability && a.emotional_stability === 'stable') points += 20
+    else if (a.emotional_stability === b.emotional_stability && a.emotional_stability === 'balanced') points += 16
+    else if (a.emotional_stability === b.emotional_stability && a.emotional_stability === 'reactive') points += 12 // bouřlivé ale upřímné
+    else if (a.emotional_stability === 'balanced' || b.emotional_stability === 'balanced') points += 14
+    else points += 8 // stable + reactive = pull
   }
 
-  // Chronobiology
+  // Chronobiology (8 b) — Sprajcer 2022 matched chronotype páry F(1,58)=19.57 p<.001
   if (a.personality_schedule && b.personality_schedule) {
-    max += 3
-    if (a.personality_schedule === b.personality_schedule) points += 3
-    else if (a.personality_schedule === 'flexible' || b.personality_schedule === 'flexible') points += 2
-    else points += 0
+    max += 8
+    if (a.personality_schedule === b.personality_schedule) points += 8
+    else if (a.personality_schedule === 'flexible' || b.personality_schedule === 'flexible') points += 5
+    else points += 1
   }
 
-  // Conflict style (TKI)
+  // Conflict style (TKI) — 6 b, test-retest 0.61-0.68 + vazba na Gottman Horsemen
   if (a.personality_conflict && b.personality_conflict) {
-    max += 2
-    if (a.personality_conflict === b.personality_conflict && a.personality_conflict !== 'avoid') points += 2
-    else if (a.personality_conflict === b.personality_conflict && a.personality_conflict === 'avoid') points += 1
-    else if (a.personality_conflict === 'avoid' || b.personality_conflict === 'avoid') points += 1
-    else points += 1
+    max += 6
+    if (a.personality_conflict === b.personality_conflict && a.personality_conflict !== 'avoid') points += 6
+    else if (a.personality_conflict === b.personality_conflict && a.personality_conflict === 'avoid') points += 2 // avoid+avoid problém
+    else if (a.personality_conflict === 'avoid' || b.personality_conflict === 'avoid') points += 3
+    else points += 4
   }
 
   if (max === 0) return 50
