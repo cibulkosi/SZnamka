@@ -254,7 +254,7 @@ export default function LandingPage() {
                 Cosmatch+ od 249 Kč/měs (597 Kč/3 měs · 2 088 Kč/rok, sleva 30 %). Předplatné lze kdykoli zrušit v profilu bez sankce.
               </p>
               <p className="text-xs text-gray-400 mt-2 max-w-md leading-relaxed">
-                Cosmatch používá numerologické a astrologické vzorce. Tyto nejsou vědecky validované jako prediktory vztahů — jde o interpretační nástroj, ne predikci. <a href="/jak-funguje-cosmatch" className="underline hover:text-gray-700">Detail</a>.
+                Cosmatch algoritmus kombinuje klasickou tradici kompatibility podle data narození s ověřenými psychologickými přístupy. Žádný z těchto nástrojů sám o sobě není vědecky validovaný jako prediktor vztahů — jde o interpretační nástroj, ne predikci. <a href="/jak-funguje-cosmatch" className="underline hover:text-gray-700">Detail</a>.
               </p>
             </div>
 

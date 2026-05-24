@@ -58,7 +58,7 @@ export default function JakFungujeCosmatchPage() {
             Simona Cibulková, zakladatelka Cosmatch
           </h2>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-            Před Cosmatch jsem strávila roky studiem vztahové dynamiky, numerologie a kompatibility podle data narození. Cosmatch staví na <Link href="/zdroje-numerologie" className="text-pink-500 underline">17 klíčových zdrojích</Link> pythagorovské numerologické tradice — od antiky po současné autory jako Hans Decoz, Glynis McCants, Helmuta Kritzingera nebo Michelle Buchanan, doplněné o českou linii Jitky Kadlecové.
+            Před Cosmatch jsem strávila roky studiem vztahové dynamiky, psychologie osobnosti a kompatibility podle data narození. Cosmatch staví na několika <Link href="/zdroje-numerologie" className="text-pink-500 underline">klíčových zdrojích</Link> — od moderní psychologie po astrologické rozbory datumů narození.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
             Cosmatch jsem vyvinula proto, že jsem byla nespokojená s aplikacemi, které okrádají o pozornost čas a ve výsledku lidem nedají důvod k setkání.
@@ -223,16 +223,16 @@ export default function JakFungujeCosmatchPage() {
         <section className="mb-16">
           <p className="eyebrow text-pink-500 mb-4">Čestnost</p>
           <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-6">
-            Numerologie není věda. A nevadí to.
+            Cosmatch není věda. A nevadí to.
           </h2>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-            Cosmatch používá numerologické a astrologické vzorce k odhadu strukturálního souznění mezi dvěma lidmi. <strong className="text-gray-900 font-medium">Numerologie a astrologie nejsou vědecky validované jako spolehlivé prediktory vztahových výsledků</strong> — bereme je jako <strong className="text-gray-900 font-medium">tradici sebepoznání a mapování osobnosti</strong> s kořeny v pythagorejské a chaldejské filozofii čísel, ne jako empirickou predikci.
+            Cosmatch algoritmus kombinuje klasickou tradici kompatibility podle data narození (numerologie a astrologie jsou její historickou součástí) s <strong className="text-gray-900 font-medium">ověřenými psychologickými přístupy</strong> (typologie Myers-Briggs, teorie citové vazby, jazyky lásky). <strong className="text-gray-900 font-medium">Žádný z těchto nástrojů sám o sobě není vědecky validovaný jako spolehlivý prediktor vztahových výsledků</strong> — bereme je jako tradici sebepoznání a mapování osobnosti, ne jako empirickou predikci.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-            Část pocitu „tohle sedí přesně!“ je dokumentovaný psychologický jev zvaný <strong className="text-gray-900 font-medium">Barnumův/Forerův efekt</strong>. V roce 1949 dal psycholog Bertram Forer 39 studentům identický popis osobnosti a oni ho ohodnotili průměrnou známkou <strong className="text-gray-900 font-medium">4,26 z 5,0</strong> jako „to jsem přesně já“. To samé může fungovat s numerologií a astrologií — popisy mohou být obecné natolik, že v nich každý najde kus sebe.
+            Část pocitu „tohle sedí přesně!“ je dokumentovaný psychologický jev zvaný <strong className="text-gray-900 font-medium">Barnumův/Forerův efekt</strong>. V roce 1949 dal psycholog Bertram Forer 39 studentům identický popis osobnosti a oni ho ohodnotili průměrnou známkou <strong className="text-gray-900 font-medium">4,26 z 5,0</strong> jako „to jsem přesně já“. To samé může fungovat s kteroukoli typologií osobnosti — popisy bývají obecné natolik, že v nich každý najde kus sebe.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-            <strong className="text-gray-900 font-medium">Proč to nevadí?</strong> Protože hodnota nástroje není v jeho prediktivní přesnosti — je v tom, k jakému rozhovoru Ti otevírá dveře. Numerologický archetyp je <strong className="text-gray-900 font-medium">zrcadlo</strong>, ne diagnóza. „Tohle jsem já?“ je první otázka. „Jak s tím naložím?“ je druhá. „Jak říkám partnerovi, co potřebuju?“ je třetí. Cosmatch Ti dává podněty k přemýšlení o vztahu a jeho aspektech a o tom, kde může být třeba na něm zapracovat.
+            <strong className="text-gray-900 font-medium">Proč to nevadí?</strong> Protože hodnota nástroje není v jeho prediktivní přesnosti — je v tom, k jakému rozhovoru Ti otevírá dveře. <strong className="text-gray-900 font-medium">Archetyp</strong> je zrcadlo, ne diagnóza. „Tohle jsem já?“ je první otázka. „Jak s tím naložím?“ je druhá. „Jak říkám partnerovi, co potřebuju?“ je třetí. Cosmatch Ti dává podněty k přemýšlení o vztahu a jeho aspektech a o tom, kde může být třeba na něm zapracovat.
           </p>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
             Cosmatch shoda je interpretační nástroj, ne predikce. Žádná aplikace nedokáže garantovat úspěch vztahu — záleží jen na vás, jak ho dokážete vybudovat.
