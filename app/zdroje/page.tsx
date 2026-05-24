@@ -284,31 +284,11 @@ export default function ZdrojePage() {
 
 
 
-        {/* Sekce 1 — Astrologie a fixní hvězdy (XV–XVII) */}
+
+
+        {/* Sekce 1 — Psychologie vztahů (6 knih) */}
         <section className="mb-16">
           <p className="eyebrow text-pink-500 mb-4">Část 1</p>
-          <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-8">
-            Astrologie a fixní hvězdy
-          </h2>
-          <div className="space-y-10">
-            {SOURCES.filter(s => ASTROLOGY_ROMANS.includes(s.roman)).map((src) => (
-              <div key={src.roman} className="grid grid-cols-[auto,1fr] gap-x-6 sm:gap-x-8">
-                <div className="roman text-2xl sm:text-3xl text-pink-500 leading-none pt-1 select-none">{src.roman}</div>
-                <div>
-                  <h3 className="serif text-xl text-gray-900 font-medium mb-1 leading-tight">{src.author}</h3>
-                  <p className="text-sm text-gray-500 italic mb-3 leading-relaxed">{src.work}</p>
-                  <p className="text-gray-700 leading-[1.7] text-[1.0625rem]">{src.role}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <hr className="rule mb-16" />
-
-        {/* Sekce 2 — Psychologie vztahů (6 knih) */}
-        <section className="mb-16">
-          <p className="eyebrow text-pink-500 mb-4">Část 2</p>
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-3">
             Psychologie vztahů
           </h2>
@@ -331,9 +311,9 @@ export default function ZdrojePage() {
 
         <hr className="rule mb-16" />
 
-        {/* Sekce 3 — Akademické zdroje (peer-reviewed) */}
+        {/* Sekce 2 — Akademické zdroje (peer-reviewed) */}
         <section className="mb-20">
-          <p className="eyebrow text-pink-500 mb-4">Část 3</p>
+          <p className="eyebrow text-pink-500 mb-4">Část 2</p>
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-3">
             Akademické zdroje (peer-reviewed)
           </h2>
@@ -356,14 +336,31 @@ export default function ZdrojePage() {
 
         <hr className="rule mb-20" />
 
-        {/* Sekce 4 (přesunuto) — Numerologická tradice (I–XIV) */}
+        {/* Sekce 3 — Numerologická tradice + Astrologie (spojeno) (I–XIV) */}
         <section className="mb-16">
-          <p className="eyebrow text-pink-500 mb-4">Část 4</p>
+          <p className="eyebrow text-pink-500 mb-4">Část 3</p>
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-8">
-            Numerologická tradice
+            Numerologická a astrologická tradice
           </h2>
           <div className="space-y-10">
             {SOURCES.filter(s => NUMEROLOGY_ROMANS.includes(s.roman)).map((src) => (
+              <div key={src.roman} className="grid grid-cols-[auto,1fr] gap-x-6 sm:gap-x-8">
+                <div className="roman text-2xl sm:text-3xl text-pink-500 leading-none pt-1 select-none">{src.roman}</div>
+                <div>
+                  <h3 className="serif text-xl text-gray-900 font-medium mb-1 leading-tight">{src.author}</h3>
+                  <p className="text-sm text-gray-500 italic mb-3 leading-relaxed">{src.work}</p>
+                  <p className="text-gray-700 leading-[1.7] text-[1.0625rem]">{src.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <h3 className="serif text-2xl text-gray-900 font-medium leading-tight mb-3 mt-12">Astrologie a fixní hvězdy</h3>
+          <p className="text-gray-700 leading-[1.75] text-[0.95rem] mb-6">
+            Vrstva I (30 %) syntetizuje také klasickou astrologickou tradici — zejména fixní hvězdy a jejich konjunkce se Sluncem v denním profilu:
+          </p>
+          <div className="space-y-10">
+            {SOURCES.filter(s => ASTROLOGY_ROMANS.includes(s.roman)).map((src) => (
               <div key={src.roman} className="grid grid-cols-[auto,1fr] gap-x-6 sm:gap-x-8">
                 <div className="roman text-2xl sm:text-3xl text-pink-500 leading-none pt-1 select-none">{src.roman}</div>
                 <div>
