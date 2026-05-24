@@ -138,7 +138,7 @@ const SOURCES = [
     roman: 'XVII',
     author: 'Walter Burkert',
     work: 'Lore and Science in Ancient Pythagoreanism (Harvard University Press, 1972)',
-    role: 'Skutečný Pythagoras a jeho škola byli číselní filozofové, tato moderní „pythagorejská numerologie" je rekonstrukce z 19.–20. století, primárně přes Theosofii a L. Dow Balliett.',
+    role: 'Skutečný Pythagoras a jeho škola byli filozofové s čísly, tato moderní „pythagorejská numerologie" je rekonstrukce z 19.–20. století, primárně přes Theosofii a L. Dow Balliett.',
   },
 ] as const
 
@@ -150,19 +150,19 @@ const PSYCHOLOGY_SOURCES = [
     roman: 'P1',
     author: 'John Gottman & Nan Silver',
     work: 'The Seven Principles for Making Marriage Work (Crown, 1999)',
-    role: 'Fundament Vrstvy II (Shared Meaning). Sound Relationship House framework, Four Horsemen (Criticism, Contempt, Defensiveness, Stonewalling), magic ratio 5:1 pozitivních k negativním interakcím v komunikaci stabilních párů.',
+    role: 'Fundament Vrstvy II — sdílený smysl ve vztahu. Gottmanův model „Sound Relationship House" (Dům zdravého vztahu), čtyři jezdci apokalypsy v komunikaci párů (kritika, pohrdání, obrana, mlčení) a tzv. magic ratio: stabilní páry mají pět pozitivních interakcí na jednu negativní.',
   },
   {
     roman: 'P2',
     author: 'Sue Johnson',
     work: 'Hold Me Tight (Little, Brown Spark, 2008)',
-    role: 'Emotionally Focused Therapy (EFT), význam emocionální bezpečnosti ve vztahu. Rozšiřuje Attachment teorii pro dospělé páry. Klinický doplněk Vrstvy III (Attachment).',
+    role: 'Terapie zaměřená na emoce (EFT — Emotionally Focused Therapy). Význam emocionální bezpečnosti ve vztahu. Rozšiřuje Bowlbyho teorii citové vazby pro dospělé páry. Klinický doplněk Vrstvy III (sub-model Attachment).',
   },
   {
     roman: 'P3',
     author: 'Gary Chapman',
     work: 'The 5 Love Languages (Northfield, 1992)',
-    role: 'Pět jazyků lásky — slova ujištění, skutky, dárky, společný čas, doteky. 20+ milionů prodaných kopií. Zdroj Vrstvy III sub-modelu Love Languages (Cosmatch dává menší interní váhu kvůli Bunt 2017 kritice).',
+    role: 'Pět jazyků lásky — slova ujištění, drobné skutky, dárky, společný čas a fyzický kontakt. Více než 20 milionů prodaných kopií. Zdroj Vrstvy III sub-modelu jazyků lásky (Cosmatch dává menší interní váhu kvůli Buntově kritice z roku 2017).',
   },
   {
     roman: 'P4',
@@ -194,43 +194,43 @@ const ACADEMIC_SOURCES = [
   {
     roman: 'A2',
     author: 'John Bowlby (1969)',
-    work: 'Attachment. Vol. 1 of Attachment and Loss (London: Hogarth Press)',
+    work: 'Citová vazba (originál „Attachment", díl 1 z trilogie „Attachment and Loss", Hogarth Press, Londýn)',
     role: 'Základní text teorie citové vazby, fundament Vrstvy III sub-modelu Attachment.',
   },
   {
     roman: 'A3',
     author: 'Kenneth W. Thomas & Ralph H. Kilmann (1974)',
-    work: 'Thomas-Kilmann Conflict Mode Instrument (Xicom, dnes Myers-Briggs Company)',
+    work: 'Thomas-Kilmann Conflict Mode Instrument — TKI, dotazník stylů řešení konfliktu (Xicom, dnes vlastní Myers-Briggs Company)',
     role: 'Model pěti konfliktních stylů (Competing / Collaborating / Compromising / Avoiding / Accommodating). Vrstva III sub-model konfliktního stylu.',
   },
   {
     roman: 'A4',
     author: 'Cindy Hazan & Phillip Shaver (1987)',
-    work: 'Romantic love conceptualized as an attachment process. Journal of Personality and Social Psychology, 52(3), 511–524',
+    work: 'Romantická láska jako proces citové vazby (originál „Romantic love conceptualized as an attachment process"), Journal of Personality and Social Psychology, 52(3), str. 511–524',
     role: 'Přenos Bowlbyho teorie z dětství do dospělých romantických vztahů. Definuje tři adultní attachment styly (secure / anxious / avoidant) a jejich kompatibilitu.',
   },
   {
     roman: 'A5',
     author: 'Paul T. Costa & Robert R. McCrae (1992)',
-    work: 'Revised NEO Personality Inventory (NEO-PI-R) (Psychological Assessment Resources)',
+    work: 'Revidovaný osobnostní inventář NEO-PI-R (originál „Revised NEO Personality Inventory", Psychological Assessment Resources)',
     role: 'Zlatý standard Velké pětky osobnostních rysů (OCEAN). Vrstva III sub-model Big5 Neuroticism vychází z této operacionalizace.',
   },
   {
     roman: 'A6',
     author: 'John M. Gottman & Robert W. Levenson (1992)',
-    work: 'Marital processes predictive of later dissolution. Journal of Personality and Social Psychology, 63(2), 221–233',
+    work: 'Manželské procesy předpovídající pozdější rozpad vztahu (originál „Marital processes predictive of later dissolution"), Journal of Personality and Social Psychology, 63(2), str. 221–233',
     role: 'Gottmanův longitudinální výzkum párů, Four Horsemen, fyziologická regulace v konfliktu. Empirický základ Vrstvy II.',
   },
   {
     roman: 'A7',
     author: 'Arthur Aron et al. (2000)',
-    work: 'Couples\' shared participation in novel and arousing activities and experienced relationship quality. Journal of Personality and Social Psychology, 78(2), 273–284',
+    work: 'Společné zapojení párů do nových a vzrušujících aktivit a jejich vliv na kvalitu vztahu (originál „Couples\' shared participation in novel and arousing activities and experienced relationship quality"), Journal of Personality and Social Psychology, 78(2), str. 273–284',
     role: 'Pět studií, n~250 párů. Klíčové zjištění pro Vrstvu VI: novelty + arousal > similarity (sdílené koníčky samy o sobě nejsou prediktor; společně dělat nové a stimulující věci je).',
   },
   {
     roman: 'A8',
     author: 'Till Roenneberg, Anna Wirz-Justice & Martha Merrow (2003)',
-    work: 'Life between clocks: daily temporal patterns of human chronotypes. Journal of Biological Rhythms, 18(1), 80–90',
+    work: 'Život mezi hodinami: denní vzorce lidských chronotypů (originál „Life between clocks: daily temporal patterns of human chronotypes"), Journal of Biological Rhythms, 18(1), str. 80–90',
     role: 'Munich Chronotype Questionnaire (MCTQ), psychometrický standard pro měření chronotypu. Vrstva III sub-model Chronobiology.',
   },
   {
@@ -242,19 +242,19 @@ const ACADEMIC_SOURCES = [
   {
     roman: 'A10',
     author: 'David J. Pittenger (2005)',
-    work: 'Cautionary comments regarding the Myers-Briggs Type Indicator. Consulting Psychology Journal, 57(3), 210–221',
+    work: 'Varovné poznámky k Myers-Briggsovu typologickému indikátoru (originál „Cautionary comments regarding the Myers-Briggs Type Indicator"), Consulting Psychology Journal, 57(3), str. 210–221',
     role: 'Kritika MBTI test-retest reliability (39–76 % uživatelů dostane jiný typ při re-testu během 5 týdnů). Důvod, proč Cosmatch interně dává MBTI nižší váhu než Attachment a Big5.',
   },
   {
     roman: 'A11',
     author: 'Stuart Bunt & Zoe J. Hazelwood (2017)',
-    work: 'Walking the walk, talking the talk: Love languages, self-regulation, and relationship satisfaction. Personal Relationships, 24(2), 280–290',
+    work: 'Skutky a slova: jazyky lásky, seberegulace a spokojenost ve vztahu (originál „Walking the walk, talking the talk: Love languages, self-regulation, and relationship satisfaction"), Personal Relationships, 24(2), str. 280–290',
     role: 'N=740, 5-faktorová struktura Chapmanových love languages psychometricky nefittuje. Důvod, proč Cosmatch dává Love Languages nižší interní váhu.',
   },
   {
     roman: 'A12',
     author: 'Samantha Joel, Paul W. Eastwick & Eli J. Finkel (2017)',
-    work: 'Is romantic desire predictable? Machine learning applied to initial romantic attraction. Psychological Science, 28(10), 1478–1489',
+    work: 'Lze předpovědět romantickou touhu? Strojové učení aplikované na počáteční romantickou přitažlivost (originál „Is romantic desire predictable? Machine learning applied to initial romantic attraction"), Psychological Science, 28(10), str. 1478–1489',
     role: 'Random forest na 100+ self-report metrikách u 350 účastníků speed-datingu. Variance explained pro relationship variance: −4,55 % až +1,30 %. Klíčový zdroj transparentnosti („Co Cosmatch nedělá").',
   },
 ] as const
@@ -282,31 +282,11 @@ export default function ZdrojePage() {
           </p>
         </header>
 
-        {/* Sekce 1 — Numerologická tradice (I–XIV) */}
+
+
+        {/* Sekce 1 — Astrologie a fixní hvězdy (XV–XVII) */}
         <section className="mb-16">
           <p className="eyebrow text-pink-500 mb-4">Část 1</p>
-          <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-8">
-            Numerologická tradice
-          </h2>
-          <div className="space-y-10">
-            {SOURCES.filter(s => NUMEROLOGY_ROMANS.includes(s.roman)).map((src) => (
-              <div key={src.roman} className="grid grid-cols-[auto,1fr] gap-x-6 sm:gap-x-8">
-                <div className="roman text-2xl sm:text-3xl text-pink-500 leading-none pt-1 select-none">{src.roman}</div>
-                <div>
-                  <h3 className="serif text-xl text-gray-900 font-medium mb-1 leading-tight">{src.author}</h3>
-                  <p className="text-sm text-gray-500 italic mb-3 leading-relaxed">{src.work}</p>
-                  <p className="text-gray-700 leading-[1.7] text-[1.0625rem]">{src.role}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <hr className="rule mb-16" />
-
-        {/* Sekce 2 — Astrologie a fixní hvězdy (XV–XVII) */}
-        <section className="mb-16">
-          <p className="eyebrow text-pink-500 mb-4">Část 2</p>
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-8">
             Astrologie a fixní hvězdy
           </h2>
@@ -326,9 +306,9 @@ export default function ZdrojePage() {
 
         <hr className="rule mb-16" />
 
-        {/* Sekce 3 — Psychologie vztahů (6 knih) */}
+        {/* Sekce 2 — Psychologie vztahů (6 knih) */}
         <section className="mb-16">
-          <p className="eyebrow text-pink-500 mb-4">Část 3</p>
+          <p className="eyebrow text-pink-500 mb-4">Část 2</p>
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-3">
             Psychologie vztahů
           </h2>
@@ -351,9 +331,9 @@ export default function ZdrojePage() {
 
         <hr className="rule mb-16" />
 
-        {/* Sekce 4 — Akademické zdroje (peer-reviewed) */}
+        {/* Sekce 3 — Akademické zdroje (peer-reviewed) */}
         <section className="mb-20">
-          <p className="eyebrow text-pink-500 mb-4">Část 4</p>
+          <p className="eyebrow text-pink-500 mb-4">Část 3</p>
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-3">
             Akademické zdroje (peer-reviewed)
           </h2>
@@ -376,24 +356,27 @@ export default function ZdrojePage() {
 
         <hr className="rule mb-20" />
 
-        {/* Co Cosmatch dělá se zdroji */}
-        <section className="mb-20">
-          <p className="eyebrow text-pink-500 mb-4">Co Cosmatch dělá s těmito zdroji</p>
+        {/* Sekce 4 (přesunuto) — Numerologická tradice (I–XIV) */}
+        <section className="mb-16">
+          <p className="eyebrow text-pink-500 mb-4">Část 4</p>
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-8">
-            Syntéza.
+            Numerologická tradice
           </h2>
-          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-5">
-            Cosmatch nepřepisuje žádnou z těchto knih. Texty archetypů, partnerské vztahy i metodologie jsou autorské texty Cosmatch, vycházejí ze studia těchto zdrojů, ale jsou napsané pro česky mluvícího uživatele 27–45 let.
-          </p>
-          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-5">
-            Pro výpočet životního čísla používáme <strong className="text-gray-900 font-medium">Decoz Three-Cycle Method</strong>, kdy redukujeme měsíc, den a rok narození zvlášť, přičemž zachováváme master čísla 11/22/33 v komponentech, pak sečteme a redukujeme finální výsledek. Master 33 se zachová jen pokud aspoň jedna komponenta byla také master (Decoz strict rule).
-          </p>
-          <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
-            Pro kompatibilitu kombinujeme více zdrojů tradičních knih — denní profily jsou inspirované Goldschneiderem a Elffersem a referenčními průvodci Crawfordovou a Sullivanovou, doplněné o tříúrovňový model kompatibility z anglo-americké literatury. Cosmatch rozřazuje lidi do pěti kategorií: <strong className="text-gray-900 font-medium">Spřízněné duše, Láska &amp; přátelství, Prospěšné, Osudové přitažlivosti, Náročné vztahy</strong>.
-          </p>
+          <div className="space-y-10">
+            {SOURCES.filter(s => NUMEROLOGY_ROMANS.includes(s.roman)).map((src) => (
+              <div key={src.roman} className="grid grid-cols-[auto,1fr] gap-x-6 sm:gap-x-8">
+                <div className="roman text-2xl sm:text-3xl text-pink-500 leading-none pt-1 select-none">{src.roman}</div>
+                <div>
+                  <h3 className="serif text-xl text-gray-900 font-medium mb-1 leading-tight">{src.author}</h3>
+                  <p className="text-sm text-gray-500 italic mb-3 leading-relaxed">{src.work}</p>
+                  <p className="text-gray-700 leading-[1.7] text-[1.0625rem]">{src.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </section>
 
-        <hr className="rule mb-20" />
+        <hr className="rule mb-16" />
 
         {/* Tři metodické školy */}
         <section className="mb-20">
@@ -441,6 +424,25 @@ export default function ZdrojePage() {
 
           <p className="text-sm text-gray-500 italic mt-8">
             Detailní postup výpočtu, srovnání všech metod a krok za krokem příklad najdeš na stránce <Link href="/numerologie/jak-pocitame" className="text-pink-500 underline">Jak se počítá životní číslo</Link>.
+          </p>
+        </section>
+
+        <hr className="rule mb-20" />
+
+        {/* Co Cosmatch dělá se zdroji */}
+        <section className="mb-20">
+          <p className="eyebrow text-pink-500 mb-4">Co Cosmatch dělá s těmito zdroji</p>
+          <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-8">
+            Syntéza.
+          </h2>
+          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-5">
+            Texty archetypů, partnerské vztahy i metodologie jsou autorské texty Cosmatch, vycházející ze studia těchto zdrojů, napsané pro česky mluvícího uživatele 27–45 let.
+          </p>
+          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-5">
+            Pro výpočet životního čísla používáme <strong className="text-gray-900 font-medium">Decoz Three-Cycle Method</strong>, kdy redukujeme měsíc, den a rok narození zvlášť, přičemž zachováváme master čísla 11/22/33 v komponentech, pak sečteme a redukujeme finální výsledek. Master 33 se zachová jen pokud aspoň jedna komponenta byla také master (Decoz strict rule).
+          </p>
+          <p className="text-gray-700 leading-[1.75] text-[1.0625rem]">
+            Pro kompatibilitu kombinujeme více zdrojů tradičních knih — denní profily jsou inspirované Goldschneiderem a Elffersem a referenčními průvodci Crawfordovou a Sullivanovou.
           </p>
         </section>
 
