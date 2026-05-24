@@ -254,7 +254,7 @@ export default function AstrologiePage() {
           <div className="grid grid-cols-[auto,1fr] gap-x-8 sm:gap-x-12">
             <div className="roman text-3xl sm:text-4xl text-pink-500 leading-none pt-2 select-none">III</div>
             <div>
-              <h2 className="serif text-2xl sm:text-3xl text-gray-900 font-medium mb-5 leading-tight">Stupeň a Sabian symboly</h2>
+              <h2 className="serif text-2xl sm:text-3xl text-gray-900 font-medium mb-5 leading-tight">Stupeň Slunce</h2>
               <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
                 Sluneční stupeň je <strong className="text-gray-900 font-medium">přesná poloha Slunce v rámci znamení</strong>: 0° až 29°. Slunce postupuje přibližně 0°59′ za den, takže každý den v roce má specifický stupeň. Dva lidé narození v sousedních dnech (např. 22. 7. a 23. 7.) mají sousední stupně — drobně odlišné profily.
               </p>
