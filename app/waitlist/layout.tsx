@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: URL, languages: { 'cs-CZ': URL, 'x-default': URL } },
   openGraph: { title: TITLE, description: DESC, url: URL, type: 'website', siteName: 'Cosmatch', locale: 'cs_CZ' },
   twitter: { card: 'summary_large_image', title: TITLE, description: DESC },
-  keywords: ['cosmatch waitlist', 'seznamka praha', 'numerologická seznamka', 'česká seznamka'],
+  keywords: ['cosmatch waitlist', 'seznamka praha', 'seznamka podle data narození', 'česká seznamka'],
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {

@@ -28,7 +28,7 @@ export default function LandingPage() {
       <section className="min-h-screen flex items-end pt-32 pb-20 px-6">
         <div className="max-w-6xl mx-auto w-full grid lg:grid-cols-[1.2fr_1fr] gap-16 items-end">
           <div>
-            <p className="eyebrow text-pink-500 mb-6">Numerologická seznamka</p>
+            <p className="eyebrow text-pink-500 mb-6">Seznamka podle data narození</p>
             <h1 className="serif-display text-[3.25rem] sm:text-7xl lg:text-[5.5rem] text-gray-900 font-medium leading-[0.98] tracking-tight mb-10">
               Najdi člověka,<br/>se kterým<br/><em className="italic text-pink-500">dává život smysl</em>.
             </h1>

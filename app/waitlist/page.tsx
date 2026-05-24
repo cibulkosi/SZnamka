@@ -137,7 +137,7 @@ export default function WaitlistPage() {
     const url = `${window.location.origin}/waitlist?ref=${referralCode || ''}`
     if (navigator.share) {
       navigator.share({
-        title: 'Cosmatch — Numerologická seznamka',
+        title: 'Cosmatch — Seznamka podle data narození',
         text: 'První česká seznamka, která Tě páruje podle data narození. Přidej se ke mně.',
         url,
       })

@@ -76,7 +76,7 @@ export default function JakFungujeCosmatchPage() {
 
           <div className="space-y-12">
             {[
-              ['I', 'Kompatibilita podle data narození', '35 %', 'Hlavní vrstva se odvíjí od toho, jak se k sobě hodí konkrétní den a měsíc dvou lidí. Datumy jsou syntetizovány do několika kategorií, mezi něž patří spřízněné duše, láska, přátelství, prospěšné vztahy, magnetické přitažlivosti nebo náročné vztahy. V této vrstvě je syntetizována astrologie, numerologie a fixní hvězdy.'],
+              ['I', 'Kompatibilita podle data narození', '35 %', 'Hlavní vrstva se odvíjí od toho, jak se k sobě hodí konkrétní den a měsíc dvou lidí. Cosmatch matching engine používá vlastní databázi 46 949 specifických kombinací dat narození, vyvinutou syntézou klasické západní tradice kompatibility — inspirovali jsme se více než 17 referenčními pracemi (Decoz, McCants, Goldschneider, Kadlecová a další; viz Zdroje). Datumy jsou syntetizovány do několika kategorií, mezi něž patří spřízněné duše, láska, přátelství, prospěšné vztahy, magnetické přitažlivosti nebo náročné vztahy.'],
               ['II', 'Životní hodnoty a vize', '20 %', 'Rodinné plány (typu chcete děti?), typ vztahu (vážný/casual/přátelství), náboženství nebo přístup k financím. Sdílené hodnoty udržují dlouhodobě vztah víc než vášeň prvních týdnů.'],
               ['III', 'Osobnost a týmovost', '15 %', 'Vizionář nebo realizátor? Introvert nebo extrovert? Skřivan nebo sova? Jak řešíš konflikty? V čem se doplňujete a v čem jste naopak rozdílní?'],
               ['IV', 'Intimní soulad', '10 %', 'Nesmí chybět ani velikost libida. Soulad v sexu v dlouhodobém vztahu je důležitý pro vyhnutí se tiché frustraci.'],

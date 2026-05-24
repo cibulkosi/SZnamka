@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-const TITLE = 'Program ambasadorek — Buď tváří numerologické seznamky | Cosmatch'
+const TITLE = 'Program ambasadorek — Buď tváří seznamky podle data narození | Cosmatch'
 const DESC = 'Hledáme 20 žen v Praze, Brně a Bratislavě, které věří, že správné spojení není algoritmus, ale data. Doživotní premium + odznak + privátní komunita.'
 const URL = 'https://cosmatch.cz/ambasadorky'
 

@@ -41,7 +41,7 @@ const OFFER_JSONLD = {
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: 'Cosmatch+',
-  description: 'Předplatné numerologické seznamky Cosmatch — neomezené lajky, hloubková analýza podle data narození, vidíš kdo Tě lajknul, prioritní zobrazení ve feedu.',
+  description: 'Předplatné Cosmatch+ — neomezené lajky, hloubková analýza podle data narození, vidíš kdo Tě lajknul, prioritní zobrazení ve feedu.',
   brand: { '@type': 'Brand', name: 'Cosmatch' },
   offers: [
     { '@type': 'Offer', name: 'Cosmatch+ měsíčně', price: '249', priceCurrency: 'CZK', availability: 'https://schema.org/InStock', url: URL, priceSpecification: { '@type': 'UnitPriceSpecification', billingDuration: 'P1M', price: '249', priceCurrency: 'CZK' } },
