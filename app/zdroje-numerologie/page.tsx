@@ -132,13 +132,13 @@ const SOURCES = [
     roman: 'XVI',
     author: 'Bernadette Brady',
     work: 'Brady\'s Book of Fixed Stars (Weiser, 1998)',
-    role: 'Současná autoritativní práce o fixních hvězdách. Definuje koncept čtyř Royal Stars (Aldebaran, Regulus, Antares, Fomalhaut) jako čtyř strážců s vlastními „testy" — model, který Cosmatch používá na stránce o astrologii.',
+    role: 'Současná autoritativní práce o fixních hvězdách. Definuje koncept čtyř Royal Stars (Aldebaran, Regulus, Antares, Fomalhaut) jako čtyř strážců, model, který Cosmatch používá.',
   },
   {
     roman: 'XVII',
     author: 'Walter Burkert',
     work: 'Lore and Science in Ancient Pythagoreanism (Harvard University Press, 1972)',
-    role: 'Akademická historická korekce. Skutečný historický Pythagoras a jeho škola byli číselní filozofové, nikoli numerologičtí věštci — moderní „pythagorejská numerologie" je rekonstrukce 19.–20. století, primárně přes Theosofii a L. Dow Balliett. Cosmatch tuto pravdu vědomě přiznává.',
+    role: 'Skutečný Pythagoras a jeho škola byli číselní filozofové, tato moderní „pythagorejská numerologie" je rekonstrukce z 19.–20. století, primárně přes Theosofii a L. Dow Balliett.',
   },
 ] as const
 
