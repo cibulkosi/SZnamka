@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
-const TITLE = 'Zdroje numerologie a astrologie — 17 knih a autorů, na kterých Cosmatch staví | Cosmatch'
-const DESC = 'Cosmatch čerpá ze 17 klíčových zdrojů moderní západní i české tradice — od Pythagora po současné autory (Goodwin, Decoz, McCants, Buchanan, Kadlecová, Davidová) a klasiků astrologie fixních hvězd (Robson, Brady). Knihy, autoři, metodologie.'
-const URL = 'https://cosmatch.cz/zdroje-numerologie'
+const TITLE = 'Zdroje — knihy, autoři a peer-reviewed publikace, na kterých Cosmatch staví | Cosmatch'
+const DESC = 'Cosmatch staví na 35 zdrojích ve čtyřech oblastech: numerologie (Goodwin, Decoz, McCants, Buchanan, Kadlecová), astrologie a fixní hvězdy (Robson, Brady, Burkert), psychologie vztahů (Gottman, Sue Johnson, Chapman, Perel, Nagoski) a peer-reviewed akademické publikace (Jung 1921 až Joel 2017).'
+const URL = 'https://cosmatch.cz/zdroje'
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -142,7 +142,124 @@ const SOURCES = [
   },
 ] as const
 
-export default function ZdrojeNumerologiePage() {
+const NUMEROLOGY_ROMANS = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV']
+const ASTROLOGY_ROMANS = ['XV','XVI','XVII']
+
+const PSYCHOLOGY_SOURCES = [
+  {
+    roman: 'P1',
+    author: 'John Gottman & Nan Silver',
+    work: 'The Seven Principles for Making Marriage Work (Crown, 1999)',
+    role: 'Fundament Vrstvy II (Shared Meaning). Sound Relationship House framework, Four Horsemen (Criticism, Contempt, Defensiveness, Stonewalling), magic ratio 5:1 pozitivních k negativním interakcím v komunikaci stabilních párů.',
+  },
+  {
+    roman: 'P2',
+    author: 'Sue Johnson',
+    work: 'Hold Me Tight (Little, Brown Spark, 2008)',
+    role: 'Emotionally Focused Therapy (EFT), význam emocionální bezpečnosti ve vztahu. Rozšiřuje Attachment teorii pro dospělé páry. Klinický doplněk Vrstvy III (Attachment).',
+  },
+  {
+    roman: 'P3',
+    author: 'Gary Chapman',
+    work: 'The 5 Love Languages (Northfield, 1992)',
+    role: 'Pět jazyků lásky — slova ujištění, skutky, dárky, společný čas, doteky. 20+ milionů prodaných kopií. Zdroj Vrstvy III sub-modelu Love Languages (Cosmatch dává menší interní váhu kvůli Bunt 2017 kritice).',
+  },
+  {
+    roman: 'P4',
+    author: 'Esther Perel',
+    work: 'Mating in Captivity (HarperCollins, 2006)',
+    role: 'Paradox bezpečí a vášně v dlouhodobém vztahu. „It\'s hard to want what you already have." Zdroj Vrstvy IV (Intimní soulad).',
+  },
+  {
+    roman: 'P5',
+    author: 'Emily Nagoski',
+    work: 'Come As You Are (Simon & Schuster, 2015)',
+    role: 'Dual control model libida (Sexual Excitation System vs. Sexual Inhibition System z Kinsey Institute). Druhý zdroj Vrstvy IV.',
+  },
+  {
+    roman: 'P6',
+    author: 'Helen Fisher',
+    work: 'Why We Love (Henry Holt, 2004)',
+    role: 'Biologie přitažlivosti a romantické lásky. Fisher byla chief scientific advisor Match.com, propojuje neurovědu s dating realitou.',
+  },
+] as const
+
+const ACADEMIC_SOURCES = [
+  {
+    roman: 'A1',
+    author: 'Carl Gustav Jung (1921)',
+    work: 'Psychologische Typen (Zürich: Rascher; anglicky Psychological Types, Routledge 1923)',
+    role: 'Fundament typologie, ze kterého Katharine Cook Briggs a Isabel Briggs Myers v roce 1944 vyvinuly MBTI. Cosmatch používá Jungovy dimenze (extraverze/introverze, intuice/smysly, myšlení/cítění) ve Vrstvě III.',
+  },
+  {
+    roman: 'A2',
+    author: 'John Bowlby (1969)',
+    work: 'Attachment. Vol. 1 of Attachment and Loss (London: Hogarth Press)',
+    role: 'Základní text teorie citové vazby, fundament Vrstvy III sub-modelu Attachment.',
+  },
+  {
+    roman: 'A3',
+    author: 'Kenneth W. Thomas & Ralph H. Kilmann (1974)',
+    work: 'Thomas-Kilmann Conflict Mode Instrument (Xicom, dnes Myers-Briggs Company)',
+    role: 'Model pěti konfliktních stylů (Competing / Collaborating / Compromising / Avoiding / Accommodating). Vrstva III sub-model konfliktního stylu.',
+  },
+  {
+    roman: 'A4',
+    author: 'Cindy Hazan & Phillip Shaver (1987)',
+    work: 'Romantic love conceptualized as an attachment process. Journal of Personality and Social Psychology, 52(3), 511–524',
+    role: 'Přenos Bowlbyho teorie z dětství do dospělých romantických vztahů. Definuje tři adultní attachment styly (secure / anxious / avoidant) a jejich kompatibilitu.',
+  },
+  {
+    roman: 'A5',
+    author: 'Paul T. Costa & Robert R. McCrae (1992)',
+    work: 'Revised NEO Personality Inventory (NEO-PI-R) (Psychological Assessment Resources)',
+    role: 'Zlatý standard Velké pětky osobnostních rysů (OCEAN). Vrstva III sub-model Big5 Neuroticism vychází z této operacionalizace.',
+  },
+  {
+    roman: 'A6',
+    author: 'John M. Gottman & Robert W. Levenson (1992)',
+    work: 'Marital processes predictive of later dissolution. Journal of Personality and Social Psychology, 63(2), 221–233',
+    role: 'Gottmanův longitudinální výzkum párů, Four Horsemen, fyziologická regulace v konfliktu. Empirický základ Vrstvy II.',
+  },
+  {
+    roman: 'A7',
+    author: 'Arthur Aron et al. (2000)',
+    work: 'Couples\' shared participation in novel and arousing activities and experienced relationship quality. Journal of Personality and Social Psychology, 78(2), 273–284',
+    role: 'Pět studií, n~250 párů. Klíčové zjištění pro Vrstvu VI: novelty + arousal > similarity (sdílené koníčky samy o sobě nejsou prediktor; společně dělat nové a stimulující věci je).',
+  },
+  {
+    roman: 'A8',
+    author: 'Till Roenneberg, Anna Wirz-Justice & Martha Merrow (2003)',
+    work: 'Life between clocks: daily temporal patterns of human chronotypes. Journal of Biological Rhythms, 18(1), 80–90',
+    role: 'Munich Chronotype Questionnaire (MCTQ), psychometrický standard pro měření chronotypu. Vrstva III sub-model Chronobiology.',
+  },
+  {
+    roman: 'A9',
+    author: 'Daniel Heller, David Watson & Remus Ilies (2004)',
+    work: 'Meta-analýza osobnosti a vztahové spokojenosti, Psychological Bulletin',
+    role: 'Všech pět dimenzí Velké pětky má signifikantní korelaci, Neuroticism je nejsilnější (r = −0,26). Empirický základ váhy Big5 Neuroticism ve Vrstvě III.',
+  },
+  {
+    roman: 'A10',
+    author: 'David J. Pittenger (2005)',
+    work: 'Cautionary comments regarding the Myers-Briggs Type Indicator. Consulting Psychology Journal, 57(3), 210–221',
+    role: 'Kritika MBTI test-retest reliability (39–76 % uživatelů dostane jiný typ při re-testu během 5 týdnů). Důvod, proč Cosmatch interně dává MBTI nižší váhu než Attachment a Big5.',
+  },
+  {
+    roman: 'A11',
+    author: 'Stuart Bunt & Zoe J. Hazelwood (2017)',
+    work: 'Walking the walk, talking the talk: Love languages, self-regulation, and relationship satisfaction. Personal Relationships, 24(2), 280–290',
+    role: 'N=740, 5-faktorová struktura Chapmanových love languages psychometricky nefittuje. Důvod, proč Cosmatch dává Love Languages nižší interní váhu.',
+  },
+  {
+    roman: 'A12',
+    author: 'Samantha Joel, Paul W. Eastwick & Eli J. Finkel (2017)',
+    work: 'Is romantic desire predictable? Machine learning applied to initial romantic attraction. Psychological Science, 28(10), 1478–1489',
+    role: 'Random forest na 100+ self-report metrikách u 350 účastníků speed-datingu. Variance explained pro relationship variance: −4,55 % až +1,30 %. Klíčový zdroj transparentnosti („Co Cosmatch nedělá").',
+  },
+] as const
+
+export default function ZdrojePage() {
   return (
     <main className="min-h-screen bg-[#FAF6F0]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
@@ -161,14 +278,90 @@ export default function ZdrojeNumerologiePage() {
           </h1>
           <hr className="rule w-12 border-gray-900 mb-8" />
           <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
-            V numerologii Cosmatch staví na 17 klíčových zdrojích moderní západní i české numerologické a astrologické tradice — od antiky po současné autory. Níže je seznam knih a autorů, ze kterých čerpá metodologie.
+            Cosmatch staví na třech vrstvách zdrojů: numerologická a astrologická tradice (od Pythagora po současné autory), psychologie vztahů (mainstream knihy posledních 30 let) a peer-reviewed akademické publikace (Jung 1921 až Joel 2017). Celkem 35 knih, autorů a recenzovaných studií.
           </p>
         </header>
 
-        {/* 17 zdrojů */}
-        <section className="mb-20">
+        {/* Sekce 1 — Numerologická tradice (I–XIV) */}
+        <section className="mb-16">
+          <p className="eyebrow text-pink-500 mb-4">Část 1</p>
+          <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-8">
+            Numerologická tradice
+          </h2>
           <div className="space-y-10">
-            {SOURCES.map((src) => (
+            {SOURCES.filter(s => NUMEROLOGY_ROMANS.includes(s.roman)).map((src) => (
+              <div key={src.roman} className="grid grid-cols-[auto,1fr] gap-x-6 sm:gap-x-8">
+                <div className="roman text-2xl sm:text-3xl text-pink-500 leading-none pt-1 select-none">{src.roman}</div>
+                <div>
+                  <h3 className="serif text-xl text-gray-900 font-medium mb-1 leading-tight">{src.author}</h3>
+                  <p className="text-sm text-gray-500 italic mb-3 leading-relaxed">{src.work}</p>
+                  <p className="text-gray-700 leading-[1.7] text-[1.0625rem]">{src.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <hr className="rule mb-16" />
+
+        {/* Sekce 2 — Astrologie a fixní hvězdy (XV–XVII) */}
+        <section className="mb-16">
+          <p className="eyebrow text-pink-500 mb-4">Část 2</p>
+          <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-8">
+            Astrologie a fixní hvězdy
+          </h2>
+          <div className="space-y-10">
+            {SOURCES.filter(s => ASTROLOGY_ROMANS.includes(s.roman)).map((src) => (
+              <div key={src.roman} className="grid grid-cols-[auto,1fr] gap-x-6 sm:gap-x-8">
+                <div className="roman text-2xl sm:text-3xl text-pink-500 leading-none pt-1 select-none">{src.roman}</div>
+                <div>
+                  <h3 className="serif text-xl text-gray-900 font-medium mb-1 leading-tight">{src.author}</h3>
+                  <p className="text-sm text-gray-500 italic mb-3 leading-relaxed">{src.work}</p>
+                  <p className="text-gray-700 leading-[1.7] text-[1.0625rem]">{src.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <hr className="rule mb-16" />
+
+        {/* Sekce 3 — Psychologie vztahů (6 knih) */}
+        <section className="mb-16">
+          <p className="eyebrow text-pink-500 mb-4">Část 3</p>
+          <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-3">
+            Psychologie vztahů
+          </h2>
+          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-8">
+            Vrstvy II–IV algoritmu (hodnoty, psychologický profil, intimní soulad) stojí na mainstreamových knihách klinické a vztahové psychologie posledních 30 let.
+          </p>
+          <div className="space-y-10">
+            {PSYCHOLOGY_SOURCES.map((src) => (
+              <div key={src.roman} className="grid grid-cols-[auto,1fr] gap-x-6 sm:gap-x-8">
+                <div className="roman text-2xl sm:text-3xl text-pink-500 leading-none pt-1 select-none">{src.roman}</div>
+                <div>
+                  <h3 className="serif text-xl text-gray-900 font-medium mb-1 leading-tight">{src.author}</h3>
+                  <p className="text-sm text-gray-500 italic mb-3 leading-relaxed">{src.work}</p>
+                  <p className="text-gray-700 leading-[1.7] text-[1.0625rem]">{src.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <hr className="rule mb-16" />
+
+        {/* Sekce 4 — Akademické zdroje (peer-reviewed) */}
+        <section className="mb-20">
+          <p className="eyebrow text-pink-500 mb-4">Část 4</p>
+          <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-3">
+            Akademické zdroje (peer-reviewed)
+          </h2>
+          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-8">
+            Psychologické vrstvy algoritmu stojí na recenzovaných studiích a klasických akademických textech. Chronologicky od Junga (1921) po současnost.
+          </p>
+          <div className="space-y-10">
+            {ACADEMIC_SOURCES.map((src) => (
               <div key={src.roman} className="grid grid-cols-[auto,1fr] gap-x-6 sm:gap-x-8">
                 <div className="roman text-2xl sm:text-3xl text-pink-500 leading-none pt-1 select-none">{src.roman}</div>
                 <div>
@@ -206,10 +399,10 @@ export default function ZdrojeNumerologiePage() {
         <section className="mb-20">
           <p className="eyebrow text-pink-500 mb-4">Tři metodické školy</p>
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-8">
-            Proč existuje 17 zdrojů.
+            Tři metodické školy numerologie.
           </h2>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
-            Numerologie není jednotný systém — pro stejné datum narození vám dají různé školy různá životní čísla. 17 autorů, ze kterých Cosmatch čerpá, se dělí do tří metodických rodin (numerologie) a samostatné větve astrologie fixních hvězd (plus jedna alternativní).
+            Numerologie není jednotný systém — pro stejné datum narození vám dají různé školy různá životní čísla. Autoři uvedení v sekci Numerologická tradice se dělí do tří metodických rodin (plus jedna alternativní).
           </p>
 
           <div className="space-y-5">

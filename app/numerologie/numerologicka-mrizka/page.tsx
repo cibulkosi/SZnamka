@@ -232,7 +232,7 @@ export default function CosmatchKarmickaMapaPage() {
               <h3 className="serif text-xl text-gray-900 font-medium mb-1 group-hover:text-pink-500 transition">Tabulka kompatibility 1-9 →</h3>
               <p className="text-gray-600 text-[0.95rem] leading-relaxed">Kdo se s kým hodí podle moderní pythagorejské tradice (Decoz).</p>
             </Link>
-            <Link href="/zdroje-numerologie" className="block bg-white border border-gray-200 hover:border-gray-900 rounded-2xl p-6 transition group">
+            <Link href="/zdroje" className="block bg-white border border-gray-200 hover:border-gray-900 rounded-2xl p-6 transition group">
               <p className="eyebrow text-gray-400 mb-2">Zdroje</p>
               <h3 className="serif text-xl text-gray-900 font-medium mb-1 group-hover:text-pink-500 transition">17 klíčových zdrojů →</h3>
               <p className="text-gray-600 text-[0.95rem] leading-relaxed">Autoři a knihy, z nichž Cosmatch čerpá metodologii.</p>

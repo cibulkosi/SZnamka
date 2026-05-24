@@ -93,11 +93,11 @@ export default function AstrologiePage() {
         <header className="mb-12">
           <p className="eyebrow text-pink-500 mb-6">Astrologie · 15 min čtení</p>
           <h1 className="serif-display text-5xl sm:text-6xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-6">
-            Astrologie,<br/><em className="italic text-pink-500">v Cosmatch</em>.
+            Symbolika<br/><em className="italic text-pink-500">data narození</em>.
           </h1>
           <hr className="rule w-12 border-gray-900 mb-8" />
           <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
-            Algoritmus Cosmatch vychází také ze syntézy astrologie, numerologie a fixních hvězd. Níže se dozvíte o astrologických komponentech, které jsou pro nás důležité.
+            Algoritmus Cosmatch vychází také ze syntézy astrologie, numerologie a fixních hvězd. Co o Tobě říká poloha Slunce, dekanát a fixní hvězdy v den narození? Níže najdeš pět komponent klasické západní tradice, které Cosmatch zohledňuje ve výpočtu kompatibility.
           </p>
           <p className="text-sm text-gray-500 mt-6">
             Autorka <span className="text-gray-900 italic serif">Simona Cibulková</span>
@@ -490,7 +490,7 @@ export default function AstrologiePage() {
               <h3 className="serif text-xl text-gray-900 font-medium mb-1 group-hover:text-pink-500 transition">Jak Cosmatch opravdu funguje →</h3>
               <p className="text-gray-600 text-[0.95rem] leading-relaxed">Sedm vrstev kompatibility — od astrologie po aktivitu profilu.</p>
             </Link>
-            <Link href="/zdroje-numerologie" className="block bg-white border border-gray-200 hover:border-gray-900 rounded-2xl p-6 transition group">
+            <Link href="/zdroje" className="block bg-white border border-gray-200 hover:border-gray-900 rounded-2xl p-6 transition group">
               <p className="eyebrow text-gray-400 mb-2">Zdroje</p>
               <h3 className="serif text-xl text-gray-900 font-medium mb-1 group-hover:text-pink-500 transition">17 klíčových zdrojů →</h3>
               <p className="text-gray-600 text-[0.95rem] leading-relaxed">Knihy a autoři, na kterých Cosmatch staví — od Pythagora po Hay House.</p>

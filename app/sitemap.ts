@@ -24,6 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/symbolika-data-narozeni/`, lastModified: now, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/kompatibilita-podle-data-narozeni/`, lastModified: lastMonth, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${BASE}/numerologie-vztahy/`, lastModified: lastMonth, changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${BASE}/zdroje/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     // ── Trust pages ──
     { url: `${BASE}/manifest-duvery/`, lastModified: lastMonth, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE}/verifikace/`, lastModified: lastMonth, changeFrequency: 'monthly', priority: 0.7 },

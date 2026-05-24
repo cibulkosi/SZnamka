@@ -146,7 +146,7 @@ export default async function ArchetypePage({ params }: Props) {
 
         {/* Disclaimer */}
         <section className="bg-white border border-gray-200 rounded-3xl p-6 mb-12">
-          <p className="text-xs text-gray-500 leading-relaxed">{BARNUM_DISCLOSURE} Viz <Link href="/zdroje-numerologie" className="text-pink-500 underline">zdroje</Link>.</p>
+          <p className="text-xs text-gray-500 leading-relaxed">{BARNUM_DISCLOSURE} Viz <Link href="/zdroje" className="text-pink-500 underline">zdroje</Link>.</p>
         </section>
 
         {/* CTA */}
