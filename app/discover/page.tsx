@@ -588,7 +588,7 @@ export default function DiscoverPage() {
  // Learning loop: ulož match_score snapshot do match_events
  // (trigger v DB už vytvořil match_events řádek s book_score, my doplníme match_score)
  if (matchRow?.id) {
-   const matchScore = scores[target.id]
+   const matchScore = enhancedScores[target.id]
    if (typeof matchScore === 'number') {
      try {
        await supabase.rpc('update_match_score', {
