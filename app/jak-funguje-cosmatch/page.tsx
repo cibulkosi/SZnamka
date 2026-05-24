@@ -481,6 +481,11 @@ export default function JakFungujeCosmatchPage() {
           <h2 className="serif-display text-3xl text-gray-900 font-medium leading-tight tracking-tight mb-8">
             Na čem Cosmatch stojí.
           </h2>
+
+          <h3 className="serif text-2xl text-gray-900 font-medium leading-tight mb-3">Kompatibilita podle data narození</h3>
+          <p className="text-gray-700 leading-[1.75] text-[0.95rem] mb-6">
+            Vrstva I (30 %) syntetizuje šest hlavních zdrojů klasické tradice kompatibility podle dne a měsíce narození:
+          </p>
           <ul className="space-y-4">
             <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
               <strong className="text-gray-900 font-medium">The Secret Language of Birthdays</strong> (Gary Goldschneider &amp; Joost Elffers, Penguin Studio, 1994) — pop-culture personology framework založený na pozorování 14 000 osob.
@@ -502,28 +507,73 @@ export default function JakFungujeCosmatchPage() {
             </li>
           </ul>
 
-          <h3 className="serif text-2xl text-gray-900 font-medium leading-tight mb-3 mt-12">Akademické zdroje (peer-reviewed)</h3>
+          <h3 className="serif text-2xl text-gray-900 font-medium leading-tight mb-3 mt-12">Psychologie vztahů</h3>
           <p className="text-gray-700 leading-[1.75] text-[0.95rem] mb-6">
-            Vrstvy II–VI algoritmu stojí na recenzovaných psychologických studiích. Klíčové publikace, na které se Cosmatch odkazuje:
+            Vrstvy II–IV (hodnoty, psychologický profil, intimní soulad) stojí na mainstreamových knihách klinické a vztahové psychologie posledních 30 let:
           </p>
           <ul className="space-y-4">
             <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
+              <strong className="text-gray-900 font-medium">The Seven Principles for Making Marriage Work</strong> (John Gottman &amp; Nan Silver, Crown, 1999) — Sound Relationship House, Four Horsemen, magic ratio 5:1. Fundament Vrstvy II (Shared Meaning).
+            </li>
+            <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
+              <strong className="text-gray-900 font-medium">Hold Me Tight</strong> (Sue Johnson, Little, Brown Spark, 2008) — Emotionally Focused Therapy (EFT), význam emocionální bezpečnosti ve vztahu. Rozšiřuje Attachment teorii pro páry.
+            </li>
+            <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
+              <strong className="text-gray-900 font-medium">The 5 Love Languages</strong> (Gary Chapman, Northfield, 1992) — pět jazyků lásky (slova ujištění, skutky, dárky, společný čas, doteky). 20+ milionů prodaných kopií. Zdroj Vrstvy III sub-modelu Love Languages.
+            </li>
+            <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
+              <strong className="text-gray-900 font-medium">Mating in Captivity</strong> (Esther Perel, HarperCollins, 2006) — paradox bezpečí a vášně v dlouhodobém vztahu. „It&apos;s hard to want what you already have." Zdroj Vrstvy IV (Intimní soulad).
+            </li>
+            <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
+              <strong className="text-gray-900 font-medium">Come As You Are</strong> (Emily Nagoski, Simon &amp; Schuster, 2015) — dual control model libida (Sexual Excitation System vs. Sexual Inhibition System z Kinsey Institute). Druhý zdroj Vrstvy IV.
+            </li>
+            <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
+              <strong className="text-gray-900 font-medium">Why We Love</strong> (Helen Fisher, Henry Holt, 2004) — biologie přitažlivosti a romantické lásky. Fisher byla chief scientific advisor Match.com, propojuje neurovědu s dating realitou.
+            </li>
+          </ul>
+
+          <h3 className="serif text-2xl text-gray-900 font-medium leading-tight mb-3 mt-12">Akademické zdroje (peer-reviewed)</h3>
+          <p className="text-gray-700 leading-[1.75] text-[0.95rem] mb-6">
+            Vrstvy II–VI algoritmu stojí na recenzovaných psychologických studiích a klasických akademických textech. Chronologicky od Junga (1921) po současnost:
+          </p>
+          <ul className="space-y-4">
+            <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
+              <strong className="text-gray-900 font-medium">Jung, C. G. (1921).</strong> <em>Psychologische Typen.</em> Zürich: Rascher (anglicky <em>Psychological Types,</em> Routledge, 1923) — fundament typologie, ze kterého Katharine Cook Briggs &amp; Isabel Briggs Myers v roce 1944 vyvinuly MBTI. Cosmatch používá Jungovy dimenze (extraverze/introverze, intuice/smysly, myšlení/cítění) ve Vrstvě III.
+            </li>
+            <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
               <strong className="text-gray-900 font-medium">Bowlby, J. (1969).</strong> <em>Attachment.</em> Vol. 1 of <em>Attachment and Loss.</em> London: Hogarth Press — základní text teorie citové vazby, fundament Vrstvy III sub-modelu Attachment.
+            </li>
+            <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
+              <strong className="text-gray-900 font-medium">Thomas, K. W. &amp; Kilmann, R. H. (1974).</strong> <em>Thomas-Kilmann Conflict Mode Instrument.</em> Xicom (dnes Myers-Briggs Company) — model pěti konfliktních stylů (Competing / Collaborating / Compromising / Avoiding / Accommodating). Vrstva III sub-model konfliktního stylu.
             </li>
             <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
               <strong className="text-gray-900 font-medium">Hazan, C. &amp; Shaver, P. (1987).</strong> Romantic love conceptualized as an attachment process. <em>Journal of Personality and Social Psychology,</em> 52(3), 511–524 — přenos Bowlbyho teorie z dětství do dospělých romantických vztahů. Definuje tři adultní attachment styly (secure / anxious / avoidant) a jejich kompatibilitu.
             </li>
             <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
-              <strong className="text-gray-900 font-medium">Heller, D., Watson, D. &amp; Ilies, R. (2004).</strong> Meta-analýza osobnosti a vztahové spokojenosti, <em>Psychological Bulletin</em> — všech pět dimenzí Velké pětky má signifikantní korelaci, <strong className="text-gray-900 font-medium">Neuroticism je nejsilnější (r = −0,26)</strong>. Empirický základ Vrstvy III sub-modelu Big5 Neuroticism.
+              <strong className="text-gray-900 font-medium">Costa, P. T. &amp; McCrae, R. R. (1992).</strong> <em>Revised NEO Personality Inventory (NEO-PI-R).</em> Psychological Assessment Resources — zlatý standard Velké pětky osobnostních rysů (OCEAN). Vrstva III sub-model Big5 Neuroticism vychází z této operacionalizace.
             </li>
             <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
-              <strong className="text-gray-900 font-medium">Aron, A., Norman, C. C., Aron, E. N., McKenna, C. &amp; Heyman, R. E. (2000).</strong> Couples&apos; shared participation in novel and arousing activities and experienced relationship quality. <em>Journal of Personality and Social Psychology,</em> 78(2), 273–284 — pět studií, n~250 párů. Klíčové zjištění pro Vrstvu VI: novelty + arousal &gt; similarity (sdílené koníčky samy o sobě nejsou prediktor; společně dělat nové a stimulující věci je).
+              <strong className="text-gray-900 font-medium">Gottman, J. M. &amp; Levenson, R. W. (1992).</strong> Marital processes predictive of later dissolution. <em>Journal of Personality and Social Psychology,</em> 63(2), 221–233 — Gottmanův longitudinální výzkum párů, Four Horsemen, fyziologická regulace v konfliktu. Empirický základ Vrstvy II.
+            </li>
+            <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
+              <strong className="text-gray-900 font-medium">Aron, A., Norman, C. C., Aron, E. N., McKenna, C. &amp; Heyman, R. E. (2000).</strong> Couples&apos; shared participation in novel and arousing activities and experienced relationship quality. <em>Journal of Personality and Social Psychology,</em> 78(2), 273–284 — pět studií, n~250 párů. Klíčové zjištění pro Vrstvu VI: novelty + arousal &gt; similarity.
+            </li>
+            <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
+              <strong className="text-gray-900 font-medium">Roenneberg, T., Wirz-Justice, A. &amp; Merrow, M. (2003).</strong> Life between clocks: daily temporal patterns of human chronotypes. <em>Journal of Biological Rhythms,</em> 18(1), 80–90 — Munich Chronotype Questionnaire (MCTQ), psychometrický standard pro měření chronotypu. Vrstva III sub-model Chronobiology.
+            </li>
+            <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
+              <strong className="text-gray-900 font-medium">Heller, D., Watson, D. &amp; Ilies, R. (2004).</strong> Meta-analýza osobnosti a vztahové spokojenosti, <em>Psychological Bulletin</em> — všech pět dimenzí Velké pětky má signifikantní korelaci, <strong className="text-gray-900 font-medium">Neuroticism je nejsilnější (r = −0,26)</strong>. Empirický základ váhy Big5 Neuroticism ve Vrstvě III.
+            </li>
+            <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
+              <strong className="text-gray-900 font-medium">Pittenger, D. J. (2005).</strong> Cautionary comments regarding the Myers-Briggs Type Indicator. <em>Consulting Psychology Journal,</em> 57(3), 210–221 — kritika MBTI test-retest reliability (39–76 % uživatelů dostane jiný typ při re-testu během 5 týdnů). Důvod, proč Cosmatch interně dává MBTI nižší váhu než Attachment a Big5.
+            </li>
+            <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
+              <strong className="text-gray-900 font-medium">Bunt, S. &amp; Hazelwood, Z. J. (2017).</strong> Walking the walk, talking the talk: Love languages, self-regulation, and relationship satisfaction. <em>Personal Relationships,</em> 24(2), 280–290 — n=740, 5-faktorová struktura Chapmanových love languages psychometricky nefittuje. Důvod, proč Cosmatch dává Love Languages nižší interní váhu.
+            </li>
+            <li className="text-gray-700 leading-relaxed text-[1.0625rem]">
+              <strong className="text-gray-900 font-medium">Joel, S., Eastwick, P. W. &amp; Finkel, E. J. (2017).</strong> Is romantic desire predictable? Machine learning applied to initial romantic attraction. <em>Psychological Science,</em> 28(10), 1478–1489 — random forest na 100+ self-report metrikách u 350 účastníků speed-datingu. Variance explained pro relationship variance: −4,55 % až +1,30 %. Klíčový zdroj transparentnosti („Co Cosmatch nedělá").
             </li>
           </ul>
-
-          <p className="text-gray-600 leading-[1.75] text-[0.9rem] mt-8 italic">
-            Plný akademický aparát (Gottman, Roenneberg, Costa &amp; McCrae, Thomas-Kilmann, Chapman, Perel, Nagoski, Joel-Eastwick-Finkel, Pittenger, Bunt) je v interní dokumentaci.
-          </p>
         </section>
 
         {/* CTA */}
