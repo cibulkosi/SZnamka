@@ -404,9 +404,7 @@ export default function TestPage() {
               </section>
             </div>
 
-            <hr className="rule my-12" />
-
-            <div className="bg-white rounded-3xl p-8 border border-gray-100">
+            <div className="bg-white rounded-3xl p-8 border border-gray-100 mt-10">
               <p className="eyebrow text-pink-500 mb-3">Co Tě čeká v aplikaci</p>
               <h3 className="serif-display text-3xl text-gray-900 font-medium leading-tight mb-3">
                 Tohle je jen úvod.
