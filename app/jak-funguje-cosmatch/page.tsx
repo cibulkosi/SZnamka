@@ -76,7 +76,7 @@ export default function JakFungujeCosmatchPage() {
 
           <div className="space-y-12">
             {[
-              ['I', 'Kompatibilita podle data narození', '30 %', 'Hlavní vrstva se odvíjí od toho, jak se k sobě hodí konkrétní den a měsíc dvou lidí. Cosmatch používá vlastní databázi 46 949 specifických kombinací dat narození, postavenou na syntéze klasické západní tradice kompatibility podle dne a měsíce narození. Tradice byla rozvíjena řadou autorů — od starověkých zakladatelů (Ptolemaios, Pythagoras) přes klasické astrology (Robson, Brady) až po moderní syntetiky (Decoz, McCants, Goldschneider, Kadlecová). Detail viz Zdroje. Datumy jsou rozděleny do pěti kategorií vztahů: spřízněné duše, láska a přátelství, prospěšný vztah, osudová přitažlivost a náročný vztah.'],
+              ['I', 'Kompatibilita podle data narození', '30 %', 'Hlavní vrstva. Databáze 46 949 párů den+měsíc, kde pro každou kombinaci je určena jedna z pěti kategorií vztahu: spřízněné duše, láska a přátelství, magnetická tenze, prospěšný vztah, náročný vztah. Databáze syntetizuje klasickou tradici (Crawford & Sullivan, Goldschneider, McCants, Decoz, Kadlecová), která pracuje s celou symbolikou data narození — sluneční znamení, dekanát, stupeň, fixní hvězda i numerologické životní číslo. Algoritmus tedy nepočítá komponenty zvlášť — jeden lookup do tabulky vrátí výslednou kategorii.'],
               ['II', 'Životní hodnoty a vize', '25 %', 'Pět sub-faktorů: rodinné plány (chcete děti?), typ vztahu (vážný / nezávazný / přátelství), náboženské či duchovní zaměření, přístup k financím (šetřivý / utrácivý / vyvážený) a celková životní vize. Sdílené hodnoty a životní cíle jsou podle čtyřicetiletého výzkumu psychologa Johna Gottmana <em>nejsilnějším prediktorem</em> dlouhodobého vztahu — silnějším než vášeň prvních týdnů.'],
               ['III', 'Psychologický profil', '20 %', 'Devět dimenzí osobnosti — žádná jiná česká seznamka nemá takovou hloubku. Kompletní typologie podle Myers-Briggs (MBTI; šestnáct typů z kombinací introvert/extrovert, vizionář/realizátor, logika/srdce, plánování/spontánnost), styl citové vazby (bezpečný, úzkostný nebo vyhýbavý — vychází z teorie attachmentu Johna Bowlbyho), pětice jazyků lásky (slova ujištění, skutky, dárky, společný čas, doteky — primární a sekundární podle modelu Garyho Chapmana), emoční stabilita (klidný versus reaktivní typ z modelu Velké pětky osobnostních rysů), chronobiologie (ranní ptáče nebo noční sova) a styl řešení konfliktů (podle modelu Thomas-Kilmann). Vidíš sebe i partnera hloubkově, ne jen na povrchu.'],
               ['IV', 'Intimní soulad', '10 %', 'Nesmí chybět ani velikost libida. Soulad v sexu v dlouhodobém vztahu je důležitý pro vyhnutí se tiché frustraci.'],
@@ -104,76 +104,60 @@ export default function JakFungujeCosmatchPage() {
 
         <hr className="rule mb-16" />
 
-        {/* Deep dive: birth_date_score */}
+        {/* Detail vrstvy I — Kompatibilita podle data narození */}
         <section className="mb-16">
           <p className="eyebrow text-gray-500 mb-4">Detail vrstvy I — 30 %</p>
           <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-6">
             Kompatibilita podle data narození.
           </h2>
           <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
-            Každý ze 366 dnů v roce má svou symboliku — sluneční znamení, dekanát, stupeň, fixní hvězdy a dominantní planetu. Klasická tradice kompatibility podle data narození pro každý den definuje, jaké další dny se k němu hodí, a to v pěti kategoriích vztahu:
+            Cosmatch má databázi <strong className="text-gray-900 font-medium">46 949 párů den+měsíc</strong>, kde je pro každou kombinaci určena jedna z pěti kategorií vztahu. Databáze syntetizuje klasickou tradici (Crawford &amp; Sullivan, Goldschneider, McCants, Decoz, Kadlecová), která pracuje s celou symbolikou data narození — sluneční znamení, dekanát, stupeň, fixní hvězda i numerologické životní číslo. Algoritmus tedy nepočítá komponenty zvlášť — jeden lookup do tabulky vrátí výslednou kategorii.
           </p>
-          <ul className="space-y-2 text-[0.95rem] text-gray-700 leading-relaxed mb-6">
-            <li><strong className="text-gray-900 font-medium">Spřízněné duše</strong> — nejhlubší karmické vazby, 100 bodů</li>
-            <li><strong className="text-gray-900 font-medium">Láska a přátelství</strong> — přirozená harmonie, 85 bodů</li>
-            <li><strong className="text-gray-900 font-medium">Prospěšný vztah</strong> — vzájemná podpora, mentoring, 70 bodů</li>
-            <li><strong className="text-gray-900 font-medium">Osudová přitažlivost</strong> — intenzivní magnetismus, 60 bodů</li>
-            <li><strong className="text-gray-900 font-medium">Náročný vztah</strong> — růst přes konflikt, 45 bodů</li>
-            <li><em className="italic">Žádná kategorie</em> — neutrální default, 50 bodů</li>
+
+          <h3 className="serif text-xl text-gray-900 font-medium mb-3 mt-10">Pět kategorií + jejich bodování</h3>
+          <ul className="space-y-3 text-[0.95rem] text-gray-700 leading-relaxed mb-8">
+            <li>
+              <strong className="text-gray-900 font-medium">Spřízněné duše — 100 b.</strong>
+              <span className="block text-gray-600 mt-0.5">Nejhlubší karmická vazba. Harmonická čísla i elementy, dlouhodobě udržitelný vztah s minimem tření.</span>
+            </li>
+            <li>
+              <strong className="text-gray-900 font-medium">Láska a přátelství — 95 b.</strong>
+              <span className="block text-gray-600 mt-0.5">Přirozená harmonie napříč elementy. Prakticky stejně silné jako Spřízněné duše, jen méně „osudové".</span>
+            </li>
+            <li>
+              <strong className="text-gray-900 font-medium">Magnetická tenze — 85 b.</strong>
+              <span className="block text-gray-600 mt-0.5">Karmický nebo destruktivní pár. Silná přitažlivost s ambivalentním nábojem — může vést k transformaci nebo vyhoření, záleží na zralosti obou.</span>
+            </li>
+            <li>
+              <strong className="text-gray-900 font-medium">Prospěšný vztah — 65 b.</strong>
+              <span className="block text-gray-600 mt-0.5">Mentor / praktická podpora. Méně romantická jiskra, ale jeden druhého funkčně doplňuje.</span>
+            </li>
+            <li>
+              <strong className="text-gray-900 font-medium">Náročný vztah — 45 b.</strong>
+              <span className="block text-gray-600 mt-0.5">Růst přes konflikt. Vyžaduje vědomou práci obou stran.</span>
+            </li>
+            <li>
+              <em className="italic">Žádná kategorie — 50 b.</em>
+              <span className="block text-gray-600 mt-0.5">Neutrální fallback, když pár v tabulce není.</span>
+            </li>
           </ul>
-          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-12">
-            Algoritmus vyhledá, jaký vztah má osoba A vzhledem k osobě B, a obráceně. Výsledek je průměr obou směrů. Když mají v sobě oba navzájem pozitivní kategorii, dostávají bonus 5 %.
+
+          <h3 className="serif text-xl text-gray-900 font-medium mb-3 mt-10">Jednostranná láska — obousměrný lookup</h3>
+          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
+            Databáze není symetrická. Pro 15. května může být 22. červenec <em className="italic">Spřízněná duše</em>, ale ten 22. červenec ve své vlastní sekci může mít 15. května jen jako <em className="italic">Prospěšný vztah</em> nebo dokonce <em className="italic">Náročný</em>. To je „jednostranná láska" v knižním smyslu.
           </p>
-
-          <hr className="rule mb-10" />
-
-          {/* Co jsou jednotlivé astrologické komponenty */}
-          <h3 className="serif text-2xl text-gray-900 font-medium leading-tight mb-3">Co znamenají ty jednotlivé komponenty.</h3>
-          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
-            Profil každého ze 366 dnů kombinuje pět vrstev numerologického a astrologického popisu. Vysvětlení každé z nich najdeš na <Link href="/kompatibilita-podle-data-narozeni" className="text-pink-500 underline">Numerologie</Link> a <Link href="/symbolika-data-narozeni" className="text-pink-500 underline">Astrologie</Link>.
+          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
+            Algoritmus to řeší takto:
           </p>
-
-          <div className="space-y-3">
-            <Link
-              href="/kompatibilita-podle-data-narozeni"
-              className="block bg-pink-50 border border-pink-200 hover:border-pink-500 rounded-2xl p-6 transition group"
-            >
-              <p className="eyebrow text-pink-500 mb-2">Pokračovat ve čtení · numerologie</p>
-              <h3 className="serif text-lg text-gray-900 font-medium group-hover:text-pink-500 transition">
-                Detail viz Kompatibilita podle data narození →
-              </h3>
-              <p className="text-gray-600 text-[0.95rem] leading-relaxed mt-1">
-                12 archetypů, jak se počítá životní číslo, tabulka shod.
-              </p>
-            </Link>
-
-            <Link
-              href="/numerologie-vztahy"
-              className="block bg-pink-50 border border-pink-200 hover:border-pink-500 rounded-2xl p-6 transition group"
-            >
-              <p className="eyebrow text-pink-500 mb-2">Pokračovat ve čtení · numerologie ve vztazích</p>
-              <h3 className="serif text-lg text-gray-900 font-medium group-hover:text-pink-500 transition">
-                Detail viz Numerologie ve vztazích →
-              </h3>
-              <p className="text-gray-600 text-[0.95rem] leading-relaxed mt-1">
-                Jak životní číslo ovlivňuje partnerský výběr, komunikaci a dlouhodobou kompatibilitu. Master čísla, karmická spojení, přirozená rezonance.
-              </p>
-            </Link>
-
-            <Link
-              href="/symbolika-data-narozeni"
-              className="block bg-pink-50 border border-pink-200 hover:border-pink-500 rounded-2xl p-6 transition group"
-            >
-              <p className="eyebrow text-pink-500 mb-2">Pokračovat ve čtení · symbolika data narození · 12 min</p>
-              <h3 className="serif text-lg text-gray-900 font-medium group-hover:text-pink-500 transition">
-                Detail viz Symbolika data narození →
-              </h3>
-              <p className="text-gray-600 text-[0.95rem] leading-relaxed mt-1">
-                Tabulky 12 znamení, 36 dekanátů, 4 Royal Stars, 10 dalších fixních hvězd, srovnání klasické vs. moderní vládce.
-              </p>
-            </Link>
-          </div>
-
+          <ul className="space-y-2 text-[0.95rem] text-gray-700 leading-relaxed mb-4 ml-4">
+            <li>1. Lookup co vidí osoba A v osobě B → skóre A→B</li>
+            <li>2. Lookup co vidí osoba B v osobě A → skóre B→A</li>
+            <li>3. Výsledné Crawford skóre = průměr obou směrů</li>
+            <li>4. Pokud oba vidí druhého pozitivně (skóre ≥ 70), pár získá <strong className="text-gray-900 font-medium">bonus +5 %</strong> za vzájemnou rezonanci</li>
+          </ul>
+          <p className="text-gray-700 leading-[1.75] text-[0.95rem] italic text-gray-600">
+            Příklad: Spřízněná duše × Prospěšný vztah = (100 + 65) / 2 = <strong className="not-italic text-gray-900 font-medium">82,5 b.</strong> Vysoké skóre, ale ne maximum — asymetrie ho stahuje. V profilu druhého člověka uvidíš obě perspektivy, abys věděl, kdo k tobě cítí silnější tah.
+          </p>
         </section>
 
         <hr className="rule mb-16" />
@@ -416,6 +400,60 @@ export default function JakFungujeCosmatchPage() {
           <p className="text-gray-700 leading-[1.75] text-[0.95rem] italic">
             Chemii Cosmatch nezahrnuje do skóre, ale dává jí prostor v profilu — přes fotky, hlasové zprávy a textové prompty, které posuzuješ sám/sama svým citem.
           </p>
+        </section>
+
+        <hr className="rule mb-16" />
+
+        {/* Chceš se ponořit hlouběji? — 3 link karty (přesunuté z Detailu vrstvy I) */}
+        <section className="mb-16">
+          <p className="eyebrow text-pink-500 mb-4">Pro hloubavé</p>
+          <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-3">
+            Chceš se ponořit hlouběji?
+          </h2>
+          <p className="text-gray-600 leading-relaxed mb-8 text-[1.0625rem]">
+            Pokud Tě baví, co stojí za Vrstvou I (kompatibilita podle data narození), tři podrobné průvodce:
+          </p>
+
+          <div className="space-y-3">
+            <Link
+              href="/kompatibilita-podle-data-narozeni"
+              className="block bg-white border border-gray-200 hover:border-pink-500 rounded-2xl p-6 transition group"
+            >
+              <p className="eyebrow text-pink-500 mb-2">Numerologie</p>
+              <h3 className="serif text-lg text-gray-900 font-medium group-hover:text-pink-500 transition mb-1">
+                Kompatibilita podle data narození →
+              </h3>
+              <p className="text-gray-600 text-[0.95rem] leading-relaxed">
+                12 archetypů, jak se počítá životní číslo, tabulka shod.
+              </p>
+            </Link>
+
+            <Link
+              href="/numerologie-vztahy"
+              className="block bg-white border border-gray-200 hover:border-pink-500 rounded-2xl p-6 transition group"
+            >
+              <p className="eyebrow text-pink-500 mb-2">Numerologie ve vztazích</p>
+              <h3 className="serif text-lg text-gray-900 font-medium group-hover:text-pink-500 transition mb-1">
+                Jak životní číslo ovlivňuje partnerství →
+              </h3>
+              <p className="text-gray-600 text-[0.95rem] leading-relaxed">
+                Partnerský výběr, komunikace, dlouhodobá kompatibilita. Master čísla, karmická spojení, přirozená rezonance.
+              </p>
+            </Link>
+
+            <Link
+              href="/symbolika-data-narozeni"
+              className="block bg-white border border-gray-200 hover:border-pink-500 rounded-2xl p-6 transition group"
+            >
+              <p className="eyebrow text-pink-500 mb-2">Symbolika data narození · 12 min čtení</p>
+              <h3 className="serif text-lg text-gray-900 font-medium group-hover:text-pink-500 transition mb-1">
+                Astrologické komponenty pod kapotou →
+              </h3>
+              <p className="text-gray-600 text-[0.95rem] leading-relaxed">
+                Tabulky 12 znamení, 36 dekanátů, 4 Royal Stars, 10 dalších fixních hvězd, srovnání klasické vs. moderní vládce.
+              </p>
+            </Link>
+          </div>
         </section>
 
         <hr className="rule mb-16" />
