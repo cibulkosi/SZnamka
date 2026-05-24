@@ -97,7 +97,7 @@ export default function AstrologiePage() {
           </h1>
           <hr className="rule w-12 border-gray-900 mb-8" />
           <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
-            Algoritmus Cosmatch vychází také ze syntézy astrologie, numerologie a fixních hvězd. Co o Tobě říká poloha Slunce, dekanát a fixní hvězdy v den narození? Níže najdeš pět komponent klasické západní tradice, které Cosmatch zohledňuje ve výpočtu kompatibility.
+            Algoritmus Cosmatch vychází také z astrologie. Co o Tobě říká poloha Slunce, dekanát a fixní hvězdy v den narození? Níže najdeš pět komponent klasické západní tradice, které Cosmatch zohledňuje ve výpočtu kompatibility.
           </p>
           <p className="text-sm text-gray-500 mt-6">
             Autorka <span className="text-gray-900 italic serif">Simona Cibulková</span>
