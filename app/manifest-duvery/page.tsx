@@ -221,8 +221,8 @@ export default function ManifestDuvery() {
           </p>
           <p className="text-xs text-gray-400 mt-8 leading-relaxed">
             Mgr. Ing. Simona Cibulková · IČO 08419531 · <Link href="/kontakt" className="text-pink-500 hover:underline">kontakt</Link><br />
-            Algoritmus se volně inspiruje numerologickou teorií Goldschneidera &amp; Elffers
-            a Kadlecové. Výsledky slouží jako podpora rozhodování, ne jako absolutní pravda.
+            Algoritmus Cosmatch se inspiruje klasickou tradicí kompatibility podle data narození.
+            Výsledky slouží jako podpora rozhodování, ne jako absolutní pravda.
           </p>
 
           <div className="mt-12">

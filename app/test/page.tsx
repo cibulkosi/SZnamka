@@ -413,13 +413,10 @@ export default function TestPage() {
               </h3>
               <p className="text-gray-600 leading-relaxed mb-4 text-[1.0625rem]">
                 Tvoje životní číslo je <strong className="text-gray-900 font-medium">numerologický základ</strong> —
-                kdo jsi v jádru. V Cosmatch aplikaci ale uvidíš svůj <strong className="text-gray-900 font-medium">kompletní profil podle dne narození</strong>
-                (jeden z 366 denních profilů podle Goldschneidera) a kompatibilitu s konkrétními lidmi, kteří hledají taky.
+                kdo jsi v jádru. V Cosmatch aplikaci ale uvidíš svůj <strong className="text-gray-900 font-medium">kompletní profil podle dne narození</strong> a kompatibilitu s konkrétními lidmi, kteří hledají taky.
               </p>
               <p className="text-gray-600 leading-relaxed mb-6 text-[1.0625rem]">
-                Algoritmus shody čerpá ze 4 vrstev: profily Goldschneidera, harmonie životních čísel,
-                elementární souznění a astrologické aspekty.
-                <a href="/jak-funguje-cosmatch" className="text-pink-500 hover:underline"> Detail výpočtu →</a>
+                <a href="/jak-funguje-cosmatch" className="text-pink-500 hover:underline">Detaily algoritmu kompatibility →</a>
               </p>
               <p className="text-sm text-gray-500 mb-6">
                 Prvních 1 000 dostane voucher na 3 měsíce Cosmatch+ zdarma.
