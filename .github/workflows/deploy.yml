@@ -9,12 +9,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: '22'  # LTS pro Node 24 deprecation runway
 
       - name: Install dependencies
         run: npm install
@@ -25,6 +25,9 @@ jobs:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
+      # TODO: upgrade cloudflare/wrangler-action@v3 → v4 (až Cloudflare vydá)
+      # Node 20 deprecation deadline: 16. 9. 2026 — pokud do té doby v4 nevyjde,
+      # přidat env FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true do job-level env
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
