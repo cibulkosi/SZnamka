@@ -88,9 +88,9 @@ export const PROFILE_QUESTIONS: Question[] = [
     text: 'Jaký máš životní styl?',
     subtext: 'Plánovaný, spontánní nebo flexibilní?',
     options: [
-      { value: 'planned',     label: 'Plánovaně, se strukturou', emoji: '📋' },
-      { value: 'spontaneous', label: 'Spontánně, otevřeno',      emoji: '🎲' },
-      { value: 'flexible',    label: 'Podle situace',            emoji: '🌀' },
+      { value: 'planned',     label: 'Mám rád/a věci naplánované', emoji: '📋' },
+      { value: 'spontaneous', label: 'Rozhoduji se spontánně',     emoji: '🎲' },
+      { value: 'flexible',    label: 'Podle situace',              emoji: '🌀' },
     ],
   },
   {

@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 const TITLE = 'Jak funguje Cosmatch — Algoritmus, zdroje, metodologie | Cosmatch'
-const DESC = 'Cosmatch počítá shodu transparentně — 35 % kompatibilita podle data narození (vychází ze 17 zdrojů numerologie, astrologie a české tradice), 20 % životní hodnoty, 15 % osobnost, 10 % intimní soulad, 10 % životní styl, 5 % zájmy, 5 % aktivita. Bez magie, bez skrytých vzorců.'
+const DESC = 'Cosmatch počítá shodu transparentně — 30 % kompatibilita podle data narození, 15 % životní hodnoty, 30 % psychologický profil (MBTI + Attachment + Love Languages + emoční stabilita), 10 % intimní soulad, 5 % životní styl, 5 % zájmy, 5 % aktivita. Bez magie, bez skrytých vzorců.'
 const URL = 'https://cosmatch.cz/jak-funguje-cosmatch'
 
 export const metadata: Metadata = {
@@ -76,11 +76,11 @@ export default function JakFungujeCosmatchPage() {
 
           <div className="space-y-12">
             {[
-              ['I', 'Kompatibilita podle data narození', '35 %', 'Hlavní vrstva se odvíjí od toho, jak se k sobě hodí konkrétní den a měsíc dvou lidí. Cosmatch matching engine používá vlastní databázi 46 949 specifických kombinací dat narození, vyvinutou syntézou klasické západní tradice kompatibility — inspirovali jsme se více než 17 referenčními pracemi (Decoz, McCants, Goldschneider, Kadlecová a další; viz Zdroje). Datumy jsou syntetizovány do několika kategorií, mezi něž patří spřízněné duše, láska, přátelství, prospěšné vztahy, magnetické přitažlivosti nebo náročné vztahy.'],
-              ['II', 'Životní hodnoty a vize', '20 %', 'Rodinné plány (typu chcete děti?), typ vztahu (vážný/casual/přátelství), náboženství nebo přístup k financím. Sdílené hodnoty udržují dlouhodobě vztah víc než vášeň prvních týdnů.'],
-              ['III', 'Osobnost a týmovost', '15 %', 'Vizionář nebo realizátor? Introvert nebo extrovert? Skřivan nebo sova? Jak řešíš konflikty? Čtyři osobnostní dimenze inspirované Jungiánskou tradicí (MBTI příbuzné). V čem se doplňujete a v čem jste naopak rozdílní?'],
+              ['I', 'Kompatibilita podle data narození', '30 %', 'Hlavní vrstva se odvíjí od toho, jak se k sobě hodí konkrétní den a měsíc dvou lidí. Cosmatch matching engine používá vlastní databázi 46 949 specifických kombinací dat narození, vyvinutou syntézou klasické západní tradice kompatibility — inspirovali jsme se více než 17 referenčními pracemi (Decoz, McCants, Goldschneider, Kadlecová a další; viz Zdroje). Datumy jsou syntetizovány do několika kategorií, mezi něž patří spřízněné duše, láska, přátelství, prospěšné vztahy, magnetické přitažlivosti nebo náročné vztahy.'],
+              ['II', 'Životní hodnoty a vize', '15 %', 'Rodinné plány (typu chcete děti?), typ vztahu (vážný/casual/přátelství), náboženství nebo přístup k financím. Sdílené hodnoty udržují dlouhodobě vztah víc než vášeň prvních týdnů.'],
+              ['III', 'Psychologický profil', '30 %', '9 sub-faktorů, žádná jiná česká seznamka takovou hloubku nemá: kompletní MBTI 4 dimenze (E/I + N/S + T/F + J/P → 16 typů), Bowlbyho attachment style (secure/anxious/avoidant), Chapmanových 5 jazyků lásky (primární + sekundární), Big Five neuroticismus (emoční stabilita), chronobiologie (skřivan/sova) a Thomas-Kilmann konfliktní styl. Vidíš sebe i partnera hloubkově, ne jen na povrchu.'],
               ['IV', 'Intimní soulad', '10 %', 'Nesmí chybět ani velikost libida. Soulad v sexu v dlouhodobém vztahu je důležitý pro vyhnutí se tiché frustraci.'],
-              ['V', 'Životní styl a návyky', '10 %', 'Kouření, alkohol, strava nebo pohyb každodenní soužití také ovlivňují. Ve filtrech si můžeš zvolit např. kouření jako tvrdý deal-breaker, a poté se Ti kuřáci neukáží.'],
+              ['V', 'Životní styl a návyky', '5 %', 'Kouření, marihuana, alkohol, strava nebo pohyb každodenní soužití také ovlivňují. Ve filtrech si můžeš zvolit např. kouření jako tvrdý deal-breaker, a poté se Ti kuřáci neukáží — to dělá hlavní práci za škálu.'],
               ['VI', 'Společné zájmy', '5 %', 'Procentní překryv tagů (záliby je možné vybírat z 45 možností). Mohou sloužit jako společná řeč pro první rande, ale ne jako hlavní faktor dlouhodobé kompatibility.'],
               ['VII', 'Aktivita', '5 %', 'Být online v posledních 24 h přináší členům 100 bodů, v posledním týdnu 75 b., za poslední měsíc 50 b., déle než jeden měsíc 30 b. Sebelepší shoda totiž nepovede nikam, pokud druhý člověk aplikaci vůbec nepoužívá.'],
             ].map(([num, title, weight, body]) => (

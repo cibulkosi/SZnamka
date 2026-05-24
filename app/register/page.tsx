@@ -92,6 +92,11 @@ export default function RegisterPage() {
     hobbies: [] as string[],
     prompt_q: HINGE_PROMPTS[0], prompt_a: '',
     voucher_code: '',
+    // MBTI 4 dimenze (volitelné — uživatel může i přeskočit a vyplnit později přes ProfileQuestion karty)
+    personality_social: '',     // E/I: introvert | extrovert | ambivert
+    personality_role: '',       // N/S: visionary | executor | both
+    personality_decision: '',   // T/F: logic | heart | balanced
+    personality_lifestyle: '',  // J/P: planned | spontaneous | flexible
   })
 
   const birthday = form.month && form.day
@@ -285,6 +290,11 @@ export default function RegisterPage() {
         latitude: form.latitude ?? null, longitude: form.longitude ?? null,
         last_seen: new Date().toISOString(),
         prompt_q: form.prompt_q || null, prompt_a: form.prompt_a || null,
+        // MBTI 4 dimenze (z onboardingu Step 4)
+        personality_social: form.personality_social || null,
+        personality_role: form.personality_role || null,
+        personality_decision: form.personality_decision || null,
+        personality_lifestyle: form.personality_lifestyle || null,
         password_hash: passwordHash, premium: false, active: true,
       }])
       if (dbErr) throw dbErr
@@ -596,6 +606,50 @@ export default function RegisterPage() {
                       }`}
                     >{h}</button>
                   ))}
+                </div>
+              </div>
+
+              {/* MBTI mini-quiz — 4 osobnostní dimenze (volitelné) */}
+              <div className="border border-gray-200 rounded-2xl p-5 bg-white space-y-5">
+                <div>
+                  <p className="eyebrow text-pink-500 mb-1">Rychlý psychologický kvíz <span className="normal-case tracking-normal text-gray-400 ml-1">volitelné · MBTI 4 dimenze</span></p>
+                  <p className="text-xs text-gray-500 leading-relaxed">Čtyři otázky → spočítáme Tvůj MBTI typ (INFJ, ENTP atd.). Pokud přeskočíš, vyplníš později.</p>
+                </div>
+
+                <div>
+                  <Eyebrow>Jak si dobíjíš energii?</Eyebrow>
+                  <div className="flex flex-wrap gap-2">
+                    {[['introvert','Sám/sama v klidu'],['extrovert','Mezi lidmi'],['ambivert','Záleží']].map(([v,l]) => (
+                      <Pill key={v} active={form.personality_social === v} onClick={() => set('personality_social', v)}>{l}</Pill>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <Eyebrow>Jaký jsi v týmu?</Eyebrow>
+                  <div className="flex flex-wrap gap-2">
+                    {[['visionary','Vizionář — mám nápady'],['executor','Realizátor — dotáhnu věci'],['both','Obojí']].map(([v,l]) => (
+                      <Pill key={v} active={form.personality_role === v} onClick={() => set('personality_role', v)}>{l}</Pill>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <Eyebrow>Jak se rozhoduješ?</Eyebrow>
+                  <div className="flex flex-wrap gap-2">
+                    {[['logic','Logikou, hlavou'],['heart','Srdcem, intuicí'],['balanced','Vyvážením obou']].map(([v,l]) => (
+                      <Pill key={v} active={form.personality_decision === v} onClick={() => set('personality_decision', v)}>{l}</Pill>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <Eyebrow>Jaký máš životní styl?</Eyebrow>
+                  <div className="flex flex-wrap gap-2">
+                    {[['planned','Mám rád/a věci naplánované'],['spontaneous','Rozhoduji se spontánně'],['flexible','Podle situace']].map(([v,l]) => (
+                      <Pill key={v} active={form.personality_lifestyle === v} onClick={() => set('personality_lifestyle', v)}>{l}</Pill>
+                    ))}
+                  </div>
                 </div>
               </div>
 

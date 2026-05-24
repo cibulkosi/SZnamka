@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { BODY_TYPES } from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { computeMBTITolerant, MBTI_TYPES_CZ } from '@/lib/mbti'
 import { supabase, loadCurrentProfile, signOutCompletely, type Profile, getZodiac } from '@/lib/supabase'
 import { TrialBanner } from '@/components/PremiumGate'
 import FoundingBadge from '@/components/FoundingBadge'
@@ -166,6 +167,33 @@ export default function ProfilePage() {
         )}
 
         {personologyText && <hr className="rule mb-12" />}
+
+        {/* MBTI typ */}
+        {(() => {
+          const mbti = computeMBTITolerant(user)
+          if (!mbti) return null
+          const info = MBTI_TYPES_CZ[mbti]
+          return (
+            <>
+              <section className="mb-12">
+                <p className="eyebrow text-pink-500 mb-3">Tvůj MBTI typ</p>
+                <div className="flex items-baseline gap-3">
+                  <span className="serif-display text-4xl text-gray-900 font-medium tabular-nums">{mbti}</span>
+                  {info && (
+                    <span className="serif text-xl text-gray-700 italic">{info.name}</span>
+                  )}
+                </div>
+                {info && (
+                  <p className="text-gray-600 text-[0.95rem] mt-2 leading-relaxed">{info.tagline}</p>
+                )}
+                <p className="text-xs text-gray-400 mt-3">
+                  Vypočteno ze 4 osobnostních dimenzí (E/I + N/S + T/F + J/P) podle Myers-Briggs Type Indicator.
+                </p>
+              </section>
+              <hr className="rule mb-12" />
+            </>
+          )
+        })()}
 
         {/* Bio */}
         {user.bio && (
