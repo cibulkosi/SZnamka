@@ -167,6 +167,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Cosmatch" />
         <meta name="mobile-web-app-capable" content="yes" />
+        {/* Search engine verifications */}
+        <meta name="seznam-wmt" content="36swRGwLCcXGBmeVZ8oKjwsnfNc0Wqu1" />
       </head>
       <body className={inter.className}>{children}<CookieBanner /></body>
     </html>
