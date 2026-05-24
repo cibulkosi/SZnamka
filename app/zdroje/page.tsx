@@ -378,53 +378,17 @@ export default function ZdrojePage() {
 
         <hr className="rule mb-16" />
 
-        {/* Tři metodické školy */}
+        {/* Tři metodické školy — přesunuto na /numerologie/jak-pocitame */}
         <section className="mb-20">
-          <p className="eyebrow text-pink-500 mb-4">Tři metodické školy</p>
-          <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-8">
-            Tři metodické školy numerologie.
-          </h2>
-          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
-            Numerologie není jednotný systém — pro stejné datum narození vám dají různé školy různá životní čísla. Autoři uvedení v sekci Numerologická tradice se dělí do tří metodických rodin (plus jedna alternativní).
-          </p>
-
-          <div className="space-y-5">
-            <div className="bg-white border border-gray-200 rounded-2xl p-6">
-              <p className="eyebrow text-gray-500 mb-2">Škola A — Chaldejská</p>
-              <h3 className="serif text-lg text-gray-900 font-medium mb-2">Cheiro (1926)</h3>
-              <p className="text-gray-700 text-[0.95rem] leading-relaxed">
-                Používá pouze den narození („birth number") + jméno podle Chaldean abecedy 1–8. Nejsou tu žádná master čísla.
-              </p>
-            </div>
-
-            <div className="bg-white border border-gray-200 rounded-2xl p-6">
-              <p className="eyebrow text-gray-500 mb-2">Škola B — Pythagorejská single-sum</p>
-              <h3 className="serif text-lg text-gray-900 font-medium mb-2">Phillips, Crawford &amp; Sullivan, většina českých příruček</h3>
-              <p className="text-gray-700 text-[0.95rem] leading-relaxed">
-                Sečte všech 8 číslic data najednou, výsledek redukuje. Master čísla zachovává nebo redukuje podle autora.
-              </p>
-            </div>
-
-            <div className="bg-pink-50 border border-pink-200 rounded-2xl p-6">
-              <p className="eyebrow text-pink-500 mb-2">Škola C — Pythagorejská three-cycle · <span className="text-gray-900 font-medium not-italic">Cosmatch</span></p>
-              <h3 className="serif text-lg text-gray-900 font-medium mb-2">Balliett (1908) → Campbell → Jordan → Goodwin → Decoz → McCants → Buchanan</h3>
-              <p className="text-gray-700 text-[0.95rem] leading-relaxed">
-                Redukuje měsíc, den a rok zvlášť, master čísla 11/22/33 zachovává v mezikroku. Jediná metoda, která umí rozlišit „skutečné" master číslo od náhodného součtu. <strong className="text-gray-900 font-medium">Moderní standard západní numerologie</strong>.
-              </p>
-            </div>
-
-            <div className="bg-white border border-gray-200 rounded-2xl p-6">
-              <p className="eyebrow text-gray-500 mb-2">Škola D — Dvou-cifrový kód</p>
-              <h3 className="serif text-lg text-gray-900 font-medium mb-2">Dan Millman (1993)</h3>
-              <p className="text-gray-700 text-[0.95rem] leading-relaxed">
-                Radikální zlom bez redukce. Popisuje 45 dvojčíslí (např. 33/6, 25/7). Cosmatch tuto metodu neimplementuje, ale Millmana cituje jako důležitý alternativní pohled.
-              </p>
-            </div>
-          </div>
-
-          <p className="text-sm text-gray-500 italic mt-8">
-            Detailní postup výpočtu, srovnání všech metod a krok za krokem příklad najdeš na stránce <Link href="/numerologie/jak-pocitame" className="text-pink-500 underline">Jak se počítá životní číslo</Link>.
-          </p>
+          <Link href="/numerologie/jak-pocitame#metodicke-skoly" className="block bg-white border border-gray-200 hover:border-pink-500 rounded-2xl p-6 transition group">
+            <p className="eyebrow text-pink-500 mb-2">Tři metodické školy numerologie</p>
+            <h3 className="serif text-lg text-gray-900 font-medium group-hover:text-pink-500 transition mb-1">
+              Detailní rozbor metodik výpočtu životního čísla →
+            </h3>
+            <p className="text-gray-600 text-[0.95rem] leading-relaxed">
+              Chaldejská (Cheiro), Pythagorejská single-sum (Phillips, Crawford &amp; Sullivan, většina českých příruček), Pythagorejská three-cycle (Decoz — používá Cosmatch), Millmanův dvou-cifrový kód.
+            </p>
+          </Link>
         </section>
 
         <hr className="rule mb-20" />

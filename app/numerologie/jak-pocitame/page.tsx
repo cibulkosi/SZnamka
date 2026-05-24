@@ -434,6 +434,51 @@ export default function JakPocitamePage() {
           </div>
         </section>
 
+                {/* Tři metodické školy numerologie — přesunuté z /zdroje */}
+        <section id="metodicke-skoly" className="mb-16 scroll-mt-8">
+          <p className="eyebrow text-pink-500 mb-4">Tři metodické školy</p>
+          <h2 className="serif-display text-3xl sm:text-4xl text-gray-900 font-medium leading-tight tracking-tight mb-8">
+            Tři metodické školy numerologie.
+          </h2>
+          <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-6">
+            Numerologie není jednotný systém — pro stejné datum narození vám dají různé školy různá životní čísla. Autoři uvedení v sekci <Link href="/zdroje" className="text-pink-500 underline">Zdroje (Numerologická tradice)</Link> se dělí do tří metodických rodin (plus jedna alternativní).
+          </p>
+
+          <div className="space-y-5">
+            <div className="bg-white border border-gray-200 rounded-2xl p-6">
+              <p className="eyebrow text-gray-500 mb-2">Škola A — Chaldejská</p>
+              <h3 className="serif text-lg text-gray-900 font-medium mb-2">Cheiro (1926)</h3>
+              <p className="text-gray-700 text-[0.95rem] leading-relaxed">
+                Používá pouze den narození („birth number") + jméno podle Chaldean abecedy 1–8. Nejsou tu žádná master čísla.
+              </p>
+            </div>
+
+            <div className="bg-white border border-gray-200 rounded-2xl p-6">
+              <p className="eyebrow text-gray-500 mb-2">Škola B — Pythagorejská single-sum</p>
+              <h3 className="serif text-lg text-gray-900 font-medium mb-2">Phillips, Crawford &amp; Sullivan, většina českých příruček</h3>
+              <p className="text-gray-700 text-[0.95rem] leading-relaxed">
+                Sečte všech 8 číslic data najednou, výsledek redukuje. Master čísla zachovává nebo redukuje podle autora.
+              </p>
+            </div>
+
+            <div className="bg-pink-50 border border-pink-200 rounded-2xl p-6">
+              <p className="eyebrow text-pink-500 mb-2">Škola C — Pythagorejská three-cycle · <span className="text-gray-900 font-medium not-italic">Cosmatch</span></p>
+              <h3 className="serif text-lg text-gray-900 font-medium mb-2">Balliett (1908) → Campbell → Jordan → Goodwin → Decoz → McCants → Buchanan</h3>
+              <p className="text-gray-700 text-[0.95rem] leading-relaxed">
+                Redukuje měsíc, den a rok zvlášť, master čísla 11/22/33 zachovává v mezikroku. Jediná metoda, která umí rozlišit „skutečné" master číslo od náhodného součtu. <strong className="text-gray-900 font-medium">Moderní standard západní numerologie</strong>.
+              </p>
+            </div>
+
+            <div className="bg-white border border-gray-200 rounded-2xl p-6">
+              <p className="eyebrow text-gray-500 mb-2">Škola D — Dvou-cifrový kód</p>
+              <h3 className="serif text-lg text-gray-900 font-medium mb-2">Dan Millman (1993)</h3>
+              <p className="text-gray-700 text-[0.95rem] leading-relaxed">
+                Radikální zlom bez redukce. Popisuje 45 dvojčíslí (např. 33/6, 25/7). Cosmatch tuto metodu neimplementuje, ale Millmana cituje jako důležitý alternativní pohled.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* CTA */}
         <section className="bg-white rounded-3xl border border-gray-100 p-10 mb-16">
           <p className="eyebrow text-pink-500 mb-4">Vyzkoušej</p>
@@ -462,8 +507,8 @@ export default function JakPocitamePage() {
             </Link>
             <Link href="/zdroje" className="block bg-white border border-gray-200 hover:border-gray-900 rounded-2xl p-6 transition group">
               <p className="eyebrow text-gray-400 mb-2">Zdroje</p>
-              <h3 className="serif text-xl text-gray-900 font-medium mb-1 group-hover:text-pink-500 transition">17 zdrojů numerologie a astrologie →</h3>
-              <p className="text-gray-600 text-[0.95rem] leading-relaxed">Kompletní seznam autorů, na kterých Cosmatch staví — od Pythagora po Hay House.</p>
+              <h3 className="serif text-xl text-gray-900 font-medium mb-1 group-hover:text-pink-500 transition">Plná bibliografie — 35 zdrojů Cosmatch →</h3>
+              <p className="text-gray-600 text-[0.95rem] leading-relaxed">Kompletní seznam knih, autorů a peer-reviewed publikací ve čtyřech sekcích — numerologie, astrologie, psychologie, akademie.</p>
             </Link>
             <Link href="/jak-funguje-cosmatch" className="block bg-white border border-gray-200 hover:border-gray-900 rounded-2xl p-6 transition group">
               <p className="eyebrow text-gray-400 mb-2">Metodika</p>
