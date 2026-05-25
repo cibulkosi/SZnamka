@@ -4,7 +4,6 @@ import { useState, useRef, useCallback, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase, HOBBIES, MIN_HOBBIES, MAX_HOBBIES, COUNTRIES, EDUCATION_OPTIONS } from '@/lib/supabase'
-import { lifePathNumber, ARCHETYPES, MAGIC_MOMENT_PARTNER_LINE } from '@/lib/archetypes'
 
 const MONTHS = [
   'Leden','Únor','Březen','Duben','Květen','Červen',
@@ -104,7 +103,6 @@ export default function RegisterPage() {
     : ''
 
   const [showBirthdayModal, setShowBirthdayModal] = useState(false)
-  const [birthdayStage, setBirthdayStage] = useState<'confirm' | 'magic'>('confirm')
   const [geoLoading, setGeoLoading] = useState(false)
   const [geoError, setGeoError] = useState('')
   const [honeypot, setHoneypot] = useState('')
@@ -448,12 +446,11 @@ export default function RegisterPage() {
         {step === 2 && (
           <>
             <h1 className="serif-display text-5xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-6">
-              Ukaž se,<br/><em className="italic text-pink-500">jak vypadáš</em>.
+              Přidej <em className="italic text-pink-500">první fotku</em>.
             </h1>
             <hr className="rule w-12 border-gray-900 mb-8" />
             <p className="text-gray-700 leading-relaxed text-[1.0625rem] mb-8">
-              Stačí jedna fotka. Další můžeš přidat kdykoli později. Profily s alespoň
-              jednou fotkou dostávají osmkrát víc shod.
+              Bez fotky Tě ostatní těžko poznají. Stačí jedna na začátek — další můžeš doplnit kdykoli později.
             </p>
 
             <div className="grid grid-cols-3 gap-3 mb-6">
@@ -727,15 +724,9 @@ export default function RegisterPage() {
 
       {/* BIRTHDAY CONFIRM MODAL */}
       {showBirthdayModal && (() => {
-        const fullDate = `${form.birth_year}-${String(form.month).padStart(2,'0')}-${String(form.day).padStart(2,'0')}`
-        const lp = lifePathNumber(fullDate)
-        const archetype = ARCHETYPES[lp] || ARCHETYPES[9]
-        const partnerLine = MAGIC_MOMENT_PARTNER_LINE[lp] || MAGIC_MOMENT_PARTNER_LINE[9]
         return (
           <div className="fixed inset-0 z-50 flex items-center justify-center px-6 bg-black/40 backdrop-blur-sm">
             <div className="bg-[#FAF6F0] rounded-3xl p-10 max-w-md w-full shadow-2xl">
-              {birthdayStage === 'confirm' ? (
-                <>
                   <p className="eyebrow text-pink-500 mb-4">Potvrzení</p>
                   <h3 className="serif-display text-3xl text-gray-900 font-medium leading-tight mb-3">
                     {String(form.day).padStart(2,'0')}. {['ledna','února','března','dubna','května','června','července','srpna','září','října','listopadu','prosince'][parseInt(form.month)-1]} {form.birth_year}
@@ -745,38 +736,15 @@ export default function RegisterPage() {
                     je trvale svázané s Tvým numerologickým profilem.
                   </p>
                   <div className="flex gap-3">
-                    <button onClick={() => { setShowBirthdayModal(false); setBirthdayStage('confirm') }}
+                    <button onClick={() => setShowBirthdayModal(false)}
                       className="flex-1 bg-white border border-gray-300 hover:border-gray-900 text-gray-900 py-4 rounded-full font-medium transition">
                       Opravit
                     </button>
-                    <button onClick={() => setBirthdayStage('magic')}
+                    <button onClick={() => { setShowBirthdayModal(false); setStep(2) }}
                       className="flex-1 bg-gray-900 hover:bg-gray-800 text-white py-4 rounded-full font-medium transition">
                       Souhlasím
                     </button>
                   </div>
-                </>
-              ) : (
-                <>
-                  <p className="eyebrow mb-4" style={{ color: archetype.accent }}>Tvůj numerologický archetyp</p>
-                  <h3 className="serif-display text-4xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-2">
-                    <em className="italic" style={{ color: archetype.accent }}>{archetype.name}</em>
-                  </h3>
-                  <p className="text-gray-500 text-sm mb-6">{archetype.tagline}</p>
-                  <p className="text-gray-700 leading-[1.75] text-[1.0625rem] mb-4">
-                    {archetype.description}
-                  </p>
-                  <p className="text-gray-900 leading-[1.75] text-[1.0625rem] font-medium mb-8 border-l-2 pl-4" style={{ borderColor: archetype.accent }}>
-                    {partnerLine}
-                  </p>
-                  <button onClick={() => { setShowBirthdayModal(false); setBirthdayStage('confirm'); setStep(2) }}
-                    className="w-full bg-gray-900 hover:bg-gray-800 text-white py-4 rounded-full font-medium transition">
-                    Pokračovat v registraci
-                  </button>
-                  <p className="text-xs text-gray-400 text-center mt-4 leading-relaxed">
-                    Tento výklad je interpretační rámec, ne predikce. Cosmatch staví na 366 denních profilech kompatibility podle dne narození pro skutečné matchování.
-                  </p>
-                </>
-              )}
             </div>
           </div>
         )
