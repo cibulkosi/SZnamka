@@ -67,6 +67,18 @@ const SkipIcon = ({ size = 26 }: { size?: number }) => (
   </svg>
 )
 
+// Mini voice waveform (animated bars when playing)
+function VoiceWaveform({ playing = false }: { playing?: boolean }) {
+  const heights = [8, 14, 22, 18, 28, 32, 26, 20, 14, 10, 6, 12, 24, 30, 28, 20, 16, 22, 26, 18, 12, 8, 14, 20, 24, 30, 26, 22, 18, 14, 8, 12, 18, 24, 28, 22, 16, 12, 8, 6, 4, 8, 12, 16, 20, 14, 10, 6, 4, 2]
+  return (
+    <svg width="100%" height="40" viewBox="0 0 320 40" preserveAspectRatio="none" className={playing ? 'opacity-100' : 'opacity-80'}>
+      {heights.map((h, i) => (
+        <rect key={i} x={i * 6.4} y={20 - h / 2} width="3" height={h} fill="#ec4899" rx="1.5" />
+      ))}
+    </svg>
+  )
+}
+
 function PhotoLikeButton({ onClick }: { onClick?: () => void }) {
   return (
     <button
@@ -220,6 +232,15 @@ export default function HingeProfileV2({ profile, compat, enhancedScore, onPass,
             </div>
           )}
 
+          {/* Prompt 1 (Hinge-style) */}
+          {profile.prompts?.[0] && (
+            <div className="bg-white rounded-3xl p-6 shadow-sm relative pb-16">
+              <p className="text-sm text-gray-500 mb-3">{profile.prompts[0].question}</p>
+              <p className="serif text-2xl text-gray-900 font-medium leading-tight">{profile.prompts[0].answer}</p>
+              <PhotoLikeButton onClick={onLike} />
+            </div>
+          )}
+
           {profile.philosophy && (
             <div className="bg-white rounded-3xl p-6 shadow-sm">
               <p className="text-sm text-gray-500 mb-3">Životní filozofie</p>
@@ -230,6 +251,37 @@ export default function HingeProfileV2({ profile, compat, enhancedScore, onPass,
           {photos[2] && (
             <div className="relative rounded-3xl overflow-hidden bg-gray-200 shadow-sm" style={{ aspectRatio: '3/4' }}>
               <img src={photos[2]} alt={`${firstName} - fotka 3`} className="w-full h-full object-cover" />
+              <PhotoLikeButton onClick={onLike} />
+            </div>
+          )}
+
+          {/* Prompt 2 */}
+          {profile.prompts?.[1] && (
+            <div className="bg-white rounded-3xl p-6 shadow-sm relative pb-16">
+              <p className="text-sm text-gray-500 mb-3">{profile.prompts[1].question}</p>
+              <p className="serif text-2xl text-gray-900 font-medium leading-tight">{profile.prompts[1].answer}</p>
+              <PhotoLikeButton onClick={onLike} />
+            </div>
+          )}
+
+          {/* Voice prompt */}
+          {profile.voice_prompt_url && (
+            <div className="bg-white rounded-3xl p-6 shadow-sm relative pb-16">
+              <p className="text-sm text-gray-500 mb-1">{profile.voice_prompt_question}</p>
+              <p className="text-xs text-gray-400 mb-3 flex items-center gap-1.5">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" className="text-pink-500"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2z" /></svg>
+                hlasová zpráva · {profile.voice_prompt_duration_seconds ?? 0}s
+              </p>
+              <audio src={profile.voice_prompt_url} controls className="w-full" preload="none" />
+              <PhotoLikeButton onClick={onLike} />
+            </div>
+          )}
+
+          {/* Prompt 3 */}
+          {profile.prompts?.[2] && (
+            <div className="bg-white rounded-3xl p-6 shadow-sm relative pb-16">
+              <p className="text-sm text-gray-500 mb-3">{profile.prompts[2].question}</p>
+              <p className="serif text-2xl text-gray-900 font-medium leading-tight">{profile.prompts[2].answer}</p>
               <PhotoLikeButton onClick={onLike} />
             </div>
           )}

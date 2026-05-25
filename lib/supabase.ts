@@ -100,6 +100,12 @@ export type Profile = {
   trial_started_at?: string | null
   legal_consent_immediate_service_at?: string | null
 
+  // ── Phase 2: Hinge prompts + voice prompt (přidáno 25. 5. 2026) ───────
+  prompts?: Array<{ prompt_id?: string; question: string; answer: string }>
+  voice_prompt_url?: string | null
+  voice_prompt_question?: string | null
+  voice_prompt_duration_seconds?: number | null
+
 }
 
 export const EDUCATION_OPTIONS = [

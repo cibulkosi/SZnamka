@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase, loadCurrentProfile, signOutCompletely, type Profile, getZodiac, BODY_TYPES } from '@/lib/supabase'
 import { computeMBTITolerant, MBTI_TYPES_CZ } from '@/lib/mbti'
+import { PROMPTS as ALL_PROMPTS } from '@/lib/prompts'
 import { TrialBanner } from '@/components/PremiumGate'
 import FoundingBadge from '@/components/FoundingBadge'
 
@@ -282,6 +283,258 @@ function HobbiesEditor({ user, onUpdate }: { user: Profile; onUpdate: (hobbies: 
   )
 }
 
+
+// ── Prompts editor (3 Hinge-style cards) ──────────────────────
+type PromptAnswer = { prompt_id?: string; question: string; answer: string }
+
+function PromptsEditor({ user, onUpdate }: { user: Profile; onUpdate: (prompts: PromptAnswer[]) => void }) {
+  const prompts = user.prompts || []
+  const [editingIdx, setEditingIdx] = useState<number | null>(null)
+  const [draftQuestion, setDraftQuestion] = useState('')
+  const [draftAnswer, setDraftAnswer] = useState('')
+  const [saving, setSaving] = useState(false)
+
+  function startEdit(idx: number) {
+    const existing = prompts[idx]
+    if (existing) {
+      setDraftQuestion(existing.question)
+      setDraftAnswer(existing.answer)
+    } else {
+      setDraftQuestion(ALL_PROMPTS[0].question)
+      setDraftAnswer('')
+    }
+    setEditingIdx(idx)
+  }
+
+  async function handleSave() {
+    if (editingIdx === null) return
+    if (!draftQuestion.trim() || !draftAnswer.trim()) return
+    setSaving(true)
+    const updated = [...prompts]
+    const selected = ALL_PROMPTS.find(p => p.question === draftQuestion)
+    updated[editingIdx] = {
+      prompt_id: selected?.id,
+      question: draftQuestion,
+      answer: draftAnswer.trim().slice(0, 250),
+    }
+    const r = await patchProfile(user.id, { prompts: updated })
+    setSaving(false)
+    if (r.ok) { onUpdate(updated); setEditingIdx(null) }
+  }
+
+  async function handleRemove(idx: number) {
+    const updated = prompts.filter((_, i) => i !== idx)
+    const r = await patchProfile(user.id, { prompts: updated })
+    if (r.ok) onUpdate(updated)
+  }
+
+  return (
+    <div className="bg-white rounded-3xl p-6 shadow-sm">
+      <div className="flex items-center justify-between mb-3">
+        <p className="eyebrow text-pink-500">Tvoje odpovědi</p>
+        <p className="text-xs text-gray-500">{prompts.length} / 3</p>
+      </div>
+      <p className="text-sm text-gray-500 mb-4 leading-relaxed">
+        Vyber 3 otázky a odpověz na ně. Ukáží se ve Tvém profilu jako Hinge-style karty.
+      </p>
+      <div className="space-y-3">
+        {[0, 1, 2].map(idx => {
+          const existing = prompts[idx]
+          const isEditing = editingIdx === idx
+          if (isEditing) {
+            return (
+              <div key={idx} className="border border-gray-300 rounded-2xl p-4">
+                <select value={draftQuestion} onChange={e => setDraftQuestion(e.target.value)}
+                  className="w-full bg-transparent border-0 border-b-2 border-gray-200 focus:border-gray-900 py-2 text-sm focus:outline-none mb-3 appearance-none">
+                  {ALL_PROMPTS.map(p => <option key={p.id} value={p.question}>{p.question}</option>)}
+                </select>
+                <textarea value={draftAnswer} onChange={e => setDraftAnswer(e.target.value.slice(0, 250))}
+                  placeholder="Tvoje odpověď…" rows={3}
+                  className="w-full border border-gray-300 rounded-xl px-3 py-2 text-[0.95rem] focus:border-gray-900 focus:outline-none resize-none" />
+                <div className="flex items-center justify-between mt-3">
+                  <p className="text-xs text-gray-400">{draftAnswer.length} / 250</p>
+                  <div className="flex gap-2">
+                    <button onClick={() => setEditingIdx(null)} disabled={saving}
+                      className="px-3 py-1.5 rounded-full text-xs font-medium bg-white border border-gray-300 hover:border-gray-900 transition disabled:opacity-50">
+                      Zrušit
+                    </button>
+                    <button onClick={handleSave} disabled={saving || !draftAnswer.trim()}
+                      className="px-3 py-1.5 rounded-full text-xs font-medium bg-gray-900 text-white hover:bg-gray-800 transition disabled:opacity-30">
+                      {saving ? 'Ukládám…' : 'Uložit'}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )
+          }
+          if (existing) {
+            return (
+              <div key={idx} className="border border-gray-200 rounded-2xl p-4 relative group">
+                <p className="text-xs text-gray-500 mb-1">{existing.question}</p>
+                <p className="serif text-lg text-gray-900 leading-snug">{existing.answer}</p>
+                <div className="absolute top-3 right-3 flex gap-1">
+                  <button onClick={() => startEdit(idx)}
+                    className="text-xs text-gray-400 hover:text-gray-900 px-2 py-1 rounded-full hover:bg-gray-100 transition">
+                    <PencilIcon size={12} />
+                  </button>
+                  <button onClick={() => handleRemove(idx)}
+                    className="text-xs text-gray-400 hover:text-red-600 px-2 py-1 rounded-full hover:bg-red-50 transition">
+                    ×
+                  </button>
+                </div>
+              </div>
+            )
+          }
+          return (
+            <button key={idx} onClick={() => startEdit(idx)}
+              className="w-full border border-dashed border-gray-300 hover:border-gray-900 rounded-2xl p-4 text-left text-gray-400 hover:text-gray-900 transition">
+              + Přidat odpověď ({idx + 1}/3)
+            </button>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+// ── Voice prompt editor (record/upload) ───────────────────────
+function VoiceEditor({ user, onUpdate }: { user: Profile; onUpdate: (data: { url: string; question: string; duration: number } | null) => void }) {
+  const [question, setQuestion] = useState(user.voice_prompt_question || ALL_PROMPTS[0].question)
+  const [recording, setRecording] = useState(false)
+  const [audioBlob, setAudioBlob] = useState<Blob | null>(null)
+  const [audioUrl, setAudioUrl] = useState<string | null>(null)
+  const [duration, setDuration] = useState(0)
+  const [saving, setSaving] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null)
+  const chunksRef = useRef<Blob[]>([])
+  const startTimeRef = useRef<number>(0)
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const [recordTime, setRecordTime] = useState(0)
+
+  async function startRecording() {
+    setError(null); setAudioBlob(null); setAudioUrl(null); setRecordTime(0)
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      const mimeType = MediaRecorder.isTypeSupported('audio/webm;codecs=opus') ? 'audio/webm;codecs=opus'
+        : MediaRecorder.isTypeSupported('audio/webm') ? 'audio/webm'
+        : MediaRecorder.isTypeSupported('audio/mp4') ? 'audio/mp4' : ''
+      const mr = new MediaRecorder(stream, mimeType ? { mimeType } : undefined)
+      chunksRef.current = []
+      mr.ondataavailable = (e) => { if (e.data.size > 0) chunksRef.current.push(e.data) }
+      mr.onstop = () => {
+        const blob = new Blob(chunksRef.current, { type: mr.mimeType || 'audio/webm' })
+        const url = URL.createObjectURL(blob)
+        const elapsed = (Date.now() - startTimeRef.current) / 1000
+        setAudioBlob(blob); setAudioUrl(url); setDuration(elapsed)
+        stream.getTracks().forEach(t => t.stop())
+      }
+      startTimeRef.current = Date.now()
+      mr.start()
+      mediaRecorderRef.current = mr
+      setRecording(true)
+      timerRef.current = setInterval(() => {
+        const elapsed = (Date.now() - startTimeRef.current) / 1000
+        setRecordTime(elapsed)
+        if (elapsed >= 60) stopRecording()
+      }, 200)
+    } catch (e) {
+      setError('Mikrofon nepřístupný. Povol přístup v prohlížeči a zkus to znovu.')
+    }
+  }
+
+  function stopRecording() {
+    if (mediaRecorderRef.current && mediaRecorderRef.current.state !== 'inactive') {
+      mediaRecorderRef.current.stop()
+    }
+    if (timerRef.current) { clearInterval(timerRef.current); timerRef.current = null }
+    setRecording(false)
+  }
+
+  async function handleSave() {
+    if (!audioBlob || duration < 1) { setError('Nahrávka je příliš krátká (min 1 s).'); return }
+    setSaving(true); setError(null)
+    try {
+      const fd = new FormData()
+      const ext = audioBlob.type.includes('mp4') ? 'm4a' : 'webm'
+      fd.append('file', new File([audioBlob], `voice.${ext}`, { type: audioBlob.type }))
+      fd.append('userId', user.id)
+      const { data: { session } } = await supabase.auth.getSession()
+      const headers: Record<string, string> = {}
+      if (session?.access_token) headers['Authorization'] = `Bearer ${session.access_token}`
+      const res = await fetch(`${SUPABASE_FUNCTIONS_URL}/upload-voice`, { method: 'POST', headers, body: fd })
+      const json = await res.json()
+      if (!json.url) throw new Error(json.error || 'Nepodařilo se nahrát')
+      const r = await patchProfile(user.id, {
+        voice_prompt_url: json.url,
+        voice_prompt_question: question,
+        voice_prompt_duration_seconds: Math.round(duration),
+      })
+      if (r.ok) {
+        onUpdate({ url: json.url, question, duration: Math.round(duration) })
+        setAudioBlob(null); setAudioUrl(null); setDuration(0)
+      } else { setError('Uloženo na server, ale databáze odmítla: ' + r.error) }
+    } catch (e) { setError(String(e)) }
+    setSaving(false)
+  }
+
+  async function handleDelete() {
+    const r = await patchProfile(user.id, {
+      voice_prompt_url: null, voice_prompt_question: null, voice_prompt_duration_seconds: null,
+    })
+    if (r.ok) onUpdate(null)
+  }
+
+  return (
+    <div className="bg-white rounded-3xl p-6 shadow-sm">
+      <p className="eyebrow text-pink-500 mb-3">Hlasová zpráva</p>
+      <p className="text-sm text-gray-500 mb-4 leading-relaxed">
+        Nahraj krátkou hlasovou odpověď (max 60 s). Tvoji budoucí parťáci uslyší Tvůj hlas — jeden z nejsilnějších signálů přitažlivosti.
+      </p>
+      {user.voice_prompt_url ? (
+        <div className="border border-gray-200 rounded-2xl p-4">
+          <p className="text-xs text-gray-500 mb-1">{user.voice_prompt_question}</p>
+          <audio src={user.voice_prompt_url} controls className="w-full mt-2" />
+          <div className="flex items-center justify-between mt-3">
+            <p className="text-xs text-gray-400">{user.voice_prompt_duration_seconds}s</p>
+            <button onClick={handleDelete} className="text-xs text-gray-500 hover:text-red-600 transition">Smazat hlasovou zprávu</button>
+          </div>
+        </div>
+      ) : (
+        <>
+          <select value={question} onChange={e => setQuestion(e.target.value)}
+            className="w-full bg-transparent border-0 border-b-2 border-gray-200 focus:border-gray-900 py-2 text-sm focus:outline-none mb-4 appearance-none">
+            {ALL_PROMPTS.map(p => <option key={p.id} value={p.question}>{p.question}</option>)}
+          </select>
+          {!audioUrl ? (
+            <button onClick={recording ? stopRecording : startRecording}
+              className={`w-full py-4 rounded-full font-medium transition ${
+                recording ? 'bg-red-500 hover:bg-red-600 text-white' : 'bg-gray-900 hover:bg-gray-800 text-white'
+              }`}>
+              {recording ? `■ Zastavit (${recordTime.toFixed(0)}s)` : '● Začít nahrávat'}
+            </button>
+          ) : (
+            <div>
+              <audio src={audioUrl} controls className="w-full mb-3" />
+              <div className="flex gap-2">
+                <button onClick={() => { setAudioUrl(null); setAudioBlob(null); setDuration(0) }} disabled={saving}
+                  className="flex-1 bg-white border border-gray-300 hover:border-gray-900 text-gray-900 py-3 rounded-full text-sm font-medium transition disabled:opacity-50">
+                  Nahrát znovu
+                </button>
+                <button onClick={handleSave} disabled={saving}
+                  className="flex-1 bg-gray-900 hover:bg-gray-800 text-white py-3 rounded-full text-sm font-medium transition disabled:opacity-50">
+                  {saving ? 'Ukládám…' : `Uložit (${duration.toFixed(0)}s)`}
+                </button>
+              </div>
+            </div>
+          )}
+          {error && <p className="text-xs text-red-600 mt-3">{error}</p>}
+        </>
+      )}
+    </div>
+  )
+}
+
 // ─────────────────────────────────────────────────────────────
 export default function ProfilePage() {
   const router = useRouter()
@@ -401,6 +654,17 @@ export default function ProfilePage() {
 
         {/* Hobbies (editable) */}
         <HobbiesEditor user={user} onUpdate={(hobbies) => setUser({ ...user, hobbies })} />
+
+        {/* Prompts (Phase 2) */}
+        <PromptsEditor user={user} onUpdate={(prompts) => setUser({ ...user, prompts })} />
+
+        {/* Voice prompt (Phase 2) */}
+        <VoiceEditor user={user} onUpdate={(data) => setUser({
+          ...user,
+          voice_prompt_url: data?.url ?? null,
+          voice_prompt_question: data?.question ?? null,
+          voice_prompt_duration_seconds: data?.duration ?? null,
+        })} />
 
         {/* Životní filozofie (editable) */}
         <EditableText label="Životní filozofie" value={user.philosophy} placeholder="Jednou větou Tvoje hlavní pravidlo nebo motto."
