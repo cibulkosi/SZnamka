@@ -239,7 +239,7 @@ export default function KompatibilitaPage() {
             ))}
           </div>
           <p className="text-xs text-gray-400 mt-6 leading-relaxed max-w-2xl">
-            Tato tabulka shrnuje klasickou západní tradici Life Path kompatibility podle různých autorů (<strong className="text-gray-600 font-medium">Decoz</strong>, <strong className="text-gray-600 font-medium">McCants</strong>, <strong className="text-gray-600 font-medium">Numerology.com</strong> — autoři se v některých párech rozcházejí, naše tabulka preferuje Decozův výklad a je syntézou). Cosmatch matching engine ale počítá kompatibilitu jiným způsobem: z vlastní databáze desítek tisíc specifických párů kombinací dat narození. Life Path tabulka tedy slouží primárně k sebepoznání, ne jako přímý vstup algoritmu.
+            Tato tabulka shrnuje klasickou západní tradici Life Path kompatibility podle různých autorů (<strong className="text-gray-600 font-medium">Decoz</strong>, <strong className="text-gray-600 font-medium">McCants</strong>, <strong className="text-gray-600 font-medium">Numerology.com</strong> — autoři se v některých párech rozcházejí, naše tabulka preferuje Decozův výklad a je syntézou). Cosmatch algoritmus ale počítá kompatibilitu jiným způsobem: z vlastní databáze desítek tisíc specifických párů kombinací dat narození. Life Path tabulka tedy slouží primárně k sebepoznání, ne jako přímý vstup algoritmu.
           </p>
         </section>
 
