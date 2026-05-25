@@ -62,7 +62,7 @@ export default function ArchetypePermalink() {
         <section className="mb-10">
           <p className="eyebrow text-gray-500 mb-3">Kdo je {a.name}</p>
           <p className="text-gray-800 leading-[1.75] text-[1.0625rem] dropcap">
-            {a.description}
+            {a.short}
           </p>
         </section>
 
