@@ -380,7 +380,7 @@ export default function RegisterPage() {
               <Link href="/zasady-ochrany-osobnich-udaju" className="underline hover:text-gray-700">Zásadami ochrany osobních údajů</Link>.
               <br />
               Náš závazek vůči Tobě je{' '}
-              <Link href="/manifest-duvery" className="underline hover:text-gray-700">Manifest důvěry</Link>
+              <Link href="/manifest-duvery" className="underline hover:text-gray-700">Manifest důvěry</Link>.
             </p>
 
             <hr className="rule my-10" />
@@ -399,9 +399,7 @@ export default function RegisterPage() {
             </h1>
             <hr className="rule w-12 border-gray-900 mb-8" />
             <p className="text-gray-700 leading-relaxed text-[1.0625rem] mb-10">
-              Tvoje datum je neměnný základ kompatibility. Vyber přesný den, měsíc a rok —
-              z toho vychází vše ostatní. Pro přesnější a hlubší analýzy doporučujeme přidat
-              také čas a místo narození.
+              Tvoje datum narození je neměnný základ kompatibility. Vyber přesný den, měsíc a rok — z toho vychází vše ostatní. Čas a místo jsou volitelné. Do algoritmu zatím nevstupují — ulož je teď, ať máme základ pro rozšíření profilu o ascendent a Měsíc v budoucnu.
             </p>
 
             <div className="space-y-7 mb-10">
@@ -509,9 +507,9 @@ export default function RegisterPage() {
               </div>
 
               <div>
-                <Eyebrow>Záměr</Eyebrow>
+                <Eyebrow>Co hledáš</Eyebrow>
                 <div className="flex flex-wrap gap-2">
-                  {[['serious','Vážný vztah'],['friendship','Přátelství'],['casual','Nezávazně'],['unsure','Zatím nevím']].map(([v,l]) => (
+                  {[['serious','Vážný vztah'],['friendship','Přátelství'],['casual','Nezávazně'],['unsure','Ještě nevím']].map(([v,l]) => (
                     <Pill key={v} active={form.relationship_goal === v} onClick={() => set('relationship_goal', v)}>{l}</Pill>
                   ))}
                 </div>
@@ -532,9 +530,10 @@ export default function RegisterPage() {
               <div>
                 <Eyebrow>Kde žiješ</Eyebrow>
                 <button type="button" onClick={detectLocation} disabled={geoLoading}
-                  className="w-full mb-3 py-3 px-5 rounded-full border border-gray-300 hover:border-gray-900 text-sm font-medium text-gray-700 hover:text-gray-900 transition disabled:opacity-50">
-                  {geoLoading ? 'Zjišťuji polohu…' : 'Zjistit automaticky'}
+                  className="w-full py-3 px-5 rounded-full border border-gray-300 hover:border-gray-900 text-sm font-medium text-gray-700 hover:text-gray-900 transition disabled:opacity-50">
+                  {geoLoading ? 'Zjišťuji polohu…' : 'Zjistit polohu'}
                 </button>
+                <p className="text-xs text-gray-400 mt-2 mb-3 leading-relaxed">GPS jen pro odhad města — přesnou adresu neukládáme.</p>
                 {geoError && <p className="text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-2xl px-4 py-2 mb-3">{geoError}</p>}
                 <div className="grid grid-cols-2 gap-3">
                   <Underline placeholder="Město" value={form.city} onChange={e => set('city', e.target.value)} />
@@ -555,7 +554,7 @@ export default function RegisterPage() {
         {step === 4 && (
           <>
             <h1 className="serif-display text-5xl text-gray-900 font-medium leading-[1.05] tracking-tight mb-6">
-              Pár detailů,<br/>aby <em className="italic text-pink-500">Tě poznali</em>.
+              Pár detailů,<br/>aby Tě <em className="italic text-pink-500">ostatní poznali</em>.
             </h1>
             <hr className="rule w-12 border-gray-900 mb-10" />
 
@@ -567,6 +566,7 @@ export default function RegisterPage() {
               <div>
                 <Eyebrow>E-mail</Eyebrow>
                 <Underline type="email" value={form.email} onChange={e => set('email', e.target.value)} placeholder="jana@example.cz" />
+                <p className="text-xs text-gray-400 mt-2 leading-relaxed">Pokud jsi přišel/přišla přes Google nebo Facebook, je předvyplněný. Můžeš upravit, pokud chceš dostávat zprávy na jiný.</p>
               </div>
 
               <div>
@@ -579,7 +579,7 @@ export default function RegisterPage() {
               <div className="grid grid-cols-2 gap-6">
                 <div>
                   <Eyebrow>Povolání</Eyebrow>
-                  <Underline value={form.occupation} onChange={e => set('occupation', e.target.value)} placeholder="Architekt…" />
+                  <Underline value={form.occupation} onChange={e => set('occupation', e.target.value)} placeholder="např. architektka, učitel, kodér…" />
                 </div>
                 <div>
                   <Eyebrow>Vzdělání</Eyebrow>
@@ -592,7 +592,7 @@ export default function RegisterPage() {
               </div>
 
               <div>
-                <Eyebrow>Záliby <span className="normal-case tracking-normal text-gray-400 ml-2">vybráno: {form.hobbies.length} / {MAX_HOBBIES} <span className={form.hobbies.length < MIN_HOBBIES ? "text-pink-500" : "text-emerald-600"}>(min {MIN_HOBBIES})</span></span></Eyebrow>
+                <Eyebrow>Záliby <span className="normal-case tracking-normal text-gray-400 ml-2">· vybrat {MIN_HOBBIES}–{MAX_HOBBIES} <span className={form.hobbies.length >= MIN_HOBBIES ? "text-emerald-600" : "text-pink-500"}>({form.hobbies.length})</span></span></Eyebrow>
                 <div className="flex flex-wrap gap-2 max-h-44 overflow-y-auto">
                   {HOBBIES.map(h => (
                     <button key={h} type="button" onClick={() => toggleHobby(h)}
@@ -609,7 +609,7 @@ export default function RegisterPage() {
               {/* MBTI mini-quiz — 4 osobnostní dimenze (volitelné) */}
               <div className="border border-gray-200 rounded-2xl p-5 bg-white space-y-5">
                 <div>
-                  <p className="eyebrow text-pink-500 mb-1">Rychlý psychologický kvíz <span className="normal-case tracking-normal text-gray-400 ml-1">volitelné · MBTI 4 dimenze</span></p>
+                  <p className="eyebrow text-pink-500 mb-1">Rychlý psychologický test <span className="normal-case tracking-normal text-gray-400 ml-1">4 otázky · volitelné</span></p>
                   <p className="text-xs text-gray-500 leading-relaxed">Čtyři otázky → spočítáme Tvůj MBTI typ (INFJ, ENTP atd.). Pokud přeskočíš, vyplníš později.</p>
                 </div>
 
@@ -634,7 +634,7 @@ export default function RegisterPage() {
                 <div>
                   <Eyebrow>Jak se rozhoduješ?</Eyebrow>
                   <div className="flex flex-wrap gap-2">
-                    {[['logic','Logikou, hlavou'],['heart','Srdcem, intuicí'],['balanced','Vyvážením obou']].map(([v,l]) => (
+                    {[['logic','Logikou'],['heart','Srdcem'],['balanced','Vyvážením obou']].map(([v,l]) => (
                       <Pill key={v} active={form.personality_decision === v} onClick={() => set('personality_decision', v)}>{l}</Pill>
                     ))}
                   </div>
@@ -651,7 +651,7 @@ export default function RegisterPage() {
               </div>
 
               <div>
-                <Eyebrow>Otázka, na kterou odpovíš</Eyebrow>
+                <Eyebrow>Něco o Tobě — vyber otázku</Eyebrow>
                 <select value={form.prompt_q} onChange={e => set('prompt_q', e.target.value)}
                   className="w-full bg-transparent border-0 border-b-2 border-gray-300 focus:border-pink-500 py-3 text-lg text-gray-900 focus:outline-none appearance-none mb-4">
                   {HINGE_PROMPTS.map(p => <option key={p} value={p}>{p}</option>)}
@@ -667,7 +667,7 @@ export default function RegisterPage() {
                   placeholder="např. K7XP9M2A"
                 />
                 <p className="text-xs text-gray-400 mt-2 leading-relaxed">
-                  Pokud jsi dostal/a kód z e-mailu po waitlist signup, vlož ho sem. Odemkne Ti 3 měsíce Cosmatch+ zdarma až ho spustíme.
+                  Pokud jsi dostal/a kód v e-mailu z waitlistu, vlož ho sem. Aktivujeme ho s prvním placeným předplatným Cosmatch+.
                 </p>
               </div>
 
@@ -691,7 +691,7 @@ export default function RegisterPage() {
                     className="mt-1 w-4 h-4 accent-pink-500 flex-shrink-0"
                   />
                   <span className="text-sm text-gray-700 leading-relaxed">
-                    Výslovně souhlasím se zpracováním údajů o <strong>pohlaví, hledaném pohlaví a datu narození</strong> pro účely párování podle čl. 9 odst. 2 písm. a) GDPR. Bez tohoto souhlasu Cosmatch nemůže fungovat.
+                    Výslovně souhlasím se zpracováním údajů o <strong>pohlaví, hledaném pohlaví a datu narození</strong> pro účely párování podle čl. 9 odst. 2 písm. a) GDPR. Bez tohoto souhlasu Ti Cosmatch nemůže najít kompatibilní lidi.
                   </span>
                 </label>
                 <label className="flex items-start gap-3 cursor-pointer">
@@ -700,7 +700,7 @@ export default function RegisterPage() {
                     className="mt-1 w-4 h-4 accent-pink-500 flex-shrink-0"
                   />
                   <span className="text-sm text-gray-700 leading-relaxed">
-                    <span className="text-gray-500">(volitelné)</span> Souhlasím s občasnými e-maily o novinkách Cosmatch. Můžeš kdykoli odhlásit.
+                    <span className="text-gray-500">(volitelné)</span> Souhlasím s občasnými e-maily o novinkách Cosmatch. Můžeš se kdykoli odhlásit.
                   </span>
                 </label>
               </div>
@@ -715,7 +715,7 @@ export default function RegisterPage() {
             </div>
 
             <PrimaryBtn onClick={handleSubmit} disabled={loading}>
-              {loading ? 'Vytvářím Tvůj profil…' : 'Hotovo'}
+              {loading ? 'Zakládám Tvůj profil…' : 'Hotovo'}
             </PrimaryBtn>
             <button onClick={() => setStep(3)} className="block mx-auto mt-6 text-sm text-gray-400 hover:text-gray-700 transition">← Zpět</button>
           </>
