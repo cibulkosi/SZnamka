@@ -47,5 +47,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }))
 
-  return [...staticPages, ...lifePathPages]
+  // Archetype permalinks — shareable per-archetype landing pages with custom OG image
+  const ARCHETYPE_SLUGS = [
+    'prukopnik', 'diplomat', 'tvurce', 'stavitel',
+    'dobrodruh', 'pecovatel', 'hledac', 'vudce',
+    'idealista', 'vizionar', 'architekt', 'lecitel',
+  ]
+  const archetypePages: MetadataRoute.Sitemap = [
+    { url: `${BASE}/archetypy/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    ...ARCHETYPE_SLUGS.map(slug => ({
+      url: `${BASE}/archetypy/${slug}/`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.75,
+    })),
+  ]
+
+  return [...staticPages, ...lifePathPages, ...archetypePages]
 }
