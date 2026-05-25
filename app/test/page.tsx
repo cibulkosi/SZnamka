@@ -13,6 +13,25 @@ const supabase = createClient(
 
 
 
+
+// Approximate population distribution per Life Path (Decoz Three-Cycle method).
+// Sums to ~100% across 12 archetypes. Single-digit roughly equal, masters rare.
+const POPULATION_PCT: Record<number, string> = {
+  1: '~11,5',  2: '~7,5',   3: '~11,5',  4: '~11',
+  5: '~11,5',  6: '~11',    7: '~11,5',  8: '~11,5',
+  9: '~11,5',  11: '~4',    22: '~0,5',  33: '~0,3',
+}
+
+function buildInviteLink(origin: string, referralCode: string | undefined, fromArchetype: string | undefined): string {
+  const params = new URLSearchParams()
+  if (referralCode) params.set('ref', referralCode)
+  params.set('utm_source', 'test_result')
+  params.set('utm_medium', 'friend_invite')
+  params.set('utm_campaign', 'archetyp_share')
+  if (fromArchetype) params.set('from', fromArchetype.toLowerCase())
+  return `${origin}/test?${params.toString()}`
+}
+
 type Step = 'intro' | 'birthday' | 'result' | 'capture' | 'done'
 
 function makeVoucher(): string {
@@ -22,6 +41,7 @@ function makeVoucher(): string {
 
 export default function TestPage() {
   const [step, setStep] = useState<Step>('intro')
+  const [revealStage, setRevealStage] = useState(0)  // 0=hidden, 1=number, 2=name, 3=details, 4=actions
   const [birthday, setBirthday] = useState('')
   const [name, setName] = useState('')
   const [lifePath, setLifePath] = useState<number | null>(null)
@@ -37,6 +57,7 @@ export default function TestPage() {
   const [voucherCopied, setVoucherCopied] = useState(false)
   const [downloading, setDownloading] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const canvasSquareRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -53,7 +74,13 @@ export default function TestPage() {
     setLifePath(lp)
     setArchetype(arc)
     setStep('result')
+    setRevealStage(0)
     if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' })
+    // Sequential reveal: number → name → details → actions
+    setTimeout(() => setRevealStage(1), 100)
+    setTimeout(() => setRevealStage(2), 700)
+    setTimeout(() => setRevealStage(3), 1300)
+    setTimeout(() => setRevealStage(4), 1900)
   }
 
   async function handleEmailCapture(e: React.FormEvent) {
@@ -95,7 +122,7 @@ export default function TestPage() {
   }
 
   function copyReferralLink() {
-    const url = `${window.location.origin}/test?ref=${referralCode}`
+    const url = buildInviteLink(window.location.origin, referralCode, archetype?.name)
     navigator.clipboard.writeText(url).then(() => {
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
@@ -170,6 +197,74 @@ export default function TestPage() {
     })
   }
 
+
+  /**
+   * Draws a 1080x1080 (1:1) shareable card for Instagram Post / TikTok cover.
+   */
+  function drawCardSquare(): Promise<Blob | null> {
+    return new Promise(resolve => {
+      const canvas = canvasSquareRef.current
+      if (!canvas || !archetype) return resolve(null)
+
+      const W = 1080, H = 1080
+      canvas.width = W; canvas.height = H
+      const ctx = canvas.getContext('2d')
+      if (!ctx) return resolve(null)
+
+      // Cream background with radial accent
+      ctx.fillStyle = '#FAF6F0'
+      ctx.fillRect(0, 0, W, H)
+      const grad = ctx.createRadialGradient(W/2, H/2, 0, W/2, H/2, W*0.7)
+      grad.addColorStop(0, 'rgba(236,72,153,0.06)')
+      grad.addColorStop(1, 'rgba(236,72,153,0)')
+      ctx.fillStyle = grad
+      ctx.fillRect(0, 0, W, H)
+
+      // Top wordmark
+      ctx.fillStyle = '#1C1C1E'
+      ctx.font = '600 32px "Inter", -apple-system, system-ui, sans-serif'
+      ctx.textAlign = 'center'
+      ctx.fillText('COSMATCH', W/2, 90)
+
+      // Eyebrow
+      ctx.fillStyle = '#ec4899'
+      ctx.font = '500 22px "Inter", sans-serif'
+      ctx.fillText('TVŮJ NUMEROLOGICKÝ ARCHETYP', W/2, 220)
+
+      // Big number — centered, slightly smaller than 9:16
+      ctx.fillStyle = archetype.accent || '#ec4899'
+      ctx.font = '500 320px Georgia, "Times New Roman", serif'
+      ctx.textBaseline = 'middle'
+      ctx.fillText(String(lifePath), W/2, 480)
+
+      // Archetype name (italic)
+      ctx.fillStyle = '#1C1C1E'
+      ctx.textBaseline = 'alphabetic'
+      ctx.font = 'italic 600 90px Georgia, serif'
+      ctx.fillText(archetype.name, W/2, 760)
+
+      // Tagline
+      ctx.fillStyle = '#4B5563'
+      ctx.font = '400 32px "Inter", sans-serif'
+      wrapText(ctx, archetype.tagline || '', W/2, 830, W - 200, 44)
+
+      // Hairline rule
+      ctx.strokeStyle = 'rgba(28,28,30,0.2)'
+      ctx.lineWidth = 1
+      ctx.beginPath(); ctx.moveTo(W/2 - 40, H - 140); ctx.lineTo(W/2 + 40, H - 140); ctx.stroke()
+
+      // Bottom CTA
+      ctx.fillStyle = '#1C1C1E'
+      ctx.font = '500 30px "Inter", sans-serif'
+      ctx.fillText('Zjisti své číslo', W/2, H - 85)
+      ctx.fillStyle = '#ec4899'
+      ctx.font = '500 26px "Inter", sans-serif'
+      ctx.fillText('cosmatch.cz', W/2, H - 45)
+
+      canvas.toBlob(blob => resolve(blob), 'image/png', 0.95)
+    })
+  }
+
   /** Helper: word-wrap text, center-aligned. */
   function wrapText(ctx: CanvasRenderingContext2D, text: string, x: number, y: number, maxWidth: number, lineHeight: number) {
     const words = text.split(' ')
@@ -188,6 +283,20 @@ export default function TestPage() {
     lines.forEach((l, i) => ctx.fillText(l, x, y + i * lineHeight))
   }
 
+  async function downloadCardSquare() {
+    setDownloading(true)
+    try {
+      const blob = await drawCardSquare()
+      if (!blob) return
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `cosmatch-${archetype?.name?.toLowerCase() || 'archetyp'}-${lifePath}-post.png`
+      document.body.appendChild(a); a.click(); a.remove()
+      setTimeout(() => URL.revokeObjectURL(url), 1500)
+    } finally { setDownloading(false) }
+  }
+
   async function downloadCard() {
     setDownloading(true)
     try {
@@ -203,8 +312,10 @@ export default function TestPage() {
   }
 
   async function shareResult() {
-    const url = `${window.location.origin}/test?ref=${referralCode || ''}`
-    const text = `Jsem „${archetype?.name}“ (číslo ${lifePath}) — zjisti i své na Cosmatch.`
+    const url = buildInviteLink(window.location.origin, referralCode, archetype?.name)
+    const text = archetype && lifePath
+      ? `Jsem ${archetype.name} (životní číslo ${lifePath}). Zjisti svůj numerologický archetyp na Cosmatch — trvá to 30 vteřin.`
+      : 'Zjisti svůj numerologický archetyp na Cosmatch — trvá to 30 vteřin.'
 
     // Try Web Share API with PNG file (supported on iOS Safari, Chrome Android)
     if (navigator.share && archetype) {
@@ -337,23 +448,73 @@ export default function TestPage() {
         {/* STEP: RESULT */}
         {step === 'result' && archetype && (
           <div className="pt-4">
-            <p className="eyebrow text-gray-400 mb-4">Tvůj výsledek</p>
+            <p
+              className="eyebrow text-gray-400 mb-4 transition-all duration-700"
+              style={{ opacity: revealStage >= 1 ? 1 : 0 }}
+            >
+              Tvůj výsledek
+            </p>
             <div className="mb-8">
               <div
-                className="serif-display text-[7rem] sm:text-[9rem] font-medium leading-none mb-2"
-                style={{ color: archetype.accent }}
+                className="serif-display text-[7rem] sm:text-[9rem] font-medium leading-none mb-2 transition-all duration-700"
+                style={{
+                  color: archetype.accent,
+                  opacity: revealStage >= 1 ? 1 : 0,
+                  transform: revealStage >= 1 ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.95)',
+                }}
               >
                 {lifePath}
               </div>
-              <h2 className="serif-display text-4xl sm:text-5xl text-gray-900 font-medium leading-tight tracking-tight mb-3">
+              <h2
+                className="serif-display text-4xl sm:text-5xl text-gray-900 font-medium leading-tight tracking-tight mb-3 transition-all duration-700"
+                style={{
+                  opacity: revealStage >= 2 ? 1 : 0,
+                  transform: revealStage >= 2 ? 'translateY(0)' : 'translateY(12px)',
+                }}
+              >
                 {archetype.name}
               </h2>
-              <p className="text-gray-500 text-[1.0625rem]">{archetype.tagline}</p>
+              <p
+                className="text-gray-500 text-[1.0625rem] transition-all duration-700"
+                style={{
+                  opacity: revealStage >= 2 ? 1 : 0,
+                  transform: revealStage >= 2 ? 'translateY(0)' : 'translateY(8px)',
+                }}
+              >
+                {archetype.tagline}
+              </p>
             </div>
 
-            <hr className="rule mb-10" />
+            {/* Comparison teaser — uniqueness builder */}
+            <div
+              className="bg-white border border-gray-200 rounded-2xl px-5 py-4 mb-10 transition-all duration-700"
+              style={{
+                opacity: revealStage >= 2 ? 1 : 0,
+                transform: revealStage >= 2 ? 'translateY(0)' : 'translateY(12px)',
+              }}
+            >
+              <p className="text-sm text-gray-600 leading-relaxed">
+                <span className="text-gray-900 font-medium">{POPULATION_PCT[lifePath || 9]} %</span> populace
+                {' '}sdílí Tvůj archetyp. {lifePath === 11 || lifePath === 22 || lifePath === 33
+                  ? <>Mistrovské číslo — jedna z nejvzácnějších numerologických vibrací.</>
+                  : lifePath === 2
+                    ? <>Vzácnější profil — část lidí s tímto datem narození má místo {lifePath} mistrovské 11.</>
+                    : <>Společný rys s desetinou Čechů.</>}
+              </p>
+            </div>
 
-            <div className="space-y-10">
+            <hr
+              className="rule mb-10 transition-all duration-700"
+              style={{ opacity: revealStage >= 3 ? 1 : 0 }}
+            />
+
+            <div
+              className="space-y-10 transition-all duration-700"
+              style={{
+                opacity: revealStage >= 3 ? 1 : 0,
+                transform: revealStage >= 3 ? 'translateY(0)' : 'translateY(16px)',
+              }}
+            >
               <section>
                 <p className="eyebrow text-gray-500 mb-3">Kdo jsi</p>
                 <p className="text-gray-800 leading-[1.75] text-[1.0625rem] dropcap">
@@ -404,7 +565,13 @@ export default function TestPage() {
               </section>
             </div>
 
-            <div className="bg-white rounded-3xl p-8 border border-gray-100 mt-10">
+            <div
+              className="bg-white rounded-3xl p-8 border border-gray-100 mt-10 transition-all duration-700"
+              style={{
+                opacity: revealStage >= 4 ? 1 : 0,
+                transform: revealStage >= 4 ? 'translateY(0)' : 'translateY(20px)',
+              }}
+            >
               <p className="eyebrow text-pink-500 mb-3">Co Tě čeká v aplikaci</p>
               <h3 className="serif-display text-3xl text-gray-900 font-medium leading-tight mb-3">
                 Tohle je jen úvod.
@@ -425,12 +592,21 @@ export default function TestPage() {
               >
                 Chci být první
               </button>
-              <button
-                onClick={shareResult}
-                className="block w-full text-sm text-gray-500 hover:text-gray-900 mt-4 py-2 transition"
-              >
-                Sdílet výsledek →
-              </button>
+              <div className="grid grid-cols-2 gap-3 mt-4">
+                <button
+                  onClick={shareResult}
+                  className="text-sm text-gray-500 hover:text-gray-900 py-2 transition"
+                >
+                  Pošli kamarádce →
+                </button>
+                <button
+                  onClick={downloadCardSquare}
+                  disabled={downloading}
+                  className="text-sm text-gray-500 hover:text-gray-900 py-2 transition disabled:opacity-50"
+                >
+                  {downloading ? 'Generuji…' : 'Stáhnout obrázek →'}
+                </button>
+              </div>
             </div>
           </div>
         )}
@@ -528,7 +704,11 @@ export default function TestPage() {
                 <div className="bg-white border border-gray-200 rounded-2xl p-5 flex items-center gap-3 mb-4">
                   <input
                     readOnly
-                    value={`${typeof window !== 'undefined' ? window.location.origin : 'https://cosmatch.cz'}/test?ref=${referralCode}`}
+                    value={buildInviteLink(
+                      typeof window !== 'undefined' ? window.location.origin : 'https://cosmatch.cz',
+                      referralCode,
+                      archetype?.name
+                    )}
                     className="flex-1 bg-transparent text-gray-700 text-sm font-mono truncate focus:outline-none"
                   />
                   <button
@@ -547,15 +727,24 @@ export default function TestPage() {
                 Sdílet výsledek a získat pozici
               </button>
 
-              <button
-                onClick={downloadCard}
-                disabled={downloading}
-                className="w-full mt-3 bg-white text-gray-900 border border-gray-300 hover:border-gray-900 py-4 rounded-full text-sm font-medium transition-all active:scale-[0.99] disabled:opacity-50"
-              >
-                {downloading ? 'Generuji obrázek…' : 'Stáhnout kartu (1080 × 1920)'}
-              </button>
+              <div className="grid grid-cols-2 gap-3 mt-3">
+                <button
+                  onClick={downloadCard}
+                  disabled={downloading}
+                  className="bg-white text-gray-900 border border-gray-300 hover:border-gray-900 py-4 rounded-full text-sm font-medium transition-all active:scale-[0.99] disabled:opacity-50"
+                >
+                  {downloading ? 'Generuji…' : 'Story (9:16)'}
+                </button>
+                <button
+                  onClick={downloadCardSquare}
+                  disabled={downloading}
+                  className="bg-white text-gray-900 border border-gray-300 hover:border-gray-900 py-4 rounded-full text-sm font-medium transition-all active:scale-[0.99] disabled:opacity-50"
+                >
+                  {downloading ? 'Generuji…' : 'Post (1:1)'}
+                </button>
+              </div>
               <p className="text-xs text-gray-400 mt-2 text-center">
-                Karta ve formátu pro Instagram Stories. Stáhne se jako PNG.
+                Story 1080×1920 pro Instagram/TikTok Stories · Post 1080×1080 pro Instagram Post nebo TikTok cover.
               </p>
             </div>
 
@@ -606,10 +795,14 @@ export default function TestPage() {
 
       </div>
 
-      {/* Hidden offscreen canvas for 9:16 share card */}
+      {/* Hidden offscreen canvases for share cards */}
       <canvas ref={canvasRef} aria-hidden="true" style={{
         position: 'fixed', left: '-99999px', top: '-99999px',
         width: '1080px', height: '1920px', pointerEvents: 'none',
+      }} />
+      <canvas ref={canvasSquareRef} aria-hidden="true" style={{
+        position: 'fixed', left: '-99999px', top: '-99999px',
+        width: '1080px', height: '1080px', pointerEvents: 'none',
       }} />
     </main>
   )
