@@ -106,7 +106,7 @@ export default function ArchetypePermalink() {
             Zdarma. Bez registrace.
           </p>
           <Link
-            href="/test/"
+            href="/test/?start=birthday"
             className="block w-full bg-gray-900 text-white py-5 rounded-full text-base font-medium hover:bg-gray-800 active:scale-[0.99] transition-all text-center"
           >
             Spustit kvíz

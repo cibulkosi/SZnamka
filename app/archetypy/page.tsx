@@ -80,7 +80,7 @@ export default function ArchetypesIndex() {
             Zdarma. Bez registrace.
           </p>
           <Link
-            href="/test/"
+            href="/test/?start=birthday"
             className="inline-block bg-gray-900 text-white px-10 py-5 rounded-full text-base font-medium hover:bg-gray-800 active:scale-[0.99] transition-all"
           >
             Spustit kvíz

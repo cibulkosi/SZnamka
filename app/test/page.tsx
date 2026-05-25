@@ -64,6 +64,9 @@ export default function TestPage() {
       const params = new URLSearchParams(window.location.search)
       const ref = params.get('ref')
       if (ref) setRefCode(ref)
+      // ?start=birthday — skip intro, go straight to date input (from /archetypy/<slug>/)
+      const start = params.get('start')
+      if (start === 'birthday') setStep('birthday')
     }
   }, [])
 
