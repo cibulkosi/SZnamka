@@ -8,6 +8,7 @@ import { PROMPTS as ALL_PROMPTS } from '@/lib/prompts'
 import { TrialBanner } from '@/components/PremiumGate'
 import FoundingBadge from '@/components/FoundingBadge'
 import { haptic } from '@/lib/haptic'
+import { ProfileSkeleton } from '@/components/Skeletons'
 
 const SUPABASE_FUNCTIONS_URL = 'https://xdotpadgbchhecwitbpe.supabase.co/functions/v1'
 
