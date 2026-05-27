@@ -1,5 +1,7 @@
 'use client'
 
+import type { ReactElement } from 'react'
+
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -18,7 +20,7 @@ import { haptic } from '@/lib/haptic'
 type Tab = {
   href: string
   label: string
-  icon: (active: boolean) => JSX.Element
+  icon: (active: boolean) => ReactElement
   badge?: number
 }
 
