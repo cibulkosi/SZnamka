@@ -1,160 +1,76 @@
-# Capacitor → Android AAB build
+# Build Android AAB — GitHub Actions workflow
 
-Tento návod ti řekne, jak z `android/` projektu vyrobit signed AAB pro upload do
-Google Play Console.
+Cosmatch Android appka se buildí **automaticky v GitHub Actions** (Ubuntu runner
+v cloudu), takže nemusíš nic instalovat na svém PC.
 
-## Co máš v repozitáři
+## Jak to funguje
 
-| Soubor / složka | Co to je |
-| --- | --- |
-| `capacitor.config.json` | Konfigurace appky (server.url = `cosmatch.cz`, splash, status bar) |
-| `android/` | Gradle projekt pro Android Studio |
-| `package.json` scripts | `cap:sync`, `cap:open`, `cap:run` |
+1. Push do `main` (nebo manuální spuštění z GitHub UI) → workflow se rozjede
+2. Workflow stáhne kód, nainstaluje Java + Android SDK + npm deps
+3. Vybuilduje Next.js → `next build` → `cap sync android`
+4. Podepíše AAB pomocí keystore z GitHub Secrets
+5. AAB je k dispozici ke stažení v Actions artifacts (30 dní)
 
-## Strategie wrap mode
+## Setup (jednorázově)
 
-Appka běží v **server mode** — otevírá se přímo na `https://cosmatch.cz`. Výhody:
+V GitHub repu **Settings → Secrets and variables → Actions** přidat 4 secrets:
 
-- **Okamžité aktualizace** — když pushneš na `main`, deployne se přes Cloudflare
-  Pages, a app to vidí při příštím otevření.
-- **Žádný dvojí deploy** — měníš jen web, ne native build.
+| Secret | Hodnota |
+|---|---|
+| `KEYSTORE_BASE64` | obsah `cosmatch-release.jks` zakódovaný jako base64 (na jednom řádku) |
+| `KEY_ALIAS` | `cosmatch` |
+| `KEY_PASSWORD` | heslo z `cosmatch-keystore-creds.txt` |
+| `STORE_PASSWORD` | stejné heslo |
 
-Nevýhoda: při výpadku sítě uvidí uživatel error page (zatím). Později můžeme
-přidat offline fallback z bundled `out/`.
+Všechny 4 hodnoty máš v `cosmatch-keystore-creds.txt` (vygenerovaném souboru).
 
-Apple/Google **musí** vidět nativní funkce, jinak appku zamítnou jako "wrapper".
-Co je v plánu doplnit před production launch:
+## Spuštění buildu
 
-1. **Play Integrity API** — anti-abuse (proti emulátorům, rootu, modifikovaným
-   APK). Bez toho Google může appku zařadit do kategorie "low quality".
-2. **Push Notifications** — pro nové matche a zprávy. Capacitor plugin
-   `@capacitor/push-notifications` + Firebase Cloud Messaging.
-3. **In-App Purchase** (RevenueCat) — Cosmatch+ předplatné přes Google Play
-   Billing.
-4. **Native Sign in with Google** — místo OAuth redirectu v WebView.
+**Automaticky:** každý push do `main`, který mění `app/`, `components/`,
+`lib/`, `public/`, `android/`, `capacitor.config.json`, `package.json` nebo
+`package-lock.json`.
 
-Tyto věci přidáme **po prvním upload do internal test** (žádný blocker pro
-test).
+**Manuálně:** otevři <https://github.com/cibulkosi/SZnamka/actions>, klikni
+"Build Android AAB" → "Run workflow" → vyber `main` → "Run workflow".
 
-## První build — krok za krokem
+## Stažení AAB
 
-### 0. Předpoklady (jednorázově)
+1. Otevři <https://github.com/cibulkosi/SZnamka/actions>
+2. Klikni na nejnovější zelený "Build Android AAB" run
+3. Dole najdeš sekci "Artifacts" → klikni "cosmatch-release-aab"
+4. Stáhne se ZIP — uvnitř je `app-release.aab`
 
-1. **Android Studio** — stáhni z <https://developer.android.com/studio>.
-   Při instalaci nech checkboxy default (SDK + Platform-tools + Emulator).
-2. **JDK 21** — Android Studio si ho stáhne sám. Pokud ne, ručně z
-   <https://adoptium.net/temurin/releases/?version=21>.
-3. Otevři Android Studio → **SDK Manager** → ověř, že máš:
-   - Android SDK Platform 36 (Android 14)
-   - Android SDK Build-Tools 36
-   - Android SDK Platform-Tools
+## Upload do Play Console
 
-### 1. Stáhni nejnovější repo lokálně
-
-```bash
-cd C:\path\where\you\want\it
-git clone https://github.com/cibulkosi/SZnamka.git cosmatch
-cd cosmatch
-npm install
-```
-
-### 2. Sync Capacitor
-
-```bash
-npm run cap:sync
-```
-
-To udělá: `next build` → `npx cap sync android` (zkopíruje `out/` do
-`android/app/src/main/assets/public/` + zapíše config).
-
-### 3. Otevři projekt v Android Studio
-
-```bash
-npm run cap:open
-```
-
-(Otevře `android/` v Android Studio. Počkej, až dokončí **Gradle sync** — vlevo
-dole status bar. Při prvním spuštění to může trvat ~5 min, stahuje Gradle a
-deps.)
-
-### 4. Vygeneruj signing keystore
-
-**DŮLEŽITÉ:** Tímto klíčem se podepisují všechny budoucí buildy. **Když ho
-ztratíš, ztratíš schopnost vydávat updaty appky** — musela bys publikovat novou
-appku s novým package ID.
-
-V Android Studio: **Build → Generate Signed Bundle / APK → Android App Bundle →
-Next**. Pak:
-
-- **Key store path:** klikni **Create new…**
-- Path: `C:\Users\scibu\Documents\cosmatch-secrets\cosmatch-release.jks`
-  (mimo repo, do `cosmatch-secrets/` jako tokens)
-- Password: vymysli silné heslo, ulož do `tokens.md`
-- Alias: `cosmatch`
-- Validity: `25 years` (Play Store doporučení)
-- Certificate fields: vyplň minimálně First and Last Name → "Simona Cibulková"
-  a Country code → `CZ`. Ostatní volitelné.
-- **Click OK**
-
-Android Studio vytvoří `.jks` a uloží ho na zvolené místo.
-
-### 5. Build release AAB
-
-V tom samém dialogu:
-
-- **Build Variant:** `release`
-- **Signature Versions:** zaškrtni `V1 Jar Signature` + `V2 Full APK Signature`
-- **Click Finish**
-
-Vlevo dole se objeví notifikace **"Generate Signed Bundle … Successful"**.
-Output: `android/app/release/app-release.aab`.
-
-### 6. Upload do Play Console
-
-1. Otevři <https://play.google.com/console>
-2. Vyber aplikaci **Cosmatch**
-3. **Testing → Internal testing → Create new release**
-4. **Upload** → drag-and-drop `app-release.aab`
-5. Release name: `0.1.0 internal` (default by mělo stačit)
-6. Release notes: pár vět, co testovat
-7. **Next → Save → Review release → Roll out**
-
-Internal test track je okamžitý — pozve si pak max. 100 testerů přes
-e-mailovou listinu. Pro produkci musíš nejdřív projít **closed test ≥ 14 dní s
-≥ 12 testery**.
+1. <https://play.google.com/console> → Cosmatch
+2. **Testing → Internal testing → Create new release**
+3. Drag-and-drop `app-release.aab`
+4. Release name: např. `0.1.0-internal`
+5. Release notes: pár vět co testovat
+6. **Save → Review release → Roll out**
 
 ## Časté problémy
 
-### "SDK location not found"
+### Build selhal: "Keystore was tampered with"
+Špatně zkopírovaná hodnota `KEYSTORE_BASE64` (chybí znak, je v ní mezera nebo
+nový řádek). Zkopíruj znovu — musí to být **jeden dlouhý řádek bez mezer**.
 
-Android Studio nemá nastavený SDK path. **File → Settings → Languages &
-Frameworks → Android SDK → Android SDK Location.**
+### Build selhal: "wrong password"
+`KEY_PASSWORD` / `STORE_PASSWORD` neodpovídá tomu, co je v keystore. Ověř,
+že obě hodnoty jsou stejné jako v `cosmatch-keystore-creds.txt`.
 
-### "Gradle build failed: minSdkVersion too low"
+### "Could not find google-services.json"
+Build poznámka, ne chyba — push notifications zatím nejsou aktivní, doplníme
+později. AAB se vyrobí bez problémů.
 
-Některý plugin vyžaduje vyšší minSdk. Edituj `android/variables.gradle`
-(`minSdkVersion`).
+### "Play Console: Account verification required"
+Než ti Google verifikuje identitu, můžeš nahrávat jen do **Internal testing**
+tracku (ne do closed/open/production). Internal je první track, kde se to
+testuje. Stačí čekat na Google e-mail.
 
-### "App not installed" při instalaci debug APK
+## Lokální dev (volitelné)
 
-Konflikt s existující appkou se stejným `applicationId`. Odinstaluj předchozí
-verzi z telefonu.
-
-### Splash screen je bílý, ne cream
-
-`android/app/src/main/res/drawable/splash.xml` musí ukazovat na barvu
-`@color/ic_launcher_background` (= `#F0EBE3`). Sync přes `npm run cap:sync`.
-
-## Co dál po prvním uploadu
-
-1. **Pozvi 12 testerů přes Play Console** (Internal testing → Testers → Create
-   email list). Použij e-maily z waitlist + pár přátel.
-2. **Spusť 14denní closed test** (Testing → Closed testing → Create release).
-3. **Vyplň Data safety form** (App content → Data safety) — vznikne separátní
-   docs.
-4. **Mezitím přidat native funkce** (Play Integrity, FCM Push, RevenueCat).
-5. Po 14 dnech s ≥ 12 aktivními testery: požádej o **Production access**.
-
----
-
-Když narazíš na cokoli — pošli mi error message a vyřešíme.
+Pokud chceš v budoucnu spouštět appku v emulátoru bez GitHub Actions:
+1. Stáhnout Android Studio
+2. `npm install` + `npm run cap:open`
+3. V Android Studiu Run → vybrat emulator
