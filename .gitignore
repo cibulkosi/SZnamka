@@ -39,3 +39,20 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Capacitor / Android (lokální buildy + signing — nikdy do gitu!)
+/android/app/build/
+/android/build/
+/android/.gradle/
+/android/local.properties
+/android/captures/
+/android/app/release/
+/android/app/debug/
+*.jks
+*.keystore
+keystore.properties
+
+# Capacitor sync artefakty (web assets se generují z `out/` při `cap sync`)
+/android/app/src/main/assets/public/
+/android/app/src/main/assets/capacitor.config.json
+/android/app/src/main/assets/capacitor.plugins.json

@@ -1,0 +1,32 @@
+{
+  "appId": "cz.cosmatch.app",
+  "appName": "Cosmatch",
+  "webDir": "out",
+  "server": {
+    "url": "https://cosmatch.cz",
+    "cleartext": false,
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 2000,
+      "launchAutoHide": true,
+      "backgroundColor": "#F0EBE3",
+      "androidSplashResourceName": "splash",
+      "androidScaleType": "CENTER_CROP",
+      "showSpinner": false,
+      "splashFullScreen": false,
+      "splashImmersive": false
+    },
+    "StatusBar": {
+      "style": "LIGHT",
+      "backgroundColor": "#F0EBE3",
+      "overlaysWebView": false
+    }
+  },
+  "android": {
+    "backgroundColor": "#F0EBE3",
+    "allowMixedContent": false,
+    "webContentsDebuggingEnabled": false
+  }
+}
