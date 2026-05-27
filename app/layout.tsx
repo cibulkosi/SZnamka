@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Inter, Fraunces } from 'next/font/google'
 import './globals.css'
 import { CookieBanner } from '@/components/CookieBanner'
+import BottomTabBar from '@/components/BottomTabBar'
 
 const inter = Inter({
   subsets: ['latin', 'latin-ext'],
@@ -170,7 +171,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Search engine verifications */}
         <meta name="seznam-wmt" content="36swRGwLCcXGBmeVZ8oKjwsnfNc0Wqu1" />
       </head>
-      <body className={inter.className}>{children}<CookieBanner /></body>
+      <body className={inter.className}>{children}<BottomTabBar /><CookieBanner /></body>
     </html>
   )
 }

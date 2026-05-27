@@ -4,6 +4,7 @@ import { useState, useRef, useCallback, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase, HOBBIES, MIN_HOBBIES, MAX_HOBBIES, COUNTRIES, EDUCATION_OPTIONS } from '@/lib/supabase'
+import { haptic } from '@/lib/haptic'
 
 const MONTHS = [
   'Leden','Únor','Březen','Duben','Květen','Červen',
@@ -157,6 +158,7 @@ export default function RegisterPage() {
 
   const set = (key: string, val: unknown) => setForm(f => ({ ...f, [key]: val }))
   const toggleHobby = (h: string) => {
+    haptic.light()
     if (form.hobbies.includes(h)) {
       set('hobbies', form.hobbies.filter((x: string) => x !== h))
     } else if (form.hobbies.length < MAX_HOBBIES) {
@@ -324,8 +326,13 @@ export default function RegisterPage() {
       }
 
       const { data: profile } = await supabase.from('profiles').select('*').eq('id', userId).single()
-      if (profile) { localStorage.setItem('cosmatch_user', JSON.stringify(profile)); router.push('/discover') }
+      if (profile) {
+        haptic.success()
+        localStorage.setItem('cosmatch_user', JSON.stringify(profile))
+        router.push('/discover')
+      }
     } catch (e: unknown) {
+      haptic.error()
       setError(e instanceof Error ? e.message : 'Chyba při registraci.')
     } finally { setLoading(false) }
   }

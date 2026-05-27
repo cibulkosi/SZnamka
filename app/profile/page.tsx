@@ -7,6 +7,7 @@ import { computeMBTITolerant, MBTI_TYPES_CZ } from '@/lib/mbti'
 import { PROMPTS as ALL_PROMPTS } from '@/lib/prompts'
 import { TrialBanner } from '@/components/PremiumGate'
 import FoundingBadge from '@/components/FoundingBadge'
+import { haptic } from '@/lib/haptic'
 
 const SUPABASE_FUNCTIONS_URL = 'https://xdotpadgbchhecwitbpe.supabase.co/functions/v1'
 
@@ -28,28 +29,6 @@ const PencilIcon = ({ size = 14 }: { size?: number }) => (
   </svg>
 )
 
-function BottomNav({ active }: { active: string }) {
-  const items = [
-    { key: 'discover', href: '/discover', label: 'DISCOVER' },
-    { key: 'matches', href: '/matches', label: 'SHODY' },
-    { key: 'premium', href: '/premium', label: 'PREMIUM' },
-    { key: 'profile', href: '/profile', label: 'PROFIL' },
-  ]
-  return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 z-30">
-      <div className="flex max-w-lg mx-auto">
-        {items.map(item => (
-          <Link key={item.key} href={item.href}
-            className={`flex-1 py-4 text-center text-[10px] tracking-[0.15em] uppercase font-medium transition-colors ${
-              active === item.key ? 'text-pink-500' : 'text-gray-400 hover:text-gray-600'
-            }`}>
-            {item.label}
-          </Link>
-        ))}
-      </div>
-    </nav>
-  )
-}
 
 // ── Generic patch helper ──────────────────────────────────────
 async function patchProfile(userId: string, patch: Partial<Profile>): Promise<{ ok: boolean; error?: string }> {
@@ -152,6 +131,7 @@ function EditableText({ label, value, onSave, placeholder, multiline = true, max
 
   async function handleSave() {
     setSaving(true)
+    haptic.medium()
     await onSave(draft.trim())
     setSaving(false)
     setEditing(false)
@@ -574,11 +554,7 @@ export default function ProfilePage() {
     if (r.ok) setUser({ ...user, [key]: value })
   }
 
-  if (!user) return (
-    <main className="min-h-screen bg-[#F0EBE3] flex items-center justify-center">
-      <p className="text-gray-400 text-sm">Načítám profil…</p>
-    </main>
-  )
+  if (!user) return <ProfileSkeleton />
 
   const zodiac = getZodiac(user.birthday)
   const [mm, dd] = user.birthday ? user.birthday.split('-') : ['', '']
@@ -887,8 +863,6 @@ export default function ProfilePage() {
           </div>
         </div>
       )}
-
-      <BottomNav active="profile" />
-    </main>
+</main>
   )
 }

@@ -4,6 +4,8 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase, loadCurrentProfile, type Profile, type Compatibility, getZodiac } from '@/lib/supabase'
 import { TrialBanner } from '@/components/PremiumGate'
+import { haptic } from '@/lib/haptic'
+import { MatchesSkeleton } from '@/components/Skeletons'
 
 type Tab = 'mutual' | 'liked' | 'matches'
 
@@ -40,28 +42,6 @@ function PhotoFallback({ name }: { name: string }) {
   )
 }
 
-function BottomNav({ active }: { active: string }) {
-  const items = [
-    { key: 'discover', href: '/discover', label: 'DISCOVER' },
-    { key: 'matches', href: '/matches', label: 'SHODY' },
-    { key: 'premium', href: '/premium', label: 'PREMIUM' },
-    { key: 'profile', href: '/profile', label: 'PROFIL' },
-  ]
-  return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 z-30">
-      <div className="flex max-w-lg mx-auto">
-        {items.map(item => (
-          <Link key={item.key} href={item.href}
-            className={`flex-1 py-4 text-center text-[10px] tracking-[0.15em] uppercase font-medium transition-colors ${
-              active === item.key ? 'text-pink-500' : 'text-gray-400 hover:text-gray-600'
-            }`}>
-            {item.label}
-          </Link>
-        ))}
-      </div>
-    </nav>
-  )
-}
 
 export default function MatchesPage() {
   const router = useRouter()
@@ -146,6 +126,7 @@ export default function MatchesPage() {
   const displayList = tab === 'matches' ? matches : tab === 'mutual' ? mutualCompat : likedMe
 
   const handleMetIrl = async (matchId: string, partnerId: string) => {
+    haptic.success()
     setMatchMeta(prev => ({ ...prev, [partnerId]: { matchId, metAt: new Date().toISOString() } }))
     try {
       const { data, error } = await supabase.rpc('record_irl_meeting', { p_match_id: matchId })
@@ -158,11 +139,7 @@ export default function MatchesPage() {
     }
   }
 
-  if (loading) return (
-    <main className="min-h-screen bg-[#F0EBE3] flex items-center justify-center">
-      <p className="text-gray-400 text-sm">Načítám…</p>
-    </main>
-  )
+  if (loading) return <MatchesSkeleton />
 
   return (
     <main className="min-h-screen bg-[#F0EBE3] pb-24">
@@ -327,8 +304,6 @@ export default function MatchesPage() {
           </div>
         )}
       </div>
-
-      <BottomNav active="matches" />
-    </main>
+</main>
   )
 }

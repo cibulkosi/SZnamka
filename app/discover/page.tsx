@@ -9,6 +9,8 @@ import { ProfileQuestion, PROFILE_QUESTIONS, type Question } from '@/components/
 import { ARCHETYPES, lifePathNumber } from '@/lib/archetypes'
 import { computeCompatibility, profileCompleteness, isOutsideDistanceLimit, isOutsidePhysicalPrefs, isChildrenIncompatible, isSmokingIncompatible, isAlcoholIncompatible, isMarijuanaIncompatible, tierFallbackBoost, crawfordBidirectional } from '@/lib/compat'
 import HingeProfileV2 from '@/components/HingeProfileV2'
+import { haptic } from '@/lib/haptic'
+import { DiscoverSkeleton } from '@/components/Skeletons'
 
 // Pastelové gradienty jako avatar fallback (bez fotky)
 const AVATAR_GRADIENTS = [
@@ -38,28 +40,6 @@ const FILTER_OPTIONS: { label: string; value: MinScore }[] = [
  { label: '75%+', value: 75 },
 ]
 
-function BottomNav({ active }: { active: string }) {
- const items = [
- { key: 'discover', href: '/discover', label: 'DISCOVER' },
- { key: 'matches', href: '/matches', label: 'SHODY' },
- { key: 'premium', href: '/premium', label: 'PREMIUM' },
- { key: 'profile', href: '/profile', label: 'PROFIL' },
- ]
- return (
- <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 z-30">
- <div className="flex max-w-lg mx-auto">
- {items.map(item => (
- <Link key={item.key} href={item.href}
- className={`flex-1 py-4 text-center text-[10px] tracking-[0.15em] uppercase font-medium transition-colors ${
- active === item.key ? 'text-pink-500' : 'text-gray-400 hover:text-gray-600'
- }`}>
- {item.label}
- </Link>
- ))}
- </div>
- </nav>
- )
-}
 
 // Které otázky ještě nebyly zodpovězeny pro daného uživatele
 function getUnansweredQuestions(user: Profile): Question[] {
@@ -282,9 +262,14 @@ export default function DiscoverPage() {
 
  // Denní limit — free uživatelé max 5 swipů/den
  if (!user.premium && dailySwipes >= DAILY_FREE_LIMIT) {
+ haptic.error()
  setSwipeLimitReached(true)
  return
  }
+
+ // Haptic feedback při lajku/passu
+ if (liked) haptic.medium()
+ else haptic.light()
 
  const target = filteredProfiles[idx]
  setAction(liked ? 'like' : 'pass')
@@ -434,11 +419,7 @@ export default function DiscoverPage() {
  const compatLabel = getCompatLabel(compat, reverseCompat)
  const completeness = user ? profileCompleteness(user) : 0
 
- if (loading) return (
- <main className="min-h-screen bg-[#FAF6F0] flex items-center justify-center">
-   <p className="text-gray-400 text-sm">Načítám profily…</p>
- </main>
- )
+ if (loading) return <DiscoverSkeleton />
 
  return (
  // Celá stránka — pevná výška viewportu, overflow skrytý (scroll je uvnitř HingeProfile)
@@ -533,5 +514,5 @@ export default function DiscoverPage() {
  currentUser={user}
  /> )}
  </div> {/* Bottom nav */}
- <BottomNav active="discover" /> </div> )
+</div> )
 }
