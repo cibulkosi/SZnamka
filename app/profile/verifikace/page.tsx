@@ -31,8 +31,9 @@ export default function VerifikaceFlowPage() {
 
   useEffect(() => {
     (async () => {
-      const u = await loadCurrentProfile()
-      if (!u) { router.push('/login'); return }
+      const result = await loadCurrentProfile()
+      if (result.kind !== 'ok') { router.push('/login'); return }
+      const u = result.profile
       setUser(u)
 
       const { data: verif } = await supabase.from('profile_verifications')
