@@ -16,6 +16,7 @@ import { useEffect, useRef } from 'react'
 import type { Profile, Compatibility } from '@/lib/supabase'
 import { getZodiac } from '@/lib/supabase'
 import { lifePathNumber, ARCHETYPES } from '@/lib/archetypes'
+import { getCompatibilityBreakdown } from '@/lib/compat'
 
 // ── Constants ─────────────────────────────────────────────────
 const ZODIAC_SYMBOLS: Record<string, string> = {
@@ -103,9 +104,16 @@ interface Props {
   currentUser?: Profile | null
 }
 
-export default function HingeProfileV2({ profile, compat, enhancedScore, onPass, onLike, actionState }: Props) {
+export default function HingeProfileV2({ profile, compat, enhancedScore, onPass, onLike, actionState, currentUser }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null)
-  useEffect(() => { scrollRef.current?.scrollTo({ top: 0, behavior: 'instant' }) }, [profile.id])
+  const [whyExpanded, setWhyExpanded] = useState(false)
+  useEffect(() => { scrollRef.current?.scrollTo({ top: 0, behavior: 'instant' }); setWhyExpanded(false) }, [profile.id])
+
+  // Breakdown 7 vrstev — počítáme jen když máme me + compat data
+  const breakdown = useMemo(() => {
+    if (!currentUser || !compat) return null
+    return getCompatibilityBreakdown(currentUser, profile, compat.score ?? null)
+  }, [currentUser, profile, compat])
 
   const age = profile.birth_year ? new Date().getFullYear() - profile.birth_year : null
   const zodiac = getZodiac(profile.birthday) || ''
@@ -182,6 +190,54 @@ export default function HingeProfileV2({ profile, compat, enhancedScore, onPass,
                   <p className="text-xs text-gray-500 mt-1">% shody</p>
                 </div>
               </div>
+              {breakdown && (
+                <button
+                  onClick={() => setWhyExpanded(v => !v)}
+                  aria-expanded={whyExpanded}
+                  className="mt-5 w-full flex items-center justify-between text-sm text-gray-700 hover:text-gray-900 transition font-medium pt-4 border-t border-gray-200/50"
+                  type="button">
+                  <span>Proč zrovna tohle skóre?</span>
+                  <svg className={`w-4 h-4 transition-transform ${whyExpanded ? 'rotate-180' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </button>
+              )}
+              {breakdown && whyExpanded && (
+                <div className="mt-4 pt-2 space-y-2.5">
+                  {breakdown.layers.map(layer => {
+                    const barColor = layer.score >= 80 ? 'bg-emerald-400' :
+                      layer.score >= 60 ? 'bg-amber-400' :
+                      layer.score >= 40 ? 'bg-orange-400' : 'bg-rose-400'
+                    return (
+                      <div key={layer.key} className="bg-white/60 rounded-2xl p-3">
+                        <div className="flex items-center gap-3">
+                          <span className="text-xl flex-shrink-0">{layer.emoji}</span>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-baseline justify-between gap-2">
+                              <p className="text-sm font-medium text-gray-900">{layer.label}</p>
+                              <span className="text-xs text-gray-600 tabular-nums whitespace-nowrap">
+                                <span className="font-semibold text-gray-900">{layer.score}</span>
+                                <span className="text-gray-400"> · váha {layer.weight}%</span>
+                              </span>
+                            </div>
+                            <div className="mt-1.5 h-1.5 bg-gray-200/60 rounded-full overflow-hidden">
+                              <div className={`h-full ${barColor} transition-all`} style={{ width: `${layer.score}%` }} />
+                            </div>
+                            <p className="text-xs text-gray-600 mt-1.5 leading-relaxed">{layer.explanation}</p>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })}
+                  {breakdown.intentMultiplier !== 1 && (
+                    <div className="mt-3 text-xs text-gray-600 bg-pink-50 border border-pink-200 rounded-2xl px-4 py-2.5">
+                      Záměr vztahu × {breakdown.intentMultiplier.toFixed(2)}
+                      {breakdown.intentMultiplier > 1 ? ' (oba hledáte to samé — bonus)' : ' (rozdílné záměry — penalizace)'}
+                    </div>
+                  )}
+                  <p className="text-[11px] text-gray-500 italic mt-2 px-1">Crawford & Sullivan tabulka + 6 dalších vrstev. Celkem 7 vrstev tvoří finální skóre. Vyplněnější profil = přesnější výpočet.</p>
+                </div>
+              )}
             </div>
           )}
 

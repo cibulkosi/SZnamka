@@ -612,3 +612,127 @@ export function profileCompleteness(p: Profile): number {
   const filled = fields.filter(f => f !== undefined && f !== null && f !== '').length
   return Math.round((filled / fields.length) * 100)
 }
+
+// ──────────────────────────────────────────────
+// Why this match? — 7-layer breakdown pro UI explanation
+// ──────────────────────────────────────────────
+export type LayerBreakdown = {
+  key: 'crawford' | 'vision' | 'psycho' | 'intimate' | 'lifestyle' | 'hobby' | 'activity'
+  label: string
+  emoji: string
+  score: number       // 0-100
+  weight: number      // % váha
+  weighted: number    // score * (weight/100)
+  explanation: string
+}
+
+export function getCompatibilityBreakdown(
+  me: Profile,
+  other: Profile,
+  bookScore: number | null,
+): { layers: LayerBreakdown[]; intentMultiplier: number; finalScore: number } {
+  const book = bookScore ?? 50
+  const vision = scoreLifeVision(me, other)
+  const psycho = scorePsychological(me, other)
+  const intim = scoreIntimate(me, other)
+  const lifest = scoreLifestyle(me, other)
+
+  const ah = me.hobbies ?? []
+  const bh = other.hobbies ?? []
+  const sharedCount = bh.filter(h => ah.includes(h)).length
+  const maxTags = Math.max(ah.length, bh.length)
+  const hobbyScore = maxTags > 0 ? Math.round((sharedCount / maxTags) * 100) : 0
+
+  const activ = activityScore(other)
+  const mult = intentMultiplier(me.relationship_goal, other.relationship_goal)
+
+  const layers: LayerBreakdown[] = [
+    {
+      key: 'crawford',
+      label: 'Numerologie',
+      emoji: '🌑',
+      score: Math.round(book),
+      weight: 30,
+      weighted: Math.round(book * 0.30 * 10) / 10,
+      explanation: book >= 95 ? 'Spřízněné duše podle Crawford tabulky'
+        : book >= 85 ? 'Silné numerologické spojení'
+        : book >= 65 ? 'Užitečné spojení'
+        : 'Mírné numerologické tření',
+    },
+    {
+      key: 'vision',
+      label: 'Hodnoty a vize',
+      emoji: '💭',
+      score: vision,
+      weight: 25,
+      weighted: Math.round(vision * 0.25 * 10) / 10,
+      explanation: vision >= 85 ? 'Stejné představy o životě (děti, vztah, víra, finance)'
+        : vision >= 65 ? 'Většina hodnot souhlasí'
+        : vision === 50 ? 'Jeden z vás zatím nevyplnil tuto sekci'
+        : 'Některé klíčové hodnoty se rozcházejí',
+    },
+    {
+      key: 'psycho',
+      label: 'Psychologie',
+      emoji: '🧠',
+      score: psycho,
+      weight: 20,
+      weighted: Math.round(psycho * 0.20 * 10) / 10,
+      explanation: psycho >= 85 ? 'Attachment, MBTI, love languages se shodují'
+        : psycho >= 65 ? 'Psychologicky kompatibilní'
+        : psycho === 50 ? 'Jeden z vás nevyplnil psychologický profil'
+        : 'Psychologické rozdíly k překonání',
+    },
+    {
+      key: 'intimate',
+      label: 'Intimita',
+      emoji: '🌹',
+      score: intim,
+      weight: 10,
+      weighted: Math.round(intim * 0.10 * 10) / 10,
+      explanation: intim >= 75 ? 'Podobné libido'
+        : intim === 50 ? 'Libido zatím nevyplněno'
+        : 'Libido se liší',
+    },
+    {
+      key: 'lifestyle',
+      label: 'Lifestyle',
+      emoji: '🏃',
+      score: lifest,
+      weight: 7,
+      weighted: Math.round(lifest * 0.07 * 10) / 10,
+      explanation: lifest >= 80 ? 'Stejné návyky (kouření, alkohol, dieta, pohyb)'
+        : lifest >= 60 ? 'Podobný životní styl'
+        : 'Některé návyky se liší',
+    },
+    {
+      key: 'hobby',
+      label: 'Společné zájmy',
+      emoji: '🎨',
+      score: hobbyScore,
+      weight: 5,
+      weighted: Math.round(hobbyScore * 0.05 * 10) / 10,
+      explanation: sharedCount > 0
+        ? `${sharedCount} sdílených zájmů z ${maxTags}`
+        : 'Žádné sdílené hobby — ale to je často šance na novou zkušenost',
+    },
+    {
+      key: 'activity',
+      label: 'Aktivita',
+      emoji: '✨',
+      score: activ,
+      weight: 3,
+      weighted: Math.round(activ * 0.03 * 10) / 10,
+      explanation: activ >= 100 ? 'Online dnes'
+        : activ >= 75 ? 'Online tento týden'
+        : activ >= 50 ? 'Naposledy online tento měsíc'
+        : 'Dlouho neaktivní',
+    },
+  ]
+
+  const raw = layers.reduce((s, l) => s + l.weighted, 0)
+  const finalScore = Math.min(100, Math.round(raw * mult))
+
+  return { layers, intentMultiplier: mult, finalScore }
+}
+
