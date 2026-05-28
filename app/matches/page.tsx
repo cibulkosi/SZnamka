@@ -229,8 +229,9 @@ export default function MatchesPage() {
                 const heroPhoto = p.photos?.[0]
                 const indexNum = String(idx + 1).padStart(2, '0')
 
+                const chatHref = matchMeta[p.id]?.matchId ? `/chat/${matchMeta[p.id].matchId}` : '/discover'
                 return (
-                  <Link key={p.id} href="/discover"
+                  <Link key={p.id} href={chatHref}
                     className="group block bg-white rounded-3xl overflow-hidden border border-gray-100 hover:border-gray-300 hover:shadow-md transition-all">
                     {/* Hero photo */}
                     <div className="relative bg-gray-100" style={{ aspectRatio: '4/5' }}>
@@ -295,7 +296,7 @@ export default function MatchesPage() {
                         </div>
                       )}
 
-                      <p className="text-xs text-pink-600 mt-4 font-medium">Otevřít profil →</p>
+                      <p className="text-xs text-pink-600 mt-4 font-medium">Otevřít chat →</p>
                     </div>
                   </Link>
                 )

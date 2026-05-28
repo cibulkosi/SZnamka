@@ -55,11 +55,11 @@ const TABS: Omit<Tab, 'badge'>[] = [
     ),
   },
   {
-    href: '/manifest-duvery',
-    label: 'Důvěra',
+    href: '/chat',
+    label: 'Zprávy',
     icon: (active) => (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2.2 : 1.8} strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      <svg width="24" height="24" viewBox="0 0 24 24" fill={active ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth={active ? 0 : 1.8} strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
       </svg>
     ),
   },
@@ -88,13 +88,21 @@ export default function BottomTabBar() {
       if (!active) return
       setSignedIn(!!data.user)
       if (data.user) {
-        // Count new matches in last 7 days as „unread proxy" (TODO: replace s reálným read state)
-        const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
-        supabase.from('matches')
-          .select('id', { count: 'exact', head: true })
-          .or(`user_a.eq.${data.user.id},user_b.eq.${data.user.id}`)
-          .gte('created_at', oneWeekAgo)
+        // Skutečné unread message count (sender != me, read = false, jen v matchích kde jsem účastník)
+        supabase.from('messages')
+          .select('id, match_id, sender_id, read, matches!inner(user_a, user_b)', { count: 'exact', head: true })
+          .neq('sender_id', data.user.id)
+          .eq('read', false)
           .then(({ count }) => { if (active) setUnreadMatches(count ?? 0) })
+
+        // Realtime subscription — když přijde nová zpráva (sender != me), increment
+        const channel = supabase.channel(`badge-${data.user.id}`)
+          .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, (payload) => {
+            const m = payload.new as { sender_id?: string }
+            if (m.sender_id && m.sender_id !== data.user!.id) setUnreadMatches(c => c + 1)
+          })
+          .subscribe()
+        return () => { supabase.removeChannel(channel) }
       }
     })
     return () => { active = false }
@@ -114,7 +122,7 @@ export default function BottomTabBar() {
         <div className="max-w-lg mx-auto px-4 grid grid-cols-4 gap-1">
           {TABS.map(t => {
             const active = pathname === t.href || pathname.startsWith(t.href + '/')
-            const showBadge = t.href === '/matches' && unreadMatches > 0
+            const showBadge = t.href === '/chat' && unreadMatches > 0
             return (
               <Link
                 key={t.href}
