@@ -274,6 +274,27 @@ function PromptsEditor({ user, onUpdate }: { user: Profile; onUpdate: (prompts: 
   const [draftQuestion, setDraftQuestion] = useState('')
   const [draftAnswer, setDraftAnswer] = useState('')
   const [saving, setSaving] = useState(false)
+  const [aiFeedback, setAiFeedback] = useState<{ score: number; feedback: string; suggestion: string | null } | null>(null)
+  const [aiLoading, setAiLoading] = useState(false)
+
+  async function getAiFeedback(question: string, answer: string) {
+    setAiLoading(true)
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (!session) return
+      const r = await fetch(`${SUPABASE_FUNCTIONS_URL}/prompt-feedback`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${session.access_token}` },
+        body: JSON.stringify({ question, answer })
+      })
+      if (r.ok) {
+        const data = await r.json()
+        setAiFeedback(data)
+        setTimeout(() => setAiFeedback(null), 12000)
+      }
+    } catch { /* silent */ }
+    finally { setAiLoading(false) }
+  }
 
   function startEdit(idx: number) {
     const existing = prompts[idx]
@@ -300,7 +321,11 @@ function PromptsEditor({ user, onUpdate }: { user: Profile; onUpdate: (prompts: 
     }
     const r = await patchProfile(user.id, { prompts: updated })
     setSaving(false)
-    if (r.ok) { onUpdate(updated); setEditingIdx(null) }
+    if (r.ok) {
+      onUpdate(updated); setEditingIdx(null)
+      // AI feedback async, nečekáme — uloženo už je
+      getAiFeedback(draftQuestion, draftAnswer.trim())
+    }
   }
 
   async function handleRemove(idx: number) {
@@ -315,6 +340,23 @@ function PromptsEditor({ user, onUpdate }: { user: Profile; onUpdate: (prompts: 
         <p className="eyebrow text-pink-500">Tvoje odpovědi</p>
         <p className="text-xs text-gray-500">{prompts.length} / 3</p>
       </div>
+      {(aiLoading || aiFeedback) && (
+        <div className={`mb-4 rounded-2xl px-4 py-3 border text-sm ${
+          aiLoading ? 'bg-gray-50 border-gray-200 text-gray-500' :
+          (aiFeedback?.score ?? 0) >= 7 ? 'bg-emerald-50 border-emerald-200 text-emerald-800' :
+          (aiFeedback?.score ?? 0) >= 4 ? 'bg-amber-50 border-amber-200 text-amber-800' :
+          'bg-rose-50 border-rose-200 text-rose-800'
+        }`}>
+          {aiLoading ? (
+            <p className="leading-relaxed">Klaudie kouká, jak Ti to dopadlo…</p>
+          ) : aiFeedback ? (
+            <>
+              <p className="leading-relaxed"><span className="font-semibold">{aiFeedback.score}/10</span> · {aiFeedback.feedback}</p>
+              {aiFeedback.suggestion && <p className="leading-relaxed mt-1 opacity-90">💡 {aiFeedback.suggestion}</p>}
+            </>
+          ) : null}
+        </div>
+      )}
       <p className="text-sm text-gray-500 mb-4 leading-relaxed">
         Vyber 3 otázky a odpověz na ně. Ukáží se ve Tvém profilu jako Hinge-style karty.
       </p>
