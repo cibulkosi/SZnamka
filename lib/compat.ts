@@ -308,10 +308,14 @@ export function crawfordBidirectional(
 ): { score: number; forwardScore: number; reverseScore: number; forwardLabel: string; reverseLabel: string; asymmetric: boolean; mutualPositiveBonus: boolean } {
   const fwd = crawfordScore(forward)
   const rev = crawfordScore(reverse)
-  const mean = (fwd + rev) / 2
-  const mutualPositive = fwd >= 70 && rev >= 70
-  const score = mutualPositive ? Math.min(100, Math.round(mean * 1.05)) : Math.round(mean)
-  const asymmetric = Math.abs(fwd - rev) >= 30
+  // Harmonický průměr — bottleneck rule: vztah je tak silný, jako míň zainteresovaná strana.
+  // Penalizuje asymetrické páry automaticky (např. SM 100 + Challenging 45 = 62, ne 72.5).
+  const harmonic = (fwd === 0 || rev === 0) ? 0 : (2 * fwd * rev) / (fwd + rev)
+  // Bonus jen pro skutečně high-quality oboustranné (SM nebo L&F = oba ≥ 90).
+  // Mutual Magnetic Tension (oba 85) bonus nedostává — vášnivé ale nestabilní.
+  const mutualHighQuality = fwd >= 90 && rev >= 90
+  const score = Math.round(Math.min(100, harmonic * (mutualHighQuality ? 1.05 : 1.0)))
+  const asymmetric = Math.abs(fwd - rev) >= 25
   return {
     score,
     forwardScore: fwd,
@@ -319,7 +323,7 @@ export function crawfordBidirectional(
     forwardLabel: crawfordLabel(forward),
     reverseLabel: crawfordLabel(reverse),
     asymmetric,
-    mutualPositiveBonus: mutualPositive,
+    mutualPositiveBonus: mutualHighQuality,
   }
 }
 
@@ -453,12 +457,14 @@ function scorePsychological(a: Profile, b: Profile): number {
     else points += 3
   }
 
-  // MBTI E/I — stejné lepší (10 b) — silnější dimenze (koreluje s Big5 Extraversion)
+  // MBTI E/I — stejné lehce lepší (10 b) — koreluje s Big5 Extraversion (Watson 2000 r≈0.15-0.20).
+  // Aktualizováno 28. 5. 2026: opozity nejsou silně trestány — research říká, že rozdíl je malý
+  //   a mnoho šťastných E+I párů existuje. Změna 10/7/3 → 10/8/6.
   if (a.personality_social && b.personality_social) {
     max += 10
     if (a.personality_social === b.personality_social) points += 10
-    else if (a.personality_social === 'ambivert' || b.personality_social === 'ambivert') points += 7
-    else points += 3
+    else if (a.personality_social === 'ambivert' || b.personality_social === 'ambivert') points += 8
+    else points += 6  // E+I — mírná penalizace, ne destruktivní
   }
 
   // MBTI T/F — stejné lepší (6 b)
