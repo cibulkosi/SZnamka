@@ -3,9 +3,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import Link from 'next/link'
-import { supabase, loadCurrentProfile, type Profile, type Compatibility } from '@/lib/supabase'
+import { supabase, loadCurrentProfile, type Profile } from '@/lib/supabase'
 import { haptic } from '@/lib/haptic'
-import { computeCompatibility } from '@/lib/compat'
 
 type Message = {
   id: string
@@ -38,7 +37,7 @@ export default function ChatThreadPage() {
 
   const [me, setMe] = useState<Profile | null>(null)
   const [partner, setPartner] = useState<Profile | null>(null)
-  const [compat, setCompat] = useState<Compatibility | null>(null)
+  const [compatScore, setCompatScore] = useState<number | null>(null)
   const [messages, setMessages] = useState<Message[]>([])
   const [draft, setDraft] = useState('')
   const [sending, setSending] = useState(false)
@@ -70,8 +69,12 @@ export default function ChatThreadPage() {
       if (!p) { router.push('/chat'); return }
       setPartner(p as Profile)
 
-      // Compatibility
-      try { setCompat(computeCompatibility(r.profile.birthday, p.birthday)) } catch {}
+      // Compatibility — fetch from compatibility table (precomputed)
+      try {
+        const { data: c } = await supabase.from('compatibility')
+          .select('score').eq('date_a', r.profile.birthday).eq('date_b', p.birthday).maybeSingle()
+        if (c?.score) setCompatScore(c.score)
+      } catch {}
 
       // Načti messages
       const { data: msgs } = await supabase.from('messages')
@@ -148,7 +151,7 @@ export default function ChatThreadPage() {
   }
 
   async function getAiSuggestions() {
-    if (!partner || !compat) return
+    if (!partner) return
     setAiLoading(true)
     haptic.light()
     try {
@@ -163,7 +166,7 @@ export default function ChatThreadPage() {
             prompts: partner.prompts, hobbies: partner.hobbies,
             occupation: partner.occupation, city: partner.city,
           },
-          compat_score: compat.score,
+          compat_score: compatScore,
           my_name: me?.name,
         })
       })
@@ -211,7 +214,7 @@ export default function ChatThreadPage() {
                 </svg>
               )}
             </p>
-            {compat && <p className="text-xs text-pink-500">{compat.score} % kompatibilita</p>}
+            {compatScore && <p className="text-xs text-pink-500">{compatScore} % kompatibilita</p>}
           </div>
         </div>
       </header>
@@ -224,7 +227,7 @@ export default function ChatThreadPage() {
               <p className="text-5xl mb-4">💌</p>
               <h2 className="serif text-2xl text-gray-900 mb-2">Pošli první zprávu</h2>
               <p className="text-gray-600 text-sm leading-relaxed max-w-sm mx-auto mb-6">
-                Vy si vzájemně kompatibilní {compat ? `na ${compat.score} %` : ''}. Napiš {firstName} něco konkrétního z {firstName === 'jeho' ? 'jeho' : 'jejího'} profilu — vždy to funguje líp než „Ahoj, jak se máš?".
+                Vy si vzájemně kompatibilní {compatScore ? `na ${compatScore} %` : ''}. Napiš {firstName} něco konkrétního z {firstName === 'jeho' ? 'jeho' : 'jejího'} profilu — vždy to funguje líp než „Ahoj, jak se máš?".
               </p>
               <button onClick={getAiSuggestions} disabled={aiLoading}
                 className="inline-flex items-center gap-2 bg-white border border-gray-300 hover:border-gray-900 text-gray-900 py-2.5 px-5 rounded-full text-sm font-medium transition disabled:opacity-50">
