@@ -123,9 +123,9 @@ export default function DiscoverPage() {
  const magicSeen = localStorage.getItem('cosmatch_magic_seen')
  if (!magicSeen) {
  const bday = u.birthday
- supabase.from('personology').select('opening').eq('date_key', bday).single()
+ supabase.from('personology').select('opening,opening_cs').eq('date_key', bday).single()
  .then(({ data }) => {
- if (data?.opening) setMagicText(data.opening)
+ if (data?.opening_cs) setMagicText(data.opening_cs); else if (data?.opening) setMagicText(data.opening)
  })
  }
 
