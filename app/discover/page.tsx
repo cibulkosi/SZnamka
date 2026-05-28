@@ -11,6 +11,7 @@ import { computeCompatibility, profileCompleteness, isOutsideDistanceLimit, isOu
 import HingeProfileV2 from '@/components/HingeProfileV2'
 import { haptic } from '@/lib/haptic'
 import { DiscoverSkeleton } from '@/components/Skeletons'
+import { maybePromptPushPermission } from '@/lib/pushNotifications'
 
 // Pastelové gradienty jako avatar fallback (bez fotky)
 const AVATAR_GRADIENTS = [

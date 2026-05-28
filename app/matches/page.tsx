@@ -6,6 +6,7 @@ import { supabase, loadCurrentProfile, type Profile, type Compatibility, getZodi
 import { TrialBanner } from '@/components/PremiumGate'
 import { haptic } from '@/lib/haptic'
 import { MatchesSkeleton } from '@/components/Skeletons'
+import { maybePromptPushPermission } from '@/lib/pushNotifications'
 
 type Tab = 'mutual' | 'liked' | 'matches'
 
@@ -138,6 +139,13 @@ export default function MatchesPage() {
       setMatchMeta(prev => ({ ...prev, [partnerId]: { matchId, metAt: null } }))
     }
   }
+
+  // Smart push permission — prompt jen pokud má user shody a ještě nepovolil
+  useEffect(() => {
+    if (!loading && Object.keys(matchMeta).length > 0) {
+      maybePromptPushPermission('first_match').catch(() => {})
+    }
+  }, [loading, matchMeta])
 
   if (loading) return <MatchesSkeleton />
 
