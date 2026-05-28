@@ -12,7 +12,7 @@
  *   - profile.voice_prompt (voice waveform card)
  * Until DB migration, those sections are skipped gracefully.
  */
-import { useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import type { Profile, Compatibility } from '@/lib/supabase'
 import { getZodiac } from '@/lib/supabase'
 import { lifePathNumber, ARCHETYPES } from '@/lib/archetypes'
