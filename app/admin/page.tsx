@@ -556,6 +556,8 @@ export default function AdminPage() {
                   {newMessagesCount > 0 && <span className="inline-flex items-center justify-center min-w-[1.25rem] h-5 px-1.5 rounded-full bg-pink-500 text-white text-xs tabular-nums">{newMessagesCount}</span>}
                 </Link>
                 <Link href="/admin/gdpr-requests" className="px-5 py-2.5 rounded-full bg-white border border-pink-300 hover:border-pink-500 text-sm text-pink-700 hover:text-pink-900 transition">GDPR žádosti</Link>
+                <Link href="/admin/verifikace" className="px-5 py-2.5 rounded-full bg-white border border-pink-300 hover:border-pink-500 text-sm text-pink-700 hover:text-pink-900 transition">Verifikace</Link>
+                <Link href="/admin/growth" className="px-5 py-2.5 rounded-full bg-gray-900 text-white hover:bg-gray-800 text-sm font-medium transition">📈 Growth dashboard</Link>
                 <Link href="/discover" className="px-5 py-2.5 rounded-full bg-white border border-gray-300 hover:border-gray-900 text-sm text-gray-700 hover:text-gray-900 transition">Discover</Link>
               </div>
             </section>
