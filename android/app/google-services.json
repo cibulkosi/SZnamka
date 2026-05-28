@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "776130807517",
+    "project_id": "cosmatch-53d4e",
+    "storage_bucket": "cosmatch-53d4e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:776130807517:android:36501a5c627c058050fd34",
+        "android_client_info": {
+          "package_name": "cz.cosmatch.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtG00kf5ce7anc3bidHqdNMWFD1NG2ZCc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
