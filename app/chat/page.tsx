@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { EmptyChats } from '@/components/EmptyStates'
 import Link from 'next/link'
 import { supabase, loadCurrentProfile, type Profile } from '@/lib/supabase'
 
@@ -133,18 +134,7 @@ export default function ChatListPage() {
           <hr className="rule w-12 border-gray-900 mt-6" />
         </header>
 
-        {conversations.length === 0 ? (
-          <div className="bg-white rounded-3xl p-8 text-center">
-            <p className="text-6xl mb-4">💌</p>
-            <h2 className="serif text-2xl text-gray-900 mb-3">Žádné konverzace</h2>
-            <p className="text-gray-600 text-sm leading-relaxed mb-6">
-              Až dáš někomu lajk a on/ona Tobě, otevře se tady chat.
-            </p>
-            <Link href="/discover" className="inline-block bg-gray-900 text-white py-3 px-6 rounded-full text-sm font-medium hover:bg-gray-800 transition">
-              Objevuj profily
-            </Link>
-          </div>
-        ) : (
+        {conversations.length === 0 ? <EmptyChats /> : (
           <ul className="space-y-2">
             {conversations.map(c => {
               const photo = c.partner.photos?.[0]

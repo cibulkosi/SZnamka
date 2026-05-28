@@ -6,6 +6,7 @@ import { supabase, loadCurrentProfile, type Profile, type Compatibility, getZodi
 import { TrialBanner } from '@/components/PremiumGate'
 import { haptic } from '@/lib/haptic'
 import { MatchesSkeleton } from '@/components/Skeletons'
+import { EmptyMatches, EmptyLikes } from '@/components/EmptyStates'
 import { maybePromptPushPermission } from '@/lib/pushNotifications'
 
 type Tab = 'mutual' | 'liked' | 'matches'
@@ -192,21 +193,9 @@ export default function MatchesPage() {
         )}
 
         {displayList.length === 0 ? (
-          <div className="py-24 text-center">
-            <p className="serif text-2xl text-gray-700 italic mb-3">
-              {tab === 'matches' ? 'Zatím žádné shody.'
-                : tab === 'mutual' ? 'Žádné kosmické shody.'
-                : 'Nikdo Tě ještě nelajknul.'}
-            </p>
-            <p className="text-gray-500 text-[1.0625rem] leading-relaxed mb-8 max-w-sm mx-auto">
-              {tab === 'matches' ? 'Pokračuj v objevování — každý den dostáváš nové profily.'
-                : tab === 'mutual' ? 'Ještě nikdo s Tvou oboustrannou kompatibilitou není registrovaný.'
-                : 'Trpělivost — Cosmatch se právě rozjíždí.'}
-            </p>
-            <Link href="/discover" className="inline-flex items-center justify-center bg-gray-900 text-white px-8 py-4 rounded-full text-base font-medium hover:bg-gray-800 transition">
-              Otevřít Discover
-            </Link>
-          </div>
+          tab === 'matches' ? <EmptyMatches firstName={user?.name?.split(' ')[0]} />
+            : tab === 'mutual' ? <EmptyMatches firstName={user?.name?.split(' ')[0]} />
+            : <EmptyLikes />
         ) : (
           <div className="relative">
             {/* Premium gate pro 'Líbím se' tab */}
