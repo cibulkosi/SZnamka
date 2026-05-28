@@ -248,7 +248,7 @@ export default function LifePathPage() {
               <Link key={n} href={`/numerologie/zivotni-cislo-${n}`}
                 className="aspect-square flex flex-col items-center justify-center bg-white border border-gray-200 hover:border-gray-900 rounded-2xl transition group">
                 <span className="serif-display text-2xl text-gray-700 group-hover:text-pink-500 transition font-medium tabular-nums">{n}</span>
-                <span className="text-[10px] text-gray-400 mt-1 tracking-wider uppercase">{ARCHETYPES[n].name}</span>
+                <span className="text-[10px] text-gray-500 mt-1 tracking-wider uppercase">{ARCHETYPES[n].name}</span>
               </Link>
             ))}
           </div>
@@ -256,7 +256,7 @@ export default function LifePathPage() {
 
         {/* Footer */}
         <footer className="mt-20 pt-12 border-t border-gray-200">
-          <p className="text-xs text-gray-400 leading-relaxed">
+          <p className="text-xs text-gray-500 leading-relaxed">
             Cosmatch · Mgr. Ing. Simona Cibulková · IČO 08419531 · Praha 5, 2026.
             Numerologie není empirická věda — výsledky používejte jako podporu rozhodování, ne jako absolutní pravdu.
           </p>

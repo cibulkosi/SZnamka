@@ -114,3 +114,52 @@ main p > a:not([class]):hover,
 main li > a:not([class]):hover {
   text-decoration-color: #ec4899;
 }
+
+/* ────────────────────────────────────────────────────────────
+   Accessibility — Sprint 1.6
+   ──────────────────────────────────────────────────────────── */
+
+/* Respect prefers-reduced-motion — vypne animace a transitions pro uživatele,
+   kteří mají v OS zapnuté „Reduce motion". Důležité pro a11y + některé typy
+   migrén / vestibulárních poruch. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  /* Vypneme i pulse-skeleton, ať se neblbne s blikáním */
+  .animate-pulse { animation: none !important; opacity: 0.7; }
+}
+
+/* Focus ring — vidět jen při keyboard nav (Tab), ne při kliku myší */
+*:focus-visible {
+  outline: 2px solid #ec4899;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Pro buttony a links, které mají vlastní background, použít ring místo outline */
+button:focus-visible,
+a:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.4);
+}
+
+/* Skip link — pro keyboard navigation (objeví se až po Tab z URL bar) */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 12px;
+  background: #111827;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  z-index: 100;
+  text-decoration: none;
+  font-size: 14px;
+}
+.skip-link:focus { top: 12px; }

@@ -466,7 +466,7 @@ export default function DiscoverPage() {
  <div className="flex-shrink-0 px-5 max-w-lg mx-auto w-full"><TrialBanner profile={user} /></div>
  {/* Denní swipe limit lišta */}
  {!user?.premium && (
- <div className="flex-shrink-0 px-5 pb-2 max-w-lg mx-auto w-full"> <div className="flex items-center justify-between px-1 mb-1"> <span className="text-xs text-gray-400 font-medium">Dnešní swipy</span> <span className="text-xs font-bold text-gray-500"> {Math.min(dailySwipes, DAILY_FREE_LIMIT)} / {DAILY_FREE_LIMIT}
+ <div className="flex-shrink-0 px-5 pb-2 max-w-lg mx-auto w-full"> <div className="flex items-center justify-between px-1 mb-1"> <span className="text-xs text-gray-500 font-medium">Dnešní swipy</span> <span className="text-xs font-bold text-gray-500"> {Math.min(dailySwipes, DAILY_FREE_LIMIT)} / {DAILY_FREE_LIMIT}
  {user?.premium && <span className="ml-2 text-amber-500"> PREMIUM</span>}
  </span> </div> <div className="h-1 bg-gray-100 rounded-full overflow-hidden"> <div
  className="h-full rounded-full transition-all duration-300"
@@ -486,7 +486,7 @@ export default function DiscoverPage() {
  <div className="h-full flex items-center justify-center px-5"> <div className="card p-8 text-center w-full"> <div className="text-4xl mb-3">⏳</div> <h3 className="text-lg font-bold text-gray-900 mb-2">Na dnešek máš hotovo</h3> <p className="text-gray-400 text-sm mb-1"> Dnešních {DAILY_FREE_LIMIT} swipů zdarma jsou pryč.
  </p> <p className="text-gray-400 text-sm mb-6"> Vrať se zítra — nebo si odemkni neomezené swipy.
  </p> <Link href="/premium" className="btn-primary w-full text-center inline-block mb-3"> Cosmatch+ — neomezené swipy
- </Link> <p className="text-xs text-gray-300">249 Kč/měs · Zrušení kdykoliv</p> </div> </div> /* Progressivní otázka */
+ </Link> <p className="text-xs text-gray-400">249 Kč/měs · Zrušení kdykoliv</p> </div> </div> /* Progressivní otázka */
  ) : showQuestion && currentQuestion ? (
  <div className="h-full flex items-center justify-center px-5 overflow-y-auto"> <div className="w-full"> <ProfileQuestion
  question={currentQuestion}

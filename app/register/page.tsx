@@ -380,7 +380,7 @@ export default function RegisterPage() {
                 style={{ position: 'absolute', left: '-9999px', opacity: 0 }} />
             </div>
 
-            <p className="text-xs text-gray-400 leading-relaxed text-center">
+            <p className="text-xs text-gray-500 leading-relaxed text-center">
               Pokračováním souhlasíš s{' '}
               <Link href="/obchodni-podminky" className="underline hover:text-gray-700">Obchodními podmínkami</Link>
               {' '}a{' '}
@@ -443,7 +443,7 @@ export default function RegisterPage() {
             </div>
 
             <PrimaryBtn disabled={!birthday || !form.birth_year} onClick={openBirthdayConfirm}>Pokračovat</PrimaryBtn>
-            <button onClick={() => setStep(0)} className="block mx-auto mt-6 text-sm text-gray-400 hover:text-gray-700 transition">← Zpět</button>
+            <button onClick={() => setStep(0)} className="block mx-auto mt-6 text-sm text-gray-500 hover:text-gray-700 transition">← Zpět</button>
           </>
         )}
 
@@ -479,10 +479,10 @@ export default function RegisterPage() {
             </div>
             <input ref={fileInputRef} type="file" accept="image/jpeg,image/png,image/webp" multiple className="hidden"
               onChange={e => addPhotos(e.target.files)} />
-            <p className="text-xs text-gray-400 mb-10">JPG / PNG / WebP · max 10 MB / foto · až 6 fotek</p>
+            <p className="text-xs text-gray-500 mb-10">JPG / PNG / WebP · max 10 MB / foto · až 6 fotek</p>
 
             <PrimaryBtn onClick={() => setStep(3)}>{form.photos.length === 0 ? 'Přeskočit zatím' : 'Pokračovat'}</PrimaryBtn>
-            <button onClick={() => setStep(1)} className="block mx-auto mt-6 text-sm text-gray-400 hover:text-gray-700 transition">← Zpět</button>
+            <button onClick={() => setStep(1)} className="block mx-auto mt-6 text-sm text-gray-500 hover:text-gray-700 transition">← Zpět</button>
           </>
         )}
 
@@ -540,7 +540,7 @@ export default function RegisterPage() {
                   className="w-full py-3 px-5 rounded-full border border-gray-300 hover:border-gray-900 text-sm font-medium text-gray-700 hover:text-gray-900 transition disabled:opacity-50">
                   {geoLoading ? 'Zjišťuji polohu…' : 'Zjistit polohu'}
                 </button>
-                <p className="text-xs text-gray-400 mt-2 mb-3 leading-relaxed">GPS jen pro odhad města — přesnou adresu neukládáme.</p>
+                <p className="text-xs text-gray-500 mt-2 mb-3 leading-relaxed">GPS jen pro odhad města — přesnou adresu neukládáme.</p>
                 {geoError && <p className="text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-2xl px-4 py-2 mb-3">{geoError}</p>}
                 <div className="grid grid-cols-2 gap-3">
                   <Underline placeholder="Město" value={form.city} onChange={e => set('city', e.target.value)} />
@@ -553,7 +553,7 @@ export default function RegisterPage() {
             </div>
 
             <PrimaryBtn onClick={() => setStep(4)}>Pokračovat</PrimaryBtn>
-            <button onClick={() => setStep(2)} className="block mx-auto mt-6 text-sm text-gray-400 hover:text-gray-700 transition">← Zpět</button>
+            <button onClick={() => setStep(2)} className="block mx-auto mt-6 text-sm text-gray-500 hover:text-gray-700 transition">← Zpět</button>
           </>
         )}
 
@@ -573,7 +573,7 @@ export default function RegisterPage() {
               <div>
                 <Eyebrow>E-mail</Eyebrow>
                 <Underline type="email" value={form.email} onChange={e => set('email', e.target.value)} placeholder="jana@example.cz" />
-                <p className="text-xs text-gray-400 mt-2 leading-relaxed">Pokud jsi přišel/přišla přes Google nebo Facebook, je předvyplněný. Můžeš upravit, pokud chceš dostávat zprávy na jiný.</p>
+                <p className="text-xs text-gray-500 mt-2 leading-relaxed">Pokud jsi přišel/přišla přes Google nebo Facebook, je předvyplněný. Můžeš upravit, pokud chceš dostávat zprávy na jiný.</p>
               </div>
 
               <div>
@@ -673,7 +673,7 @@ export default function RegisterPage() {
                   onChange={e => set('voucher_code', e.target.value.toUpperCase())}
                   placeholder="např. K7XP9M2A"
                 />
-                <p className="text-xs text-gray-400 mt-2 leading-relaxed">
+                <p className="text-xs text-gray-500 mt-2 leading-relaxed">
                   Pokud jsi dostal/a kód v e-mailu z waitlistu, vlož ho sem. Aktivujeme ho s prvním placeným předplatným Cosmatch+.
                 </p>
               </div>
@@ -724,7 +724,7 @@ export default function RegisterPage() {
             <PrimaryBtn onClick={handleSubmit} disabled={loading}>
               {loading ? 'Zakládám Tvůj profil…' : 'Hotovo'}
             </PrimaryBtn>
-            <button onClick={() => setStep(3)} className="block mx-auto mt-6 text-sm text-gray-400 hover:text-gray-700 transition">← Zpět</button>
+            <button onClick={() => setStep(3)} className="block mx-auto mt-6 text-sm text-gray-500 hover:text-gray-700 transition">← Zpět</button>
           </>
         )}
       </div>

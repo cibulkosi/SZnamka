@@ -142,7 +142,7 @@ export default function CosmatchKarmickaMapaPage() {
               <p className="eyebrow text-amber-700">Nezávislost</p>
               <div className="flex gap-3">
                 <div className="serif-display text-2xl text-gray-900 font-medium w-12 h-12 bg-amber-50 border border-amber-200 rounded-full flex items-center justify-center">1<span className="text-xs text-gray-500 ml-0.5">×1</span></div>
-                <div className="serif-display text-2xl text-gray-300 font-medium w-12 h-12 bg-gray-50 border border-gray-200 rounded-full flex items-center justify-center">—</div>
+                <div className="serif-display text-2xl text-gray-400 font-medium w-12 h-12 bg-gray-50 border border-gray-200 rounded-full flex items-center justify-center">—</div>
                 <div className="serif-display text-2xl text-gray-900 font-medium w-12 h-12 bg-amber-50 border border-amber-200 rounded-full flex items-center justify-center">7<span className="text-xs text-gray-500 ml-0.5">×1</span></div>
               </div>
             </div>
@@ -150,15 +150,15 @@ export default function CosmatchKarmickaMapaPage() {
               <p className="eyebrow text-emerald-700">Stabilita</p>
               <div className="flex gap-3">
                 <div className="serif-display text-2xl text-gray-900 font-medium w-12 h-12 bg-emerald-50 border border-emerald-200 rounded-full flex items-center justify-center">2<span className="text-xs text-gray-500 ml-0.5">×2</span></div>
-                <div className="serif-display text-2xl text-gray-300 font-medium w-12 h-12 bg-gray-50 border border-gray-200 rounded-full flex items-center justify-center">—</div>
-                <div className="serif-display text-2xl text-gray-300 font-medium w-12 h-12 bg-gray-50 border border-gray-200 rounded-full flex items-center justify-center">—</div>
+                <div className="serif-display text-2xl text-gray-400 font-medium w-12 h-12 bg-gray-50 border border-gray-200 rounded-full flex items-center justify-center">—</div>
+                <div className="serif-display text-2xl text-gray-400 font-medium w-12 h-12 bg-gray-50 border border-gray-200 rounded-full flex items-center justify-center">—</div>
               </div>
             </div>
             <div className="grid grid-cols-[140px,1fr] gap-4 items-center">
               <p className="eyebrow text-pink-700">Tvořivost</p>
               <div className="flex gap-3">
                 <div className="serif-display text-2xl text-gray-900 font-medium w-12 h-12 bg-pink-50 border border-pink-200 rounded-full flex items-center justify-center">3<span className="text-xs text-gray-500 ml-0.5">×1</span></div>
-                <div className="serif-display text-2xl text-gray-300 font-medium w-12 h-12 bg-gray-50 border border-gray-200 rounded-full flex items-center justify-center">—</div>
+                <div className="serif-display text-2xl text-gray-400 font-medium w-12 h-12 bg-gray-50 border border-gray-200 rounded-full flex items-center justify-center">—</div>
                 <div className="serif-display text-2xl text-gray-900 font-medium w-12 h-12 bg-pink-50 border border-pink-200 rounded-full flex items-center justify-center">9<span className="text-xs text-gray-500 ml-0.5">×2</span></div>
               </div>
             </div>
@@ -241,7 +241,7 @@ export default function CosmatchKarmickaMapaPage() {
         </section>
 
         <footer className="mt-16 pt-12 border-t border-gray-200">
-          <p className="text-xs text-gray-400 leading-relaxed">
+          <p className="text-xs text-gray-500 leading-relaxed">
             Cosmatch · Mgr. Ing. Simona Cibulková · IČO 08419531 · Praha 2026.
           </p>
         </footer>

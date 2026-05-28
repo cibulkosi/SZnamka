@@ -224,7 +224,7 @@ export default function ObchodniPodminkyPage() {
         </div>
 
         <footer className="mt-16 pt-12 border-t border-gray-200">
-          <p className="text-xs text-gray-400 leading-relaxed">
+          <p className="text-xs text-gray-500 leading-relaxed">
             Mgr. Ing. Simona Cibulková · IČO 08419531 · Kurzova 2222/16, 155 00 Praha 5 - Stodůlky · Datová schránka: tttkfnk · <a href="mailto:ahoj@cosmatch.cz" className="text-pink-500 underline">ahoj@cosmatch.cz</a>
             <br /><br />
             <strong>Doporučujeme:</strong> Před spuštěním Cosmatch pro veřejnost doporučujeme nechat tyto Podmínky zkontrolovat advokátem se specializací na e-commerce a ochranu spotřebitele. Tato verze byla vytvořena na základě českého práva a GDPR best practices, ale není individuálním právním poradenstvím.

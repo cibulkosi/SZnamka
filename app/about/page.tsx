@@ -209,7 +209,7 @@ export default function AboutPage() {
         </section>
 
         <footer className="mt-16 pt-12 border-t border-gray-200">
-          <p className="text-xs text-gray-400 leading-relaxed">
+          <p className="text-xs text-gray-500 leading-relaxed">
             Cosmatch · Mgr. Ing. Simona Cibulková · IČO 08419531 · Prague, Czech Republic · 2026.
             Numerology is not an empirical science — Cosmatch uses it as an interpretive framework for self-discovery and matchmaking, not as objective truth.
           </p>

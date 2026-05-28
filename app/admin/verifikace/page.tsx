@@ -127,7 +127,7 @@ export default function AdminVerifikace() {
                       <p className="text-xs eyebrow text-pink-500 mb-1">{POSES_LABELS[v.required_pose] || v.required_pose}</p>
                       <h3 className="font-medium text-gray-900">{v.profile?.name || 'Neznámé jméno'}</h3>
                       <p className="text-xs text-gray-500">{v.profile?.email}</p>
-                      <p className="text-xs text-gray-400 mt-1">{submittedDate}</p>
+                      <p className="text-xs text-gray-500 mt-1">{submittedDate}</p>
                     </div>
                     <span className={`text-[10px] px-2 py-1 rounded-full font-medium ${
                       v.status === 'pending' ? 'bg-amber-50 text-amber-700 border border-amber-200' :

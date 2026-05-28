@@ -226,7 +226,7 @@ export default function WaitlistPage() {
                   <p className="serif-display text-5xl text-pink-500 font-medium tracking-tight tabular-nums">
                     {remaining.toLocaleString('cs-CZ')}
                   </p>
-                  <p className="text-xs text-gray-400 mt-1">do „Zakládajících 1{' '}000“</p>
+                  <p className="text-xs text-gray-500 mt-1">do „Zakládajících 1{' '}000“</p>
                 </div>
               </div>
             </section>
@@ -315,7 +315,7 @@ export default function WaitlistPage() {
                   >
                     {submitting ? 'Přidávám Tě…' : 'Rezervovat místo'}
                   </button>
-                  <p className="text-xs text-gray-400 text-center mt-4">
+                  <p className="text-xs text-gray-500 text-center mt-4">
                     Neposíláme žádný spam. Pouze e-mail, když seznamku spustíme ve tvém městě.
                   </p>
                 </div>

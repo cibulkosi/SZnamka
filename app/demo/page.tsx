@@ -114,7 +114,7 @@ export default function DemoPage() {
         </section>
 
         {/* Disclaimer */}
-        <p className="text-xs text-gray-400 leading-relaxed">
+        <p className="text-xs text-gray-500 leading-relaxed">
           Jména, fotky a data zde uvedená jsou ilustrativní a slouží jen pro představu o tom, jak Cosmatch vypadá.
           Reálné profily nikdy nebudou vymyšlené. Fotky pochází z databáze Unsplash a slouží jako placeholdery.
         </p>

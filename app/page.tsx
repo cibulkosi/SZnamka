@@ -87,24 +87,24 @@ export default function LandingPage() {
               <p className="text-sm text-gray-700 leading-relaxed">
                 českých žen ve věku 18–29 let považuje hledání partnera za <em className="italic text-pink-500">obtížné</em>.
               </p>
-              <p className="text-xs text-gray-400 mt-2">STEM/MARK, 2025</p>
+              <p className="text-xs text-gray-500 mt-2">STEM/MARK, 2025</p>
             </div>
             <div>
               <div className="serif-display text-3xl sm:text-5xl text-gray-900 font-medium tracking-tight mb-2 tabular-nums">43 %</div>
               <p className="text-sm text-gray-700 leading-relaxed">
                 uživatelů internetu v Česku věří horoskopům.<br/>Mezi ženami-uživatelkami internetu <em className="italic text-pink-500">56 %</em>.
               </p>
-              <p className="text-xs text-gray-400 mt-2">Nielsen Admosphere</p>
+              <p className="text-xs text-gray-500 mt-2">Nielsen Admosphere</p>
             </div>
             <div>
               <div className="serif-display text-3xl sm:text-5xl text-gray-900 font-medium tracking-tight mb-2 tabular-nums">43 %</div>
               <p className="text-sm text-gray-700 leading-relaxed">
                 Čechů věří v <em className="italic text-pink-500">osud</em>. Třetina v existenci spřízněné duše.
               </p>
-              <p className="text-xs text-gray-400 mt-2">Pew CEE</p>
+              <p className="text-xs text-gray-500 mt-2">Pew CEE</p>
             </div>
           </div>
-          <p className="text-xs text-gray-400 mt-10 leading-relaxed max-w-2xl">
+          <p className="text-xs text-gray-500 mt-10 leading-relaxed max-w-2xl">
             Cosmatch staví na ověřené české realitě, ne na importovaných statistikách.
             <Link href="/kompatibilita-podle-data-narozeni" className="text-pink-500 hover:text-pink-600 ml-1">
               Více v průvodci →
@@ -253,7 +253,7 @@ export default function LandingPage() {
               <p className="text-xs text-gray-500 mt-3">
                 Cosmatch+ od 249 Kč/měs (597 Kč/3 měs · 2 088 Kč/rok, sleva 30 %). Předplatné lze kdykoli zrušit v profilu bez sankce.
               </p>
-              <p className="text-xs text-gray-400 mt-2 max-w-md leading-relaxed">
+              <p className="text-xs text-gray-500 mt-2 max-w-md leading-relaxed">
                 Cosmatch algoritmus kombinuje klasickou tradici kompatibility podle data narození s ověřenými psychologickými přístupy. Žádný z těchto nástrojů sám o sobě není vědecky validovaný jako prediktor vztahů — jde o interpretační nástroj, ne predikci. <a href="/jak-funguje-cosmatch" className="underline hover:text-gray-700">Detail</a>.
               </p>
             </div>

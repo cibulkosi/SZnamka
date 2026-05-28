@@ -101,7 +101,7 @@ export default function AstrologiePage() {
           </p>
           <p className="text-sm text-gray-500 mt-6">
             Autorka <span className="text-gray-900 italic serif">Simona Cibulková</span>
-            <span className="text-gray-300 mx-2">·</span>
+            <span className="text-gray-400 mx-2">·</span>
             <span>Praha, květen 2026</span>
           </p>
         </header>
@@ -520,7 +520,7 @@ export default function AstrologiePage() {
         </section>
 
         <footer className="mt-16 pt-12 border-t border-gray-200">
-          <p className="text-xs text-gray-400 leading-relaxed">
+          <p className="text-xs text-gray-500 leading-relaxed">
             Cosmatch · Mgr. Ing. Simona Cibulková · IČO 08419531 · Praha 2026.
             Astrologie není empirická věda — výsledky používejte jako podporu rozhodování, ne jako absolutní pravdu.
           </p>

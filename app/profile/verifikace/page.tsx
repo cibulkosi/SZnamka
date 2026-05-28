@@ -90,7 +90,7 @@ export default function VerifikaceFlowPage() {
   }
 
   if (!user) return (
-    <main className="min-h-screen bg-[#F0EBE3] flex items-center justify-center">
+    <main id="main" className="min-h-screen bg-[#F0EBE3] flex items-center justify-center">
       <p className="text-gray-400 text-sm">Načítám…</p>
     </main>
   )
@@ -174,14 +174,14 @@ export default function VerifikaceFlowPage() {
               {uploading ? 'Nahrávám…' : 'Vyfotit selfie a poslat'}
             </button>
 
-            <p className="text-xs text-gray-400 mt-4 leading-relaxed text-center">
+            <p className="text-xs text-gray-500 mt-4 leading-relaxed text-center">
               Selfie je vidět jen pro náš ověřovací tým. Po schválení ho mažeme do 30 dní. Nikomu jinému se nezobrazí.
             </p>
           </>
         )}
 
         <hr className="rule mt-12 mb-6 border-gray-300" />
-        <p className="text-xs text-gray-400 leading-relaxed">
+        <p className="text-xs text-gray-500 leading-relaxed">
           <strong>Proč verifikace?</strong> Česká republika je 6. nejzranitelnější země vůči romance scams. Modrá fajfka ukazuje, že jsi reálný člověk — ne bot, ne ukradené fotky, ne podvodník.
         </p>
       </article>

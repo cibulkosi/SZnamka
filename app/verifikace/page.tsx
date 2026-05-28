@@ -140,7 +140,7 @@ export default function VerifikacePage() {
         </section>
 
         <footer className="mt-20 pt-12 border-t border-gray-200">
-          <p className="text-xs text-gray-400 leading-relaxed">
+          <p className="text-xs text-gray-500 leading-relaxed">
             Cosmatch · Mgr. Ing. Simona Cibulková · IČO 08419531 · Praha 5, 2026.
             Pokud se setkáš s podezřelým chováním, <Link href="/kontakt" className="text-pink-500 underline">nahlas nám to přes kontaktní formulář</Link>.
           </p>

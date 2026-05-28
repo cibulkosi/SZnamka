@@ -54,17 +54,17 @@ export default function KontaktPage() {
             <p className="eyebrow text-gray-400 mb-2">Právní dokumenty</p>
             <p>
               <Link href="/obchodni-podminky" className="text-pink-500 hover:underline">Obchodní podmínky</Link>
-              <span className="text-gray-300"> · </span>
+              <span className="text-gray-400"> · </span>
               <Link href="/zasady-ochrany-osobnich-udaju" className="text-pink-500 hover:underline">GDPR</Link>
-              <span className="text-gray-300"> · </span>
+              <span className="text-gray-400"> · </span>
               <Link href="/reklamacni-rad" className="text-pink-500 hover:underline">Reklamační řád</Link>
-              <span className="text-gray-300"> · </span>
+              <span className="text-gray-400"> · </span>
               <Link href="/odstoupeni-od-smlouvy" className="text-pink-500 hover:underline">Odstoupení od smlouvy</Link>
-              <span className="text-gray-300"> · </span>
+              <span className="text-gray-400"> · </span>
               <Link href="/opakovane-platby" className="text-pink-500 hover:underline">Opakované platby</Link>
-              <span className="text-gray-300"> · </span>
+              <span className="text-gray-400"> · </span>
               <Link href="/cookies" className="text-pink-500 hover:underline">Cookies</Link>
-              <span className="text-gray-300"> · </span>
+              <span className="text-gray-400"> · </span>
               <Link href="/manifest-duvery" className="text-pink-500 hover:underline">Manifest důvěry</Link>
             </p>
           </div>

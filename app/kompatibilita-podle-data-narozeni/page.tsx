@@ -169,7 +169,7 @@ export default function KompatibilitaPage() {
           </p>
           <p className="text-sm text-gray-500 mt-6">
             Autorka <span className="text-gray-900 italic serif">Simona Cibulková</span>
-            <span className="text-gray-300 mx-2">·</span>
+            <span className="text-gray-400 mx-2">·</span>
             <span>Praha, květen 2026</span>
           </p>
         </header>
@@ -181,7 +181,7 @@ export default function KompatibilitaPage() {
             {TOC.map(([href, label], i) => (
               <li key={href}>
                 <a href={href} className="text-gray-700 hover:text-pink-500 transition flex items-baseline gap-3">
-                  <span className="text-xs text-gray-400 tabular-nums w-6">{String(i+1).padStart(2,'0')}</span>
+                  <span className="text-xs text-gray-500 tabular-nums w-6">{String(i+1).padStart(2,'0')}</span>
                   <span>{label}</span>
                 </a>
               </li>
@@ -229,16 +229,16 @@ export default function KompatibilitaPage() {
                   <h3 className="serif text-xl text-gray-900 font-medium mb-2">{name}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">
                     <span className="text-gray-900 font-medium">Silná shoda:</span> {good}
-                    <span className="text-gray-300 mx-2">·</span>
+                    <span className="text-gray-400 mx-2">·</span>
                     <span className="text-pink-500">Kompatibilní:</span> {compat}
-                    <span className="text-gray-300 mx-2">·</span>
+                    <span className="text-gray-400 mx-2">·</span>
                     <span className="text-gray-500">Náročná: {hard}</span>
                   </p>
                 </div>
               </div>
             ))}
           </div>
-          <p className="text-xs text-gray-400 mt-6 leading-relaxed max-w-2xl">
+          <p className="text-xs text-gray-500 mt-6 leading-relaxed max-w-2xl">
             Tato tabulka shrnuje klasickou západní tradici Life Path kompatibility podle různých autorů (<strong className="text-gray-600 font-medium">Decoz</strong>, <strong className="text-gray-600 font-medium">McCants</strong>, <strong className="text-gray-600 font-medium">Numerology.com</strong> — autoři se v některých párech rozcházejí, naše tabulka preferuje Decozův výklad a je syntézou). Cosmatch algoritmus ale počítá kompatibilitu jiným způsobem: z vlastní databáze desítek tisíc specifických párů kombinací dat narození. Life Path tabulka tedy slouží primárně k sebepoznání, ne jako přímý vstup algoritmu.
           </p>
         </section>
@@ -257,7 +257,7 @@ export default function KompatibilitaPage() {
                 <p className="text-gray-800 leading-[1.75] text-[1.0625rem] font-medium mb-1">
                   českých žen 18–29 let považuje hledání partnera za obtížné.
                 </p>
-                <p className="text-xs text-gray-400">STEM/MARK, srpen 2025 · n = 504</p>
+                <p className="text-xs text-gray-500">STEM/MARK, srpen 2025 · n = 504</p>
               </div>
             </div>
 
@@ -267,7 +267,7 @@ export default function KompatibilitaPage() {
                 <p className="text-gray-800 leading-[1.75] text-[1.0625rem] font-medium mb-1">
                   uživatelů internetu v Česku věří horoskopům. Mezi ženami-uživatelkami internetu tento počet stoupá na 56 %.
                 </p>
-                <p className="text-xs text-gray-400">Nielsen Admosphere, 2017</p>
+                <p className="text-xs text-gray-500">Nielsen Admosphere, 2017</p>
               </div>
             </div>
 
@@ -277,7 +277,7 @@ export default function KompatibilitaPage() {
                 <p className="text-gray-800 leading-[1.75] text-[1.0625rem] font-medium mb-1">
                   Čechů věří v osud. 44 % v existenci duše. 37 % v zázraky.
                 </p>
-                <p className="text-xs text-gray-400">Pew Research Center, CEE 2017</p>
+                <p className="text-xs text-gray-500">Pew Research Center, CEE 2017</p>
               </div>
             </div>
           </div>
@@ -340,7 +340,7 @@ export default function KompatibilitaPage() {
         </section>
 
         <footer className="mt-20 pt-12 border-t border-gray-200">
-          <p className="text-xs text-gray-400 leading-relaxed">
+          <p className="text-xs text-gray-500 leading-relaxed">
             Mgr. Ing. Simona Cibulková · Cosmatch · IČO 08419531 · Praha 5, 2026.
             Numerologie není empirická věda, výsledky používejte jako podporu rozhodování,
             ne jako absolutní pravdu.

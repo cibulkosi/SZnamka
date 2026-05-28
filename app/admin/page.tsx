@@ -240,8 +240,8 @@ export default function AdminPage() {
       <div className="max-w-4xl mx-auto px-6 pt-6 flex items-center justify-between">
         <Link href="/" className="text-sm text-gray-500 hover:text-gray-900 transition">← Cosmatch</Link>
         <div className="flex items-center gap-4">
-          <span className="text-xs text-gray-400">{auth.email}</span>
-          {lastRefresh && <span className="text-xs text-gray-400">· obnoveno {lastRefresh.toLocaleTimeString('cs-CZ')}</span>}
+          <span className="text-xs text-gray-500">{auth.email}</span>
+          {lastRefresh && <span className="text-xs text-gray-500">· obnoveno {lastRefresh.toLocaleTimeString('cs-CZ')}</span>}
           <button onClick={loadStats} disabled={loading}
             className="text-xs text-gray-700 hover:text-gray-900 border border-gray-300 hover:border-gray-900 px-4 py-1.5 rounded-full transition disabled:opacity-50">
             {loading ? 'Načítám…' : 'Obnovit'}
@@ -275,7 +275,7 @@ export default function AdminPage() {
                 <div key={label as string}>
                   <p className="eyebrow text-gray-500 mb-2">{label}</p>
                   <p className="serif-display text-5xl text-gray-900 font-medium tracking-tight tabular-nums">{val}</p>
-                  {sub && <p className="text-xs text-gray-400 mt-1">{sub} z celku</p>}
+                  {sub && <p className="text-xs text-gray-500 mt-1">{sub} z celku</p>}
                 </div>
               ))}
             </section>
@@ -297,17 +297,17 @@ export default function AdminPage() {
                   <div>
                     <p className="eyebrow text-gray-500 mb-1">Muži</p>
                     <p className="serif text-3xl text-gray-900 font-medium">{maleRatio} <span className="text-base text-gray-500">%</span></p>
-                    <p className="text-xs text-gray-400 mt-1">{fmt(stats.maleCount)}</p>
+                    <p className="text-xs text-gray-500 mt-1">{fmt(stats.maleCount)}</p>
                   </div>
                   <div>
                     <p className="eyebrow text-gray-500 mb-1">Ženy</p>
                     <p className="serif text-3xl text-pink-500 font-medium">{femaleRatio} <span className="text-base text-gray-400">%</span></p>
-                    <p className="text-xs text-gray-400 mt-1">{fmt(stats.femaleCount)}</p>
+                    <p className="text-xs text-gray-500 mt-1">{fmt(stats.femaleCount)}</p>
                   </div>
                   <div>
                     <p className="eyebrow text-gray-500 mb-1">Ostatní</p>
                     <p className="serif text-3xl text-gray-900 font-medium">{100 - maleRatio - femaleRatio} <span className="text-base text-gray-500">%</span></p>
-                    <p className="text-xs text-gray-400 mt-1">{fmt(stats.otherCount)}</p>
+                    <p className="text-xs text-gray-500 mt-1">{fmt(stats.otherCount)}</p>
                   </div>
                 </div>
                 <div className={`mt-6 pt-6 border-t border-gray-100 text-sm leading-relaxed ${maleRatio > 65 ? 'text-red-600' : 'text-emerald-700'}`}>
@@ -341,7 +341,7 @@ export default function AdminPage() {
                           <span className="text-base text-gray-400"> / {fmt(stats.voucherGender.voucher_gender_cap)}</span>
                         )}
                       </p>
-                      <p className="text-xs text-gray-400 mt-1">
+                      <p className="text-xs text-gray-500 mt-1">
                         {stats.voucherGender.female_pct !== null ? `${stats.voucherGender.female_pct} %` : '—'}
                         {stats.voucherGender.female_cap_reached && <span className="text-red-500 ml-2">cap vyčerpán</span>}
                       </p>
@@ -354,7 +354,7 @@ export default function AdminPage() {
                           <span className="text-base text-gray-400"> / {fmt(stats.voucherGender.voucher_gender_cap)}</span>
                         )}
                       </p>
-                      <p className="text-xs text-gray-400 mt-1">
+                      <p className="text-xs text-gray-500 mt-1">
                         {stats.voucherGender.male_pct !== null ? `${stats.voucherGender.male_pct} %` : '—'}
                         {stats.voucherGender.male_cap_reached && <span className="text-red-500 ml-2">cap vyčerpán</span>}
                       </p>
@@ -364,7 +364,7 @@ export default function AdminPage() {
                       <p className="serif text-3xl text-gray-900 font-medium tabular-nums">
                         {fmt(stats.voucherGender.total_redempce)}
                       </p>
-                      <p className="text-xs text-gray-400 mt-1">redempcí celkem</p>
+                      <p className="text-xs text-gray-500 mt-1">redempcí celkem</p>
                     </div>
                   </div>
 

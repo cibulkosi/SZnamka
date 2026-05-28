@@ -200,7 +200,7 @@ export default function KontaktForm() {
           className="w-full bg-white border border-gray-300 rounded-2xl focus:border-gray-900 outline-none p-4 text-gray-900 placeholder-gray-400 transition resize-y"
           placeholder="Stručně popiš, s čím Ti můžeme pomoct…"
         />
-        <p className="text-xs text-gray-400 mt-1 text-right tabular-nums">
+        <p className="text-xs text-gray-500 mt-1 text-right tabular-nums">
           {charCount} / 5 000
         </p>
       </div>

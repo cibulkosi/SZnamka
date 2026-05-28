@@ -171,7 +171,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Search engine verifications */}
         <meta name="seznam-wmt" content="36swRGwLCcXGBmeVZ8oKjwsnfNc0Wqu1" />
       </head>
-      <body className={inter.className}>{children}<BottomTabBar /><CookieBanner /></body>
+      <body className={inter.className}>
+        <a href="#main" className="skip-link">Přeskočit na obsah</a>
+        {children}
+        <BottomTabBar />
+        <CookieBanner />
+      </body>
     </html>
   )
 }

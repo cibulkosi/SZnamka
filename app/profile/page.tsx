@@ -111,7 +111,7 @@ function PhotoEditor({ user, onUpdate }: { user: Profile; onUpdate: (photos: str
       </div>
       <input ref={fileInputRef} type="file" accept="image/jpeg,image/png,image/webp" multiple className="hidden"
         onChange={e => handleFiles(e.target.files)} />
-      <p className="text-xs text-gray-400 mt-3">JPG / PNG / WebP · max 10 MB · klikni Hlavní pro přesun na první místo</p>
+      <p className="text-xs text-gray-500 mt-3">JPG / PNG / WebP · max 10 MB · klikni Hlavní pro přesun na první místo</p>
       {error && <p className="text-xs text-red-600 mt-2">{error}</p>}
     </div>
   )
@@ -161,7 +161,7 @@ function EditableText({ label, value, onSave, placeholder, multiline = true, max
               className="w-full border border-gray-300 rounded-2xl px-4 py-3 text-[1.0625rem] focus:border-gray-900 focus:outline-none" />
           )}
           <div className="flex items-center justify-between mt-3">
-            <p className="text-xs text-gray-400">{draft.length} / {maxLength}</p>
+            <p className="text-xs text-gray-500">{draft.length} / {maxLength}</p>
             <div className="flex gap-2">
               <button onClick={() => setEditing(false)} disabled={saving}
                 className="px-4 py-2 rounded-full text-sm font-medium bg-white border border-gray-300 hover:border-gray-900 transition disabled:opacity-50">
@@ -240,7 +240,7 @@ function HobbiesEditor({ user, onUpdate }: { user: Profile; onUpdate: (hobbies: 
             </div>
           )}
           <div className="flex items-center justify-between">
-            <p className="text-xs text-gray-400">{draft.length} / 10</p>
+            <p className="text-xs text-gray-500">{draft.length} / 10</p>
             <div className="flex gap-2">
               <button onClick={() => setEditing(false)} disabled={saving}
                 className="px-4 py-2 rounded-full text-sm font-medium bg-white border border-gray-300 hover:border-gray-900 transition disabled:opacity-50">
@@ -333,7 +333,7 @@ function PromptsEditor({ user, onUpdate }: { user: Profile; onUpdate: (prompts: 
                   placeholder="Tvoje odpověď…" rows={3}
                   className="w-full border border-gray-300 rounded-xl px-3 py-2 text-[0.95rem] focus:border-gray-900 focus:outline-none resize-none" />
                 <div className="flex items-center justify-between mt-3">
-                  <p className="text-xs text-gray-400">{draftAnswer.length} / 250</p>
+                  <p className="text-xs text-gray-500">{draftAnswer.length} / 250</p>
                   <div className="flex gap-2">
                     <button onClick={() => setEditingIdx(null)} disabled={saving}
                       className="px-3 py-1.5 rounded-full text-xs font-medium bg-white border border-gray-300 hover:border-gray-900 transition disabled:opacity-50">
@@ -355,11 +355,11 @@ function PromptsEditor({ user, onUpdate }: { user: Profile; onUpdate: (prompts: 
                 <p className="serif text-lg text-gray-900 leading-snug">{existing.answer}</p>
                 <div className="absolute top-3 right-3 flex gap-1">
                   <button onClick={() => startEdit(idx)}
-                    className="text-xs text-gray-400 hover:text-gray-900 px-2 py-1 rounded-full hover:bg-gray-100 transition">
+                    className="text-xs text-gray-500 hover:text-gray-900 px-2 py-1 rounded-full hover:bg-gray-100 transition">
                     <PencilIcon size={12} />
                   </button>
                   <button onClick={() => handleRemove(idx)}
-                    className="text-xs text-gray-400 hover:text-red-600 px-2 py-1 rounded-full hover:bg-red-50 transition">
+                    className="text-xs text-gray-500 hover:text-red-600 px-2 py-1 rounded-full hover:bg-red-50 transition">
                     ×
                   </button>
                 </div>
@@ -477,7 +477,7 @@ function VoiceEditor({ user, onUpdate }: { user: Profile; onUpdate: (data: { url
           <p className="text-xs text-gray-500 mb-1">{user.voice_prompt_question}</p>
           <audio src={user.voice_prompt_url} controls className="w-full mt-2" />
           <div className="flex items-center justify-between mt-3">
-            <p className="text-xs text-gray-400">{user.voice_prompt_duration_seconds}s</p>
+            <p className="text-xs text-gray-500">{user.voice_prompt_duration_seconds}s</p>
             <button onClick={handleDelete} className="text-xs text-gray-500 hover:text-red-600 transition">Smazat hlasovou zprávu</button>
           </div>
         </div>
@@ -565,7 +565,7 @@ export default function ProfilePage() {
   const heroPhoto = user.photos?.[0]
 
   return (
-    <main className="min-h-screen bg-[#F0EBE3] pb-24">
+    <main id="main" className="min-h-screen bg-[#F0EBE3] pb-24">
       {/* Sticky header */}
       <div className="sticky top-0 z-20 bg-[#F0EBE3]/95 backdrop-blur-sm border-b border-gray-200">
         <div className="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
@@ -607,8 +607,8 @@ export default function ProfilePage() {
           </div>
           <p className="text-gray-500 text-sm leading-relaxed">
             {birthdayDisplay && <>{birthdayDisplay}</>}
-            {zodiac && <><span className="text-gray-300 mx-2">·</span>{zodiac}</>}
-            {user.city && <><span className="text-gray-300 mx-2">·</span>{user.city}</>}
+            {zodiac && <><span className="text-gray-400 mx-2">·</span>{zodiac}</>}
+            {user.city && <><span className="text-gray-400 mx-2">·</span>{user.city}</>}
           </p>
           {(user.premium || user.relationship_goal) && (
             <div className="flex flex-wrap gap-2 mt-4">
@@ -664,7 +664,7 @@ export default function ProfilePage() {
               {mbtiInfo && <span className="serif text-xl text-gray-700 italic">{mbtiInfo.name}</span>}
             </div>
             {mbtiInfo && <p className="text-gray-600 text-[0.95rem] mt-2 leading-relaxed">{mbtiInfo.tagline}</p>}
-            <p className="text-xs text-gray-400 mt-3">Vypočteno ze 4 dimenzí (E/I + N/S + T/F + J/P) podle Myers-Briggs Type Indicator.</p>
+            <p className="text-xs text-gray-500 mt-3">Vypočteno ze 4 dimenzí (E/I + N/S + T/F + J/P) podle Myers-Briggs Type Indicator.</p>
           </div>
         )}
 
@@ -846,12 +846,12 @@ export default function ProfilePage() {
             Odhlásit se
           </button>
           <button onClick={() => setShowDeleteConfirm(true)}
-            className="block w-full text-[11px] text-gray-400 hover:text-red-600 underline underline-offset-4 decoration-gray-300 hover:decoration-red-400 transition pt-2">
+            className="block w-full text-[11px] text-gray-500 hover:text-red-600 underline underline-offset-4 decoration-gray-300 hover:decoration-red-400 transition pt-2">
             Smazat účet
           </button>
         </div>
 
-        <p className="text-xs text-gray-400 text-center pt-4 pb-4">cosmatch.cz · 2026</p>
+        <p className="text-xs text-gray-500 text-center pt-4 pb-4">cosmatch.cz · 2026</p>
       </article>
 
       {/* Logout dialog */}

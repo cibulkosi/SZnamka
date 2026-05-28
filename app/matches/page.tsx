@@ -142,7 +142,7 @@ export default function MatchesPage() {
   if (loading) return <MatchesSkeleton />
 
   return (
-    <main className="min-h-screen bg-[#F0EBE3] pb-24">
+    <main id="main" className="min-h-screen bg-[#F0EBE3] pb-24">
       <div className="max-w-2xl mx-auto px-6 pt-6">
         <Link href="/discover" className="text-sm text-gray-500 hover:text-gray-900 transition">← Discover</Link>
       </div>

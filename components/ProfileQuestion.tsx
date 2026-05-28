@@ -282,7 +282,7 @@ export function ProfileQuestion({ question, user, onAnswer, onSkip, questionNumb
         </div>
         <button
           onClick={onSkip}
-          className="text-xs text-gray-300 hover:text-gray-400 transition-colors"
+          className="text-xs text-gray-400 hover:text-gray-500 transition-colors"
         >
           Přeskočit →
         </button>
@@ -305,7 +305,7 @@ export function ProfileQuestion({ question, user, onAnswer, onSkip, questionNumb
         <div className="text-4xl mb-3">{question.emoji}</div>
         <h3 className="text-xl font-bold text-gray-900 mb-1">{question.text}</h3>
         {question.subtext && (
-          <p className="text-sm text-gray-400">{question.subtext}</p>
+          <p className="text-sm text-gray-500">{question.subtext}</p>
         )}
       </div>
 
@@ -336,7 +336,7 @@ export function ProfileQuestion({ question, user, onAnswer, onSkip, questionNumb
         ))}
       </div>
 
-      <p className="text-center text-xs text-gray-300 mt-4">
+      <p className="text-center text-xs text-gray-400 mt-4">
         Odpovědi zlepšují přesnost Tvého skóre kompatibility
       </p>
     </div>

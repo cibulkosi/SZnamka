@@ -270,7 +270,7 @@ export default function HingeProfileV2({ profile, compat, enhancedScore, onPass,
           {profile.voice_prompt_url && (
             <div className="bg-white rounded-3xl p-6 shadow-sm relative pb-16">
               <p className="text-sm text-gray-500 mb-1">{profile.voice_prompt_question}</p>
-              <p className="text-xs text-gray-400 mb-3 flex items-center gap-1.5">
+              <p className="text-xs text-gray-500 mb-3 flex items-center gap-1.5">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" className="text-pink-500"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2z" /></svg>
                 hlasová zpráva · {profile.voice_prompt_duration_seconds ?? 0}s
               </p>

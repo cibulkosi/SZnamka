@@ -195,9 +195,9 @@ export default function DemoProfileDetail({ profile }: { profile: DemoProfile })
         {/* Voice prompt */}
         <div className="bg-white rounded-3xl p-6 shadow-sm relative pb-16">
           <p className="text-sm text-gray-500 mb-1">{profile.voicePrompt.question}</p>
-          <p className="text-xs text-gray-400 mb-2">🎤 hlasová zpráva · {profile.voicePrompt.duration}</p>
+          <p className="text-xs text-gray-500 mb-2">🎤 hlasová zpráva · {profile.voicePrompt.duration}</p>
           <VoiceWaveform />
-          <p className="text-xs text-gray-400 italic">V aplikaci si nahrávku přehraješ — toto je jen foto pro ilustraci.</p>
+          <p className="text-xs text-gray-500 italic">V aplikaci si nahrávku přehraješ — toto je jen foto pro ilustraci.</p>
           <LikeButton />
         </div>
 

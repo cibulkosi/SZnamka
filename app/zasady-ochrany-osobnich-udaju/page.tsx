@@ -226,7 +226,7 @@ export default function GdprPage() {
 
         {/* Disclaimer */}
         <footer className="mt-16 pt-12 border-t border-gray-200">
-          <p className="text-xs text-gray-400 leading-relaxed">
+          <p className="text-xs text-gray-500 leading-relaxed">
             Tento dokument je vyhotoven v souladu s nařízením Evropského parlamentu a Rady (EU) 2016/679 (GDPR) a zákonem č. 110/2019 Sb. o zpracování osobních údajů.
             <br /><br />
             <strong>Doporučujeme:</strong> Před spuštěním Cosmatch pro veřejnost doporučujeme nechat tyto zásady zkontrolovat advokátem se specializací na ochranu osobních údajů. Tato verze byla vytvořena na základě GDPR best practices, ale není individuálním právním poradenstvím.

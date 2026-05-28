@@ -347,7 +347,7 @@ export default function TestPage() {
   const idx = stepIndex[step]
 
   return (
-    <main className="min-h-screen bg-[#FAF6F0]">
+    <main id="main" className="min-h-screen bg-[#FAF6F0]">
       {/* Top bar */}
       <div className="max-w-xl mx-auto px-6 pt-6 flex items-center justify-between">
         <Link href="/" className="text-sm text-gray-500 hover:text-gray-900 transition">
@@ -390,7 +390,7 @@ export default function TestPage() {
               Začít kvíz
             </button>
 
-            <p className="text-xs text-gray-400 text-center mt-6">
+            <p className="text-xs text-gray-500 text-center mt-6">
               Cosmatch je první česká seznamka, která páruje lidi podle data narození.
             </p>
           </div>
@@ -441,7 +441,7 @@ export default function TestPage() {
 
             <button
               onClick={() => setStep('intro')}
-              className="block mx-auto mt-6 text-sm text-gray-400 hover:text-gray-700 transition"
+              className="block mx-auto mt-6 text-sm text-gray-500 hover:text-gray-700 transition"
             >
               ← Zpět
             </button>
@@ -660,12 +660,12 @@ export default function TestPage() {
 
             <button
               onClick={() => setStep('result')}
-              className="block mx-auto text-sm text-gray-400 hover:text-gray-700 transition"
+              className="block mx-auto text-sm text-gray-500 hover:text-gray-700 transition"
             >
               ← Zpět na výsledek
             </button>
 
-            <p className="text-xs text-gray-400 text-center mt-10 leading-relaxed">
+            <p className="text-xs text-gray-500 text-center mt-10 leading-relaxed">
               Neposíláme spam. Pouze jeden e-mail, když Cosmatch spustíme v tvém městě.
               Odhlášení jedním klikem.
             </p>
@@ -746,7 +746,7 @@ export default function TestPage() {
                   {downloading ? 'Generuji…' : 'Post (1:1)'}
                 </button>
               </div>
-              <p className="text-xs text-gray-400 mt-2 text-center">
+              <p className="text-xs text-gray-500 mt-2 text-center">
                 Story 1080×1920 pro Instagram/TikTok Stories · Post 1080×1080 pro Instagram Post nebo TikTok cover.
               </p>
             </div>
@@ -778,7 +778,7 @@ export default function TestPage() {
                       {voucherCopied ? 'Zkopírováno' : 'Kopírovat'}
                     </button>
                   </div>
-                  <p className="text-xs text-gray-400 text-center">
+                  <p className="text-xs text-gray-500 text-center">
                     Voucher je vázán na Tvůj e-mail. Pošleme Ti ho i v potvrzovacím mailu.
                   </p>
                 </div>

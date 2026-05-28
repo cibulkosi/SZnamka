@@ -175,7 +175,7 @@ export default function AmbasadorkyPage() {
                   {submitting ? 'Odesílám…' : 'Odeslat přihlášku'}
                 </button>
 
-                <p className="text-xs text-gray-400 text-center leading-relaxed">
+                <p className="text-xs text-gray-500 text-center leading-relaxed">
                   Vybereme dvacet ambasadorek. Ozveme se do tří týdnů, ať už budeš vybrána, nebo ne.
                 </p>
               </form>

@@ -219,7 +219,7 @@ export default function ManifestDuvery() {
           <p className="text-sm text-gray-500">
             Zakladatelka Cosmatch — Praha 5, květen 2026
           </p>
-          <p className="text-xs text-gray-400 mt-8 leading-relaxed">
+          <p className="text-xs text-gray-500 mt-8 leading-relaxed">
             Mgr. Ing. Simona Cibulková · IČO 08419531 · <Link href="/kontakt" className="text-pink-500 hover:underline">kontakt</Link><br />
             Algoritmus Cosmatch se inspiruje klasickou tradicí kompatibility podle data narození.
             Výsledky slouží jako podpora rozhodování, ne jako absolutní pravda.

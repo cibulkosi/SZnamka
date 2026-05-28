@@ -238,7 +238,7 @@ export default function AdminMessagesPage() {
                         </span>
                       </div>
                     </div>
-                    <span className="text-gray-300 text-xl flex-shrink-0">{isOpen ? '−' : '+'}</span>
+                    <span className="text-gray-400 text-xl flex-shrink-0">{isOpen ? '−' : '+'}</span>
                   </button>
 
                   {isOpen && (
