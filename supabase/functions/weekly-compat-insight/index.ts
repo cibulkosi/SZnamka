@@ -1,9 +1,16 @@
-// weekly-compat-insight v6: používá Crawford boolean flags místo legacy score sloupce
+// weekly-compat-insight v8: oprava looking_for/gender mismatch (plural vs singular)
 import { sendEmail, corsHeaders } from '../_shared/resend.ts'
 import { emailLayout } from '../_shared/email-layout.ts'
 import { vocative } from '../_shared/czech.ts'
 
 const MIN_MATCHES = 2
+
+// looking_for je plural ('men'/'women'/'everyone'), gender singular ('man'/'woman'/'other')
+function lookingForToGender(lf: string | null | undefined): string | null {
+  if (lf === 'men') return 'man'
+  if (lf === 'women') return 'woman'
+  return null
+}
 
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders })
@@ -23,7 +30,7 @@ Deno.serve(async (req) => {
   try {
     const usersRes = await fetch(
       `${supabaseUrl}/rest/v1/profiles?select=id,name,email,birthday,gender,looking_for,city` +
-      `&deleted_at=is.null&email=not.is.null&limit=10000`,
+      `&deleted_at=is.null&email=not.is.null&is_seed_test=eq.false&limit=10000`,
       { headers }
     )
     const users = await usersRes.json()
@@ -42,7 +49,6 @@ Deno.serve(async (req) => {
         const recent = await recentRes.json()
         if (Array.isArray(recent) && recent.length > 0) { results.skipped_recent++; continue }
 
-        // Crawford booleans: Soul Mates NEBO Love & Friendship = quality match
         const compatRes = await fetch(
           `${supabaseUrl}/rest/v1/compatibility?date_a=eq.${user.birthday}` +
           `&select=date_b,soul_mates,love_friendship,fatal_attraction&or=(soul_mates.eq.true,love_friendship.eq.true)` +
@@ -59,10 +65,14 @@ Deno.serve(async (req) => {
         }
         const candidateBdays = Array.from(scoreMap.keys())
 
+        const targetGender = lookingForToGender(user.looking_for)
+        const genderFilter = targetGender ? `&gender=eq.${targetGender}` : ''
+
         const candidatesRes = await fetch(
           `${supabaseUrl}/rest/v1/profiles?select=id,name,city,birthday` +
           `&birthday=in.(${candidateBdays.join(',')})` +
-          `&gender=eq.${user.looking_for}&deleted_at=is.null&id=neq.${user.id}&limit=30`,
+          genderFilter +
+          `&deleted_at=is.null&id=neq.${user.id}&limit=30`,
           { headers }
         )
         const candidates = await candidatesRes.json()
@@ -88,14 +98,15 @@ Deno.serve(async (req) => {
 
         const v = vocative(user.name || '')
         const subject = count >= 5
-          ? `${v}, máš ${count} kompatibilních lidí (nejvýš ${topLabel})`
-          : `${v}, koukněme na ${count} nových kompatibilních lidí`
+          ? `${v}, máš ${count} kompatibilních lidí — nejvýš ${topScore} %`
+          : `${v}, ${count} ${count === 2 ? 'lidi' : 'lidé'} nad průměr — nejvýš ${topScore} %`
 
         const html = emailLayout({
           heading: `${v}, vesmír za Tebe pracoval`,
           body: `
             <p style="margin:0 0 16px;">Algoritmus tento týden našel <strong>${count} ${count === 2 ? 'lidi' : count >= 5 ? 'lidí' : 'lidi'}</strong> s nadprůměrnou kompatibilitou — nejvyšší je <strong>${topLabel}</strong> (${topScore} %).</p>
             <p style="margin:0;">Otevři Cosmatch a podívej se. Tihle nikam neuteknou, ale čekání je horší společník.</p>
+            <p style="margin:32px 0 0;font-size:12px;color:#9ca3af;line-height:1.5;border-top:1px solid #f3f4f6;padding-top:16px;">Tohle je týdenní shrnutí kompatibility. Pokud Ti to nevyhovuje, můžeš ho vypnout v <a href="https://cosmatch.cz/nastaveni" style="color:#9ca3af;text-decoration:underline;">Nastavení</a>.</p>
           `,
           ctaLabel: 'Otevřít shody',
           ctaUrl: 'https://cosmatch.cz/discover',
