@@ -818,6 +818,26 @@ export default function ProfilePage() {
           </p>
         </div>
 
+        {/* Verification CTA */}
+        {!user.is_verified && (
+          <Link href="/profile/verifikace"
+            className="block bg-white rounded-3xl p-6 shadow-sm hover:shadow-md transition group">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0">
+                <svg className="w-6 h-6 text-blue-500" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2L9.91 4.09 7 4l-.09 2.91L4 9l2.09 2.91L4 14l2.91 1.09L9 18l2.91-.09L12 20l2.09-2.09L17 18l.09-2.91L20 14l-1.91-2.91L20 9l-2.91-1.09L17 4l-2.91.09L12 2zm-1.5 13.5l-3-3 1.41-1.41 1.59 1.59 4.59-4.59L17 9l-6 6.5z"/>
+                </svg>
+              </div>
+              <div className="flex-1">
+                <p className="eyebrow text-pink-500 mb-1">Ověření</p>
+                <p className="text-gray-900 font-medium">Získej modrou fajfku</p>
+                <p className="text-xs text-gray-500 mt-0.5">Krátké selfie → schválení do 24 h</p>
+              </div>
+              <span className="text-gray-400 group-hover:text-gray-900 transition">→</span>
+            </div>
+          </Link>
+        )}
+
         {/* Settings */}
         <div className="bg-white rounded-3xl p-6 shadow-sm space-y-3">
           <p className="eyebrow text-gray-500 mb-2">Nastavení</p>

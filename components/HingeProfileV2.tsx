@@ -147,10 +147,12 @@ export default function HingeProfileV2({ profile, compat, enhancedScore, onPass,
             <div className="flex items-baseline gap-3 flex-wrap mb-3">
               <h1 className="serif-display text-4xl text-gray-900 font-medium leading-none">{firstName}</h1>
               {age && <span className="text-3xl text-gray-400 font-light">{age}</span>}
-              {profile.verified && (
-                <span className="inline-flex items-center gap-1 text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full font-medium">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" /></svg>
-                  Ověřeno
+              {(profile.is_verified || profile.verified) && (
+                <span className="inline-flex items-center" aria-label="Ověřený profil" title="Ověřená osoba — selfie matchne profilové fotky">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="#3b82f6" className="drop-shadow-sm">
+                    <path d="M12 2L9.91 4.09 7 4l-.09 2.91L4 9l2.09 2.91L4 14l2.91 1.09L9 18l2.91-.09L12 20l2.09-2.09L17 18l.09-2.91L20 14l-1.91-2.91L20 9l-2.91-1.09L17 4l-2.91.09L12 2z"/>
+                    <path d="M10.5 14.5l-3-3 1.4-1.4 1.6 1.6 4.6-4.6 1.4 1.4-6 6z" fill="#fff"/>
+                  </svg>
                 </span>
               )}
             </div>

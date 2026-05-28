@@ -82,8 +82,9 @@ export type Profile = {
   pref_body_types?: string[]      // preferované postavy partnera — filtr (array)
 
   // ── Trust & verifikace ──────────────────────────
-  verified?: boolean        // TRUE pokud uživatel prošel ID verifikací (rezervováno pro budoucí Serious tier)
+  verified?: boolean        // (deprecated) — viz is_verified
   verified_at?: string      // ISO timestamp ověření
+  is_verified?: boolean     // Photo verification v0 — modrá fajfka u jména v feedu (denormalized z profile_verifications)
   deleted_at?: string       // Soft-delete (GDPR výmaz, 30 dní pak hard delete)
   deletion_reason?: string  // 'user_initiated' / 'gdpr_request' / 'admin_action'
   // ── Voucher + Founding member (added 19. 5. 2026) ──
