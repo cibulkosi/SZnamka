@@ -15,7 +15,7 @@ import { sendEmail, corsHeaders } from '../_shared/resend.ts'
 import { emailLayout } from '../_shared/email-layout.ts'
 import { vocative } from '../_shared/czech.ts'
 
-const MIN_SCORE = 85
+const MIN_SCORE = 50    // Realistic threshold based on actual score distribution
 const MIN_MATCHES = 2
 
 Deno.serve(async (req) => {
@@ -104,12 +104,14 @@ Deno.serve(async (req) => {
 
         // Resend email
         const v = vocative(user.name || '')
-        const subject = `${v}, tento týden ${count} ${count === 2 ? 'lidi' : count >= 5 ? 'lidí' : 'lidi'} nad ${topScore} %`
+        const subject = count >= 5
+          ? `${v}, tento týden ${count} kompatibilních lidí (nejvýš ${topScore} %)`
+          : `${v}, koukněme na ${count} nových kompatibilních lidí`
 
         const html = emailLayout({
           heading: `${v}, vesmír za Tebe pracoval`,
           body: `
-            <p style="margin:0 0 16px;">Algoritmus tento týden našel <strong>${count} lidi</strong>, se kterými máš nadprůměrnou kompatibilitu — nejvyšší <strong>${topScore} %</strong>.</p>
+            <p style="margin:0 0 16px;">Algoritmus tento týden našel <strong>${count} ${count === 2 ? 'lidi' : count >= 5 ? 'lidí' : 'lidi'}</strong> s kompatibilitou nad průměr — nejvyšší skóre je <strong>${topScore} %</strong>.</p>
             <p style="margin:0;">Otevři Cosmatch a podívej se. Tihle nikam neuteknou, ale čekání je horší společník.</p>
           `,
           ctaLabel: 'Otevřít shody',
