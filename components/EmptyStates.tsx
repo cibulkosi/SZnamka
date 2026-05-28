@@ -10,6 +10,7 @@
  */
 
 import Link from 'next/link'
+import { vocative } from '@/lib/czech'
 
 // Mini Saturn — reusable SVG (3 různé barvy podle kontextu)
 function SaturnIcon({ size = 80 }: { size?: number }) {
@@ -75,9 +76,10 @@ export function EmptyDiscover() {
 }
 
 export function EmptyMatches({ firstName }: { firstName?: string }) {
+  const voc = firstName ? vocative(firstName) : null
   return (
     <EmptyShell
-      title={firstName ? `${firstName}, ještě žádná shoda` : 'Ještě žádná shoda'}
+      title={voc ? `${voc}, ještě žádná shoda` : 'Ještě žádná shoda'}
       body="Jakmile někomu dáš lajk a ona/on Tobě taky, objeví se tu jako shoda. Algoritmus mezitím počítá v pozadí."
       ctaLabel="Objevuj profily"
       ctaHref="/discover"
