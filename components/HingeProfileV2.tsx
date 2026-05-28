@@ -242,43 +242,51 @@ export default function HingeProfileV2({ profile, compat, enhancedScore, onPass,
             </div>
           )}
 
-          {/* Info bar */}
-          <div className="bg-white rounded-3xl shadow-sm overflow-hidden">
-            <div className="grid grid-cols-2 divide-x divide-gray-100 border-b border-gray-100">
+          {/* Info bar — editoriální styl jako stránka časopisu, žádné GPT-y dividers */}
+          <div className="bg-white rounded-3xl shadow-sm p-7">
+            {/* První řádek: jméno + věk + zvěrokruh (jako titulek) */}
+            <div className="flex items-baseline justify-between gap-4 mb-5 pb-5 border-b border-gray-100">
               {age && (
-                <div className="px-3 py-4 flex items-center justify-center gap-2">
-                  <svg className="w-5 h-5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 6V3"/><path d="M10 3h4"/><rect x="4" y="11" width="16" height="9" rx="1.5"/><path d="M4 14c2 1 4 1 6 0s4-1 6 0 4 1 4 0"/><circle cx="12" cy="8" r="1.5"/>
-                  </svg>
-                  <span className="text-base text-gray-900 font-medium tabular-nums">{age}</span>
+                <div>
+                  <p className="text-[10px] text-gray-400 uppercase tracking-[0.15em] mb-0.5">Věk</p>
+                  <p className="serif-display text-2xl text-gray-900 font-medium tabular-nums leading-none">{age}</p>
                 </div>
               )}
               {zodiac && (
-                <div className="px-3 py-4 flex items-center justify-center gap-2">
-                  <span className="text-lg text-gray-500" aria-hidden>{ZODIAC_SYMBOLS[zodiac] || '✦'}</span>
-                  <span className="text-base text-gray-900 font-medium">{zodiac}</span>
+                <div className="text-right">
+                  <p className="text-[10px] text-gray-400 uppercase tracking-[0.15em] mb-0.5">Znamení</p>
+                  <p className="serif-display text-2xl text-gray-900 font-medium leading-none">{zodiac}</p>
                 </div>
               )}
             </div>
-            <div>
-              {archetype && lp && (
-                <div className="flex items-center gap-4 px-5 py-3.5 border-b border-gray-100">
-                  <SaturnIcon size={22} />
-                  <span className="text-[0.95rem] text-gray-900">
-                    Životní číslo <span className="font-medium text-pink-600 tabular-nums">{lp}</span> — <span className="font-medium">{archetype.name}</span>
-                  </span>
-                </div>
-              )}
+
+            {/* Životní číslo jako velký „statement" — žádná pomlčka, žádné emoji */}
+            {archetype && lp && (
+              <div className="mb-5 pb-5 border-b border-gray-100">
+                <p className="text-[10px] text-gray-400 uppercase tracking-[0.15em] mb-1.5">Životní číslo</p>
+                <p className="serif-display text-3xl text-gray-900 font-medium leading-none">
+                  <span className="text-pink-500">{lp}</span>
+                  <span className="text-gray-300 mx-2">·</span>
+                  <em className="italic">{archetype.name}</em>
+                </p>
+                {archetype.tagline && (
+                  <p className="text-xs text-gray-500 mt-2 italic leading-snug">{archetype.tagline}</p>
+                )}
+              </div>
+            )}
+
+            {/* Povolání + lokace v jednom řádku, decentně */}
+            <div className="flex items-baseline justify-between gap-6 text-[0.9375rem] text-gray-800">
               {profile.occupation && (
-                <div className="flex items-center gap-4 px-5 py-3.5 border-b border-gray-100">
-                  <svg className="w-5 h-5 text-gray-500 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-                  <span className="text-[0.95rem] text-gray-800">{profile.occupation}</span>
+                <div>
+                  <p className="text-[10px] text-gray-400 uppercase tracking-[0.15em] mb-0.5">Povolání</p>
+                  <p className="font-medium leading-snug">{profile.occupation}</p>
                 </div>
               )}
               {profile.city && (
-                <div className="flex items-center gap-4 px-5 py-3.5">
-                  <svg className="w-5 h-5 text-gray-500 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M12 21s-7-7.5-7-12a7 7 0 0 1 14 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
-                  <span className="text-[0.95rem] text-gray-800">{profile.city}</span>
+                <div className={profile.occupation ? 'text-right' : ''}>
+                  <p className="text-[10px] text-gray-400 uppercase tracking-[0.15em] mb-0.5">Žije v</p>
+                  <p className="font-medium leading-snug">{profile.city}</p>
                 </div>
               )}
             </div>
