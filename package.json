@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "eslint",
-    "cap:sync": "npm run build && npx cap sync android",
+    "build:webpack": "next build --no-turbopack",
     "cap:open": "npx cap open android",
-    "cap:run": "npm run build && npx cap sync android && npx cap run android"
+    "cap:run": "npm run build && npx cap sync android && npx cap run android",
+    "cap:sync": "npm run build && npx cap sync android",
+    "dev": "next dev",
+    "lint": "eslint",
+    "start": "next start"
   },
   "dependencies": {
     "@capacitor/android": "^8.3.4",
