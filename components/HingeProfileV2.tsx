@@ -17,6 +17,7 @@ import type { Profile, Compatibility } from '@/lib/supabase'
 import { getZodiac } from '@/lib/supabase'
 import { lifePathNumber, ARCHETYPES } from '@/lib/archetypes'
 import { getCompatibilityBreakdown } from '@/lib/compat'
+import { heartBurst } from '@/lib/animations'
 
 // ── Constants ─────────────────────────────────────────────────
 const ZODIAC_SYMBOLS: Record<string, string> = {
@@ -83,7 +84,7 @@ function VoiceWaveform({ playing = false }: { playing?: boolean }) {
 function PhotoLikeButton({ onClick }: { onClick?: () => void }) {
   return (
     <button
-      onClick={onClick}
+      onClick={(e) => { heartBurst(e.currentTarget); onClick?.() }}
       className="absolute bottom-3 right-3 w-11 h-11 rounded-full bg-white shadow-md flex items-center justify-center hover:scale-110 active:scale-95 transition-transform"
       aria-label="Líbí se mi"
       type="button"

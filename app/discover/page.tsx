@@ -10,6 +10,7 @@ import { ARCHETYPES, lifePathNumber } from '@/lib/archetypes'
 import { computeCompatibility, profileCompleteness, isOutsideDistanceLimit, isOutsidePhysicalPrefs, isChildrenIncompatible, isSmokingIncompatible, isAlcoholIncompatible, isMarijuanaIncompatible, tierFallbackBoost, crawfordBidirectional } from '@/lib/compat'
 import HingeProfileV2 from '@/components/HingeProfileV2'
 import { haptic } from '@/lib/haptic'
+import { matchConfetti } from '@/lib/animations'
 import { DiscoverSkeleton } from '@/components/Skeletons'
 import { maybePromptPushPermission } from '@/lib/pushNotifications'
 
@@ -343,7 +344,7 @@ export default function DiscoverPage() {
  const newMagicViews = magicViews + 1
  setMagicViews(newMagicViews)
  if (newMagicViews === 3 && magicText && !localStorage.getItem('cosmatch_magic_seen')) {
- setShowMagic(true)
+ matchConfetti(); setShowMagic(true)
  return
  }
 
