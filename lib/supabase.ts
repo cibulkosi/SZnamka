@@ -85,6 +85,10 @@ export type Profile = {
   verified?: boolean        // (deprecated) — viz is_verified
   verified_at?: string      // ISO timestamp ověření
   is_verified?: boolean     // Photo verification v0 — modrá fajfka u jména v feedu (denormalized z profile_verifications)
+  email_weekly_insight?: boolean    // Týdenní shrnutí kompatibility (default true)
+  email_match_notif?: boolean       // E-mail při nové shodě (default true)
+  email_message_notif?: boolean     // E-mail při nové zprávě (default true)
+  push_enabled?: boolean            // Push notifikace povoleny (default true)
   deleted_at?: string       // Soft-delete (GDPR výmaz, 30 dní pak hard delete)
   deletion_reason?: string  // 'user_initiated' / 'gdpr_request' / 'admin_action'
   // ── Voucher + Founding member (added 19. 5. 2026) ──
