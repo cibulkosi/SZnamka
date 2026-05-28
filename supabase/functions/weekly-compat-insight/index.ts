@@ -1,21 +1,8 @@
-/**
- * weekly-compat-insight — týdenní cron, který přes Resend pošle „tento týden
- * máš na Cosmatchi N lidi nad 85 % kompatibility" e-mail aktivním uživatelům.
- *
- * Spouští se: každý čtvrtek 17:00 SELČ (15:00 UTC) — peak engagement.
- *
- * Pro každého aktivního usera (deleted_at IS NULL):
- *   1. Spočítat top mutual-kompatibilní profily (≥ 85 %)
- *   2. Filtrovat ty, které už user lajknul (jen čerstvé)
- *   3. Pokud N ≥ MIN_MATCHES → Resend e-mail
- *   4. Idempotence přes notifications_sent (typ 'weekly_compat')
- */
-
+// weekly-compat-insight v6: používá Crawford boolean flags místo legacy score sloupce
 import { sendEmail, corsHeaders } from '../_shared/resend.ts'
 import { emailLayout } from '../_shared/email-layout.ts'
 import { vocative } from '../_shared/czech.ts'
 
-const MIN_SCORE = 50    // Realistic threshold based on actual score distribution
 const MIN_MATCHES = 2
 
 Deno.serve(async (req) => {
@@ -31,9 +18,6 @@ Deno.serve(async (req) => {
   const supabaseUrl = Deno.env.get('SUPABASE_URL')!
   const serviceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
   const headers = { apikey: serviceKey, Authorization: `Bearer ${serviceKey}`, 'Content-Type': 'application/json' }
-
-  // Idempotence: stejnému uživateli neposílat víc než 1× za 6 dní (cron je 1×/týden,
-  // ale pojistka pro případ manuálního re-runu)
   const sixDaysAgo = new Date(Date.now() - 6 * 24 * 60 * 60 * 1000).toISOString()
 
   try {
@@ -51,7 +35,6 @@ Deno.serve(async (req) => {
 
     for (const user of users) {
       try {
-        // Skip pokud jsme nedávno poslali
         const recentRes = await fetch(
           `${supabaseUrl}/rest/v1/notifications_sent?user_id=eq.${user.id}&type=eq.weekly_compat&sent_at=gte.${sixDaysAgo}&select=id&limit=1`,
           { headers }
@@ -59,18 +42,23 @@ Deno.serve(async (req) => {
         const recent = await recentRes.json()
         if (Array.isArray(recent) && recent.length > 0) { results.skipped_recent++; continue }
 
-        // Top mutual kompatibility ≥ MIN_SCORE
+        // Crawford booleans: Soul Mates NEBO Love & Friendship = quality match
         const compatRes = await fetch(
           `${supabaseUrl}/rest/v1/compatibility?date_a=eq.${user.birthday}` +
-          `&select=date_b,score&score=gte.${MIN_SCORE}&is_mutual=eq.true&order=score.desc&limit=50`,
+          `&select=date_b,soul_mates,love_friendship,fatal_attraction&or=(soul_mates.eq.true,love_friendship.eq.true)` +
+          `&limit=100`,
           { headers }
         )
         const compatBdays = await compatRes.json()
         if (!Array.isArray(compatBdays) || compatBdays.length === 0) continue
 
-        const candidateBdays = compatBdays.map((c: { date_b: string }) => c.date_b)
+        const scoreMap = new Map<string, number>()
+        for (const c of compatBdays) {
+          const s = c.soul_mates ? 100 : (c.love_friendship ? 95 : 85)
+          scoreMap.set(c.date_b, s)
+        }
+        const candidateBdays = Array.from(scoreMap.keys())
 
-        // Reálné profily, opačné pohlaví
         const candidatesRes = await fetch(
           `${supabaseUrl}/rest/v1/profiles?select=id,name,city,birthday` +
           `&birthday=in.(${candidateBdays.join(',')})` +
@@ -80,7 +68,6 @@ Deno.serve(async (req) => {
         const candidates = await candidatesRes.json()
         if (!Array.isArray(candidates) || candidates.length === 0) continue
 
-        // Odfiltrovat ty, které už user lajknul
         const candIds = candidates.map((c: { id: string }) => c.id)
         const likesRes = await fetch(
           `${supabaseUrl}/rest/v1/likes?from_user=eq.${user.id}&to_user=in.(${candIds.join(',')})&select=to_user`,
@@ -91,27 +78,23 @@ Deno.serve(async (req) => {
         const fresh = candidates.filter((c: { id: string }) => !likedIds.has(c.id))
         if (fresh.length < MIN_MATCHES) continue
 
-        // Mapování score → fresh
-        const scoresByBday: Record<string, number> = {}
-        compatBdays.forEach((c: { date_b: string, score: number }) => { scoresByBday[c.date_b] = c.score })
-
         const enriched = fresh.map((c: { id: string, birthday: string, name: string | null, city: string | null }) => ({
-          ...c, score: scoresByBday[c.birthday] || 0
+          ...c, score: scoreMap.get(c.birthday) || 50
         })).sort((a, b) => b.score - a.score).slice(0, 5)
 
         const topScore = enriched[0].score
         const count = enriched.length
+        const topLabel = topScore === 100 ? 'Spřízněná duše' : topScore === 95 ? 'Láska a přátelství' : 'Magnetická tenze'
 
-        // Resend email
         const v = vocative(user.name || '')
         const subject = count >= 5
-          ? `${v}, tento týden ${count} kompatibilních lidí (nejvýš ${topScore} %)`
+          ? `${v}, máš ${count} kompatibilních lidí (nejvýš ${topLabel})`
           : `${v}, koukněme na ${count} nových kompatibilních lidí`
 
         const html = emailLayout({
           heading: `${v}, vesmír za Tebe pracoval`,
           body: `
-            <p style="margin:0 0 16px;">Algoritmus tento týden našel <strong>${count} ${count === 2 ? 'lidi' : count >= 5 ? 'lidí' : 'lidi'}</strong> s kompatibilitou nad průměr — nejvyšší skóre je <strong>${topScore} %</strong>.</p>
+            <p style="margin:0 0 16px;">Algoritmus tento týden našel <strong>${count} ${count === 2 ? 'lidi' : count >= 5 ? 'lidí' : 'lidi'}</strong> s nadprůměrnou kompatibilitou — nejvyšší je <strong>${topLabel}</strong> (${topScore} %).</p>
             <p style="margin:0;">Otevři Cosmatch a podívej se. Tihle nikam neuteknou, ale čekání je horší společník.</p>
           `,
           ctaLabel: 'Otevřít shody',
@@ -124,13 +107,12 @@ Deno.serve(async (req) => {
           await fetch(`${supabaseUrl}/rest/v1/notifications_sent`, {
             method: 'POST', headers,
             body: JSON.stringify({ user_id: user.id, type: 'weekly_compat', sent_at: new Date().toISOString(),
-              metadata: { count, top_score: topScore } })
+              metadata: { count, top_score: topScore, top_label: topLabel } })
           })
         } else {
           results.errors.push(`${user.email}: ${sendRes.error}`)
         }
         results.processed++
-
       } catch (e) {
         results.errors.push(`${user.id}: ${(e as Error).message}`)
       }
