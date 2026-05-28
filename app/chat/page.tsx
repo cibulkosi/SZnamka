@@ -158,7 +158,7 @@ export default function ChatListPage() {
               return (
                 <li key={c.match_id}>
                   <Link
-                    href={`/chat/${c.match_id}`}
+                    href={`/chat/thread?id=${c.match_id}`}
                     className="flex items-center gap-4 bg-white rounded-2xl p-4 hover:shadow-md transition"
                   >
                     {photo ? (

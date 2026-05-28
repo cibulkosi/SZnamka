@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useEffect, useRef, useCallback } from 'react'
-import { useRouter, useParams } from 'next/navigation'
+import { useState, useEffect, useRef, useCallback, Suspense } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { supabase, loadCurrentProfile, type Profile } from '@/lib/supabase'
 import { haptic } from '@/lib/haptic'
@@ -30,10 +30,10 @@ function formatDay(iso: string): string {
   return d.toLocaleDateString('cs-CZ', { day: 'numeric', month: 'long' })
 }
 
-export default function ChatThreadPage() {
-  const params = useParams<{ matchId: string }>()
+function ChatThreadInner() {
+  const searchParams = useSearchParams()
   const router = useRouter()
-  const matchId = params.matchId
+  const matchId = searchParams.get('id') || ''
 
   const [me, setMe] = useState<Profile | null>(null)
   const [partner, setPartner] = useState<Profile | null>(null)
@@ -52,6 +52,7 @@ export default function ChatThreadPage() {
   }, [])
 
   useEffect(() => {
+    if (!matchId) { router.push('/chat'); return }
     (async () => {
       const r = await loadCurrentProfile()
       if (r.kind !== 'ok') { router.push('/login'); return }
@@ -316,5 +317,13 @@ export default function ChatThreadPage() {
         </div>
       </div>
     </main>
+  )
+}
+
+export default function ChatThreadPage() {
+  return (
+    <Suspense fallback={<main className="min-h-screen bg-[#F0EBE3] flex items-center justify-center"><p className="text-gray-500 text-sm">Načítám…</p></main>}>
+      <ChatThreadInner />
+    </Suspense>
   )
 }
